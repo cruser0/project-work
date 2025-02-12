@@ -3,7 +3,7 @@
 
 .env
 vars
-*/testapi/testapi/appsettings.json
+appsettings.json
 testapi/.vs/testapi/DesignTimeBuild/.dtbcache.v2
 testapi/.vs/testapi/v17/.futdcache.v1
 testapi/.vs/testapi/v17/.suo
@@ -45,3 +45,4 @@ testapi/testwin/obj/testwin.csproj.nuget.dgspec.json
 testapi/testwin/obj/testwin.csproj.nuget.g.props
 testapi/testwin/obj/Debug/net6.0-windows/testwin.assets.cache
 testapi/testwin/obj/Debug/net6.0-windows/testwin.GeneratedMSBuildEditorConfig.editorconfig
+testapi/testapi/appsettings.json
