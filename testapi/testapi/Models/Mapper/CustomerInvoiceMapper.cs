@@ -1,0 +1,63 @@
+﻿using testapi.Models.DTO;
+
+namespace testapi.Models.Mapper
+{
+    public class CustomerInvoiceMapper
+    {
+        public static CustomerInvoiceDTO Map(CustomerInvoice customerInvoice)
+        {
+            if (customerInvoice == null)
+                return null;
+            return new CustomerInvoiceDTO()
+            {
+                SaleId = customerInvoice.SaleId,
+                InvoiceAmount = customerInvoice.InvoiceAmount,
+                InvoiceDate = customerInvoice.InvoiceDate,
+                Status = customerInvoice.Status
+            };
+        }
+
+
+        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice)
+        {
+            if (customerInvoice == null)
+                return null;
+            return new CustomerInvoice()
+            {
+                SaleId = customerInvoice.SaleId,
+                InvoiceAmount = customerInvoice.InvoiceAmount,
+                InvoiceDate = customerInvoice.InvoiceDate,
+                Status = customerInvoice.Status
+            };
+        }
+
+        public static CustomerInvoiceDTOGet MapGet(CustomerInvoice customerInvoice)
+        {
+            if (customerInvoice == null)
+                return null;
+            return new CustomerInvoiceDTOGet()
+            {
+                CustomerInvoiceId= customerInvoice.CustomerInvoiceId,
+                SaleId = customerInvoice.SaleId,
+                InvoiceAmount = customerInvoice.InvoiceAmount,
+                InvoiceDate = customerInvoice.InvoiceDate,
+                Status = customerInvoice.Status
+            };
+        }
+
+
+        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice)
+        {
+            if (customerInvoice == null)
+                return null;
+            return new CustomerInvoice()
+            {
+                CustomerInvoiceId = customerInvoice.CustomerInvoiceId,
+                SaleId = customerInvoice.SaleId,
+                InvoiceAmount = customerInvoice.InvoiceAmount,
+                InvoiceDate = customerInvoice.InvoiceDate,
+                Status = customerInvoice.Status
+            };
+        }
+    }
+}

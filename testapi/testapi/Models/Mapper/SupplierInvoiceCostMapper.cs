@@ -1,0 +1,62 @@
+﻿using testapi.Models.DTO;
+
+namespace testapi.Models.Mapper
+{
+    public class SupplierInvoiceCostMapper
+    {
+        public static SupplierInvoiceCostDTO Map(SupplierInvoiceCost supplierInvoiceCost)
+        {
+            if (supplierInvoiceCost == null)
+                return null;
+            return new SupplierInvoiceCostDTO()
+            {
+
+                SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
+                Cost = supplierInvoiceCost.Cost,
+                Quantity = supplierInvoiceCost.Quantity
+
+            };
+        }
+        public static SupplierInvoiceCost Map(SupplierInvoiceCostDTO supplierInvoiceCost)
+        {
+            if (supplierInvoiceCost == null)
+                return null;
+            return new SupplierInvoiceCost()
+            {
+
+                SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
+                Cost = supplierInvoiceCost.Cost,
+                Quantity = supplierInvoiceCost.Quantity
+
+            };
+        }
+
+        public static SupplierInvoiceCostDTOGet MapGet(SupplierInvoiceCost supplierInvoiceCost)
+        {
+            if (supplierInvoiceCost == null)
+                return null;
+            return new SupplierInvoiceCostDTOGet()
+            {
+                SupplierInvoiceCostsId=supplierInvoiceCost.SupplierInvoiceCostsId,
+                SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
+                Cost = supplierInvoiceCost.Cost,
+                Quantity = supplierInvoiceCost.Quantity
+
+            };
+        }
+        public static SupplierInvoiceCost MapGet(SupplierInvoiceCostDTOGet supplierInvoiceCost)
+        {
+            if (supplierInvoiceCost == null)
+                return null;
+            return new SupplierInvoiceCost()
+            {
+                SupplierInvoiceCostsId = supplierInvoiceCost.SupplierInvoiceCostsId,
+                SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
+                Cost = supplierInvoiceCost.Cost,
+                Quantity = supplierInvoiceCost.Quantity
+
+            };
+        }
+    }
+}
+

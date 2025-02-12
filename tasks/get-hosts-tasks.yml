@@ -1,0 +1,22 @@
+- name: Get facts for all Public IPs within a resource groups
+  azure_rm_publicipaddress_info:
+    resource_group: "{{ resource_group.name }}"
+    subscription_id: "{{ subscription_id }}"
+    auth_source: cli
+  register: output_ip_address
+- name: Get loadbalancer info
+  azure_rm_loadbalancer_info:
+    resource_group: "{{ resource_group.name }}"
+    subscription_id: "{{ subscription_id }}"
+    auth_source: cli
+    name: "{{ loadbalancer_name }}"
+  register: output
+- name: Add all hosts
+  add_host:
+    groups: "{{ vmss.group_name }}"
+    hostname: "{{ output_ip_address.publicipaddresses[0].ip_address }}"
+    ansible_host: "{{ output_ip_address.publicipaddresses[0].ip_address }}"
+    ansible_ssh_user: "{{ vmss.admin_username }}"
+    ansible_ssh_pass: "{{ vmss.admin_password }}"
+  with_items:
+    - "{{ output.ansible_info.azure_loadbalancers[0].properties.inboundNatPools }}"

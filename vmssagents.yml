@@ -1,0 +1,228 @@
+- name: Create Build Agent VM
+  hosts: localhost
+  connection: local
+  vars_files:
+    - vars/agents.yml
+  tasks:
+  - name: Create resource group - "{{ resource_group.name }}"
+    azure_rm_resourcegroup: 
+      name: "{{ resource_group.name }}"
+      location: "{{ resource_group.location }}"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+  - name: Create virtual network - "{{ vmss.name }}-vnet"
+    azure_rm_virtualnetwork:
+      resource_group: "{{ resource_group.name }}"
+      name: "{{ vmss.name }}-vnet"
+      address_prefixes: "10.0.0.0/16"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+  - name: Add subnet - "{{ vmss.name }}-subnet"
+    azure_rm_subnet:
+      resource_group: "{{ vmss.name }}"
+      name: "{{ vmss.name }}-subnet"
+      address_prefix: "10.0.1.0/24"
+      virtual_network: "{{ vmss.name }}-vnet"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+  - name: Create public IP address - "{{ vmss.name }}-pip"
+    azure_rm_publicipaddress:
+      resource_group: "{{ resource_group.name }}"
+      allocation_method: Static
+      name: "{{ vmss.name }}-pip"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+    register: output_ip_address
+  - name: Public IP of VM
+    debug:
+      msg: "The public IP is {{ output_ip_address.state.ip_address }}."
+  - name: Create Network Security Group - "{{ vmss.name }}-secgroup"
+    azure_rm_securitygroup:
+      resource_group: "{{ vmss.name }}"
+      name: "{{ vmss.name }}-secgroup"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+      rules:
+        - name: 'allow_rdp'
+          protocol: Tcp
+          destination_port_range: 3389
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        - name: 'allow_web_traffic'
+          protocol: Tcp
+          destination_port_range:
+            - 80
+            - 443
+          access: Allow
+          priority: 1002
+          direction: Inbound
+        - name: 'allow_powershell_remoting'
+          protocol: Tcp
+          destination_port_range: 
+            - 5985
+            - 5986
+          access: Allow
+          priority: 1003
+          direction: Inbound
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 
+            - 22
+          access: Allow
+          priority: 1004
+          direction: Inbound
+  # - name: Create a load balancer - "{{ vmss.name }}-lb"
+  #   azure_rm_loadbalancer:
+  #     resource_group: "{{ resource_group.name }}"
+  #     subscription_id: "{{ subscription_id }}"
+  #     auth_source: cli
+  #     name: "{{ vmss.name }}-lb"
+  #     location: "{{ resource_group.location }}"
+  #     frontend_ip_configurations:
+  #       - name: "{{ vmss.name }}-front-config"
+  #         public_ip_address: "{{ vmss.name }}-pip"
+  #     backend_address_pools:
+  #       - name: "{{ vmss.name }}-backend-pool"
+  #     probes:
+  #       - name: "{{ vmss.name }}-prob0"
+  #         port: 8080
+  #         interval: 10
+  #         fail_count: 3
+  #     inbound_nat_pools:
+  #       - name: "{{ vmss.name }}-nat-pool"
+  #         frontend_ip_configuration_name: "{{ vmss.name }}-front-config"
+  #         protocol: Tcp
+  #         frontend_port_range_start: 50000
+  #         frontend_port_range_end: 50040
+  #         backend_port: 22
+  #     load_balancing_rules:
+  #       - name: "{{ vmss.name }}-lb-rules"
+  #         frontend_ip_configuration: "{{ vmss.name }}-front-config"
+  #         backend_address_pool: "{{ vmss.name }}-backend-pool"
+  #         frontend_port: 80
+  #         backend_port: 8080
+  #         load_distribution: Default
+  #         probe: "{{ vmss.name }}-prob0"
+  - name: Create a network interface - "{{ vmss.name }}-nic"
+    azure_rm_networkinterface:
+      resource_group: "{{ resource_group.name }}"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+      name: "{{ vmss.name }}-nic"
+      virtual_network: "{{ vmss.name }}-vnet"
+      subnet_name: "{{ vmss.name }}-subnet"
+      security_group: "{{ vmss.name }}-secgroup"
+      ip_configurations:
+        - name: default
+          public_ip_address_name: "{{ vmss.name }}-pip"
+          primary: True
+  - name: Create VM - "{{ vmss.name }}-vm"
+    azure_rm_virtualmachine:
+      resource_group: "{{ resource_group.name }}"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+      name: "{{ vmss.name }}-vm"
+      vm_size: Standard_B1s
+      admin_username: "{{ vmss.admin_username }}"
+      admin_password: "{{ vmss.admin_password }}"
+      network_interfaces: "{{ vmss.name }}-nic"
+      os_type: Windows
+      image:
+          offer: WindowsServer
+          publisher: MicrosoftWindowsServer
+          sku: 2019-Datacenter
+          version: latest
+
+  - name: Create VM script extension to enable HTTPS WinRM listener - "{{ vmss.name }}-ext"
+    azure_rm_virtualmachineextension:
+      name: "{{ vmss.name }}-ext"
+      resource_group: "{{ resource_group.name }}"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+      virtual_machine_name: "{{ vmss.name}}-vm"
+      publisher: Microsoft.Compute
+      virtual_machine_extension_type: CustomScriptExtension
+      type_handler_version: '1.9'
+      settings: '{"fileUris": ["https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"],"commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"}'
+      auto_upgrade_minor_version: true
+
+  - name: Get facts for one Public IP - "{{ vmss.name }}-pip"
+    azure_rm_publicipaddress_info:
+      resource_group: "{{ resource_group.name }}"
+      subscription_id: "{{ subscription_id }}"
+      auth_source: cli
+      name: "{{ vmss.name }}-pip"
+    register: publicipaddresses
+
+  - name: set public ip address fact
+    set_fact: publicipaddress="{{ publicipaddresses | json_query('publicipaddresses[0].ip_address')}}"
+
+  - name: wait for the WinRM port to come online - "{{ publicipaddress }}"
+    wait_for:
+      port: 5986
+      host: "{{ publicipaddress }}"
+      timeout: 300
+  - name: Copy ps1 - "{{ publicipaddress }}"
+    vars:
+      ansible_connection: winrm
+      ansible_winrm_transport: ntlm
+      ansible_winrm_server_cert_validation: ignore
+    copy:
+      src: ../ps_scripts/agent_pool.ps1
+      dest: "c:\\ps_scripts"
+      force: yes
+  - name: Install VSTS Agent - "{{ publicipaddress }}"
+    win_shell: "c:\\ps_scripts\\agent_pool.ps1"
+#   - name: Create VMSS - "{{ vmss.name }}"
+#     azure_rm_virtualmachinescaleset:
+#       resource_group: "{{ resource_group.name }}"
+#       name: "{{ vmss.name }}"
+#       vm_size: "{{ vmss.size }}"
+#       admin_username: "{{ vmss.admin_username }}"
+#       admin_password: "{{ vmss.admin_password }}"
+#       ssh_password_enabled: true
+#       capacity: 1
+#       virtual_network_name: "{{ resource_group.name }}-vnet"
+#       subnet_name: "{{ resource_group.name }}-subnet"
+#       upgrade_policy: Manual
+#       tier: Standard
+#       managed_disk_type: Standard_LRS
+#       os_disk_caching: ReadWrite
+#       os_type: Windows
+#       subscription_id: "{{ subscription_id }}"
+#       auth_source: cli
+#       image:
+#         offer: WindowsServer
+#         publisher: MicrosoftWindowsServer
+#         sku: 2016-Datacenter
+#         version: latest
+#   - include_tasks: tasks/get-hosts-tasks.yml
+#     vars:
+#       loadbalancer_name: "{{ vmss.name }}-lb"
+# - name: Deploy on hosts - "{{ vmss.group_name }}"
+#   vars_files:
+#     - vars/agents.yml
+#   hosts: "{{ vmss.group_name }}"
+#   become: yes
+#   tasks:
+#   - name: Create VM script extension to enable HTTPS WinRM listener
+#     azure_rm_virtualmachineextension:
+#       name: winrm-extension
+#       resource_group: "{{ resource_group.name }}"
+#       subscription_id: "{{ subscription_id }}"
+#       auth_source: cli
+#       virtual_machine_name: "{{ ansible_hostname }}"
+#       publisher: Microsoft.Compute
+#       virtual_machine_extension_type: CustomScriptExtension
+#       type_handler_version: '1.9'
+#       settings: '{"fileUris": ["https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"],"commandToExecute": "powershell -ExecutionPolicy Unrestricted -File ConfigureRemotingForAnsible.ps1"}'
+#       auto_upgrade_minor_version: true
+  
+#   - name: Copy ps1 - "{{ vmss.group_name }}"
+#     copy:
+#       src: ../ps_scripts/agent_pool.ps1
+#       dest: "c:\\ps_scripts"
+#       force: yes
+#   - name: Install VSTS Agent - "{{ vmss.group_name }}"
+#     win_shell: "c:\\ps_scripts\agent_pool.ps1"
