@@ -31,7 +31,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierREPOTest_ReturnCorrect_GetAllSuppliers()
+        public void supplierServicesTest_ReturnCorrect_GetAllSuppliers()
         {
             var suppliers = new List<Supplier>() { new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country" } };
 
@@ -45,7 +45,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierREPOTest_ThrowException_GetAllSuppliers()
+        public void supplierServicesTest_ReturnCorrect_GetAllSuppliers_NoSuppliers()
         {
 
             var result = _supplierService.GetAllSuppliers();
@@ -54,7 +54,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierREPO_ReturnCorrect_GetSupplierById()
+        public void supplierService_ReturnCorrect_GetSupplierById()
         {
             var suppliers = new List<Supplier>()
             {
@@ -72,15 +72,16 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierREPO_ThrowException_GetSupplierById()
+        public void supplierService_ThrowException_GetSupplierById()
         {
 
-            var exception = Assert.Throws<ArgumentException>(() => _supplierService.GetSupplierById(1));
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.GetSupplierById(1));
             Assert.Equal("Supplier not found!", exception.Message);
         }
 
         [Fact]
-        public void supplierREPO_ReturnCorrect_CreateSupplier()
+        public void supplierService_ReturnCorrect_CreateSupplier()
         {
             var supplier = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country" };
             var result = _supplierService.CreateSupplier(supplier);
@@ -92,27 +93,29 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierREPO_ThrowException_CreateSupplier_NullSupplier()
+        public void supplierService_ThrowException_CreateSupplier_NullSupplier()
         {
 
-            var exception = Assert.Throws<ArgumentNullException>(() => _supplierService.CreateSupplier(null));
+            var exception = Assert.Throws<ArgumentNullException>(
+                () => _supplierService.CreateSupplier(null));
             Assert.Equal("Couldn't create supplier", exception.ParamName);
         }
 
         [Theory]
         [InlineData(null, "country", "Supplier name")]
         [InlineData("name", null, "Country")]
-        public void supplierREPO_ThrowException_CreateSupplier_NullFields(string name, string country, string erroreMessage)
+        public void supplierService_ThrowException_CreateSupplier_NullFields(string name, string country, string erroreMessage)
         {
 
             var supplier = new Supplier() { SupplierId = 1, SupplierName = name, Country = country };
 
-            var exception = Assert.Throws<ArgumentNullException>(() => _supplierService.CreateSupplier(supplier));
+            var exception = Assert.Throws<ArgumentNullException>(
+                () => _supplierService.CreateSupplier(supplier));
             Assert.Equal($"{erroreMessage} can't be null", exception.ParamName);
         }
 
         [Fact]
-        public void supplierREPO_ReturnCorrect_UpdateSupplier()
+        public void supplierService_ReturnCorrect_UpdateSupplier()
         {
             //Arrange
 
@@ -129,16 +132,17 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierREPO_ThrowError_UpdateSupplier()
+        public void supplierService_ThrowError_UpdateSupplier()
         {
             var supplierUpdate = new Supplier { SupplierName = "Luca", Country = "France" };
 
-            var exception = Assert.Throws<ArgumentNullException>(() => _supplierService.UpdateSupplier(1, supplierUpdate));
+            var exception = Assert.Throws<ArgumentNullException>(
+                () => _supplierService.UpdateSupplier(1, supplierUpdate));
             Assert.Equal("Supplier not found", exception.ParamName);
         }
 
         [Fact]
-        public void supplierREPO_ReturnCorrect_DeleteSupplier_NoCascade()
+        public void supplierService_ReturnCorrect_DeleteSupplier_NoCascade()
         {
             //Arrange
             var supplier = new Supplier { SupplierName = "Luca", Country = "France" };
@@ -154,7 +158,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierREPO_ReturnCorrect_DeleteSupplier_Cascade()
+        public void supplierService_ReturnCorrect_DeleteSupplier_Cascade()
         {
             //Arrange
             var supplier = new Supplier { SupplierName = "Luca", Country = "France" };
@@ -172,6 +176,15 @@ namespace API_Test.ServiceTest
             Assert.Equal(supplier.SupplierName, actionResult.SupplierName);
             Assert.Equal(supplier.Country, actionResult.Country);
             _mockSupplierInvoiceService.Verify(s => s.DeleteSupplierInvoice(1), Times.Once);
+        }
+
+        [Fact]
+        public void supplierService_ThrowException_DeleteSupplier()
+        {
+            var exception = Assert.Throws<ArgumentNullException>(
+                () => _supplierService.DeleteSupplier(1));
+
+            Assert.Equal("Supplier not found!", exception.ParamName);
         }
 
     }

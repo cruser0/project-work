@@ -12,14 +12,14 @@ using Xunit;
 
 namespace API_Test.ServiceTest
 {
-    public class saleServiceTest
+    public class SaleServiceTest
     {
         private readonly SaleServices _saleService;
         private readonly Mock<ICustomerInvoicesService> _mockciService;
         private readonly Mock<ISupplierInvoiceService> _mocksiService;
         private readonly Progetto_FormativoContext _context;
 
-        public saleServiceTest()
+        public SaleServiceTest()
         {
             // Create an in-memory database for testing
             var options = new DbContextOptionsBuilder<Progetto_FormativoContext>()
@@ -36,7 +36,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ReturnCorrect_GetAllSales()
+        public void saleService_ReturnCorrect_GetAllSales()
         {
             var sales = new List<Sale>()
             {
@@ -53,7 +53,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_GetAllSales()
+        public void saleService_ReturnCorrect_GetAllSales_NoSales()
         {
 
             var result = _saleService.GetAllSales();
@@ -63,7 +63,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ReturnCorrect_GetSaleById()
+        public void saleService_ReturnCorrect_GetSaleById()
         {
             var sales = new List<Sale>()
             {
@@ -81,7 +81,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_GetSaleById()
+        public void saleService_ThrowException_GetSaleById()
         {
 
             var exception = Assert.Throws<ArgumentException>(() => _saleService.GetSaleById(1));
@@ -89,7 +89,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ReturnCorrect_CreateSale()
+        public void saleService_ReturnCorrect_CreateSale()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -106,7 +106,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_CreateSale_NullSale()
+        public void saleService_ThrowException_CreateSale_NullSale()
         {
             var exception = Assert.Throws<ArgumentException>(() => _saleService.CreateSale(null));
 
@@ -121,7 +121,7 @@ namespace API_Test.ServiceTest
         [InlineData("bnValue", "bolValue", null, 1, "statusValue", "Date", "is")]
         [InlineData("bnValue", "bolValue", "2025-02-13", null, "statusValue", "CustomerID", "is")]
         [InlineData("bnValue", "bolValue", "2025-02-13", 1, null, "Status", "is")]
-        public void saleREPO_ThrowException_CreateSale_NullFields(string bn, string bol, string dateString, int? cID, string status, string ErrorMess, string verbo)
+        public void saleService_ThrowException_CreateSale_NullFields(string bn, string bol, string dateString, int? cID, string status, string ErrorMess, string verbo)
         {
 
             Sale wrongSale = new()
@@ -144,7 +144,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_CreateSale_IncorrectStatus()
+        public void saleService_ThrowException_CreateSale_IncorrectStatus()
         {
             Sale wrongSale = new()
             {
@@ -166,7 +166,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_CreateSale_WrongCustomerID()
+        public void saleService_ThrowException_CreateSale_WrongCustomerID()
         {
             Sale wrongSale = new()
             {
@@ -188,7 +188,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ReturnCorrect_UpdateSale()
+        public void saleService_ReturnCorrect_UpdateSale()
         {
             var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer1);
@@ -234,7 +234,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_UpdateSale_WrongSaleID()
+        public void saleService_ThrowException_UpdateSale_WrongSaleID()
         {
 
             var newSaleDTO = new SaleDTO()
@@ -252,7 +252,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_UpdateSale_IncorrectStatus()
+        public void saleService_ThrowException_UpdateSale_IncorrectStatus()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -282,7 +282,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ThrowException_UpdateSale_IncorrectCustomerID()
+        public void saleService_ThrowException_UpdateSale_IncorrectCustomerID()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -312,7 +312,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ReturnCorrect_DeleteSale_NoCascade()
+        public void saleService_ReturnCorrect_DeleteSale_NoCascade()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -337,7 +337,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void saleREPO_ReturnCorrect_DeleteSale_Cascade()
+        public void saleService_ReturnCorrect_DeleteSale_Cascade()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -386,13 +386,13 @@ namespace API_Test.ServiceTest
 
             Assert.NotNull(saleDeleted);
             Assert.IsType<SaleDTOGet>(saleDeleted);
-            Assert.Equal(saleDeleted, saleDeleted);
+            Assert.Equal(saleDeleted.SaleId, saleDeleted.SaleId);
             _mockciService.Verify(s => s.DeleteCustomerInvoice((int)saleDeleted.SaleId), Times.Once);
             _mocksiService.Verify(s => s.DeleteSupplierInvoice((int)saleDeleted.SaleId), Times.Once);
         }
 
         [Fact]
-        public void saleREPO_ThrowException_DeleteSale()
+        public void saleService_ThrowException_DeleteSale()
         {
             var exception = Assert.Throws<ArgumentException>(() => _saleService.DeleteSale(1));
 

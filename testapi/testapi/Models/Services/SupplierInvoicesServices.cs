@@ -106,6 +106,8 @@ namespace API.Models.Services
                 {
                     siDB.Status = supplierInvoice.Status ?? siDB.Status;
                 }
+                else
+                    throw new ArgumentException("Status not correct");
 
                 _context.SupplierInvoices.Update(siDB);
                 _context.SaveChanges();
