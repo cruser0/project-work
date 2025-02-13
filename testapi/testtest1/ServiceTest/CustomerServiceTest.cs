@@ -33,91 +33,6 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public async Task Create_Customer()//correct customer
-        {
-            //Arrange
-            var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy" };
-
-            //Act
-            var result = _customerService.CreateCustomer(customer);
-
-            //Assert
-            Assert.NotNull(result);
-            var actionResult = Assert.IsType<CustomerDTOGet>(result);
-            Assert.True(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
-            Assert.Equal(customer.CustomerName, actionResult.CustomerName);
-        }
-        [Fact]
-        public async Task Create_Customer_null()//customer null
-        {
-            //Act Arrange
-            var exception = Assert.Throws<Exception>(() => _customerService.CreateCustomer(null));
-
-            //Assert
-
-            var actionResult = Assert.IsType<Exception>(exception);
-            Assert.Equal("Couldn't create customer", actionResult.Message);
-        }
-        [Theory]
-        [InlineData(1, "Marco", null)]
-        [InlineData(1, null, null)]
-        [InlineData(1, null, "Italy")]
-        public async Task Create_Customer_attributes_null(int id, string name, string country)//customer null
-        {
-            //Arrange
-            var customer = new Customer { CustomerId = id, CustomerName = name, Country = country };
-            //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
-
-            //Assert
-            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
-            var actionResult = Assert.IsType<ArgumentException>(exception);
-            if (string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
-                Assert.Equal("CustomerName is null", actionResult.Message);
-            if (string.IsNullOrEmpty(country) && !string.IsNullOrEmpty(name))
-                Assert.Equal("Country is null", actionResult.Message);
-            if (string.IsNullOrEmpty(country) && string.IsNullOrEmpty(name))
-                Assert.Equal("CustomerName, Country are null", actionResult.Message);
-
-        }
-        [Fact]
-        public async Task Delete_Customer_with_sale()
-        {
-            //Arrange
-            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
-            _context.Customers.Add(customer);
-            _context.SaveChanges();
-            var sales = new Sale { BoLnumber = "1", BookingNumber = "2", CustomerId = 1, SaleDate = DateTime.Now, SaleId = 1, Status = "paid", TotalRevenue = 1000 };
-            _context.Sales.Add(sales);
-            _context.SaveChanges();
-
-            //Act
-            var result = _customerService.DeleteCustomer(1);
-
-            //Assert
-            _mockSalesService.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
-            Assert.NotNull(result);
-            Assert.Equal(customer.CustomerId, result.CustomerId);
-            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
-        }
-        [Fact]
-        public async Task Delete_Customer()
-        {
-            //Arrange
-            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
-            _context.Customers.Add(customer);
-            _context.SaveChanges();
-
-            //Act
-            var result = _customerService.DeleteCustomer(1);
-
-            //Assert
-            Assert.NotNull(result);
-            Assert.Equal(customer.CustomerId, result.CustomerId);
-            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
-        }
-
-        [Fact]
         public async Task GetAll_Customer()
         {
             //Arrange
@@ -189,6 +104,97 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
+        public async Task Create_Customer()//correct customer
+        {
+            //Arrange
+            var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy" };
+
+            //Act
+            var result = _customerService.CreateCustomer(customer);
+
+            //Assert
+            Assert.NotNull(result);
+            var actionResult = Assert.IsType<CustomerDTOGet>(result);
+            Assert.True(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
+            Assert.Equal(customer.CustomerName, actionResult.CustomerName);
+        }
+
+        [Fact]
+        public async Task Create_Customer_null()//customer null
+        {
+            //Act Arrange
+            var exception = Assert.Throws<Exception>(() => _customerService.CreateCustomer(null));
+
+            //Assert
+
+            var actionResult = Assert.IsType<Exception>(exception);
+            Assert.Equal("Couldn't create customer", actionResult.Message);
+        }
+
+        [Theory]
+        [InlineData(1, "Marco", null)]
+        [InlineData(1, null, null)]
+        [InlineData(1, null, "Italy")]
+        public async Task Create_Customer_null_parameters(int id, string name, string country)//customer null
+        {
+            //Arrange
+            var customer = new Customer { CustomerId = id, CustomerName = name, Country = country };
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+
+            //Assert
+            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
+            var actionResult = Assert.IsType<ArgumentException>(exception);
+            if (string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
+                Assert.Equal("CustomerName is null", actionResult.Message);
+            if (string.IsNullOrEmpty(country) && !string.IsNullOrEmpty(name))
+                Assert.Equal("Country is null", actionResult.Message);
+            if (string.IsNullOrEmpty(country) && string.IsNullOrEmpty(name))
+                Assert.Equal("CustomerName, Country are null", actionResult.Message);
+
+        }
+
+        [Fact]
+        public async Task Create_Customer_Name_Too_Long()//correct customer
+        {
+            //Arrange
+            var customer = new Customer { CustomerId = 1, CustomerName = "Marco".PadRight(101, 'X'), Country = "Italy" };
+
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Customer name is too long", actionResult);
+        }
+
+        [Fact]
+        public async Task Create_Customer_Country_Too_Long()
+        {
+            //Arrange
+            var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy".PadRight(51, 'X') };
+
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Country is too long", actionResult);
+        }
+
+        [Fact]
+        public async Task Create_Customer_Country_Special_Characters()
+        {
+            //Arrange
+            var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "1" };
+
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Country can't have special characters", actionResult);
+        }
+
+        [Fact]
         public async Task Update_Customer()
         {
             //Arrange
@@ -255,5 +261,105 @@ namespace API_Test.ServiceTest
             Assert.Equal("Customer not found", actionResult);
 
         }
+
+        [Fact]
+        public async Task Update_Customer_Name_too_Long()
+        {
+            //Arrange
+
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customerUpdate = new Customer { CustomerName = "Luca".PadRight(101, 'X'), Country = "France" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.UpdateCustomer(1, customerUpdate));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Customer name is too long", actionResult);
+        }
+
+        [Fact]
+        public async Task Update_Customer_Country_too_Long()
+        {
+            //Arrange
+
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customerUpdate = new Customer { CustomerName = "Luca", Country = "France".PadRight(51, 'X') };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.UpdateCustomer(1, customerUpdate));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Country is too long", actionResult);
+        }
+
+        [Fact]
+        public async Task Update_Customer_Country_Special_Characters()
+        {
+            //Arrange
+
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customerUpdate = new Customer { CustomerName = "Luca", Country = "@" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.UpdateCustomer(1, customerUpdate));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Country can't have special characters", actionResult);
+        }
+
+        [Fact]
+        public async Task Delete_Customer_with_sale()
+        {
+            //Arrange
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            var sales = new Sale { BoLnumber = "1", BookingNumber = "2", CustomerId = 1, SaleDate = DateTime.Now, SaleId = 1, Status = "paid", TotalRevenue = 1000 };
+            _context.Sales.Add(sales);
+            _context.SaveChanges();
+
+            //Act
+            var result = _customerService.DeleteCustomer(1);
+
+            //Assert
+            _mockSalesService.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
+            Assert.NotNull(result);
+            Assert.Equal(customer.CustomerId, result.CustomerId);
+            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
+        }
+
+        [Fact]
+        public async Task Delete_Customer()
+        {
+            //Arrange
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            //Act
+            var result = _customerService.DeleteCustomer(1);
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.Equal(customer.CustomerId, result.CustomerId);
+            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
+        }
+
+        [Fact]
+        public async Task Delete_No_Customer()
+        {
+            var exception = Assert.Throws<Exception>(() => _customerService.DeleteCustomer(1));
+            //Assert
+            var action = Assert.IsType<Exception>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Customer not found!", actionResult);
+        }
+
     }
 }

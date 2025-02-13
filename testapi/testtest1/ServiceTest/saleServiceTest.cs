@@ -188,6 +188,36 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
+        public void saleService_ThrowException_CreateSale_BookingNumberLength()
+        {
+            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+
+            var sale = new Sale() { SaleId = 1, BookingNumber = "bn".PadRight(51, 'X'), BoLnumber = "bol", SaleDate = new DateTime(2025, 1, 1, 0, 0, 0), CustomerId = 1, TotalRevenue = 100, Status = "Active" };
+
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.CreateSale(sale));
+
+            Assert.Equal("Booking Number is too long", exception.Message);
+        }
+
+        [Fact]
+        public void saleService_ThrowException_CreateSale_BoLNumberLength()
+        {
+            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+
+            var sale = new Sale() { SaleId = 1, BookingNumber = "bn", BoLnumber = "bol".PadRight(51, 'X'), SaleDate = new DateTime(2025, 1, 1, 0, 0, 0), CustomerId = 1, TotalRevenue = 100, Status = "Active" };
+
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.CreateSale(sale));
+
+            Assert.Equal("BoL Number is too long", exception.Message);
+        }
+
+        [Fact]
         public void saleService_ReturnCorrect_UpdateSale()
         {
             var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
@@ -309,6 +339,78 @@ namespace API_Test.ServiceTest
             var exception = Assert.Throws<ArgumentException>(() => _saleService.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
 
             Assert.Equal($"There is no customer with ID {newSaleDTO.CustomerId}", exception.Message);
+        }
+
+        [Fact]
+        public void saleService_ThrowException_UpdateSale_BookingNumberLength()
+        {
+            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            _context.Customers.Add(customer1);
+            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao" };
+            _context.Customers.Add(customer2);
+            _context.SaveChanges();
+
+
+            var sale = new Sale()
+            {
+                SaleId = 1,
+                BookingNumber = "bn",
+                BoLnumber = "bol",
+                SaleDate = new DateTime(2025, 1, 1, 0, 0, 0),
+                CustomerId = 1,
+                Status = "Active"
+            };
+
+            var oldSale = _saleService.CreateSale(sale);
+
+            var newSaleDTO = new SaleDTO()
+            {
+                BookingNumber = "new bn".PadRight(51, 'X'),
+                BoLnumber = "new bol",
+                SaleDate = new DateTime(2025, 1, 2, 0, 0, 0),
+                CustomerId = 2,
+                Status = "Closed"
+            };
+
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
+
+            Assert.Equal("Booking Number is too long", exception.Message);
+        }
+
+        [Fact]
+        public void saleService_ThrowException_UpdateSale_BoLNumberLength()
+        {
+            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            _context.Customers.Add(customer1);
+            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao" };
+            _context.Customers.Add(customer2);
+            _context.SaveChanges();
+
+
+            var sale = new Sale()
+            {
+                SaleId = 1,
+                BookingNumber = "bn",
+                BoLnumber = "bol",
+                SaleDate = new DateTime(2025, 1, 1, 0, 0, 0),
+                CustomerId = 1,
+                Status = "Active"
+            };
+
+            var oldSale = _saleService.CreateSale(sale);
+
+            var newSaleDTO = new SaleDTO()
+            {
+                BookingNumber = "new bn",
+                BoLnumber = "new bol".PadRight(51, 'X'),
+                SaleDate = new DateTime(2025, 1, 2, 0, 0, 0),
+                CustomerId = 2,
+                Status = "Closed"
+            };
+
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
+
+            Assert.Equal("BoL Number is too long", exception.Message);
         }
 
         [Fact]

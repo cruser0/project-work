@@ -17,11 +17,28 @@ namespace API.Models.Services
     public class CustomerServices : ICustomerService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly ISalesService _sRepo;
-        public CustomerServices(Progetto_FormativoContext ctx, ISalesService Srepo)
+        private readonly ISalesService _sService;
+        public CustomerServices(Progetto_FormativoContext ctx, ISalesService SaleService)
         {
             _context = ctx;
-            _sRepo = Srepo;
+            _sService = SaleService;
+        }
+        public ICollection<CustomerDTOGet> GetAllCustomers()
+        {
+            // Retrieve all customers from the database and map them to DTOs
+            return _context.Customers.Select(x => CustomerMapper.MapGet(x)).ToList();
+        }
+
+        public CustomerDTOGet GetCustomerById(int id)
+        {
+            // Retrieve the customer from the database based on the provided ID
+            var data = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
+            if (data == null)
+            {
+                throw new Exception("Customer not found!");
+            }
+            // Map and return the customer as a DTO
+            return CustomerMapper.MapGet(data);
         }
 
         public CustomerDTOGet CreateCustomer(Customer customer)
@@ -41,12 +58,55 @@ namespace API.Models.Services
             if (nullFields.Any())
                 throw new ArgumentException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
 
+            if (customer.CustomerName.Length > 100)
+                throw new ArgumentException("Customer name is too long");
+
+            if (customer.Country.Length > 50)
+                throw new ArgumentException("Country is too long");
+
+            if (!customer.Country.All(char.IsLetter))
+                throw new ArgumentException("Country can't have special characters");
+
             // Add the new customer to the database
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
             // Map the created customer entity to a DTO and return it
             return CustomerMapper.MapGet(customer);
+        }
+
+        public CustomerDTOGet UpdateCustomer(int id, Customer customer)
+        {
+            // Retrieve the customer from the database based on the provided ID
+            var cDB = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
+
+            // If the customer does not exist, throw an exception
+            if (cDB == null)
+                throw new Exception("Customer not found");
+
+            // Update only the fields that are not null in the input object
+            cDB.CustomerName = customer.CustomerName ?? cDB.CustomerName;
+            cDB.Country = customer.Country ?? cDB.Country;
+
+            if (customer.CustomerName != null)
+                if (customer.CustomerName.Length > 100)
+                    throw new ArgumentException("Customer name is too long");
+
+            if (customer.Country != null)
+            {
+                if (customer.Country.Length > 50)
+                    throw new ArgumentException("Country is too long");
+
+                if (!customer.Country.All(char.IsLetter))
+                    throw new ArgumentException("Country can't have special characters");
+            }
+
+            // Save the changes to the database
+            _context.Customers.Update(cDB);
+            _context.SaveChanges();
+
+            // Map and return the updated customer as a DTO
+            return CustomerMapper.MapGet(cDB);
         }
 
         public CustomerDTOGet DeleteCustomer(int id)
@@ -64,7 +124,7 @@ namespace API.Models.Services
             // If there are any sales, delete them
             if (sales.Count > 0)
                 foreach (var sale in sales)
-                    _sRepo.DeleteSale(sale.SaleId);
+                    _sService.DeleteSale(sale.SaleId);
 
             // Remove the customer from the database
             _context.Customers.Remove(data);
@@ -72,49 +132,6 @@ namespace API.Models.Services
 
             // Map the deleted customer to DTO and return it
             return CustomerMapper.MapGet(data);
-        }
-
-
-        public ICollection<CustomerDTOGet> GetAllCustomers()
-        {
-            // Retrieve all customers from the database and map them to DTOs
-            return _context.Customers.Select(x => CustomerMapper.MapGet(x)).ToList();
-        }
-
-
-        public CustomerDTOGet GetCustomerById(int id)
-        {
-            // Retrieve the customer from the database based on the provided ID
-            var data = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
-            if (data == null)
-            {
-                throw new Exception("Customer not found!");
-            }
-            // Map and return the customer as a DTO
-            return CustomerMapper.MapGet(data);
-        }
-
-
-
-        public CustomerDTOGet UpdateCustomer(int id, Customer customer)
-        {
-            // Retrieve the customer from the database based on the provided ID
-            var cDB = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
-
-            // If the customer does not exist, throw an exception
-            if (cDB == null)
-                throw new Exception("Customer not found");
-
-            // Update only the fields that are not null in the input object
-            cDB.CustomerName = customer.CustomerName ?? cDB.CustomerName;
-            cDB.Country = customer.Country ?? cDB.Country;
-
-            // Save the changes to the database
-            _context.Customers.Update(cDB);
-            _context.SaveChanges();
-
-            // Map and return the updated customer as a DTO
-            return CustomerMapper.MapGet(cDB);
         }
 
     }

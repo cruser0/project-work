@@ -115,6 +115,36 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
+        public void supplierService_ThrowError_CreateSupplier_NameTooLong()
+        {
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "Name".PadRight(101, 'X'), Country = "Country" };
+
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.CreateSupplier(supplier));
+            Assert.Equal("Supplier name is too long", exception.Message);
+        }
+
+        [Fact]
+        public void supplierService_ThrowError_CreateSupplier_CountryTooLong()
+        {
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country".PadRight(51, 'X') };
+
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.CreateSupplier(supplier));
+            Assert.Equal("Country is too long", exception.Message);
+        }
+
+        [Fact]
+        public void supplierService_ThrowError_CreateSupplier_CountrySpecialChar()
+        {
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "@" };
+
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.CreateSupplier(supplier));
+            Assert.Equal("Country can't have special characters", exception.Message);
+        }
+
+        [Fact]
         public void supplierService_ReturnCorrect_UpdateSupplier()
         {
             //Arrange
@@ -140,6 +170,52 @@ namespace API_Test.ServiceTest
                 () => _supplierService.UpdateSupplier(1, supplierUpdate));
             Assert.Equal("Supplier not found", exception.ParamName);
         }
+
+        [Fact]
+        public void supplierService_ThrowError_UpdateSupplier_NameTooLong()
+        {
+            //Arrange
+
+            var supplier = new Supplier { SupplierName = "Marco", Country = "Italy" };
+            var supplierUpdate = new Supplier { SupplierName = "Luca".PadRight(101, 'X'), Country = "France" };
+            _context.Suppliers.Add(supplier);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.UpdateSupplier(1, supplierUpdate));
+            Assert.Equal("Supplier name is too long", exception.Message);
+        }
+
+        [Fact]
+        public void supplierService_ThrowError_UpdateSupplier_CountryTooLong()
+        {
+            //Arrange
+
+            var supplier = new Supplier { SupplierName = "Marco", Country = "Italy" };
+            var supplierUpdate = new Supplier { SupplierName = "Luca", Country = "France".PadRight(51, 'X') };
+            _context.Suppliers.Add(supplier);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.UpdateSupplier(1, supplierUpdate));
+            Assert.Equal("Country is too long", exception.Message);
+        }
+
+        [Fact]
+        public void supplierService_ThrowError_UpdateSupplier_CountrySpecialChar()
+        {
+            //Arrange
+
+            var supplier = new Supplier { SupplierName = "Marco", Country = "Italy" };
+            var supplierUpdate = new Supplier { SupplierName = "Luca", Country = "@" };
+            _context.Suppliers.Add(supplier);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.UpdateSupplier(1, supplierUpdate));
+            Assert.Equal("Country can't have special characters", exception.Message);
+        }
+
 
         [Fact]
         public void supplierService_ReturnCorrect_DeleteSupplier_NoCascade()

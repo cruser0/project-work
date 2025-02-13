@@ -24,6 +24,21 @@ namespace API.Models.Services
             _serviceCost = serviceCost;
         }
 
+        public ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices()
+        {
+            return _context.SupplierInvoices.Select(si => SupplierInvoiceMapper.MapGet(si)).ToList();
+        }
+
+        public SupplierInvoiceDTOGet GetSupplierInvoiceById(int id)
+        {
+            var data = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
+            if (data == null)
+            {
+                throw new ArgumentException("Supplier Invoice not found!");
+            }
+            return SupplierInvoiceMapper.MapGet(data);
+        }
+
         public SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice)
         {
             if (supplierInvoice == null)
@@ -43,42 +58,6 @@ namespace API.Models.Services
             _context.Add(supplierInvoice);
             _context.SaveChanges();
             return SupplierInvoiceMapper.MapGet(supplierInvoice);
-        }
-
-        public SupplierInvoiceDTOGet DeleteSupplierInvoice(int id)
-        {
-            var data = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
-            if (data == null || id < 1)
-            {
-                throw new ArgumentNullException("Supplier Invoice not found!");
-            }
-            List<SupplierInvoiceCost> listInvoiceCost = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == id).ToList();
-            if (listInvoiceCost.Count > 0)
-            {
-                foreach (SupplierInvoiceCost cost in listInvoiceCost)
-                {
-                    _serviceCost.DeleteSupplierInvoiceCost(cost.SupplierInvoiceCostsId);
-                }
-            }
-            _context.SupplierInvoices.Remove(data);
-            _context.SaveChanges();
-            return SupplierInvoiceMapper.MapGet(data);
-
-        }
-
-        public ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices()
-        {
-            return _context.SupplierInvoices.Select(si => SupplierInvoiceMapper.MapGet(si)).ToList();
-        }
-
-        public SupplierInvoiceDTOGet GetSupplierInvoiceById(int id)
-        {
-            var data = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
-            if (data == null)
-            {
-                throw new ArgumentException("Supplier Invoice not found!");
-            }
-            return SupplierInvoiceMapper.MapGet(data);
         }
 
         public SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice)
@@ -115,5 +94,27 @@ namespace API.Models.Services
             }
             throw new ArgumentException("Supplier Invoice not found");
         }
+
+        public SupplierInvoiceDTOGet DeleteSupplierInvoice(int id)
+        {
+            var data = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
+            if (data == null || id < 1)
+            {
+                throw new ArgumentNullException("Supplier Invoice not found!");
+            }
+            List<SupplierInvoiceCost> listInvoiceCost = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == id).ToList();
+            if (listInvoiceCost.Count > 0)
+            {
+                foreach (SupplierInvoiceCost cost in listInvoiceCost)
+                {
+                    _serviceCost.DeleteSupplierInvoiceCost(cost.SupplierInvoiceCostsId);
+                }
+            }
+            _context.SupplierInvoices.Remove(data);
+            _context.SaveChanges();
+            return SupplierInvoiceMapper.MapGet(data);
+
+        }
+
     }
 }

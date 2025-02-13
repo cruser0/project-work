@@ -25,6 +25,14 @@ namespace API.Models.Services
             _context = ctx;
         }
 
+        public ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices()
+        {
+            // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
+            return _context.CustomerInvoices
+                           .Select(x => CustomerInvoiceMapper.MapGet(x))
+                           .ToList();
+        }
+
         public CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customerInvoice)
         {
             // Check if the customerInvoice parameter is null
@@ -72,50 +80,6 @@ namespace API.Models.Services
             return CustomerInvoiceMapper.MapGet(customerInvoice);
         }
 
-
-        public CustomerInvoiceDTOGet DeleteCustomerInvoice(int id)
-        {
-            // Retrieve the customer invoice from the database using the provided ID
-            var data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
-
-            // Check if the customer invoice exists
-            if (data == null)
-                throw new ArgumentNullException("Customer invoice not found!");
-
-            // Remove the customer invoice from the database
-            _context.CustomerInvoices.Remove(data);
-
-            // Save the changes to commit the deletion
-            _context.SaveChanges();
-
-            // Map the deleted customer invoice to a DTO and return the result
-            return CustomerInvoiceMapper.MapGet(data);
-        }
-
-
-        public ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices()
-        {
-            // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
-            return _context.CustomerInvoices
-                           .Select(x => CustomerInvoiceMapper.MapGet(x))
-                           .ToList();
-        }
-
-
-        public CustomerInvoiceDTOGet GetCustomerInvoiceById(int id)
-        {
-            // Retrieve the customer invoice from the database using the provided ID
-            var data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
-
-            // Check if the customer invoice exists
-            if (data == null)
-                throw new ArgumentException("Customer invoice not found!");
-
-            // Map the customer invoice entity to a DTO and return the result
-            return CustomerInvoiceMapper.MapGet(data);
-        }
-
-
         public CustomerInvoiceDTOGet UpdateCustomerInvoice(int id, CustomerInvoice customerInvoice)
         {
             // Retrieve the existing customer invoice from the database
@@ -130,7 +94,7 @@ namespace API.Models.Services
 
             // Update customer invoice fields only if a new one is provided
             ciDB.SaleId = customerInvoice.SaleId ?? ciDB.SaleId;
-            if(!_context.Sales.Where(x=>x.SaleId==customerInvoice.SaleId).Any())
+            if (!_context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).Any())
                 throw new ArgumentException("SaleId not found");
             ciDB.InvoiceAmount = customerInvoice.InvoiceAmount ?? ciDB.InvoiceAmount;
             ciDB.InvoiceDate = customerInvoice.InvoiceDate ?? ciDB.InvoiceDate;
@@ -179,6 +143,37 @@ namespace API.Models.Services
             return CustomerInvoiceMapper.MapGet(ciDB);
         }
 
+        public CustomerInvoiceDTOGet DeleteCustomerInvoice(int id)
+        {
+            // Retrieve the customer invoice from the database using the provided ID
+            var data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
+
+            // Check if the customer invoice exists
+            if (data == null)
+                throw new ArgumentNullException("Customer invoice not found!");
+
+            // Remove the customer invoice from the database
+            _context.CustomerInvoices.Remove(data);
+
+            // Save the changes to commit the deletion
+            _context.SaveChanges();
+
+            // Map the deleted customer invoice to a DTO and return the result
+            return CustomerInvoiceMapper.MapGet(data);
+        }
+
+        public CustomerInvoiceDTOGet GetCustomerInvoiceById(int id)
+        {
+            // Retrieve the customer invoice from the database using the provided ID
+            var data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
+
+            // Check if the customer invoice exists
+            if (data == null)
+                throw new ArgumentException("Customer invoice not found!");
+
+            // Map the customer invoice entity to a DTO and return the result
+            return CustomerInvoiceMapper.MapGet(data);
+        }
 
     }
 }

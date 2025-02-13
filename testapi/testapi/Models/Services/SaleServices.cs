@@ -17,15 +17,36 @@ namespace API.Models.Services
     public class SaleServices : ISalesService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly ICustomerInvoicesService _ciRepo;
-        private readonly ISupplierInvoiceService _siRepo;
+        private readonly ICustomerInvoicesService _ciService;
+        private readonly ISupplierInvoiceService _siService;
         // List of valid sale statuses
         List<string> statusList = new() { "active", "closed" };
-        public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIrepo, ISupplierInvoiceService SIrepo)
+        public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIservice, ISupplierInvoiceService SIservice)
         {
             _context = ctx;
-            _ciRepo = CIrepo;
-            _siRepo = SIrepo;
+            _ciService = CIservice;
+            _siService = SIservice;
+        }
+
+        public ICollection<SaleDTOGet> GetAllSales()
+        {
+            // Retrieve all sales from the database and map each one to a SaleDTOGet
+            return _context.Sales
+                           .Select(s => SaleMapper.MapGet(s))
+                           .ToList();
+        }
+
+        public SaleDTOGet GetSaleById(int id)
+        {
+            // Retrieve the sale from the database using the provided ID
+            var data = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
+
+            // Check if the sale exists
+            if (data == null)
+                throw new ArgumentException("Sale not found!");
+
+            // Map the sale entity to a DTO and return the result
+            return SaleMapper.MapGet(data);
         }
 
         public SaleDTOGet CreateSale(Sale sale)
@@ -47,6 +68,12 @@ namespace API.Models.Services
             if (nullFields.Any())
                 throw new ArgumentException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
 
+            if (sale.BookingNumber.Length > 50)
+                throw new ArgumentException("Booking Number is too long");
+
+            if (sale.BoLnumber.Length > 50)
+                throw new ArgumentException("BoL Number is too long");
+
             // Check if the provided status is valid
             if (!statusList.Contains(sale.Status.ToLower()))
                 throw new ArgumentException("Incorrect status\nA sale is Active or Closed");
@@ -67,67 +94,6 @@ namespace API.Models.Services
             return SaleMapper.MapGet(sale);
         }
 
-
-        public SaleDTOGet DeleteSale(int id)
-        {
-            // Retrieve the sale from the database using the provided ID
-            var data = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
-
-            // Check if the sale exists
-            if (data == null)
-                throw new ArgumentException("Sale not found!");
-
-
-            // Retrieve all customer invoices associated with the sale
-            var customerInvoices = _context.CustomerInvoices.Where(x => x.SaleId == id).ToList();
-
-            // If there are any customer invoices, delete them
-            if (customerInvoices.Count > 0)
-                foreach (var invoice in customerInvoices)
-                    _ciRepo.DeleteCustomerInvoice(invoice.CustomerInvoiceId);
-
-            // Retrieve all supplier invoices associated with the sale
-            var supplierInvoices = _context.SupplierInvoices.Where(x => x.SaleId == id).ToList();
-
-            // If there are any supplier invoices, delete them
-            if (supplierInvoices.Count > 0)
-                foreach (var invoice in supplierInvoices)
-                    _siRepo.DeleteSupplierInvoice(invoice.InvoiceId);
-
-            // Remove the sale from the database
-            _context.Sales.Remove(data);
-
-            // Save the changes to commit the deletion
-            _context.SaveChanges();
-
-            // Map the deleted sale to a DTO and return the result
-            return SaleMapper.MapGet(data);
-        }
-
-
-        public ICollection<SaleDTOGet> GetAllSales()
-        {
-            // Retrieve all sales from the database and map each one to a SaleDTOGet
-            return _context.Sales
-                           .Select(s => SaleMapper.MapGet(s))
-                           .ToList();
-        }
-
-
-        public SaleDTOGet GetSaleById(int id)
-        {
-            // Retrieve the sale from the database using the provided ID
-            var data = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
-
-            // Check if the sale exists
-            if (data == null)
-                throw new ArgumentException("Sale not found!");
-
-            // Map the sale entity to a DTO and return the result
-            return SaleMapper.MapGet(data);
-        }
-
-
         public SaleDTOGet UpdateSale(int id, Sale sale)
         {
             // Retrieve the existing sale from the database
@@ -143,6 +109,14 @@ namespace API.Models.Services
             sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
             sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
             sDB.CustomerId = sale.CustomerId ?? sDB.CustomerId;
+
+            if (sale.BookingNumber != null)
+                if (sale.BookingNumber.Length > 50)
+                    throw new ArgumentException("Booking Number is too long");
+
+            if (sale.BoLnumber != null)
+                if (sale.BoLnumber.Length > 50)
+                    throw new ArgumentException("BoL Number is too long");
 
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(sale.Status) && !statusList.Contains(sale.Status.ToLower()))
@@ -162,6 +136,42 @@ namespace API.Models.Services
 
             // Return the updated sale mapped to DTO
             return SaleMapper.MapGet(sDB);
+        }
+
+        public SaleDTOGet DeleteSale(int id)
+        {
+            // Retrieve the sale from the database using the provided ID
+            var data = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
+
+            // Check if the sale exists
+            if (data == null)
+                throw new ArgumentException("Sale not found!");
+
+
+            // Retrieve all customer invoices associated with the sale
+            var customerInvoices = _context.CustomerInvoices.Where(x => x.SaleId == id).ToList();
+
+            // If there are any customer invoices, delete them
+            if (customerInvoices.Count > 0)
+                foreach (var invoice in customerInvoices)
+                    _ciService.DeleteCustomerInvoice(invoice.CustomerInvoiceId);
+
+            // Retrieve all supplier invoices associated with the sale
+            var supplierInvoices = _context.SupplierInvoices.Where(x => x.SaleId == id).ToList();
+
+            // If there are any supplier invoices, delete them
+            if (supplierInvoices.Count > 0)
+                foreach (var invoice in supplierInvoices)
+                    _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+
+            // Remove the sale from the database
+            _context.Sales.Remove(data);
+
+            // Save the changes to commit the deletion
+            _context.SaveChanges();
+
+            // Map the deleted sale to a DTO and return the result
+            return SaleMapper.MapGet(data);
         }
 
     }

@@ -50,7 +50,7 @@ namespace API_Test.ControllerTest
         {
             // Arrange
             var invoices = new List<SupplierInvoiceDTOGet>(); // Lista vuota
-            _mockSupplierInvoiceService.Setup(repo => repo.GetAllSupplierInvoices()).Returns(invoices);
+            _mockSupplierInvoiceService.Setup(service => service.GetAllSupplierInvoices()).Returns(invoices);
 
             // Act
             var result = _supplierInvoiceController.Get();

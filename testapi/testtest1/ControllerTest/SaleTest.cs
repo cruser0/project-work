@@ -156,7 +156,7 @@ namespace API_Test.ControllerTest
             };
 
             _mockSaleService
-            .Setup(repo => repo.CreateSale(It.IsAny<Sale>()))
+            .Setup(service => service.CreateSale(It.IsAny<Sale>()))
             .Throws(new ArgumentException(expectedErrorMessage));
 
 
