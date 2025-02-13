@@ -8,10 +8,10 @@ public class SaleDTO
     public DateTime? SaleDate { get; set; }
     public int? CustomerId { get; set; }
     public decimal? TotalRevenue { get; set; }
-    public string? Status { get; set; }
+    public string? Status { get; set; } //active/closed
 }
 
-public class SaleDTOGet: SaleDTO
+public class SaleDTOGet : SaleDTO
 {
     public int? SaleId { get; set; }
 }
