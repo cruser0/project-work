@@ -86,7 +86,10 @@ namespace testapi.Repo
         {
             // Retrieve the customer from the database based on the provided ID
             var data = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
-
+            if(data == null)
+            {
+                throw new Exception("Customer not found!");
+            }
             // Map and return the customer as a DTO
             return CustomerMapper.MapGet(data);
         }
