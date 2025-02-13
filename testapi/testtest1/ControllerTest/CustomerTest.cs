@@ -1,15 +1,14 @@
-using Xunit;
-
-using Moq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using System;
+using API.Controllers;
 using API.Models.DTO;
-using API.Models.Services;
 using API.Models.Entities;
 using API.Models.Mapper;
-using API.Controllers;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace API_Test.ControllerTest
 {
