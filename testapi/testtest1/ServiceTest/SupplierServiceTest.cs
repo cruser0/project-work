@@ -145,6 +145,18 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
+        public void supplierService_ThrowError_CreateSupplier_DuplicateSupplier()
+        {
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country" };
+            _context.Suppliers.Add(supplier);
+            _context.SaveChanges();
+
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.CreateSupplier(supplier));
+            Assert.Equal("This supplier already exists", exception.Message);
+        }
+
+        [Fact]
         public void supplierService_ReturnCorrect_UpdateSupplier()
         {
             //Arrange
@@ -216,6 +228,28 @@ namespace API_Test.ServiceTest
             Assert.Equal("Country can't have special characters", exception.Message);
         }
 
+        [Theory]
+        [InlineData("Name", "Country")]
+        [InlineData("AltroName", null)]
+        [InlineData(null, "Country")]
+        [InlineData("AltroName", "AltroCountry")]
+        public void supplierService_ThrowError_UpdateSupplier_DuplicateSupplier(string name, string country)
+        {
+            var supplier1 = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country" };
+            _context.Suppliers.Add(supplier1);
+            var supplier2 = new Supplier() { SupplierId = 2, SupplierName = "AltroName", Country = "AltroCountry" };
+            _context.Suppliers.Add(supplier2);
+            var supplier3 = new Supplier() { SupplierId = 3, SupplierName = "Name", Country = "AltroCountry" };
+            _context.Suppliers.Add(supplier3);
+
+            _context.SaveChanges();
+
+            var supplierToUpdate = new Supplier() { SupplierId = 3, SupplierName = name, Country = country };
+
+            var exception = Assert.Throws<ArgumentException>(
+                () => _supplierService.UpdateSupplier(3, supplierToUpdate));
+            Assert.Equal("This supplier already exists", exception.Message);
+        }
 
         [Fact]
         public void supplierService_ReturnCorrect_DeleteSupplier_NoCascade()

@@ -195,6 +195,18 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
+        public void customerService_ThrowError_CreateSupplier_DuplicateCustomer()
+        {
+            var customer = new Customer() { CustomerId = 1, CustomerName = "Name", Country = "Country" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            var exception = Assert.Throws<ArgumentException>(
+                () => _customerService.CreateCustomer(customer));
+            Assert.Equal("This customer already exists", exception.Message);
+        }
+
+        [Fact]
         public async Task Update_Customer()
         {
             //Arrange
@@ -311,6 +323,29 @@ namespace API_Test.ServiceTest
             var action = Assert.IsType<ArgumentException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Country can't have special characters", actionResult);
+        }
+
+        [Theory]
+        [InlineData("Name", "Country")]
+        [InlineData("AltroName", null)]
+        [InlineData(null, "Country")]
+        [InlineData("AltroName", "AltroCountry")]
+        public void customerService_ThrowError_UpdateSupplier_DuplicateCustomer(string name, string country)
+        {
+            var customer1 = new Customer() { CustomerId = 1, CustomerName = "Name", Country = "Country" };
+            _context.Customers.Add(customer1);
+            var customer2 = new Customer() { CustomerId = 2, CustomerName = "AltroName", Country = "AltroCountry" };
+            _context.Customers.Add(customer2);
+            var customer3 = new Customer() { CustomerId = 3, CustomerName = "Name", Country = "AltroCountry" };
+            _context.Customers.Add(customer3);
+
+            _context.SaveChanges();
+
+            var customerToUpdate = new Customer() { CustomerId = 3, CustomerName = name, Country = country };
+
+            var exception = Assert.Throws<ArgumentException>(
+                () => _customerService.UpdateCustomer(3, customerToUpdate));
+            Assert.Equal("This customer already exists", exception.Message);
         }
 
         [Fact]

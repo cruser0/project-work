@@ -57,6 +57,8 @@ namespace API.Models.Services
             if (!supplier.Country.All(char.IsLetter))
                 throw new ArgumentException("Country can't have special characters");
 
+            if (_context.Suppliers.Any(x => x.SupplierName.Equals(supplier.SupplierName) && x.Country.Equals(supplier.Country)))
+                throw new ArgumentException("This supplier already exists");
 
             _context.Add(supplier);
             _context.SaveChanges();
@@ -68,6 +70,22 @@ namespace API.Models.Services
             var cDB = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
             if (cDB != null)
             {
+                if (supplier.SupplierName != null && supplier.Country != null)
+                {
+                    if (_context.Suppliers.Any(x => x.SupplierName.Equals(supplier.SupplierName) && x.Country.Equals(supplier.Country)))
+                        throw new ArgumentException("This supplier already exists");
+                }
+                else if (supplier.SupplierName != null)
+                {
+                    if (_context.Suppliers.Any(x => x.SupplierName.Equals(supplier.SupplierName) && x.Country.Equals(cDB.Country)))
+                        throw new ArgumentException("This supplier already exists");
+                }
+                else if (supplier.Country != null)
+                {
+                    if (_context.Suppliers.Any(x => x.SupplierName.Equals(cDB.SupplierName) && x.Country.Equals(supplier.Country)))
+                        throw new ArgumentException("This supplier already exists");
+                }
+
                 if (!string.IsNullOrEmpty(supplier.SupplierName))
                     cDB.SupplierName = supplier.SupplierName ?? cDB.SupplierName;
                 if (!string.IsNullOrEmpty(supplier.Country))

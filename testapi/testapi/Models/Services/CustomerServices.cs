@@ -67,6 +67,9 @@ namespace API.Models.Services
             if (!customer.Country.All(char.IsLetter))
                 throw new ArgumentException("Country can't have special characters");
 
+            if (_context.Customers.Any(x => x.CustomerName.Equals(customer.CustomerName) && x.Country.Equals(customer.Country)))
+                throw new ArgumentException("This customer already exists");
+
             // Add the new customer to the database
             _context.Customers.Add(customer);
             _context.SaveChanges();
@@ -84,6 +87,22 @@ namespace API.Models.Services
             if (cDB == null)
                 throw new Exception("Customer not found");
 
+            if (customer.CustomerName != null && customer.Country != null)
+            {
+                if (_context.Customers.Any(x => x.CustomerName.Equals(customer.CustomerName) && x.Country.Equals(customer.Country)))
+                    throw new ArgumentException("This customer already exists");
+            }
+            else if (customer.CustomerName != null)
+            {
+                if (_context.Customers.Any(x => x.CustomerName.Equals(customer.CustomerName) && x.Country.Equals(cDB.Country)))
+                    throw new ArgumentException("This customer already exists");
+            }
+            else if (customer.Country != null)
+            {
+                if (_context.Customers.Any(x => x.CustomerName.Equals(cDB.CustomerName) && x.Country.Equals(customer.Country)))
+                    throw new ArgumentException("This customer already exists");
+            }
+
             // Update only the fields that are not null in the input object
             cDB.CustomerName = customer.CustomerName ?? cDB.CustomerName;
             cDB.Country = customer.Country ?? cDB.Country;
@@ -100,6 +119,8 @@ namespace API.Models.Services
                 if (!customer.Country.All(char.IsLetter))
                     throw new ArgumentException("Country can't have special characters");
             }
+
+
 
             // Save the changes to the database
             _context.Customers.Update(cDB);
