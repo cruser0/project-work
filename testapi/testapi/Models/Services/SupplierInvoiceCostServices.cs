@@ -27,10 +27,10 @@ namespace API.Models.Services
             SupplierInvoice si;
             if (supplierInvoiceCost == null)
                 throw new ArgumentNullException("Couldn't create supplier Invoice Cost");
-            if (!_context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).Any())
-                throw new ArgumentException("Supplier Invoice Id not found!");
             if (supplierInvoiceCost.SupplierInvoiceId == null)
                 throw new ArgumentException("Supplier Invoice Id can't be null!");
+            if (!_context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).Any())
+                throw new ArgumentException("Supplier Invoice Id not found!");
             if (supplierInvoiceCost.Cost < 0 || supplierInvoiceCost.Quantity < 1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
                 throw new ArgumentException("Values can't be lesser than 1 or null");
 
@@ -56,6 +56,7 @@ namespace API.Models.Services
             SupplierInvoice si = _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).First();
             decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
             si.InvoiceAmount = total - data.Cost * data.Quantity;
+            _context.SupplierInvoices.Update(si);
             _context.SupplierInvoiceCosts.Remove(data);
             _context.SaveChanges();
             return SupplierInvoiceCostMapper.MapGet(data);
@@ -72,27 +73,30 @@ namespace API.Models.Services
             var data = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
             if (data == null)
             {
-                throw new ArgumentException("SupplierInvoiceCost not found!");
+                throw new ArgumentException("Supplier Invoice Cost not found!");
             }
             return SupplierInvoiceCostMapper.MapGet(data);
         }
 
         public SupplierInvoiceCostDTOGet UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost)
         {
+            SupplierInvoice? si;
             var sicDB = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
             if (sicDB != null && id >= 0)
             {
-                if (supplierInvoiceCost.SupplierInvoiceId != null && supplierInvoiceCost.SupplierInvoiceId >= 1)
-                {
+                if (supplierInvoiceCost.SupplierInvoiceId != null)
                     sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
-                }
-                sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
-                sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
+                if (!_context.SupplierInvoices.Any(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
+                    throw new ArgumentNullException("Supplier Invoice not Found");
+                    if (supplierInvoiceCost.Quantity>0)
+                    sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
+                if(supplierInvoiceCost.Cost>0)
+                    sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
                 _context.SupplierInvoiceCosts.Update(sicDB);
                 _context.SaveChanges();
                 if (sicDB.Cost > 0 && sicDB.Quantity > 0)
                 {
-                    SupplierInvoice si = _context.SupplierInvoices.Where(x => x.SupplierId == sicDB.SupplierInvoiceId).First();
+                    si = _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefault();
                     decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
                     si.InvoiceAmount = total;
                     _context.SupplierInvoices.Update(si);
@@ -100,7 +104,7 @@ namespace API.Models.Services
                 }
                 return SupplierInvoiceCostMapper.MapGet(sicDB);
             }
-            throw new ArgumentNullException("Supplier Invoice or Supplier Invoice Cost not found");
+            throw new ArgumentNullException("Supplier Invoice Cost not found");
         }
     }
 }
