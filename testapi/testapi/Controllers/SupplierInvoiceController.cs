@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
+﻿using API.Models.DTO;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
+using API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace testapi.Controllers
+namespace API.Controllers
 {
     [Route("api/supplier-invoice")]
     [ApiController]
     public class SupplierInvoiceController : ControllerBase
     {
-        private readonly ISupplierInvoiceREPO _supplierInvoiceREPO;
-        public SupplierInvoiceController(ISupplierInvoiceREPO supplierInvoiceREPO)
+        private readonly ISupplierInvoiceService _supplierInvoiceService;
+        public SupplierInvoiceController(ISupplierInvoiceService supplierInvoiceService)
         {
-            _supplierInvoiceREPO = supplierInvoiceREPO;
+            _supplierInvoiceService = supplierInvoiceService;
         }
         // GET: api/<SupplierInvoiceController>
         [HttpGet]
@@ -23,7 +23,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierInvoiceREPO.GetAllSupplierInvoices();
+                var data = _supplierInvoiceService.GetAllSupplierInvoices();
                 if (data.Any())
                 {
                     return Ok(data);
@@ -39,7 +39,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierInvoiceREPO.GetSupplierInvoiceById(id);
+                var data = _supplierInvoiceService.GetSupplierInvoiceById(id);
                 if (data == null)
                     throw new Exception("Supplier Invoice not found!");
                 return Ok(data);
@@ -53,7 +53,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierInvoiceREPO.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice));
+                var data = _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice));
                 if (data == null)
                     throw new Exception("Couldn't create supplier invoice");
                 return Ok(data);
@@ -67,7 +67,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierInvoiceREPO.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice));
+                var data = _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice));
                 if (data == null)
                     throw new Exception("Couldn't update supplier invoice");
                 return Ok(data);
@@ -82,7 +82,7 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _supplierInvoiceREPO.DeleteSupplierInvoice(id);
+                var data = _supplierInvoiceService.DeleteSupplierInvoice(id);
                 if (data == null)
                     throw new Exception("Couldn't delete supplier invoice");
                 return Ok(data);

@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
+﻿using API.Models.DTO;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
+using API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace testapi.Controllers
+namespace API.Controllers
 {
     [Route("api/customer")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly ICustomerREPO _customerREPO;
-        public CustomerController(ICustomerREPO customerREPO)
+        private readonly ICustomerService _customerService;
+        public CustomerController(ICustomerService customerService)
         {
-            _customerREPO = customerREPO;
+            _customerService = customerService;
         }
         // GET: api/<CustomerController>
         [HttpGet]
@@ -23,7 +23,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _customerREPO.GetAllCustomers();
+                var data = _customerService.GetAllCustomers();
                 if (data.Any())
                 {
                     return Ok(data);
@@ -40,13 +40,13 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _customerREPO.GetCustomerById(id);
+                var data = _customerService.GetCustomerById(id);
                 if (data == null)
                     throw new Exception("Customer not found!");
                 return Ok(data);
             }
             catch (Exception ae) { return BadRequest(ae.Message); }
-            
+
         }
 
 
@@ -56,7 +56,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _customerREPO.CreateCustomer(CustomerMapper.Map(customer));
+                var data = _customerService.CreateCustomer(CustomerMapper.Map(customer));
                 if (data == null)
                     throw new Exception("Data can't be null!");
                 return Ok(data);
@@ -70,7 +70,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _customerREPO.UpdateCustomer(id, CustomerMapper.Map(customer));
+                var data = _customerService.UpdateCustomer(id, CustomerMapper.Map(customer));
                 if (data == null)
                     throw new Exception("Customer not found!");
                 return Ok(data);
@@ -86,7 +86,7 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _customerREPO.DeleteCustomer(id);
+                var data = _customerService.DeleteCustomer(id);
                 if (data == null)
                     throw new Exception("Customer not found!");
                 return Ok(data);

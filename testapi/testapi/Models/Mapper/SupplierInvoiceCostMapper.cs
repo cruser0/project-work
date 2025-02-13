@@ -1,6 +1,7 @@
-﻿using testapi.Models.DTO;
+﻿using API.Models.DTO;
+using API.Models.Entities;
 
-namespace testapi.Models.Mapper
+namespace API.Models.Mapper
 {
     public class SupplierInvoiceCostMapper
     {
@@ -37,7 +38,7 @@ namespace testapi.Models.Mapper
                 return null;
             return new SupplierInvoiceCostDTOGet()
             {
-                SupplierInvoiceCostsId=supplierInvoiceCost.SupplierInvoiceCostsId,
+                SupplierInvoiceCostsId = supplierInvoiceCost.SupplierInvoiceCostsId,
                 SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity

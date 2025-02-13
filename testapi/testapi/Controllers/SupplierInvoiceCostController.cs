@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
+﻿using API.Models.DTO;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
+using API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace testapi.Controllers
+namespace API.Controllers
 {
     [Route("api/supplier-invoice-cost")]
     [ApiController]
     public class SupplierInvoiceCostController : ControllerBase
     {
-        private readonly ISupplierInvoiceCostREPO _supplierInvoiceCostREPO;
-        public SupplierInvoiceCostController(ISupplierInvoiceCostREPO supplierInvoiceCostREPO)
+        private readonly ISupplierInvoiceCostService _supplierInvoiceCostService;
+        public SupplierInvoiceCostController(ISupplierInvoiceCostService supplierInvoiceCostService)
         {
-            _supplierInvoiceCostREPO = supplierInvoiceCostREPO;
+            _supplierInvoiceCostService = supplierInvoiceCostService;
         }
         // GET: api/<SupplierInvoiceCostController>
         [HttpGet]
@@ -23,7 +23,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierInvoiceCostREPO.GetAllSupplierInvoiceCosts();
+                var data = _supplierInvoiceCostService.GetAllSupplierInvoiceCosts();
                 if (data.Any())
                 {
                     return Ok(data);
@@ -40,7 +40,7 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _supplierInvoiceCostREPO.GetSupplierInvoiceCostById(id);
+                var data = _supplierInvoiceCostService.GetSupplierInvoiceCostById(id);
                 if (data == null)
                     throw new Exception("Supplier Invoice Cost not found");
                 return Ok(data);
@@ -56,7 +56,7 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _supplierInvoiceCostREPO.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
+                var data = _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
                 if (data == null)
                     throw new Exception("Supplier Invoice Cost not found");
                 return Ok(data);
@@ -70,7 +70,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierInvoiceCostREPO.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
+                var data = _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
                 if (data == null)
                     throw new Exception("Supplier Invoice Cost not found");
                 return Ok(data);
@@ -85,7 +85,7 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _supplierInvoiceCostREPO.DeleteSupplierInvoiceCost(id);
+                var data = _supplierInvoiceCostService.DeleteSupplierInvoiceCost(id);
                 if (data == null)
                     throw new Exception("Supplier Invoice Cost not found");
                 return Ok(data);

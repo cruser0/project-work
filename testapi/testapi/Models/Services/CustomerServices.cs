@@ -1,10 +1,10 @@
-﻿using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
+﻿using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
 
-namespace testapi.Repo
+namespace API.Models.Services
 {
-    public interface ICustomerREPO
+    public interface ICustomerService
     {
         ICollection<CustomerDTOGet> GetAllCustomers();
         CustomerDTOGet GetCustomerById(int id);
@@ -14,11 +14,11 @@ namespace testapi.Repo
 
 
     }
-    public class CustomerREPO : ICustomerREPO
+    public class CustomerServices : ICustomerService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly ISalesREPO _sRepo;
-        public CustomerREPO(Progetto_FormativoContext ctx, ISalesREPO Srepo)
+        private readonly ISalesService _sRepo;
+        public CustomerServices(Progetto_FormativoContext ctx, ISalesService Srepo)
         {
             _context = ctx;
             _sRepo = Srepo;
@@ -86,7 +86,7 @@ namespace testapi.Repo
         {
             // Retrieve the customer from the database based on the provided ID
             var data = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
-            if(data == null)
+            if (data == null)
             {
                 throw new Exception("Customer not found!");
             }

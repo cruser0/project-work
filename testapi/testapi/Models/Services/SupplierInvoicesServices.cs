@@ -1,10 +1,10 @@
-﻿using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
+﻿using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
 
-namespace testapi.Repo
+namespace API.Models.Services
 {
-    public interface ISupplierInvoiceREPO
+    public interface ISupplierInvoiceService
     {
         ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices();
         SupplierInvoiceDTOGet GetSupplierInvoiceById(int id);
@@ -14,11 +14,11 @@ namespace testapi.Repo
 
 
     }
-    public class SupplierInvoiceREPO : ISupplierInvoiceREPO
+    public class SupplierInvoiceService : ISupplierInvoiceService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly ISupplierInvoiceCostREPO _serviceCost;
-        public SupplierInvoiceREPO(Progetto_FormativoContext ctx, ISupplierInvoiceCostREPO serviceCost)
+        private readonly ISupplierInvoiceCostService _serviceCost;
+        public SupplierInvoiceService(Progetto_FormativoContext ctx, ISupplierInvoiceCostService serviceCost)
         {
             _context = ctx;
             _serviceCost = serviceCost;
@@ -36,7 +36,7 @@ namespace testapi.Repo
 
             if (!new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
                 throw new ArgumentException("Status is not valid");
-            if(supplierInvoice.InvoiceDate == null)
+            if (supplierInvoice.InvoiceDate == null)
                 throw new ArgumentException("Date is not valid");
 
             supplierInvoice.InvoiceAmount = 0;
@@ -53,16 +53,16 @@ namespace testapi.Repo
                 throw new ArgumentNullException("Supplier Invoice not found!");
             }
             List<SupplierInvoiceCost> listInvoiceCost = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == id).ToList();
-            if(listInvoiceCost.Count > 0)
+            if (listInvoiceCost.Count > 0)
             {
-            foreach (SupplierInvoiceCost cost in listInvoiceCost)
-            {
-                _serviceCost.DeleteSupplierInvoiceCost(cost.SupplierInvoiceCostsId);
-            }
+                foreach (SupplierInvoiceCost cost in listInvoiceCost)
+                {
+                    _serviceCost.DeleteSupplierInvoiceCost(cost.SupplierInvoiceCostsId);
+                }
             }
             _context.SupplierInvoices.Remove(data);
             _context.SaveChanges();
-            return SupplierInvoiceMapper.MapGet( data);
+            return SupplierInvoiceMapper.MapGet(data);
 
         }
 

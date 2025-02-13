@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using testapi.Repo;
-using testapi.Controllers;
 using Moq;
 using Xunit;
-using testapi.Models;
 using Microsoft.AspNetCore.Mvc;
-using testapi.Models.Mapper;
-using testapi.Models.DTO;
+using API.Models.Entities;
+using API.Controllers;
+using API.Models.DTO;
+using API.Models.Mapper;
+using API.Models.Services;
 
-namespace testtest1
+namespace API_Test.ControllerTest
 {
     public class SupplierTest
     {
         private readonly SupplierController _supplierController;
-        private readonly Mock<ISupplierREPO> _mockService;
+        private readonly Mock<ISupplierService> _mockService;
         public SupplierTest()
         {
-            _mockService = new Mock<ISupplierREPO>();
+            _mockService = new Mock<ISupplierService>();
             _supplierController = new SupplierController(_mockService.Object);
         }
 
@@ -32,11 +32,11 @@ namespace testtest1
             _mockService.Setup(service => service.GetAllSuppliers()).Returns(suppliers);
 
             //Act
-            var result=_supplierController.Get();
+            var result = _supplierController.Get();
 
             //Assert
-            var actionResult=Assert.IsType<OkObjectResult>(result);
-            var returnValue=Assert.IsType<List<SupplierDTOGet>>(actionResult.Value);
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<List<SupplierDTOGet>>(actionResult.Value);
             Assert.Equal(suppliers.Count, returnValue.Count);
         }
 
@@ -61,14 +61,14 @@ namespace testtest1
         {
             //Arrange
             var supplier = new Supplier { SupplierId = 1, SupplierName = "Apple", Country = "Italy" };
-            _mockService.Setup(service=>service.CreateSupplier(It.IsAny<Supplier>())).Returns(SupplierMapper.MapGet(supplier));
+            _mockService.Setup(service => service.CreateSupplier(It.IsAny<Supplier>())).Returns(SupplierMapper.MapGet(supplier));
 
             //Act
             var result = _supplierController.Post(SupplierMapper.Map(supplier));
 
             //Assert
 
-            var actionResult= Assert.IsType<OkObjectResult>(result);
+            var actionResult = Assert.IsType<OkObjectResult>(result);
             var returnValue = Assert.IsType<SupplierDTOGet>(actionResult.Value);
             Assert.Equal(supplier.SupplierId, returnValue.SupplierId);
 
@@ -100,12 +100,12 @@ namespace testtest1
         public async Task Post_ReturnBadRequest_Supplier_null_data(int id, string name, string country)
         {
 
-            var supplier = new Supplier {SupplierId=id,SupplierName=name,Country=country };
+            var supplier = new Supplier { SupplierId = id, SupplierName = name, Country = country };
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(country) || string.IsNullOrEmpty(country))
             {
-            _mockService
-            .Setup(service => service.CreateSupplier(supplier))
-            .Throws(new Exception("Data can't be null!"));
+                _mockService
+                .Setup(service => service.CreateSupplier(supplier))
+                .Throws(new Exception("Data can't be null!"));
             }
             // Arrange
 
@@ -191,11 +191,11 @@ namespace testtest1
             Assert.Equal("Supplier not found!", returnValue);
         }
         [Theory]
-        [InlineData(1,"Apple","Italy")]
+        [InlineData(1, "Apple", "Italy")]
         [InlineData(1, "", "Italy")]
         [InlineData(1, "Apple", "")]
         [InlineData(1, "", "")]
-        public async Task Put_ReturnOk_Supplier(int id,string name,string country)
+        public async Task Put_ReturnOk_Supplier(int id, string name, string country)
         {
             //Arrange
             var originalSupplier = new Supplier { SupplierId = id, SupplierName = "Xiaomi", Country = "Japan" };
@@ -216,12 +216,12 @@ namespace testtest1
             // Assert
             var actionResult = Assert.IsType<OkObjectResult>(result);
             var returnValue = Assert.IsType<SupplierDTOGet>(actionResult.Value);
-            if(string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
                 Assert.Equal(originalSupplier.SupplierName, returnValue.SupplierName);
             else
                 Assert.Equal(updatedSupplier.SupplierName, returnValue.SupplierName);
             Assert.Equal(id, returnValue.SupplierId);
-            if(string.IsNullOrEmpty(country))
+            if (string.IsNullOrEmpty(country))
                 Assert.Equal(originalSupplier.Country, returnValue.Country);
             else
                 Assert.Equal(updatedSupplier.Country, returnValue.Country);
@@ -232,7 +232,7 @@ namespace testtest1
             //Arrange
             var supplier = new Supplier { SupplierId = 1, SupplierName = "Xiaomi", Country = "Japan" };
 
-           
+
 
             _mockService.Setup(service => service.UpdateSupplier(2, It.IsAny<Supplier>()))
                         .Throws(new Exception("Supplier not found!"));

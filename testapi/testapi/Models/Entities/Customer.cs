@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace testapi.Models
+namespace API.Models.Entities
 {
     public partial class Customer
     {

@@ -1,21 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Models;
+using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Services;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Repo;
 using Xunit;
-namespace testtest1.ServiceTest
+namespace API_Test.ServiceTest
 {
-    public class SupplierREPOTest
+    public class SupplierServiceTest
     {
-        private readonly SupplierREPO _supplierRepo;
-        private readonly Mock<ISupplierInvoiceREPO> _mockSupplierInvoiceRepo;
+        private readonly SupplierService _supplierService;
+        private readonly Mock<ISupplierInvoiceService> _mockSupplierInvoiceService;
         private readonly Progetto_FormativoContext _context;
 
-        public SupplierREPOTest()
+        public SupplierServiceTest()
         {
             // Create an in-memory database for testing
             var options = new DbContextOptionsBuilder<Progetto_FormativoContext>()
@@ -23,10 +24,10 @@ namespace testtest1.ServiceTest
             .Options;
 
             _context = new Progetto_FormativoContext(options);
-            _mockSupplierInvoiceRepo = new Mock<ISupplierInvoiceREPO>();
+            _mockSupplierInvoiceService = new Mock<ISupplierInvoiceService>();
 
             // Initialize repository
-            _supplierRepo = new SupplierREPO(_context, _mockSupplierInvoiceRepo.Object);
+            _supplierService = new SupplierService(_context, _mockSupplierInvoiceService.Object);
         }
 
         [Fact]
@@ -37,7 +38,7 @@ namespace testtest1.ServiceTest
             _context.Suppliers.AddRange(suppliers);
             _context.SaveChanges();
 
-            var result = _supplierRepo.GetAllSuppliers();
+            var result = _supplierService.GetAllSuppliers();
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Count);
@@ -47,7 +48,7 @@ namespace testtest1.ServiceTest
         public void supplierREPOTest_ThrowException_GetAllSuppliers()
         {
 
-            var result = _supplierRepo.GetAllSuppliers();
+            var result = _supplierService.GetAllSuppliers();
 
             Assert.Equal(0, result.Count);
         }
@@ -63,7 +64,7 @@ namespace testtest1.ServiceTest
             _context.Suppliers.AddRange(suppliers);
             _context.SaveChanges();
 
-            var result = _supplierRepo.GetSupplierById(1);
+            var result = _supplierService.GetSupplierById(1);
 
             Assert.NotNull(result);
             Assert.IsType<SupplierDTOGet>(result);
@@ -74,7 +75,7 @@ namespace testtest1.ServiceTest
         public void supplierREPO_ThrowException_GetSupplierById()
         {
 
-            var exception = Assert.Throws<ArgumentException>(() => _supplierRepo.GetSupplierById(1));
+            var exception = Assert.Throws<ArgumentException>(() => _supplierService.GetSupplierById(1));
             Assert.Equal("Supplier not found!", exception.Message);
         }
 
@@ -82,7 +83,7 @@ namespace testtest1.ServiceTest
         public void supplierREPO_ReturnCorrect_CreateSupplier()
         {
             var supplier = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country" };
-            var result = _supplierRepo.CreateSupplier(supplier);
+            var result = _supplierService.CreateSupplier(supplier);
 
             Assert.NotNull(result);
             Assert.IsType<SupplierDTOGet>(result);
@@ -94,7 +95,7 @@ namespace testtest1.ServiceTest
         public void supplierREPO_ThrowException_CreateSupplier_NullSupplier()
         {
 
-            var exception = Assert.Throws<ArgumentNullException>(() => _supplierRepo.CreateSupplier((Supplier)null));
+            var exception = Assert.Throws<ArgumentNullException>(() => _supplierService.CreateSupplier(null));
             Assert.Equal("Couldn't create supplier", exception.ParamName);
         }
 
@@ -106,7 +107,7 @@ namespace testtest1.ServiceTest
 
             var supplier = new Supplier() { SupplierId = 1, SupplierName = name, Country = country };
 
-            var exception = Assert.Throws<ArgumentNullException>(() => _supplierRepo.CreateSupplier(supplier));
+            var exception = Assert.Throws<ArgumentNullException>(() => _supplierService.CreateSupplier(supplier));
             Assert.Equal($"{erroreMessage} can't be null", exception.ParamName);
         }
 
@@ -120,7 +121,7 @@ namespace testtest1.ServiceTest
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
             //Act
-            var result = _supplierRepo.UpdateSupplier(1, supplierUpdate);
+            var result = _supplierService.UpdateSupplier(1, supplierUpdate);
             //Assert
             var actionResult = Assert.IsType<SupplierDTOGet>(result);
             Assert.Equal(supplierUpdate.SupplierName, actionResult.SupplierName);
@@ -132,7 +133,7 @@ namespace testtest1.ServiceTest
         {
             var supplierUpdate = new Supplier { SupplierName = "Luca", Country = "France" };
 
-            var exception = Assert.Throws<ArgumentNullException>(() => _supplierRepo.UpdateSupplier(1, supplierUpdate));
+            var exception = Assert.Throws<ArgumentNullException>(() => _supplierService.UpdateSupplier(1, supplierUpdate));
             Assert.Equal("Supplier not found", exception.ParamName);
         }
 
@@ -145,7 +146,7 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _supplierRepo.DeleteSupplier(1);
+            var result = _supplierService.DeleteSupplier(1);
             //Assert
             var actionResult = Assert.IsType<SupplierDTOGet>(result);
             Assert.Equal(supplier.SupplierName, actionResult.SupplierName);
@@ -165,12 +166,12 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _supplierRepo.DeleteSupplier(1);
+            var result = _supplierService.DeleteSupplier(1);
             //Assert
             var actionResult = Assert.IsType<SupplierDTOGet>(result);
             Assert.Equal(supplier.SupplierName, actionResult.SupplierName);
             Assert.Equal(supplier.Country, actionResult.Country);
-            _mockSupplierInvoiceRepo.Verify(s => s.DeleteSupplierInvoice(1), Times.Once);
+            _mockSupplierInvoiceService.Verify(s => s.DeleteSupplierInvoice(1), Times.Once);
         }
 
     }

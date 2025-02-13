@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using testapi.Models;
 
 
-namespace testapi.Controllers
+namespace API.Controllers
 {
     [Route("api/procedure")]
     [ApiController]

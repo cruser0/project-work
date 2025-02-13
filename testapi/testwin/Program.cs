@@ -1,4 +1,6 @@
-namespace testwin
+using testwin;
+
+namespace WinForm
 {
     internal static class Program
     {

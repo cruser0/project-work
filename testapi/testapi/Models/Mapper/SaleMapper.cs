@@ -1,6 +1,7 @@
-﻿using testapi.Models.DTO;
+﻿using API.Models.DTO;
+using API.Models.Entities;
 
-namespace testapi.Models.Mapper
+namespace API.Models.Mapper
 {
     public class SaleMapper
     {

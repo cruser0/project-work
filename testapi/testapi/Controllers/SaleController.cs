@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
+﻿using API.Models.DTO;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
+using API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace testapi.Controllers
+namespace API.Controllers
 {
     [Route("api/sale")]
     [ApiController]
     public class SaleController : ControllerBase
     {
-        private readonly ISalesREPO _saleREPO;
-        public SaleController(ISalesREPO saleREPO)
+        private readonly ISalesService _saleService;
+        public SaleController(ISalesService saleService)
         {
-            _saleREPO = saleREPO;
+            _saleService = saleService;
         }
         // GET: api/<SaleController>
         [HttpGet]
@@ -23,8 +23,8 @@ namespace testapi.Controllers
         {
             try
             {
-                var result = _saleREPO.GetAllSales();
-                if(result.Any())
+                var result = _saleService.GetAllSales();
+                if (result.Any())
                 {
                     return Ok(result);
                 }
@@ -39,13 +39,13 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _saleREPO.GetSaleById(id);
+                var data = _saleService.GetSaleById(id);
                 if (data == null)
                     throw new Exception("Couldn't create sale");
                 return Ok(data);
             }
             catch (Exception ae) { return BadRequest(ae.Message); }
-            
+
         }
 
         // POST api/<SaleController>
@@ -54,7 +54,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _saleREPO.CreateSale(SaleMapper.Map(sale));
+                var data = _saleService.CreateSale(SaleMapper.Map(sale));
                 if (data == null)
                     throw new Exception("Couldn't create sale");
                 return Ok(data);
@@ -69,7 +69,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _saleREPO.UpdateSale(id, SaleMapper.Map(sale));
+                var data = _saleService.UpdateSale(id, SaleMapper.Map(sale));
                 if (data == null)
                     throw new Exception("Couldn't update sale");
                 return Ok(data);
@@ -85,7 +85,7 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _saleREPO.DeleteSale(id);
+                var data = _saleService.DeleteSale(id);
                 if (data == null)
                     throw new Exception("Couldn't create sale");
                 return Ok(data);

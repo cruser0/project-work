@@ -1,24 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Models;
+using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Services;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Repo;
 using Xunit;
 
-namespace testtest1.ServiceTest
+namespace API_Test.ServiceTest
 {
-    public class CustomerInvoiceInvoiceREPOTest
+    public class CustomerInvoiceInvoiceServiceTest
     {
 
-        private readonly CustomerInvoicesREPO _customerInvoiceRepo;
+        private readonly CustomerInvoicesServices _customerInvoiceService;
         List<string> statusList = new() { "paid", "unpaid" };
         private readonly Progetto_FormativoContext _context;
 
-        public CustomerInvoiceInvoiceREPOTest()
+        public CustomerInvoiceInvoiceServiceTest()
         {
             // Create an in-memory database for testing
             var options = new DbContextOptionsBuilder<Progetto_FormativoContext>()
@@ -28,20 +29,20 @@ namespace testtest1.ServiceTest
             _context = new Progetto_FormativoContext(options);
 
             // Initialize repository
-            _customerInvoiceRepo = new CustomerInvoicesREPO(_context);
+            _customerInvoiceService = new CustomerInvoicesServices(_context);
         }
 
         [Fact]
         public async Task Create_CustomerInvoice()//correct customer
         {
             //Arrange
-            var sale=new Sale {};
+            var sale = new Sale { };
             _context.Sales.Add(sale);
             _context.SaveChanges();
-            var customerInvoice = new CustomerInvoice {SaleId=1,Status="paid",InvoiceAmount=100.0m,InvoiceDate=DateTime.Now };
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
 
             //Act
-            var result = _customerInvoiceRepo.CreateCustomerInvoice(customerInvoice);
+            var result = _customerInvoiceService.CreateCustomerInvoice(customerInvoice);
 
             //Assert
             Assert.NotNull(result);
@@ -55,7 +56,7 @@ namespace testtest1.ServiceTest
         public async Task Create_CustomerInvoice_null()//customer null
         {
             //Act Arrange
-            var exception = Assert.Throws<ArgumentNullException>(() => _customerInvoiceRepo.CreateCustomerInvoice(null));
+            var exception = Assert.Throws<ArgumentNullException>(() => _customerInvoiceService.CreateCustomerInvoice(null));
 
             //Assert
 
@@ -64,7 +65,7 @@ namespace testtest1.ServiceTest
         }
 
         [Theory]
-        [InlineData(null, null,null, null, null, null)]
+        [InlineData(null, null, null, null, null, null)]
         [InlineData(null, "Paid", 100.0, 2023, 12, 10)]
         [InlineData(1, null, 100.0, 2023, 12, 10)]
         [InlineData(1, "Paid", null, 2023, 12, 10)]
@@ -94,13 +95,13 @@ namespace testtest1.ServiceTest
             var customerInvoice = new CustomerInvoice { SaleId = saleId, Status = status, InvoiceAmount = (decimal?)amount, InvoiceDate = date };
 
             // Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceRepo.CreateCustomerInvoice(customerInvoice));
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.CreateCustomerInvoice(customerInvoice));
 
             // Assert
             Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == customerInvoice.CustomerInvoiceId));
             var action = Assert.IsType<ArgumentException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
-            Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId ==1));
+            Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == 1));
             List<string> errors = new List<string>();
             if (!saleId.HasValue) errors.Add("SaleID");
             if (!amount.HasValue) errors.Add("InvoiceAmount");
@@ -122,13 +123,13 @@ namespace testtest1.ServiceTest
             var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = -100.0m, InvoiceDate = DateTime.Now };
 
             //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceRepo.CreateCustomerInvoice(customerInvoice));
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.CreateCustomerInvoice(customerInvoice));
 
             //Assert
             var action = Assert.IsType<ArgumentException>(exception);
             var actionResult = Assert.IsType<string>(exception.Message);
             Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == 1));
-            
+
         }
         /*
         [Fact]
@@ -143,10 +144,10 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.DeleteCustomerInvoice(1);
+            var result = _customerService.DeleteCustomerInvoice(1);
 
             //Assert
-            _mockSalesRepo.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
+            _mockSalesService.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
             Assert.NotNull(result);
             Assert.Equal(customer.CustomerInvoiceId, result.CustomerInvoiceId);
             Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == customer.CustomerInvoiceId));
@@ -160,7 +161,7 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.DeleteCustomerInvoice(1);
+            var result = _customerService.DeleteCustomerInvoice(1);
 
             //Assert
             Assert.NotNull(result);
@@ -179,7 +180,7 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.GetAllCustomerInvoices();
+            var result = _customerService.GetAllCustomerInvoices();
 
             //Assert
             var actionResult = Assert.IsType<List<CustomerInvoiceDTOGet>>(result);
@@ -190,7 +191,7 @@ namespace testtest1.ServiceTest
         public async Task GetAll_CustomerInvoice_Empty()
         {
             //Act
-            var result = _customerRepo.GetAllCustomerInvoices();
+            var result = _customerService.GetAllCustomerInvoices();
             //Assert
             var actionResult = Assert.IsType<List<CustomerInvoiceDTOGet>>(result);
             Assert.Empty(actionResult);
@@ -210,7 +211,7 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.GetCustomerInvoiceById(id);
+            var result = _customerService.GetCustomerInvoiceById(id);
             //Assert
             var actionResult = Assert.IsType<CustomerInvoiceDTOGet>(result);
             Assert.Equal(id, actionResult.CustomerInvoiceId);
@@ -231,7 +232,7 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act Assert
-            var exception = Assert.Throws<Exception>(() => _customerRepo.GetCustomerInvoiceById(id));
+            var exception = Assert.Throws<Exception>(() => _customerService.GetCustomerInvoiceById(id));
 
             var action = Assert.IsType<Exception>(exception);
             var actionResult = Assert.IsType<string>(exception.Message);
@@ -249,7 +250,7 @@ namespace testtest1.ServiceTest
             _context.CustomerInvoices.Add(customer);
             _context.SaveChanges();
             //Act
-            var result = _customerRepo.UpdateCustomerInvoice(1, customerUpdate);
+            var result = _customerService.UpdateCustomerInvoice(1, customerUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerInvoiceDTOGet>(result);
             Assert.Equal(customerUpdate.CustomerInvoiceName, actionResult.CustomerInvoiceName);
@@ -271,7 +272,7 @@ namespace testtest1.ServiceTest
             _context.CustomerInvoices.Add(customer);
             _context.SaveChanges();
             //Act
-            var result = _customerRepo.UpdateCustomerInvoice(1, customerUpdate);
+            var result = _customerService.UpdateCustomerInvoice(1, customerUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerInvoiceDTOGet>(result);
             if (string.IsNullOrEmpty(name))
@@ -299,7 +300,7 @@ namespace testtest1.ServiceTest
             _context.CustomerInvoices.Add(customer);
             _context.SaveChanges();
             //Act
-            var exception = Assert.Throws<Exception>(() => _customerRepo.UpdateCustomerInvoice(id, customerUpdate));
+            var exception = Assert.Throws<Exception>(() => _customerService.UpdateCustomerInvoice(id, customerUpdate));
             //Assert
             var action = Assert.IsType<Exception>(exception);
             var actionResult = Assert.IsType<string>(action.Message);

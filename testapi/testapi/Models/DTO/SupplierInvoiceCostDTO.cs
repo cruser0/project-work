@@ -1,4 +1,4 @@
-﻿namespace testapi.Models.DTO;
+﻿namespace API.Models.DTO;
 
 public partial class SupplierInvoiceCostDTO
 {

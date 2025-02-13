@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using testapi.Models.Procedures;
+﻿using API.Models.Entities;
+using API.Models.Procedures;
+using Microsoft.EntityFrameworkCore;
 
-namespace testapi.Models
+namespace API.Models
 {
     public partial class Progetto_FormativoContext : DbContext
     {

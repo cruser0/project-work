@@ -1,10 +1,10 @@
-﻿using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
+﻿using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
 
-namespace testapi.Repo
+namespace API.Models.Services
 {
-    public interface ISupplierREPO
+    public interface ISupplierService
     {
         ICollection<SupplierDTOGet> GetAllSuppliers();
         SupplierDTOGet GetSupplierById(int id);
@@ -14,11 +14,11 @@ namespace testapi.Repo
 
 
     }
-    public class SupplierREPO : ISupplierREPO
+    public class SupplierService : ISupplierService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly ISupplierInvoiceREPO _supplierInvoiceREPO;
-        public SupplierREPO(Progetto_FormativoContext ctx, ISupplierInvoiceREPO supplierInvoiceREPO)
+        private readonly ISupplierInvoiceService _supplierInvoiceREPO;
+        public SupplierService(Progetto_FormativoContext ctx, ISupplierInvoiceService supplierInvoiceREPO)
         {
             _context = ctx;
             _supplierInvoiceREPO = supplierInvoiceREPO;

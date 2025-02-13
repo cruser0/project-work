@@ -1,25 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Controllers;
+using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using testapi.Controllers;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
 using Xunit;
 
-namespace testtest1
+namespace API_Test.ControllerTest
 {
     public class SalesTest
     {
         private readonly SaleController _saleController;
-        private readonly Mock<ISalesREPO> _mockSaleService;
+        private readonly Mock<ISalesService> _mockSaleService;
 
         public SalesTest()
         {
-            _mockSaleService = new Mock<ISalesREPO>();
+            _mockSaleService = new Mock<ISalesService>();
             _saleController = new SaleController(_mockSaleService.Object);
         }
 
@@ -122,7 +122,7 @@ namespace testtest1
             };
             _mockSaleService
             .Setup(service => service.CreateSale(It.IsAny<Sale>()))
-            .Returns(SaleMapper.MapGet( expectedSale));
+            .Returns(SaleMapper.MapGet(expectedSale));
 
             // Act
             var result = _saleController.Post(SaleMapper.Map(expectedSale));
@@ -253,7 +253,7 @@ namespace testtest1
 
             _mockSaleService
                 .Setup(r => r.UpdateSale(1, It.IsAny<Sale>()))
-                .Returns(SaleMapper.MapGet( newSale));
+                .Returns(SaleMapper.MapGet(newSale));
 
             // Act
             var result = _saleController.Put(1, SaleMapper.Map(newSale));
@@ -333,7 +333,7 @@ namespace testtest1
             };
 
             _mockSaleService.Setup(service => service.DeleteSale(1))
-                .Returns(SaleMapper.MapGet( sale));
+                .Returns(SaleMapper.MapGet(sale));
 
             // Act
             var result = _saleController.Delete(1);

@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
+﻿using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
-namespace testapi.Repo
+namespace API.Models.Services
 {
-    public interface ICustomerInvoicesREPO
+    public interface ICustomerInvoicesService
     {
         ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices();
         CustomerInvoiceDTOGet GetCustomerInvoiceById(int id);
@@ -15,12 +15,12 @@ namespace testapi.Repo
 
 
     }
-    public class CustomerInvoicesREPO : ICustomerInvoicesREPO
+    public class CustomerInvoicesServices : ICustomerInvoicesService
     {
         private readonly Progetto_FormativoContext _context;
         // List of valid invoice statuses
         List<string> statusList = new() { "paid", "unpaid" };
-        public CustomerInvoicesREPO(Progetto_FormativoContext ctx)
+        public CustomerInvoicesServices(Progetto_FormativoContext ctx)
         {
             _context = ctx;
         }

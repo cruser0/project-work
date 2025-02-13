@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
+﻿using API.Models.DTO;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
+using API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace testapi.Controllers
+namespace API.Controllers
 {
     [Route("api/customer-invoice")]
     [ApiController]
     public class CustomerInvoiceController : ControllerBase
     {
-        private readonly ICustomerInvoicesREPO _customerInvoiceREPO;
-        public CustomerInvoiceController(ICustomerInvoicesREPO customerInvoiceREPO)
+        private readonly ICustomerInvoicesService _customerInvoiceService;
+        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService)
         {
-            _customerInvoiceREPO = customerInvoiceREPO;
+            _customerInvoiceService = customerInvoiceService;
         }
         // GET: api/<CustomerInvoiceController>
         [HttpGet]
@@ -23,7 +23,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var result = _customerInvoiceREPO.GetAllCustomerInvoices();
+                var result = _customerInvoiceService.GetAllCustomerInvoices();
                 if (result.Any())
                 {
                     return Ok(result);
@@ -40,12 +40,12 @@ namespace testapi.Controllers
 
             try
             {
-               var data = _customerInvoiceREPO.GetCustomerInvoiceById(id);
+                var data = _customerInvoiceService.GetCustomerInvoiceById(id);
                 if (data == null)
                     throw new Exception("Customer Invoices not found");
             }
             catch (Exception ae) { return BadRequest(ae.Message); }
-            return Ok(_customerInvoiceREPO.GetCustomerInvoiceById(id));
+            return Ok(_customerInvoiceService.GetCustomerInvoiceById(id));
         }
 
         // POST api/<CustomerInvoiceController>
@@ -54,13 +54,13 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _customerInvoiceREPO.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice));
+                var data = _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice));
                 if (data == null)
                     throw new Exception("Customer Invoices not found!");
                 return Ok(data);
             }
             catch (Exception ane) { return BadRequest(ane.Message); }
-            
+
         }
 
         // PUT api/<CustomerInvoiceController>/5
@@ -69,13 +69,13 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _customerInvoiceREPO.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice));
+                var data = _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice));
                 if (data == null)
                     throw new Exception("Customer Invoices not found!");
                 return Ok(data);
             }
             catch (Exception ane) { return BadRequest(ane.Message); }
-            
+
         }
 
         // DELETE api/<CustomerInvoiceController>/5
@@ -85,13 +85,13 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _customerInvoiceREPO.DeleteCustomerInvoice(id);
+                var data = _customerInvoiceService.DeleteCustomerInvoice(id);
                 if (data == null)
                     throw new Exception("Customer Invoices not found!");
                 return Ok(data);
             }
             catch (Exception ane) { return BadRequest(ane.Message); }
-            
+
         }
     }
 }
