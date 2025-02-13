@@ -130,6 +130,8 @@ namespace API.Models.Services
 
             // Update customer invoice fields only if a new one is provided
             ciDB.SaleId = customerInvoice.SaleId ?? ciDB.SaleId;
+            if(!_context.Sales.Where(x=>x.SaleId==customerInvoice.SaleId).Any())
+                throw new ArgumentException("SaleId not found");
             ciDB.InvoiceAmount = customerInvoice.InvoiceAmount ?? ciDB.InvoiceAmount;
             ciDB.InvoiceDate = customerInvoice.InvoiceDate ?? ciDB.InvoiceDate;
             ciDB.Status = customerInvoice.Status ?? ciDB.Status;

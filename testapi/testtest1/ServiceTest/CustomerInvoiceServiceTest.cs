@@ -131,56 +131,94 @@ namespace API_Test.ServiceTest
             Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == 1));
 
         }
-        /*
         [Fact]
-        public async Task Delete_CustomerInvoice_with_sale()
+
+        public async Task Create_Customer_Invoice_Wrong_Status()
         {
             //Arrange
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Marco", Country = "Italy" };
-            _context.CustomerInvoices.Add(customer);
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
             _context.SaveChanges();
-            var sales = new Sale { BoLnumber = "1", BookingNumber = "2", CustomerInvoiceId = 1, SaleDate = DateTime.Now, SaleId = 1, Status = "paid", TotalRevenue = 1000 };
-            _context.Sales.Add(sales);
-            _context.SaveChanges();
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "apple", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
 
             //Act
-            var result = _customerService.DeleteCustomerInvoice(1);
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.CreateCustomerInvoice(customerInvoice));
 
             //Assert
-            _mockSalesService.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
-            Assert.NotNull(result);
-            Assert.Equal(customer.CustomerInvoiceId, result.CustomerInvoiceId);
-            Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == customer.CustomerInvoiceId));
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(exception.Message);
+            Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == 1));
+            Assert.Equal("Incorrect status\nA customer invoice is Paid or Unpaid", actionResult);
+
         }
+
+        [Fact]
+        public async Task Create_CustomerInvoice_Wrong_Sale_Id()
+        {
+            //Arrange
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoice = new CustomerInvoice { SaleId = 3, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.CreateCustomerInvoice(customerInvoice));
+
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(exception.Message);
+            Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == 1));
+            Assert.Equal($"There is no sale with id {customerInvoice.SaleId}", actionResult);
+        }
+
         [Fact]
         public async Task Delete_CustomerInvoice()
         {
             //Arrange
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Marco", Country = "Italy" };
-            _context.CustomerInvoices.Add(customer);
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
             _context.SaveChanges();
 
             //Act
-            var result = _customerService.DeleteCustomerInvoice(1);
+            var result = _customerInvoiceService.DeleteCustomerInvoice(1);
 
             //Assert
             Assert.NotNull(result);
-            Assert.Equal(customer.CustomerInvoiceId, result.CustomerInvoiceId);
-            Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == customer.CustomerInvoiceId));
+            Assert.Equal(customerInvoice.CustomerInvoiceId, result.CustomerInvoiceId);
+            Assert.False(_context.CustomerInvoices.Any(c => c.CustomerInvoiceId == customerInvoice.CustomerInvoiceId));
+        }
+
+        [Fact]
+        public async Task Delete_CustomerInvoice_null()
+        {
+
+            //Act
+            var exception = Assert.Throws<ArgumentNullException>(() => _customerInvoiceService.DeleteCustomerInvoice(1));
+
+            //Assert
+            var action = Assert.IsType<ArgumentNullException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Value cannot be null. (Parameter 'Customer invoice not found!')", actionResult);
         }
 
         [Fact]
         public async Task GetAll_CustomerInvoice()
         {
             //Arrange
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Marco", Country = "Italy" };
-            var customer1 = new CustomerInvoice { CustomerInvoiceName = "Luca", Country = "Italy" };
-            _context.CustomerInvoices.Add(customer);
-            _context.CustomerInvoices.Add(customer1);
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            var customerInvoice1 = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
+            _context.CustomerInvoices.Add(customerInvoice1);
             _context.SaveChanges();
 
             //Act
-            var result = _customerService.GetAllCustomerInvoices();
+            var result = _customerInvoiceService.GetAllCustomerInvoices();
 
             //Assert
             var actionResult = Assert.IsType<List<CustomerInvoiceDTOGet>>(result);
@@ -191,7 +229,7 @@ namespace API_Test.ServiceTest
         public async Task GetAll_CustomerInvoice_Empty()
         {
             //Act
-            var result = _customerService.GetAllCustomerInvoices();
+            var result = _customerInvoiceService.GetAllCustomerInvoices();
             //Assert
             var actionResult = Assert.IsType<List<CustomerInvoiceDTOGet>>(result);
             Assert.Empty(actionResult);
@@ -204,14 +242,17 @@ namespace API_Test.ServiceTest
         public async Task Get_CustomerInvoice_BY_Id(int id)
         {
             //Arrange
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Marco", Country = "Italy" };
-            var customer1 = new CustomerInvoice { CustomerInvoiceName = "Luca", Country = "Italy" };
-            _context.CustomerInvoices.Add(customer);
-            _context.CustomerInvoices.Add(customer1);
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "unpaid", InvoiceAmount = 1200.0m, InvoiceDate = DateTime.Now };
+            var customerInvoice1 = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
+            _context.CustomerInvoices.Add(customerInvoice1);
             _context.SaveChanges();
 
             //Act
-            var result = _customerService.GetCustomerInvoiceById(id);
+            var result = _customerInvoiceService.GetCustomerInvoiceById(id);
             //Assert
             var actionResult = Assert.IsType<CustomerInvoiceDTOGet>(result);
             Assert.Equal(id, actionResult.CustomerInvoiceId);
@@ -225,19 +266,22 @@ namespace API_Test.ServiceTest
         public async Task Get_CustomerInvoice_BY_Non_Existing_Id(int id)
         {
             //Arrange
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Marco", Country = "Italy" };
-            var customer1 = new CustomerInvoice { CustomerInvoiceName = "Luca", Country = "Italy" };
-            _context.CustomerInvoices.Add(customer);
-            _context.CustomerInvoices.Add(customer1);
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "unpaid", InvoiceAmount = 1200.0m, InvoiceDate = DateTime.Now };
+            var customerInvoice1 = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
+            _context.CustomerInvoices.Add(customerInvoice1);
             _context.SaveChanges();
 
             //Act Assert
-            var exception = Assert.Throws<Exception>(() => _customerService.GetCustomerInvoiceById(id));
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.GetCustomerInvoiceById(id));
 
-            var action = Assert.IsType<Exception>(exception);
+            var action = Assert.IsType<ArgumentException>(exception);
             var actionResult = Assert.IsType<string>(exception.Message);
 
-            Assert.Equal("CustomerInvoice not found!", actionResult);
+            Assert.Equal("Customer invoice not found!", actionResult);
         }
 
         [Fact]
@@ -245,48 +289,59 @@ namespace API_Test.ServiceTest
         {
             //Arrange
 
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Marco", Country = "Italy" };
-            var customerUpdate = new CustomerInvoice { CustomerInvoiceName = "Luca", Country = "France" };
-            _context.CustomerInvoices.Add(customer);
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoiceUpdate = new CustomerInvoice { SaleId = 1, Status = "unpaid", InvoiceAmount = 1200.0m, InvoiceDate = DateTime.Now };
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
             _context.SaveChanges();
             //Act
-            var result = _customerService.UpdateCustomerInvoice(1, customerUpdate);
+            var result = _customerInvoiceService.UpdateCustomerInvoice(1, customerInvoiceUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerInvoiceDTOGet>(result);
-            Assert.Equal(customerUpdate.CustomerInvoiceName, actionResult.CustomerInvoiceName);
-            Assert.Equal(customerUpdate.Country, actionResult.Country);
+            Assert.Equal(customerInvoiceUpdate.Status, actionResult.Status);
+            Assert.Equal(customerInvoiceUpdate.SaleId, actionResult.SaleId);
+            Assert.Equal(customerInvoiceUpdate.InvoiceAmount, actionResult.InvoiceAmount);
+            Assert.Equal(customerInvoiceUpdate.InvoiceDate, actionResult.InvoiceDate);
         }
 
         [Theory]
-        [InlineData("Marco", null)]
-        [InlineData("Marco", "")]
-        [InlineData("", "Italy")]
-        [InlineData(null, "Italy")]
-        [InlineData(null, null)]
-        [InlineData("", "")]
-        public async Task Update_CustomerInvoice_Not_Present_Params(string name, string country)
+        [InlineData(1, "Paid", 100.0, null, null, null)]
+        [InlineData(1, "Paid", null, 2023, 11, 12)]
+        [InlineData(1, "Paid", 100.0, 2023, 11, 12)]
+
+        public async Task Update_CustomerInvoice_Not_Present_Params(int? saleId, string status, double? amount, int? y, int? m, int? d)
         {
             //Arrange
-            var customerUpdate = new CustomerInvoice { CustomerInvoiceName = name, Country = country };
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Luca", Country = "France" };
-            _context.CustomerInvoices.Add(customer);
+            DateTime? date = null;
+            if (y.HasValue && m.HasValue && d.HasValue)
+            {
+                date = new DateTime(y.Value, m.Value, d.Value);
+            }
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoiceUpdate = new CustomerInvoice { SaleId = saleId, Status = status, InvoiceAmount = (decimal?)amount, InvoiceDate = date };
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
             _context.SaveChanges();
             //Act
-            var result = _customerService.UpdateCustomerInvoice(1, customerUpdate);
+            var result = _customerInvoiceService.UpdateCustomerInvoice(1, customerInvoiceUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerInvoiceDTOGet>(result);
-            if (string.IsNullOrEmpty(name))
-                Assert.Equal(customer.CustomerInvoiceName, actionResult.CustomerInvoiceName);
-            if (string.IsNullOrEmpty(country))
-                Assert.Equal(customer.Country, actionResult.Country);
-            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
-            {
-                Assert.Equal(customerUpdate.Country, actionResult.Country);
-                Assert.Equal(customerUpdate.Country, actionResult.Country);
+            if (amount == null)
+                Assert.Equal(customerInvoice.InvoiceAmount, actionResult.InvoiceAmount);
+            else
+                Assert.Equal(customerInvoiceUpdate.InvoiceAmount, actionResult.InvoiceAmount);
+            if (date == null)
+                Assert.Equal(customerInvoice.InvoiceDate, actionResult.InvoiceDate);
 
-            }
+
 
         }
+
+
 
         [Theory]
         [InlineData(null)]
@@ -295,19 +350,90 @@ namespace API_Test.ServiceTest
         public async Task Update_CustomerInvoice_Wrong_Id(int id)
         {
             //Arrange
-            var customerUpdate = new CustomerInvoice { CustomerInvoiceName = "Marco", Country = "Italy" };
-            var customer = new CustomerInvoice { CustomerInvoiceName = "Luca", Country = "France" };
-            _context.CustomerInvoices.Add(customer);
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoiceUpdate = new CustomerInvoice { SaleId = 1, Status = "unpaid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
             _context.SaveChanges();
             //Act
-            var exception = Assert.Throws<Exception>(() => _customerService.UpdateCustomerInvoice(id, customerUpdate));
+            var exception = Assert.Throws<ArgumentNullException>(() => _customerInvoiceService.UpdateCustomerInvoice(id, customerInvoiceUpdate));
             //Assert
-            var action = Assert.IsType<Exception>(exception);
+            var action = Assert.IsType<ArgumentNullException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
-            Assert.Equal("CustomerInvoice not found", actionResult);
+            Assert.Equal("Value cannot be null. (Parameter 'Customer invoice not found')", actionResult);
 
         }
-        */
 
+        [Theory]
+        [InlineData(1, "apple", 100.0, 2023, 11, 12)]
+        public async Task Update_CustomerInvoice_Status_null_not_Correct(int? saleId, string status, double? amount, int? y, int? m, int? d)
+        {
+            //Arrange
+            DateTime? date = null;
+            if (y.HasValue && m.HasValue && d.HasValue)
+            {
+                date = new DateTime(y.Value, m.Value, d.Value);
+            }
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoiceUpdate = new CustomerInvoice { SaleId = saleId, Status = status, InvoiceAmount = (decimal?)amount, InvoiceDate = date };
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws< ArgumentException >(()=> _customerInvoiceService.UpdateCustomerInvoice(1, customerInvoiceUpdate)) ;
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+
+            Assert.Equal("Incorrect status\nA customer invoice is Paid or Unpaid", actionResult);
+
+        }
+        [Fact]
+        public async Task Update_CustomerInvoice_Negative_Amount()
+        {
+            //Arrange
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoiceUpdate = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = -100.0m, InvoiceDate = DateTime.Now };
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.UpdateCustomerInvoice(1, customerInvoiceUpdate));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+
+            Assert.Equal("The amount can't be less or equal than 0", actionResult);
+
+        }
+        [Theory]
+        [InlineData(2)]
+        [InlineData(null)]
+         
+        public async Task Update_CustomerInvoice_SaleID_not_found(int id)
+        {
+            //Arrange
+            var sale = new Sale { };
+            _context.Sales.Add(sale);
+            _context.SaveChanges();
+            var customerInvoiceUpdate = new CustomerInvoice { SaleId = id, Status = "paid", InvoiceAmount = -100.0m, InvoiceDate = DateTime.Now };
+            var customerInvoice = new CustomerInvoice { SaleId = 1, Status = "paid", InvoiceAmount = 100.0m, InvoiceDate = DateTime.Now };
+            _context.CustomerInvoices.Add(customerInvoice);
+            _context.SaveChanges();
+            //Act
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.UpdateCustomerInvoice(1, customerInvoiceUpdate));
+            //Assert
+            var action = Assert.IsType<ArgumentException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+
+            Assert.Equal("SaleId not found", actionResult);
+
+        }
     }
 }
