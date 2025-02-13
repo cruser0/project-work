@@ -33,7 +33,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task Create_Customer_OkResponse()//correct customer
+        public async Task Create_Customer()//correct customer
         {
             //Arrange
             var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy" };
@@ -48,9 +48,9 @@ namespace testtest1.ServiceTest
             Assert.Equal(customer.CustomerName, actionResult.CustomerName);
         }
         [Fact]
-        public async Task Create_Customer_BadResponse_Customer_null()//customer null
+        public async Task Create_Customer_null()//customer null
         {
-            //Act
+            //Act Arrange
             var exception = Assert.Throws<Exception>(() => _customerRepo.CreateCustomer(null));
 
             //Assert
@@ -62,8 +62,9 @@ namespace testtest1.ServiceTest
         [InlineData(1,"Marco",null)]
         [InlineData(1, null, null)]
         [InlineData(1, null, "Italy")]
-        public async Task Create_Customer_BadResponse_Customer_attributes_null(int id,string name,string country)//customer null
+        public async Task Create_Customer_attributes_null(int id,string name,string country)//customer null
         {
+            //Arrange
             var customer = new Customer { CustomerId = id, CustomerName = name, Country = country };
             //Act
             var exception = Assert.Throws<ArgumentException>(() => _customerRepo.CreateCustomer(customer));
@@ -80,8 +81,9 @@ namespace testtest1.ServiceTest
 
         }
         [Fact]
-        public async Task Delete_Customer_OkResponde_Customer_with_sale()
+        public async Task Delete_Customer_with_sale()
         {
+            //Arrange
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
             _context.Customers.Add(customer);
             _context.SaveChanges();
@@ -99,8 +101,9 @@ namespace testtest1.ServiceTest
             Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
         }
         [Fact]
-        public async Task Delete_Customer_OkResponde_Customer()
+        public async Task Delete_Customer()
         {
+            //Arrange
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
             _context.Customers.Add(customer);
             _context.SaveChanges();
@@ -112,6 +115,145 @@ namespace testtest1.ServiceTest
             Assert.NotNull(result);
             Assert.Equal(customer.CustomerId, result.CustomerId);
             Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
+        }
+
+        [Fact]
+        public async Task GetAll_Customer()
+        {
+            //Arrange
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customer1 = new Customer { CustomerName = "Luca", Country = "Italy" };
+            _context.Customers.Add(customer);
+            _context.Customers.Add(customer1);
+            _context.SaveChanges();
+
+            //Act
+            var result = _customerRepo.GetAllCustomers();
+
+            //Assert
+            var actionResult =Assert.IsType<List<CustomerDTOGet>>(result);
+            Assert.Equal(2,actionResult.Count);
+
+        }
+        [Fact]
+        public async Task GetAll_Customer_Empty()
+        {
+            //Act
+            var result = _customerRepo.GetAllCustomers();
+            //Assert
+            var actionResult = Assert.IsType<List<CustomerDTOGet>>(result);
+            Assert.Empty(actionResult);
+
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public async Task Get_Customer_BY_Id(int id)
+        {
+            //Arrange
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customer1 = new Customer { CustomerName = "Luca", Country = "Italy" };
+            _context.Customers.Add(customer);
+            _context.Customers.Add(customer1);
+            _context.SaveChanges();
+
+            //Act
+            var result = _customerRepo.GetCustomerById(id);
+            //Assert
+            var actionResult = Assert.IsType<CustomerDTOGet>(result);
+            Assert.Equal(id, actionResult.CustomerId);
+
+        }
+
+        [Theory]
+        [InlineData(3)]
+        [InlineData(null)]
+        [InlineData(-1)]
+        public async Task Get_Customer_BY_Non_Existing_Id(int id)
+        {
+            //Arrange
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customer1 = new Customer { CustomerName = "Luca", Country = "Italy" };
+            _context.Customers.Add(customer);
+            _context.Customers.Add(customer1);
+            _context.SaveChanges();
+
+            //Act Assert
+            var exception = Assert.Throws<Exception>(() => _customerRepo.GetCustomerById(id));
+
+            var action=Assert.IsType<Exception>(exception);
+            var actionResult = Assert.IsType<string>(exception.Message);
+
+            Assert.Equal("Customer not found!", actionResult);
+        }
+
+        [Fact]
+        public async Task Update_Customer()
+        {
+            //Arrange
+
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customerUpdate = new Customer {CustomerName = "Luca", Country = "France" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            //Act
+            var result=_customerRepo.UpdateCustomer(1, customerUpdate);
+            //Assert
+            var actionResult = Assert.IsType<CustomerDTOGet>(result);
+            Assert.Equal(customerUpdate.CustomerName, actionResult.CustomerName);
+            Assert.Equal(customerUpdate.Country, actionResult.Country);
+        }
+
+        [Theory]
+        [InlineData("Marco",null)]
+        [InlineData("Marco","")]
+        [InlineData("","Italy")]
+        [InlineData(null,"Italy")]
+        [InlineData(null,null)]
+        [InlineData("","")]
+        public async Task Update_Customer_Not_Present_Params(string name,string country)
+        {
+            //Arrange
+            var customerUpdate = new Customer { CustomerName = name, Country = country };
+            var customer = new Customer { CustomerName = "Luca", Country = "France" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            //Act
+            var result=_customerRepo.UpdateCustomer(1, customerUpdate);
+            //Assert
+            var actionResult = Assert.IsType<CustomerDTOGet>(result);
+            if(string.IsNullOrEmpty(name))
+                Assert.Equal(customer.CustomerName, actionResult.CustomerName);
+            if(string.IsNullOrEmpty(country))
+                Assert.Equal(customer.Country, actionResult.Country);
+            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
+            {
+                Assert.Equal(customerUpdate.Country, actionResult.Country);
+                Assert.Equal(customerUpdate.Country, actionResult.Country);
+
+            }
+
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData(4)]
+        [InlineData(-1)]
+        public async Task Update_Customer_Wrong_Id(int id)
+        {
+            //Arrange
+            var customerUpdate = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customer = new Customer { CustomerName = "Luca", Country = "France" };
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            //Act
+            var exception =Assert.Throws<Exception>(()=> _customerRepo.UpdateCustomer(id, customerUpdate));
+            //Assert
+            var action = Assert.IsType<Exception>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
+            Assert.Equal("Customer not found", actionResult);
+
         }
     }
 }
