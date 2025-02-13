@@ -1,10 +1,10 @@
-﻿using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
+﻿using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
 
-namespace testapi.Repo
+namespace API.Models.Services
 {
-    public interface ISupplierInvoiceCostREPO
+    public interface ISupplierInvoiceCostService
     {
         ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts();
         SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id);
@@ -14,10 +14,10 @@ namespace testapi.Repo
 
 
     }
-    public class SupplierInvoiceCostREPO : ISupplierInvoiceCostREPO
+    public class SupplierInvoiceCostServices : ISupplierInvoiceCostService
     {
         private readonly Progetto_FormativoContext _context;
-        public SupplierInvoiceCostREPO(Progetto_FormativoContext ctx)
+        public SupplierInvoiceCostServices(Progetto_FormativoContext ctx)
         {
             _context = ctx;
         }
@@ -31,14 +31,14 @@ namespace testapi.Repo
                 throw new ArgumentException("Supplier Invoice Id not found!");
             if (supplierInvoiceCost.SupplierInvoiceId == null)
                 throw new ArgumentException("Supplier Invoice Id can't be null!");
-            if (supplierInvoiceCost.Cost<0 || supplierInvoiceCost.Quantity<1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
+            if (supplierInvoiceCost.Cost < 0 || supplierInvoiceCost.Quantity < 1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
                 throw new ArgumentException("Values can't be lesser than 1 or null");
 
-            si =_context.SupplierInvoices.Where(x=>x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).First();
+            si = _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).First();
 
-            decimal? total=_context.SupplierInvoiceCosts.Where(x=>x.SupplierInvoiceId== supplierInvoiceCost.SupplierInvoiceId).Sum(x=>x.Cost*x.Quantity);
+            decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == supplierInvoiceCost.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
 
-            si.InvoiceAmount=total+ supplierInvoiceCost.Cost* supplierInvoiceCost.Quantity;
+            si.InvoiceAmount = total + supplierInvoiceCost.Cost * supplierInvoiceCost.Quantity;
             _context.SupplierInvoices.Update(si);
             _context.Add(supplierInvoiceCost);
             _context.SaveChanges();
@@ -53,7 +53,7 @@ namespace testapi.Repo
             {
                 throw new ArgumentNullException("Supplier Invoice Cost not found!");
             }
-            SupplierInvoice si= _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).First();
+            SupplierInvoice si = _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).First();
             decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
             si.InvoiceAmount = total - data.Cost * data.Quantity;
             _context.SupplierInvoiceCosts.Remove(data);
@@ -64,7 +64,7 @@ namespace testapi.Repo
 
         public ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts()
         {
-            return _context.SupplierInvoiceCosts.Select(x=> SupplierInvoiceCostMapper.MapGet(x)).ToList();
+            return _context.SupplierInvoiceCosts.Select(x => SupplierInvoiceCostMapper.MapGet(x)).ToList();
         }
 
         public SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id)
@@ -80,7 +80,7 @@ namespace testapi.Repo
         public SupplierInvoiceCostDTOGet UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost)
         {
             var sicDB = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
-            if (sicDB != null && id >=0)
+            if (sicDB != null && id >= 0)
             {
                 if (supplierInvoiceCost.SupplierInvoiceId != null && supplierInvoiceCost.SupplierInvoiceId >= 1)
                 {
@@ -90,13 +90,13 @@ namespace testapi.Repo
                 sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
                 _context.SupplierInvoiceCosts.Update(sicDB);
                 _context.SaveChanges();
-               if(sicDB.Cost > 0 && sicDB.Quantity > 0)
+                if (sicDB.Cost > 0 && sicDB.Quantity > 0)
                 {
-                SupplierInvoice si = _context.SupplierInvoices.Where(x => x.SupplierId == sicDB.SupplierInvoiceId).First();
-                decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
-                si.InvoiceAmount = total;
-                _context.SupplierInvoices.Update(si);
-                _context.SaveChanges();
+                    SupplierInvoice si = _context.SupplierInvoices.Where(x => x.SupplierId == sicDB.SupplierInvoiceId).First();
+                    decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
+                    si.InvoiceAmount = total;
+                    _context.SupplierInvoices.Update(si);
+                    _context.SaveChanges();
                 }
                 return SupplierInvoiceCostMapper.MapGet(sicDB);
             }

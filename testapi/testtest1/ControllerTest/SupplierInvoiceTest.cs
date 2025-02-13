@@ -3,23 +3,23 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using testapi.Controllers;
-using testapi.Models;
-using testapi.Models.Mapper;
-using testapi.Repo;
 using Xunit;
-using testapi.Models.DTO;
+using API.Models.DTO;
+using API.Controllers;
+using API.Models.Mapper;
+using API.Models.Entities;
+using API.Models.Services;
 
-namespace testtest1
+namespace API_Test.ControllerTest
 {
     public class SupplierInvoiceTest
     {
         private readonly SupplierInvoiceController _supplierInvoiceController;
-        private readonly Mock<ISupplierInvoiceREPO> _mockSupplierInvoiceService;
+        private readonly Mock<ISupplierInvoiceService> _mockSupplierInvoiceService;
 
         public SupplierInvoiceTest()
         {
-            _mockSupplierInvoiceService = new Mock<ISupplierInvoiceREPO>();
+            _mockSupplierInvoiceService = new Mock<ISupplierInvoiceService>();
             _supplierInvoiceController = new SupplierInvoiceController(_mockSupplierInvoiceService.Object);
         }
 
@@ -218,7 +218,7 @@ namespace testtest1
                 SaleId = 1,
                 SupplierId = 1,
                 InvoiceAmount = 100.50m,
-                InvoiceDate = new DateTime(2025,1,1,0,0,0),
+                InvoiceDate = new DateTime(2025, 1, 1, 0, 0, 0),
                 Status = "open"
             };
             _mockSupplierInvoiceService

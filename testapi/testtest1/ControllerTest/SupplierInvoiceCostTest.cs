@@ -1,27 +1,27 @@
 ﻿
 
+using API.Controllers;
+using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
+using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using testapi.Controllers;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
 using Xunit;
 
-namespace testtest1
+namespace API_Test.ControllerTest
 {
     public class SupplierInvoiceCostCostTest
     {
         private readonly SupplierInvoiceCostController _supplierInvoceCostController;
-        private readonly Mock<ISupplierInvoiceCostREPO> _mockSupplierInvoiceCostService;
+        private readonly Mock<ISupplierInvoiceCostService> _mockSupplierInvoiceCostService;
 
         public SupplierInvoiceCostCostTest()
         {
-            _mockSupplierInvoiceCostService = new Mock<ISupplierInvoiceCostREPO>();
+            _mockSupplierInvoiceCostService = new Mock<ISupplierInvoiceCostService>();
             _supplierInvoceCostController = new SupplierInvoiceCostController(_mockSupplierInvoiceCostService.Object);
         }
         [Fact]
@@ -198,16 +198,16 @@ namespace testtest1
 
 
         [Theory]
-        [InlineData(1,1,2,100.0)]
+        [InlineData(1, 1, 2, 100.0)]
         [InlineData(1, null, 2, 100.0)]
         [InlineData(1, 1, null, 100.0)]
         [InlineData(1, 1, 2, null)]
         [InlineData(1, null, null, null)]
-        public async Task Put_ReturnOk_SupplierInvoiceCost(int supplierInvoiceCostsId, int? supplierInvoiceId, int? quantity, double? cost )
+        public async Task Put_ReturnOk_SupplierInvoiceCost(int supplierInvoiceCostsId, int? supplierInvoiceId, int? quantity, double? cost)
         {
             // Arrange
 
-            decimal? invoiceAmountDecimal =(decimal?) cost;
+            decimal? invoiceAmountDecimal = (decimal?)cost;
             var originalSupplierInvoiceCost = new SupplierInvoiceCost { SupplierInvoiceCostsId = 1, SupplierInvoiceId = 210, Quantity = 232, Cost = 1020.0m };
             var updatedSupplierInvoiceCost = new SupplierInvoiceCost
             {
@@ -228,7 +228,7 @@ namespace testtest1
             var returnValue = Assert.IsType<SupplierInvoiceCostDTOGet>(actionResult.Value);
             Assert.Equal(supplierInvoiceCostsId, returnValue.SupplierInvoiceCostsId);
             Assert.Equal(updatedSupplierInvoiceCost.Cost, returnValue.Cost);
-            Assert.Equal(updatedSupplierInvoiceCost.Quantity, returnValue.Quantity );
+            Assert.Equal(updatedSupplierInvoiceCost.Quantity, returnValue.Quantity);
             Assert.Equal(updatedSupplierInvoiceCost.SupplierInvoiceCostsId, returnValue.SupplierInvoiceCostsId);
         }
 

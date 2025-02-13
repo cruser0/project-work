@@ -1,6 +1,7 @@
-﻿using testapi.Models.DTO;
+﻿using API.Models.DTO;
+using API.Models.Entities;
 
-namespace testapi.Models.Mapper
+namespace API.Models.Mapper
 {
     public class SupplierMapper
     {
@@ -47,7 +48,7 @@ namespace testapi.Models.Mapper
                 return null;
             return new Supplier()
             {
-                SupplierId=(int)supplier.SupplierId,
+                SupplierId = (int)supplier.SupplierId,
                 SupplierName = supplier.SupplierName,
                 Country = supplier.Country
 

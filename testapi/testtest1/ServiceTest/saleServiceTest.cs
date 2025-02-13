@@ -1,24 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Models;
+using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
 using Xunit;
 
-namespace testtest1.ServiceTest
+namespace API_Test.ServiceTest
 {
-    public class saleREPOTest
+    public class saleServiceTest
     {
-        private readonly SaleREPO _saleRepo;
-        private readonly Mock<ICustomerInvoicesREPO> _mockciRepo;
-        private readonly Mock<ISupplierInvoiceREPO> _mocksiRepo;
+        private readonly SaleServices _saleService;
+        private readonly Mock<ICustomerInvoicesService> _mockciService;
+        private readonly Mock<ISupplierInvoiceService> _mocksiService;
         private readonly Progetto_FormativoContext _context;
 
-        public saleREPOTest()
+        public saleServiceTest()
         {
             // Create an in-memory database for testing
             var options = new DbContextOptionsBuilder<Progetto_FormativoContext>()
@@ -26,11 +27,11 @@ namespace testtest1.ServiceTest
                 .Options;
 
             _context = new Progetto_FormativoContext(options);
-            _mockciRepo = new Mock<ICustomerInvoicesREPO>();
-            _mocksiRepo = new Mock<ISupplierInvoiceREPO>();
+            _mockciService = new Mock<ICustomerInvoicesService>();
+            _mocksiService = new Mock<ISupplierInvoiceService>();
 
             // Initialize repository
-            _saleRepo = new SaleREPO(_context, _mockciRepo.Object, _mocksiRepo.Object);
+            _saleService = new SaleServices(_context, _mockciService.Object, _mocksiService.Object);
 
         }
 
@@ -45,7 +46,7 @@ namespace testtest1.ServiceTest
             _context.Sales.AddRange(sales);
             _context.SaveChanges();
 
-            var result = _saleRepo.GetAllSales();
+            var result = _saleService.GetAllSales();
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Count);
@@ -55,7 +56,7 @@ namespace testtest1.ServiceTest
         public void saleREPO_ThrowException_GetAllSales()
         {
 
-            var result = _saleRepo.GetAllSales();
+            var result = _saleService.GetAllSales();
 
             Assert.Equal(0, result.Count);
 
@@ -72,7 +73,7 @@ namespace testtest1.ServiceTest
             _context.Sales.AddRange(sales);
             _context.SaveChanges();
 
-            var result = _saleRepo.GetSaleById(1);
+            var result = _saleService.GetSaleById(1);
 
             Assert.NotNull(result);
             Assert.IsType<SaleDTOGet>(result);
@@ -83,7 +84,7 @@ namespace testtest1.ServiceTest
         public void saleREPO_ThrowException_GetSaleById()
         {
 
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.GetSaleById(1));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.GetSaleById(1));
             Assert.Equal("Sale not found!", exception.Message);
         }
 
@@ -96,7 +97,7 @@ namespace testtest1.ServiceTest
 
 
             var sale = new Sale() { SaleId = 1, BookingNumber = "bn", BoLnumber = "bol", SaleDate = new DateTime(2025, 1, 1, 0, 0, 0), CustomerId = 1, TotalRevenue = 100, Status = "Active" };
-            var result = _saleRepo.CreateSale(sale);
+            var result = _saleService.CreateSale(sale);
 
             Assert.NotNull(result);
             Assert.IsType<SaleDTOGet>(result);
@@ -107,7 +108,7 @@ namespace testtest1.ServiceTest
         [Fact]
         public void saleREPO_ThrowException_CreateSale_NullSale()
         {
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.CreateSale((Sale)null));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.CreateSale(null));
 
             Assert.Equal("Couldn't create sale", exception.Message);
         }
@@ -137,7 +138,7 @@ namespace testtest1.ServiceTest
             _context.Sales.Add(wrongSale);
             _context.SaveChanges();
 
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.CreateSale(wrongSale));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.CreateSale(wrongSale));
 
             Assert.Equal($"{ErrorMess} {verbo} null", exception.Message);
         }
@@ -159,7 +160,7 @@ namespace testtest1.ServiceTest
             _context.Sales.Add(wrongSale);
             _context.SaveChanges();
 
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.CreateSale(wrongSale));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.CreateSale(wrongSale));
 
             Assert.Equal("Incorrect status\nA sale is Active or Closed", exception.Message);
         }
@@ -181,7 +182,7 @@ namespace testtest1.ServiceTest
             _context.Sales.Add(wrongSale);
             _context.SaveChanges();
 
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.CreateSale(wrongSale));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.CreateSale(wrongSale));
 
             Assert.Equal($"There is no customer with ID {wrongSale.CustomerId}", exception.Message);
         }
@@ -206,7 +207,7 @@ namespace testtest1.ServiceTest
                 Status = "Active"
             };
 
-            var oldSale = _saleRepo.CreateSale(sale);
+            var oldSale = _saleService.CreateSale(sale);
 
             var newSaleDTO = new SaleDTO()
             {
@@ -217,7 +218,7 @@ namespace testtest1.ServiceTest
                 Status = "Closed"
             };
 
-            var newSale = _saleRepo.UpdateSale(1, SaleMapper.Map(newSaleDTO));
+            var newSale = _saleService.UpdateSale(1, SaleMapper.Map(newSaleDTO));
 
 
 
@@ -245,7 +246,7 @@ namespace testtest1.ServiceTest
                 Status = "Closed"
             };
 
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
 
             Assert.Equal("There is no sale with id 1", exception.Message);
         }
@@ -268,14 +269,14 @@ namespace testtest1.ServiceTest
                 Status = "Active"
             };
 
-            var oldSale = _saleRepo.CreateSale(sale);
+            var oldSale = _saleService.CreateSale(sale);
 
             var newSaleDTO = new SaleDTO()
             {
                 Status = "Status"
             };
 
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
 
             Assert.Equal("Incorrect status\nA sale is Active or Closed", exception.Message);
         }
@@ -298,14 +299,14 @@ namespace testtest1.ServiceTest
                 Status = "Active"
             };
 
-            var oldSale = _saleRepo.CreateSale(sale);
+            var oldSale = _saleService.CreateSale(sale);
 
             var newSaleDTO = new SaleDTO()
             {
                 CustomerId = 2
             };
 
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.UpdateSale(1, SaleMapper.Map(newSaleDTO)));
 
             Assert.Equal($"There is no customer with ID {newSaleDTO.CustomerId}", exception.Message);
         }
@@ -327,8 +328,8 @@ namespace testtest1.ServiceTest
                 Status = "Active"
             };
 
-            var saleToDelete = _saleRepo.CreateSale(sale);
-            var saleDeleted = _saleRepo.DeleteSale(sale.SaleId);
+            var saleToDelete = _saleService.CreateSale(sale);
+            var saleDeleted = _saleService.DeleteSale(sale.SaleId);
 
             Assert.NotNull(saleDeleted);
             Assert.IsType<SaleDTOGet>(saleDeleted);
@@ -352,7 +353,7 @@ namespace testtest1.ServiceTest
                 Status = "Active"
             };
 
-            var saleToDelete = _saleRepo.CreateSale(sale);
+            var saleToDelete = _saleService.CreateSale(sale);
 
             var cusInvoice = new CustomerInvoice()
             {
@@ -381,19 +382,19 @@ namespace testtest1.ServiceTest
             _context.SupplierInvoices.Add(supInvoice);
             _context.SaveChanges();
 
-            var saleDeleted = _saleRepo.DeleteSale(sale.SaleId);
+            var saleDeleted = _saleService.DeleteSale(sale.SaleId);
 
             Assert.NotNull(saleDeleted);
             Assert.IsType<SaleDTOGet>(saleDeleted);
             Assert.Equal(saleDeleted, saleDeleted);
-            _mockciRepo.Verify(s => s.DeleteCustomerInvoice((int)saleDeleted.SaleId), Times.Once);
-            _mocksiRepo.Verify(s => s.DeleteSupplierInvoice((int)saleDeleted.SaleId), Times.Once);
+            _mockciService.Verify(s => s.DeleteCustomerInvoice((int)saleDeleted.SaleId), Times.Once);
+            _mocksiService.Verify(s => s.DeleteSupplierInvoice((int)saleDeleted.SaleId), Times.Once);
         }
 
         [Fact]
         public void saleREPO_ThrowException_DeleteSale()
         {
-            var exception = Assert.Throws<ArgumentException>(() => _saleRepo.DeleteSale(1));
+            var exception = Assert.Throws<ArgumentException>(() => _saleService.DeleteSale(1));
 
             Assert.Equal("Sale not found!", exception.Message);
         }

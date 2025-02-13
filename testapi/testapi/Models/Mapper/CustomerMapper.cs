@@ -1,6 +1,7 @@
-﻿using testapi.Models.DTO;
+﻿using API.Models.DTO;
+using API.Models.Entities;
 
-namespace testapi.Models.Mapper
+namespace API.Models.Mapper
 {
     public class CustomerMapper
     {
@@ -21,13 +22,13 @@ namespace testapi.Models.Mapper
         {
             if (customer == null)
                 return null;
-            return new CustomerDTOGet() { CustomerName = customer.CustomerName, Country = customer.Country,CustomerId=customer.CustomerId };
+            return new CustomerDTOGet() { CustomerName = customer.CustomerName, Country = customer.Country, CustomerId = customer.CustomerId };
         }
         public static Customer MapGet(CustomerDTOGet customer)
         {
             if (customer == null)
                 return null;
-            return new Customer() { CustomerName = customer.CustomerName, Country = customer.Country,CustomerId=(int)customer.CustomerId };
+            return new Customer() { CustomerName = customer.CustomerName, Country = customer.Country, CustomerId = (int)customer.CustomerId };
         }
 
     }

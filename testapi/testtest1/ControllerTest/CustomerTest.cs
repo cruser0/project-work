@@ -1,26 +1,26 @@
 using Xunit;
-using testapi.Controllers;
-using testapi.Repo;
-using testapi.Models;
-using testapi.Models.Mapper;
-using testapi.Models.DTO;
 
 using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using API.Models.DTO;
+using API.Models.Services;
+using API.Models.Entities;
+using API.Models.Mapper;
+using API.Controllers;
 
-namespace testtest1
+namespace API_Test.ControllerTest
 {
     public class CustomerTest
     {
         private readonly CustomerController _customerController;
-        private readonly Mock<ICustomerREPO> _mockCustomerService;
+        private readonly Mock<ICustomerService> _mockCustomerService;
 
         public CustomerTest()
         {
-            _mockCustomerService = new Mock<ICustomerREPO>();
+            _mockCustomerService = new Mock<ICustomerService>();
             _customerController = new CustomerController(_mockCustomerService.Object);
         }
         [Fact]
@@ -47,8 +47,8 @@ namespace testtest1
         {
             // Arrange
             var customers = new List<CustomerDTOGet>
-        {
-        };
+            {
+            };
             _mockCustomerService.Setup(service => service.GetAllCustomers()).Returns(customers);
 
             // Act
@@ -64,7 +64,7 @@ namespace testtest1
         public async Task GetByID_ReturnOK_Customer()
         {
             // Arrange
-            var customers =new Customer { CustomerId = 1, CustomerName = "Pier Paolo Pittavino", Country = "Italy" };
+            var customers = new Customer { CustomerId = 1, CustomerName = "Pier Paolo Pittavino", Country = "Italy" };
             _mockCustomerService.Setup(service => service.GetCustomerById(1)).Returns(CustomerMapper.MapGet(customers));
 
             // Act
@@ -96,18 +96,18 @@ namespace testtest1
         [InlineData(1, "", "Italy")]
         [InlineData(1, "Marco", "")]
         [InlineData(1, "", "")]
-        public async Task PostCustomer_ReturnBadRequest_Customer_null_data(int id,string name,string country)
+        public async Task PostCustomer_ReturnBadRequest_Customer_null_data(int id, string name, string country)
         {
             // Arrange
             var customerDto = new CustomerDTO { CustomerName = name, Country = country };
             _mockCustomerService
             .Setup(service => service.CreateCustomer(It.IsAny<Customer>()))
             .Throws(new Exception("Data can't be null"));
-                
+
 
 
             // Act
-            var result =_customerController.Post(customerDto);
+            var result = _customerController.Post(customerDto);
 
 
             // Assert
@@ -126,7 +126,7 @@ namespace testtest1
 
             _mockCustomerService
             .Setup(service => service.CreateCustomer(It.IsAny<Customer>()))
-            .Returns(CustomerMapper.MapGet( expectedCustomer));
+            .Returns(CustomerMapper.MapGet(expectedCustomer));
 
             // Act
             var result = _customerController.Post(customerDto);
@@ -141,7 +141,7 @@ namespace testtest1
         [Fact]
         public async Task PostCustomer_ReturnBadRequest_Customer()
         {
-            
+
 
             // Arrange
             _mockCustomerService
@@ -165,7 +165,7 @@ namespace testtest1
             Customer customer = new() { CustomerId = 1, CustomerName = "Pier Paolo", Country = "Italy" };
             _mockCustomerService
                 .Setup(service => service.DeleteCustomer(1))
-                .Returns(CustomerMapper.MapGet( customer));
+                .Returns(CustomerMapper.MapGet(customer));
 
 
             // Act
@@ -174,7 +174,7 @@ namespace testtest1
 
             // Assert
             var actionResult = Assert.IsType<OkObjectResult>(result);
-            var returnValue= Assert.IsType<CustomerDTOGet>(actionResult.Value);
+            var returnValue = Assert.IsType<CustomerDTOGet>(actionResult.Value);
             Assert.NotNull(returnValue);
             Assert.Equal(customer.CustomerId, returnValue.CustomerId);
         }
@@ -218,7 +218,7 @@ namespace testtest1
                 updatedCustomer.Country = originalCustomer.Country;
 
             _mockCustomerService.Setup(service => service.UpdateCustomer(id, It.IsAny<Customer>()))
-                        .Returns(CustomerMapper.MapGet(  updatedCustomer));
+                        .Returns(CustomerMapper.MapGet(updatedCustomer));
 
             // Act
             var result = _customerController.Put(id, CustomerMapper.Map(updatedCustomer));

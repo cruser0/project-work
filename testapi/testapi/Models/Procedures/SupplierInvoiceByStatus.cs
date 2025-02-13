@@ -1,4 +1,4 @@
-﻿namespace testapi.Models.Procedures
+﻿namespace API.Models.Procedures
 {
     public class SupplierInvoiceByStatus
     {

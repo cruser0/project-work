@@ -1,6 +1,6 @@
+using API.Models;
+using API.Models.Services;
 using Microsoft.EntityFrameworkCore;
-using testapi.Models;
-using testapi.Repo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,12 +16,12 @@ builder.Services.AddDbContext<Progetto_FormativoContext>(options =>
 
 
 
-builder.Services.AddScoped<ICustomerREPO, CustomerREPO>();
-builder.Services.AddScoped<ICustomerInvoicesREPO, CustomerInvoicesREPO>();
-builder.Services.AddScoped<ISalesREPO, SaleREPO>();
-builder.Services.AddScoped<ISupplierInvoiceCostREPO, SupplierInvoiceCostREPO>();
-builder.Services.AddScoped<ISupplierInvoiceREPO, SupplierInvoiceREPO>();
-builder.Services.AddScoped<ISupplierREPO, SupplierREPO>();
+builder.Services.AddScoped<ICustomerService, CustomerServices>();
+builder.Services.AddScoped<ICustomerInvoicesService, CustomerInvoicesServices>();
+builder.Services.AddScoped<ISalesService, SaleServices>();
+builder.Services.AddScoped<ISupplierInvoiceCostService, SupplierInvoiceCostServices>();
+builder.Services.AddScoped<ISupplierInvoiceService, SupplierInvoiceService>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 
 

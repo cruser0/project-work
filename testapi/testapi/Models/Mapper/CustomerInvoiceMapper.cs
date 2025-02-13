@@ -1,6 +1,7 @@
-﻿using testapi.Models.DTO;
+﻿using API.Models.DTO;
+using API.Models.Entities;
 
-namespace testapi.Models.Mapper
+namespace API.Models.Mapper
 {
     public class CustomerInvoiceMapper
     {
@@ -37,7 +38,7 @@ namespace testapi.Models.Mapper
                 return null;
             return new CustomerInvoiceDTOGet()
             {
-                CustomerInvoiceId= customerInvoice.CustomerInvoiceId,
+                CustomerInvoiceId = customerInvoice.CustomerInvoiceId,
                 SaleId = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,

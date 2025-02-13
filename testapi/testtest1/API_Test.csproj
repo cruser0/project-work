@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\testapi\testapi.csproj" />
+    <ProjectReference Include="..\testapi\API.csproj" />
   </ItemGroup>
 
 </Project>

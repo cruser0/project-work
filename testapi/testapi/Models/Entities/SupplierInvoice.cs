@@ -1,4 +1,4 @@
-﻿namespace testapi.Models
+﻿namespace API.Models.Entities
 {
     public partial class SupplierInvoice
     {

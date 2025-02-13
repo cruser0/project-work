@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
+﻿using API.Models.DTO;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
+using API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace testapi.Controllers
+namespace API.Controllers
 {
     [Route("api/supplier")]
     [ApiController]
     public class SupplierController : ControllerBase
     {
-        private readonly ISupplierREPO _supplierREPO;
-        public SupplierController(ISupplierREPO supplierREPO)
+        private readonly ISupplierService _supplierService;
+        public SupplierController(ISupplierService supplierService)
         {
-            _supplierREPO = supplierREPO;
+            _supplierService = supplierService;
         }
         // GET: api/<SupplierController>
         [HttpGet]
@@ -23,7 +23,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierREPO.GetAllSuppliers();
+                var data = _supplierService.GetAllSuppliers();
                 if (data.Any())
                 {
                     return Ok(data);
@@ -39,7 +39,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierREPO.GetSupplierById(id);
+                var data = _supplierService.GetSupplierById(id);
                 if (data == null)
                     throw new Exception("Supplier not found!");
                 return Ok(data);
@@ -53,7 +53,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierREPO.CreateSupplier(SupplierMapper.Map(supplier));
+                var data = _supplierService.CreateSupplier(SupplierMapper.Map(supplier));
                 if (data == null)
                     throw new Exception("Data can't be null!");
                 return Ok(data);
@@ -67,7 +67,7 @@ namespace testapi.Controllers
         {
             try
             {
-                var data = _supplierREPO.UpdateSupplier(id, SupplierMapper.Map(supplier));
+                var data = _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier));
                 if (data == null)
                     throw new Exception("Supplier not found!");
                 return Ok(data);
@@ -83,7 +83,7 @@ namespace testapi.Controllers
 
             try
             {
-                var data = _supplierREPO.DeleteSupplier(id);
+                var data = _supplierService.DeleteSupplier(id);
                 if (data == null)
                     throw new Exception("Supplier not found!");
                 return Ok(data);

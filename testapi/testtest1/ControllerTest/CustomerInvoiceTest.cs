@@ -1,25 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.Controllers;
+using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
+using API.Models.Services;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using testapi.Controllers;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
-using testapi.Repo;
 using Xunit;
 
-namespace testtest1
+namespace API_Test.ControllerTest
 {
     public class CustomerInvoiceTest
     {
         private readonly CustomerInvoiceController _customerController;
-        private readonly Mock<ICustomerInvoicesREPO> _mockCustomerInvoiceService;
+        private readonly Mock<ICustomerInvoicesService> _mockCustomerInvoiceService;
 
         public CustomerInvoiceTest()
         {
-            _mockCustomerInvoiceService = new Mock<ICustomerInvoicesREPO>();
+            _mockCustomerInvoiceService = new Mock<ICustomerInvoicesService>();
             _customerController = new CustomerInvoiceController(_mockCustomerInvoiceService.Object);
         }
         [Fact]

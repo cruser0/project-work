@@ -1,24 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Models;
+using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Services;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Repo;
 using Xunit;
 
-namespace testtest1.ServiceTest
+namespace API_Test.ServiceTest
 {
-    public class CustomerREPOTest
+    public class CustomerServiceTest
     {
-        private readonly CustomerREPO _customerRepo;
-        private readonly Mock<ISalesREPO> _mockSalesRepo;
+        private readonly CustomerServices _customerService;
+        private readonly Mock<ISalesService> _mockSalesService;
         private readonly Progetto_FormativoContext _context;
 
-        public CustomerREPOTest()
+        public CustomerServiceTest()
         {
             // Create an in-memory database for testing
             var options = new DbContextOptionsBuilder<Progetto_FormativoContext>()
@@ -26,10 +27,10 @@ namespace testtest1.ServiceTest
             .Options;
 
             _context = new Progetto_FormativoContext(options);
-            _mockSalesRepo = new Mock<ISalesREPO>();
+            _mockSalesService = new Mock<ISalesService>();
 
             // Initialize repository
-            _customerRepo = new CustomerREPO(_context, _mockSalesRepo.Object);
+            _customerService = new CustomerServices(_context, _mockSalesService.Object);
         }
 
         [Fact]
@@ -39,7 +40,7 @@ namespace testtest1.ServiceTest
             var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy" };
 
             //Act
-            var result=_customerRepo.CreateCustomer(customer);
+            var result = _customerService.CreateCustomer(customer);
 
             //Assert
             Assert.NotNull(result);
@@ -51,7 +52,7 @@ namespace testtest1.ServiceTest
         public async Task Create_Customer_null()//customer null
         {
             //Act Arrange
-            var exception = Assert.Throws<Exception>(() => _customerRepo.CreateCustomer(null));
+            var exception = Assert.Throws<Exception>(() => _customerService.CreateCustomer(null));
 
             //Assert
 
@@ -59,20 +60,20 @@ namespace testtest1.ServiceTest
             Assert.Equal("Couldn't create customer", actionResult.Message);
         }
         [Theory]
-        [InlineData(1,"Marco",null)]
+        [InlineData(1, "Marco", null)]
         [InlineData(1, null, null)]
         [InlineData(1, null, "Italy")]
-        public async Task Create_Customer_attributes_null(int id,string name,string country)//customer null
+        public async Task Create_Customer_attributes_null(int id, string name, string country)//customer null
         {
             //Arrange
             var customer = new Customer { CustomerId = id, CustomerName = name, Country = country };
             //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerRepo.CreateCustomer(customer));
+            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
 
             //Assert
             Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
             var actionResult = Assert.IsType<ArgumentException>(exception);
-            if(string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
+            if (string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
                 Assert.Equal("CustomerName is null", actionResult.Message);
             if (string.IsNullOrEmpty(country) && !string.IsNullOrEmpty(name))
                 Assert.Equal("Country is null", actionResult.Message);
@@ -92,10 +93,10 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.DeleteCustomer(1);
+            var result = _customerService.DeleteCustomer(1);
 
             //Assert
-            _mockSalesRepo.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
+            _mockSalesService.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
             Assert.NotNull(result);
             Assert.Equal(customer.CustomerId, result.CustomerId);
             Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
@@ -109,7 +110,7 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.DeleteCustomer(1);
+            var result = _customerService.DeleteCustomer(1);
 
             //Assert
             Assert.NotNull(result);
@@ -128,18 +129,18 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.GetAllCustomers();
+            var result = _customerService.GetAllCustomers();
 
             //Assert
-            var actionResult =Assert.IsType<List<CustomerDTOGet>>(result);
-            Assert.Equal(2,actionResult.Count);
+            var actionResult = Assert.IsType<List<CustomerDTOGet>>(result);
+            Assert.Equal(2, actionResult.Count);
 
         }
         [Fact]
         public async Task GetAll_Customer_Empty()
         {
             //Act
-            var result = _customerRepo.GetAllCustomers();
+            var result = _customerService.GetAllCustomers();
             //Assert
             var actionResult = Assert.IsType<List<CustomerDTOGet>>(result);
             Assert.Empty(actionResult);
@@ -159,7 +160,7 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerRepo.GetCustomerById(id);
+            var result = _customerService.GetCustomerById(id);
             //Assert
             var actionResult = Assert.IsType<CustomerDTOGet>(result);
             Assert.Equal(id, actionResult.CustomerId);
@@ -180,9 +181,9 @@ namespace testtest1.ServiceTest
             _context.SaveChanges();
 
             //Act Assert
-            var exception = Assert.Throws<Exception>(() => _customerRepo.GetCustomerById(id));
+            var exception = Assert.Throws<Exception>(() => _customerService.GetCustomerById(id));
 
-            var action=Assert.IsType<Exception>(exception);
+            var action = Assert.IsType<Exception>(exception);
             var actionResult = Assert.IsType<string>(exception.Message);
 
             Assert.Equal("Customer not found!", actionResult);
@@ -194,11 +195,11 @@ namespace testtest1.ServiceTest
             //Arrange
 
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
-            var customerUpdate = new Customer {CustomerName = "Luca", Country = "France" };
+            var customerUpdate = new Customer { CustomerName = "Luca", Country = "France" };
             _context.Customers.Add(customer);
             _context.SaveChanges();
             //Act
-            var result=_customerRepo.UpdateCustomer(1, customerUpdate);
+            var result = _customerService.UpdateCustomer(1, customerUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerDTOGet>(result);
             Assert.Equal(customerUpdate.CustomerName, actionResult.CustomerName);
@@ -206,13 +207,13 @@ namespace testtest1.ServiceTest
         }
 
         [Theory]
-        [InlineData("Marco",null)]
-        [InlineData("Marco","")]
-        [InlineData("","Italy")]
-        [InlineData(null,"Italy")]
-        [InlineData(null,null)]
-        [InlineData("","")]
-        public async Task Update_Customer_Not_Present_Params(string name,string country)
+        [InlineData("Marco", null)]
+        [InlineData("Marco", "")]
+        [InlineData("", "Italy")]
+        [InlineData(null, "Italy")]
+        [InlineData(null, null)]
+        [InlineData("", "")]
+        public async Task Update_Customer_Not_Present_Params(string name, string country)
         {
             //Arrange
             var customerUpdate = new Customer { CustomerName = name, Country = country };
@@ -220,12 +221,12 @@ namespace testtest1.ServiceTest
             _context.Customers.Add(customer);
             _context.SaveChanges();
             //Act
-            var result=_customerRepo.UpdateCustomer(1, customerUpdate);
+            var result = _customerService.UpdateCustomer(1, customerUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerDTOGet>(result);
-            if(string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
                 Assert.Equal(customer.CustomerName, actionResult.CustomerName);
-            if(string.IsNullOrEmpty(country))
+            if (string.IsNullOrEmpty(country))
                 Assert.Equal(customer.Country, actionResult.Country);
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
             {
@@ -248,7 +249,7 @@ namespace testtest1.ServiceTest
             _context.Customers.Add(customer);
             _context.SaveChanges();
             //Act
-            var exception =Assert.Throws<Exception>(()=> _customerRepo.UpdateCustomer(id, customerUpdate));
+            var exception = Assert.Throws<Exception>(() => _customerService.UpdateCustomer(id, customerUpdate));
             //Assert
             var action = Assert.IsType<Exception>(exception);
             var actionResult = Assert.IsType<string>(action.Message);

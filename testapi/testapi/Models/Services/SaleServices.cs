@@ -1,10 +1,10 @@
-﻿using testapi.Models;
-using testapi.Models.DTO;
-using testapi.Models.Mapper;
+﻿using API.Models.DTO;
+using API.Models.Entities;
+using API.Models.Mapper;
 
-namespace testapi.Repo
+namespace API.Models.Services
 {
-    public interface ISalesREPO
+    public interface ISalesService
     {
         ICollection<SaleDTOGet> GetAllSales();
         SaleDTOGet GetSaleById(int id);
@@ -14,14 +14,14 @@ namespace testapi.Repo
 
 
     }
-    public class SaleREPO : ISalesREPO
+    public class SaleServices : ISalesService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly ICustomerInvoicesREPO _ciRepo;
-        private readonly ISupplierInvoiceREPO _siRepo;
+        private readonly ICustomerInvoicesService _ciRepo;
+        private readonly ISupplierInvoiceService _siRepo;
         // List of valid sale statuses
         List<string> statusList = new() { "active", "closed" };
-        public SaleREPO(Progetto_FormativoContext ctx, ICustomerInvoicesREPO CIrepo, ISupplierInvoiceREPO SIrepo)
+        public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIrepo, ISupplierInvoiceService SIrepo)
         {
             _context = ctx;
             _ciRepo = CIrepo;
@@ -76,7 +76,7 @@ namespace testapi.Repo
             // Check if the sale exists
             if (data == null)
                 throw new ArgumentException("Sale not found!");
-            
+
 
             // Retrieve all customer invoices associated with the sale
             var customerInvoices = _context.CustomerInvoices.Where(x => x.SaleId == id).ToList();
