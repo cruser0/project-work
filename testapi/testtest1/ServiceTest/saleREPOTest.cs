@@ -3,7 +3,6 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using testapi.Models;
 using testapi.Models.DTO;
 using testapi.Models.Mapper;
@@ -36,7 +35,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ReturnCorrect_GetAllSales()
+        public void saleREPO_ReturnCorrect_GetAllSales()
         {
             var sales = new List<Sale>()
             {
@@ -53,7 +52,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ThrowException_GetAllSales()
+        public void saleREPO_ThrowException_GetAllSales()
         {
 
             var result = _saleRepo.GetAllSales();
@@ -63,7 +62,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ReturnCorrect_GetSaleById()
+        public void saleREPO_ReturnCorrect_GetSaleById()
         {
             var sales = new List<Sale>()
             {
@@ -81,7 +80,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ThrowException_GetSaleById()
+        public void saleREPO_ThrowException_GetSaleById()
         {
 
             var exception = Assert.Throws<ArgumentException>(() => _saleRepo.GetSaleById(1));
@@ -89,7 +88,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ReturnCorrect_CreateSale()
+        public void saleREPO_ReturnCorrect_CreateSale()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -115,12 +114,13 @@ namespace testtest1.ServiceTest
 
 
         [Theory]
-        [InlineData(null, "bolValue", "2025-02-13", 1, "statusValue", "BN")]
-        [InlineData("bnValue", null, "2025-02-13", 1, "statusValue", "BOL")]
-        [InlineData("bnValue", "bolValue", null, 1, "statusValue", "Date")]
-        [InlineData("bnValue", "bolValue", "2025-02-13", null, "statusValue", "CustomerID")]
-        [InlineData("bnValue", "bolValue", "2025-02-13", 1, null, "Status")]
-        public async Task saleREPO_ThrowException_CreateSale_NullFields(string bn, string bol, string dateString, int? cID, string status, string ErrorMess)
+        [InlineData(null, "bolValue", "2025-02-13", 1, "statusValue", "BN", "is")]
+        [InlineData(null, null, "2025-02-13", 1, "statusValue", "BN, BOL", "are")]
+        [InlineData("bnValue", null, "2025-02-13", 1, "statusValue", "BOL", "is")]
+        [InlineData("bnValue", "bolValue", null, 1, "statusValue", "Date", "is")]
+        [InlineData("bnValue", "bolValue", "2025-02-13", null, "statusValue", "CustomerID", "is")]
+        [InlineData("bnValue", "bolValue", "2025-02-13", 1, null, "Status", "is")]
+        public void saleREPO_ThrowException_CreateSale_NullFields(string bn, string bol, string dateString, int? cID, string status, string ErrorMess, string verbo)
         {
 
             Sale wrongSale = new()
@@ -139,11 +139,11 @@ namespace testtest1.ServiceTest
 
             var exception = Assert.Throws<ArgumentException>(() => _saleRepo.CreateSale(wrongSale));
 
-            Assert.Equal($"{ErrorMess} is null", exception.Message);
+            Assert.Equal($"{ErrorMess} {verbo} null", exception.Message);
         }
 
         [Fact]
-        public async Task saleREPO_ThrowException_CreateSale_IncorrectStatus()
+        public void saleREPO_ThrowException_CreateSale_IncorrectStatus()
         {
             Sale wrongSale = new()
             {
@@ -165,7 +165,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ThrowException_CreateSale_WrongCustomerID()
+        public void saleREPO_ThrowException_CreateSale_WrongCustomerID()
         {
             Sale wrongSale = new()
             {
@@ -187,7 +187,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ReturnCorrect_UpdateSale()
+        public void saleREPO_ReturnCorrect_UpdateSale()
         {
             var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer1);
@@ -311,7 +311,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ReturnCorrect_DeleteSale_NoCascade()
+        public void saleREPO_ReturnCorrect_DeleteSale_NoCascade()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -336,7 +336,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ReturnCorrect_DeleteSale_Cascade()
+        public void saleREPO_ReturnCorrect_DeleteSale_Cascade()
         {
             var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
             _context.Customers.Add(customer);
@@ -391,7 +391,7 @@ namespace testtest1.ServiceTest
         }
 
         [Fact]
-        public async Task saleREPO_ThrowException_DeleteSale()
+        public void saleREPO_ThrowException_DeleteSale()
         {
             var exception = Assert.Throws<ArgumentException>(() => _saleRepo.DeleteSale(1));
 

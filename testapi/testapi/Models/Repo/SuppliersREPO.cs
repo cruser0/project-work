@@ -28,7 +28,7 @@ namespace testapi.Repo
         {
             if (supplier == null)
                 throw new ArgumentNullException("Couldn't create supplier");
-            if(string.IsNullOrEmpty(supplier.Country))
+            if (string.IsNullOrEmpty(supplier.Country))
                 throw new ArgumentNullException("Country can't be null");
             if (string.IsNullOrEmpty(supplier.SupplierName))
                 throw new ArgumentNullException("Supplier name can't be null");
@@ -44,7 +44,7 @@ namespace testapi.Repo
             var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
             if (data == null)
                 throw new ArgumentNullException("Supplier not found!");
-            List<SupplierInvoice> si=_context.SupplierInvoices.Where(x => x.SupplierId == id).ToList();
+            List<SupplierInvoice> si = _context.SupplierInvoices.Where(x => x.SupplierId == id).ToList();
             if (si.Any())
             {
                 foreach (SupplierInvoice item in si)
@@ -58,7 +58,7 @@ namespace testapi.Repo
 
         public ICollection<SupplierDTOGet> GetAllSuppliers()
         {
-            return _context.Suppliers.Select(x=> SupplierMapper.MapGet(x)).ToList();
+            return _context.Suppliers.Select(x => SupplierMapper.MapGet(x)).ToList();
         }
 
         public SupplierDTOGet GetSupplierById(int id)
@@ -76,7 +76,7 @@ namespace testapi.Repo
             var cDB = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
             if (cDB != null)
             {
-                if(!string.IsNullOrEmpty(supplier.SupplierName))
+                if (!string.IsNullOrEmpty(supplier.SupplierName))
                     cDB.SupplierName = supplier.SupplierName ?? cDB.SupplierName;
                 if (!string.IsNullOrEmpty(supplier.Country))
                     cDB.Country = supplier.Country ?? cDB.Country;
