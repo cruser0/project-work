@@ -2,14 +2,15 @@ namespace testwin
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ciao");
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = client.GetAsync("http://localhost:5069/api/customer").Result;
+
+                var responsebody = response.Content.ReadAsStringAsync().Result;
+                MessageBox.Show(responsebody);
+            }
         }
     }
 }
