@@ -13,6 +13,7 @@ namespace API.Models.Services
         SaleDTOGet DeleteSale(int id);
 
 
+
     }
     public class SaleServices : ISalesService
     {
