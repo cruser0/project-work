@@ -31,7 +31,7 @@ namespace Winform
             {
                 Form child = menuItem.Text switch
                 {
-                    "Show Customers" => new testForm(),
+                    "Show Customers" => new CustomerForm(),
                     "Show Suppliers" => new SupplierForm(),
                     _ => throw new Exception("Unknown option")
                 };
