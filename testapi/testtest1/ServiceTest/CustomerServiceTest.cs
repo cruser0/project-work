@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -43,7 +44,7 @@ namespace API_Test.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerService.GetAllCustomers();
+            var result = _customerService.GetAllCustomers(new CustomerFilter());
 
             //Assert
             var actionResult = Assert.IsType<List<CustomerDTOGet>>(result);
@@ -54,7 +55,7 @@ namespace API_Test.ServiceTest
         public async Task GetAll_Customer_Empty()
         {
             //Act
-            var result = _customerService.GetAllCustomers();
+            var result = _customerService.GetAllCustomers(new CustomerFilter());
             //Assert
             var actionResult = Assert.IsType<List<CustomerDTOGet>>(result);
             Assert.Empty(actionResult);

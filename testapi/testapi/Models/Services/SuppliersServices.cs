@@ -1,12 +1,13 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 
 namespace API.Models.Services
 {
     public interface ISupplierService
     {
-        ICollection<SupplierDTOGet> GetAllSuppliers();
+        ICollection<SupplierDTOGet> GetAllSuppliers(SupplierFilter? filter);
         SupplierDTOGet GetSupplierById(int id);
         SupplierDTOGet CreateSupplier(Supplier supplier);
         SupplierDTOGet UpdateSupplier(int id, Supplier supplier);
@@ -24,9 +25,26 @@ namespace API.Models.Services
             _supplierInvoiceService = supplierInvoiceService;
         }
 
-        public ICollection<SupplierDTOGet> GetAllSuppliers()
+        public ICollection<SupplierDTOGet> GetAllSuppliers(SupplierFilter? filter)
         {
-            return _context.Suppliers.Select(x => SupplierMapper.MapGet(x)).ToList();
+            return ApplyFilter(filter);
+        }
+
+        private ICollection<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
+        {
+            var query = _context.Suppliers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.Name))
+            {
+                query = query.Where(x => x.SupplierName.Contains(filter.Name));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Country))
+            {
+                query = query.Where(x => x.Country.Contains(filter.Country));
+            }
+
+            return query.Select(x => SupplierMapper.MapGet(x)).ToList();
         }
 
         public SupplierDTOGet GetSupplierById(int id)

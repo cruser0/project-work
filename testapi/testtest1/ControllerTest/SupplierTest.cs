@@ -1,6 +1,7 @@
 ﻿using API.Controllers;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -27,10 +28,12 @@ namespace API_Test.ControllerTest
         {
             //Arrange
             var suppliers = new List<SupplierDTOGet> { new SupplierDTOGet { SupplierId = 1, SupplierName = "Apple", Country = "Italy" } };
-            _mockService.Setup(service => service.GetAllSuppliers()).Returns(suppliers);
+            var filter = new SupplierFilter { Name = "", Country = "" };
+
+            _mockService.Setup(service => service.GetAllSuppliers(filter)).Returns(suppliers);
 
             //Act
-            var result = _supplierController.Get();
+            var result = _supplierController.Get(filter);
 
             //Assert
             var actionResult = Assert.IsType<OkObjectResult>(result);
@@ -43,10 +46,11 @@ namespace API_Test.ControllerTest
         {
             //Arrange 
             var suppliers = new List<Supplier>();
-            _mockService.Setup(service => service.GetAllSuppliers()).Throws(new Exception("Suppliers not found!"));
+            var filter = new SupplierFilter { Name = "", Country = "" };
+            _mockService.Setup(service => service.GetAllSuppliers(filter)).Throws(new Exception("Suppliers not found!"));
 
             //Act
-            var result = _supplierController.Get();
+            var result = _supplierController.Get(filter);
 
             //Assert
             var actionResult = Assert.IsType<BadRequestObjectResult>(result);

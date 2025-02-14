@@ -1,12 +1,13 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 
 namespace API.Models.Services
 {
     public interface ICustomerService
     {
-        ICollection<CustomerDTOGet> GetAllCustomers();
+        ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter? filter);
         CustomerDTOGet GetCustomerById(int id);
         CustomerDTOGet CreateCustomer(Customer customer);
         CustomerDTOGet UpdateCustomer(int id, Customer customer);
@@ -23,10 +24,28 @@ namespace API.Models.Services
             _context = ctx;
             _sService = SaleService;
         }
-        public ICollection<CustomerDTOGet> GetAllCustomers()
+
+        public ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter? filter)
         {
             // Retrieve all customers from the database and map them to DTOs
-            return _context.Customers.Select(x => CustomerMapper.MapGet(x)).ToList();
+            return ApplyFilter(filter);
+        }
+
+        private ICollection<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
+        {
+            var query = _context.Customers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.Name))
+            {
+                query = query.Where(x => x.CustomerName.Contains(filter.Name));
+            }
+
+            if (!string.IsNullOrEmpty(filter.Country))
+            {
+                query = query.Where(x => x.Country.Contains(filter.Country));
+            }
+
+            return query.Select(x => CustomerMapper.MapGet(x)).ToList();
         }
 
         public CustomerDTOGet GetCustomerById(int id)

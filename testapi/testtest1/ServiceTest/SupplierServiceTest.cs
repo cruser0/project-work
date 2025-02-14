@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -38,7 +39,7 @@ namespace API_Test.ServiceTest
             _context.Suppliers.AddRange(suppliers);
             _context.SaveChanges();
 
-            var result = _supplierService.GetAllSuppliers();
+            var result = _supplierService.GetAllSuppliers(new SupplierFilter());
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Count);
@@ -48,7 +49,7 @@ namespace API_Test.ServiceTest
         public void supplierServicesTest_ReturnCorrect_GetAllSuppliers_NoSuppliers()
         {
 
-            var result = _supplierService.GetAllSuppliers();
+            var result = _supplierService.GetAllSuppliers(new SupplierFilter());
 
             Assert.Equal(0, result.Count);
         }
