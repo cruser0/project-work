@@ -4,8 +4,21 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\BaseGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
+
 </Project>
