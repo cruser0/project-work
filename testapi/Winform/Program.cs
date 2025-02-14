@@ -1,5 +1,3 @@
-using Winform.Forms;
-
 namespace Winform
 {
     internal static class Program
@@ -14,7 +12,7 @@ namespace Winform
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new testForm());
+            Application.Run(new MainForm());
         }
     }
 }

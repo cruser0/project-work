@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities;
+﻿using System.Collections;
 
 namespace Winform.Forms.control
 {
@@ -27,7 +17,7 @@ namespace Winform.Forms.control
         }
         private void dgvDouble_Click(object sender, DataGridViewCellEventArgs e)
         {
-            dgvDoubleClick.Invoke(sender,e);
+            dgvDoubleClick.Invoke(sender, e);
         }
         public void setDataGrid(IEnumerable data)
         {

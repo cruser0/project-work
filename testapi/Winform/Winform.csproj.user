@@ -7,6 +7,9 @@
     <Compile Update="Forms\control\BaseGridUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\CustomerSupplierFilterUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>

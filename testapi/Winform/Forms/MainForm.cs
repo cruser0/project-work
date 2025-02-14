@@ -1,4 +1,6 @@
-﻿namespace Winform
+﻿using Winform.Forms;
+
+namespace Winform
 {
     public partial class MainForm : Form
     {
@@ -29,7 +31,7 @@
             {
                 Form child = menuItem.Text switch
                 {
-                    "Show Customers" => new CustomerForm(),
+                    "Show Customers" => new testForm(),
                     "Show Suppliers" => new SupplierForm(),
                     _ => throw new Exception("Unknown option")
                 };
