@@ -48,6 +48,9 @@ namespace Winform.Forms
             try
             {
                 _customerService.Update(int.Parse(IdCustomerTxt.Text), customer);
+                MessageBox.Show("Customer updated successfully!");
+
+                this.Close();
             }catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }

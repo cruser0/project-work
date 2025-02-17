@@ -46,14 +46,14 @@
             // 
             // NameTxt
             // 
-            this.NameTxt.Location = new System.Drawing.Point(25, 48);
+            this.NameTxt.Location = new System.Drawing.Point(10, 48);
             this.NameTxt.Name = "NameTxt";
             this.NameTxt.Size = new System.Drawing.Size(100, 23);
             this.NameTxt.TabIndex = 1;
             // 
             // CountryTxt
             // 
-            this.CountryTxt.Location = new System.Drawing.Point(256, 48);
+            this.CountryTxt.Location = new System.Drawing.Point(241, 48);
             this.CountryTxt.Name = "CountryTxt";
             this.CountryTxt.Size = new System.Drawing.Size(100, 23);
             this.CountryTxt.TabIndex = 2;
@@ -61,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 17);
+            this.label1.Location = new System.Drawing.Point(30, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 3;
@@ -70,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 22);
+            this.label2.Location = new System.Drawing.Point(241, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 15);
             this.label2.TabIndex = 4;

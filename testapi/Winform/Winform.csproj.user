@@ -7,8 +7,17 @@
     <Compile Update="Forms\control\BaseGridUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\CreateCustomerSupplierUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\control\CustomerSupplierFilterUserControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\CreateCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CreateSupplierForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\CustomerDetailsForm.cs">
       <SubType>Form</SubType>
@@ -19,7 +28,16 @@
     <Compile Update="Forms\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\SupplierDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\SupplierInvoiceDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\SupplierInvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

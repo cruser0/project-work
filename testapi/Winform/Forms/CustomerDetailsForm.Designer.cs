@@ -40,21 +40,21 @@
             // 
             // NameCustomerTxt
             // 
-            this.NameCustomerTxt.Location = new System.Drawing.Point(91, 163);
+            this.NameCustomerTxt.Location = new System.Drawing.Point(342, 161);
             this.NameCustomerTxt.Name = "NameCustomerTxt";
             this.NameCustomerTxt.Size = new System.Drawing.Size(100, 23);
             this.NameCustomerTxt.TabIndex = 2;
             // 
             // IdCustomerTxt
             // 
-            this.IdCustomerTxt.Location = new System.Drawing.Point(91, 99);
+            this.IdCustomerTxt.Location = new System.Drawing.Point(342, 97);
             this.IdCustomerTxt.Name = "IdCustomerTxt";
             this.IdCustomerTxt.Size = new System.Drawing.Size(100, 23);
             this.IdCustomerTxt.TabIndex = 1;
             // 
             // CountryCustomerTxt
             // 
-            this.CountryCustomerTxt.Location = new System.Drawing.Point(91, 230);
+            this.CountryCustomerTxt.Location = new System.Drawing.Point(342, 228);
             this.CountryCustomerTxt.Name = "CountryCustomerTxt";
             this.CountryCustomerTxt.Size = new System.Drawing.Size(100, 23);
             this.CountryCustomerTxt.TabIndex = 3;
@@ -62,7 +62,7 @@
             // IdCustomerLbl
             // 
             this.IdCustomerLbl.AutoSize = true;
-            this.IdCustomerLbl.Location = new System.Drawing.Point(93, 81);
+            this.IdCustomerLbl.Location = new System.Drawing.Point(344, 79);
             this.IdCustomerLbl.Name = "IdCustomerLbl";
             this.IdCustomerLbl.Size = new System.Drawing.Size(17, 15);
             this.IdCustomerLbl.TabIndex = 4;
@@ -71,7 +71,7 @@
             // NameCustomerLbl
             // 
             this.NameCustomerLbl.AutoSize = true;
-            this.NameCustomerLbl.Location = new System.Drawing.Point(93, 147);
+            this.NameCustomerLbl.Location = new System.Drawing.Point(344, 145);
             this.NameCustomerLbl.Name = "NameCustomerLbl";
             this.NameCustomerLbl.Size = new System.Drawing.Size(39, 15);
             this.NameCustomerLbl.TabIndex = 5;
@@ -80,7 +80,7 @@
             // CountryCustomerLbl
             // 
             this.CountryCustomerLbl.AutoSize = true;
-            this.CountryCustomerLbl.Location = new System.Drawing.Point(93, 212);
+            this.CountryCustomerLbl.Location = new System.Drawing.Point(344, 210);
             this.CountryCustomerLbl.Name = "CountryCustomerLbl";
             this.CountryCustomerLbl.Size = new System.Drawing.Size(50, 15);
             this.CountryCustomerLbl.TabIndex = 6;
@@ -89,7 +89,7 @@
             // EditCustomerCbx
             // 
             this.EditCustomerCbx.AutoSize = true;
-            this.EditCustomerCbx.Location = new System.Drawing.Point(91, 261);
+            this.EditCustomerCbx.Location = new System.Drawing.Point(342, 259);
             this.EditCustomerCbx.Name = "EditCustomerCbx";
             this.EditCustomerCbx.Size = new System.Drawing.Size(46, 19);
             this.EditCustomerCbx.TabIndex = 7;
@@ -99,7 +99,7 @@
             // 
             // SaveEditCustomerBtn
             // 
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(91, 303);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(342, 301);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
             this.SaveEditCustomerBtn.Size = new System.Drawing.Size(107, 23);
             this.SaveEditCustomerBtn.TabIndex = 8;

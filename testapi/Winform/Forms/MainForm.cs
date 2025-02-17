@@ -33,6 +33,7 @@ namespace Winform
                 {
                     "Show Customers" => new CustomerForm(),
                     "Show Suppliers" => new SupplierForm(),
+                    "Show Supplier Invoices"=> new SupplierInvoiceForm(),
                     _ => throw new Exception("Unknown option")
                 };
 
@@ -40,5 +41,16 @@ namespace Winform
             }
         }
 
+        private void AddCustomersStripToolButton_Click(object sender, EventArgs e)
+        {
+            CreateCustomerForm createCustomerForm = new CreateCustomerForm();
+            createCustomerForm.Show();
+        }
+
+        private void AddSuppliersStripToolButton_Click(object sender, EventArgs e)
+        {
+            CreateSupplierForm createSupplierForm = new CreateSupplierForm();
+            createSupplierForm.Show();
+        }
     }
 }

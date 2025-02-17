@@ -35,6 +35,9 @@
             this.SuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.AddSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSupplierInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addSupplierInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +45,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerStripButton,
-            this.SuppliersStripToolButton});
+            this.SuppliersStripToolButton,
+            this.supplierInvoicesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1003, 24);
@@ -61,7 +65,7 @@
             // ShowCustomersStripToolButton
             // 
             this.ShowCustomersStripToolButton.Name = "ShowCustomersStripToolButton";
-            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
+            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
             this.ShowCustomersStripToolButton.Tag = "Show Customers";
             this.ShowCustomersStripToolButton.Text = "Show Customers";
             this.ShowCustomersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
@@ -69,8 +73,9 @@
             // AddCustomersStripToolButton
             // 
             this.AddCustomersStripToolButton.Name = "AddCustomersStripToolButton";
-            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
+            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
             this.AddCustomersStripToolButton.Text = "Add Customers";
+            this.AddCustomersStripToolButton.Click += new System.EventHandler(this.AddCustomersStripToolButton_Click);
             // 
             // SuppliersStripToolButton
             // 
@@ -84,7 +89,7 @@
             // ShowSuppliersStripToolButton
             // 
             this.ShowSuppliersStripToolButton.Name = "ShowSuppliersStripToolButton";
-            this.ShowSuppliersStripToolButton.Size = new System.Drawing.Size(154, 22);
+            this.ShowSuppliersStripToolButton.Size = new System.Drawing.Size(180, 22);
             this.ShowSuppliersStripToolButton.Tag = "Show Suppliers";
             this.ShowSuppliersStripToolButton.Text = "Show Suppliers";
             this.ShowSuppliersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
@@ -92,8 +97,31 @@
             // AddSuppliersStripToolButton
             // 
             this.AddSuppliersStripToolButton.Name = "AddSuppliersStripToolButton";
-            this.AddSuppliersStripToolButton.Size = new System.Drawing.Size(154, 22);
+            this.AddSuppliersStripToolButton.Size = new System.Drawing.Size(180, 22);
             this.AddSuppliersStripToolButton.Text = "Add Supplier";
+            this.AddSuppliersStripToolButton.Click += new System.EventHandler(this.AddSuppliersStripToolButton_Click);
+            // 
+            // supplierInvoicesToolStripMenuItem
+            // 
+            this.supplierInvoicesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showSupplierInvoicesToolStripMenuItem,
+            this.addSupplierInvoiceToolStripMenuItem});
+            this.supplierInvoicesToolStripMenuItem.Name = "supplierInvoicesToolStripMenuItem";
+            this.supplierInvoicesToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.supplierInvoicesToolStripMenuItem.Text = "Supplier Invoices";
+            // 
+            // showSupplierInvoicesToolStripMenuItem
+            // 
+            this.showSupplierInvoicesToolStripMenuItem.Name = "showSupplierInvoicesToolStripMenuItem";
+            this.showSupplierInvoicesToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.showSupplierInvoicesToolStripMenuItem.Text = "Show Supplier Invoices";
+            this.showSupplierInvoicesToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // addSupplierInvoiceToolStripMenuItem
+            // 
+            this.addSupplierInvoiceToolStripMenuItem.Name = "addSupplierInvoiceToolStripMenuItem";
+            this.addSupplierInvoiceToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.addSupplierInvoiceToolStripMenuItem.Text = "Add Supplier Invoice";
             // 
             // MainForm
             // 
@@ -123,5 +151,8 @@
         private ToolStripMenuItem SuppliersStripToolButton;
         private ToolStripMenuItem ShowSuppliersStripToolButton;
         private ToolStripMenuItem AddSuppliersStripToolButton;
+        private ToolStripMenuItem supplierInvoicesToolStripMenuItem;
+        private ToolStripMenuItem showSupplierInvoicesToolStripMenuItem;
+        private ToolStripMenuItem addSupplierInvoiceToolStripMenuItem;
     }
 }

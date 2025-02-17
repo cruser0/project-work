@@ -30,7 +30,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting customer: {errorMessage}");
+            throw new Exception($"Error creating customer: {errorMessage}");
         }
 
         public Customer Delete(int id)
@@ -53,10 +53,20 @@ namespace Winform.Services
             throw new Exception($"Error deleting customer: {errorMessage}");
         }
 
-        public ICollection<Customer> GetAll()
+        public ICollection<Customer> GetAll(string? name,string? country)
         {
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri()+"customer").Result;
+            var queryParameters = new List<string>();
+
+            if (!string.IsNullOrEmpty(name))
+                queryParameters.Add($"Name={name}");
+            if (!string.IsNullOrEmpty(country))
+                queryParameters.Add($"Country={country}");
+
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            string vediamo="/customer" + queryString;
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer" + queryString).Result;
+
             if (response.IsSuccessStatusCode)
             {
 
@@ -91,7 +101,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting customer: {errorMessage}");
+            throw new Exception($"Error getting customer: {errorMessage}");
         }
 
         public Customer Update(int id, Customer entity)
@@ -104,17 +114,15 @@ namespace Winform.Services
             if (response.IsSuccessStatusCode)
             {
 
-                // Leggere il contenuto della risposta
                 string json = response.Content.ReadAsStringAsync().Result;
 
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerDTOGet
                 var items = JsonSerializer.Deserialize<Customer>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return items;
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting customer: {errorMessage}");
+            throw new Exception($"Error updating customer: {errorMessage}");
         }
     }
 }

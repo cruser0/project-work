@@ -30,7 +30,7 @@ namespace Winform.s
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting customer: {errorMessage}");
+            throw new Exception($"Error creating customer: {errorMessage}");
         }
 
         public CustomerInvoice Delete(int id)
@@ -90,7 +90,7 @@ namespace Winform.s
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting customer: {errorMessage}");
+            throw new Exception($"Error getting customer: {errorMessage}");
         }
 
         public CustomerInvoice Update(int id, CustomerInvoice entity)
@@ -113,7 +113,7 @@ namespace Winform.s
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting customer: {errorMessage}");
+            throw new Exception($"Error updating customer: {errorMessage}");
         }
     }
 }

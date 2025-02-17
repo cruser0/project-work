@@ -26,13 +26,7 @@ namespace Winform.Forms
         }
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
-            IEnumerable<Supplier> query = _supplierService.GetAll();
-
-            if (!string.IsNullOrWhiteSpace(NameSupplierTxt.Text))
-                query = query.Where(x => x.SupplierName.StartsWith(NameSupplierTxt.Text, StringComparison.OrdinalIgnoreCase));
-
-            if (!string.IsNullOrWhiteSpace(CountrySupplierTxt.Text))
-                query = query.Where(x => x.Country.StartsWith(CountrySupplierTxt.Text, StringComparison.OrdinalIgnoreCase));
+            IEnumerable<Supplier> query = _supplierService.GetAll(NameSupplierTxt.Text, CountrySupplierTxt.Text);
 
             baseGridUserControl1.setDataGrid(query.ToList());
         }
@@ -41,7 +35,8 @@ namespace Winform.Forms
         {
             if (sender is DataGridView dgv)
             {
-                MessageBox.Show(dgv.CurrentRow.Cells[1].Value.ToString());
+                SupplierDetailsForm cdf = new SupplierDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                cdf.Show();
             }
             else
             {

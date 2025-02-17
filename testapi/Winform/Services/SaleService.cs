@@ -30,7 +30,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting sale: {errorMessage}");
+            throw new Exception($"Error creating sale: {errorMessage}");
         }
 
         public Sale Delete(int id)
@@ -88,7 +88,8 @@ namespace Winform.Services
                 return items;
 
             }
-            return new Sale();
+            string errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"Error getting sale: {errorMessage}");
         }
 
         public Sale Update(int id, Sale entity)
@@ -111,7 +112,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting sale: {errorMessage}");
+            throw new Exception($"Error updating sale: {errorMessage}");
         }
     }
 }

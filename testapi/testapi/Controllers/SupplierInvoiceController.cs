@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +19,11 @@ namespace API.Controllers
         }
         // GET: api/<SupplierInvoiceController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] SupplierInvoiceFilter filter)
         {
             try
             {
-                var data = _supplierInvoiceService.GetAllSupplierInvoices();
+                var data = _supplierInvoiceService.GetAllSupplierInvoices(filter);
                 if (data.Any())
                 {
                     return Ok(data);

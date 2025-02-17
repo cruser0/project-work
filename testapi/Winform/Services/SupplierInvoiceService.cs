@@ -30,7 +30,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting supplier invoice: {errorMessage}");
+            throw new Exception($"Error creating supplier invoice: {errorMessage}");
         }
 
         public SupplierInvoice Delete(int id)
@@ -53,10 +53,21 @@ namespace Winform.Services
             throw new Exception($"Error deleting supplier invoice: {errorMessage}");
         }
 
-        public ICollection<SupplierInvoice> GetAll()
+        public ICollection<SupplierInvoice> GetAll(string? saleID,string? supplierID,DateTime? date,string? status)
         {
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice").Result;
+            List<string> parameters = new();
+            if (!string.IsNullOrEmpty(saleID))
+                parameters.Add("SaleID="+saleID);
+            if (!string.IsNullOrEmpty(supplierID))
+                parameters.Add("SupplierID="+supplierID.ToString());
+            if(date != null)
+                parameters.Add("InvoiceDate="+date.ToString());
+            if(status != null)
+                parameters.Add("Status="+status);
+            string queryString = parameters.Any() ? "?" + string.Join("&", parameters) : string.Empty;
+
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 
@@ -88,7 +99,8 @@ namespace Winform.Services
                 return items;
 
             }
-            return new SupplierInvoice();
+            string errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"Error getting supplier invoice: {errorMessage}");
         }
 
         public SupplierInvoice Update(int id, SupplierInvoice entity)
@@ -111,7 +123,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting supplier invoice: {errorMessage}");
+            throw new Exception($"Error updating supplier invoice: {errorMessage}");
         }
     }
 }

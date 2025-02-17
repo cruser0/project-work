@@ -29,7 +29,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting supplier invoice cost: {errorMessage}");
+            throw new Exception($"Error creating supplier invoice cost: {errorMessage}");
         }
 
         public SupplierInvoiceCost Delete(int id)
@@ -87,7 +87,8 @@ namespace Winform.Services
                 return items;
 
             }
-            return new SupplierInvoiceCost();
+            string errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"Error getting supplier invoice-cost: {errorMessage}");
         }
 
         public SupplierInvoiceCost Update(int id, SupplierInvoiceCost entity)
@@ -110,7 +111,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting supplier invoice cost: {errorMessage}");
+            throw new Exception($"Error updating supplier invoice cost: {errorMessage}");
         }
     }
 }

@@ -18,13 +18,7 @@ namespace Winform.Forms
         }
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
-            IEnumerable<Customer> query = _customerService.GetAll();
-
-            if (!string.IsNullOrWhiteSpace(NameTxt.Text))
-                query = query.Where(x => x.CustomerName.StartsWith(NameTxt.Text, StringComparison.OrdinalIgnoreCase));
-
-            if (!string.IsNullOrWhiteSpace(CountryTxt.Text))
-                query = query.Where(x => x.Country.StartsWith(CountryTxt.Text, StringComparison.OrdinalIgnoreCase));
+            IEnumerable<Customer> query = _customerService.GetAll(NameTxt.Text, CountryTxt.Text);
 
             baseGridComponent.setDataGrid(query.ToList());
         }

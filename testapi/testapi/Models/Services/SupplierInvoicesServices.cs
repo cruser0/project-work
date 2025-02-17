@@ -1,12 +1,13 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 
 namespace API.Models.Services
 {
     public interface ISupplierInvoiceService
     {
-        ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices();
+        ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices(SupplierInvoiceFilter? filter);
         SupplierInvoiceDTOGet GetSupplierInvoiceById(int id);
         SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice);
         SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
@@ -24,9 +25,37 @@ namespace API.Models.Services
             _serviceCost = serviceCost;
         }
 
-        public ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices()
+        public ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
         {
-            return _context.SupplierInvoices.Select(si => SupplierInvoiceMapper.MapGet(si)).ToList();
+            // Retrieve all customers from the database and map them to DTOs
+            return ApplyFilter(filter);
+        }
+
+        private ICollection<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
+        {
+            var query = _context.SupplierInvoices.AsQueryable();
+
+            if (filter.InvoiceDate.HasValue)
+            {
+                if(filter.InvoiceDate<=DateTime.Now&&filter.InvoiceDate>new DateTime(1975,1,1))
+                    query = query.Where(x => x.InvoiceDate==filter.InvoiceDate);
+            }
+
+            if (filter.SaleID!=null)
+            {
+                query = query.Where(x => x.SaleId==filter.SaleID);
+            }
+            if (filter.SupplierID!=null)
+            {
+                query = query.Where(x => x.SupplierId == filter.SupplierID);
+            }
+            if (!string.IsNullOrEmpty(filter.Status))
+            {
+                if(!filter.Status.Equals("All"))
+                    query = query.Where(x => x.Status == filter.Status.ToLower());
+            }
+
+            return query.Select(x => SupplierInvoiceMapper.MapGet(x)).ToList();
         }
 
         public SupplierInvoiceDTOGet GetSupplierInvoiceById(int id)
