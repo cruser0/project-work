@@ -53,7 +53,7 @@ namespace Winform.Services
             throw new Exception($"Error deleting supplier invoice: {errorMessage}");
         }
 
-        public ICollection<SupplierInvoice> GetAll(string? saleID,string? supplierID,DateTime? date,string? status)
+        public ICollection<SupplierInvoice> GetAll(string? saleID,string? supplierID,DateTime? dateFrom, DateTime? dateTo, string? status)
         {
             ClientAPI client = new ClientAPI();
             List<string> parameters = new();
@@ -61,9 +61,11 @@ namespace Winform.Services
                 parameters.Add("SaleID="+saleID);
             if (!string.IsNullOrEmpty(supplierID))
                 parameters.Add("SupplierID="+supplierID.ToString());
-            if(date != null)
-                parameters.Add("InvoiceDate="+date.ToString());
-            if(status != null)
+            if(dateFrom != null)
+                parameters.Add("InvoiceDateFrom=" + dateFrom.ToString());
+            if (dateTo != null)
+                parameters.Add("InvoiceDateTo=" + dateTo.ToString());
+            if (status != null)
                 parameters.Add("Status="+status);
             string queryString = parameters.Any() ? "?" + string.Join("&", parameters) : string.Empty;
 
@@ -106,10 +108,10 @@ namespace Winform.Services
         public SupplierInvoice Update(int id, SupplierInvoice entity)
         {
             string jsonContent = JsonSerializer.Serialize(entity);
-            var returnSupplierInvoice = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var returnSupllierInvoice = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"supplier-invoice/{id}", returnSupplierInvoice).Result;
+            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"supplier-invoice/{id}", returnSupllierInvoice).Result;
             if (response.IsSuccessStatusCode)
             {
 

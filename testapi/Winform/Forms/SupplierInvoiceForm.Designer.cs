@@ -35,8 +35,10 @@
             this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.StatusCmb = new System.Windows.Forms.ComboBox();
             this.StatusLbl = new System.Windows.Forms.Label();
-            this.DateClnd = new System.Windows.Forms.MonthCalendar();
-            this.DateLbl = new System.Windows.Forms.Label();
+            this.DateFromLbl = new System.Windows.Forms.Label();
+            this.DateToLbl = new System.Windows.Forms.Label();
+            this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
+            this.DateToClnd = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // SupplierInvoiceGridUserControl
@@ -99,29 +101,55 @@
             this.StatusLbl.TabIndex = 9;
             this.StatusLbl.Text = "Status";
             // 
-            // DateClnd
+            // DateFromLbl
             // 
-            this.DateClnd.Location = new System.Drawing.Point(387, 34);
-            this.DateClnd.Name = "DateClnd";
-            this.DateClnd.TabIndex = 10;
-            this.DateClnd.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.DateClnd_DateChanged);
+            this.DateFromLbl.AutoSize = true;
+            this.DateFromLbl.Location = new System.Drawing.Point(387, 16);
+            this.DateFromLbl.Name = "DateFromLbl";
+            this.DateFromLbl.Size = new System.Drawing.Size(60, 15);
+            this.DateFromLbl.TabIndex = 11;
+            this.DateFromLbl.Text = "Date from";
             // 
-            // DateLbl
+            // DateToLbl
             // 
-            this.DateLbl.AutoSize = true;
-            this.DateLbl.Location = new System.Drawing.Point(387, 16);
-            this.DateLbl.Name = "DateLbl";
-            this.DateLbl.Size = new System.Drawing.Size(31, 15);
-            this.DateLbl.TabIndex = 11;
-            this.DateLbl.Text = "Date";
+            this.DateToLbl.AutoSize = true;
+            this.DateToLbl.Location = new System.Drawing.Point(593, 16);
+            this.DateToLbl.Name = "DateToLbl";
+            this.DateToLbl.Size = new System.Drawing.Size(45, 15);
+            this.DateToLbl.TabIndex = 13;
+            this.DateToLbl.Text = "Date to";
+            // 
+            // DateFromClnd
+            // 
+            this.DateFromClnd.Checked = false;
+            this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
+            this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateFromClnd.Location = new System.Drawing.Point(387, 34);
+            this.DateFromClnd.Name = "DateFromClnd";
+            this.DateFromClnd.ShowCheckBox = true;
+            this.DateFromClnd.Size = new System.Drawing.Size(200, 23);
+            this.DateFromClnd.TabIndex = 14;
+            // 
+            // DateToClnd
+            // 
+            this.DateToClnd.Checked = false;
+            this.DateToClnd.CustomFormat = "ddMMMMyyyy";
+            this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateToClnd.Location = new System.Drawing.Point(593, 34);
+            this.DateToClnd.Name = "DateToClnd";
+            this.DateToClnd.ShowCheckBox = true;
+            this.DateToClnd.Size = new System.Drawing.Size(200, 23);
+            this.DateToClnd.TabIndex = 15;
             // 
             // SupplierInvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1247, 647);
-            this.Controls.Add(this.DateLbl);
-            this.Controls.Add(this.DateClnd);
+            this.Controls.Add(this.DateToClnd);
+            this.Controls.Add(this.DateFromClnd);
+            this.Controls.Add(this.DateToLbl);
+            this.Controls.Add(this.DateFromLbl);
             this.Controls.Add(this.StatusLbl);
             this.Controls.Add(this.StatusCmb);
             this.Controls.Add(this.SupplierIDLbl);
@@ -145,7 +173,9 @@
         private Label SupplierIDLbl;
         private ComboBox StatusCmb;
         private Label StatusLbl;
-        private MonthCalendar DateClnd;
-        private Label DateLbl;
+        private Label DateFromLbl;
+        private Label DateToLbl;
+        private DateTimePicker DateFromClnd;
+        private DateTimePicker DateToClnd;
     }
 }

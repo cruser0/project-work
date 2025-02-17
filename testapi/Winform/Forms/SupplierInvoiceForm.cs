@@ -15,33 +15,63 @@ namespace Winform.Forms
     public partial class SupplierInvoiceForm : Form
     {
         SupplierInvoiceService _supplierInvoiceService;
-        private DateTime selectedDate;
-        public SupplierInvoiceForm()
+        private DateTime selectedDateFrom;
+        private DateTime selectedDateTo;
+        public SupplierInvoiceForm(string? id)
         {
             _supplierInvoiceService = new SupplierInvoiceService();
             InitializeComponent();
             StatusCmb.SelectedIndex = 0;
             SupplierInvoiceGridUserControl.buttonGet += MyControl_ButtonClicked;
             SupplierInvoiceGridUserControl.dgvDoubleClick += MyControl_OpenDetails_Clicked;
-            DateClnd.MaxSelectionCount = 1;
+            if(id != null) {
+            SupplierIDTxt.Text = id;
+            MyControl_ButtonClicked(this, EventArgs.Empty);
+            }
         }
 
         private void MyControl_OpenDetails_Clicked(object? sender, DataGridViewCellEventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender is DataGridView dgv)
+            {
+                SupplierInvoiceDetailsForm sid = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                sid.Show();
+            }
+            else
+            {
+                MessageBox.Show(sender.ToString());
+
+            }
         }
 
         private void MyControl_ButtonClicked(object? sender, EventArgs e)
         {
-            
-            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.Text,SupplierIDTxt.Text,selectedDate, StatusCmb.Text);
+            bool flagfrom = false;
+            bool flagto = false;
+            if (DateFromClnd.Value != null)
+            {
+                if (!(DateFromClnd.Value <= DateTime.Now) || !(DateFromClnd.Value > new DateTime(1975, 1, 1)))
+                    flagfrom = true;
+            }
+            if (DateToClnd.Value != null)
+            {
+                if (!(DateToClnd.Value <= DateTime.Now) || !(DateToClnd.Value >= DateFromClnd.Value))
+                    flagto= true;
+            }
+            if(flagfrom && flagto)
+                MessageBox.Show("Incorrect Input Date From and Date To");
+            else
+            {
+            if(flagfrom)
+                MessageBox.Show("Incorrect Input Date From");
+            if(flagto)
+                MessageBox.Show("Incorrect Input Date To");
+            }
+
+            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.Text,SupplierIDTxt.Text, DateFromClnd.Value, DateToClnd.Value, StatusCmb.Text);
 
             SupplierInvoiceGridUserControl.setDataGrid(query.ToList());
         }
 
-        private void DateClnd_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            selectedDate = DateClnd.SelectionStart;
-        }
     }
 }
