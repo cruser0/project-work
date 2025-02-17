@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using API.Models.Filters;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Winform.Entities;
 
 namespace Winform.Services
@@ -53,10 +50,27 @@ namespace Winform.Services
             throw new Exception($"Error deleting sale: {errorMessage}");
         }
 
-        public ICollection<Sale> GetAll()
+        public ICollection<Sale> GetAll(SaleFilter filter)
         {
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "sale").Result;
+            var queryParameters = new List<string>();
+
+            if (!string.IsNullOrEmpty(filter.BookingNumber))
+                queryParameters.Add($"BookingNumber={filter.BookingNumber}");
+            if (!string.IsNullOrEmpty(filter.BoLnumber))
+                queryParameters.Add($"BoLnumber={filter.BoLnumber}");
+            if (filter.SaleDateFrom != null)
+                queryParameters.Add($"SaleDateFrom={filter.SaleDateFrom}");
+            if (filter.SaleDateTo != null)
+                queryParameters.Add($"SaleDateTo={filter.SaleDateTo}");
+            if (filter.CustomerId != null)
+                queryParameters.Add($"CustomerId={filter.CustomerId}");
+            if (!string.IsNullOrEmpty(filter.Status))
+                queryParameters.Add($"Status={filter.Status}");
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "sale" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 

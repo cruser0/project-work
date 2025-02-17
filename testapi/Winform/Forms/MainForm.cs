@@ -34,6 +34,8 @@ namespace Winform
                     "Show Customers" => new CustomerForm(),
                     "Show Suppliers" => new SupplierForm(),
                     "Show Supplier Invoices"=> new SupplierInvoiceForm(null),
+                    "Show Supplier Invoices" => new SupplierInvoiceForm(),
+                    "Show Sales" => new SaleForm(),
                     _ => throw new Exception("Unknown option")
                 };
 

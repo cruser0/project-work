@@ -2,6 +2,7 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -76,11 +77,18 @@ namespace API.Models.Services
                 throw new ArgumentException("Country can't have special characters");
 
             if (_context.Suppliers.Any(x => x.SupplierName.Equals(supplier.SupplierName) && x.Country.Equals(supplier.Country)))
-                throw new ArgumentException("This supplier already exists");
+                throw new ArgumentException("");
 
-            _context.Add(supplier);
-            _context.SaveChanges();
-            return SupplierMapper.MapGet(supplier);
+            try
+            {
+                _context.Add(supplier);
+                _context.SaveChanges();
+                return SupplierMapper.MapGet(supplier);
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception("This supplier already exists");
+            }
         }
 
         public SupplierDTOGet UpdateSupplier(int id, Supplier supplier)
@@ -122,9 +130,16 @@ namespace API.Models.Services
                         throw new ArgumentException("Country can't have special characters");
                 }
 
-                _context.Suppliers.Update(cDB);
-                _context.SaveChanges();
-                return SupplierMapper.MapGet(cDB);
+                try
+                {
+                    _context.Suppliers.Update(cDB);
+                    _context.SaveChanges();
+                    return SupplierMapper.MapGet(cDB);
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw new Exception("This supplier already exists");
+                }
             }
             throw new ArgumentNullException("Supplier not found");
         }
