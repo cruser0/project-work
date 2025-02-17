@@ -33,7 +33,7 @@ namespace Winform
                 {
                     "Show Customers" => new CustomerForm(),
                     "Show Suppliers" => new SupplierForm(),
-                    "Show Supplier Invoices"=> new SupplierInvoiceForm(),
+                    "Show Supplier Invoices"=> new SupplierInvoiceForm(null),
                     _ => throw new Exception("Unknown option")
                 };
 

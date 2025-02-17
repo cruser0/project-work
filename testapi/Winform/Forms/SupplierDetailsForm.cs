@@ -56,10 +56,18 @@ namespace Winform.Forms
 
         private void SupplierGetInvoiceBtn_Click(object sender, EventArgs e)
         {
-            SupplierForm frm = new SupplierForm();
-            frm.ShowDialog();
-            this.Close();
+            // Close all existing MDI child forms
+            var mainForm = Application.OpenForms["MainForm"] as MainForm;
+            foreach (Form openForm in mainForm.MdiChildren)
+                {
+                    openForm.Close();
+                }
 
+            // Set the new form as an MDI child
+            var child = new SupplierInvoiceForm(IdSupplierTxt.Text);
+                child.MdiParent = mainForm;
+                child.WindowState = FormWindowState.Maximized;
+                child.Show();
         }
     }
 }

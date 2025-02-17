@@ -35,10 +35,17 @@ namespace API.Models.Services
         {
             var query = _context.SupplierInvoices.AsQueryable();
 
-            if (filter.InvoiceDate.HasValue)
+            if (filter.InvoiceDateFrom.HasValue)
             {
-                if(filter.InvoiceDate<=DateTime.Now&&filter.InvoiceDate>new DateTime(1975,1,1))
-                    query = query.Where(x => x.InvoiceDate==filter.InvoiceDate);
+                if((filter.InvoiceDateFrom<=DateTime.Now&&filter.InvoiceDateFrom>new DateTime(1975,1,1)))
+                {
+                    query = query.Where(x => x.InvoiceDate>=filter.InvoiceDateFrom);
+                }
+            }
+            if (filter.InvoiceDateTo.HasValue)
+            {
+                if(filter.InvoiceDateTo<=DateTime.Now&&filter.InvoiceDateTo>= filter.InvoiceDateFrom)
+                    query = query.Where(x => x.InvoiceDate <= filter.InvoiceDateTo);
             }
 
             if (filter.SaleID!=null)
@@ -80,7 +87,7 @@ namespace API.Models.Services
 
             if (!new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
                 throw new ArgumentException("Status is not valid");
-            if (supplierInvoice.InvoiceDate == null)
+            if (supplierInvoice.InvoiceDate == null || supplierInvoice.InvoiceDate>DateTime.Now)
                 throw new ArgumentException("Date is not valid");
 
             supplierInvoice.InvoiceAmount = 0;
@@ -109,7 +116,10 @@ namespace API.Models.Services
                         throw new ArgumentException("SupplierID not present");
                 }
                 siDB.InvoiceAmount = supplierInvoice.InvoiceAmount ?? siDB.InvoiceAmount;
+                
                 siDB.InvoiceDate = supplierInvoice.InvoiceDate ?? siDB.InvoiceDate;
+                if (supplierInvoice.InvoiceDate > DateTime.Now)
+                    throw new ArgumentException("Date cannot be greater than today");
                 if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
                 {
                     siDB.Status = supplierInvoice.Status ?? siDB.Status;
