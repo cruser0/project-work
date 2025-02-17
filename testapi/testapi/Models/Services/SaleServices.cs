@@ -42,16 +42,21 @@ namespace API.Models.Services
 
             if (!string.IsNullOrEmpty(filter.BookingNumber))
             {
-                query = query.Where(s => s.BookingNumber == filter.BookingNumber);
+                query = query.Where(s => s.BookingNumber.StartsWith(filter.BookingNumber));
             }
 
             if (!string.IsNullOrEmpty(filter.BoLnumber))
             {
-                query = query.Where(s => s.BoLnumber == filter.BoLnumber);
+                query = query.Where(s => s.BoLnumber.StartsWith(filter.BoLnumber));
             }
 
             if (filter.SaleDateFrom != null && filter.SaleDateTo != null)
             {
+                if (filter.SaleDateFrom > filter.SaleDateTo)
+                {
+                    throw new ArgumentException("SaleDateFrom cannot be later than SaleDateTo.");
+                }
+
                 query = query.Where(s => s.SaleDate >= filter.SaleDateFrom && s.SaleDate <= filter.SaleDateTo);
             }
             else if (filter.SaleDateFrom != null)
@@ -63,14 +68,10 @@ namespace API.Models.Services
                 query = query.Where(s => s.SaleDate <= filter.SaleDateTo);
             }
 
+
             if (filter.CustomerId != null)
             {
                 query = query.Where(s => s.CustomerId == filter.CustomerId);
-            }
-
-            if (filter.TotalRevenue != null)
-            {
-                query = query.Where(s => s.TotalRevenue == filter.TotalRevenue);
             }
 
             if (!string.IsNullOrEmpty(filter.Status))

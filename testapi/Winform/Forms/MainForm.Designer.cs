@@ -38,6 +38,9 @@
             this.supplierInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showSupplierInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSupplierInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +49,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerStripButton,
             this.SuppliersStripToolButton,
-            this.supplierInvoicesToolStripMenuItem});
+            this.supplierInvoicesToolStripMenuItem,
+            this.salesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1003, 24);
@@ -124,6 +128,28 @@
             this.addSupplierInvoiceToolStripMenuItem.Text = "Add Supplier Invoice";
             this.addSupplierInvoiceToolStripMenuItem.Click += new System.EventHandler(this.addSupplierInvoiceToolStripMenuItem_Click);
             // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showSalesToolStripMenuItem,
+            this.addSalesToolStripMenuItem});
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.salesToolStripMenuItem.Text = "Sales";
+            // 
+            // showSalesToolStripMenuItem
+            // 
+            this.showSalesToolStripMenuItem.Name = "showSalesToolStripMenuItem";
+            this.showSalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showSalesToolStripMenuItem.Text = "Show Sales";
+            this.showSalesToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // addSalesToolStripMenuItem
+            // 
+            this.addSalesToolStripMenuItem.Name = "addSalesToolStripMenuItem";
+            this.addSalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addSalesToolStripMenuItem.Text = "Add Sales";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -155,5 +181,8 @@
         private ToolStripMenuItem supplierInvoicesToolStripMenuItem;
         private ToolStripMenuItem showSupplierInvoicesToolStripMenuItem;
         private ToolStripMenuItem addSupplierInvoiceToolStripMenuItem;
+        private ToolStripMenuItem salesToolStripMenuItem;
+        private ToolStripMenuItem showSalesToolStripMenuItem;
+        private ToolStripMenuItem addSalesToolStripMenuItem;
     }
 }
