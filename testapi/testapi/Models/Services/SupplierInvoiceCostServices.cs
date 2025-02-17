@@ -1,12 +1,13 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 
 namespace API.Models.Services
 {
     public interface ISupplierInvoiceCostService
     {
-        ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts();
+        ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
         SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id);
         SupplierInvoiceCostDTOGet CreateSupplierInvoiceCost(SupplierInvoiceCost supplierInvoiceCost);
         SupplierInvoiceCostDTOGet UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost);
@@ -63,9 +64,31 @@ namespace API.Models.Services
 
         }
 
-        public ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts()
+        public ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
         {
-            return _context.SupplierInvoiceCosts.Select(x => SupplierInvoiceCostMapper.MapGet(x)).ToList();
+            return ApplyFilter(filter);
+        }
+        public ICollection<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
+        {
+            var query = _context.SupplierInvoiceCosts.AsQueryable();
+
+            if (filter.SupplierInvoiceId != null)
+            {
+                query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceId);
+            }
+
+            if (filter.Cost != null)
+            {
+                query = query.Where(x => x.Cost == filter.Cost);
+            }
+
+            if (filter.Quantity != null)
+            {
+                query = query.Where(x => x.Quantity == filter.Quantity);
+            }
+
+
+            return query.Select(x => SupplierInvoiceCostMapper.MapGet(x)).ToList();
         }
 
         public SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id)
@@ -88,9 +111,9 @@ namespace API.Models.Services
                     sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
                 if (!_context.SupplierInvoices.Any(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
                     throw new ArgumentNullException("Supplier Invoice not Found");
-                    if (supplierInvoiceCost.Quantity>0)
+                if (supplierInvoiceCost.Quantity > 0)
                     sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
-                if(supplierInvoiceCost.Cost>0)
+                if (supplierInvoiceCost.Cost > 0)
                     sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
                 _context.SupplierInvoiceCosts.Update(sicDB);
                 _context.SaveChanges();

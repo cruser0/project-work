@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +19,11 @@ namespace API.Controllers
         }
         // GET: api/<CustomerInvoiceController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] CustomerInvoiceFilter filter)
         {
             try
             {
-                var result = _customerInvoiceService.GetAllCustomerInvoices();
+                var result = _customerInvoiceService.GetAllCustomerInvoices(filter);
                 if (result.Any())
                 {
                     return Ok(result);

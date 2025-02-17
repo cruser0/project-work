@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +19,11 @@ namespace API.Controllers
         }
         // GET: api/<SaleController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] SaleFilter filter)
         {
             try
             {
-                var result = _saleService.GetAllSales();
+                var result = _saleService.GetAllSales(filter);
                 if (result.Any())
                 {
                     return Ok(result);

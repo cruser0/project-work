@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +8,7 @@ namespace API.Models.Services
 {
     public interface ICustomerInvoicesService
     {
-        ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices();
+        ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices(CustomerInvoiceFilter filter);
         CustomerInvoiceDTOGet GetCustomerInvoiceById(int id);
         CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customer);
         CustomerInvoiceDTOGet UpdateCustomerInvoice(int id, CustomerInvoice customer);
@@ -25,12 +26,46 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices()
+        public ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices(CustomerInvoiceFilter filter)
         {
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
-            return _context.CustomerInvoices
-                           .Select(x => CustomerInvoiceMapper.MapGet(x))
-                           .ToList();
+            return ApplyFilter(filter);
+        }
+
+        public ICollection<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter filter)
+        {
+            // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
+            var query = _context.CustomerInvoices.AsQueryable();
+
+            if (filter.SaleId != null)
+            {
+                query = query.Where(x => x.SaleId == filter.SaleId);
+            }
+
+            if (filter.InvoiceAmount != null)
+            {
+                query = query.Where(x => x.InvoiceAmount == filter.InvoiceAmount);
+            }
+
+            if (filter.InvoiceDateFrom != null && filter.InvoiceDateTo != null)
+            {
+                query = query.Where(s => s.InvoiceDate >= filter.InvoiceDateFrom && s.InvoiceDate <= filter.InvoiceDateTo);
+            }
+            else if (filter.InvoiceDateFrom != null)
+            {
+                query = query.Where(s => s.InvoiceDate >= filter.InvoiceDateFrom);
+            }
+            else if (filter.InvoiceDateTo != null)
+            {
+                query = query.Where(s => s.InvoiceDate <= filter.InvoiceDateTo);
+            }
+
+            if (!string.IsNullOrEmpty(filter.Status))
+            {
+                query = query.Where(s => s.Status == filter.Status);
+            }
+
+            return query.Select(x => CustomerInvoiceMapper.MapGet(x)).ToList();
         }
 
         public CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customerInvoice)

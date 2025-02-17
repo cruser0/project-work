@@ -1,12 +1,13 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 
 namespace API.Models.Services
 {
     public interface ISalesService
     {
-        ICollection<SaleDTOGet> GetAllSales();
+        ICollection<SaleDTOGet> GetAllSales(SaleFilter filter);
         SaleDTOGet GetSaleById(int id);
         SaleDTOGet CreateSale(Sale sale);
         SaleDTOGet UpdateSale(int id, Sale sale);
@@ -29,12 +30,55 @@ namespace API.Models.Services
             _siService = SIservice;
         }
 
-        public ICollection<SaleDTOGet> GetAllSales()
+        public ICollection<SaleDTOGet> GetAllSales(SaleFilter filter)
         {
             // Retrieve all sales from the database and map each one to a SaleDTOGet
-            return _context.Sales
-                           .Select(s => SaleMapper.MapGet(s))
-                           .ToList();
+            return ApplyFilter(filter);
+        }
+
+        private ICollection<SaleDTOGet> ApplyFilter(SaleFilter filter)
+        {
+            var query = _context.Sales.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.BookingNumber))
+            {
+                query = query.Where(s => s.BookingNumber == filter.BookingNumber);
+            }
+
+            if (!string.IsNullOrEmpty(filter.BoLnumber))
+            {
+                query = query.Where(s => s.BoLnumber == filter.BoLnumber);
+            }
+
+            if (filter.SaleDateFrom != null && filter.SaleDateTo != null)
+            {
+                query = query.Where(s => s.SaleDate >= filter.SaleDateFrom && s.SaleDate <= filter.SaleDateTo);
+            }
+            else if (filter.SaleDateFrom != null)
+            {
+                query = query.Where(s => s.SaleDate >= filter.SaleDateFrom);
+            }
+            else if (filter.SaleDateTo != null)
+            {
+                query = query.Where(s => s.SaleDate <= filter.SaleDateTo);
+            }
+
+            if (filter.CustomerId != null)
+            {
+                query = query.Where(s => s.CustomerId == filter.CustomerId);
+            }
+
+            if (filter.TotalRevenue != null)
+            {
+                query = query.Where(s => s.TotalRevenue == filter.TotalRevenue);
+            }
+
+            if (!string.IsNullOrEmpty(filter.Status))
+            {
+                query = query.Where(s => s.Status == filter.Status);
+            }
+
+            return query.Select(x => SaleMapper.MapGet(x)).ToList();
         }
 
         public SaleDTOGet GetSaleById(int id)
