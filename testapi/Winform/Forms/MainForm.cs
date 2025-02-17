@@ -52,5 +52,11 @@ namespace Winform
             CreateSupplierForm createSupplierForm = new CreateSupplierForm();
             createSupplierForm.Show();
         }
+
+        private void addSupplierInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateSupplierInvoicesForm createSupplierInvoicesForm = new CreateSupplierInvoicesForm();
+            createSupplierInvoicesForm.Show();
+        }
     }
 }
