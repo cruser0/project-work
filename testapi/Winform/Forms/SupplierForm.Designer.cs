@@ -160,9 +160,10 @@
             this.Supplier.AutoSize = true;
             this.Supplier.BackColor = System.Drawing.Color.DarkGray;
             this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Font = new System.Drawing.Font("Segoe UI", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Supplier.Location = new System.Drawing.Point(0, 0);
             this.Supplier.Name = "Supplier";
-            this.Supplier.Size = new System.Drawing.Size(50, 15);
+            this.Supplier.Size = new System.Drawing.Size(148, 45);
             this.Supplier.TabIndex = 9;
             this.Supplier.Text = "Supplier";
             // 
