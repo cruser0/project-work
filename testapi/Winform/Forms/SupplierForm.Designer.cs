@@ -54,9 +54,9 @@
             this.panel1.Controls.Add(this.TextBoxesRightPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1162, 0);
+            this.panel1.Location = new System.Drawing.Point(819, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 670);
+            this.panel1.Size = new System.Drawing.Size(200, 548);
             this.panel1.TabIndex = 10;
             // 
             // TextBoxesRightPanel
@@ -142,7 +142,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 670);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 548);
             this.RightSideBar.TabIndex = 7;
             // 
             // LeftPanel
@@ -152,7 +152,7 @@
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 670);
+            this.LeftPanel.Size = new System.Drawing.Size(200, 548);
             this.LeftPanel.TabIndex = 11;
             // 
             // Supplier
@@ -160,10 +160,10 @@
             this.Supplier.AutoSize = true;
             this.Supplier.BackColor = System.Drawing.Color.DarkGray;
             this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Supplier.Font = new System.Drawing.Font("Segoe UI", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Supplier.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Supplier.Location = new System.Drawing.Point(0, 0);
             this.Supplier.Name = "Supplier";
-            this.Supplier.Size = new System.Drawing.Size(148, 45);
+            this.Supplier.Size = new System.Drawing.Size(87, 25);
             this.Supplier.TabIndex = 9;
             this.Supplier.Text = "Supplier";
             // 
@@ -173,7 +173,7 @@
             this.leftSideBarUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBarUserControl.Location = new System.Drawing.Point(0, 0);
             this.leftSideBarUserControl.Name = "leftSideBarUserControl";
-            this.leftSideBarUserControl.Size = new System.Drawing.Size(200, 670);
+            this.leftSideBarUserControl.Size = new System.Drawing.Size(200, 548);
             this.leftSideBarUserControl.TabIndex = 1;
             // 
             // CenterPanel
@@ -182,7 +182,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(200, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(962, 670);
+            this.CenterPanel.Size = new System.Drawing.Size(619, 548);
             this.CenterPanel.TabIndex = 12;
             // 
             // SupplierDgv
@@ -195,15 +195,14 @@
             this.SupplierDgv.Name = "SupplierDgv";
             this.SupplierDgv.ReadOnly = true;
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(962, 670);
+            this.SupplierDgv.Size = new System.Drawing.Size(619, 548);
             this.SupplierDgv.TabIndex = 8;
-            this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
             // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 670);
+            this.ClientSize = new System.Drawing.Size(1019, 548);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.panel1);

@@ -9,13 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Winform.Entities;
+using Winform.Forms.CreateWindow;
 using Winform.Services;
 
 namespace Winform.Forms
 {
     public partial class CreateSupplierInvoicesForm : Form
     {
-        private string activeType;
         SupplierInvoiceService _service;
         SaleService _saleService;
         SupplierService _supplierService;
@@ -25,6 +25,7 @@ namespace Winform.Forms
             _supplierService = new SupplierService();
             _service = new SupplierInvoiceService();
             InitializeComponent();
+
         }
 
         private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
@@ -55,34 +56,27 @@ namespace Winform.Forms
 
         }
 
-        private void SupplierIDTxt_Click(object sender, EventArgs e)
+        private void OpenName_Click(object sender, EventArgs e)
         {
 
-            dataGridView1.DataSource = _supplierService.GetAll(new SupplierFilter());
-            activeType = "supplier";
         }
-
-        private void SaleIDTxt_Click(object sender, EventArgs e)
+        public void SetSupplierID(string id)
         {
-            dataGridView1.DataSource = _saleService.GetAll(new SaleFilter());
-            activeType = "sale";
+            SupplierIDTxt.Text = id;
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SupplierGridForm sgf=new SupplierGridForm(this);
+            sgf.ShowDialog();
+
+        }
+
+        private void Sgf_SupplierGridDBClick(object? sender, string e)
         {
             if(sender is DataGridView dgv)
             {
-            switch (activeType)
-            {
-                case "supplier":
-                    SupplierIDTxt.Text= dgv.CurrentRow.Cells["SupplierId"].Value.ToString();
-                        break;
-                case "sale":
-                        SaleIDTxt.Text = dgv.CurrentRow.Cells["SaleId"].Value.ToString();
-                        break;
-                default:
-                    break;
-            }
+                SupplierIDTxt.Text=dgv.CurrentRow.Cells[0].Value.ToString();
             }
         }
     }
