@@ -41,6 +41,7 @@
             this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.SupplierDgv = new System.Windows.Forms.DataGridView();
+            this.Supplier = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
@@ -146,6 +147,7 @@
             // 
             // LeftPanel
             // 
+            this.LeftPanel.Controls.Add(this.Supplier);
             this.LeftPanel.Controls.Add(this.leftSideBarUserControl);
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
@@ -184,6 +186,17 @@
             this.SupplierDgv.TabIndex = 8;
             this.SupplierDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
+            // Supplier
+            // 
+            this.Supplier.AutoSize = true;
+            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
+            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Location = new System.Drawing.Point(0, 0);
+            this.Supplier.Name = "Supplier";
+            this.Supplier.Size = new System.Drawing.Size(50, 15);
+            this.Supplier.TabIndex = 9;
+            this.Supplier.Text = "Supplier";
+            // 
             // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -198,6 +211,7 @@
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.LeftPanel.ResumeLayout(false);
+            this.LeftPanel.PerformLayout();
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).EndInit();
             this.ResumeLayout(false);
@@ -218,5 +232,6 @@
         private control.LeftSideBarUSerControl leftSideBarUserControl;
         private Panel CenterPanel;
         private DataGridView SupplierDgv;
+        private Label Supplier;
     }
 }

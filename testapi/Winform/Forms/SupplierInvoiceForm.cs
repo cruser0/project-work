@@ -22,12 +22,17 @@ namespace Winform.Forms
             _supplierInvoiceService = new SupplierInvoiceService();
             InitializeComponent();
             StatusCmb.SelectedIndex = 0;
-            SupplierInvoiceGridUserControl.buttonGet += MyControl_ButtonClicked;
-            SupplierInvoiceGridUserControl.dgvDoubleClick += MyControl_OpenDetails_Clicked;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             if(id != null) {
             SupplierIDTxt.Text = id;
             MyControl_ButtonClicked(this, EventArgs.Empty);
             }
+        }
+
+        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void MyControl_OpenDetails_Clicked(object? sender, DataGridViewCellEventArgs e)
@@ -48,12 +53,12 @@ namespace Winform.Forms
         {
             bool flagfrom = false;
             bool flagto = false;
-            if (DateFromClnd.Value != null)
+            if (DateFromClnd.Checked)
             {
                 if (!(DateFromClnd.Value <= DateTime.Now) || !(DateFromClnd.Value > new DateTime(1975, 1, 1)))
                     flagfrom = true;
             }
-            if (DateToClnd.Value != null)
+            if (DateToClnd.Checked)
             {
                 if (!(DateToClnd.Value <= DateTime.Now) || !(DateToClnd.Value >= DateFromClnd.Value))
                     flagto= true;
@@ -68,9 +73,9 @@ namespace Winform.Forms
                 MessageBox.Show("Incorrect Input Date To");
             }
 
-            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.Text,SupplierIDTxt.Text, DateFromClnd.Value, DateToClnd.Value, StatusCmb.Text);
+            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.Text,SupplierIDTxt.Text, DateFromClnd.Checked?DateFromClnd.Value:null, DateToClnd.Checked ? DateToClnd.Value : null, StatusCmb.Text);
 
-            SupplierInvoiceGridUserControl.setDataGrid(query.ToList());
+            SupplierInvoiceDgv.DataSource=query.ToList();
         }
 
     }
