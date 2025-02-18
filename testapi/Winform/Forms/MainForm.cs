@@ -22,6 +22,7 @@ namespace Winform
                     "Show Suppliers" => new SupplierForm(),
                     "Show Supplier Invoices" => new SupplierInvoiceForm(null),
                     "Show Sales" => new SaleForm(),
+                    "Add Supplier Invoice"=>new CreateSupplierInvoicesForm(),
                     _ => throw new Exception("Unknown option")
                 };
 

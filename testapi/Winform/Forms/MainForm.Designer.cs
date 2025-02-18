@@ -80,7 +80,7 @@
             // ShowCustomersStripToolButton
             // 
             this.ShowCustomersStripToolButton.Name = "ShowCustomersStripToolButton";
-            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
+            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
             this.ShowCustomersStripToolButton.Tag = "Show Customers";
             this.ShowCustomersStripToolButton.Text = "Show Customers";
             this.ShowCustomersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
@@ -88,7 +88,7 @@
             // AddCustomersStripToolButton
             // 
             this.AddCustomersStripToolButton.Name = "AddCustomersStripToolButton";
-            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
+            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
             this.AddCustomersStripToolButton.Text = "Add Customers";
             this.AddCustomersStripToolButton.Click += new System.EventHandler(this.AddCustomersStripToolButton_Click);
             // 
@@ -139,7 +139,7 @@
             this.addSupplierInvoiceToolStripMenuItem.Name = "addSupplierInvoiceToolStripMenuItem";
             this.addSupplierInvoiceToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.addSupplierInvoiceToolStripMenuItem.Text = "Add Supplier Invoice";
-            this.addSupplierInvoiceToolStripMenuItem.Click += new System.EventHandler(this.addSupplierInvoiceToolStripMenuItem_Click);
+            this.addSupplierInvoiceToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // salesToolStripMenuItem
             // 

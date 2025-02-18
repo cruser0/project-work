@@ -21,11 +21,19 @@ namespace Winform.Forms
             _customerService = new CustomerService();
             Customer customer=_customerService.GetById(id);
             IdCustomerTxt.Text = customer.CustomerId.ToString();
+            if (customer.Deprecated != null)
+            {
+                if ((bool)customer.Deprecated)
+                    StatusTxt.Text = "Deprecated";
+                else
+                    StatusTxt.Text = "Active";
+            }
             NameCustomerTxt.Text = customer.CustomerName;
             CountryCustomerTxt.Text = customer.Country;
             IdCustomerTxt.Enabled = false;
             NameCustomerTxt.Enabled = false;
             CountryCustomerTxt.Enabled = false;
+            StatusTxt.Enabled = false;
         }
 
         private void EditCustomerCbx_CheckedChanged(object sender, EventArgs e)
@@ -52,6 +60,11 @@ namespace Winform.Forms
 
                 this.Close();
             }catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void CountryCustomerLbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

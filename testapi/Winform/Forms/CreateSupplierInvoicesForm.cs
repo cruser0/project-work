@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.Models.Filters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +15,14 @@ namespace Winform.Forms
 {
     public partial class CreateSupplierInvoicesForm : Form
     {
+        private string activeType;
         SupplierInvoiceService _service;
+        SaleService _saleService;
+        SupplierService _supplierService;
         public CreateSupplierInvoicesForm()
         {
+            _saleService = new SaleService();
+            _supplierService = new SupplierService();
             _service = new SupplierInvoiceService();
             InitializeComponent();
         }
@@ -47,6 +53,37 @@ namespace Winform.Forms
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
 
+        }
+
+        private void SupplierIDTxt_Click(object sender, EventArgs e)
+        {
+
+            dataGridView1.DataSource = _supplierService.GetAll(null, null);
+            activeType = "supplier";
+        }
+
+        private void SaleIDTxt_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = _saleService.GetAll(new SaleFilter());
+            activeType = "sale";
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(sender is DataGridView dgv)
+            {
+            switch (activeType)
+            {
+                case "supplier":
+                    SupplierIDTxt.Text= dgv.CurrentRow.Cells["SupplierId"].Value.ToString();
+                        break;
+                case "sale":
+                        SaleIDTxt.Text = dgv.CurrentRow.Cells["SaleId"].Value.ToString();
+                        break;
+                default:
+                    break;
+            }
+            }
         }
     }
 }
