@@ -58,7 +58,7 @@ namespace Winform.Forms
         private void SupplierIDTxt_Click(object sender, EventArgs e)
         {
 
-            dataGridView1.DataSource = _supplierService.GetAll(null, null);
+            dataGridView1.DataSource = _supplierService.GetAll(new SupplierFilter());
             activeType = "supplier";
         }
 
