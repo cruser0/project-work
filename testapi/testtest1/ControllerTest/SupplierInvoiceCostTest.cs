@@ -1,8 +1,7 @@
-﻿
-
-using API.Controllers;
+﻿using API.Controllers;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -31,10 +30,11 @@ namespace API_Test.ControllerTest
             var supplierInvoiceCost = new List<SupplierInvoiceCostDTOGet>{
             new SupplierInvoiceCostDTOGet { SupplierInvoiceCostsId=1,SupplierInvoiceId=1,Quantity=2,Cost=100.0m }
             };
-            _mockSupplierInvoiceCostService.Setup(service => service.GetAllSupplierInvoiceCosts()).Returns(supplierInvoiceCost);
+            var filter = new SupplierInvoiceCostFilter();
+            _mockSupplierInvoiceCostService.Setup(service => service.GetAllSupplierInvoiceCosts(filter)).Returns(supplierInvoiceCost);
 
             // Act
-            var result = _supplierInvoceCostController.Get();
+            var result = _supplierInvoceCostController.Get(filter);
 
             // Assert
             var actionResult = Assert.IsType<OkObjectResult>(result);
@@ -49,10 +49,11 @@ namespace API_Test.ControllerTest
             var supplierInvoiceCost = new List<SupplierInvoiceCostDTOGet>
             {
             };
-            _mockSupplierInvoiceCostService.Setup(service => service.GetAllSupplierInvoiceCosts()).Returns(supplierInvoiceCost);
+            var filter = new SupplierInvoiceCostFilter();
+            _mockSupplierInvoiceCostService.Setup(service => service.GetAllSupplierInvoiceCosts(filter)).Returns(supplierInvoiceCost);
 
             // Act
-            var result = _supplierInvoceCostController.Get();
+            var result = _supplierInvoceCostController.Get(filter);
 
             // Assert
             var actionResult = Assert.IsType<BadRequestObjectResult>(result);

@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.EntityFrameworkCore;
@@ -46,7 +47,8 @@ namespace API_Test.ServiceTest
             _context.Sales.AddRange(sales);
             _context.SaveChanges();
 
-            var result = _saleService.GetAllSales();
+            var filter = new SaleFilter();
+            var result = _saleService.GetAllSales(filter);
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Count);
@@ -55,8 +57,8 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ReturnCorrect_GetAllSales_NoSales()
         {
-
-            var result = _saleService.GetAllSales();
+            var filter = new SaleFilter();
+            var result = _saleService.GetAllSales(filter);
 
             Assert.Equal(0, result.Count);
 
@@ -91,7 +93,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ReturnCorrect_CreateSale()
         {
-            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
@@ -220,9 +222,9 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ReturnCorrect_UpdateSale()
         {
-            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer1);
-            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao" };
+            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer2);
             _context.SaveChanges();
 
@@ -284,7 +286,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ThrowException_UpdateSale_IncorrectStatus()
         {
-            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
@@ -314,7 +316,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ThrowException_UpdateSale_IncorrectCustomerID()
         {
-            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
@@ -344,9 +346,9 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ThrowException_UpdateSale_BookingNumberLength()
         {
-            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer1);
-            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao" };
+            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer2);
             _context.SaveChanges();
 
@@ -380,9 +382,9 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ThrowException_UpdateSale_BoLNumberLength()
         {
-            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer1 = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer1);
-            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao" };
+            var customer2 = new Customer() { CustomerId = 2, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer2);
             _context.SaveChanges();
 
@@ -416,7 +418,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ReturnCorrect_DeleteSale_NoCascade()
         {
-            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
@@ -441,7 +443,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ReturnCorrect_DeleteSale_Cascade()
         {
-            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao" };
+            var customer = new Customer() { CustomerId = 1, CustomerName = "ciao", Country = "ciao", Deprecated = false };
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
@@ -468,7 +470,7 @@ namespace API_Test.ServiceTest
             _context.CustomerInvoices.Add(cusInvoice);
             _context.SaveChanges();
 
-            var supplier = new Supplier() { SupplierId = 1, SupplierName = "Nome", Country = "Country" };
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "Nome", Country = "Country", Deprecated = false };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 

@@ -128,6 +128,8 @@ namespace API.Models.Services
             var customers = _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefault();
             if (customers == null)
                 throw new ArgumentException($"There is no customer with ID {sale.CustomerId}");
+            else if ((bool)customers.Deprecated)
+                throw new ArgumentException($"The customer {sale.CustomerId} is deprecated");
 
             // Set the initial TotalRevenue to 0
             sale.TotalRevenue = 0;
@@ -174,6 +176,8 @@ namespace API.Models.Services
                 var customers = _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefault();
                 if (customers == null)
                     throw new ArgumentException($"There is no customer with ID {sale.CustomerId}");
+                else if ((bool)customers.Deprecated)
+                    throw new ArgumentException($"The customer {sale.CustomerId} is deprecated");
             }
 
             // Update the sale in the database

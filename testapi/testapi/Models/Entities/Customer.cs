@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace API.Models.Entities
+﻿namespace API.Models.Entities
 {
     public partial class Customer
     {
@@ -9,11 +6,11 @@ namespace API.Models.Entities
         {
             Sales = new HashSet<Sale>();
         }
-        [Key]  // Marks this as the primary key
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CustomerId { get; set; }
         public string? CustomerName { get; set; }
         public string? Country { get; set; }
+
+        public bool? Deprecated { get; set; }
 
         public virtual ICollection<Sale> Sales { get; set; }
 

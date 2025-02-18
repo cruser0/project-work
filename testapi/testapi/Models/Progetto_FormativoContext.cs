@@ -47,8 +47,9 @@ namespace API.Models
         {
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.Property(e => e.CustomerId)
+                entity.HasKey(e => e.CustomerId);
 
+                entity.Property(e => e.CustomerId)
                     .HasColumnName("CustomerID");
 
                 entity.Property(e => e.Country)
@@ -58,6 +59,10 @@ namespace API.Models
                 entity.Property(e => e.CustomerName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Deprecated)
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
             });
 
             modelBuilder.Entity<CustomerInvoice>(entity =>
@@ -159,6 +164,8 @@ namespace API.Models
 
             modelBuilder.Entity<Supplier>(entity =>
             {
+                entity.HasKey(e => e.SupplierId);
+
                 entity.Property(e => e.SupplierId)
 
                     .HasColumnName("SupplierID");
@@ -170,6 +177,10 @@ namespace API.Models
                 entity.Property(e => e.SupplierName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Deprecated)
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
             });
 
             modelBuilder.Entity<SupplierInvoice>(entity =>
@@ -202,6 +213,7 @@ namespace API.Models
                     .WithMany(p => p.SupplierInvoices)
                     .HasForeignKey(d => d.SupplierId)
                     .HasConstraintName("supplier_supplierInvoices_fk");
+
             });
 
             modelBuilder.Entity<SupplierInvoiceCost>(entity =>

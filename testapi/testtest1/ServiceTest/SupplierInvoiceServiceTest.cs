@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -45,7 +46,8 @@ namespace API_Test.ServiceTest
             _context.SupplierInvoices.Add(supplierInvoice);
             _context.SaveChanges();
 
-            var result = _supplierInvoiceService.GetAllSupplierInvoices();
+            var filter = new SupplierInvoiceFilter();
+            var result = _supplierInvoiceService.GetAllSupplierInvoices(filter);
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Count);
@@ -54,8 +56,8 @@ namespace API_Test.ServiceTest
         [Fact]
         public void saleService_ReturnCorrect_GetAllSupplierInvoices_NoInvoices()
         {
-
-            var result = _supplierInvoiceService.GetAllSupplierInvoices();
+            var filter = new SupplierInvoiceFilter();
+            var result = _supplierInvoiceService.GetAllSupplierInvoices(filter);
 
             Assert.Equal(0, result.Count);
 
@@ -94,7 +96,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void supplierInvoiceService_ReturnCorrect_CreateSupplierInvoice()
         {
-            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao" };
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 
@@ -146,7 +148,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void supplierService_ThrowException_CreateSupplierInvoice_WrongSaleId()
         {
-            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao" };
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 
@@ -166,7 +168,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void supplierService_ThrowException_CreateSupplierInvoice_WrongStatus()
         {
-            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao" };
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 
@@ -191,7 +193,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void supplierService_ThrowException_CreateSupplierInvoice_InvalidDate()
         {
-            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao" };
+            var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 
@@ -217,8 +219,8 @@ namespace API_Test.ServiceTest
         {
             var suppliers = new List<Supplier>()
             {
-                new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao" },
-                new Supplier() { SupplierId = 2, SupplierName = "ciao", Country = "ciao" }
+                new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated=false },
+                new Supplier() { SupplierId = 2, SupplierName = "ciao", Country = "ciao", Deprecated=false }
             };
 
             _context.Suppliers.AddRange(suppliers);
@@ -341,8 +343,8 @@ namespace API_Test.ServiceTest
         {
             var suppliers = new List<Supplier>()
             {
-                new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao" },
-                new Supplier() { SupplierId = 2, SupplierName = "ciao", Country = "ciao" }
+                new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false },
+                new Supplier() { SupplierId = 2, SupplierName = "ciao", Country = "ciao", Deprecated = false }
             };
 
             _context.Suppliers.AddRange(suppliers);

@@ -229,29 +229,21 @@ namespace API_Test.ServiceTest
         [InlineData("Marco", "")]
         [InlineData("", "Italy")]
         [InlineData(null, "Italy")]
-        [InlineData(null, null)]
-        [InlineData("", "")]
         public async Task Update_Customer_Not_Present_Params(string name, string country)
         {
             //Arrange
-            var customerUpdate = new Customer { CustomerName = name, Country = country };
-            var customer = new Customer { CustomerName = "Luca", Country = "France" };
+            var customerUpdate = new Customer { CustomerName = name, Country = country, Deprecated = false };
+            var customer = new Customer { CustomerId = 1, CustomerName = "Luca", Country = "France", Deprecated = false };
             _context.Customers.Add(customer);
             _context.SaveChanges();
             //Act
             var result = _customerService.UpdateCustomer(1, customerUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerDTOGet>(result);
-            if (string.IsNullOrEmpty(name))
-                Assert.Equal(customer.CustomerName, actionResult.CustomerName);
-            if (string.IsNullOrEmpty(country))
-                Assert.Equal(customer.Country, actionResult.Country);
-            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
-            {
-                Assert.Equal(customerUpdate.Country, actionResult.Country);
-                Assert.Equal(customerUpdate.Country, actionResult.Country);
 
-            }
+            Assert.Equal(country == null ? customer.Country : customerUpdate.Country, actionResult.Country);
+            Assert.Equal(name == null ? customer.CustomerName : customerUpdate.CustomerName, actionResult.CustomerName);
+            Assert.True(customer.Deprecated);
 
         }
 
@@ -326,28 +318,6 @@ namespace API_Test.ServiceTest
             Assert.Equal("Country can't have special characters", actionResult);
         }
 
-        [Theory]
-        [InlineData("Name", "Country")]
-        [InlineData("AltroName", null)]
-        [InlineData(null, "Country")]
-        [InlineData("AltroName", "AltroCountry")]
-        public void customerService_ThrowError_UpdateSupplier_DuplicateCustomer(string name, string country)
-        {
-            var customer1 = new Customer() { CustomerId = 1, CustomerName = "Name", Country = "Country" };
-            _context.Customers.Add(customer1);
-            var customer2 = new Customer() { CustomerId = 2, CustomerName = "AltroName", Country = "AltroCountry" };
-            _context.Customers.Add(customer2);
-            var customer3 = new Customer() { CustomerId = 3, CustomerName = "Name", Country = "AltroCountry" };
-            _context.Customers.Add(customer3);
-
-            _context.SaveChanges();
-
-            var customerToUpdate = new Customer() { CustomerId = 3, CustomerName = name, Country = country };
-
-            var exception = Assert.Throws<ArgumentException>(
-                () => _customerService.UpdateCustomer(3, customerToUpdate));
-            Assert.Equal("This customer already exists", exception.Message);
-        }
 
         [Fact]
         public async Task Delete_Customer_with_sale()

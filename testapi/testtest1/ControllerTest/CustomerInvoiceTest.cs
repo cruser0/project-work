@@ -1,6 +1,7 @@
 ﻿using API.Controllers;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -29,10 +30,11 @@ namespace API_Test.ControllerTest
             var customers = new List<CustomerInvoiceDTOGet>{
             new CustomerInvoiceDTOGet { CustomerInvoiceId=1,InvoiceAmount=100,InvoiceDate=DateTime.Now,Status="Paid",SaleId=1 }
             };
-            _mockCustomerInvoiceService.Setup(service => service.GetAllCustomerInvoices()).Returns(customers);
+            var filter = new CustomerInvoiceFilter();
+            _mockCustomerInvoiceService.Setup(service => service.GetAllCustomerInvoices(filter)).Returns(customers);
 
             // Act
-            var result = _customerController.Get();
+            var result = _customerController.Get(filter);
 
             // Assert
             var actionResult = Assert.IsType<OkObjectResult>(result);
@@ -47,10 +49,11 @@ namespace API_Test.ControllerTest
             var customers = new List<CustomerInvoiceDTOGet>
             {
             };
-            _mockCustomerInvoiceService.Setup(service => service.GetAllCustomerInvoices()).Returns(customers);
+            var filter = new CustomerInvoiceFilter();
+            _mockCustomerInvoiceService.Setup(service => service.GetAllCustomerInvoices(filter)).Returns(customers);
 
             // Act
-            var result = _customerController.Get();
+            var result = _customerController.Get(filter);
 
             // Assert
             var actionResult = Assert.IsType<BadRequestObjectResult>(result);

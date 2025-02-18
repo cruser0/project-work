@@ -46,6 +46,11 @@ namespace API.Models.Services
                 query = query.Where(x => x.Country.Contains(filter.Country));
             }
 
+            if (filter.Deprecated != null)
+            {
+                query = query.Where(x => x.Deprecated == filter.Deprecated);
+            }
+
             return query.Select(x => CustomerMapper.MapGet(x)).ToList();
         }
 
@@ -78,6 +83,12 @@ namespace API.Models.Services
             if (nullFields.Any())
                 throw new ArgumentException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
 
+            if (customer.Deprecated != null)
+                if ((bool)customer.Deprecated)
+                    throw new ArgumentException("Can't create an already deprecated customer");
+                else
+                    customer.Deprecated = false;
+
             if (customer.CustomerName.Length > 100)
                 throw new ArgumentException("Customer name is too long");
 
@@ -94,9 +105,9 @@ namespace API.Models.Services
                 _context.SaveChanges();
                 return CustomerMapper.MapGet(customer);
             }
-            catch (DbUpdateException ex)
+            catch (Exception)
             {
-                throw new Exception("Customer already esists");
+                throw new ArgumentException("This customer already exists");
             }
 
 
@@ -111,9 +122,8 @@ namespace API.Models.Services
             if (cDB == null)
                 throw new Exception("Customer not found");
 
-            // Update only the fields that are not null in the input object
-            cDB.CustomerName = customer.CustomerName ?? cDB.CustomerName;
-            cDB.Country = customer.Country ?? cDB.Country;
+
+
 
             if (customer.CustomerName != null)
                 if (customer.CustomerName.Length > 100)
@@ -128,20 +138,33 @@ namespace API.Models.Services
                     throw new ArgumentException("Country can't have special characters");
             }
 
+            Customer newCustomer = new Customer
+            {
+                CustomerName = customer.CustomerName ?? cDB.CustomerName,
+                Country = customer.Country ?? cDB.Country,
+                Deprecated = false
+            };
+
+            cDB.Deprecated = true;
+
             try
             {
                 // Save the changes to the database
                 _context.Customers.Update(cDB);
                 _context.SaveChanges();
 
+                _context.Customers.Add(newCustomer);
+                _context.SaveChanges();
+
                 // Map and return the updated customer as a DTO
-                return CustomerMapper.MapGet(cDB);
+                return CustomerMapper.MapGet(newCustomer);
             }
             catch (DbUpdateException ex)
             {
-                throw new Exception("Customer already esists");
+                throw new ArgumentException(ex.InnerException.Message);
             }
         }
+
 
         public CustomerDTOGet DeleteCustomer(int id)
         {

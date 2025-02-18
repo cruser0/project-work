@@ -13,7 +13,8 @@ namespace API.Models.Mapper
             {
 
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country
+                Country = supplier.Country,
+                Deprecated = supplier.Deprecated
 
             };
         }
@@ -25,7 +26,8 @@ namespace API.Models.Mapper
             {
 
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country
+                Country = supplier.Country,
+                Deprecated = supplier.Deprecated
 
             };
         }
@@ -38,7 +40,8 @@ namespace API.Models.Mapper
             {
                 SupplierId = supplier.SupplierId,
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country
+                Country = supplier.Country,
+                Deprecated = supplier.Deprecated
 
             };
         }
@@ -50,7 +53,8 @@ namespace API.Models.Mapper
             {
                 SupplierId = (int)supplier.SupplierId,
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country
+                Country = supplier.Country,
+                Deprecated = supplier.Deprecated
 
             };
         }

@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -217,7 +218,8 @@ namespace API_Test.ServiceTest
             _context.SaveChanges();
 
             //Act
-            var result = _customerInvoiceService.GetAllCustomerInvoices();
+            var filter = new CustomerInvoiceFilter();
+            var result = _customerInvoiceService.GetAllCustomerInvoices(filter);
 
             //Assert
             var actionResult = Assert.IsType<List<CustomerInvoiceDTOGet>>(result);
@@ -228,7 +230,8 @@ namespace API_Test.ServiceTest
         public async Task GetAll_CustomerInvoice_Empty()
         {
             //Act
-            var result = _customerInvoiceService.GetAllCustomerInvoices();
+            var filter = new CustomerInvoiceFilter();
+            var result = _customerInvoiceService.GetAllCustomerInvoices(filter);
             //Assert
             var actionResult = Assert.IsType<List<CustomerInvoiceDTOGet>>(result);
             Assert.Empty(actionResult);
@@ -383,7 +386,7 @@ namespace API_Test.ServiceTest
             _context.CustomerInvoices.Add(customerInvoice);
             _context.SaveChanges();
             //Act
-            var exception = Assert.Throws< ArgumentException >(()=> _customerInvoiceService.UpdateCustomerInvoice(1, customerInvoiceUpdate)) ;
+            var exception = Assert.Throws<ArgumentException>(() => _customerInvoiceService.UpdateCustomerInvoice(1, customerInvoiceUpdate));
             //Assert
             var action = Assert.IsType<ArgumentException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
@@ -414,7 +417,7 @@ namespace API_Test.ServiceTest
         [Theory]
         [InlineData(2)]
         [InlineData(null)]
-         
+
         public async Task Update_CustomerInvoice_SaleID_not_found(int id)
         {
             //Arrange

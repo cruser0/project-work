@@ -1,6 +1,7 @@
 ﻿using API.Controllers;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -41,10 +42,11 @@ namespace API_Test.ControllerTest
 
             }
         };
-            _mockSaleService.Setup(service => service.GetAllSales()).Returns(sales);
+            var filter = new SaleFilter();
+            _mockSaleService.Setup(service => service.GetAllSales(filter)).Returns(sales);
 
             // Act
-            var result = _saleController.Get();
+            var result = _saleController.Get(filter);
 
             // Assert
             var actionResult = Assert.IsType<OkObjectResult>(result);
@@ -56,10 +58,11 @@ namespace API_Test.ControllerTest
         public async Task Get_ReturnBadResult_Sale()
         {
             var sales = new List<SaleDTOGet>();
-            _mockSaleService.Setup(service => service.GetAllSales()).Returns(sales);
+            var filter = new SaleFilter();
+            _mockSaleService.Setup(service => service.GetAllSales(filter)).Returns(sales);
 
             // Act
-            var result = _saleController.Get();
+            var result = _saleController.Get(filter);
 
             // Assert
             var actionResult = Assert.IsType<BadRequestObjectResult>(result);

@@ -1,6 +1,7 @@
 ﻿using API.Controllers;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -39,8 +40,8 @@ namespace API_Test.ControllerTest
                     Status = "Open"
                 }
             };
-
-            _mockSupplierInvoiceService.Setup(service => service.GetAllSupplierInvoices()).Returns(supplierInvoices);
+            var filter = new SupplierInvoiceFilter();
+            _mockSupplierInvoiceService.Setup(service => service.GetAllSupplierInvoices(filter)).Returns(supplierInvoices);
             // Act
             // Assert
         }
@@ -50,10 +51,11 @@ namespace API_Test.ControllerTest
         {
             // Arrange
             var invoices = new List<SupplierInvoiceDTOGet>(); // Lista vuota
-            _mockSupplierInvoiceService.Setup(service => service.GetAllSupplierInvoices()).Returns(invoices);
+            var filter = new SupplierInvoiceFilter();
+            _mockSupplierInvoiceService.Setup(service => service.GetAllSupplierInvoices(filter)).Returns(invoices);
 
             // Act
-            var result = _supplierInvoiceController.Get();
+            var result = _supplierInvoiceController.Get(filter);
 
             // Assert
             var actionResult = Assert.IsType<BadRequestObjectResult>(result);

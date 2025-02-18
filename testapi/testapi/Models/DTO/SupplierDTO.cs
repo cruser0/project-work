@@ -6,6 +6,7 @@ public class SupplierDTO
     //public int SupplierId { get; set; }
     public string? SupplierName { get; set; }
     public string? Country { get; set; }
+    public bool? Deprecated { get; set; }
 
 
 }

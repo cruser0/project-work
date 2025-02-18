@@ -2,7 +2,6 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -45,6 +44,11 @@ namespace API.Models.Services
                 query = query.Where(x => x.Country.Contains(filter.Country));
             }
 
+            if (filter.Deprecated != null)
+            {
+                query = query.Where(x => x.Deprecated == filter.Deprecated);
+            }
+
             return query.Select(x => SupplierMapper.MapGet(x)).ToList();
         }
 
@@ -67,6 +71,13 @@ namespace API.Models.Services
             if (string.IsNullOrEmpty(supplier.SupplierName))
                 throw new ArgumentNullException("Supplier name can't be null");
 
+            if (supplier.Deprecated != null)
+                if ((bool)supplier.Deprecated)
+                    throw new ArgumentException("Can't create an already deprecated supplier");
+                else
+                    supplier.Deprecated = false;
+
+
             if (supplier.SupplierName.Length > 100)
                 throw new ArgumentException("Supplier name is too long");
 
@@ -76,18 +87,15 @@ namespace API.Models.Services
             if (!supplier.Country.All(char.IsLetter))
                 throw new ArgumentException("Country can't have special characters");
 
-            if (_context.Suppliers.Any(x => x.SupplierName.Equals(supplier.SupplierName) && x.Country.Equals(supplier.Country)))
-                throw new ArgumentException("");
-
             try
             {
                 _context.Add(supplier);
                 _context.SaveChanges();
                 return SupplierMapper.MapGet(supplier);
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
-                throw new Exception("This supplier already exists");
+                throw new ArgumentException("This supplier already exists");
             }
         }
 
@@ -96,26 +104,6 @@ namespace API.Models.Services
             var cDB = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
             if (cDB != null)
             {
-                if (supplier.SupplierName != null && supplier.Country != null)
-                {
-                    if (_context.Suppliers.Any(x => x.SupplierName.Equals(supplier.SupplierName) && x.Country.Equals(supplier.Country)))
-                        throw new ArgumentException("This supplier already exists");
-                }
-                else if (supplier.SupplierName != null)
-                {
-                    if (_context.Suppliers.Any(x => x.SupplierName.Equals(supplier.SupplierName) && x.Country.Equals(cDB.Country)))
-                        throw new ArgumentException("This supplier already exists");
-                }
-                else if (supplier.Country != null)
-                {
-                    if (_context.Suppliers.Any(x => x.SupplierName.Equals(cDB.SupplierName) && x.Country.Equals(supplier.Country)))
-                        throw new ArgumentException("This supplier already exists");
-                }
-
-                if (!string.IsNullOrEmpty(supplier.SupplierName))
-                    cDB.SupplierName = supplier.SupplierName ?? cDB.SupplierName;
-                if (!string.IsNullOrEmpty(supplier.Country))
-                    cDB.Country = supplier.Country ?? cDB.Country;
 
                 if (supplier.SupplierName != null)
                     if (supplier.SupplierName.Length > 100)
@@ -130,15 +118,27 @@ namespace API.Models.Services
                         throw new ArgumentException("Country can't have special characters");
                 }
 
+                Supplier newSupplier = new Supplier
+                {
+                    SupplierName = supplier.SupplierName ?? cDB.SupplierName,
+                    Country = supplier.Country ?? cDB.Country,
+                    Deprecated = false
+                };
+
+                cDB.Deprecated = true;
+
                 try
                 {
                     _context.Suppliers.Update(cDB);
                     _context.SaveChanges();
-                    return SupplierMapper.MapGet(cDB);
+
+                    _context.Suppliers.Add(newSupplier);
+                    _context.SaveChanges();
+                    return SupplierMapper.MapGet(newSupplier);
                 }
-                catch (DbUpdateException ex)
+                catch (Exception)
                 {
-                    throw new Exception("This supplier already exists");
+                    throw new ArgumentException("This supplier already exists");
                 }
             }
             throw new ArgumentNullException("Supplier not found");

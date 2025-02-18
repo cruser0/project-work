@@ -37,28 +37,28 @@ namespace API.Models.Services
 
             if (filter.InvoiceDateFrom.HasValue)
             {
-                if((filter.InvoiceDateFrom<=DateTime.Now&&filter.InvoiceDateFrom>new DateTime(1975,1,1)))
+                if ((filter.InvoiceDateFrom <= DateTime.Now && filter.InvoiceDateFrom > new DateTime(1975, 1, 1)))
                 {
-                    query = query.Where(x => x.InvoiceDate>=filter.InvoiceDateFrom);
+                    query = query.Where(x => x.InvoiceDate >= filter.InvoiceDateFrom);
                 }
             }
             if (filter.InvoiceDateTo.HasValue)
             {
-                if(filter.InvoiceDateTo<=DateTime.Now&&filter.InvoiceDateTo>= filter.InvoiceDateFrom)
+                if (filter.InvoiceDateTo <= DateTime.Now && filter.InvoiceDateTo >= filter.InvoiceDateFrom)
                     query = query.Where(x => x.InvoiceDate <= filter.InvoiceDateTo);
             }
 
-            if (filter.SaleID!=null)
+            if (filter.SaleID != null)
             {
-                query = query.Where(x => x.SaleId==filter.SaleID);
+                query = query.Where(x => x.SaleId == filter.SaleID);
             }
-            if (filter.SupplierID!=null)
+            if (filter.SupplierID != null)
             {
                 query = query.Where(x => x.SupplierId == filter.SupplierID);
             }
             if (!string.IsNullOrEmpty(filter.Status))
             {
-                if(!filter.Status.Equals("All"))
+                if (!filter.Status.Equals("All"))
                     query = query.Where(x => x.Status == filter.Status.ToLower());
             }
 
@@ -80,14 +80,19 @@ namespace API.Models.Services
             if (supplierInvoice == null)
                 throw new ArgumentException("Couldn't create supplier Invoice");
 
-            if (!_context.Suppliers.Any(x => x.SupplierId == supplierInvoice.SupplierId))
+            var supplier = _context.Suppliers.Where(x => x.SupplierId == supplierInvoice.SupplierId).FirstOrDefault();
+            if (supplier == null)
                 throw new ArgumentException("SupplierID not found");
+            else if ((bool)supplier.Deprecated)
+                throw new ArgumentException($"The supplier {supplierInvoice.SupplierId} is deprecated");
+
+
             if (!_context.Sales.Any(x => x.SaleId == supplierInvoice.SaleId))
                 throw new ArgumentException("SaleID not found");
 
             if (!new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
                 throw new ArgumentException("Status is not valid");
-            if (supplierInvoice.InvoiceDate == null || supplierInvoice.InvoiceDate>DateTime.Now)
+            if (supplierInvoice.InvoiceDate == null || supplierInvoice.InvoiceDate > DateTime.Now)
                 throw new ArgumentException("Date is not valid");
 
             supplierInvoice.InvoiceAmount = 0;
@@ -107,16 +112,19 @@ namespace API.Models.Services
                         siDB.SaleId = supplierInvoice.SaleId;
                     else
                         throw new ArgumentException("SaleID not present");
+
+
                 }
                 if (supplierInvoice.SupplierId != null && supplierInvoice.SupplierId >= 1)
                 {
-                    if (_context.Suppliers.Any(x => x.SupplierId == supplierInvoice.SupplierId))
-                        siDB.SupplierId = supplierInvoice.SupplierId;
-                    else
+                    var supplier = _context.Suppliers.Where(x => x.SupplierId == supplierInvoice.SupplierId).FirstOrDefault();
+                    if (supplier == null)
                         throw new ArgumentException("SupplierID not present");
+                    else if ((bool)supplier.Deprecated)
+                        throw new ArgumentException($"The supplier {supplierInvoice.SupplierId} is deprecated");
                 }
                 siDB.InvoiceAmount = supplierInvoice.InvoiceAmount ?? siDB.InvoiceAmount;
-                
+
                 siDB.InvoiceDate = supplierInvoice.InvoiceDate ?? siDB.InvoiceDate;
                 if (supplierInvoice.InvoiceDate > DateTime.Now)
                     throw new ArgumentException("Date cannot be greater than today");

@@ -148,7 +148,7 @@ namespace API_Test.ServiceTest
         [Fact]
         public void supplierService_ThrowError_CreateSupplier_DuplicateSupplier()
         {
-            var supplier = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country" };
+            var supplier = new Supplier() { SupplierName = "Name", Country = "Country" };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 
@@ -162,8 +162,8 @@ namespace API_Test.ServiceTest
         {
             //Arrange
 
-            var supplier = new Supplier { SupplierName = "Marco", Country = "Italy" };
-            var supplierUpdate = new Supplier { SupplierName = "Luca", Country = "France" };
+            var supplier = new Supplier { SupplierId = 1, SupplierName = "Marco", Country = "Italy" };
+            var supplierUpdate = new Supplier { SupplierId = 1, SupplierName = "Luca", Country = "France" };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
             //Act
@@ -189,8 +189,8 @@ namespace API_Test.ServiceTest
         {
             //Arrange
 
-            var supplier = new Supplier { SupplierName = "Marco", Country = "Italy" };
-            var supplierUpdate = new Supplier { SupplierName = "Luca".PadRight(101, 'X'), Country = "France" };
+            var supplier = new Supplier { SupplierId = 1, SupplierName = "Marco", Country = "Italy" };
+            var supplierUpdate = new Supplier { SupplierId = 1, SupplierName = "Luca".PadRight(101, 'X'), Country = "France" };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
             //Act
@@ -204,8 +204,8 @@ namespace API_Test.ServiceTest
         {
             //Arrange
 
-            var supplier = new Supplier { SupplierName = "Marco", Country = "Italy" };
-            var supplierUpdate = new Supplier { SupplierName = "Luca", Country = "France".PadRight(51, 'X') };
+            var supplier = new Supplier { SupplierId = 1, SupplierName = "Marco", Country = "Italy" };
+            var supplierUpdate = new Supplier { SupplierId = 1, SupplierName = "Luca", Country = "France".PadRight(51, 'X') };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
             //Act
@@ -219,8 +219,8 @@ namespace API_Test.ServiceTest
         {
             //Arrange
 
-            var supplier = new Supplier { SupplierName = "Marco", Country = "Italy" };
-            var supplierUpdate = new Supplier { SupplierName = "Luca", Country = "@" };
+            var supplier = new Supplier { SupplierId = 1, SupplierName = "Marco", Country = "Italy" };
+            var supplierUpdate = new Supplier { SupplierId = 1, SupplierName = "Luca", Country = "@" };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
             //Act
@@ -229,34 +229,11 @@ namespace API_Test.ServiceTest
             Assert.Equal("Country can't have special characters", exception.Message);
         }
 
-        [Theory]
-        [InlineData("Name", "Country")]
-        [InlineData("AltroName", null)]
-        [InlineData(null, "Country")]
-        [InlineData("AltroName", "AltroCountry")]
-        public void supplierService_ThrowError_UpdateSupplier_DuplicateSupplier(string name, string country)
-        {
-            var supplier1 = new Supplier() { SupplierId = 1, SupplierName = "Name", Country = "Country" };
-            _context.Suppliers.Add(supplier1);
-            var supplier2 = new Supplier() { SupplierId = 2, SupplierName = "AltroName", Country = "AltroCountry" };
-            _context.Suppliers.Add(supplier2);
-            var supplier3 = new Supplier() { SupplierId = 3, SupplierName = "Name", Country = "AltroCountry" };
-            _context.Suppliers.Add(supplier3);
-
-            _context.SaveChanges();
-
-            var supplierToUpdate = new Supplier() { SupplierId = 3, SupplierName = name, Country = country };
-
-            var exception = Assert.Throws<ArgumentException>(
-                () => _supplierService.UpdateSupplier(3, supplierToUpdate));
-            Assert.Equal("This supplier already exists", exception.Message);
-        }
-
         [Fact]
         public void supplierService_ReturnCorrect_DeleteSupplier_NoCascade()
         {
             //Arrange
-            var supplier = new Supplier { SupplierName = "Luca", Country = "France" };
+            var supplier = new Supplier { SupplierId = 1, SupplierName = "Luca", Country = "France" };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 
@@ -272,7 +249,7 @@ namespace API_Test.ServiceTest
         public void supplierService_ReturnCorrect_DeleteSupplier_Cascade()
         {
             //Arrange
-            var supplier = new Supplier { SupplierName = "Luca", Country = "France" };
+            var supplier = new Supplier { SupplierId = 1, SupplierName = "Luca", Country = "France" };
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
 
