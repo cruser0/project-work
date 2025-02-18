@@ -44,10 +44,10 @@
             this.BoLTextBox = new System.Windows.Forms.TextBox();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.LeftPanel = new System.Windows.Forms.Panel();
+            this.Supplier = new System.Windows.Forms.Label();
             this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
-            this.Supplier = new System.Windows.Forms.Label();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
@@ -229,6 +229,17 @@
             this.LeftPanel.Size = new System.Drawing.Size(200, 670);
             this.LeftPanel.TabIndex = 16;
             // 
+            // Supplier
+            // 
+            this.Supplier.AutoSize = true;
+            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
+            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Location = new System.Drawing.Point(0, 0);
+            this.Supplier.Name = "Supplier";
+            this.Supplier.Size = new System.Drawing.Size(28, 15);
+            this.Supplier.TabIndex = 10;
+            this.Supplier.Text = "Sale";
+            // 
             // leftSideBarUserControl
             // 
             this.leftSideBarUserControl.BackColor = System.Drawing.Color.DarkGray;
@@ -255,21 +266,11 @@
             this.SaleDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SaleDgv.Location = new System.Drawing.Point(0, 0);
             this.SaleDgv.Name = "SaleDgv";
+            this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
             this.SaleDgv.Size = new System.Drawing.Size(962, 670);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
-            // 
-            // Supplier
-            // 
-            this.Supplier.AutoSize = true;
-            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
-            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Supplier.Location = new System.Drawing.Point(0, 0);
-            this.Supplier.Name = "Supplier";
-            this.Supplier.Size = new System.Drawing.Size(28, 15);
-            this.Supplier.TabIndex = 10;
-            this.Supplier.Text = "Sale";
             // 
             // SaleForm
             // 

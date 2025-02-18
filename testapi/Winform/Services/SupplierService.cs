@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using API.Models.Filters;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Winform.Entities;
 
 namespace Winform.Services
@@ -53,15 +50,17 @@ namespace Winform.Services
             throw new Exception($"Error deleting supplier: {errorMessage}");
         }
 
-        public ICollection<Supplier> GetAll(string? name,string? country)
+        public ICollection<Supplier> GetAll(SupplierFilter filter)
         {
             ClientAPI client = new ClientAPI();
             var queryParameters = new List<string>();
 
-            if (!string.IsNullOrEmpty(name))
-                queryParameters.Add($"Name={name}");
-            if (!string.IsNullOrEmpty(country))
-                queryParameters.Add($"Country={country}");
+            if (!string.IsNullOrEmpty(filter.Name))
+                queryParameters.Add($"Name={filter.Name}");
+            if (!string.IsNullOrEmpty(filter.Country))
+                queryParameters.Add($"Country={filter.Country}");
+            if (filter.Deprecated != null)
+                queryParameters.Add($"Deprecated={filter.Deprecated}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 

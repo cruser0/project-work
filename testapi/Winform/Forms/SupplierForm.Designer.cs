@@ -38,10 +38,10 @@
             this.CountrySupplierTxt = new System.Windows.Forms.TextBox();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.LeftPanel = new System.Windows.Forms.Panel();
+            this.Supplier = new System.Windows.Forms.Label();
             this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.SupplierDgv = new System.Windows.Forms.DataGridView();
-            this.Supplier = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
@@ -155,6 +155,17 @@
             this.LeftPanel.Size = new System.Drawing.Size(200, 670);
             this.LeftPanel.TabIndex = 11;
             // 
+            // Supplier
+            // 
+            this.Supplier.AutoSize = true;
+            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
+            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Location = new System.Drawing.Point(0, 0);
+            this.Supplier.Name = "Supplier";
+            this.Supplier.Size = new System.Drawing.Size(50, 15);
+            this.Supplier.TabIndex = 9;
+            this.Supplier.Text = "Supplier";
+            // 
             // leftSideBarUserControl
             // 
             this.leftSideBarUserControl.BackColor = System.Drawing.Color.DarkGray;
@@ -181,21 +192,11 @@
             this.SupplierDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupplierDgv.Location = new System.Drawing.Point(0, 0);
             this.SupplierDgv.Name = "SupplierDgv";
+            this.SupplierDgv.ReadOnly = true;
             this.SupplierDgv.RowTemplate.Height = 25;
             this.SupplierDgv.Size = new System.Drawing.Size(962, 670);
             this.SupplierDgv.TabIndex = 8;
-            this.SupplierDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
-            // 
-            // Supplier
-            // 
-            this.Supplier.AutoSize = true;
-            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
-            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Supplier.Location = new System.Drawing.Point(0, 0);
-            this.Supplier.Name = "Supplier";
-            this.Supplier.Size = new System.Drawing.Size(50, 15);
-            this.Supplier.TabIndex = 9;
-            this.Supplier.Text = "Supplier";
+            this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
             // SupplierForm
             // 

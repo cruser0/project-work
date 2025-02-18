@@ -43,10 +43,10 @@
             this.SupplierIDTxt = new System.Windows.Forms.TextBox();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.LeftPanel = new System.Windows.Forms.Panel();
+            this.Supplier = new System.Windows.Forms.Label();
             this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.SupplierInvoiceDgv = new System.Windows.Forms.DataGridView();
-            this.Supplier = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
@@ -217,6 +217,17 @@
             this.LeftPanel.Size = new System.Drawing.Size(200, 647);
             this.LeftPanel.TabIndex = 17;
             // 
+            // Supplier
+            // 
+            this.Supplier.AutoSize = true;
+            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
+            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Location = new System.Drawing.Point(0, 0);
+            this.Supplier.Name = "Supplier";
+            this.Supplier.Size = new System.Drawing.Size(91, 15);
+            this.Supplier.TabIndex = 10;
+            this.Supplier.Text = "Supplier Invoice";
+            // 
             // leftSideBarUserControl
             // 
             this.leftSideBarUserControl.BackColor = System.Drawing.Color.DarkGray;
@@ -243,21 +254,11 @@
             this.SupplierInvoiceDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupplierInvoiceDgv.Location = new System.Drawing.Point(0, 0);
             this.SupplierInvoiceDgv.Name = "SupplierInvoiceDgv";
+            this.SupplierInvoiceDgv.ReadOnly = true;
             this.SupplierInvoiceDgv.RowTemplate.Height = 25;
             this.SupplierInvoiceDgv.Size = new System.Drawing.Size(847, 647);
             this.SupplierInvoiceDgv.TabIndex = 9;
             this.SupplierInvoiceDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
-            // 
-            // Supplier
-            // 
-            this.Supplier.AutoSize = true;
-            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
-            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Supplier.Location = new System.Drawing.Point(0, 0);
-            this.Supplier.Name = "Supplier";
-            this.Supplier.Size = new System.Drawing.Size(91, 15);
-            this.Supplier.TabIndex = 10;
-            this.Supplier.Text = "Supplier Invoice";
             // 
             // SupplierInvoiceForm
             // 

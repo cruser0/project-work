@@ -16,17 +16,14 @@ namespace Winform.Forms
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             RightSideBar.enterBtnEvent += RightSideBar_enterBtnEvent;
+            this.KeyPress += RightSideBar_enterBtnEvent;
 
             comboBox1.SelectedIndex = 1;
         }
 
         private void RightSideBar_enterBtnEvent(object? sender, KeyPressEventArgs e)
         {
-
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                MyControl_ButtonClicked(this, e);
-            }
+            MyControl_ButtonClicked(this, e);
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -57,8 +54,19 @@ namespace Winform.Forms
         {
             if (sender is DataGridView dgv)
             {
+                foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+                {
+                    if (form is CustomerDetailsForm)
+                    {
+                        form.Close();
+                    }
+                }
+
                 CustomerDetailsForm cdf = new CustomerDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                cdf.StartPosition = FormStartPosition.Manual;
+                cdf.Location = new Point((Width - cdf.Width) / 2, (Height - cdf.Height) / 2);
                 cdf.Show();
+                cdf.BringToFront();
             }
             else
             {

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using API.Models.Filters;
 using Winform.Entities;
 using Winform.Services;
 
@@ -23,6 +15,8 @@ namespace Winform.Forms
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+
+            comboBox1.SelectedIndex = 1;
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -32,9 +26,22 @@ namespace Winform.Forms
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
-            IEnumerable<Supplier> query = _supplierService.GetAll(NameSupplierTxt.Text, CountrySupplierTxt.Text);
+            SupplierFilter filter = new SupplierFilter
+            {
+                Name = NameSupplierTxt.Text,
+                Country = CountrySupplierTxt.Text,
+                Deprecated = comboBox1.SelectedIndex switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                }
+            };
 
-            SupplierDgv.DataSource=query.ToList();
+
+            IEnumerable<Supplier> query = _supplierService.GetAll(filter);
+
+            SupplierDgv.DataSource = query.ToList();
         }
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)

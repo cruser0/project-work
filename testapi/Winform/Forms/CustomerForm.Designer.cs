@@ -41,10 +41,10 @@
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Supplier = new System.Windows.Forms.Label();
             this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CustomerDgv = new System.Windows.Forms.DataGridView();
-            this.Supplier = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
@@ -177,6 +177,17 @@
             this.panel3.Size = new System.Drawing.Size(200, 623);
             this.panel3.TabIndex = 8;
             // 
+            // Supplier
+            // 
+            this.Supplier.AutoSize = true;
+            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
+            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Location = new System.Drawing.Point(0, 0);
+            this.Supplier.Name = "Supplier";
+            this.Supplier.Size = new System.Drawing.Size(59, 15);
+            this.Supplier.TabIndex = 10;
+            this.Supplier.Text = "Customer";
+            // 
             // leftSideBarUserControl
             // 
             this.leftSideBarUserControl.BackColor = System.Drawing.Color.DarkGray;
@@ -204,21 +215,11 @@
             this.CustomerDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomerDgv.Location = new System.Drawing.Point(0, 0);
             this.CustomerDgv.Name = "CustomerDgv";
+            this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
             this.CustomerDgv.Size = new System.Drawing.Size(891, 623);
             this.CustomerDgv.TabIndex = 7;
-            this.CustomerDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
-            // 
-            // Supplier
-            // 
-            this.Supplier.AutoSize = true;
-            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
-            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Supplier.Location = new System.Drawing.Point(0, 0);
-            this.Supplier.Name = "Supplier";
-            this.Supplier.Size = new System.Drawing.Size(59, 15);
-            this.Supplier.TabIndex = 10;
-            this.Supplier.Text = "Customer";
+            this.CustomerDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
             // CustomerForm
             // 
