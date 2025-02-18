@@ -44,6 +44,7 @@
             this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CustomerDgv = new System.Windows.Forms.DataGridView();
+            this.Supplier = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
@@ -168,6 +169,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.Supplier);
             this.panel3.Controls.Add(this.leftSideBarUserControl);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -207,6 +209,17 @@
             this.CustomerDgv.TabIndex = 7;
             this.CustomerDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
+            // Supplier
+            // 
+            this.Supplier.AutoSize = true;
+            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
+            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Location = new System.Drawing.Point(0, 0);
+            this.Supplier.Name = "Supplier";
+            this.Supplier.Size = new System.Drawing.Size(59, 15);
+            this.Supplier.TabIndex = 10;
+            this.Supplier.Text = "Customer";
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -222,6 +235,7 @@
             this.TextBoxesRightPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).EndInit();
             this.ResumeLayout(false);
@@ -244,5 +258,6 @@
         private ComboBox comboBox1;
         private control.LeftSideBarUSerControl leftSideBarUserControl;
         private DataGridView CustomerDgv;
+        private Label Supplier;
     }
 }

@@ -31,25 +31,26 @@
             this.DateFromDTP = new System.Windows.Forms.DateTimePicker();
             this.DateToDTP = new System.Windows.Forms.DateTimePicker();
             this.RigtPanel = new System.Windows.Forms.Panel();
-            this.LeftPanel = new System.Windows.Forms.Panel();
-            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.DateToLbl = new System.Windows.Forms.Label();
+            this.DateFromLbl = new System.Windows.Forms.Label();
+            this.CustomerIDLbl = new System.Windows.Forms.Label();
+            this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.StatusCB = new System.Windows.Forms.ComboBox();
             this.BNTextBox = new System.Windows.Forms.TextBox();
             this.BookingNumberLbl = new System.Windows.Forms.Label();
             this.BillofLadingLbl = new System.Windows.Forms.Label();
             this.BoLTextBox = new System.Windows.Forms.TextBox();
-            this.CustomerIDLbl = new System.Windows.Forms.Label();
-            this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
-            this.DateFromLbl = new System.Windows.Forms.Label();
-            this.DateToLbl = new System.Windows.Forms.Label();
+            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
+            this.LeftPanel = new System.Windows.Forms.Panel();
             this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
+            this.Supplier = new System.Windows.Forms.Label();
             this.RigtPanel.SuspendLayout();
-            this.LeftPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
+            this.LeftPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).BeginInit();
             this.SuspendLayout();
@@ -87,24 +88,6 @@
             this.RigtPanel.Size = new System.Drawing.Size(200, 670);
             this.RigtPanel.TabIndex = 15;
             // 
-            // LeftPanel
-            // 
-            this.LeftPanel.Controls.Add(this.leftSideBarUserControl);
-            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 670);
-            this.LeftPanel.TabIndex = 16;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
-            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 670);
-            this.RightSideBar.TabIndex = 1;
-            // 
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
@@ -124,6 +107,45 @@
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 529);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // DateToLbl
+            // 
+            this.DateToLbl.AutoSize = true;
+            this.DateToLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.Location = new System.Drawing.Point(3, 188);
+            this.DateToLbl.Name = "DateToLbl";
+            this.DateToLbl.Size = new System.Drawing.Size(56, 18);
+            this.DateToLbl.TabIndex = 10;
+            this.DateToLbl.Text = "Date To";
+            // 
+            // DateFromLbl
+            // 
+            this.DateFromLbl.AutoSize = true;
+            this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Location = new System.Drawing.Point(3, 141);
+            this.DateFromLbl.Name = "DateFromLbl";
+            this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
+            this.DateFromLbl.TabIndex = 9;
+            this.DateFromLbl.Text = "Date From";
+            // 
+            // CustomerIDLbl
+            // 
+            this.CustomerIDLbl.AutoSize = true;
+            this.CustomerIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CustomerIDLbl.Location = new System.Drawing.Point(3, 94);
+            this.CustomerIDLbl.Name = "CustomerIDLbl";
+            this.CustomerIDLbl.Size = new System.Drawing.Size(85, 18);
+            this.CustomerIDLbl.TabIndex = 8;
+            this.CustomerIDLbl.Text = "Customer ID";
+            // 
+            // CustomerIDTextBox
+            // 
+            this.CustomerIDTextBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.CustomerIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CustomerIDTextBox.Location = new System.Drawing.Point(3, 115);
+            this.CustomerIDTextBox.Name = "CustomerIDTextBox";
+            this.CustomerIDTextBox.Size = new System.Drawing.Size(194, 23);
+            this.CustomerIDTextBox.TabIndex = 7;
             // 
             // StatusLbl
             // 
@@ -188,44 +210,24 @@
             this.BoLTextBox.Size = new System.Drawing.Size(194, 23);
             this.BoLTextBox.TabIndex = 2;
             // 
-            // CustomerIDLbl
+            // RightSideBar
             // 
-            this.CustomerIDLbl.AutoSize = true;
-            this.CustomerIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CustomerIDLbl.Location = new System.Drawing.Point(3, 94);
-            this.CustomerIDLbl.Name = "CustomerIDLbl";
-            this.CustomerIDLbl.Size = new System.Drawing.Size(85, 18);
-            this.CustomerIDLbl.TabIndex = 8;
-            this.CustomerIDLbl.Text = "Customer ID";
+            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 670);
+            this.RightSideBar.TabIndex = 1;
             // 
-            // CustomerIDTextBox
+            // LeftPanel
             // 
-            this.CustomerIDTextBox.BackColor = System.Drawing.Color.Gainsboro;
-            this.CustomerIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CustomerIDTextBox.Location = new System.Drawing.Point(3, 115);
-            this.CustomerIDTextBox.Name = "CustomerIDTextBox";
-            this.CustomerIDTextBox.Size = new System.Drawing.Size(194, 23);
-            this.CustomerIDTextBox.TabIndex = 7;
-            // 
-            // DateFromLbl
-            // 
-            this.DateFromLbl.AutoSize = true;
-            this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateFromLbl.Location = new System.Drawing.Point(3, 141);
-            this.DateFromLbl.Name = "DateFromLbl";
-            this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
-            this.DateFromLbl.TabIndex = 9;
-            this.DateFromLbl.Text = "Date From";
-            // 
-            // DateToLbl
-            // 
-            this.DateToLbl.AutoSize = true;
-            this.DateToLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateToLbl.Location = new System.Drawing.Point(3, 188);
-            this.DateToLbl.Name = "DateToLbl";
-            this.DateToLbl.Size = new System.Drawing.Size(56, 18);
-            this.DateToLbl.TabIndex = 10;
-            this.DateToLbl.Text = "Date To";
+            this.LeftPanel.Controls.Add(this.Supplier);
+            this.LeftPanel.Controls.Add(this.leftSideBarUserControl);
+            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftPanel.Name = "LeftPanel";
+            this.LeftPanel.Size = new System.Drawing.Size(200, 670);
+            this.LeftPanel.TabIndex = 16;
             // 
             // leftSideBarUserControl
             // 
@@ -258,6 +260,17 @@
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
+            // Supplier
+            // 
+            this.Supplier.AutoSize = true;
+            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
+            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Supplier.Location = new System.Drawing.Point(0, 0);
+            this.Supplier.Name = "Supplier";
+            this.Supplier.Size = new System.Drawing.Size(28, 15);
+            this.Supplier.TabIndex = 10;
+            this.Supplier.Text = "Sale";
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -269,9 +282,10 @@
             this.Name = "SaleForm";
             this.Text = "SaleForm";
             this.RigtPanel.ResumeLayout(false);
-            this.LeftPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
+            this.LeftPanel.ResumeLayout(false);
+            this.LeftPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).EndInit();
             this.ResumeLayout(false);
@@ -287,8 +301,6 @@
         private Panel TextBoxesRightPanel;
         private Label DateToLbl;
         private Label DateFromLbl;
-        private Label CustomerIDLbl;
-        private TextBox CustomerIDTextBox;
         private Label StatusLbl;
         private ComboBox StatusCB;
         private TextBox BNTextBox;
@@ -298,5 +310,8 @@
         private control.LeftSideBarUSerControl leftSideBarUserControl;
         private Panel panel1;
         private DataGridView SaleDgv;
+        private Label CustomerIDLbl;
+        private TextBox CustomerIDTextBox;
+        private Label Supplier;
     }
 }
