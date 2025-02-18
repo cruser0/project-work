@@ -29,67 +29,53 @@
         private void InitializeComponent()
         {
             this.NameCustomerTxt = new System.Windows.Forms.TextBox();
-            this.IdCustomerTxt = new System.Windows.Forms.TextBox();
-            this.CountryCustomerTxt = new System.Windows.Forms.TextBox();
-            this.IdCustomerLbl = new System.Windows.Forms.Label();
             this.NameCustomerLbl = new System.Windows.Forms.Label();
-            this.CountryCustomerLbl = new System.Windows.Forms.Label();
+            this.IdCustomerLbl = new System.Windows.Forms.Label();
+            this.IdCustomerTxt = new System.Windows.Forms.TextBox();
             this.EditCustomerCbx = new System.Windows.Forms.CheckBox();
+            this.CountryCustomerLbl = new System.Windows.Forms.Label();
+            this.CountryCustomerTxt = new System.Windows.Forms.TextBox();
             this.SaveEditCustomerBtn = new System.Windows.Forms.Button();
+            this.StatusLbl = new System.Windows.Forms.Label();
+            this.StatusTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // NameCustomerTxt
             // 
-            this.NameCustomerTxt.Location = new System.Drawing.Point(342, 161);
+            this.NameCustomerTxt.Location = new System.Drawing.Point(101, 154);
             this.NameCustomerTxt.Name = "NameCustomerTxt";
             this.NameCustomerTxt.Size = new System.Drawing.Size(100, 23);
             this.NameCustomerTxt.TabIndex = 2;
             // 
-            // IdCustomerTxt
-            // 
-            this.IdCustomerTxt.Location = new System.Drawing.Point(342, 97);
-            this.IdCustomerTxt.Name = "IdCustomerTxt";
-            this.IdCustomerTxt.Size = new System.Drawing.Size(100, 23);
-            this.IdCustomerTxt.TabIndex = 1;
-            // 
-            // CountryCustomerTxt
-            // 
-            this.CountryCustomerTxt.Location = new System.Drawing.Point(342, 228);
-            this.CountryCustomerTxt.Name = "CountryCustomerTxt";
-            this.CountryCustomerTxt.Size = new System.Drawing.Size(100, 23);
-            this.CountryCustomerTxt.TabIndex = 3;
-            // 
-            // IdCustomerLbl
-            // 
-            this.IdCustomerLbl.AutoSize = true;
-            this.IdCustomerLbl.Location = new System.Drawing.Point(344, 79);
-            this.IdCustomerLbl.Name = "IdCustomerLbl";
-            this.IdCustomerLbl.Size = new System.Drawing.Size(17, 15);
-            this.IdCustomerLbl.TabIndex = 4;
-            this.IdCustomerLbl.Text = "Id";
-            // 
             // NameCustomerLbl
             // 
             this.NameCustomerLbl.AutoSize = true;
-            this.NameCustomerLbl.Location = new System.Drawing.Point(344, 145);
+            this.NameCustomerLbl.Location = new System.Drawing.Point(103, 138);
             this.NameCustomerLbl.Name = "NameCustomerLbl";
             this.NameCustomerLbl.Size = new System.Drawing.Size(39, 15);
             this.NameCustomerLbl.TabIndex = 5;
             this.NameCustomerLbl.Text = "Name";
             // 
-            // CountryCustomerLbl
+            // IdCustomerLbl
             // 
-            this.CountryCustomerLbl.AutoSize = true;
-            this.CountryCustomerLbl.Location = new System.Drawing.Point(344, 210);
-            this.CountryCustomerLbl.Name = "CountryCustomerLbl";
-            this.CountryCustomerLbl.Size = new System.Drawing.Size(50, 15);
-            this.CountryCustomerLbl.TabIndex = 6;
-            this.CountryCustomerLbl.Text = "Country";
+            this.IdCustomerLbl.AutoSize = true;
+            this.IdCustomerLbl.Location = new System.Drawing.Point(103, 44);
+            this.IdCustomerLbl.Name = "IdCustomerLbl";
+            this.IdCustomerLbl.Size = new System.Drawing.Size(17, 15);
+            this.IdCustomerLbl.TabIndex = 4;
+            this.IdCustomerLbl.Text = "Id";
+            // 
+            // IdCustomerTxt
+            // 
+            this.IdCustomerTxt.Location = new System.Drawing.Point(101, 62);
+            this.IdCustomerTxt.Name = "IdCustomerTxt";
+            this.IdCustomerTxt.Size = new System.Drawing.Size(100, 23);
+            this.IdCustomerTxt.TabIndex = 1;
             // 
             // EditCustomerCbx
             // 
             this.EditCustomerCbx.AutoSize = true;
-            this.EditCustomerCbx.Location = new System.Drawing.Point(342, 259);
+            this.EditCustomerCbx.Location = new System.Drawing.Point(101, 249);
             this.EditCustomerCbx.Name = "EditCustomerCbx";
             this.EditCustomerCbx.Size = new System.Drawing.Size(46, 19);
             this.EditCustomerCbx.TabIndex = 7;
@@ -97,9 +83,26 @@
             this.EditCustomerCbx.UseVisualStyleBackColor = true;
             this.EditCustomerCbx.CheckedChanged += new System.EventHandler(this.EditCustomerCbx_CheckedChanged);
             // 
+            // CountryCustomerLbl
+            // 
+            this.CountryCustomerLbl.AutoSize = true;
+            this.CountryCustomerLbl.Location = new System.Drawing.Point(103, 187);
+            this.CountryCustomerLbl.Name = "CountryCustomerLbl";
+            this.CountryCustomerLbl.Size = new System.Drawing.Size(50, 15);
+            this.CountryCustomerLbl.TabIndex = 6;
+            this.CountryCustomerLbl.Text = "Country";
+            this.CountryCustomerLbl.Click += new System.EventHandler(this.CountryCustomerLbl_Click);
+            // 
+            // CountryCustomerTxt
+            // 
+            this.CountryCustomerTxt.Location = new System.Drawing.Point(101, 205);
+            this.CountryCustomerTxt.Name = "CountryCustomerTxt";
+            this.CountryCustomerTxt.Size = new System.Drawing.Size(100, 23);
+            this.CountryCustomerTxt.TabIndex = 3;
+            // 
             // SaveEditCustomerBtn
             // 
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(342, 301);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(101, 274);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
             this.SaveEditCustomerBtn.Size = new System.Drawing.Size(107, 23);
             this.SaveEditCustomerBtn.TabIndex = 8;
@@ -107,11 +110,29 @@
             this.SaveEditCustomerBtn.UseVisualStyleBackColor = true;
             this.SaveEditCustomerBtn.Click += new System.EventHandler(this.SaveEditCustomerBtn_Click);
             // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Location = new System.Drawing.Point(103, 88);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
+            this.StatusLbl.TabIndex = 10;
+            this.StatusLbl.Text = "Status";
+            // 
+            // StatusTxt
+            // 
+            this.StatusTxt.Location = new System.Drawing.Point(101, 106);
+            this.StatusTxt.Name = "StatusTxt";
+            this.StatusTxt.Size = new System.Drawing.Size(100, 23);
+            this.StatusTxt.TabIndex = 9;
+            // 
             // CustomerDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(358, 342);
+            this.Controls.Add(this.StatusLbl);
+            this.Controls.Add(this.StatusTxt);
             this.Controls.Add(this.SaveEditCustomerBtn);
             this.Controls.Add(this.EditCustomerCbx);
             this.Controls.Add(this.CountryCustomerLbl);
@@ -130,12 +151,14 @@
         #endregion
 
         private TextBox NameCustomerTxt;
-        private TextBox IdCustomerTxt;
-        private TextBox CountryCustomerTxt;
-        private Label IdCustomerLbl;
         private Label NameCustomerLbl;
-        private Label CountryCustomerLbl;
+        private Label IdCustomerLbl;
+        private TextBox IdCustomerTxt;
         private CheckBox EditCustomerCbx;
+        private Label CountryCustomerLbl;
+        private TextBox CountryCustomerTxt;
         private Button SaveEditCustomerBtn;
+        private Label StatusLbl;
+        private TextBox StatusTxt;
     }
 }
