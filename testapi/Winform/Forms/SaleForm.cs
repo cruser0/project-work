@@ -15,9 +15,15 @@ namespace Winform.Forms
             InitializeComponent();
 
             StatusCB.SelectedIndex = 0;
-            baseGridUserControl1.buttonGet += MyControl_ButtonClicked;
-            baseGridUserControl1.dgvDoubleClick += MyControl_OpenDetails_Clicked;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
         }
+
+        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             SaleFilter filter = new SaleFilter
@@ -32,7 +38,7 @@ namespace Winform.Forms
 
             IEnumerable<Sale> query = _saleService.GetAll(filter);
 
-            baseGridUserControl1.setDataGrid(query.ToList());
+            SaleDgv.DataSource=query.ToList();
         }
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)

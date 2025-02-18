@@ -21,14 +21,20 @@ namespace Winform.Forms
 
             InitializeComponent();
 
-            baseGridUserControl1.buttonGet += MyControl_ButtonClicked;
-            baseGridUserControl1.dgvDoubleClick += MyControl_OpenDetails_Clicked;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
         }
+
+        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             IEnumerable<Supplier> query = _supplierService.GetAll(NameSupplierTxt.Text, CountrySupplierTxt.Text);
 
-            baseGridUserControl1.setDataGrid(query.ToList());
+            SupplierDgv.DataSource=query.ToList();
         }
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)

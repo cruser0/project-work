@@ -28,60 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.baseGridUserControl1 = new Winform.Forms.control.BaseGridUserControl();
-            this.BNTextBox = new System.Windows.Forms.TextBox();
-            this.BoLTextBox = new System.Windows.Forms.TextBox();
-            this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.DateFromDTP = new System.Windows.Forms.DateTimePicker();
             this.DateToDTP = new System.Windows.Forms.DateTimePicker();
+            this.RigtPanel = new System.Windows.Forms.Panel();
+            this.LeftPanel = new System.Windows.Forms.Panel();
+            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
+            this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.StatusLbl = new System.Windows.Forms.Label();
             this.StatusCB = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.BNTextBox = new System.Windows.Forms.TextBox();
+            this.BookingNumberLbl = new System.Windows.Forms.Label();
+            this.BillofLadingLbl = new System.Windows.Forms.Label();
+            this.BoLTextBox = new System.Windows.Forms.TextBox();
+            this.CustomerIDLbl = new System.Windows.Forms.Label();
+            this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
+            this.DateFromLbl = new System.Windows.Forms.Label();
+            this.DateToLbl = new System.Windows.Forms.Label();
+            this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.SaleDgv = new System.Windows.Forms.DataGridView();
+            this.RigtPanel.SuspendLayout();
+            this.LeftPanel.SuspendLayout();
+            this.TextBoxesRightPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).BeginInit();
             this.SuspendLayout();
-            // 
-            // baseGridUserControl1
-            // 
-            this.baseGridUserControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.baseGridUserControl1.Location = new System.Drawing.Point(0, 0);
-            this.baseGridUserControl1.Name = "baseGridUserControl1";
-            this.baseGridUserControl1.Size = new System.Drawing.Size(1362, 533);
-            this.baseGridUserControl1.TabIndex = 0;
-            // 
-            // BNTextBox
-            // 
-            this.BNTextBox.Location = new System.Drawing.Point(27, 46);
-            this.BNTextBox.Name = "BNTextBox";
-            this.BNTextBox.Size = new System.Drawing.Size(100, 23);
-            this.BNTextBox.TabIndex = 1;
-            // 
-            // BoLTextBox
-            // 
-            this.BoLTextBox.Location = new System.Drawing.Point(133, 46);
-            this.BoLTextBox.Name = "BoLTextBox";
-            this.BoLTextBox.Size = new System.Drawing.Size(100, 23);
-            this.BoLTextBox.TabIndex = 2;
-            // 
-            // CustomerIDTextBox
-            // 
-            this.CustomerIDTextBox.Location = new System.Drawing.Point(239, 46);
-            this.CustomerIDTextBox.Name = "CustomerIDTextBox";
-            this.CustomerIDTextBox.Size = new System.Drawing.Size(100, 23);
-            this.CustomerIDTextBox.TabIndex = 3;
-            this.CustomerIDTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CustomerIDTextBox_KeyPress);
             // 
             // DateFromDTP
             // 
+            this.DateFromDTP.CalendarMonthBackground = System.Drawing.Color.Gainsboro;
             this.DateFromDTP.Checked = false;
             this.DateFromDTP.CustomFormat = "ddMMMMyyyy";
             this.DateFromDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromDTP.Location = new System.Drawing.Point(345, 46);
+            this.DateFromDTP.Location = new System.Drawing.Point(3, 162);
             this.DateFromDTP.Name = "DateFromDTP";
             this.DateFromDTP.ShowCheckBox = true;
-            this.DateFromDTP.Size = new System.Drawing.Size(182, 23);
+            this.DateFromDTP.Size = new System.Drawing.Size(193, 23);
             this.DateFromDTP.TabIndex = 5;
             // 
             // DateToDTP
@@ -89,117 +71,232 @@
             this.DateToDTP.Checked = false;
             this.DateToDTP.CustomFormat = "ddMMMMyyyy";
             this.DateToDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToDTP.Location = new System.Drawing.Point(533, 46);
+            this.DateToDTP.Location = new System.Drawing.Point(3, 209);
             this.DateToDTP.Name = "DateToDTP";
             this.DateToDTP.ShowCheckBox = true;
-            this.DateToDTP.Size = new System.Drawing.Size(183, 23);
+            this.DateToDTP.Size = new System.Drawing.Size(193, 23);
             this.DateToDTP.TabIndex = 6;
+            // 
+            // RigtPanel
+            // 
+            this.RigtPanel.Controls.Add(this.TextBoxesRightPanel);
+            this.RigtPanel.Controls.Add(this.RightSideBar);
+            this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.RigtPanel.Location = new System.Drawing.Point(1162, 0);
+            this.RigtPanel.Name = "RigtPanel";
+            this.RigtPanel.Size = new System.Drawing.Size(200, 670);
+            this.RigtPanel.TabIndex = 15;
+            // 
+            // LeftPanel
+            // 
+            this.LeftPanel.Controls.Add(this.leftSideBarUserControl);
+            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftPanel.Name = "LeftPanel";
+            this.LeftPanel.Size = new System.Drawing.Size(200, 670);
+            this.LeftPanel.TabIndex = 16;
+            // 
+            // RightSideBar
+            // 
+            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 670);
+            this.RightSideBar.TabIndex = 1;
+            // 
+            // TextBoxesRightPanel
+            // 
+            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.DateToLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.CustomerIDLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.CustomerIDTextBox);
+            this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.StatusCB);
+            this.TextBoxesRightPanel.Controls.Add(this.BNTextBox);
+            this.TextBoxesRightPanel.Controls.Add(this.DateToDTP);
+            this.TextBoxesRightPanel.Controls.Add(this.BookingNumberLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.BillofLadingLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.DateFromDTP);
+            this.TextBoxesRightPanel.Controls.Add(this.BoLTextBox);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 141);
+            this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 529);
+            this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusLbl.Location = new System.Drawing.Point(3, 235);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(45, 18);
+            this.StatusLbl.TabIndex = 6;
+            this.StatusLbl.Text = "Status";
             // 
             // StatusCB
             // 
+            this.StatusCB.BackColor = System.Drawing.Color.Gainsboro;
+            this.StatusCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StatusCB.ForeColor = System.Drawing.Color.Black;
             this.StatusCB.FormattingEnabled = true;
             this.StatusCB.Items.AddRange(new object[] {
             "All",
             "Active",
             "Closed"});
-            this.StatusCB.Location = new System.Drawing.Point(722, 46);
+            this.StatusCB.Location = new System.Drawing.Point(3, 256);
             this.StatusCB.Name = "StatusCB";
-            this.StatusCB.Size = new System.Drawing.Size(123, 23);
-            this.StatusCB.TabIndex = 7;
+            this.StatusCB.Size = new System.Drawing.Size(194, 23);
+            this.StatusCB.TabIndex = 5;
             // 
-            // label1
+            // BNTextBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Booking Number";
+            this.BNTextBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.BNTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BNTextBox.Location = new System.Drawing.Point(3, 21);
+            this.BNTextBox.Name = "BNTextBox";
+            this.BNTextBox.Size = new System.Drawing.Size(194, 23);
+            this.BNTextBox.TabIndex = 1;
             // 
-            // label2
+            // BookingNumberLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(133, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 15);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Bill of Lading";
+            this.BookingNumberLbl.AutoSize = true;
+            this.BookingNumberLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BookingNumberLbl.Location = new System.Drawing.Point(3, 0);
+            this.BookingNumberLbl.Name = "BookingNumberLbl";
+            this.BookingNumberLbl.Size = new System.Drawing.Size(112, 18);
+            this.BookingNumberLbl.TabIndex = 3;
+            this.BookingNumberLbl.Text = "Booking Number";
             // 
-            // label3
+            // BillofLadingLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(239, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Customer ID";
+            this.BillofLadingLbl.AutoSize = true;
+            this.BillofLadingLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BillofLadingLbl.Location = new System.Drawing.Point(3, 47);
+            this.BillofLadingLbl.Name = "BillofLadingLbl";
+            this.BillofLadingLbl.Size = new System.Drawing.Size(89, 18);
+            this.BillofLadingLbl.TabIndex = 4;
+            this.BillofLadingLbl.Text = "Bill of Lading";
             // 
-            // label5
+            // BoLTextBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(344, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 15);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Date From";
+            this.BoLTextBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.BoLTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BoLTextBox.Location = new System.Drawing.Point(3, 68);
+            this.BoLTextBox.Name = "BoLTextBox";
+            this.BoLTextBox.Size = new System.Drawing.Size(194, 23);
+            this.BoLTextBox.TabIndex = 2;
             // 
-            // label6
+            // CustomerIDLbl
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(533, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 15);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Date To";
+            this.CustomerIDLbl.AutoSize = true;
+            this.CustomerIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CustomerIDLbl.Location = new System.Drawing.Point(3, 94);
+            this.CustomerIDLbl.Name = "CustomerIDLbl";
+            this.CustomerIDLbl.Size = new System.Drawing.Size(85, 18);
+            this.CustomerIDLbl.TabIndex = 8;
+            this.CustomerIDLbl.Text = "Customer ID";
             // 
-            // label7
+            // CustomerIDTextBox
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(722, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 15);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Status";
+            this.CustomerIDTextBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.CustomerIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CustomerIDTextBox.Location = new System.Drawing.Point(3, 115);
+            this.CustomerIDTextBox.Name = "CustomerIDTextBox";
+            this.CustomerIDTextBox.Size = new System.Drawing.Size(194, 23);
+            this.CustomerIDTextBox.TabIndex = 7;
+            // 
+            // DateFromLbl
+            // 
+            this.DateFromLbl.AutoSize = true;
+            this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Location = new System.Drawing.Point(3, 141);
+            this.DateFromLbl.Name = "DateFromLbl";
+            this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
+            this.DateFromLbl.TabIndex = 9;
+            this.DateFromLbl.Text = "Date From";
+            // 
+            // DateToLbl
+            // 
+            this.DateToLbl.AutoSize = true;
+            this.DateToLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.Location = new System.Drawing.Point(3, 188);
+            this.DateToLbl.Name = "DateToLbl";
+            this.DateToLbl.Size = new System.Drawing.Size(56, 18);
+            this.DateToLbl.TabIndex = 10;
+            this.DateToLbl.Text = "Date To";
+            // 
+            // leftSideBarUserControl
+            // 
+            this.leftSideBarUserControl.BackColor = System.Drawing.Color.DarkGray;
+            this.leftSideBarUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftSideBarUserControl.Location = new System.Drawing.Point(0, 0);
+            this.leftSideBarUserControl.Name = "leftSideBarUserControl";
+            this.leftSideBarUserControl.Size = new System.Drawing.Size(200, 670);
+            this.leftSideBarUserControl.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.SaleDgv);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(200, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(962, 670);
+            this.panel1.TabIndex = 17;
+            // 
+            // SaleDgv
+            // 
+            this.SaleDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SaleDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.SaleDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SaleDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SaleDgv.Location = new System.Drawing.Point(0, 0);
+            this.SaleDgv.Name = "SaleDgv";
+            this.SaleDgv.RowTemplate.Height = 25;
+            this.SaleDgv.Size = new System.Drawing.Size(962, 670);
+            this.SaleDgv.TabIndex = 8;
+            this.SaleDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 670);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.StatusCB);
-            this.Controls.Add(this.DateToDTP);
-            this.Controls.Add(this.DateFromDTP);
-            this.Controls.Add(this.CustomerIDTextBox);
-            this.Controls.Add(this.BoLTextBox);
-            this.Controls.Add(this.BNTextBox);
-            this.Controls.Add(this.baseGridUserControl1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.LeftPanel);
+            this.Controls.Add(this.RigtPanel);
             this.Name = "SaleForm";
             this.Text = "SaleForm";
+            this.RigtPanel.ResumeLayout(false);
+            this.LeftPanel.ResumeLayout(false);
+            this.TextBoxesRightPanel.ResumeLayout(false);
+            this.TextBoxesRightPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private control.BaseGridUserControl baseGridUserControl1;
-        private TextBox BNTextBox;
-        private TextBox BoLTextBox;
-        private TextBox CustomerIDTextBox;
         private DateTimePicker DateFromDTP;
         private DateTimePicker DateToDTP;
+        private Panel RigtPanel;
+        private Panel LeftPanel;
+        private control.RightSideBarUserControl RightSideBar;
+        private Panel TextBoxesRightPanel;
+        private Label DateToLbl;
+        private Label DateFromLbl;
+        private Label CustomerIDLbl;
+        private TextBox CustomerIDTextBox;
+        private Label StatusLbl;
         private ComboBox StatusCB;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label5;
-        private Label label6;
-        private Label label7;
+        private TextBox BNTextBox;
+        private Label BookingNumberLbl;
+        private Label BillofLadingLbl;
+        private TextBox BoLTextBox;
+        private control.LeftSideBarUSerControl leftSideBarUserControl;
+        private Panel panel1;
+        private DataGridView SaleDgv;
     }
 }
