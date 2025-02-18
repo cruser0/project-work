@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Winform.Entities;
+using Winform.Forms.CreateWindow;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -38,6 +39,12 @@ namespace Winform.Forms
             }else
                 MessageBox.Show("Name and Country must not be empty");
 
+        }
+
+        private void OpenName_Click(object sender, EventArgs e)
+        {
+            CustomerGridForm cgf=new CustomerGridForm();
+            cgf.ShowDialog();
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Winform.Forms
             SupplierDgv.DataSource = query.ToList();
         }
 
-        private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
+        private void MyControl_OpenDetails_Clicked(object sender, string e)
         {
             if (sender is DataGridView dgv)
             {
