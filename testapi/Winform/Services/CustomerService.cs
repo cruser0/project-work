@@ -30,6 +30,35 @@ namespace Winform.Services
             throw new Exception($"Error creating customer: {errorMessage}");
         }
 
+        public int Count(CustomerFilter filter)
+        {
+            ClientAPI client = new ClientAPI();
+            var queryParameters = new List<string>();
+
+            if (!string.IsNullOrEmpty(filter.Name))
+                queryParameters.Add($"Name={filter.Name}");
+            if (!string.IsNullOrEmpty(filter.Country))
+                queryParameters.Add($"Country={filter.Country}");
+            if (filter.Deprecated != null)
+                queryParameters.Add($"Deprecated={filter.Deprecated}");
+
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer/count" + queryString).Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+
+                int count = JsonSerializer.Deserialize<int>(json);
+                return count;
+
+
+            }
+            return 0;
+        }
+
         public Customer Delete(int id)
         {
             ClientAPI client = new ClientAPI();
@@ -61,6 +90,8 @@ namespace Winform.Services
                 queryParameters.Add($"Country={filter.Country}");
             if (filter.Deprecated != null)
                 queryParameters.Add($"Deprecated={filter.Deprecated}");
+            if (filter.page != null)
+                queryParameters.Add($"page={filter.page}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
             string vediamo = "/customer" + queryString;

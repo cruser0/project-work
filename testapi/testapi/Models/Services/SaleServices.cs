@@ -13,7 +13,7 @@ namespace API.Models.Services
         SaleDTOGet UpdateSale(int id, Sale sale);
         SaleDTOGet DeleteSale(int id);
 
-
+        int CountSales(SaleFilter filter);
 
     }
     public class SaleServices : ISalesService
@@ -33,10 +33,16 @@ namespace API.Models.Services
         public ICollection<SaleDTOGet> GetAllSales(SaleFilter filter)
         {
             // Retrieve all sales from the database and map each one to a SaleDTOGet
-            return ApplyFilter(filter);
+            return ApplyFilter(filter).ToList();
         }
 
-        private ICollection<SaleDTOGet> ApplyFilter(SaleFilter filter)
+        public int CountSales(SaleFilter filter)
+        {
+            // Retrieve all sales from the database and map each one to a SaleDTOGet
+            return ApplyFilter(filter).Count();
+        }
+
+        private IQueryable<SaleDTOGet> ApplyFilter(SaleFilter filter)
         {
             var query = _context.Sales.AsQueryable();
 
@@ -79,7 +85,7 @@ namespace API.Models.Services
                 query = query.Where(s => s.Status == filter.Status);
             }
 
-            return query.Select(x => SaleMapper.MapGet(x)).ToList();
+            return query.Select(x => SaleMapper.MapGet(x));
         }
 
         public SaleDTOGet GetSaleById(int id)

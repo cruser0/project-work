@@ -33,6 +33,15 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [HttpGet("count")]
+        public IActionResult GetCount([FromQuery] SupplierInvoiceCostFilter filter)
+        {
+
+            var data = _supplierInvoiceCostService.CountSupplierInvoiceCosts(filter);
+            return Ok(data);
+
+        }
+
         // GET api/<SupplierInvoiceCostController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)

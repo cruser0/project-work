@@ -8,11 +8,12 @@ namespace API.Models.Services
 {
     public interface ICustomerService
     {
-        ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter? filter);
+        ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter filter);
         CustomerDTOGet GetCustomerById(int id);
         CustomerDTOGet CreateCustomer(Customer customer);
         CustomerDTOGet UpdateCustomer(int id, Customer customer);
         CustomerDTOGet DeleteCustomer(int id);
+        int CountCustomers(CustomerFilter filter);
 
 
     }
@@ -26,13 +27,19 @@ namespace API.Models.Services
             _sService = SaleService;
         }
 
-        public ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter? filter)
+        public ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter filter)
         {
             // Retrieve all customers from the database and map them to DTOs
-            return ApplyFilter(filter);
+            return ApplyFilter(filter).ToList();
         }
 
-        private ICollection<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
+        public int CountCustomers(CustomerFilter filter)
+        {
+            return ApplyFilter(filter).Count();
+        }
+
+
+        private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
             var query = _context.Customers.AsQueryable();
 
@@ -50,8 +57,11 @@ namespace API.Models.Services
             {
                 query = query.Where(x => x.Deprecated == filter.Deprecated);
             }
-
-            return query.Select(x => CustomerMapper.MapGet(x)).ToList();
+            if (filter.page != null)
+            {
+                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+            }
+            return query.Select(x => CustomerMapper.MapGet(x));
         }
 
         public CustomerDTOGet GetCustomerById(int id)
@@ -190,6 +200,7 @@ namespace API.Models.Services
             // Map the deleted customer to DTO and return it
             return CustomerMapper.MapGet(data);
         }
+
 
     }
 }

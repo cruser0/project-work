@@ -7,18 +7,26 @@ namespace Winform.Forms
     public partial class CustomerForm : Form
     {
         private CustomerService _customerService;
+        int pages;
         public CustomerForm()
         {
             _customerService = new CustomerService();
+            pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / 100.0);
+
 
             InitializeComponent();
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             RightSideBar.enterBtnEvent += RightSideBar_enterBtnEvent;
-            this.KeyPress += RightSideBar_enterBtnEvent;
+            KeyPress += RightSideBar_enterBtnEvent;
 
             comboBox1.SelectedIndex = 1;
+            numericUpDown1.Visible = false;
+            label2.Visible = false;
+            numericUpDown1.Minimum = 1;
+            numericUpDown1.Value = 1;
+            numericUpDown1.Maximum = pages;
         }
 
         private void RightSideBar_enterBtnEvent(object? sender, KeyPressEventArgs e)
@@ -33,6 +41,9 @@ namespace Winform.Forms
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
+            if (sender is NumericUpDown && CustomerDgv.RowCount == 0)
+                return;
+
             CustomerFilter filter = new CustomerFilter
             {
                 Name = NameTxt.Text,
@@ -42,12 +53,22 @@ namespace Winform.Forms
                     1 => false,
                     2 => true,
                     _ => null
-                }
+                },
+                page = (int)numericUpDown1.Value
             };
+
 
             IEnumerable<Customer> query = _customerService.GetAll(filter);
 
             CustomerDgv.DataSource = query.ToList();
+
+            if (!numericUpDown1.Visible)
+            {
+                numericUpDown1.Visible = true;
+                label2.Visible = true;
+                label2.Text = $"{100 * ((int)numericUpDown1.Value - 1) + CustomerDgv.CurrentRow.Index + 1}/{100 * (int)numericUpDown1.Value}";
+            }
+
         }
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
@@ -68,12 +89,11 @@ namespace Winform.Forms
                 cdf.Show();
                 cdf.BringToFront();
             }
-            else
-            {
-                MessageBox.Show(sender.ToString());
+        }
 
-            }
-
+        private void CustomerDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            label2.Text = $"{100 * ((int)numericUpDown1.Value - 1) + CustomerDgv.CurrentRow.Index + 1}/{100 * (int)numericUpDown1.Value}";
         }
     }
 }

@@ -13,6 +13,9 @@ namespace API.Models.Services
         SupplierInvoiceCostDTOGet UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost);
         SupplierInvoiceCostDTOGet DeleteSupplierInvoiceCost(int id);
 
+        int CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
+
+
 
     }
     public class SupplierInvoiceCostServices : ISupplierInvoiceCostService
@@ -66,9 +69,14 @@ namespace API.Models.Services
 
         public ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
         {
-            return ApplyFilter(filter);
+            return ApplyFilter(filter).ToList();
         }
-        public ICollection<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
+
+        public int CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
+        {
+            return ApplyFilter(filter).Count();
+        }
+        public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
         {
             var query = _context.SupplierInvoiceCosts.AsQueryable();
 
@@ -88,7 +96,7 @@ namespace API.Models.Services
             }
 
 
-            return query.Select(x => SupplierInvoiceCostMapper.MapGet(x)).ToList();
+            return query.Select(x => SupplierInvoiceCostMapper.MapGet(x));
         }
 
         public SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id)

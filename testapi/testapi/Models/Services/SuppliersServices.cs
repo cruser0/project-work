@@ -13,6 +13,8 @@ namespace API.Models.Services
         SupplierDTOGet UpdateSupplier(int id, Supplier supplier);
         SupplierDTOGet DeleteSupplier(int id);
 
+        int CountSuppliers(SupplierFilter filter);
+
 
     }
     public class SupplierService : ISupplierService
@@ -27,10 +29,15 @@ namespace API.Models.Services
 
         public ICollection<SupplierDTOGet> GetAllSuppliers(SupplierFilter? filter)
         {
-            return ApplyFilter(filter);
+            return ApplyFilter(filter).ToList();
         }
 
-        private ICollection<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
+        public int CountSuppliers(SupplierFilter filter)
+        {
+            return ApplyFilter(filter).Count();
+        }
+
+        private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
         {
             var query = _context.Suppliers.AsQueryable();
 
@@ -49,7 +56,7 @@ namespace API.Models.Services
                 query = query.Where(x => x.Deprecated == filter.Deprecated);
             }
 
-            return query.Select(x => SupplierMapper.MapGet(x)).ToList();
+            return query.Select(x => SupplierMapper.MapGet(x));
         }
 
         public SupplierDTOGet GetSupplierById(int id)

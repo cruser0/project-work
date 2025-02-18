@@ -12,6 +12,7 @@ namespace API.Models.Services
         SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice);
         SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
         SupplierInvoiceDTOGet DeleteSupplierInvoice(int id);
+        int CountSupplierinvoices(SupplierInvoiceFilter? filter);
 
 
     }
@@ -28,10 +29,15 @@ namespace API.Models.Services
         public ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
         {
             // Retrieve all customers from the database and map them to DTOs
-            return ApplyFilter(filter);
+            return ApplyFilter(filter).ToList();
         }
 
-        private ICollection<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
+        public int CountSupplierinvoices(SupplierInvoiceFilter? filter)
+        {
+            return ApplyFilter(filter).Count();
+        }
+
+        private IQueryable<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
         {
             var query = _context.SupplierInvoices.AsQueryable();
 
@@ -62,7 +68,7 @@ namespace API.Models.Services
                     query = query.Where(x => x.Status == filter.Status.ToLower());
             }
 
-            return query.Select(x => SupplierInvoiceMapper.MapGet(x)).ToList();
+            return query.Select(x => SupplierInvoiceMapper.MapGet(x));
         }
 
         public SupplierInvoiceDTOGet GetSupplierInvoiceById(int id)

@@ -13,6 +13,7 @@ namespace API.Models.Services
         CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customer);
         CustomerInvoiceDTOGet UpdateCustomerInvoice(int id, CustomerInvoice customer);
         CustomerInvoiceDTOGet DeleteCustomerInvoice(int id);
+        int CountCustomerInvoices(CustomerInvoiceFilter filter);
 
 
     }
@@ -29,10 +30,16 @@ namespace API.Models.Services
         public ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices(CustomerInvoiceFilter filter)
         {
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
-            return ApplyFilter(filter);
+            return ApplyFilter(filter).ToList();
         }
 
-        public ICollection<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter filter)
+        public int CountCustomerInvoices(CustomerInvoiceFilter filter)
+        {
+            // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
+            return ApplyFilter(filter).Count();
+        }
+
+        public IQueryable<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter filter)
         {
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
             var query = _context.CustomerInvoices.AsQueryable();
@@ -65,7 +72,7 @@ namespace API.Models.Services
                 query = query.Where(s => s.Status == filter.Status);
             }
 
-            return query.Select(x => CustomerInvoiceMapper.MapGet(x)).ToList();
+            return query.Select(x => CustomerInvoiceMapper.MapGet(x));
         }
 
         public CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customerInvoice)

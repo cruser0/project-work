@@ -33,6 +33,13 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [HttpGet("count")]
+        public IActionResult GetCount([FromQuery] SupplierFilter filter)
+        {
+            var data = _supplierService.CountSuppliers(filter);
+            return Ok(data);
+        }
+
         // GET api/<SupplierController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
