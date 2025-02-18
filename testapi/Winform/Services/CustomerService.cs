@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using API.Models.Filters;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Winform.Entities;
 
 namespace Winform.Services
@@ -53,18 +50,20 @@ namespace Winform.Services
             throw new Exception($"Error deleting customer: {errorMessage}");
         }
 
-        public ICollection<Customer> GetAll(string? name,string? country)
+        public ICollection<Customer> GetAll(CustomerFilter filter)
         {
             ClientAPI client = new ClientAPI();
             var queryParameters = new List<string>();
 
-            if (!string.IsNullOrEmpty(name))
-                queryParameters.Add($"Name={name}");
-            if (!string.IsNullOrEmpty(country))
-                queryParameters.Add($"Country={country}");
+            if (!string.IsNullOrEmpty(filter.Name))
+                queryParameters.Add($"Name={filter.Name}");
+            if (!string.IsNullOrEmpty(filter.Country))
+                queryParameters.Add($"Country={filter.Country}");
+            if (filter.Deprecated != null)
+                queryParameters.Add($"Deprecated={filter.Deprecated}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
-            string vediamo="/customer" + queryString;
+            string vediamo = "/customer" + queryString;
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer" + queryString).Result;
 
             if (response.IsSuccessStatusCode)
@@ -79,10 +78,10 @@ namespace Winform.Services
                 return items;
 
             }
-                return new List<Customer>();
+            return new List<Customer>();
         }
 
-        
+
 
         public Customer GetById(int id)
         {

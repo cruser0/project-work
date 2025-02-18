@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿using API.Models.Filters;
 using Winform.Entities;
 using Winform.Services;
 
@@ -16,6 +16,8 @@ namespace Winform.Forms
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             RightSideBar.enterBtnEvent += RightSideBar_enterBtnEvent;
+
+            comboBox1.SelectedIndex = 1;
         }
 
         private void RightSideBar_enterBtnEvent(object? sender, KeyPressEventArgs e)
@@ -23,7 +25,7 @@ namespace Winform.Forms
 
             if (e.KeyChar == (char)Keys.Enter)
             {
-                MyControl_ButtonClicked(this,e);
+                MyControl_ButtonClicked(this, e);
             }
         }
 
@@ -34,9 +36,21 @@ namespace Winform.Forms
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
-            IEnumerable<Customer> query = _customerService.GetAll(NameTxt.Text, CountryTxt.Text);
+            CustomerFilter filter = new CustomerFilter
+            {
+                Name = NameTxt.Text,
+                Country = CountryTxt.Text,
+                Deprecated = comboBox1.SelectedIndex switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                }
+            };
 
-            CustomerGdv.DataSource=query.ToList();
+            IEnumerable<Customer> query = _customerService.GetAll(filter);
+
+            CustomerDgv.DataSource = query.ToList();
         }
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
