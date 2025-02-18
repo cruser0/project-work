@@ -10,19 +10,6 @@ namespace Winform
             IsMdiContainer = true;
         }
 
-        private void OpenChildForm(Form child)
-        {
-            // Close all existing MDI child forms
-            foreach (Form openForm in this.MdiChildren)
-            {
-                openForm.Close();
-            }
-
-            // Set the new form as an MDI child
-            child.MdiParent = this;
-            child.WindowState = FormWindowState.Maximized;
-            child.Show();
-        }
 
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
@@ -33,15 +20,31 @@ namespace Winform
                 {
                     "Show Customers" => new CustomerForm(),
                     "Show Suppliers" => new SupplierForm(),
-                    "Show Supplier Invoices"=> new SupplierInvoiceForm(null),
-                    "Show Supplier Invoices" => new SupplierInvoiceForm(),
+                    "Show Supplier Invoices" => new SupplierInvoiceForm(null),
                     "Show Sales" => new SaleForm(),
                     _ => throw new Exception("Unknown option")
                 };
 
-                OpenChildForm(child);
+                foreach (Control ctrl in CenterPanel.Controls)
+                {
+                    if (ctrl is Form existingForm)
+                    {
+                        existingForm.Close();
+                        existingForm.Dispose();
+                    }
+                }
+
+                CenterPanel.Controls.Clear();
+
+                child.TopLevel = false;
+                child.FormBorderStyle = FormBorderStyle.None;
+                child.Dock = DockStyle.Fill;
+
+                CenterPanel.Controls.Add(child);
+                child.Show();
             }
         }
+
 
         private void AddCustomersStripToolButton_Click(object sender, EventArgs e)
         {

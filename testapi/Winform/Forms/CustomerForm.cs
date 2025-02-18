@@ -13,14 +13,30 @@ namespace Winform.Forms
 
             InitializeComponent();
 
-            baseGridComponent.buttonGet += MyControl_ButtonClicked;
-            baseGridComponent.dgvDoubleClick += MyControl_OpenDetails_Clicked;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+            RightSideBar.enterBtnEvent += RightSideBar_enterBtnEvent;
         }
+
+        private void RightSideBar_enterBtnEvent(object? sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                MyControl_ButtonClicked(this,e);
+            }
+        }
+
+        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             IEnumerable<Customer> query = _customerService.GetAll(NameTxt.Text, CountryTxt.Text);
 
-            baseGridComponent.setDataGrid(query.ToList());
+            CustomerGdv.DataSource=query.ToList();
         }
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
@@ -35,11 +51,6 @@ namespace Winform.Forms
                 MessageBox.Show(sender.ToString());
 
             }
-
-        }
-
-        private void baseGridComponent_Load(object sender, EventArgs e)
-        {
 
         }
     }

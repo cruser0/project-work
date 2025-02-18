@@ -13,6 +13,12 @@
     <Compile Update="Forms\control\CustomerSupplierFilterUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\LeftSideBarUSerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\control\RightSideBarUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\CreateCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
