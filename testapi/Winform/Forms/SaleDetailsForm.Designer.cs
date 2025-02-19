@@ -44,6 +44,7 @@
             this.RevenueTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.EditCB = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -181,11 +182,23 @@
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // DeleteBtn
+            // 
+            this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.DeleteBtn.TabIndex = 19;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            // 
             // SaleDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.EditCB);
             this.Controls.Add(this.RevenueTxt);
@@ -227,5 +240,6 @@
         private control.IntegerTextBoxUserControl RevenueTxt;
         private CheckBox EditCB;
         private Button saveBtn;
+        private Button DeleteBtn;
     }
 }

@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.DeleteBtn = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // DeleteBtn
+            // 
+            this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.DeleteBtn.TabIndex = 19;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            // 
+            // SupplierInvoiceCostDetailsForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteBtn);
+            this.Name = "SupplierInvoiceCostDetailsForm";
             this.Text = "SupplierInvoiceCostDetailsForm";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Button DeleteBtn;
     }
 }
