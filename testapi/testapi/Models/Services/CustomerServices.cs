@@ -2,7 +2,6 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -43,7 +42,7 @@ namespace API.Models.Services
             var query = _context.Customers.AsQueryable();
             if (filter.OriginalID != null)
             {
-                query = query.Where(x=>x.OriginalID==filter.OriginalID);
+                query = query.Where(x => x.OriginalID == filter.OriginalID);
             }
             if (!string.IsNullOrEmpty(filter.Name))
             {
@@ -148,6 +147,10 @@ namespace API.Models.Services
             // If the customer does not exist, throw an exception
             if (cDB == null)
                 throw new Exception("Customer not found");
+
+            if ((bool)cDB.Deprecated)
+                throw new ArgumentException("Can't update deprecated customer");
+
             if (customer.CustomerName != null)
                 if (customer.CustomerName.Length > 100)
                     throw new ArgumentException("Customer name is too long");
@@ -159,6 +162,8 @@ namespace API.Models.Services
                 if (!customer.Country.All(char.IsLetter))
                     throw new ArgumentException("Country can't have special characters");
             }
+
+
 
             Customer newCustomer = new Customer
             {
@@ -185,7 +190,7 @@ namespace API.Models.Services
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Couldn't update customer: "+ex.InnerException.Message);
+                throw new ArgumentException("Couldn't update customer: " + ex.InnerException.Message);
             }
         }
 
