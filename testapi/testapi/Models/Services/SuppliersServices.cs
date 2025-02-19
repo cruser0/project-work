@@ -41,10 +41,28 @@ namespace API.Models.Services
         {
             var query = _context.Suppliers.AsQueryable();
 
+            if (filter.OriginalID != null)
+            {
+                query = query.Where(x => x.OriginalID == filter.OriginalID);
+            }
             if (!string.IsNullOrEmpty(filter.Name))
             {
                 query = query.Where(x => x.SupplierName.Contains(filter.Name));
             }
+            if (filter.CreatedDateFrom.HasValue)
+            {
+                if ((filter.CreatedDateFrom <= DateTime.Now && filter.CreatedDateFrom > new DateTime(1975, 1, 1)))
+                {
+                    query = query.Where(x => x.CreatedAt >= filter.CreatedDateFrom);
+                }
+            }
+            if (filter.CreatedDateTo.HasValue)
+            {
+                if (filter.CreatedDateTo <= DateTime.Now && filter.CreatedDateTo >= filter.CreatedDateTo)
+                    query = query.Where(x => x.CreatedAt <= filter.CreatedDateTo);
+            }
+
+
 
             if (!string.IsNullOrEmpty(filter.Country))
             {
@@ -87,7 +105,6 @@ namespace API.Models.Services
                 else
                     supplier.Deprecated = false;
 
-
             if (supplier.SupplierName.Length > 100)
                 throw new ArgumentException("Supplier name is too long");
 
@@ -100,6 +117,9 @@ namespace API.Models.Services
             try
             {
                 _context.Add(supplier);
+                _context.SaveChanges();
+                supplier.OriginalID = supplier.SupplierId;
+                _context.Update(supplier);
                 _context.SaveChanges();
                 return SupplierMapper.MapGet(supplier);
             }
@@ -132,7 +152,9 @@ namespace API.Models.Services
                 {
                     SupplierName = supplier.SupplierName ?? cDB.SupplierName,
                     Country = supplier.Country ?? cDB.Country,
-                    Deprecated = false
+                    Deprecated = false,
+                    OriginalID = cDB.OriginalID,
+                    CreatedAt = DateTime.Now,
                 };
 
                 cDB.Deprecated = true;

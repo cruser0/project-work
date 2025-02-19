@@ -41,10 +41,25 @@ namespace API.Models.Services
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
             var query = _context.Customers.AsQueryable();
-
+            if (filter.OriginalID != null)
+            {
+                query = query.Where(x=>x.OriginalID==filter.OriginalID);
+            }
             if (!string.IsNullOrEmpty(filter.Name))
             {
                 query = query.Where(x => x.CustomerName.Contains(filter.Name));
+            }
+            if (filter.CreatedDateFrom.HasValue)
+            {
+                if ((filter.CreatedDateFrom <= DateTime.Now && filter.CreatedDateFrom > new DateTime(1975, 1, 1)))
+                {
+                    query = query.Where(x => x.CreatedAt >= filter.CreatedDateFrom);
+                }
+            }
+            if (filter.CreatedDateTo.HasValue)
+            {
+                if (filter.CreatedDateTo <= DateTime.Now && filter.CreatedDateTo >= filter.CreatedDateTo)
+                    query = query.Where(x => x.CreatedAt <= filter.CreatedDateTo);
             }
 
             if (!string.IsNullOrEmpty(filter.Country))
@@ -112,6 +127,9 @@ namespace API.Models.Services
             {
                 _context.Customers.Add(customer);
                 _context.SaveChanges();
+                customer.OriginalID = customer.CustomerId;
+                _context.Customers.Update(customer);
+                _context.SaveChanges();
                 return CustomerMapper.MapGet(customer);
             }
             catch (Exception)
@@ -130,14 +148,9 @@ namespace API.Models.Services
             // If the customer does not exist, throw an exception
             if (cDB == null)
                 throw new Exception("Customer not found");
-
-
-
-
             if (customer.CustomerName != null)
                 if (customer.CustomerName.Length > 100)
                     throw new ArgumentException("Customer name is too long");
-
             if (customer.Country != null)
             {
                 if (customer.Country.Length > 50)
@@ -151,7 +164,9 @@ namespace API.Models.Services
             {
                 CustomerName = customer.CustomerName ?? cDB.CustomerName,
                 Country = customer.Country ?? cDB.Country,
-                Deprecated = false
+                Deprecated = false,
+                OriginalID = cDB.OriginalID,
+                CreatedAt = DateTime.Now,
             };
 
             cDB.Deprecated = true;
@@ -168,9 +183,9 @@ namespace API.Models.Services
                 // Map and return the updated customer as a DTO
                 return CustomerMapper.MapGet(newCustomer);
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
-                throw new ArgumentException(ex.InnerException.Message);
+                throw new ArgumentException("Couldn't update customer: "+ex.InnerException.Message);
             }
         }
 

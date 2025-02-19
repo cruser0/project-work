@@ -45,12 +45,16 @@ namespace API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CustomerId);
 
                 entity.Property(e => e.CustomerId)
                     .HasColumnName("CustomerID");
+
+                entity.HasIndex(c => new { c.CustomerName, c.Country })
+                .IsUnique();
 
                 entity.Property(e => e.Country)
                     .HasMaxLength(50)
@@ -63,6 +67,8 @@ namespace API.Models
                 entity.Property(e => e.Deprecated)
                     .HasColumnType("bit")
                     .HasDefaultValue(false);
+                entity.Property(e => e.OriginalID).HasColumnType("int");
+                entity.Property(e => e.CreatedAt).HasColumnType("date");
             });
 
             modelBuilder.Entity<CustomerInvoice>(entity =>
@@ -170,6 +176,9 @@ namespace API.Models
 
                     .HasColumnName("SupplierID");
 
+                entity.HasIndex(c => new { c.SupplierName, c.Country })
+               .IsUnique();
+
                 entity.Property(e => e.Country)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -181,6 +190,8 @@ namespace API.Models
                 entity.Property(e => e.Deprecated)
                     .HasColumnType("bit")
                     .HasDefaultValue(false);
+                entity.Property(e => e.OriginalID).HasColumnType("int");
+                entity.Property(e => e.CreatedAt).HasColumnType("date");
             });
 
             modelBuilder.Entity<SupplierInvoice>(entity =>
