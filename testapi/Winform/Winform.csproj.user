@@ -28,22 +28,19 @@
     <Compile Update="Forms\CreateSupplierInvoicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\CreateWindow\CustomerGridForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\CreateWindow\SaleGridForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\CreateWindow\SupplierGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\CustomerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\CustomerForm.cs">
+    <Compile Update="Forms\CreateWindow\CustomerGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SaleForm.cs">
@@ -52,16 +49,19 @@
     <Compile Update="Forms\SupplierDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\CreateWindow\SupplierGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\SupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SupplierInvoiceDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\SupplierInvoiceForm.cs">
+    <Compile Update="Forms\CreateWindow\SupplierInvoiceGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\test.cs">
+    <Compile Update="Forms\SupplierInvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

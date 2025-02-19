@@ -66,7 +66,7 @@ namespace Winform.Forms
                     existingForm.Dispose();
                 }
             }
-            SupplierInvoiceForm child = new SupplierInvoiceForm(IdSupplierTxt.Text);
+            SupplierInvoiceGridForm child = new SupplierInvoiceGridForm(IdSupplierTxt.Text);
             // Set the new form as an MDI child
             mainForm.CenterPanel.Controls.Clear();
 

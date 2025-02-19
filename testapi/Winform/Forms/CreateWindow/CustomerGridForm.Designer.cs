@@ -1,4 +1,4 @@
-﻿namespace Winform.Forms.CreateWindow
+﻿namespace Winform.Forms
 {
     partial class CustomerGridForm
     {
@@ -28,80 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.NameTxt = new System.Windows.Forms.TextBox();
+            this.CountryTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CountryLvl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.NameTxt = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CountryLvl = new System.Windows.Forms.Label();
-            this.CountryTxt = new System.Windows.Forms.TextBox();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.CustomerGdv = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CenterPanel = new System.Windows.Forms.Panel();
             this.CustomerDgv = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.TextBoxesRightPanel.SuspendLayout();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
+            this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.TextBoxesRightPanel);
-            this.panel1.Controls.Add(this.RightSideBar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(600, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 450);
-            this.panel1.TabIndex = 0;
-            // 
-            // TextBoxesRightPanel
-            // 
-            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
-            this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
-            this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.label1);
-            this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
-            this.TextBoxesRightPanel.Controls.Add(this.CountryTxt);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 106);
-            this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 287);
-            this.TextBoxesRightPanel.TabIndex = 8;
-            // 
-            // StatusLbl
-            // 
-            this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLbl.Location = new System.Drawing.Point(0, 101);
-            this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(45, 18);
-            this.StatusLbl.TabIndex = 6;
-            this.StatusLbl.Text = "Status";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.Gainsboro;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.ForeColor = System.Drawing.Color.Black;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "All",
-            "Active",
-            "Deprecated"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 122);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(191, 23);
-            this.comboBox1.TabIndex = 5;
             // 
             // NameTxt
             // 
             this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(3, 22);
+            this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
             this.NameTxt.Size = new System.Drawing.Size(194, 23);
             this.NameTxt.TabIndex = 1;
+            // 
+            // CountryTxt
+            // 
+            this.CountryTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CountryTxt.Location = new System.Drawing.Point(3, 69);
+            this.CountryTxt.MaxLength = 50;
+            this.CountryTxt.Name = "CountryTxt";
+            this.CountryTxt.Size = new System.Drawing.Size(194, 23);
+            this.CountryTxt.TabIndex = 2;
             // 
             // label1
             // 
@@ -123,14 +92,74 @@
             this.CountryLvl.TabIndex = 4;
             this.CountryLvl.Text = "Country";
             // 
-            // CountryTxt
+            // panel1
             // 
-            this.CountryTxt.BackColor = System.Drawing.Color.Gainsboro;
-            this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountryTxt.Location = new System.Drawing.Point(3, 69);
-            this.CountryTxt.Name = "CountryTxt";
-            this.CountryTxt.Size = new System.Drawing.Size(194, 23);
-            this.CountryTxt.TabIndex = 2;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.TextBoxesRightPanel);
+            this.panel1.Controls.Add(this.RightSideBar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1091, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 623);
+            this.panel1.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 551);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 15);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "label2";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(21, 513);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numericUpDown1.Size = new System.Drawing.Size(153, 23);
+            this.numericUpDown1.TabIndex = 7;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.MyControl_ButtonClicked);
+            // 
+            // TextBoxesRightPanel
+            // 
+            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
+            this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.label1);
+            this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
+            this.TextBoxesRightPanel.Controls.Add(this.CountryTxt);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 106);
+            this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 287);
+            this.TextBoxesRightPanel.TabIndex = 6;
+            // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusLbl.Location = new System.Drawing.Point(0, 101);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(45, 18);
+            this.StatusLbl.TabIndex = 6;
+            this.StatusLbl.Text = "Status";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox1.ForeColor = System.Drawing.Color.Black;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "All",
+            "Active",
+            "Deprecated"});
+            this.comboBox1.Location = new System.Drawing.Point(3, 122);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(194, 23);
+            this.comboBox1.TabIndex = 5;
             // 
             // RightSideBar
             // 
@@ -138,17 +167,36 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 450);
-            this.RightSideBar.TabIndex = 7;
+            this.RightSideBar.Size = new System.Drawing.Size(200, 623);
+            this.RightSideBar.TabIndex = 0;
             // 
-            // panel2
+            // CustomerGdv
             // 
-            this.panel2.Controls.Add(this.CustomerDgv);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(600, 450);
-            this.panel2.TabIndex = 1;
+            this.CustomerGdv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CustomerGdv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.CustomerGdv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CustomerGdv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomerGdv.Location = new System.Drawing.Point(0, 0);
+            this.CustomerGdv.Name = "CustomerGdv";
+            this.CustomerGdv.RowTemplate.Height = 25;
+            this.CustomerGdv.Size = new System.Drawing.Size(1091, 623);
+            this.CustomerGdv.TabIndex = 6;
+            this.CustomerGdv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // CenterPanel
+            // 
+            this.CenterPanel.Controls.Add(this.CustomerDgv);
+            this.CenterPanel.Controls.Add(this.CustomerGdv);
+            this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CenterPanel.Location = new System.Drawing.Point(0, 0);
+            this.CenterPanel.Name = "CenterPanel";
+            this.CenterPanel.Size = new System.Drawing.Size(1091, 623);
+            this.CenterPanel.TabIndex = 9;
             // 
             // CustomerDgv
             // 
@@ -160,40 +208,48 @@
             this.CustomerDgv.Name = "CustomerDgv";
             this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
-            this.CustomerDgv.Size = new System.Drawing.Size(600, 450);
-            this.CustomerDgv.TabIndex = 8;
-            this.CustomerDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDgv_CellDoubleClick);
+            this.CustomerDgv.Size = new System.Drawing.Size(1091, 623);
+            this.CustomerDgv.TabIndex = 7;
+            this.CustomerDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDgv_CellClick);
+            this.CustomerDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            this.CustomerDgv.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDgv_CellClick);
             // 
             // CustomerGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(1291, 623);
+            this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.panel1);
             this.Name = "CustomerGridForm";
-            this.Text = "CustomerGridForm";
+            this.Text = "testForm";
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).EndInit();
+            this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Panel panel1;
-        private Panel TextBoxesRightPanel;
-        private Label StatusLbl;
-        private ComboBox comboBox1;
         private TextBox NameTxt;
+        private TextBox CountryTxt;
         private Label label1;
         private Label CountryLvl;
-        private TextBox CountryTxt;
+        private Panel panel1;
         private control.RightSideBarUserControl RightSideBar;
+        private Panel TextBoxesRightPanel;
+        private DataGridView CustomerGdv;
+        private ContextMenuStrip contextMenuStrip1;
+        private Label StatusLbl;
+        private ComboBox comboBox1;
         private DataGridView CustomerDgv;
-        public Panel panel2;
+        private NumericUpDown numericUpDown1;
+        private Label label2;
+        public Panel CenterPanel;
     }
 }

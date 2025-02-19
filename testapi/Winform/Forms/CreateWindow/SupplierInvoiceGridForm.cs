@@ -1,26 +1,25 @@
-﻿
-using API.Models.Filters;
-using Winform.Entities;
+﻿using Winform.Entities;
 using Winform.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 
 namespace Winform.Forms
 {
-    public partial class SupplierInvoiceForm : SupplierInvoiceGridForm
+    public partial class SupplierInvoiceGridForm : Form
     {
-        public SupplierInvoiceForm()
+        SupplierInvoiceService _supplierInvoiceService;
+        private DateTime selectedDateFrom;
+        private DateTime selectedDateTo;
+        public SupplierInvoiceGridForm()
         {
+            _supplierInvoiceService = new SupplierInvoiceService();
             InitializeComponent();
-
+            StatusCmb.SelectedIndex = 0;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+        }
+        public SupplierInvoiceGridForm(string? id)
+        {
+            _supplierInvoiceService = new SupplierInvoiceService();
+            InitializeComponent();
             StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
@@ -73,19 +72,11 @@ namespace Winform.Forms
                 if (flagto)
                     MessageBox.Show("Incorrect Input Date To");
             }
-            SupplierInvoiceFilter filter = new SupplierInvoiceFilter
-            {
-                SaleID = int.Parse(SaleIDTxt.GetText()),
-                SupplierID = int.Parse(SupplierIDTxt.GetText()),
-                InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-                Status = StatusCmb.Text
-            };
 
-            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(filter);
+            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.GetText(), SupplierIDTxt.GetText(), DateFromClnd.Checked ? DateFromClnd.Value : null, DateToClnd.Checked ? DateToClnd.Value : null, StatusCmb.Text);
 
             SupplierInvoiceDgv.DataSource = query.ToList();
-
         }
+
     }
 }
