@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities;
+﻿using Winform.Entities;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -24,9 +15,10 @@ namespace Winform.Forms
             StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-            if(id != null) {
-            SupplierIDTxt.Text = id;
-            MyControl_ButtonClicked(this, EventArgs.Empty);
+            if (id != null)
+            {
+                SupplierIDTxt.Text = id;
+                MyControl_ButtonClicked(this, EventArgs.Empty);
             }
         }
 
@@ -61,21 +53,21 @@ namespace Winform.Forms
             if (DateToClnd.Checked)
             {
                 if (!(DateToClnd.Value <= DateTime.Now) || !(DateToClnd.Value >= DateFromClnd.Value))
-                    flagto= true;
+                    flagto = true;
             }
-            if(flagfrom && flagto)
+            if (flagfrom && flagto)
                 MessageBox.Show("Incorrect Input Date From and Date To");
             else
             {
-            if(flagfrom)
-                MessageBox.Show("Incorrect Input Date From");
-            if(flagto)
-                MessageBox.Show("Incorrect Input Date To");
+                if (flagfrom)
+                    MessageBox.Show("Incorrect Input Date From");
+                if (flagto)
+                    MessageBox.Show("Incorrect Input Date To");
             }
 
-            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.Text,SupplierIDTxt.Text, DateFromClnd.Checked?DateFromClnd.Value:null, DateToClnd.Checked ? DateToClnd.Value : null, StatusCmb.Text);
+            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.GetText(), SupplierIDTxt.GetText(), DateFromClnd.Checked ? DateFromClnd.Value : null, DateToClnd.Checked ? DateToClnd.Value : null, StatusCmb.Text);
 
-            SupplierInvoiceDgv.DataSource=query.ToList();
+            SupplierInvoiceDgv.DataSource = query.ToList();
         }
 
     }

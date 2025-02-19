@@ -34,9 +34,9 @@
             this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.DateClnd = new System.Windows.Forms.DateTimePicker();
             this.SaveEditCustomerBtn = new System.Windows.Forms.Button();
-            this.SaleIDTxt = new System.Windows.Forms.TextBox();
-            this.SupplierIDTxt = new System.Windows.Forms.TextBox();
             this.CreatePanel = new System.Windows.Forms.Panel();
+            this.SupplierIDTxt1 = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.SaleIDTxt1 = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.OpenSupplier = new System.Windows.Forms.Button();
             this.OpenSale = new System.Windows.Forms.Button();
             this.CreatePanel.SuspendLayout();
@@ -103,29 +103,13 @@
             this.SaveEditCustomerBtn.UseVisualStyleBackColor = true;
             this.SaveEditCustomerBtn.Click += new System.EventHandler(this.SaveEditCustomerBtn_Click);
             // 
-            // SaleIDTxt
-            // 
-            this.SaleIDTxt.AllowDrop = true;
-            this.SaleIDTxt.Location = new System.Drawing.Point(482, 197);
-            this.SaleIDTxt.Name = "SaleIDTxt";
-            this.SaleIDTxt.Size = new System.Drawing.Size(206, 23);
-            this.SaleIDTxt.TabIndex = 20;
-            // 
-            // SupplierIDTxt
-            // 
-            this.SupplierIDTxt.AllowDrop = true;
-            this.SupplierIDTxt.Location = new System.Drawing.Point(482, 254);
-            this.SupplierIDTxt.Name = "SupplierIDTxt";
-            this.SupplierIDTxt.Size = new System.Drawing.Size(206, 23);
-            this.SupplierIDTxt.TabIndex = 21;
-            // 
             // CreatePanel
             // 
             this.CreatePanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.CreatePanel.Controls.Add(this.SupplierIDTxt1);
+            this.CreatePanel.Controls.Add(this.SaleIDTxt1);
             this.CreatePanel.Controls.Add(this.OpenSupplier);
             this.CreatePanel.Controls.Add(this.OpenSale);
-            this.CreatePanel.Controls.Add(this.SupplierIDTxt);
-            this.CreatePanel.Controls.Add(this.SaleIDTxt);
             this.CreatePanel.Controls.Add(this.SaleIDLbl);
             this.CreatePanel.Controls.Add(this.SupplierIDLbl);
             this.CreatePanel.Controls.Add(this.StatusLbl);
@@ -137,6 +121,20 @@
             this.CreatePanel.Name = "CreatePanel";
             this.CreatePanel.Size = new System.Drawing.Size(1459, 635);
             this.CreatePanel.TabIndex = 29;
+            // 
+            // SupplierIDTxt1
+            // 
+            this.SupplierIDTxt1.Location = new System.Drawing.Point(482, 254);
+            this.SupplierIDTxt1.Name = "SupplierIDTxt1";
+            this.SupplierIDTxt1.Size = new System.Drawing.Size(206, 23);
+            this.SupplierIDTxt1.TabIndex = 32;
+            // 
+            // SaleIDTxt1
+            // 
+            this.SaleIDTxt1.Location = new System.Drawing.Point(482, 199);
+            this.SaleIDTxt1.Name = "SaleIDTxt1";
+            this.SaleIDTxt1.Size = new System.Drawing.Size(206, 23);
+            this.SaleIDTxt1.TabIndex = 31;
             // 
             // OpenSupplier
             // 
@@ -187,10 +185,10 @@
         private Label SupplierIDLbl;
         private DateTimePicker DateClnd;
         private Button SaveEditCustomerBtn;
-        private TextBox SaleIDTxt;
-        private TextBox SupplierIDTxt;
         private Panel CreatePanel;
         private Button OpenSupplier;
         private Button OpenSale;
+        private control.IntegerTextBoxUserControl SupplierIDTxt1;
+        private control.IntegerTextBoxUserControl SaleIDTxt1;
     }
 }

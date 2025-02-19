@@ -61,6 +61,7 @@
             this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(3, 22);
+            this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
             this.NameTxt.Size = new System.Drawing.Size(194, 23);
             this.NameTxt.TabIndex = 1;
@@ -70,6 +71,7 @@
             this.CountryTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CountryTxt.Location = new System.Drawing.Point(3, 69);
+            this.CountryTxt.MaxLength = 50;
             this.CountryTxt.Name = "CountryTxt";
             this.CountryTxt.Size = new System.Drawing.Size(194, 23);
             this.CountryTxt.TabIndex = 2;

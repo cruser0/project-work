@@ -33,12 +33,12 @@
             this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.SaleIDLbl = new System.Windows.Forms.Label();
             this.IdSupplierInvoiceLbl = new System.Windows.Forms.Label();
-            this.SupplierIDTxt = new System.Windows.Forms.TextBox();
             this.IdTxt = new System.Windows.Forms.TextBox();
-            this.SaleIDTxt = new System.Windows.Forms.TextBox();
             this.StatusCmbx = new System.Windows.Forms.ComboBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.DateClnd = new System.Windows.Forms.DateTimePicker();
+            this.SaleIDTxt1 = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.SupplierIDTxt1 = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.SuspendLayout();
             // 
             // SaveEditCustomerBtn
@@ -89,26 +89,12 @@
             this.IdSupplierInvoiceLbl.TabIndex = 12;
             this.IdSupplierInvoiceLbl.Text = "Id";
             // 
-            // SupplierIDTxt
-            // 
-            this.SupplierIDTxt.Location = new System.Drawing.Point(320, 143);
-            this.SupplierIDTxt.Name = "SupplierIDTxt";
-            this.SupplierIDTxt.Size = new System.Drawing.Size(206, 23);
-            this.SupplierIDTxt.TabIndex = 11;
-            // 
             // IdTxt
             // 
             this.IdTxt.Location = new System.Drawing.Point(320, 32);
             this.IdTxt.Name = "IdTxt";
             this.IdTxt.Size = new System.Drawing.Size(206, 23);
             this.IdTxt.TabIndex = 9;
-            // 
-            // SaleIDTxt
-            // 
-            this.SaleIDTxt.Location = new System.Drawing.Point(320, 86);
-            this.SaleIDTxt.Name = "SaleIDTxt";
-            this.SaleIDTxt.Size = new System.Drawing.Size(206, 23);
-            this.SaleIDTxt.TabIndex = 10;
             // 
             // StatusCmbx
             // 
@@ -137,11 +123,27 @@
             this.DateClnd.Size = new System.Drawing.Size(206, 23);
             this.DateClnd.TabIndex = 19;
             // 
+            // SaleIDTxt1
+            // 
+            this.SaleIDTxt1.Location = new System.Drawing.Point(320, 88);
+            this.SaleIDTxt1.Name = "SaleIDTxt1";
+            this.SaleIDTxt1.Size = new System.Drawing.Size(206, 23);
+            this.SaleIDTxt1.TabIndex = 20;
+            // 
+            // SupplierIDTxt1
+            // 
+            this.SupplierIDTxt1.Location = new System.Drawing.Point(320, 143);
+            this.SupplierIDTxt1.Name = "SupplierIDTxt1";
+            this.SupplierIDTxt1.Size = new System.Drawing.Size(206, 23);
+            this.SupplierIDTxt1.TabIndex = 21;
+            // 
             // SupplierInvoiceDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SupplierIDTxt1);
+            this.Controls.Add(this.SaleIDTxt1);
             this.Controls.Add(this.DateClnd);
             this.Controls.Add(this.StatusLbl);
             this.Controls.Add(this.StatusCmbx);
@@ -150,9 +152,7 @@
             this.Controls.Add(this.SupplierIDLbl);
             this.Controls.Add(this.SaleIDLbl);
             this.Controls.Add(this.IdSupplierInvoiceLbl);
-            this.Controls.Add(this.SupplierIDTxt);
             this.Controls.Add(this.IdTxt);
-            this.Controls.Add(this.SaleIDTxt);
             this.Name = "SupplierInvoiceDetailsForm";
             this.Text = "SupplierInvoiceDetailsForm";
             this.ResumeLayout(false);
@@ -167,11 +167,11 @@
         private Label SupplierIDLbl;
         private Label SaleIDLbl;
         private Label IdSupplierInvoiceLbl;
-        private TextBox SupplierIDTxt;
         private TextBox IdTxt;
-        private TextBox SaleIDTxt;
         private ComboBox StatusCmbx;
         private Label StatusLbl;
         private DateTimePicker DateClnd;
+        private control.IntegerTextBoxUserControl SaleIDTxt1;
+        private control.IntegerTextBoxUserControl SupplierIDTxt1;
     }
 }

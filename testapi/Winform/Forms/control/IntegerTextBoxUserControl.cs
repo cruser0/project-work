@@ -21,5 +21,10 @@
         {
             return NumericTxt.Text;
         }
+
+        public void SetText(string text)
+        {
+            NumericTxt.Text = text;
+        }
     }
 }

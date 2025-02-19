@@ -31,16 +31,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.RigtPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.SupplierIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.SaleIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.label1 = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
             this.DateToLbl = new System.Windows.Forms.Label();
             this.StatusCmb = new System.Windows.Forms.ComboBox();
-            this.SaleIDTxt = new System.Windows.Forms.TextBox();
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
             this.SaleIDLbl = new System.Windows.Forms.Label();
             this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
-            this.SupplierIDTxt = new System.Windows.Forms.TextBox();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.Supplier = new System.Windows.Forms.Label();
@@ -77,20 +77,34 @@
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.SupplierIDTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.SaleIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateToLbl);
             this.TextBoxesRightPanel.Controls.Add(this.StatusCmb);
-            this.TextBoxesRightPanel.Controls.Add(this.SaleIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.DateToClnd);
             this.TextBoxesRightPanel.Controls.Add(this.SaleIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.SupplierIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
-            this.TextBoxesRightPanel.Controls.Add(this.SupplierIDTxt);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 141);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 529);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // SupplierIDTxt
+            // 
+            this.SupplierIDTxt.Location = new System.Drawing.Point(3, 68);
+            this.SupplierIDTxt.Name = "SupplierIDTxt";
+            this.SupplierIDTxt.Size = new System.Drawing.Size(194, 23);
+            this.SupplierIDTxt.TabIndex = 12;
+            // 
+            // SaleIDTxt
+            // 
+            this.SaleIDTxt.Location = new System.Drawing.Point(3, 21);
+            this.SaleIDTxt.Name = "SaleIDTxt";
+            this.SaleIDTxt.Size = new System.Drawing.Size(194, 23);
+            this.SaleIDTxt.TabIndex = 11;
             // 
             // label1
             // 
@@ -137,15 +151,6 @@
             this.StatusCmb.Size = new System.Drawing.Size(194, 23);
             this.StatusCmb.TabIndex = 5;
             // 
-            // SaleIDTxt
-            // 
-            this.SaleIDTxt.BackColor = System.Drawing.Color.Gainsboro;
-            this.SaleIDTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SaleIDTxt.Location = new System.Drawing.Point(3, 21);
-            this.SaleIDTxt.Name = "SaleIDTxt";
-            this.SaleIDTxt.Size = new System.Drawing.Size(194, 23);
-            this.SaleIDTxt.TabIndex = 1;
-            // 
             // DateToClnd
             // 
             this.DateToClnd.Checked = false;
@@ -188,15 +193,6 @@
             this.DateFromClnd.ShowCheckBox = true;
             this.DateFromClnd.Size = new System.Drawing.Size(193, 23);
             this.DateFromClnd.TabIndex = 5;
-            // 
-            // SupplierIDTxt
-            // 
-            this.SupplierIDTxt.BackColor = System.Drawing.Color.Gainsboro;
-            this.SupplierIDTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SupplierIDTxt.Location = new System.Drawing.Point(3, 68);
-            this.SupplierIDTxt.Name = "SupplierIDTxt";
-            this.SupplierIDTxt.Size = new System.Drawing.Size(194, 23);
-            this.SupplierIDTxt.TabIndex = 2;
             // 
             // RightSideBar
             // 
@@ -291,17 +287,17 @@
         private Label DateFromLbl;
         private Label DateToLbl;
         private ComboBox StatusCmb;
-        private TextBox SaleIDTxt;
         private DateTimePicker DateToClnd;
         private Label SaleIDLbl;
         private Label SupplierIDLbl;
         private DateTimePicker DateFromClnd;
-        private TextBox SupplierIDTxt;
         private control.RightSideBarUserControl RightSideBar;
         private Panel LeftPanel;
         private Panel CenterPanel;
         private DataGridView SupplierInvoiceDgv;
         private control.LeftSideBarUSerControl leftSideBarUserControl;
         private Label Supplier;
+        private control.IntegerTextBoxUserControl SaleIDTxt;
+        private control.IntegerTextBoxUserControl SupplierIDTxt;
     }
 }

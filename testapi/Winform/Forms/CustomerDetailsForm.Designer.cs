@@ -31,13 +31,13 @@
             this.NameCustomerTxt = new System.Windows.Forms.TextBox();
             this.NameCustomerLbl = new System.Windows.Forms.Label();
             this.IdCustomerLbl = new System.Windows.Forms.Label();
-            this.IdCustomerTxt = new System.Windows.Forms.TextBox();
             this.EditCustomerCbx = new System.Windows.Forms.CheckBox();
             this.CountryCustomerLbl = new System.Windows.Forms.Label();
             this.CountryCustomerTxt = new System.Windows.Forms.TextBox();
             this.SaveEditCustomerBtn = new System.Windows.Forms.Button();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.StatusTxt = new System.Windows.Forms.TextBox();
+            this.IdCustomerTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // NameCustomerTxt
@@ -64,13 +64,6 @@
             this.IdCustomerLbl.Size = new System.Drawing.Size(17, 15);
             this.IdCustomerLbl.TabIndex = 4;
             this.IdCustomerLbl.Text = "Id";
-            // 
-            // IdCustomerTxt
-            // 
-            this.IdCustomerTxt.Location = new System.Drawing.Point(101, 62);
-            this.IdCustomerTxt.Name = "IdCustomerTxt";
-            this.IdCustomerTxt.Size = new System.Drawing.Size(100, 23);
-            this.IdCustomerTxt.TabIndex = 1;
             // 
             // EditCustomerCbx
             // 
@@ -126,11 +119,19 @@
             this.StatusTxt.Size = new System.Drawing.Size(100, 23);
             this.StatusTxt.TabIndex = 9;
             // 
+            // IdCustomerTxt
+            // 
+            this.IdCustomerTxt.Location = new System.Drawing.Point(101, 62);
+            this.IdCustomerTxt.Name = "IdCustomerTxt";
+            this.IdCustomerTxt.Size = new System.Drawing.Size(100, 23);
+            this.IdCustomerTxt.TabIndex = 11;
+            // 
             // CustomerDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 342);
+            this.Controls.Add(this.IdCustomerTxt);
             this.Controls.Add(this.StatusLbl);
             this.Controls.Add(this.StatusTxt);
             this.Controls.Add(this.SaveEditCustomerBtn);
@@ -139,7 +140,6 @@
             this.Controls.Add(this.NameCustomerLbl);
             this.Controls.Add(this.IdCustomerLbl);
             this.Controls.Add(this.CountryCustomerTxt);
-            this.Controls.Add(this.IdCustomerTxt);
             this.Controls.Add(this.NameCustomerTxt);
             this.Name = "CustomerDetailsForm";
             this.Text = "CustomerDetailsForm";
@@ -153,12 +153,12 @@
         private TextBox NameCustomerTxt;
         private Label NameCustomerLbl;
         private Label IdCustomerLbl;
-        private TextBox IdCustomerTxt;
         private CheckBox EditCustomerCbx;
         private Label CountryCustomerLbl;
         private TextBox CountryCustomerTxt;
         private Button SaveEditCustomerBtn;
         private Label StatusLbl;
         private TextBox StatusTxt;
+        private TextBox IdCustomerTxt;
     }
 }

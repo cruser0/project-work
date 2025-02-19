@@ -35,6 +35,7 @@
             // 
             this.NumericTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.NumericTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NumericTxt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NumericTxt.Location = new System.Drawing.Point(0, 0);
             this.NumericTxt.Name = "NumericTxt";
             this.NumericTxt.Size = new System.Drawing.Size(194, 23);

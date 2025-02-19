@@ -109,43 +109,64 @@ namespace API.Models.Services
 
         public SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice)
         {
-            var siDB = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
-            if (siDB != null)
+            var siDB = _context.SupplierInvoices.FirstOrDefault(x => x.InvoiceId == id);
+
+            if (siDB == null)
             {
-                if (supplierInvoice.SaleId != null && supplierInvoice.SaleId >= 1)
+                throw new ArgumentException("Supplier Invoice not found");
+            }
+
+            if (supplierInvoice.SaleId != null)
+            {
+                if (!_context.Sales.Any(x => x.SaleId == supplierInvoice.SaleId))
                 {
-                    if (_context.Sales.Any(x => x.SaleId == supplierInvoice.SaleId))
-                        siDB.SaleId = supplierInvoice.SaleId;
-                    else
-                        throw new ArgumentException("SaleID not present");
-
-
+                    throw new ArgumentException("SaleID not present");
                 }
-                if (supplierInvoice.SupplierId != null && supplierInvoice.SupplierId >= 1)
+                siDB.SaleId = supplierInvoice.SaleId;
+            }
+
+            if (supplierInvoice.SupplierId != null)
+            {
+                var supplier = _context.Suppliers.FirstOrDefault(x => x.SupplierId == supplierInvoice.SupplierId);
+                if (supplier == null)
                 {
-                    var supplier = _context.Suppliers.Where(x => x.SupplierId == supplierInvoice.SupplierId).FirstOrDefault();
-                    if (supplier == null)
-                        throw new ArgumentException("SupplierID not present");
-                    else if ((bool)supplier.Deprecated)
-                        throw new ArgumentException($"The supplier {supplierInvoice.SupplierId} is deprecated");
+                    throw new ArgumentException("SupplierID not present");
                 }
-                siDB.InvoiceAmount = supplierInvoice.InvoiceAmount ?? siDB.InvoiceAmount;
 
-                siDB.InvoiceDate = supplierInvoice.InvoiceDate ?? siDB.InvoiceDate;
-                if (supplierInvoice.InvoiceDate > DateTime.Now)
-                    throw new ArgumentException("Date cannot be greater than today");
-                if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
+                if ((bool)supplier.Deprecated)
+                {
+                    throw new ArgumentException($"The supplier {supplierInvoice.SupplierId} is deprecated");
+                }
+
+                siDB.SupplierId = supplierInvoice.SupplierId;
+            }
+
+            if (supplierInvoice.InvoiceDate > DateTime.Now)
+            {
+                throw new ArgumentException("Date cannot be greater than today");
+            }
+
+            siDB.InvoiceAmount = supplierInvoice.InvoiceAmount ?? siDB.InvoiceAmount;
+            siDB.InvoiceDate = supplierInvoice.InvoiceDate ?? siDB.InvoiceDate;
+
+
+            if (supplierInvoice.Status != null)
+            {
+                if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.ToLower()))
                 {
                     siDB.Status = supplierInvoice.Status ?? siDB.Status;
                 }
                 else
+                {
                     throw new ArgumentException("Status not correct");
-
-                _context.SupplierInvoices.Update(siDB);
-                _context.SaveChanges();
-                return SupplierInvoiceMapper.MapGet(siDB);
+                }
             }
-            throw new ArgumentException("Supplier Invoice not found");
+
+
+            _context.SupplierInvoices.Update(siDB);
+            _context.SaveChanges();
+
+            return SupplierInvoiceMapper.MapGet(siDB);
         }
 
         public SupplierInvoiceDTOGet DeleteSupplierInvoice(int id)
