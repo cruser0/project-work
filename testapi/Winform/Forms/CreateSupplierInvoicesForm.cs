@@ -45,11 +45,6 @@ namespace Winform.Forms
             }
 
         }
-
-        private void OpenName_Click(object sender, EventArgs e)
-        {
-
-        }
         public void SetSupplierID(string id)
         {
             SupplierIDTxt1.SetText(id);
@@ -68,6 +63,16 @@ namespace Winform.Forms
             {
                 SupplierIDTxt1.SetText(dgv.CurrentRow.Cells[0].Value.ToString());
             }
+        }
+
+        private void OpenSale_Click(object sender, EventArgs e)
+        {
+            SaleGridForm sgf = new SaleGridForm(this);
+            sgf.ShowDialog();
+        }
+        public void SetSaleID(string id)
+        {
+            SaleIDTxt.Text = id;
         }
     }
 }

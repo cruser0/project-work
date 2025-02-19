@@ -1,52 +1,28 @@
-﻿using API.Models.Filters;
-using Winform.Entities;
-using Winform.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Winform.Forms
 {
-    public partial class SaleForm : Form
+    public partial class SaleForm : SaleGridForm
     {
-
-        private SaleService _saleService;
         public SaleForm()
         {
-            _saleService = new SaleService();
-
             InitializeComponent();
-
-            StatusCB.SelectedIndex = 0;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
         }
 
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void MyControl_ButtonClicked(object sender, EventArgs e)
-        {
-            SaleFilter filter = new SaleFilter
-            {
-                BookingNumber = BNTextBox.Text,
-                BoLnumber = BoLTextBox.Text,
-                SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
-                SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
-                CustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
-                Status = StatusCB.Text == "All" ? null : StatusCB.Text
-            };
-
-            IEnumerable<Sale> query = _saleService.GetAll(filter);
-
-            SaleDgv.DataSource=query.ToList();
-        }
-
-        private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
+        public override void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView dgv)
             {
-                //CustomerDetailsForm cdf = new CustomerDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
-                //cdf.Show();
+                SupplierDetailsForm cdf = new SupplierDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                cdf.Show();
             }
             else
             {
@@ -55,16 +31,5 @@ namespace Winform.Forms
             }
 
         }
-
-        private void CustomerIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-
-        }
     }
 }
-
-

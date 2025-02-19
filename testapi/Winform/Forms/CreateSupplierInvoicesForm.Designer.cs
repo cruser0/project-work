@@ -162,7 +162,7 @@
             this.OpenSale.TabIndex = 29;
             this.OpenSale.Text = "Open-->";
             this.OpenSale.UseVisualStyleBackColor = true;
-            this.OpenSale.Click += new System.EventHandler(this.OpenName_Click);
+            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
             // 
             // CreateSupplierInvoicesForm
             // 
