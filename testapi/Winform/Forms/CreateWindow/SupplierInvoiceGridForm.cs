@@ -7,8 +7,6 @@ namespace Winform.Forms
     public partial class SupplierInvoiceGridForm : Form
     {
         SupplierInvoiceService _supplierInvoiceService;
-        private DateTime selectedDateFrom;
-        private DateTime selectedDateTo;
         public SupplierInvoiceGridForm()
         {
             _supplierInvoiceService = new SupplierInvoiceService();
@@ -77,7 +75,7 @@ namespace Winform.Forms
             SupplierInvoiceFilter filter = new SupplierInvoiceFilter
             {
                 SaleID = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null,
-                SupplierID = !string.IsNullOrEmpty(SupplierIDTxt.GetText())? int.Parse(SupplierIDTxt.GetText()):null,
+                SupplierID = !string.IsNullOrEmpty(SupplierIDTxt.GetText()) ? int.Parse(SupplierIDTxt.GetText()) : null,
                 InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
                 InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
                 Status = StatusCmb.Text

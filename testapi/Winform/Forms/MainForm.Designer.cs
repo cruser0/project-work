@@ -33,6 +33,9 @@
             this.CustomerStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowCustomersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.AddCustomersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCustomerInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCustomerInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.AddSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +48,8 @@
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.Logo = new System.Windows.Forms.PictureBox();
             this.CenterPanel = new System.Windows.Forms.Panel();
+            this.supplierInvoiceCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSupplierInvoicesCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -55,8 +60,10 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerStripButton,
+            this.customerInvoicesToolStripMenuItem,
             this.SuppliersStripToolButton,
             this.supplierInvoicesToolStripMenuItem,
+            this.supplierInvoiceCostsToolStripMenuItem,
             this.salesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -80,7 +87,7 @@
             // ShowCustomersStripToolButton
             // 
             this.ShowCustomersStripToolButton.Name = "ShowCustomersStripToolButton";
-            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
+            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
             this.ShowCustomersStripToolButton.Tag = "Show Customers";
             this.ShowCustomersStripToolButton.Text = "Show Customers";
             this.ShowCustomersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
@@ -88,9 +95,32 @@
             // AddCustomersStripToolButton
             // 
             this.AddCustomersStripToolButton.Name = "AddCustomersStripToolButton";
-            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
+            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
             this.AddCustomersStripToolButton.Text = "Add Customers";
             this.AddCustomersStripToolButton.Click += new System.EventHandler(this.AddCustomersStripToolButton_Click);
+            // 
+            // customerInvoicesToolStripMenuItem
+            // 
+            this.customerInvoicesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showCustomerInvoicesToolStripMenuItem,
+            this.addCustomerInvoiceToolStripMenuItem});
+            this.customerInvoicesToolStripMenuItem.Image = global::Winform.Properties.Resources.Invoice_Icon;
+            this.customerInvoicesToolStripMenuItem.Name = "customerInvoicesToolStripMenuItem";
+            this.customerInvoicesToolStripMenuItem.Size = new System.Drawing.Size(133, 20);
+            this.customerInvoicesToolStripMenuItem.Text = "Customer Invoices";
+            // 
+            // showCustomerInvoicesToolStripMenuItem
+            // 
+            this.showCustomerInvoicesToolStripMenuItem.Name = "showCustomerInvoicesToolStripMenuItem";
+            this.showCustomerInvoicesToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.showCustomerInvoicesToolStripMenuItem.Text = "Show Customer Invoices";
+            this.showCustomerInvoicesToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // addCustomerInvoiceToolStripMenuItem
+            // 
+            this.addCustomerInvoiceToolStripMenuItem.Name = "addCustomerInvoiceToolStripMenuItem";
+            this.addCustomerInvoiceToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.addCustomerInvoiceToolStripMenuItem.Text = "Add Customer Invoice";
             // 
             // SuppliersStripToolButton
             // 
@@ -193,6 +223,21 @@
             this.CenterPanel.Size = new System.Drawing.Size(1159, 716);
             this.CenterPanel.TabIndex = 8;
             // 
+            // supplierInvoiceCostsToolStripMenuItem
+            // 
+            this.supplierInvoiceCostsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showSupplierInvoicesCostsToolStripMenuItem});
+            this.supplierInvoiceCostsToolStripMenuItem.Name = "supplierInvoiceCostsToolStripMenuItem";
+            this.supplierInvoiceCostsToolStripMenuItem.Size = new System.Drawing.Size(135, 20);
+            this.supplierInvoiceCostsToolStripMenuItem.Text = "Supplier Invoice Costs";
+            // 
+            // showSupplierInvoicesCostsToolStripMenuItem
+            // 
+            this.showSupplierInvoicesCostsToolStripMenuItem.Name = "showSupplierInvoicesCostsToolStripMenuItem";
+            this.showSupplierInvoicesCostsToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.showSupplierInvoicesCostsToolStripMenuItem.Text = "Show Supplier Invoices Costs";
+            this.showSupplierInvoicesCostsToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -233,5 +278,10 @@
         private Panel MenuPanel;
         private PictureBox Logo;
         public Panel CenterPanel;
+        private ToolStripMenuItem customerInvoicesToolStripMenuItem;
+        private ToolStripMenuItem showCustomerInvoicesToolStripMenuItem;
+        private ToolStripMenuItem addCustomerInvoiceToolStripMenuItem;
+        private ToolStripMenuItem supplierInvoiceCostsToolStripMenuItem;
+        private ToolStripMenuItem showSupplierInvoicesCostsToolStripMenuItem;
     }
 }

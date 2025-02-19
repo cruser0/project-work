@@ -1,4 +1,4 @@
-﻿namespace Winform.Entities
+﻿namespace Winform.Procedures
 {
     public class CustomerInvoiceStatus
     {

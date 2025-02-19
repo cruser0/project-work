@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Winform.Entities;
 
-namespace Winform.s
+namespace Winform.Services
 {
     internal class CustomerInvoiceService : ICalls<CustomerInvoice>
     {

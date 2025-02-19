@@ -179,6 +179,7 @@
             this.CustomerGdv.Location = new System.Drawing.Point(0, 0);
             this.CustomerGdv.Name = "CustomerGdv";
             this.CustomerGdv.RowTemplate.Height = 25;
+
             this.CustomerGdv.Size = new System.Drawing.Size(790, 596);
             this.CustomerGdv.TabIndex = 6;
             this.CustomerGdv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
@@ -195,7 +196,9 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
+
             this.CenterPanel.Size = new System.Drawing.Size(790, 596);
+
             this.CenterPanel.TabIndex = 9;
             // 
             // CustomerDgv
@@ -208,7 +211,9 @@
             this.CustomerDgv.Name = "CustomerDgv";
             this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
+
             this.CustomerDgv.Size = new System.Drawing.Size(790, 596);
+
             this.CustomerDgv.TabIndex = 7;
             this.CustomerDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDgv_CellClick);
             this.CustomerDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
@@ -219,6 +224,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 596);
+
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.panel1);
             this.Name = "CustomerGridForm";

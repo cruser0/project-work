@@ -55,7 +55,7 @@
             // 
             this.panel1.Controls.Add(this.RigtPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1047, 0);
+            this.panel1.Location = new System.Drawing.Point(456, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 647);
             this.panel1.TabIndex = 16;
@@ -85,7 +85,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 141);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 529);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 246);
             this.TextBoxesRightPanel.TabIndex = 7;
             // 
             // SupplierIDTxt
@@ -205,7 +205,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(1047, 647);
+            this.CenterPanel.Size = new System.Drawing.Size(456, 647);
             this.CenterPanel.TabIndex = 18;
             // 
             // SupplierInvoiceDgv
@@ -218,7 +218,7 @@
             this.SupplierInvoiceDgv.Name = "SupplierInvoiceDgv";
             this.SupplierInvoiceDgv.ReadOnly = true;
             this.SupplierInvoiceDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(1047, 647);
+            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(456, 647);
             this.SupplierInvoiceDgv.TabIndex = 9;
             this.SupplierInvoiceDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
@@ -226,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1247, 647);
+            this.ClientSize = new System.Drawing.Size(656, 647);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.panel1);
             this.Name = "SupplierInvoiceGridForm";

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.LeftPanel = new System.Windows.Forms.Panel();
-            this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.SupplierInvoiceLbl = new System.Windows.Forms.Label();
+            this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.LeftPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,15 +49,6 @@
             this.LeftPanel.Size = new System.Drawing.Size(200, 450);
             this.LeftPanel.TabIndex = 19;
             // 
-            // leftSideBaruSerControl1
-            // 
-            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
-            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
-            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 450);
-            this.leftSideBaruSerControl1.TabIndex = 0;
-            // 
             // SupplierInvoiceLbl
             // 
             this.SupplierInvoiceLbl.AutoSize = true;
@@ -68,6 +59,15 @@
             this.SupplierInvoiceLbl.Size = new System.Drawing.Size(156, 25);
             this.SupplierInvoiceLbl.TabIndex = 20;
             this.SupplierInvoiceLbl.Text = "Supplier Invoice";
+            // 
+            // leftSideBaruSerControl1
+            // 
+            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
+            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
+            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 450);
+            this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // SupplierInvoiceForm
             // 

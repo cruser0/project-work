@@ -19,10 +19,14 @@ namespace Winform
                 Form child = menuItem.Text switch
                 {
                     "Show Customers" => new CustomerForm(),
+                    "Show Customer Invoices" => new CustomerInvoiceForm(),
                     "Show Suppliers" => new SupplierForm(),
                     "Show Supplier Invoices" => new SupplierInvoiceForm(),
+                    "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
                     "Show Sales" => new SaleForm(),
-                    "Add Supplier Invoice"=>new CreateSupplierInvoicesForm(),
+
+
+                    "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
                     _ => throw new Exception("Unknown option")
                 };
 
