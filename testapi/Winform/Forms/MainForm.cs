@@ -22,7 +22,7 @@ namespace Winform
                     "Show Customer Invoices" => new CustomerInvoiceForm(),
                     "Show Suppliers" => new SupplierForm(),
                     "Show Supplier Invoices" => new SupplierInvoiceForm(),
-                    //"Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
+                    "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
                     "Show Sales" => new SaleForm(),
 
 

@@ -28,17 +28,22 @@
     <Compile Update="Forms\CreateSupplierInvoicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\CreateWindow\CustomerInvoiceGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\CreateWindow\SaleGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\CreateWindow\SupplierInvoiceCostGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
-
     <Compile Update="Forms\CustomerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CustomerInvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\MainForm.cs">
@@ -57,6 +62,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\SupplierInvoiceCostsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SupplierInvoiceDetailsForm.cs">

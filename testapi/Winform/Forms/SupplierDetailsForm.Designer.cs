@@ -37,6 +37,7 @@
             this.IdSupplierTxt = new System.Windows.Forms.TextBox();
             this.NameSupplierTxt = new System.Windows.Forms.TextBox();
             this.SupplierGetInvoiceBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SaveEditSupplierBtn
@@ -112,7 +113,7 @@
             // 
             // SupplierGetInvoiceBtn
             // 
-            this.SupplierGetInvoiceBtn.Location = new System.Drawing.Point(12, 348);
+            this.SupplierGetInvoiceBtn.Location = new System.Drawing.Point(12, 415);
             this.SupplierGetInvoiceBtn.Name = "SupplierGetInvoiceBtn";
             this.SupplierGetInvoiceBtn.Size = new System.Drawing.Size(99, 23);
             this.SupplierGetInvoiceBtn.TabIndex = 17;
@@ -120,11 +121,23 @@
             this.SupplierGetInvoiceBtn.UseVisualStyleBackColor = true;
             this.SupplierGetInvoiceBtn.Click += new System.EventHandler(this.SupplierGetInvoiceBtn_Click);
             // 
+            // DeleteBtn
+            // 
+            this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.DeleteBtn.TabIndex = 18;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            // 
             // SupplierDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.SupplierGetInvoiceBtn);
             this.Controls.Add(this.SaveEditSupplierBtn);
             this.Controls.Add(this.EditSupplierCbx);
@@ -152,5 +165,6 @@
         private TextBox IdSupplierTxt;
         private TextBox NameSupplierTxt;
         private Button SupplierGetInvoiceBtn;
+        private Button DeleteBtn;
     }
 }

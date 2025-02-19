@@ -77,5 +77,28 @@ namespace Winform.Forms
             mainForm.CenterPanel.Controls.Add(child);
             child.Show();
         }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+           "This action is permanent and it will delete all the history bound to this Supplier!",
+           "Confirm Deletion?",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                _supplierService.Delete(int.Parse(IdSupplierTxt.Text));
+                MessageBox.Show("Supplier has been deleted.");
+                this.Close();
+                }catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
+        }
     }
 }

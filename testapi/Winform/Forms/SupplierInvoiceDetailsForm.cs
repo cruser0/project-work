@@ -57,5 +57,29 @@ namespace Winform.Forms
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+           "This action is permanent and it will delete all the history bound to this Supplier Invoice!",
+           "Confirm Deletion?",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    _supplierInvoiceService.Delete(int.Parse(IdTxt.Text));
+                    MessageBox.Show("Supplier Invoice has been deleted.");
+                    this.Close();
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
+        }
     }
 }
