@@ -44,7 +44,13 @@ namespace Winform.Forms
             SupplierDgv.DataSource = query.ToList();
         }
 
-        private void MyControl_OpenDetails_Clicked(object sender, string e)
+
+        private void baseGridComponent_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SupplierDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView dgv)
             {
@@ -56,12 +62,6 @@ namespace Winform.Forms
                 MessageBox.Show(sender.ToString());
 
             }
-
-        }
-
-        private void baseGridComponent_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

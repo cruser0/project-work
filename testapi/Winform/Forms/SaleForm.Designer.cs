@@ -32,10 +32,10 @@
             this.DateToDTP = new System.Windows.Forms.DateTimePicker();
             this.RigtPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.CustomerIDTextBoxUserControl = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.DateToLbl = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
             this.CustomerIDLbl = new System.Windows.Forms.Label();
-            this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.StatusCB = new System.Windows.Forms.ComboBox();
             this.BNTextBox = new System.Windows.Forms.TextBox();
@@ -83,18 +83,18 @@
             this.RigtPanel.Controls.Add(this.TextBoxesRightPanel);
             this.RigtPanel.Controls.Add(this.RightSideBar);
             this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RigtPanel.Location = new System.Drawing.Point(1162, 0);
+            this.RigtPanel.Location = new System.Drawing.Point(712, 0);
             this.RigtPanel.Name = "RigtPanel";
-            this.RigtPanel.Size = new System.Drawing.Size(200, 670);
+            this.RigtPanel.Size = new System.Drawing.Size(200, 538);
             this.RigtPanel.TabIndex = 15;
             // 
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.CustomerIDTextBoxUserControl);
             this.TextBoxesRightPanel.Controls.Add(this.DateToLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerIDLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.CustomerIDTextBox);
             this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
             this.TextBoxesRightPanel.Controls.Add(this.StatusCB);
             this.TextBoxesRightPanel.Controls.Add(this.BNTextBox);
@@ -107,6 +107,13 @@
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 529);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // CustomerIDTextBoxUserControl
+            // 
+            this.CustomerIDTextBoxUserControl.Location = new System.Drawing.Point(3, 115);
+            this.CustomerIDTextBoxUserControl.Name = "CustomerIDTextBoxUserControl";
+            this.CustomerIDTextBoxUserControl.Size = new System.Drawing.Size(194, 23);
+            this.CustomerIDTextBoxUserControl.TabIndex = 11;
             // 
             // DateToLbl
             // 
@@ -138,15 +145,6 @@
             this.CustomerIDLbl.TabIndex = 8;
             this.CustomerIDLbl.Text = "Customer ID";
             // 
-            // CustomerIDTextBox
-            // 
-            this.CustomerIDTextBox.BackColor = System.Drawing.Color.Gainsboro;
-            this.CustomerIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CustomerIDTextBox.Location = new System.Drawing.Point(3, 115);
-            this.CustomerIDTextBox.Name = "CustomerIDTextBox";
-            this.CustomerIDTextBox.Size = new System.Drawing.Size(194, 23);
-            this.CustomerIDTextBox.TabIndex = 7;
-            // 
             // StatusLbl
             // 
             this.StatusLbl.AutoSize = true;
@@ -177,6 +175,7 @@
             this.BNTextBox.BackColor = System.Drawing.Color.Gainsboro;
             this.BNTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BNTextBox.Location = new System.Drawing.Point(3, 21);
+            this.BNTextBox.MaxLength = 50;
             this.BNTextBox.Name = "BNTextBox";
             this.BNTextBox.Size = new System.Drawing.Size(194, 23);
             this.BNTextBox.TabIndex = 1;
@@ -206,6 +205,7 @@
             this.BoLTextBox.BackColor = System.Drawing.Color.Gainsboro;
             this.BoLTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BoLTextBox.Location = new System.Drawing.Point(3, 68);
+            this.BoLTextBox.MaxLength = 50;
             this.BoLTextBox.Name = "BoLTextBox";
             this.BoLTextBox.Size = new System.Drawing.Size(194, 23);
             this.BoLTextBox.TabIndex = 2;
@@ -216,7 +216,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 670);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 538);
             this.RightSideBar.TabIndex = 1;
             // 
             // LeftPanel
@@ -226,7 +226,7 @@
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 670);
+            this.LeftPanel.Size = new System.Drawing.Size(200, 538);
             this.LeftPanel.TabIndex = 16;
             // 
             // Supplier
@@ -247,7 +247,7 @@
             this.leftSideBarUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBarUserControl.Location = new System.Drawing.Point(0, 0);
             this.leftSideBarUserControl.Name = "leftSideBarUserControl";
-            this.leftSideBarUserControl.Size = new System.Drawing.Size(200, 670);
+            this.leftSideBarUserControl.Size = new System.Drawing.Size(200, 538);
             this.leftSideBarUserControl.TabIndex = 1;
             // 
             // panel1
@@ -256,7 +256,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(200, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(962, 670);
+            this.panel1.Size = new System.Drawing.Size(512, 538);
             this.panel1.TabIndex = 17;
             // 
             // SaleDgv
@@ -269,7 +269,7 @@
             this.SaleDgv.Name = "SaleDgv";
             this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
-            this.SaleDgv.Size = new System.Drawing.Size(962, 670);
+            this.SaleDgv.Size = new System.Drawing.Size(512, 538);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
@@ -277,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 670);
+            this.ClientSize = new System.Drawing.Size(912, 538);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.RigtPanel);
@@ -313,7 +313,7 @@
         private Panel panel1;
         private DataGridView SaleDgv;
         private Label CustomerIDLbl;
-        private TextBox CustomerIDTextBox;
         private Label Supplier;
+        private control.IntegerTextBoxUserControl CustomerIDTextBoxUserControl;
     }
 }

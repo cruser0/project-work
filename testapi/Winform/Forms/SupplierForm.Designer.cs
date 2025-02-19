@@ -103,6 +103,7 @@
             this.NameSupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.NameSupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameSupplierTxt.Location = new System.Drawing.Point(3, 26);
+            this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
             this.NameSupplierTxt.Size = new System.Drawing.Size(194, 23);
             this.NameSupplierTxt.TabIndex = 1;
@@ -132,6 +133,7 @@
             this.CountrySupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.CountrySupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CountrySupplierTxt.Location = new System.Drawing.Point(3, 73);
+            this.CountrySupplierTxt.MaxLength = 50;
             this.CountrySupplierTxt.Name = "CountrySupplierTxt";
             this.CountrySupplierTxt.Size = new System.Drawing.Size(194, 23);
             this.CountrySupplierTxt.TabIndex = 2;
@@ -197,6 +199,7 @@
             this.SupplierDgv.RowTemplate.Height = 25;
             this.SupplierDgv.Size = new System.Drawing.Size(619, 548);
             this.SupplierDgv.TabIndex = 8;
+            this.SupplierDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellDoubleClick);
             // 
             // SupplierForm
             // 

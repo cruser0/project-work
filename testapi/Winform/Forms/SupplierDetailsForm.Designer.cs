@@ -90,6 +90,7 @@
             // CountrySupplierTxt
             // 
             this.CountrySupplierTxt.Location = new System.Drawing.Point(343, 183);
+            this.CountrySupplierTxt.MaxLength = 50;
             this.CountrySupplierTxt.Name = "CountrySupplierTxt";
             this.CountrySupplierTxt.Size = new System.Drawing.Size(100, 23);
             this.CountrySupplierTxt.TabIndex = 11;
@@ -104,6 +105,7 @@
             // NameSupplierTxt
             // 
             this.NameSupplierTxt.Location = new System.Drawing.Point(343, 116);
+            this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
             this.NameSupplierTxt.Size = new System.Drawing.Size(100, 23);
             this.NameSupplierTxt.TabIndex = 10;

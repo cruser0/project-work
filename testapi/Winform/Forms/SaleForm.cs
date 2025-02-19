@@ -32,7 +32,7 @@ namespace Winform.Forms
                 BoLnumber = BoLTextBox.Text,
                 SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
                 SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
-                CustomerId = string.IsNullOrEmpty(CustomerIDTextBox.Text) ? null : int.Parse(CustomerIDTextBox.Text),
+                CustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
                 Status = StatusCB.Text == "All" ? null : StatusCB.Text
             };
 
