@@ -24,6 +24,12 @@ namespace Winform.Forms.CreateWindow
             InitializeComponent();
             RightSideBar.searchBtnEvent += RightSideBar_searchBtnEvent;
         }
+        public SupplierGridForm()
+        {
+            _service = new SupplierService();
+            InitializeComponent();
+            RightSideBar.searchBtnEvent += RightSideBar_searchBtnEvent;
+        }
 
         private void RightSideBar_searchBtnEvent(object? sender, EventArgs e)
         {
@@ -45,7 +51,7 @@ namespace Winform.Forms.CreateWindow
             SupplierDgv.DataSource = query.ToList();
         }
 
-        private void SupplierDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        public virtual void SupplierDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(sender is DataGridView dgv)
             _form.SetSupplierID(dgv.CurrentRow.Cells[0].Value.ToString());

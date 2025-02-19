@@ -66,6 +66,7 @@
             // CreateCountryTxt
             // 
             this.CreateCountryTxt.Location = new System.Drawing.Point(263, 208);
+            this.CreateCountryTxt.MaxLength = 50;
             this.CreateCountryTxt.Name = "CreateCountryTxt";
             this.CreateCountryTxt.Size = new System.Drawing.Size(100, 23);
             this.CreateCountryTxt.TabIndex = 18;
@@ -73,6 +74,7 @@
             // CreateNameTxt
             // 
             this.CreateNameTxt.Location = new System.Drawing.Point(263, 141);
+            this.CreateNameTxt.MaxLength = 100;
             this.CreateNameTxt.Name = "CreateNameTxt";
             this.CreateNameTxt.Size = new System.Drawing.Size(100, 23);
             this.CreateNameTxt.TabIndex = 17;
