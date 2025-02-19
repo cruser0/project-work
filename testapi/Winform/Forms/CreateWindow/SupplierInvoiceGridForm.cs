@@ -1,4 +1,5 @@
-﻿using Winform.Entities;
+﻿using API.Models.Filters;
+using Winform.Entities;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -73,9 +74,19 @@ namespace Winform.Forms
                     MessageBox.Show("Incorrect Input Date To");
             }
 
-            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(SaleIDTxt.GetText(), SupplierIDTxt.GetText(), DateFromClnd.Checked ? DateFromClnd.Value : null, DateToClnd.Checked ? DateToClnd.Value : null, StatusCmb.Text);
+            SupplierInvoiceFilter filter = new SupplierInvoiceFilter
+            {
+                SaleID = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null,
+                SupplierID = !string.IsNullOrEmpty(SupplierIDTxt.GetText())? int.Parse(SupplierIDTxt.GetText()):null,
+                InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
+                Status = StatusCmb.Text
+            };
+
+            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(filter);
 
             SupplierInvoiceDgv.DataSource = query.ToList();
+
         }
 
     }
