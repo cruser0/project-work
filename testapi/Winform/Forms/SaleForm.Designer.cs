@@ -30,6 +30,7 @@
         {
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
+            this.SaleLbl = new System.Windows.Forms.Label();
             this.LeftPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,6 +41,7 @@
             // 
             // LeftPanel
             // 
+            this.LeftPanel.Controls.Add(this.SaleLbl);
             this.LeftPanel.Controls.Add(this.leftSideBaruSerControl1);
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
@@ -56,6 +58,18 @@
             this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 450);
             this.leftSideBaruSerControl1.TabIndex = 0;
             // 
+            // SaleLbl
+            // 
+            this.SaleLbl.AutoSize = true;
+            this.SaleLbl.BackColor = System.Drawing.Color.DarkGray;
+            this.SaleLbl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SaleLbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SaleLbl.Location = new System.Drawing.Point(0, 0);
+            this.SaleLbl.Name = "SaleLbl";
+            this.SaleLbl.Size = new System.Drawing.Size(48, 25);
+            this.SaleLbl.TabIndex = 11;
+            this.SaleLbl.Text = "Sale";
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -66,6 +80,7 @@
             this.Controls.SetChildIndex(this.LeftPanel, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.LeftPanel.ResumeLayout(false);
+            this.LeftPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -74,5 +89,6 @@
 
         private Panel LeftPanel;
         private control.LeftSideBarUSerControl leftSideBaruSerControl1;
+        private Label SaleLbl;
     }
 }
