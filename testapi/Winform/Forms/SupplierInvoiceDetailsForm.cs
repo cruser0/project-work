@@ -47,7 +47,14 @@ namespace Winform.Forms
 
         private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
-            SupplierInvoice si = new SupplierInvoice { SaleId = int.Parse(SaleIDTxt1.GetText()), Status = StatusCmbx.Text, InvoiceDate = DateClnd.Value, SupplierId = int.Parse(SupplierIDTxt1.GetText()), InvoiceAmount = 0 };
+            SupplierInvoice si = new SupplierInvoice
+            {
+                SaleId = int.Parse(SaleIDTxt1.GetText()),
+                Status = StatusCmbx.Text,
+                InvoiceDate = DateClnd.Value,
+                SupplierId = int.Parse(SupplierIDTxt1.GetText()),
+                InvoiceAmount = 0
+            };
             try
             {
                 _supplierInvoiceService.Update(int.Parse(IdTxt.Text), si);

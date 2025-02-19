@@ -11,7 +11,7 @@
         {
             if (sender is DataGridView dgv)
             {
-                SupplierDetailsForm cdf = new SupplierDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                SaleDetailsForm cdf = new SaleDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 cdf.Show();
             }
             else

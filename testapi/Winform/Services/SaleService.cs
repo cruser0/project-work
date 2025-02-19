@@ -131,7 +131,7 @@ namespace Winform.Services
             var returnSale = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"sale/{id}", returnSale).Result;
+            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"sale/{id}", returnSale).Result;
             if (response.IsSuccessStatusCode)
             {
 

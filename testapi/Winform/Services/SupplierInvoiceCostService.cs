@@ -123,7 +123,7 @@ namespace Winform.Services
             var returnSupplierInvoiceCost = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"supplier-invoice-cost/{id}", returnSupplierInvoiceCost).Result;
+            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"supplier-invoice-cost/{id}", returnSupplierInvoiceCost).Result;
             if (response.IsSuccessStatusCode)
             {
 
