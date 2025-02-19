@@ -20,6 +20,12 @@ namespace Winform.Services
                 queryParameters.Add($"Deprecated={filter.Deprecated}");
             if (filter.page != null)
                 queryParameters.Add($"page={filter.page}");
+            if (filter.CreatedDateFrom != null)
+                queryParameters.Add("InvoiceDateFrom=" + filter.CreatedDateFrom.ToString());
+            if (filter.CreatedDateTo != null)
+                queryParameters.Add("CreatedDateTo=" + filter.CreatedDateTo.ToString());
+            if (filter.OriginalID != null)
+                queryParameters.Add("OriginalID=" + filter.OriginalID.ToString());
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 
@@ -72,6 +78,12 @@ namespace Winform.Services
                 queryParameters.Add($"Deprecated={filter.Deprecated}");
             if (filter.page != null)
                 queryParameters.Add($"page={filter.page}");
+            if (filter.CreatedDateFrom != null)
+                queryParameters.Add("InvoiceDateFrom=" + filter.CreatedDateFrom.ToString());
+            if (filter.CreatedDateTo != null)
+                queryParameters.Add("CreatedDateTo=" + filter.CreatedDateTo.ToString());
+            if (filter.OriginalID != null)
+                queryParameters.Add("OriginalID=" + filter.OriginalID.ToString());
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 
