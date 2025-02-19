@@ -134,6 +134,8 @@ namespace API.Models.Services
             var cDB = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
             if (cDB != null)
             {
+                if ((bool)cDB.Deprecated)
+                    throw new ArgumentException("Can't update deprecated supplier");
 
                 if (supplier.SupplierName != null)
                     if (supplier.SupplierName.Length > 100)

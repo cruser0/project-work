@@ -9,26 +9,54 @@ namespace API.Models.Mapper
         {
             if (customer == null)
                 return null;
-            return new CustomerDTO() { CustomerName = customer.CustomerName, Country = customer.Country, Deprecated = customer.Deprecated,CreatedAt=customer.CreatedAt};
+            return new CustomerDTO()
+            {
+                CustomerName = customer.CustomerName,
+                Country = customer.Country,
+                Deprecated = customer.Deprecated,
+                CreatedAt = customer.CreatedAt
+            };
         }
         public static Customer Map(CustomerDTO customer)
         {
             if (customer == null)
                 return null;
-            return new Customer() { CustomerName = customer.CustomerName, Country = customer.Country, Deprecated = customer.Deprecated, CreatedAt = (DateTime)customer.CreatedAt };
+            return new Customer()
+            {
+                CustomerName = customer.CustomerName,
+                Country = customer.Country,
+                Deprecated = customer.Deprecated,
+                CreatedAt = customer.CreatedAt
+            };
         }
 
         public static CustomerDTOGet MapGet(Customer customer)
         {
             if (customer == null)
                 return null;
-            return new CustomerDTOGet() { CustomerName = customer.CustomerName, Country = customer.Country, Deprecated = customer.Deprecated, CustomerId = customer.CustomerId, CreatedAt = customer.CreatedAt, OriginalID = customer.OriginalID };
+            return new CustomerDTOGet()
+            {
+                CustomerName = customer.CustomerName,
+                Country = customer.Country,
+                Deprecated = customer.Deprecated,
+                CustomerId = customer.CustomerId,
+                CreatedAt = customer.CreatedAt,
+                OriginalID = customer.OriginalID
+            };
         }
         public static Customer MapGet(CustomerDTOGet customer)
         {
             if (customer == null)
                 return null;
-            return new Customer() { CustomerName = customer.CustomerName, Country = customer.Country, Deprecated = customer.Deprecated, CustomerId = (int)customer.CustomerId, CreatedAt = (DateTime)customer.CreatedAt, OriginalID = (int)customer.OriginalID };
+            return new Customer()
+            {
+                CustomerName = customer.CustomerName,
+                Country = customer.Country,
+                Deprecated = customer.Deprecated,
+                CustomerId = (int)customer.CustomerId,
+                CreatedAt = customer.CreatedAt,
+                OriginalID = (int)customer.OriginalID
+            };
         }
 
     }
