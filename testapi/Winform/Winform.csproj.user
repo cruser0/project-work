@@ -34,9 +34,6 @@
     <Compile Update="Forms\CreateWindow\SaleGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\CreateWindow\SupplierInvoiceCostsGridForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\CustomerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,9 +59,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SupplierForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\SupplierInvoiceCostsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SupplierInvoiceDetailsForm.cs">
