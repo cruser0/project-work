@@ -38,11 +38,12 @@
             this.StatusLbl = new System.Windows.Forms.Label();
             this.StatusTxt = new System.Windows.Forms.TextBox();
             this.IdCustomerTxt = new System.Windows.Forms.TextBox();
+            this.DeleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NameCustomerTxt
             // 
-            this.NameCustomerTxt.Location = new System.Drawing.Point(101, 154);
+            this.NameCustomerTxt.Location = new System.Drawing.Point(324, 195);
             this.NameCustomerTxt.Name = "NameCustomerTxt";
             this.NameCustomerTxt.Size = new System.Drawing.Size(100, 23);
             this.NameCustomerTxt.TabIndex = 2;
@@ -50,7 +51,7 @@
             // NameCustomerLbl
             // 
             this.NameCustomerLbl.AutoSize = true;
-            this.NameCustomerLbl.Location = new System.Drawing.Point(103, 138);
+            this.NameCustomerLbl.Location = new System.Drawing.Point(326, 179);
             this.NameCustomerLbl.Name = "NameCustomerLbl";
             this.NameCustomerLbl.Size = new System.Drawing.Size(39, 15);
             this.NameCustomerLbl.TabIndex = 5;
@@ -59,7 +60,7 @@
             // IdCustomerLbl
             // 
             this.IdCustomerLbl.AutoSize = true;
-            this.IdCustomerLbl.Location = new System.Drawing.Point(103, 44);
+            this.IdCustomerLbl.Location = new System.Drawing.Point(326, 85);
             this.IdCustomerLbl.Name = "IdCustomerLbl";
             this.IdCustomerLbl.Size = new System.Drawing.Size(17, 15);
             this.IdCustomerLbl.TabIndex = 4;
@@ -68,7 +69,7 @@
             // EditCustomerCbx
             // 
             this.EditCustomerCbx.AutoSize = true;
-            this.EditCustomerCbx.Location = new System.Drawing.Point(101, 249);
+            this.EditCustomerCbx.Location = new System.Drawing.Point(324, 290);
             this.EditCustomerCbx.Name = "EditCustomerCbx";
             this.EditCustomerCbx.Size = new System.Drawing.Size(46, 19);
             this.EditCustomerCbx.TabIndex = 7;
@@ -79,7 +80,7 @@
             // CountryCustomerLbl
             // 
             this.CountryCustomerLbl.AutoSize = true;
-            this.CountryCustomerLbl.Location = new System.Drawing.Point(103, 187);
+            this.CountryCustomerLbl.Location = new System.Drawing.Point(326, 228);
             this.CountryCustomerLbl.Name = "CountryCustomerLbl";
             this.CountryCustomerLbl.Size = new System.Drawing.Size(50, 15);
             this.CountryCustomerLbl.TabIndex = 6;
@@ -88,14 +89,14 @@
             // 
             // CountryCustomerTxt
             // 
-            this.CountryCustomerTxt.Location = new System.Drawing.Point(101, 205);
+            this.CountryCustomerTxt.Location = new System.Drawing.Point(324, 246);
             this.CountryCustomerTxt.Name = "CountryCustomerTxt";
             this.CountryCustomerTxt.Size = new System.Drawing.Size(100, 23);
             this.CountryCustomerTxt.TabIndex = 3;
             // 
             // SaveEditCustomerBtn
             // 
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(101, 274);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(324, 315);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
             this.SaveEditCustomerBtn.Size = new System.Drawing.Size(107, 23);
             this.SaveEditCustomerBtn.TabIndex = 8;
@@ -106,7 +107,7 @@
             // StatusLbl
             // 
             this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Location = new System.Drawing.Point(103, 88);
+            this.StatusLbl.Location = new System.Drawing.Point(326, 129);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
             this.StatusLbl.TabIndex = 10;
@@ -114,23 +115,35 @@
             // 
             // StatusTxt
             // 
-            this.StatusTxt.Location = new System.Drawing.Point(101, 106);
+            this.StatusTxt.Location = new System.Drawing.Point(324, 147);
             this.StatusTxt.Name = "StatusTxt";
             this.StatusTxt.Size = new System.Drawing.Size(100, 23);
             this.StatusTxt.TabIndex = 9;
             // 
             // IdCustomerTxt
             // 
-            this.IdCustomerTxt.Location = new System.Drawing.Point(101, 62);
+            this.IdCustomerTxt.Location = new System.Drawing.Point(324, 103);
             this.IdCustomerTxt.Name = "IdCustomerTxt";
             this.IdCustomerTxt.Size = new System.Drawing.Size(100, 23);
             this.IdCustomerTxt.TabIndex = 11;
+            // 
+            // DeleteBtn
+            // 
+            this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.DeleteBtn.TabIndex = 23;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
             // CustomerDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 342);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.IdCustomerTxt);
             this.Controls.Add(this.StatusLbl);
             this.Controls.Add(this.StatusTxt);
@@ -160,5 +173,6 @@
         private Label StatusLbl;
         private TextBox StatusTxt;
         private TextBox IdCustomerTxt;
+        private Button DeleteBtn;
     }
 }

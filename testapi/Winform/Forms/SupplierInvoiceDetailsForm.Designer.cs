@@ -39,6 +39,7 @@
             this.DateClnd = new System.Windows.Forms.DateTimePicker();
             this.SaleIDTxt1 = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.SupplierIDTxt1 = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.DeleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SaveEditCustomerBtn
@@ -137,11 +138,23 @@
             this.SupplierIDTxt1.Size = new System.Drawing.Size(206, 23);
             this.SupplierIDTxt1.TabIndex = 21;
             // 
+            // DeleteBtn
+            // 
+            this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.DeleteBtn.TabIndex = 22;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            // 
             // SupplierInvoiceDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.SupplierIDTxt1);
             this.Controls.Add(this.SaleIDTxt1);
             this.Controls.Add(this.DateClnd);
@@ -173,5 +186,6 @@
         private DateTimePicker DateClnd;
         private control.IntegerTextBoxUserControl SaleIDTxt1;
         private control.IntegerTextBoxUserControl SupplierIDTxt1;
+        private Button DeleteBtn;
     }
 }
