@@ -1,5 +1,4 @@
 ﻿using Winform.Entities;
-using Winform.Forms.CreateWindow;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -72,7 +71,7 @@ namespace Winform.Forms
         }
         public void SetSaleID(string id)
         {
-            SaleIDTxt.Text = id;
+            SaleIDTxt1.SetText(id);
         }
     }
 }

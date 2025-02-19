@@ -28,214 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.StatusLbl = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.NameSupplierTxt = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CountryLvl = new System.Windows.Forms.Label();
-            this.CountrySupplierTxt = new System.Windows.Forms.TextBox();
-            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.LeftPanel = new System.Windows.Forms.Panel();
-            this.Supplier = new System.Windows.Forms.Label();
-            this.leftSideBarUserControl = new Winform.Forms.control.LeftSideBarUSerControl();
-            this.CenterPanel = new System.Windows.Forms.Panel();
-            this.SupplierDgv = new System.Windows.Forms.DataGridView();
-            this.panel1.SuspendLayout();
-            this.TextBoxesRightPanel.SuspendLayout();
+            this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
+            this.SupplierLbl = new System.Windows.Forms.Label();
             this.LeftPanel.SuspendLayout();
-            this.CenterPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.TextBoxesRightPanel);
-            this.panel1.Controls.Add(this.RightSideBar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(819, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 548);
-            this.panel1.TabIndex = 10;
-            // 
-            // TextBoxesRightPanel
-            // 
-            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
-            this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
-            this.TextBoxesRightPanel.Controls.Add(this.NameSupplierTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.label1);
-            this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
-            this.TextBoxesRightPanel.Controls.Add(this.CountrySupplierTxt);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(-1, 106);
-            this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 287);
-            this.TextBoxesRightPanel.TabIndex = 8;
-            // 
-            // StatusLbl
-            // 
-            this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLbl.Location = new System.Drawing.Point(3, 104);
-            this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(45, 18);
-            this.StatusLbl.TabIndex = 6;
-            this.StatusLbl.Text = "Status";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.Gainsboro;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.ForeColor = System.Drawing.Color.Black;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "All",
-            "Active",
-            "Deprecated"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 125);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(194, 23);
-            this.comboBox1.TabIndex = 5;
-            // 
-            // NameSupplierTxt
-            // 
-            this.NameSupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
-            this.NameSupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameSupplierTxt.Location = new System.Drawing.Point(3, 26);
-            this.NameSupplierTxt.MaxLength = 100;
-            this.NameSupplierTxt.Name = "NameSupplierTxt";
-            this.NameSupplierTxt.Size = new System.Drawing.Size(194, 23);
-            this.NameSupplierTxt.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 18);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Name";
-            // 
-            // CountryLvl
-            // 
-            this.CountryLvl.AutoSize = true;
-            this.CountryLvl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CountryLvl.Location = new System.Drawing.Point(3, 52);
-            this.CountryLvl.Name = "CountryLvl";
-            this.CountryLvl.Size = new System.Drawing.Size(56, 18);
-            this.CountryLvl.TabIndex = 4;
-            this.CountryLvl.Text = "Country";
-            // 
-            // CountrySupplierTxt
-            // 
-            this.CountrySupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
-            this.CountrySupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountrySupplierTxt.Location = new System.Drawing.Point(3, 73);
-            this.CountrySupplierTxt.MaxLength = 50;
-            this.CountrySupplierTxt.Name = "CountrySupplierTxt";
-            this.CountrySupplierTxt.Size = new System.Drawing.Size(194, 23);
-            this.CountrySupplierTxt.TabIndex = 2;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
-            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 548);
-            this.RightSideBar.TabIndex = 7;
-            // 
-            // LeftPanel
-            // 
-            this.LeftPanel.Controls.Add(this.Supplier);
-            this.LeftPanel.Controls.Add(this.leftSideBarUserControl);
-            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 548);
-            this.LeftPanel.TabIndex = 11;
-            // 
-            // Supplier
-            // 
-            this.Supplier.AutoSize = true;
-            this.Supplier.BackColor = System.Drawing.Color.DarkGray;
-            this.Supplier.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Supplier.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Supplier.Location = new System.Drawing.Point(0, 0);
-            this.Supplier.Name = "Supplier";
-            this.Supplier.Size = new System.Drawing.Size(87, 25);
-            this.Supplier.TabIndex = 9;
-            this.Supplier.Text = "Supplier";
-            // 
-            // leftSideBarUserControl
-            // 
-            this.leftSideBarUserControl.BackColor = System.Drawing.Color.DarkGray;
-            this.leftSideBarUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leftSideBarUserControl.Location = new System.Drawing.Point(0, 0);
-            this.leftSideBarUserControl.Name = "leftSideBarUserControl";
-            this.leftSideBarUserControl.Size = new System.Drawing.Size(200, 548);
-            this.leftSideBarUserControl.TabIndex = 1;
             // 
             // CenterPanel
             // 
-            this.CenterPanel.Controls.Add(this.SupplierDgv);
-            this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(200, 0);
-            this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(619, 548);
-            this.CenterPanel.TabIndex = 12;
+            this.CenterPanel.Size = new System.Drawing.Size(400, 450);
             // 
-            // SupplierDgv
+            // LeftPanel
             // 
-            this.SupplierDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SupplierDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.SupplierDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SupplierDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SupplierDgv.Location = new System.Drawing.Point(0, 0);
-            this.SupplierDgv.Name = "SupplierDgv";
-            this.SupplierDgv.ReadOnly = true;
-            this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(619, 548);
-            this.SupplierDgv.TabIndex = 8;
-            this.SupplierDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellDoubleClick);
+            this.LeftPanel.Controls.Add(this.SupplierLbl);
+            this.LeftPanel.Controls.Add(this.leftSideBaruSerControl1);
+            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftPanel.Name = "LeftPanel";
+            this.LeftPanel.Size = new System.Drawing.Size(200, 450);
+            this.LeftPanel.TabIndex = 13;
+            // 
+            // leftSideBaruSerControl1
+            // 
+            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
+            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
+            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 450);
+            this.leftSideBaruSerControl1.TabIndex = 0;
+            // 
+            // SupplierLbl
+            // 
+            this.SupplierLbl.AutoSize = true;
+            this.SupplierLbl.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.SupplierLbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SupplierLbl.Location = new System.Drawing.Point(0, 0);
+            this.SupplierLbl.Name = "SupplierLbl";
+            this.SupplierLbl.Size = new System.Drawing.Size(87, 25);
+            this.SupplierLbl.TabIndex = 1;
+            this.SupplierLbl.Text = "Supplier";
             // 
             // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1019, 548);
-            this.Controls.Add(this.CenterPanel);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.LeftPanel);
-            this.Controls.Add(this.panel1);
             this.Name = "SupplierForm";
-            this.Text = "SupplierForm";
-            this.panel1.ResumeLayout(false);
-            this.TextBoxesRightPanel.ResumeLayout(false);
-            this.TextBoxesRightPanel.PerformLayout();
+            this.Controls.SetChildIndex(this.LeftPanel, 0);
+            this.Controls.SetChildIndex(this.CenterPanel, 0);
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();
-            this.CenterPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Panel panel1;
-        private Panel TextBoxesRightPanel;
-        private Label StatusLbl;
-        private ComboBox comboBox1;
-        private TextBox NameSupplierTxt;
-        private Label label1;
-        private Label CountryLvl;
-        private TextBox CountrySupplierTxt;
-        private control.RightSideBarUserControl RightSideBar;
+
         private Panel LeftPanel;
-        private control.LeftSideBarUSerControl leftSideBarUserControl;
-        private Panel CenterPanel;
-        private DataGridView SupplierDgv;
-        private Label Supplier;
+        private Label SupplierLbl;
+        private control.LeftSideBarUSerControl leftSideBaruSerControl1;
     }
 }
