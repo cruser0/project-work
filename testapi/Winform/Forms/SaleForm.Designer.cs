@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.LeftPanel = new System.Windows.Forms.Panel();
-            this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.SaleLbl = new System.Windows.Forms.Label();
+            this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.LeftPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,15 +49,6 @@
             this.LeftPanel.Size = new System.Drawing.Size(200, 450);
             this.LeftPanel.TabIndex = 18;
             // 
-            // leftSideBaruSerControl1
-            // 
-            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
-            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
-            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 450);
-            this.leftSideBaruSerControl1.TabIndex = 0;
-            // 
             // SaleLbl
             // 
             this.SaleLbl.AutoSize = true;
@@ -69,6 +60,15 @@
             this.SaleLbl.Size = new System.Drawing.Size(48, 25);
             this.SaleLbl.TabIndex = 11;
             this.SaleLbl.Text = "Sale";
+            // 
+            // leftSideBaruSerControl1
+            // 
+            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
+            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
+            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 450);
+            this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // SaleForm
             // 
