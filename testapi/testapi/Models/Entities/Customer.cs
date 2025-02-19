@@ -11,6 +11,8 @@
         public string? Country { get; set; }
 
         public bool? Deprecated { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public int OriginalID { get; set; }
 
         public virtual ICollection<Sale> Sales { get; set; }
 

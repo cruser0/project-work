@@ -14,7 +14,8 @@ namespace API.Models.Mapper
 
                 SupplierName = supplier.SupplierName,
                 Country = supplier.Country,
-                Deprecated = supplier.Deprecated
+                Deprecated = supplier.Deprecated,
+                CreatedAt = supplier.CreatedAt,
 
             };
         }
@@ -27,7 +28,8 @@ namespace API.Models.Mapper
 
                 SupplierName = supplier.SupplierName,
                 Country = supplier.Country,
-                Deprecated = supplier.Deprecated
+                Deprecated = supplier.Deprecated,
+                CreatedAt = (DateTime)supplier.CreatedAt,
 
             };
         }
@@ -41,7 +43,9 @@ namespace API.Models.Mapper
                 SupplierId = supplier.SupplierId,
                 SupplierName = supplier.SupplierName,
                 Country = supplier.Country,
-                Deprecated = supplier.Deprecated
+                Deprecated = supplier.Deprecated,
+                CreatedAt =supplier.CreatedAt,
+                OriginalID =supplier.OriginalID,
 
             };
         }
@@ -54,7 +58,9 @@ namespace API.Models.Mapper
                 SupplierId = (int)supplier.SupplierId,
                 SupplierName = supplier.SupplierName,
                 Country = supplier.Country,
-                Deprecated = supplier.Deprecated
+                Deprecated = supplier.Deprecated,
+                CreatedAt = (DateTime)supplier.CreatedAt,
+                OriginalID = (int)supplier.OriginalID,
 
             };
         }
