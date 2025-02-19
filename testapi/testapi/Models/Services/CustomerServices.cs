@@ -38,7 +38,6 @@ namespace API.Models.Services
             return ApplyFilter(filter).Count();
         }
 
-
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
             var query = _context.Customers.AsQueryable();
@@ -174,7 +173,6 @@ namespace API.Models.Services
                 throw new ArgumentException(ex.InnerException.Message);
             }
         }
-
 
         public CustomerDTOGet DeleteCustomer(int id)
         {

@@ -26,6 +26,52 @@ namespace API.Models.Services
             _context = ctx;
         }
 
+        public ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
+        {
+            return ApplyFilter(filter).ToList();
+        }
+
+        public int CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
+        {
+            return ApplyFilter(filter).Count();
+        }
+
+        public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
+        {
+            var query = _context.SupplierInvoiceCosts.AsQueryable();
+
+            if (filter.SupplierInvoiceId != null)
+            {
+                query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceId);
+            }
+
+            if (filter.Cost != null)
+            {
+                query = query.Where(x => x.Cost == filter.Cost);
+            }
+
+            if (filter.Quantity != null)
+            {
+                query = query.Where(x => x.Quantity == filter.Quantity);
+            }
+            if (filter.page != null)
+            {
+                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+            }
+
+            return query.Select(x => SupplierInvoiceCostMapper.MapGet(x));
+        }
+
+        public SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id)
+        {
+            var data = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
+            if (data == null)
+            {
+                throw new ArgumentException("Supplier Invoice Cost not found!");
+            }
+            return SupplierInvoiceCostMapper.MapGet(data);
+        }
+
         public SupplierInvoiceCostDTOGet CreateSupplierInvoiceCost(SupplierInvoiceCost supplierInvoiceCost)
         {
             SupplierInvoice si;
@@ -47,66 +93,6 @@ namespace API.Models.Services
             _context.Add(supplierInvoiceCost);
             _context.SaveChanges();
             return SupplierInvoiceCostMapper.MapGet(supplierInvoiceCost);
-        }
-
-
-        public SupplierInvoiceCostDTOGet DeleteSupplierInvoiceCost(int id)
-        {
-            var data = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
-            if (data == null || id < 1)
-            {
-                throw new ArgumentNullException("Supplier Invoice Cost not found!");
-            }
-            SupplierInvoice si = _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).First();
-            decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
-            si.InvoiceAmount = total - data.Cost * data.Quantity;
-            _context.SupplierInvoices.Update(si);
-            _context.SupplierInvoiceCosts.Remove(data);
-            _context.SaveChanges();
-            return SupplierInvoiceCostMapper.MapGet(data);
-
-        }
-
-        public ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
-        {
-            return ApplyFilter(filter).ToList();
-        }
-
-        public int CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
-        {
-            return ApplyFilter(filter).Count();
-        }
-        public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
-        {
-            var query = _context.SupplierInvoiceCosts.AsQueryable();
-
-            if (filter.SupplierInvoiceId != null)
-            {
-                query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceId);
-            }
-
-            if (filter.Cost != null)
-            {
-                query = query.Where(x => x.Cost == filter.Cost);
-            }
-
-            if (filter.Quantity != null)
-            {
-                query = query.Where(x => x.Quantity == filter.Quantity);
-            }
-
-
-            return query.Select(x => SupplierInvoiceCostMapper.MapGet(x));
-        }
-
-        public SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id)
-        {
-            var data = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
-            if (data == null)
-            {
-                throw new ArgumentException("Supplier Invoice Cost not found!");
-            }
-            return SupplierInvoiceCostMapper.MapGet(data);
         }
 
         public SupplierInvoiceCostDTOGet UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost)
@@ -136,6 +122,23 @@ namespace API.Models.Services
                 return SupplierInvoiceCostMapper.MapGet(sicDB);
             }
             throw new ArgumentNullException("Supplier Invoice Cost not found");
+        }
+
+        public SupplierInvoiceCostDTOGet DeleteSupplierInvoiceCost(int id)
+        {
+            var data = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
+            if (data == null || id < 1)
+            {
+                throw new ArgumentNullException("Supplier Invoice Cost not found!");
+            }
+            SupplierInvoice si = _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).First();
+            decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
+            si.InvoiceAmount = total - data.Cost * data.Quantity;
+            _context.SupplierInvoices.Update(si);
+            _context.SupplierInvoiceCosts.Remove(data);
+            _context.SaveChanges();
+            return SupplierInvoiceCostMapper.MapGet(data);
+
         }
     }
 }

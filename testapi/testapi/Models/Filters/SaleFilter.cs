@@ -8,5 +8,6 @@
         public DateTime? SaleDateTo { get; set; }
         public int? CustomerId { get; set; }
         public string? Status { get; set; }
+        public int? page { get; set; }
     }
 }

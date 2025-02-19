@@ -6,5 +6,6 @@
         public decimal? Cost { get; set; }
         public int? Quantity { get; set; }
 
+        public int? page { get; set; }
     }
 }

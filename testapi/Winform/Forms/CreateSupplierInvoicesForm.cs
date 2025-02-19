@@ -72,7 +72,7 @@ namespace Winform.Forms
         }
         public void SetSaleID(string id)
         {
-            SaleIDTxt.Text = id;
+            SaleIDTxt1.SetText(id);
         }
     }
 }

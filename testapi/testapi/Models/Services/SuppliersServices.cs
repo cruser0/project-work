@@ -55,7 +55,10 @@ namespace API.Models.Services
             {
                 query = query.Where(x => x.Deprecated == filter.Deprecated);
             }
-
+            if (filter.page != null)
+            {
+                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+            }
             return query.Select(x => SupplierMapper.MapGet(x));
         }
 

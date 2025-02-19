@@ -71,7 +71,10 @@ namespace API.Models.Services
             {
                 query = query.Where(s => s.Status == filter.Status);
             }
-
+            if (filter.page != null)
+            {
+                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+            }
             return query.Select(x => CustomerInvoiceMapper.MapGet(x));
         }
 

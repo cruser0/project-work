@@ -9,9 +9,8 @@ namespace Winform.Forms
 
         private SaleService _saleService;
         private CreateSupplierInvoicesForm _father;
-        public SaleGridForm(CreateSupplierInvoicesForm father)
+        public SaleGridForm()
         {
-            _father = father;
             _saleService = new SaleService();
 
             InitializeComponent();
@@ -20,8 +19,11 @@ namespace Winform.Forms
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
         }
-        public SaleGridForm()
+
+
+        public SaleGridForm(CreateSupplierInvoicesForm father)
         {
+            _father = father;
             _saleService = new SaleService();
 
             InitializeComponent();
@@ -50,7 +52,7 @@ namespace Winform.Forms
 
             IEnumerable<Sale> query = _saleService.GetAll(filter);
 
-            SaleDgv.DataSource=query.ToList();
+            SaleDgv.DataSource = query.ToList();
         }
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)

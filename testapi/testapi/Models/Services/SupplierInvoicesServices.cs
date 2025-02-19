@@ -12,7 +12,7 @@ namespace API.Models.Services
         SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice);
         SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
         SupplierInvoiceDTOGet DeleteSupplierInvoice(int id);
-        int CountSupplierinvoices(SupplierInvoiceFilter? filter);
+        int CountSupplierinvoices(SupplierInvoiceFilter filter);
 
 
     }
@@ -32,7 +32,7 @@ namespace API.Models.Services
             return ApplyFilter(filter).ToList();
         }
 
-        public int CountSupplierinvoices(SupplierInvoiceFilter? filter)
+        public int CountSupplierinvoices(SupplierInvoiceFilter filter)
         {
             return ApplyFilter(filter).Count();
         }
@@ -67,7 +67,10 @@ namespace API.Models.Services
                 if (!filter.Status.Equals("All"))
                     query = query.Where(x => x.Status == filter.Status.ToLower());
             }
-
+            if (filter.page != null)
+            {
+                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+            }
             return query.Select(x => SupplierInvoiceMapper.MapGet(x));
         }
 
