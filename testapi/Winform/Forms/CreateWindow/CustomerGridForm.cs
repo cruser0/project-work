@@ -6,11 +6,15 @@ namespace Winform.Forms
 {
     public partial class CustomerGridForm : Form
     {
+        string name;
+        string country;
+        int status;
+
         private CustomerService _customerService;
         int pages;
+        double itemsPage = 10.0;
         public CustomerGridForm()
         {
-            double itemsPage = 10.0;
             _customerService = new CustomerService();
             pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
 
@@ -32,12 +36,11 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
         }
+        CustomerFilter filterTest;
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
-            if (sender is NumericUpDown && CustomerDgv.RowCount == 0)
-                return;
-
+            PaginationUserControl.CurrentPage = 1;
             CustomerFilter filter = new CustomerFilter
             {
                 Name = NameTxt.Text,
@@ -50,21 +53,51 @@ namespace Winform.Forms
                 },
                 page = PaginationUserControl.CurrentPage
             };
-
+            CustomerFilter filterPage = new CustomerFilter
+            {
+                Name = NameTxt.Text,
+                Country = CountryTxt.Text,
+                Deprecated = comboBox1.SelectedIndex switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                },
+            };
+            name = NameTxt.Text;
+            country = CountryTxt.Text;
+            status = comboBox1.SelectedIndex;
 
             IEnumerable<Customer> query = _customerService.GetAll(filter);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerService.Count(filterPage) / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             CustomerDgv.DataSource = query.ToList();
 
+
             if (!PaginationUserControl.Visible)
             {
-                PaginationUserControl.Visible = true;
-
-                PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage+"/"+PaginationUserControl.GetmaxPage());
-
-                PaginationUserControl.CurrentPage=1;
+                PaginationUserControl.Visible = true; 
             }
 
+        }
+        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        {
+            CustomerFilter filter = new CustomerFilter
+            {
+                Name = name,
+                Country = country,
+                Deprecated = status switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                },
+                page = PaginationUserControl.CurrentPage
+            };
+
+            IEnumerable<Customer> query = _customerService.GetAll(filter);
+            CustomerDgv.DataSource = query.ToList();
         }
 
         private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)
@@ -73,6 +106,7 @@ namespace Winform.Forms
                 return;
             PaginationUserControl.CurrentPage= PaginationUserControl.CurrentPage-1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage+"/"+ PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
         }
 
         private void PaginationUserControl_DoubleLeftArrowEvent(object? sender, EventArgs e)
@@ -80,12 +114,14 @@ namespace Winform.Forms
            
             PaginationUserControl.CurrentPage=1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
         }
 
         private void PaginationUserControl_DoubleRightArrowEvent(object? sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage= int.Parse(PaginationUserControl.GetmaxPage());
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
         }
 
         private void PaginationUserControl_SingleRightArrowEvent(object? sender, EventArgs e)
@@ -94,6 +130,7 @@ namespace Winform.Forms
                 return;
             PaginationUserControl.CurrentPage ++;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
 
         }
 
