@@ -36,7 +36,6 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
         }
-        CustomerFilter filterTest;
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
@@ -52,6 +51,8 @@ namespace Winform.Forms
                     _ => null
                 },
                 page = PaginationUserControl.CurrentPage
+                //OriginalID
+                //CreatedOn
             };
             CustomerFilter filterPage = new CustomerFilter
             {
@@ -63,6 +64,8 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
+                //OriginalID
+                //CreatedOn
             };
             name = NameTxt.Text;
             country = CountryTxt.Text;
@@ -164,9 +167,6 @@ namespace Winform.Forms
             }
         }
 
-        private void CustomerDgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            label2.Text = $"{100 * ((int)numericUpDown1.Value - 1) + CustomerDgv.CurrentRow.Index + 1}/{100 * (int)numericUpDown1.Value}";
-        }
+
     }
 }

@@ -38,7 +38,7 @@ namespace API.Models.Services
 
         public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
         {
-            int itemsPage = 100;
+            int itemsPage = 10;
             var query = _context.SupplierInvoiceCosts.AsQueryable();
 
             if (filter.SupplierInvoiceId != null)

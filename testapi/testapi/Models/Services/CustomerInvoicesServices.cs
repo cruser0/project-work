@@ -41,7 +41,7 @@ namespace API.Models.Services
 
         public IQueryable<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter filter)
         {
-            int itemsPage = 100;
+            int itemsPage = 10;
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
             var query = _context.CustomerInvoices.AsQueryable();
 

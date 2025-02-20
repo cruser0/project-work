@@ -39,7 +39,7 @@ namespace API.Models.Services
 
         private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
         {
-            int itemsPage = 100;
+            int itemsPage = 10;
             var query = _context.Suppliers.AsQueryable();
 
             if (filter.OriginalID != null)
