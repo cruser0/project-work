@@ -32,11 +32,13 @@
             this.SupplierInvoiceCostDgv = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.CostTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.CostFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
+            this.CostToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).BeginInit();
             this.panel2.SuspendLayout();
@@ -79,7 +81,9 @@
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
-            this.TextBoxesRightPanel.Controls.Add(this.CostTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.CostToTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.label1);
+            this.TextBoxesRightPanel.Controls.Add(this.CostFromTxt);
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
@@ -88,12 +92,12 @@
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 246);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
-            // CostTxt
+            // CostFromTxt
             // 
-            this.CostTxt.Location = new System.Drawing.Point(3, 68);
-            this.CostTxt.Name = "CostTxt";
-            this.CostTxt.Size = new System.Drawing.Size(194, 23);
-            this.CostTxt.TabIndex = 12;
+            this.CostFromTxt.Location = new System.Drawing.Point(3, 68);
+            this.CostFromTxt.Name = "CostFromTxt";
+            this.CostFromTxt.Size = new System.Drawing.Size(194, 23);
+            this.CostFromTxt.TabIndex = 12;
             // 
             // InvoiceIDTxt
             // 
@@ -118,9 +122,9 @@
             this.CostLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CostLbl.Location = new System.Drawing.Point(3, 47);
             this.CostLbl.Name = "CostLbl";
-            this.CostLbl.Size = new System.Drawing.Size(34, 18);
+            this.CostLbl.Size = new System.Drawing.Size(68, 18);
             this.CostLbl.TabIndex = 4;
-            this.CostLbl.Text = "Cost";
+            this.CostLbl.Text = "Cost From";
             // 
             // RightSideBar
             // 
@@ -130,6 +134,23 @@
             this.RightSideBar.Name = "RightSideBar";
             this.RightSideBar.Size = new System.Drawing.Size(200, 564);
             this.RightSideBar.TabIndex = 0;
+            // 
+            // CostToTxt
+            // 
+            this.CostToTxt.Location = new System.Drawing.Point(4, 122);
+            this.CostToTxt.Name = "CostToTxt";
+            this.CostToTxt.Size = new System.Drawing.Size(194, 23);
+            this.CostToTxt.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(4, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 18);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Cost To";
             // 
             // SupplierInvoiceCostGridForm
             // 
@@ -154,10 +175,12 @@
         private Panel panel2;
         private control.RightSideBarUserControl RightSideBar;
         private Panel TextBoxesRightPanel;
-        private control.IntegerTextBoxUserControl CostTxt;
+        private control.IntegerTextBoxUserControl CostFromTxt;
         private control.IntegerTextBoxUserControl InvoiceIDTxt;
         private Label InvoiceIDLbl;
         private Label CostLbl;
         public Panel panel1;
+        private control.IntegerTextBoxUserControl CostToTxt;
+        private Label label1;
     }
 }

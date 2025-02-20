@@ -15,12 +15,10 @@ namespace Winform.Services
             if (filter.SupplierInvoiceId != null)
                 queryParameters.Add($"SupplierInvoiceId={filter.SupplierInvoiceId}");
 
-            if (filter.Cost != null)
-            {
-                string test = filter.Cost.ToString().Replace(',', '.');
-
-                queryParameters.Add($"Cost={test}");
-            }
+            if (filter.CostFrom != null)
+                queryParameters.Add($"CostFrom={filter.CostFrom}");
+            if (filter.CostTo != null)
+                queryParameters.Add($"CostTo={filter.CostTo}");
 
 
             if (filter.Quantity != null)
@@ -74,11 +72,10 @@ namespace Winform.Services
             if (filter.SupplierInvoiceId != null)
                 queryParameters.Add($"SupplierInvoiceId={filter.SupplierInvoiceId}");
 
-            if (filter.Cost != null)
-            {
-                string test = filter.Cost.ToString().Replace(',', '.');
-                queryParameters.Add($"Cost={test}");
-            }
+            if (filter.CostFrom != null)
+                queryParameters.Add($"CostFrom={filter.CostFrom}");
+            if (filter.CostTo != null)
+                queryParameters.Add($"CostTo={filter.CostTo}");
 
 
             if (filter.Quantity != null)

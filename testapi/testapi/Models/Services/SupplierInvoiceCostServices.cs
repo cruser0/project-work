@@ -46,9 +46,22 @@ namespace API.Models.Services
                 query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceId);
             }
 
-            if (filter.Cost != null)
+            if (filter.CostFrom != null && filter.CostTo != null)
             {
-                query = query.Where(x => x.Cost == filter.Cost);
+                if (filter.CostFrom > filter.CostTo)
+                {
+                    throw new ArgumentException("CostFrom cannot be more than CostTo.");
+                }
+
+                query = query.Where(s => s.Cost >= filter.CostFrom && s.Cost <= filter.CostTo);
+            }
+            else if (filter.CostFrom != null)
+            {
+                query = query.Where(s => s.Cost >= filter.CostFrom);
+            }
+            else if (filter.CostTo != null)
+            {
+                query = query.Where(s => s.Cost <= filter.CostTo);
             }
 
             if (filter.Quantity != null)

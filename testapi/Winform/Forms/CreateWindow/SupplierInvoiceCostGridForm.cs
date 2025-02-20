@@ -40,7 +40,8 @@ namespace Winform.Forms.CreateWindow
             SupplierInvoiceCostFilter filter = new SupplierInvoiceCostFilter
             {
                 SupplierInvoiceId = !string.IsNullOrEmpty(InvoiceIDTxt.GetText()) ? int.Parse(InvoiceIDTxt.GetText()) : null,
-                Cost = !string.IsNullOrEmpty(CostTxt.GetText()) ? int.Parse(CostTxt.GetText()) : null
+                CostFrom = !string.IsNullOrEmpty(CostFromTxt.GetText()) ? int.Parse(CostFromTxt.GetText()) : null,
+                CostTo = !string.IsNullOrEmpty(CostToTxt.GetText()) ? int.Parse(CostToTxt.GetText()) : null
             };
 
             IEnumerable<SupplierInvoiceCost> query = _supplierInvoiceCostService.GetAll(filter);

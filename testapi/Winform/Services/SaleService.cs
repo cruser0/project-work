@@ -5,7 +5,7 @@ using Winform.Entities;
 
 namespace Winform.Services
 {
-    internal class SaleService :ICalls<Sale>
+    internal class SaleService : ICalls<Sale>
     {
         public ICollection<Sale> GetAll(SaleFilter filter)
         {
@@ -20,6 +20,12 @@ namespace Winform.Services
                 queryParameters.Add($"SaleDateFrom={filter.SaleDateFrom}");
             if (filter.SaleDateTo != null)
                 queryParameters.Add($"SaleDateTo={filter.SaleDateTo}");
+
+            if (filter.RevenueFrom != null)
+                queryParameters.Add($"RevenueFrom={filter.RevenueFrom}");
+            if (filter.RevenueTo != null)
+                queryParameters.Add($"RevenueTo={filter.RevenueTo}");
+
             if (filter.CustomerId != null)
                 queryParameters.Add($"CustomerId={filter.CustomerId}");
             if (!string.IsNullOrEmpty(filter.Status))
@@ -76,6 +82,10 @@ namespace Winform.Services
                 queryParameters.Add($"BoLnumber={filter.BoLnumber}");
             if (filter.SaleDateFrom != null)
                 queryParameters.Add($"SaleDateFrom={filter.SaleDateFrom}");
+            if (filter.RevenueFrom != null)
+                queryParameters.Add($"RevenueFrom={filter.RevenueFrom}");
+            if (filter.RevenueTo != null)
+                queryParameters.Add($"RevenueTo={filter.RevenueTo}");
             if (filter.SaleDateTo != null)
                 queryParameters.Add($"SaleDateTo={filter.SaleDateTo}");
             if (filter.CustomerId != null)

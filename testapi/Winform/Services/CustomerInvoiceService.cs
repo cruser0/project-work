@@ -14,20 +14,22 @@ namespace Winform.Services
 
             if (filter.SaleId != null)
                 queryParameters.Add($"SaleId={filter.SaleId}");
-            if (filter.InvoiceAmount != null)
-                queryParameters.Add($"InvoiceAmount={filter.InvoiceAmount}");
+            if (filter.InvoiceAmountFrom != null)
+                queryParameters.Add($"InvoiceAmountFrom={filter.InvoiceAmountFrom}");
+            if (filter.InvoiceAmountTo != null)
+                queryParameters.Add($"InvoiceAmountTo={filter.InvoiceAmountTo}");
             if (filter.InvoiceDateFrom != null)
                 queryParameters.Add($"InvoiceDateFrom={filter.InvoiceDateFrom}");
             if (filter.InvoiceDateTo != null)
                 queryParameters.Add($"InvoiceDateTo={filter.InvoiceDateTo}");
-            if (filter.Status != null&&filter.Status.ToLower()!="all")
+            if (filter.Status != null && filter.Status.ToLower() != "all")
                 queryParameters.Add($"Status={filter.Status}");
 
             if (filter.page != null)
                 queryParameters.Add($"page={filter.page}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice"+queryString).Result;
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 
@@ -70,20 +72,22 @@ namespace Winform.Services
 
             if (filter.SaleId != null)
                 queryParameters.Add($"SaleId={filter.SaleId}");
-            if (filter.InvoiceAmount != null)
-                queryParameters.Add($"InvoiceAmount={filter.InvoiceAmount}");
+            if (filter.InvoiceAmountFrom != null)
+                queryParameters.Add($"InvoiceAmountFrom={filter.InvoiceAmountFrom}");
+            if (filter.InvoiceAmountTo != null)
+                queryParameters.Add($"InvoiceAmountTo={filter.InvoiceAmountTo}");
             if (filter.InvoiceDateFrom != null)
                 queryParameters.Add($"InvoiceDateFrom={filter.InvoiceDateFrom}");
             if (filter.InvoiceDateTo != null)
                 queryParameters.Add($"InvoiceDateTo={filter.InvoiceDateTo}");
-            if (filter.Status != null&&filter.Status.ToLower()!="all")
+            if (filter.Status != null && filter.Status.ToLower() != "all")
                 queryParameters.Add($"Status={filter.Status}");
 
             if (filter.page != null)
                 queryParameters.Add($"page={filter.page}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice/count"+ queryString).Result;
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice/count" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 

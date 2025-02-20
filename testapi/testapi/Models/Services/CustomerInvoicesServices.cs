@@ -50,9 +50,19 @@ namespace API.Models.Services
                 query = query.Where(x => x.SaleId == filter.SaleId);
             }
 
-            if (filter.InvoiceAmount != null)
+
+
+            if (filter.InvoiceAmountFrom != null && filter.InvoiceAmountTo != null)
             {
-                query = query.Where(x => x.InvoiceAmount == filter.InvoiceAmount);
+                query = query.Where(s => s.InvoiceAmount >= filter.InvoiceAmountFrom && s.InvoiceAmount <= filter.InvoiceAmountTo);
+            }
+            else if (filter.InvoiceAmountFrom != null)
+            {
+                query = query.Where(s => s.InvoiceAmount >= filter.InvoiceAmountFrom);
+            }
+            else if (filter.InvoiceAmountTo != null)
+            {
+                query = query.Where(s => s.InvoiceAmount <= filter.InvoiceAmountTo);
             }
 
             if (filter.InvoiceDateFrom != null && filter.InvoiceDateTo != null)

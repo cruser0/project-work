@@ -66,15 +66,32 @@ namespace API.Models.Services
 
                 query = query.Where(s => s.SaleDate >= filter.SaleDateFrom && s.SaleDate <= filter.SaleDateTo);
             }
-            else if (filter.SaleDateFrom != null)
+            else if (filter.RevenueFrom != null)
             {
-                query = query.Where(s => s.SaleDate >= filter.SaleDateFrom);
+                query = query.Where(s => s.TotalRevenue >= filter.RevenueFrom);
             }
-            else if (filter.SaleDateTo != null)
+            else if (filter.RevenueTo != null)
             {
-                query = query.Where(s => s.SaleDate <= filter.SaleDateTo);
+                query = query.Where(s => s.TotalRevenue <= filter.RevenueTo);
             }
 
+            if (filter.RevenueFrom != null && filter.RevenueTo != null)
+            {
+                if (filter.RevenueFrom > filter.RevenueTo)
+                {
+                    throw new ArgumentException("RevenueFrom cannot be later than RevenueTo.");
+                }
+
+                query = query.Where(s => s.TotalRevenue >= filter.RevenueFrom && s.TotalRevenue <= filter.RevenueTo);
+            }
+            else if (filter.RevenueFrom != null)
+            {
+                query = query.Where(s => s.TotalRevenue >= filter.RevenueFrom);
+            }
+            else if (filter.RevenueTo != null)
+            {
+                query = query.Where(s => s.TotalRevenue <= filter.RevenueTo);
+            }
 
             if (filter.CustomerId != null)
             {

@@ -5,7 +5,7 @@ using Winform.Entities;
 
 namespace Winform.Services
 {
-    internal class SupplierInvoiceService :ICalls<SupplierInvoice>
+    internal class SupplierInvoiceService : ICalls<SupplierInvoice>
     {
         public ICollection<SupplierInvoice> GetAll(SupplierInvoiceFilter filter)
         {
@@ -20,7 +20,13 @@ namespace Winform.Services
             if (filter.InvoiceDateTo != null)
                 parameters.Add("InvoiceDateTo=" + filter.InvoiceDateTo.ToString());
             if (filter.Status != null)
-                parameters.Add("Status=" + filter.Status);
+
+                if (filter.InvoiceAmountFrom != null)
+                    parameters.Add($"InvoiceAmountFrom={filter.InvoiceAmountFrom}");
+            if (filter.InvoiceAmountTo != null)
+                parameters.Add($"InvoiceAmountTo={filter.InvoiceAmountTo}");
+
+            parameters.Add("Status=" + filter.Status);
             if (filter.page != null)
                 parameters.Add($"page={filter.page}");
             string queryString = parameters.Any() ? "?" + string.Join("&", parameters) : string.Empty;
@@ -75,6 +81,10 @@ namespace Winform.Services
                 parameters.Add("InvoiceDateTo=" + filter.InvoiceDateTo.ToString());
             if (filter.Status != null)
                 parameters.Add("Status=" + filter.Status);
+            if (filter.InvoiceAmountFrom != null)
+                parameters.Add($"InvoiceAmountFrom={filter.InvoiceAmountFrom}");
+            if (filter.InvoiceAmountTo != null)
+                parameters.Add($"InvoiceAmountTo={filter.InvoiceAmountTo}");
             if (filter.page != null)
                 parameters.Add($"page={filter.page}");
             string queryString = parameters.Any() ? "?" + string.Join("&", parameters) : string.Empty;
