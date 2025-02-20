@@ -11,6 +11,8 @@
         {
             if (sender is DataGridView dgv)
             {
+                if (e.RowIndex == -1)
+                    return;
                 SaleDetailsForm cdf = new SaleDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 cdf.Show();
             }

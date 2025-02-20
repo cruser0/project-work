@@ -70,7 +70,7 @@ namespace Winform.Forms.CreateWindow
                 InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
                 InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
                 Status = StatusCmb.Text,
-                page=PaginationUserControl.CurrentPage,
+                page = PaginationUserControl.CurrentPage,
                 //InvoiceAmount
             };
             CustomerInvoiceFilter filterPage = new CustomerInvoiceFilter
@@ -81,10 +81,10 @@ namespace Winform.Forms.CreateWindow
                 Status = StatusCmb.Text,
                 //InvoiceAmount = 0,
             };
-            saleID=SaleIDTxt.GetText();
-            invoiceDateFrom=DateFromClnd.Checked ? DateFromClnd.Value : null;
-            invoiceDateTo=DateToClnd.Checked ? DateToClnd.Value : null;
-            status=StatusCmb.Text;
+            saleID = SaleIDTxt.GetText();
+            invoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
+            invoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null;
+            status = StatusCmb.Text;
 
             IEnumerable<CustomerInvoice> query = _customerService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerService.Count(filterPage) / itemsPage)).ToString();
@@ -102,7 +102,7 @@ namespace Winform.Forms.CreateWindow
             int idNum;
             CustomerInvoiceFilter filter = new CustomerInvoiceFilter
             {
-                SaleId =int.TryParse(saleID,out idNum)?idNum:null,
+                SaleId = int.TryParse(saleID, out idNum) ? idNum : null,
                 InvoiceDateFrom = invoiceDateFrom,
                 InvoiceDateTo = invoiceDateTo,
                 Status = status,
@@ -118,6 +118,9 @@ namespace Winform.Forms.CreateWindow
         {
             if (sender is DataGridView dgv)
             {
+                if (e.RowIndex == -1)
+                    return;
+
                 CustomerInvoiceDetailsForm sid = new CustomerInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 sid.Show();
             }

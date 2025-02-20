@@ -80,7 +80,7 @@ namespace Winform.Forms
 
             if (!PaginationUserControl.Visible)
             {
-                PaginationUserControl.Visible = true; 
+                PaginationUserControl.Visible = true;
             }
 
         }
@@ -105,33 +105,33 @@ namespace Winform.Forms
 
         private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)
         {
-            if (PaginationUserControl.CurrentPage<=1)
+            if (PaginationUserControl.CurrentPage <= 1)
                 return;
-            PaginationUserControl.CurrentPage= PaginationUserControl.CurrentPage-1;
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage+"/"+ PaginationUserControl.GetmaxPage());
+            PaginationUserControl.CurrentPage = PaginationUserControl.CurrentPage - 1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             MyControl_ButtonClicked_Pagination(sender, e);
         }
 
         private void PaginationUserControl_DoubleLeftArrowEvent(object? sender, EventArgs e)
         {
-           
-            PaginationUserControl.CurrentPage=1;
+
+            PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             MyControl_ButtonClicked_Pagination(sender, e);
         }
 
         private void PaginationUserControl_DoubleRightArrowEvent(object? sender, EventArgs e)
         {
-            PaginationUserControl.CurrentPage= int.Parse(PaginationUserControl.GetmaxPage());
+            PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.GetmaxPage());
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             MyControl_ButtonClicked_Pagination(sender, e);
         }
 
         private void PaginationUserControl_SingleRightArrowEvent(object? sender, EventArgs e)
         {
-            if (PaginationUserControl.CurrentPage>=int.Parse(PaginationUserControl.GetmaxPage()))
+            if (PaginationUserControl.CurrentPage >= int.Parse(PaginationUserControl.GetmaxPage()))
                 return;
-            PaginationUserControl.CurrentPage ++;
+            PaginationUserControl.CurrentPage++;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             MyControl_ButtonClicked_Pagination(sender, e);
 
@@ -151,6 +151,9 @@ namespace Winform.Forms
         {
             if (sender is DataGridView dgv)
             {
+                if (e.RowIndex == -1)
+                    return;
+
                 foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
                 {
                     if (form is CustomerDetailsForm)

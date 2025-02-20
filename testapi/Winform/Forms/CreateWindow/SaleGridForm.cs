@@ -118,7 +118,7 @@ namespace Winform.Forms
                 BoLnumber = blNumber,
                 SaleDateFrom = saleDateFrom,
                 SaleDateTo = saleDateTo,
-                CustomerId =int.TryParse(customerID,out outVal)?outVal:null,
+                CustomerId = int.TryParse(customerID, out outVal) ? outVal : null,
                 Status = status,
                 page = PaginationUserControl.CurrentPage
 
@@ -163,7 +163,8 @@ namespace Winform.Forms
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex == -1)
+                return;
         }
 
 

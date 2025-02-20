@@ -38,6 +38,8 @@ namespace Winform.Forms
         {
             if (sender is DataGridView dgv)
             {
+                if (e.RowIndex == -1)
+                    return;
                 SupplierInvoiceDetailsForm sid = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 sid.Show();
             }

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Winform.Forms
+﻿namespace Winform.Forms
 {
     public partial class SupplierForm : SupplierGridForm
     {
@@ -21,6 +11,8 @@ namespace Winform.Forms
         {
             if (sender is DataGridView dgv)
             {
+                if (e.RowIndex == -1)
+                    return;
                 SupplierDetailsForm cdf = new SupplierDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 cdf.Show();
             }
@@ -31,6 +23,6 @@ namespace Winform.Forms
             }
         }
 
-       
+
     }
 }
