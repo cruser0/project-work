@@ -44,6 +44,7 @@ namespace API.Models.Services
 
         private IQueryable<SaleDTOGet> ApplyFilter(SaleFilter filter)
         {
+            int itemsPage = 100;
             var query = _context.Sales.AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.BookingNumber))
@@ -86,7 +87,7 @@ namespace API.Models.Services
             }
             if (filter.page != null)
             {
-                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => SaleMapper.MapGet(x));
         }

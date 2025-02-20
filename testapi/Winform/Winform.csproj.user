@@ -16,6 +16,9 @@
     <Compile Update="Forms\control\LeftSideBarUSerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\PaginationUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\control\RightSideBarUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -43,18 +46,15 @@
     <Compile Update="Forms\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-
     <Compile Update="Forms\CustomerInvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-
     <Compile Update="Forms\CustomerInvoiceDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\CustomerInvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-
     <Compile Update="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,14 +76,12 @@
     <Compile Update="Forms\SupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-
     <Compile Update="Forms\SupplierInvoiceCostDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SupplierInvoiceCostsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-
     <Compile Update="Forms\SupplierInvoiceDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>

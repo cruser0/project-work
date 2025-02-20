@@ -52,7 +52,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(819, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 548);
+            this.panel1.Size = new System.Drawing.Size(200, 554);
             this.panel1.TabIndex = 10;
             // 
             // TextBoxesRightPanel
@@ -140,7 +140,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 548);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 554);
             this.RightSideBar.TabIndex = 7;
             // 
             // CenterPanel
@@ -149,7 +149,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(819, 548);
+            this.CenterPanel.Size = new System.Drawing.Size(819, 554);
             this.CenterPanel.TabIndex = 12;
             // 
             // SupplierDgv
@@ -162,7 +162,7 @@
             this.SupplierDgv.Name = "SupplierDgv";
             this.SupplierDgv.ReadOnly = true;
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(819, 548);
+            this.SupplierDgv.Size = new System.Drawing.Size(819, 554);
             this.SupplierDgv.TabIndex = 8;
             this.SupplierDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellDoubleClick);
             // 
@@ -170,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1019, 548);
+            this.ClientSize = new System.Drawing.Size(1019, 554);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.panel1);
             this.Name = "SupplierGridForm";

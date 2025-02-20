@@ -81,7 +81,7 @@
             this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RigtPanel.Location = new System.Drawing.Point(712, 0);
             this.RigtPanel.Name = "RigtPanel";
-            this.RigtPanel.Size = new System.Drawing.Size(200, 538);
+            this.RigtPanel.Size = new System.Drawing.Size(200, 601);
             this.RigtPanel.TabIndex = 15;
             // 
             // TextBoxesRightPanel
@@ -212,7 +212,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 538);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 601);
             this.RightSideBar.TabIndex = 1;
             // 
             // panel1
@@ -221,7 +221,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(712, 538);
+            this.panel1.Size = new System.Drawing.Size(712, 601);
             this.panel1.TabIndex = 17;
             // 
             // SaleDgv
@@ -234,7 +234,7 @@
             this.SaleDgv.Name = "SaleDgv";
             this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
-            this.SaleDgv.Size = new System.Drawing.Size(712, 538);
+            this.SaleDgv.Size = new System.Drawing.Size(712, 601);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
@@ -242,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 538);
+            this.ClientSize = new System.Drawing.Size(912, 601);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.RigtPanel);
             this.Name = "SaleGridForm";

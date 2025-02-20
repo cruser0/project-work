@@ -39,6 +39,8 @@ namespace API.Models.Services
 
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
+
+            int itemsPage = 10;
             var query = _context.Customers.AsQueryable();
             if (filter.OriginalID != null)
             {
@@ -72,7 +74,7 @@ namespace API.Models.Services
             }
             if (filter.page != null)
             {
-                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => CustomerMapper.MapGet(x));
         }
@@ -131,9 +133,9 @@ namespace API.Models.Services
                 _context.SaveChanges();
                 return CustomerMapper.MapGet(customer);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new ArgumentException("This customer already exists");
+                throw new ArgumentException(ex.InnerException.Message);
             }
 
 

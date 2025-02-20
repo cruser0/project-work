@@ -39,6 +39,7 @@ namespace API.Models.Services
 
         private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
         {
+            int itemsPage = 100;
             var query = _context.Suppliers.AsQueryable();
 
             if (filter.OriginalID != null)
@@ -75,7 +76,7 @@ namespace API.Models.Services
             }
             if (filter.page != null)
             {
-                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => SupplierMapper.MapGet(x));
         }

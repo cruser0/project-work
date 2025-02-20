@@ -5,7 +5,7 @@ using Winform.Entities;
 
 namespace Winform.Services
 {
-    internal class SupplierInvoiceCostService : ICalls<SupplierInvoiceCost>
+    internal class SupplierInvoiceCostService :ICalls<SupplierInvoiceCost>
     {
         public ICollection<SupplierInvoiceCost> GetAll(SupplierInvoiceCostFilter filter)
         {

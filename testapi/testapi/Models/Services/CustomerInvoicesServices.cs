@@ -41,6 +41,7 @@ namespace API.Models.Services
 
         public IQueryable<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter filter)
         {
+            int itemsPage = 100;
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
             var query = _context.CustomerInvoices.AsQueryable();
 
@@ -73,7 +74,7 @@ namespace API.Models.Services
             }
             if (filter.page != null)
             {
-                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => CustomerInvoiceMapper.MapGet(x));
         }

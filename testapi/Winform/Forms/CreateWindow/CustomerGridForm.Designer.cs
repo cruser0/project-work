@@ -34,8 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -44,12 +42,21 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CustomerDgv = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // NameTxt
@@ -101,26 +108,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(790, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 596);
+            this.panel1.Size = new System.Drawing.Size(200, 574);
             this.panel1.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 551);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "label2";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(21, 513);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.numericUpDown1.Size = new System.Drawing.Size(153, 23);
-            this.numericUpDown1.TabIndex = 7;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.MyControl_ButtonClicked);
             // 
             // TextBoxesRightPanel
             // 
@@ -167,7 +156,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 596);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 574);
             this.RightSideBar.TabIndex = 0;
             // 
             // CustomerGdv
@@ -179,8 +168,7 @@
             this.CustomerGdv.Location = new System.Drawing.Point(0, 0);
             this.CustomerGdv.Name = "CustomerGdv";
             this.CustomerGdv.RowTemplate.Height = 25;
-
-            this.CustomerGdv.Size = new System.Drawing.Size(790, 596);
+            this.CustomerGdv.Size = new System.Drawing.Size(790, 474);
             this.CustomerGdv.TabIndex = 6;
             this.CustomerGdv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
@@ -196,9 +184,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-
-            this.CenterPanel.Size = new System.Drawing.Size(790, 596);
-
+            this.CenterPanel.Size = new System.Drawing.Size(790, 474);
             this.CenterPanel.TabIndex = 9;
             // 
             // CustomerDgv
@@ -211,32 +197,96 @@
             this.CustomerDgv.Name = "CustomerDgv";
             this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
-
-            this.CustomerDgv.Size = new System.Drawing.Size(790, 596);
-
+            this.CustomerDgv.Size = new System.Drawing.Size(790, 474);
             this.CustomerDgv.TabIndex = 7;
             this.CustomerDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDgv_CellClick);
             this.CustomerDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.CustomerDgv.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDgv_CellClick);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 474);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(790, 100);
+            this.panel2.TabIndex = 7;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.PaginationUserControl);
+            this.panel5.Location = new System.Drawing.Point(218, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(365, 100);
+            this.panel5.TabIndex = 2;
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(17, 26);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(309, 44);
+            this.PaginationUserControl.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoSize = true;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(790, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(0, 100);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.AutoSize = true;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(0, 100);
+            this.panel3.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 551);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 15);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "label2";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(21, 513);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numericUpDown1.Size = new System.Drawing.Size(153, 23);
+            this.numericUpDown1.TabIndex = 7;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.MyControl_ButtonClicked);
+            // 
             // CustomerGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 596);
-
+            this.ClientSize = new System.Drawing.Size(990, 526);
             this.Controls.Add(this.CenterPanel);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "CustomerGridForm";
             this.Text = "testForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).EndInit();
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -254,8 +304,13 @@
         private Label StatusLbl;
         private ComboBox comboBox1;
         private DataGridView CustomerDgv;
-        private NumericUpDown numericUpDown1;
-        private Label label2;
         public Panel CenterPanel;
+        private Panel panel2;
+        private control.PaginationUserControl PaginationUserControl;
+        private Panel panel5;
+        private Panel panel4;
+        private Panel panel3;
+        private Label label2;
+        private NumericUpDown numericUpDown1;
     }
 }

@@ -5,7 +5,7 @@ using Winform.Entities;
 
 namespace Winform.Services
 {
-    internal class CustomerService : ICalls<Customer>
+    internal class CustomerService :ICalls<Customer>
     {
         public ICollection<Customer> GetAll(CustomerFilter filter)
         {

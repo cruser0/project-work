@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.SupplierInvoiceCostDgv = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.CostTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
+            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).BeginInit();
+            this.panel2.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,27 +49,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 450);
+            this.panel1.Size = new System.Drawing.Size(600, 564);
             this.panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.TextBoxesRightPanel);
-            this.panel2.Controls.Add(this.RightSideBar);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(600, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 450);
-            this.panel2.TabIndex = 1;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
-            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 450);
-            this.RightSideBar.TabIndex = 0;
             // 
             // SupplierInvoiceCostDgv
             // 
@@ -81,8 +62,18 @@
             this.SupplierInvoiceCostDgv.Name = "SupplierInvoiceCostDgv";
             this.SupplierInvoiceCostDgv.ReadOnly = true;
             this.SupplierInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(600, 450);
+            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(600, 564);
             this.SupplierInvoiceCostDgv.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.TextBoxesRightPanel);
+            this.panel2.Controls.Add(this.RightSideBar);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(600, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 564);
+            this.panel2.TabIndex = 1;
             // 
             // TextBoxesRightPanel
             // 
@@ -130,18 +121,27 @@
             this.CostLbl.TabIndex = 4;
             this.CostLbl.Text = "Cost";
             // 
+            // RightSideBar
+            // 
+            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 564);
+            this.RightSideBar.TabIndex = 0;
+            // 
             // SupplierInvoiceCostGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 564);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "SupplierInvoiceCostGridForm";
             this.Text = "SupplierInvoiceCostGridForm";
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

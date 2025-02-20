@@ -10,33 +10,27 @@ namespace Winform.Forms
         int pages;
         public CustomerGridForm()
         {
+            double itemsPage = 10.0;
             _customerService = new CustomerService();
-            pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / 100.0);
+            pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
 
 
             InitializeComponent();
-
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             RightSideBar.enterBtnEvent += RightSideBar_enterBtnEvent;
             KeyPress += RightSideBar_enterBtnEvent;
 
+            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
+            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
+            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
+            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+
             comboBox1.SelectedIndex = 1;
-            numericUpDown1.Visible = false;
-            label2.Visible = false;
-            numericUpDown1.Minimum = 1;
-            numericUpDown1.Value = 1;
-            numericUpDown1.Maximum = pages;
-        }
-
-        private void RightSideBar_enterBtnEvent(object? sender, KeyPressEventArgs e)
-        {
-            MyControl_ButtonClicked(this, e);
-        }
-
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
+            PaginationUserControl.Visible = false;
+            PaginationUserControl.SetMaxPage(pages.ToString());
+            PaginationUserControl.CurrentPage = 1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
         }
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
@@ -54,7 +48,7 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
-                page = (int)numericUpDown1.Value
+                page = PaginationUserControl.CurrentPage
             };
 
 
@@ -62,13 +56,55 @@ namespace Winform.Forms
 
             CustomerDgv.DataSource = query.ToList();
 
-            if (!numericUpDown1.Visible)
+            if (!PaginationUserControl.Visible)
             {
-                numericUpDown1.Visible = true;
-                label2.Visible = true;
-                label2.Text = $"{100 * ((int)numericUpDown1.Value - 1) + CustomerDgv.CurrentRow.Index + 1}/{100 * (int)numericUpDown1.Value}";
+                PaginationUserControl.Visible = true;
+
+                PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage+"/"+PaginationUserControl.GetmaxPage());
+
+                PaginationUserControl.CurrentPage=1;
             }
 
+        }
+
+        private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)
+        {
+            if (PaginationUserControl.CurrentPage<=1)
+                return;
+            PaginationUserControl.CurrentPage= PaginationUserControl.CurrentPage-1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage+"/"+ PaginationUserControl.GetmaxPage());
+        }
+
+        private void PaginationUserControl_DoubleLeftArrowEvent(object? sender, EventArgs e)
+        {
+           
+            PaginationUserControl.CurrentPage=1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+        }
+
+        private void PaginationUserControl_DoubleRightArrowEvent(object? sender, EventArgs e)
+        {
+            PaginationUserControl.CurrentPage= int.Parse(PaginationUserControl.GetmaxPage());
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+        }
+
+        private void PaginationUserControl_SingleRightArrowEvent(object? sender, EventArgs e)
+        {
+            if (PaginationUserControl.CurrentPage>=int.Parse(PaginationUserControl.GetmaxPage()))
+                return;
+            PaginationUserControl.CurrentPage ++;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+
+        }
+
+        private void RightSideBar_enterBtnEvent(object? sender, KeyPressEventArgs e)
+        {
+            MyControl_ButtonClicked(this, e);
+        }
+
+        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)

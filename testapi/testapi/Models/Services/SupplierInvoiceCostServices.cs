@@ -38,6 +38,7 @@ namespace API.Models.Services
 
         public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
         {
+            int itemsPage = 100;
             var query = _context.SupplierInvoiceCosts.AsQueryable();
 
             if (filter.SupplierInvoiceId != null)
@@ -56,7 +57,7 @@ namespace API.Models.Services
             }
             if (filter.page != null)
             {
-                query = query.Skip(((int)filter.page - 1) * 100).Take(100);
+                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
 
             return query.Select(x => SupplierInvoiceCostMapper.MapGet(x));
