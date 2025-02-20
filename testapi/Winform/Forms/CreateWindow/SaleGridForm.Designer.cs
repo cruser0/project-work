@@ -45,10 +45,17 @@
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
+            this.BottomPanel = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).BeginInit();
+            this.BottomPanel.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // DateFromDTP
@@ -221,7 +228,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(712, 601);
+            this.panel1.Size = new System.Drawing.Size(712, 501);
             this.panel1.TabIndex = 17;
             // 
             // SaleDgv
@@ -234,9 +241,54 @@
             this.SaleDgv.Name = "SaleDgv";
             this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
-            this.SaleDgv.Size = new System.Drawing.Size(712, 601);
+            this.SaleDgv.Size = new System.Drawing.Size(712, 501);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            // 
+            // BottomPanel
+            // 
+            this.BottomPanel.Controls.Add(this.panel5);
+            this.BottomPanel.Controls.Add(this.panel4);
+            this.BottomPanel.Controls.Add(this.panel3);
+            this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomPanel.Location = new System.Drawing.Point(0, 501);
+            this.BottomPanel.Name = "BottomPanel";
+            this.BottomPanel.Size = new System.Drawing.Size(712, 100);
+            this.BottomPanel.TabIndex = 18;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.PaginationUserControl);
+            this.panel5.Location = new System.Drawing.Point(218, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(365, 100);
+            this.panel5.TabIndex = 2;
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(17, 26);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(309, 44);
+            this.PaginationUserControl.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoSize = true;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(712, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(0, 100);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.AutoSize = true;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(0, 100);
+            this.panel3.TabIndex = 0;
             // 
             // SaleGridForm
             // 
@@ -244,6 +296,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 601);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.RigtPanel);
             this.Name = "SaleGridForm";
             this.Text = "SaleForm";
@@ -252,6 +305,9 @@
             this.TextBoxesRightPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).EndInit();
+            this.BottomPanel.ResumeLayout(false);
+            this.BottomPanel.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -274,5 +330,10 @@
         private control.IntegerTextBoxUserControl CustomerIDTextBoxUserControl;
         public Panel panel1;
         public DataGridView SaleDgv;
+        private Panel BottomPanel;
+        private Panel panel5;
+        private control.PaginationUserControl PaginationUserControl;
+        private Panel panel4;
+        private Panel panel3;
     }
 }
