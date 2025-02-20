@@ -1,60 +1,58 @@
-﻿using Winform.Services;
+﻿using Winform.Entities;
+using Winform.Services;
 
 namespace Winform.Forms
 {
     public partial class CustomerInvoiceDetailsForm : Form
     {
 
-        SaleService _saleService;
+        CustomerInvoiceService _customerInvoiceService;
         public CustomerInvoiceDetailsForm(int id)
         {
             InitializeComponent();
 
-            /*
-            _saleService = new SaleService();
-            Sale sale = _saleService.GetById(id);
-            SaleIdtxt.Text = id.ToString();
-            bntxt.Text = sale.BookingNumber;
-            boltxt.Text = sale.BoLnumber;
-            saleDateDtp.Value = sale.SaleDate.Value;
-            CustomerIdtxt.SetText(sale.CustomerId.ToString());
-            RevenueTxt.SetText(sale.TotalRevenue.ToString());
-            StatusTxt.Text = sale.Status.ToString();
+            _customerInvoiceService = new CustomerInvoiceService();
+            CustomerInvoice customer = _customerInvoiceService.GetById(id);
 
-            SaleIdtxt.Enabled = false;
-            bntxt.Enabled = false;
-            boltxt.Enabled = false;
-            saleDateDtp.Enabled = false;
-            CustomerIdtxt.Enabled = false;
-            RevenueTxt.Enabled = false;
-            StatusTxt.Enabled = false;
-            saveBtn.Enabled = false;*/
-        }
-        /*
-        private void EditCB_CheckedChanged(object sender, EventArgs e)
-        {
-            bntxt.Enabled = !bntxt.Enabled;
-            boltxt.Enabled = !boltxt.Enabled;
-            saleDateDtp.Enabled = !saleDateDtp.Enabled;
-            CustomerIdtxt.Enabled = !CustomerIdtxt.Enabled;
-            StatusTxt.Enabled = !StatusTxt.Enabled;
-            saveBtn.Enabled = !saveBtn.Enabled;
+            CustomerInvoiceIdTxt.Text = customer.CustomerInvoiceId.ToString();
+            InvoiceAmountTxt.Text = customer.InvoiceAmount.ToString();
+            SaleIdTxt.SetText(customer.SaleId.ToString());
+            InvoiceDateDTP.Value = (DateTime)customer.InvoiceDate;
+            StatusCB.Text = customer.Status;
+
+            CustomerInvoiceIdTxt.Enabled = false;
+            InvoiceAmountTxt.Enabled = false;
+            StatusCB.Enabled = false;
+            SaleIdTxt.Enabled = false;
+            InvoiceDateDTP.Enabled = false;
+            button1.Enabled = false;
+
+
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void EditCustomerCbx_CheckedChanged(object sender, EventArgs e)
         {
-            Sale sale = new Sale
+
+            StatusCB.Enabled = !StatusCB.Enabled;
+            SaleIdTxt.Enabled = !SaleIdTxt.Enabled;
+            InvoiceDateDTP.Enabled = !InvoiceDateDTP.Enabled;
+            button1.Enabled = !button1.Enabled;
+
+        }
+
+        private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        {
+            CustomerInvoice si = new CustomerInvoice
             {
-                BookingNumber = bntxt.Text,
-                BoLnumber = boltxt.Text,
-                SaleDate = saleDateDtp.Value,
-                CustomerId = int.Parse(CustomerIdtxt.GetText()),
-                Status = StatusTxt.Text
+                SaleId = int.Parse(SaleIdTxt.GetText()),
+                Status = StatusCB.Text,
+                InvoiceDate = InvoiceDateDTP.Value,
+                InvoiceAmount = 0
             };
             try
             {
-                _saleService.Update(int.Parse(SaleIdtxt.Text), sale);
-                MessageBox.Show("Sale updated successfully!");
+                _customerInvoiceService.Update(int.Parse(CustomerInvoiceIdTxt.Text), si);
+                MessageBox.Show("Customer updated successfully!");
 
                 this.Close();
             }
@@ -64,17 +62,17 @@ namespace Winform.Forms
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
-          "This action is permanent and it will delete all the history bound to this Sale!",
-          "Confirm Deletion?",
-          MessageBoxButtons.YesNo,
-          MessageBoxIcon.Warning);
+           "This action is permanent and it will delete all the history bound to this Customer Invoice!",
+           "Confirm Deletion?",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                    _saleService.Delete(int.Parse(SaleIdtxt.Text));
-                    MessageBox.Show("Sale has been deleted.");
+                    _customerInvoiceService.Delete(int.Parse(CustomerInvoiceIdTxt.Text));
+                    MessageBox.Show("Customer Invoice has been deleted.");
                     this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -84,6 +82,5 @@ namespace Winform.Forms
                 MessageBox.Show("Action canceled.");
             }
         }
-        */
     }
 }
