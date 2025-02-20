@@ -236,7 +236,7 @@
             this.SaleDgv.RowTemplate.Height = 25;
             this.SaleDgv.Size = new System.Drawing.Size(712, 601);
             this.SaleDgv.TabIndex = 8;
-            this.SaleDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
             // SaleGridForm
             // 

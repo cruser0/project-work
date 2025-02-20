@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.RightPanel = new System.Windows.Forms.Panel();
-            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.SaleIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
             this.SaleIDLbl = new System.Windows.Forms.Label();
             this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
+            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CenterDgv = new System.Windows.Forms.DataGridView();
             this.RightPanel.SuspendLayout();
@@ -56,15 +56,6 @@
             this.RightPanel.Name = "RightPanel";
             this.RightPanel.Size = new System.Drawing.Size(200, 618);
             this.RightPanel.TabIndex = 0;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
-            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 618);
-            this.RightSideBar.TabIndex = 0;
             // 
             // TextBoxesRightPanel
             // 
@@ -167,6 +158,15 @@
             this.DateFromClnd.Size = new System.Drawing.Size(193, 23);
             this.DateFromClnd.TabIndex = 5;
             // 
+            // RightSideBar
+            // 
+            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 618);
+            this.RightSideBar.TabIndex = 0;
+            // 
             // CenterPanel
             // 
             this.CenterPanel.Controls.Add(this.CenterDgv);
@@ -180,6 +180,7 @@
             // 
             this.CenterDgv.AllowUserToAddRows = false;
             this.CenterDgv.AllowUserToDeleteRows = false;
+            this.CenterDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CenterDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.CenterDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CenterDgv.Dock = System.Windows.Forms.DockStyle.Fill;

@@ -33,6 +33,11 @@
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(200, 0);
+            this.panel1.Size = new System.Drawing.Size(400, 450);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.leftSideBaruSerControl1);
@@ -60,6 +65,7 @@
             this.Name = "SupplierInvoiceCostsForm";
             this.Text = "SupplierInvoiceCostsForm";
             this.Controls.SetChildIndex(this.panel3, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 

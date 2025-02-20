@@ -5,7 +5,7 @@ using Winform.Entities;
 
 namespace Winform.Services
 {
-    internal class SupplierInvoiceCostService :ICalls<SupplierInvoiceCost>
+    internal class SupplierInvoiceCostService : ICalls<SupplierInvoiceCost>
     {
         public ICollection<SupplierInvoiceCost> GetAll(SupplierInvoiceCostFilter filter)
         {
@@ -16,7 +16,12 @@ namespace Winform.Services
                 queryParameters.Add($"SupplierInvoiceId={filter.SupplierInvoiceId}");
 
             if (filter.Cost != null)
-                queryParameters.Add($"Cost={filter.Cost}");
+            {
+                string test = filter.Cost.ToString().Replace(',', '.');
+
+                queryParameters.Add($"Cost={test}");
+            }
+
 
             if (filter.Quantity != null)
                 queryParameters.Add($"Quantity={filter.Quantity}");
@@ -70,7 +75,11 @@ namespace Winform.Services
                 queryParameters.Add($"SupplierInvoiceId={filter.SupplierInvoiceId}");
 
             if (filter.Cost != null)
-                queryParameters.Add($"Cost={filter.Cost}");
+            {
+                string test = filter.Cost.ToString().Replace(',', '.');
+                queryParameters.Add($"Cost={test}");
+            }
+
 
             if (filter.Quantity != null)
                 queryParameters.Add($"Quantity={filter.Quantity}");

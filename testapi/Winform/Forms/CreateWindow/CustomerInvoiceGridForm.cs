@@ -1,13 +1,4 @@
 ﻿using API.Models.Filters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Winform.Entities;
 using Winform.Services;
 
@@ -18,7 +9,7 @@ namespace Winform.Forms.CreateWindow
         CustomerInvoiceService _customerService;
         public CustomerInvoiceGridForm()
         {
-            _customerService= new CustomerInvoiceService();
+            _customerService = new CustomerInvoiceService();
             InitializeComponent();
             StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += RightSideBar_searchBtnEvent;
@@ -71,7 +62,7 @@ namespace Winform.Forms.CreateWindow
         {
             if (sender is DataGridView dgv)
             {
-                SupplierInvoiceDetailsForm sid = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                CustomerInvoiceDetailsForm sid = new CustomerInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 sid.Show();
             }
             else

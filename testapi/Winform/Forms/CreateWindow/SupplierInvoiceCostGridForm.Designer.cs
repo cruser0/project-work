@@ -64,6 +64,7 @@
             this.SupplierInvoiceCostDgv.RowTemplate.Height = 25;
             this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(600, 564);
             this.SupplierInvoiceCostDgv.TabIndex = 0;
+            this.SupplierInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
             // panel2
             // 
@@ -149,8 +150,6 @@
         }
 
         #endregion
-
-        private Panel panel1;
         private DataGridView SupplierInvoiceCostDgv;
         private Panel panel2;
         private control.RightSideBarUserControl RightSideBar;
@@ -159,5 +158,6 @@
         private control.IntegerTextBoxUserControl InvoiceIDTxt;
         private Label InvoiceIDLbl;
         private Label CostLbl;
+        public Panel panel1;
     }
 }

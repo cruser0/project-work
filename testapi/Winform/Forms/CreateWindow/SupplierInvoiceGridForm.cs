@@ -24,7 +24,7 @@ namespace Winform.Forms
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             if (id != null)
             {
-                SupplierIDTxt.Text = id;
+                SupplierIDTxt.SetText(id);
                 MyControl_ButtonClicked(this, EventArgs.Empty);
             }
         }

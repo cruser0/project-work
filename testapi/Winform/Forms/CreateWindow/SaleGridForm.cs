@@ -57,8 +57,6 @@ namespace Winform.Forms
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
-            if (sender is DataGridView dgv)
-                _father.SetSaleID(dgv.CurrentRow.Cells[0].Value.ToString());
 
         }
 

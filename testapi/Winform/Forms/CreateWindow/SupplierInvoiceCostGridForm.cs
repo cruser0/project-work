@@ -25,7 +25,7 @@ namespace Winform.Forms.CreateWindow
         {
             if (sender is DataGridView dgv)
             {
-                SupplierInvoiceDetailsForm sid = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                SupplierInvoiceCostDetailsForm sid = new SupplierInvoiceCostDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 sid.Show();
             }
             else
