@@ -42,7 +42,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CustomerDgv = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -52,7 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,18 +195,17 @@
             this.CustomerDgv.Size = new System.Drawing.Size(790, 526);
             this.CustomerDgv.TabIndex = 7;
             this.CustomerDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
-            
             // 
-            // panel2
+            // BottomPanel
             // 
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 526);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(790, 100);
-            this.panel2.TabIndex = 7;
+            this.BottomPanel.Controls.Add(this.panel5);
+            this.BottomPanel.Controls.Add(this.panel4);
+            this.BottomPanel.Controls.Add(this.panel3);
+            this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomPanel.Location = new System.Drawing.Point(0, 526);
+            this.BottomPanel.Name = "BottomPanel";
+            this.BottomPanel.Size = new System.Drawing.Size(790, 100);
+            this.BottomPanel.TabIndex = 7;
             // 
             // panel5
             // 
@@ -248,7 +247,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 626);
             this.Controls.Add(this.CenterPanel);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.panel1);
             this.Name = "CustomerGridForm";
             this.Text = "testForm";
@@ -258,8 +257,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).EndInit();
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.BottomPanel.ResumeLayout(false);
+            this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -279,7 +278,7 @@
         private ComboBox comboBox1;
         private DataGridView CustomerDgv;
         public Panel CenterPanel;
-        private Panel panel2;
+        private Panel BottomPanel;
         private control.PaginationUserControl PaginationUserControl;
         private Panel panel5;
         private Panel panel4;
