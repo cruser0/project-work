@@ -39,7 +39,7 @@ namespace API.Models.Services
 
         private IQueryable<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
         {
-            int itemsPage = 100;
+            int itemsPage = 10;
             var query = _context.SupplierInvoices.AsQueryable();
 
             if (filter.InvoiceDateFrom.HasValue)

@@ -20,14 +20,14 @@ namespace Winform.Services
                 queryParameters.Add($"InvoiceDateFrom={filter.InvoiceDateFrom}");
             if (filter.InvoiceDateTo != null)
                 queryParameters.Add($"InvoiceDateTo={filter.InvoiceDateTo}");
-            if (filter.Status != null)
+            if (filter.Status != null&&filter.Status.ToLower()!="all")
                 queryParameters.Add($"Status={filter.Status}");
 
             if (filter.page != null)
                 queryParameters.Add($"page={filter.page}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice").Result;
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice"+queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 
@@ -76,14 +76,14 @@ namespace Winform.Services
                 queryParameters.Add($"InvoiceDateFrom={filter.InvoiceDateFrom}");
             if (filter.InvoiceDateTo != null)
                 queryParameters.Add($"InvoiceDateTo={filter.InvoiceDateTo}");
-            if (filter.Status != null)
+            if (filter.Status != null&&filter.Status.ToLower()!="all")
                 queryParameters.Add($"Status={filter.Status}");
 
             if (filter.page != null)
                 queryParameters.Add($"page={filter.page}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice/count").Result;
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice/count"+ queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 

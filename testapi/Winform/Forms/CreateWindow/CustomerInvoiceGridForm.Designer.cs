@@ -41,10 +41,17 @@
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CenterDgv = new System.Windows.Forms.DataGridView();
+            this.BottomPanel = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).BeginInit();
+            this.BottomPanel.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // RightPanel
@@ -118,8 +125,8 @@
             this.StatusCmb.FormattingEnabled = true;
             this.StatusCmb.Items.AddRange(new object[] {
             "All",
-            "Approved",
-            "Unapproved"});
+            "Paid",
+            "Unpaid"});
             this.StatusCmb.Location = new System.Drawing.Point(3, 162);
             this.StatusCmb.Name = "StatusCmb";
             this.StatusCmb.Size = new System.Drawing.Size(194, 23);
@@ -173,7 +180,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(741, 618);
+            this.CenterPanel.Size = new System.Drawing.Size(741, 518);
             this.CenterPanel.TabIndex = 1;
             // 
             // CenterDgv
@@ -188,9 +195,54 @@
             this.CenterDgv.Name = "CenterDgv";
             this.CenterDgv.ReadOnly = true;
             this.CenterDgv.RowTemplate.Height = 25;
-            this.CenterDgv.Size = new System.Drawing.Size(741, 618);
+            this.CenterDgv.Size = new System.Drawing.Size(741, 518);
             this.CenterDgv.TabIndex = 0;
             this.CenterDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CenterDgv_CellDoubleClick);
+            // 
+            // BottomPanel
+            // 
+            this.BottomPanel.Controls.Add(this.panel5);
+            this.BottomPanel.Controls.Add(this.panel4);
+            this.BottomPanel.Controls.Add(this.panel3);
+            this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomPanel.Location = new System.Drawing.Point(0, 518);
+            this.BottomPanel.Name = "BottomPanel";
+            this.BottomPanel.Size = new System.Drawing.Size(741, 100);
+            this.BottomPanel.TabIndex = 8;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.PaginationUserControl);
+            this.panel5.Location = new System.Drawing.Point(218, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(365, 100);
+            this.panel5.TabIndex = 2;
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(17, 26);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(309, 44);
+            this.PaginationUserControl.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoSize = true;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(741, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(0, 100);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.AutoSize = true;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(0, 100);
+            this.panel3.TabIndex = 0;
             // 
             // CustomerInvoiceGridForm
             // 
@@ -198,6 +250,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 618);
             this.Controls.Add(this.CenterPanel);
+            this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.RightPanel);
             this.Name = "CustomerInvoiceGridForm";
             this.Text = "CustomerInvoiceGridForm";
@@ -206,6 +259,9 @@
             this.TextBoxesRightPanel.PerformLayout();
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).EndInit();
+            this.BottomPanel.ResumeLayout(false);
+            this.BottomPanel.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -225,5 +281,10 @@
         private DateTimePicker DateFromClnd;
         public Panel CenterPanel;
         private DataGridView CenterDgv;
+        private Panel BottomPanel;
+        private Panel panel5;
+        private control.PaginationUserControl PaginationUserControl;
+        private Panel panel4;
+        private Panel panel3;
     }
 }

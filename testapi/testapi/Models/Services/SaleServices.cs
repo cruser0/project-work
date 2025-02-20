@@ -44,7 +44,7 @@ namespace API.Models.Services
 
         private IQueryable<SaleDTOGet> ApplyFilter(SaleFilter filter)
         {
-            int itemsPage = 100;
+            int itemsPage = 10;
             var query = _context.Sales.AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.BookingNumber))
