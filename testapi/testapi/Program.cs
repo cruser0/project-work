@@ -20,6 +20,7 @@ builder.Services.AddScoped<ICustomerService, CustomerServices>();
 builder.Services.AddScoped<ICustomerInvoicesService, CustomerInvoicesServices>();
 builder.Services.AddScoped<ISalesService, SaleServices>();
 builder.Services.AddScoped<ISupplierInvoiceCostService, SupplierInvoiceCostServices>();
+builder.Services.AddScoped<ICustomerInvoiceCostService, CustomerInvoiceCostService>();
 builder.Services.AddScoped<ISupplierInvoiceService, SupplierInvoiceService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 

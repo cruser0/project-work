@@ -1,8 +1,8 @@
 ﻿namespace API.Models.Filters
 {
-    public class SupplierInvoiceCostFilter
+    public class CustomerInvoiceCostFilter
     {
-        public int? SupplierInvoiceId { get; set; }
+        public int? CustomerInvoiceId { get; set; }
 
         public int? CostFrom { get; set; }
         public int? CostTo { get; set; }

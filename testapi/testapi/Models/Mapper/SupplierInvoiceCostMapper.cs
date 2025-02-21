@@ -14,7 +14,8 @@ namespace API.Models.Mapper
 
                 SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
                 Cost = supplierInvoiceCost.Cost,
-                Quantity = supplierInvoiceCost.Quantity
+                Quantity = supplierInvoiceCost.Quantity,
+                Name = supplierInvoiceCost.Name,
 
             };
         }
@@ -27,7 +28,8 @@ namespace API.Models.Mapper
 
                 SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
                 Cost = supplierInvoiceCost.Cost,
-                Quantity = supplierInvoiceCost.Quantity
+                Quantity = supplierInvoiceCost.Quantity,
+                Name = supplierInvoiceCost.Name,
 
             };
         }
@@ -41,7 +43,8 @@ namespace API.Models.Mapper
                 SupplierInvoiceCostsId = supplierInvoiceCost.SupplierInvoiceCostsId,
                 SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
                 Cost = supplierInvoiceCost.Cost,
-                Quantity = supplierInvoiceCost.Quantity
+                Quantity = supplierInvoiceCost.Quantity,
+                Name = supplierInvoiceCost.Name,
 
             };
         }
@@ -54,7 +57,8 @@ namespace API.Models.Mapper
                 SupplierInvoiceCostsId = supplierInvoiceCost.SupplierInvoiceCostsId,
                 SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
                 Cost = supplierInvoiceCost.Cost,
-                Quantity = supplierInvoiceCost.Quantity
+                Quantity = supplierInvoiceCost.Quantity,
+                Name = supplierInvoiceCost.Name,
 
             };
         }
