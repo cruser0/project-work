@@ -1,9 +1,9 @@
 ﻿namespace Winform.Entities
 {
-    public partial class SupplierInvoiceCost
+    internal class CustomerInvoiceCost
     {
-        public int SupplierInvoiceCostsId { get; set; }
-        public int? SupplierInvoiceId { get; set; }
+        public int CustomerInvoiceCostsId { get; set; }
+        public int? CustomerInvoiceId { get; set; }
         public decimal? Cost { get; set; }
         public int? Quantity { get; set; }
         public string? Name { get; set; }
