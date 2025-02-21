@@ -4,10 +4,10 @@ namespace Winform
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
-            IsMdiContainer = true;
         }
 
 
@@ -18,6 +18,20 @@ namespace Winform
             {
                 Cursor.Current = Cursors.WaitCursor;
 
+                string tabName = menuItem.Text.Substring(menuItem.Text.IndexOf(' ') + 1);
+
+                // Controlla se esiste già una tab con lo stesso nome
+                foreach (TabPage tab in tabControl1.TabPages)
+                {
+                    if (tab.Text == tabName)
+                    {
+                        tabControl1.SelectedTab = tab;
+                        Cursor.Current = Cursors.Default;
+                        return;
+                    }
+                }
+
+                // Crea una nuova finestra solo se non esiste già
                 Form child = menuItem.Text switch
                 {
                     "Show Customers" => new CustomerForm(),
@@ -26,32 +40,26 @@ namespace Winform
                     "Show Supplier Invoices" => new SupplierInvoiceForm(),
                     "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
                     "Show Sales" => new SaleForm(),
-
-
                     "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
                     _ => throw new Exception("Unknown option")
                 };
 
-                foreach (Control ctrl in CenterPanel.Controls)
-                {
-                    if (ctrl is Form existingForm)
-                    {
-                        existingForm.Close();
-                        existingForm.Dispose();
-                    }
-                }
-
-                CenterPanel.Controls.Clear();
-
+                child.Tag = tabName;
                 child.TopLevel = false;
                 child.FormBorderStyle = FormBorderStyle.None;
                 child.Dock = DockStyle.Fill;
 
-                CenterPanel.Controls.Add(child);
+                TabPage newPage = new TabPage { Text = tabName };
+                newPage.Controls.Add(child);
+                tabControl1.Controls.Add(newPage);
+                tabControl1.SelectedTab = newPage;
+
                 child.Show();
+
                 Cursor.Current = Cursors.Default;
             }
         }
+
 
 
         private void AddCustomersStripToolButton_Click(object sender, EventArgs e)

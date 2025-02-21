@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities;
+﻿using Winform.Entities;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -44,18 +35,20 @@ namespace Winform.Forms
 
         private void SaveEditSupplierBtn_Click(object sender, EventArgs e)
         {
-           Supplier supplier = new Supplier { SupplierName=NameSupplierTxt.Text,Country=CountrySupplierTxt.Text};
+            Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountrySupplierTxt.Text };
             try
             {
                 _supplierService.Update(int.Parse(IdSupplierTxt.Text), supplier);
                 MessageBox.Show("Supplier updated successfully!");
 
                 this.Close();
-            }catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void SupplierGetInvoiceBtn_Click(object sender, EventArgs e)
         {
+            /*
             // Close all existing MDI child forms
             var mainForm = Application.OpenForms["MainForm"] as MainForm;
             foreach (Control ctrl in mainForm.CenterPanel.Controls)
@@ -75,7 +68,7 @@ namespace Winform.Forms
             child.Dock = DockStyle.Fill;
 
             mainForm.CenterPanel.Controls.Add(child);
-            child.Show();
+            child.Show();*/
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
@@ -90,10 +83,11 @@ namespace Winform.Forms
             {
                 try
                 {
-                _supplierService.Delete(int.Parse(IdSupplierTxt.Text));
-                MessageBox.Show("Supplier has been deleted.");
-                this.Close();
-                }catch (Exception ex) { MessageBox.Show(ex.Message); }
+                    _supplierService.Delete(int.Parse(IdSupplierTxt.Text));
+                    MessageBox.Show("Supplier has been deleted.");
+                    this.Close();
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
             else
             {

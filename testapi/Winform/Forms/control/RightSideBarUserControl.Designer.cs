@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.SearchButton = new System.Windows.Forms.Button();
-            this.CloseWindowBtn = new System.Windows.Forms.Button();
-            this.TopPanel = new System.Windows.Forms.Panel();
-            this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // SearchButton
@@ -48,40 +45,14 @@
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             this.SearchButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchButton_KeyPress);
             // 
-            // CloseWindowBtn
-            // 
-            this.CloseWindowBtn.BackColor = System.Drawing.Color.DarkGray;
-            this.CloseWindowBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CloseWindowBtn.FlatAppearance.BorderSize = 0;
-            this.CloseWindowBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseWindowBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CloseWindowBtn.Location = new System.Drawing.Point(160, 0);
-            this.CloseWindowBtn.Name = "CloseWindowBtn";
-            this.CloseWindowBtn.Size = new System.Drawing.Size(40, 38);
-            this.CloseWindowBtn.TabIndex = 1;
-            this.CloseWindowBtn.Text = "X";
-            this.CloseWindowBtn.UseVisualStyleBackColor = false;
-            this.CloseWindowBtn.Click += new System.EventHandler(this.CloseWindowBtn_Click);
-            // 
-            // TopPanel
-            // 
-            this.TopPanel.Controls.Add(this.CloseWindowBtn);
-            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(200, 38);
-            this.TopPanel.TabIndex = 2;
-            // 
             // RightSideBarUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.SearchButton);
             this.Name = "RightSideBarUserControl";
             this.Size = new System.Drawing.Size(200, 600);
-            this.TopPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -89,7 +60,5 @@
         #endregion
 
         private Button SearchButton;
-        private Button CloseWindowBtn;
-        private Panel TopPanel;
     }
 }

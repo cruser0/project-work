@@ -35,7 +35,6 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.CustomerLbl = new System.Windows.Forms.Label();
             this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +46,7 @@
             // 
             // panel5
             // 
-            this.panel5.Location = new System.Drawing.Point(313, 0);
+            this.panel5.Location = new System.Drawing.Point(416, 0);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -93,25 +92,12 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.CustomerLbl);
             this.panel2.Controls.Add(this.leftSideBaruSerControl1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 621);
             this.panel2.TabIndex = 10;
-            // 
-            // CustomerLbl
-            // 
-            this.CustomerLbl.AutoSize = true;
-            this.CustomerLbl.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.CustomerLbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CustomerLbl.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CustomerLbl.Location = new System.Drawing.Point(0, 0);
-            this.CustomerLbl.Name = "CustomerLbl";
-            this.CustomerLbl.Size = new System.Drawing.Size(98, 25);
-            this.CustomerLbl.TabIndex = 1;
-            this.CustomerLbl.Text = "Customer";
             // 
             // leftSideBaruSerControl1
             // 
@@ -133,7 +119,6 @@
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.CenterPanel, 0);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
