@@ -279,12 +279,12 @@
         private ContextMenuStrip contextMenuStrip1;
         private Label StatusLbl;
         private ComboBox comboBox1;
-        private DataGridView CustomerDgv;
         public Panel CenterPanel;
         private Panel BottomPanel;
         private control.PaginationUserControl PaginationUserControl;
         private Panel panel4;
         private Panel panel3;
         public Panel panel5;
+        public DataGridView CustomerDgv;
     }
 }
