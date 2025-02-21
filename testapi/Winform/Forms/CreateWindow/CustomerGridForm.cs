@@ -22,8 +22,6 @@ namespace Winform.Forms
             InitializeComponent();
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
             RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-            RightSideBar.enterBtnEvent += RightSideBar_enterBtnEvent;
-            KeyPress += RightSideBar_enterBtnEvent;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
@@ -137,10 +135,6 @@ namespace Winform.Forms
 
         }
 
-        private void RightSideBar_enterBtnEvent(object? sender, KeyPressEventArgs e)
-        {
-            MyControl_ButtonClicked(this, e);
-        }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
         {
@@ -170,6 +164,11 @@ namespace Winform.Forms
             }
         }
 
+        private void CustomerGridForm_Resize(object sender, EventArgs e)
+        {
+            panel5.Location = new Point((Width - panel5.Width) / 2, 0);
+            PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
 
+        }
     }
 }

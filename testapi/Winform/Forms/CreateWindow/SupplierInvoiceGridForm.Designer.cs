@@ -44,20 +44,23 @@
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.SupplierInvoiceDgv = new System.Windows.Forms.DataGridView();
+            this.BottomPanel = new System.Windows.Forms.Panel();
+            this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).BeginInit();
+            this.BottomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.RigtPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(456, 0);
+            this.panel1.Location = new System.Drawing.Point(739, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 647);
+            this.panel1.Size = new System.Drawing.Size(200, 547);
             this.panel1.TabIndex = 16;
             // 
             // RigtPanel
@@ -67,7 +70,7 @@
             this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RigtPanel.Location = new System.Drawing.Point(0, 0);
             this.RigtPanel.Name = "RigtPanel";
-            this.RigtPanel.Size = new System.Drawing.Size(200, 647);
+            this.RigtPanel.Size = new System.Drawing.Size(200, 547);
             this.RigtPanel.TabIndex = 16;
             // 
             // TextBoxesRightPanel
@@ -196,7 +199,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 647);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 547);
             this.RightSideBar.TabIndex = 1;
             // 
             // CenterPanel
@@ -205,7 +208,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(456, 647);
+            this.CenterPanel.Size = new System.Drawing.Size(739, 547);
             this.CenterPanel.TabIndex = 18;
             // 
             // SupplierInvoiceDgv
@@ -218,25 +221,47 @@
             this.SupplierInvoiceDgv.Name = "SupplierInvoiceDgv";
             this.SupplierInvoiceDgv.ReadOnly = true;
             this.SupplierInvoiceDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(456, 647);
+            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(739, 547);
             this.SupplierInvoiceDgv.TabIndex = 9;
             this.SupplierInvoiceDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            // 
+            // BottomPanel
+            // 
+            this.BottomPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.BottomPanel.Controls.Add(this.PaginationUserControl);
+            this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomPanel.Location = new System.Drawing.Point(0, 547);
+            this.BottomPanel.Name = "BottomPanel";
+            this.BottomPanel.Size = new System.Drawing.Size(939, 100);
+            this.BottomPanel.TabIndex = 19;
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(198, 24);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
+            this.PaginationUserControl.TabIndex = 0;
             // 
             // SupplierInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 647);
+            this.ClientSize = new System.Drawing.Size(939, 647);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.BottomPanel);
             this.Name = "SupplierInvoiceGridForm";
             this.Text = "SupplierInvoiceForm";
+            this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
             this.RigtPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).EndInit();
+            this.BottomPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -258,5 +283,7 @@
         private control.IntegerTextBoxUserControl SaleIDTxt;
         private control.IntegerTextBoxUserControl SupplierIDTxt;
         public Panel CenterPanel;
+        private Panel BottomPanel;
+        private control.PaginationUserControl PaginationUserControl;
     }
 }

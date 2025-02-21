@@ -1,17 +1,4 @@
-﻿using API.Models.Filters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities;
-using Winform.Services;
-
-namespace Winform.Forms.control
+﻿namespace Winform.Forms.control
 {
     public partial class PaginationUserControl : UserControl
     {
@@ -26,6 +13,7 @@ namespace Winform.Forms.control
         {
             InitializeComponent();
             double itemsPage = 100.0;
+            PageNumber.Location = new Point((Width - PageNumber.Width) / 2, (Height - PageNumber.Height) / 2);
 
         }
         public void SetPageLbl(string page)
@@ -66,5 +54,5 @@ namespace Winform.Forms.control
             DoubleLeftArrowEvent.Invoke(this, EventArgs.Empty);
         }
     }
-    
+
 }

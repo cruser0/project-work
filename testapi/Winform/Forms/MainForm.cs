@@ -16,6 +16,8 @@ namespace Winform
         {
             if (sender is ToolStripMenuItem menuItem)
             {
+                Cursor.Current = Cursors.WaitCursor;
+
                 Form child = menuItem.Text switch
                 {
                     "Show Customers" => new CustomerForm(),
@@ -47,6 +49,7 @@ namespace Winform
 
                 CenterPanel.Controls.Add(child);
                 child.Show();
+                Cursor.Current = Cursors.Default;
             }
         }
 

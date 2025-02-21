@@ -32,17 +32,20 @@
             this.SupplierInvoiceCostDgv = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.CostToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.CostFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
-            this.CostToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.label1 = new System.Windows.Forms.Label();
+            this.BottomPanel = new System.Windows.Forms.Panel();
+            this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).BeginInit();
             this.panel2.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
+            this.BottomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -51,7 +54,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 564);
+            this.panel1.Size = new System.Drawing.Size(600, 464);
             this.panel1.TabIndex = 0;
             // 
             // SupplierInvoiceCostDgv
@@ -64,7 +67,7 @@
             this.SupplierInvoiceCostDgv.Name = "SupplierInvoiceCostDgv";
             this.SupplierInvoiceCostDgv.ReadOnly = true;
             this.SupplierInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(600, 564);
+            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(600, 464);
             this.SupplierInvoiceCostDgv.TabIndex = 0;
             this.SupplierInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
@@ -75,7 +78,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(600, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 564);
+            this.panel2.Size = new System.Drawing.Size(200, 464);
             this.panel2.TabIndex = 1;
             // 
             // TextBoxesRightPanel
@@ -91,6 +94,23 @@
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 246);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // CostToTxt
+            // 
+            this.CostToTxt.Location = new System.Drawing.Point(4, 122);
+            this.CostToTxt.Name = "CostToTxt";
+            this.CostToTxt.Size = new System.Drawing.Size(194, 23);
+            this.CostToTxt.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(4, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 18);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Cost To";
             // 
             // CostFromTxt
             // 
@@ -132,25 +152,26 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 564);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 464);
             this.RightSideBar.TabIndex = 0;
             // 
-            // CostToTxt
+            // BottomPanel
             // 
-            this.CostToTxt.Location = new System.Drawing.Point(4, 122);
-            this.CostToTxt.Name = "CostToTxt";
-            this.CostToTxt.Size = new System.Drawing.Size(194, 23);
-            this.CostToTxt.TabIndex = 14;
+            this.BottomPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.BottomPanel.Controls.Add(this.PaginationUserControl);
+            this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BottomPanel.Location = new System.Drawing.Point(0, 464);
+            this.BottomPanel.Name = "BottomPanel";
+            this.BottomPanel.Size = new System.Drawing.Size(800, 100);
+            this.BottomPanel.TabIndex = 2;
             // 
-            // label1
+            // PaginationUserControl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(4, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 18);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Cost To";
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(142, 25);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
+            this.PaginationUserControl.TabIndex = 0;
             // 
             // SupplierInvoiceCostGridForm
             // 
@@ -159,13 +180,17 @@
             this.ClientSize = new System.Drawing.Size(800, 564);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.BottomPanel);
             this.Name = "SupplierInvoiceCostGridForm";
             this.Text = "SupplierInvoiceCostGridForm";
+            this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).EndInit();
             this.panel2.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
+            this.BottomPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -182,5 +207,7 @@
         public Panel panel1;
         private control.IntegerTextBoxUserControl CostToTxt;
         private Label label1;
+        private Panel BottomPanel;
+        private control.PaginationUserControl PaginationUserControl;
     }
 }
