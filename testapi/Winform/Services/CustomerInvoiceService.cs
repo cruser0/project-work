@@ -11,7 +11,7 @@ namespace Winform.Services
         {
             var queryParameters = new List<string>();
 
-            var filters = new Dictionary<string, object>
+            var filters = new Dictionary<string, object?>
             {
                 { "SaleId", filter.SaleId },
                 { "InvoiceAmountFrom", filter.InvoiceAmountFrom },

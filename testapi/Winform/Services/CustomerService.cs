@@ -11,20 +11,23 @@ namespace Winform.Services
         {
             var queryParameters = new List<string>();
 
-            if (!string.IsNullOrEmpty(filter.Name))
-                queryParameters.Add($"Name={filter.Name}");
-            if (!string.IsNullOrEmpty(filter.Country))
-                queryParameters.Add($"Country={filter.Country}");
-            if (filter.Deprecated != null)
-                queryParameters.Add($"Deprecated={filter.Deprecated}");
-            if (filter.page != null)
-                queryParameters.Add($"page={filter.page}");
-            if (filter.CreatedDateFrom != null)
-                queryParameters.Add("InvoiceDateFrom=" + filter.CreatedDateFrom.ToString());
-            if (filter.CreatedDateTo != null)
-                queryParameters.Add("CreatedDateTo=" + filter.CreatedDateTo.ToString());
-            if (filter.OriginalID != null)
-                queryParameters.Add("OriginalID=" + filter.OriginalID.ToString());
+            var filters = new Dictionary<string, object?>
+            {
+                { "Name", filter.Name },
+                { "Country", filter.Country },
+                { "Deprecated", filter.Deprecated },
+                { "page", filter.page },
+                { "CreatedDateFrom", filter.CreatedDateFrom },
+                { "CreatedDateTo", filter.CreatedDateTo },
+                { "OriginalID", filter.OriginalID }
+
+            };
+
+            foreach (var kvp in filters)
+            {
+                if (kvp.Value != null)
+                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 

@@ -11,20 +11,21 @@ namespace Winform.Services
         {
             var queryParameters = new List<string>();
 
-            if (filter.SupplierInvoiceId != null)
-                queryParameters.Add($"SupplierInvoiceId={filter.SupplierInvoiceId}");
+            var filters = new Dictionary<string, object?>
+            {
+                { "SupplierInvoiceId", filter.SupplierInvoiceId },
+                { "CostFrom", filter.CostFrom },
+                { "CostTo", filter.CostTo },
+                { "Quantity", filter.Quantity },
+                { "Name", filter.Name },
+                { "page", filter.page }
+            };
 
-            if (filter.CostFrom != null)
-                queryParameters.Add($"CostFrom={filter.CostFrom}");
-            if (filter.CostTo != null)
-                queryParameters.Add($"CostTo={filter.CostTo}");
-
-
-            if (filter.Quantity != null)
-                queryParameters.Add($"Quantity={filter.Quantity}");
-
-            if (filter.page != null)
-                queryParameters.Add($"page={filter.page}");
+            foreach (var kvp in filters)
+            {
+                if (kvp.Value != null)
+                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 

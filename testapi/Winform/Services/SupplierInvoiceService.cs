@@ -9,26 +9,28 @@ namespace Winform.Services
     {
         private string BuildQueryParams(SupplierInvoiceFilter filter)
         {
-            List<string> parameters = new();
-            if (filter.SaleID != null)
-                parameters.Add($"SaleID={filter.SaleID}");
-            if (filter.SupplierID != null)
-                parameters.Add($"SupplierID={filter.SupplierID}");
-            if (filter.InvoiceDateFrom != null)
-                parameters.Add("InvoiceDateFrom=" + filter.InvoiceDateFrom.ToString());
-            if (filter.InvoiceDateTo != null)
-                parameters.Add("InvoiceDateTo=" + filter.InvoiceDateTo.ToString());
-            if (filter.Status != null)
+            List<string> queryParameters = new();
 
-                if (filter.InvoiceAmountFrom != null)
-                    parameters.Add($"InvoiceAmountFrom={filter.InvoiceAmountFrom}");
-            if (filter.InvoiceAmountTo != null)
-                parameters.Add($"InvoiceAmountTo={filter.InvoiceAmountTo}");
+            var filters = new Dictionary<string, object?>
+            {
+                { "SaleID", filter.SaleID },
+                { "SupplierID", filter.SupplierID },
+                { "InvoiceDateFrom", filter.InvoiceDateFrom },
+                { "InvoiceDateTo", filter.InvoiceDateTo },
+                { "InvoiceAmountFrom", filter.InvoiceAmountFrom },
+                { "InvoiceAmountTo", filter.InvoiceAmountTo },
+                { "Status", filter.Status?.ToLower() != "all" ? filter.Status : null },
+                { "page", filter.page }
 
-            parameters.Add("Status=" + filter.Status);
-            if (filter.page != null)
-                parameters.Add($"page={filter.page}");
-            string queryString = parameters.Any() ? "?" + string.Join("&", parameters) : string.Empty;
+            };
+
+            foreach (var kvp in filters)
+            {
+                if (kvp.Value != null)
+                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
+
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 
             return queryString;
         }
