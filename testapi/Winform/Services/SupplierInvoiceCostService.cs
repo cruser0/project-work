@@ -7,9 +7,8 @@ namespace Winform.Services
 {
     internal class SupplierInvoiceCostService : ICalls<SupplierInvoiceCost>
     {
-        public ICollection<SupplierInvoiceCost> GetAll(SupplierInvoiceCostFilter filter)
+        private string BuildQueryParams(SupplierInvoiceCostFilter filter)
         {
-            ClientAPI client = new ClientAPI();
             var queryParameters = new List<string>();
 
             if (filter.SupplierInvoiceId != null)
@@ -28,6 +27,14 @@ namespace Winform.Services
                 queryParameters.Add($"page={filter.page}");
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+        public ICollection<SupplierInvoiceCost> GetAll(SupplierInvoiceCostFilter filter)
+        {
+            ClientAPI client = new ClientAPI();
+            string queryString = BuildQueryParams(filter);
+
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice-cost" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -67,24 +74,8 @@ namespace Winform.Services
         public int Count(SupplierInvoiceCostFilter filter)
         {
             ClientAPI client = new ClientAPI();
-            var queryParameters = new List<string>();
+            string queryString = BuildQueryParams(filter);
 
-            if (filter.SupplierInvoiceId != null)
-                queryParameters.Add($"SupplierInvoiceId={filter.SupplierInvoiceId}");
-
-            if (filter.CostFrom != null)
-                queryParameters.Add($"CostFrom={filter.CostFrom}");
-            if (filter.CostTo != null)
-                queryParameters.Add($"CostTo={filter.CostTo}");
-
-
-            if (filter.Quantity != null)
-                queryParameters.Add($"Quantity={filter.Quantity}");
-
-            if (filter.page != null)
-                queryParameters.Add($"page={filter.page}");
-
-            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice-cost/count" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {

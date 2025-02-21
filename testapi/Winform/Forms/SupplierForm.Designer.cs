@@ -42,7 +42,7 @@
             // CenterPanel
             // 
             this.CenterPanel.Location = new System.Drawing.Point(200, 0);
-            this.CenterPanel.Size = new System.Drawing.Size(400, 350);
+            this.CenterPanel.Size = new System.Drawing.Size(403, 331);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -92,7 +92,7 @@
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 350);
+            this.LeftPanel.Size = new System.Drawing.Size(200, 331);
             this.LeftPanel.TabIndex = 13;
             // 
             // leftSideBaruSerControl1
@@ -101,14 +101,14 @@
             this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 350);
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 331);
             this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(803, 431);
             this.Controls.Add(this.LeftPanel);
             this.Name = "SupplierForm";
             this.Controls.SetChildIndex(this.LeftPanel, 0);

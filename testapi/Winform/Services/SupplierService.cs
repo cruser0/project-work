@@ -7,9 +7,8 @@ namespace Winform.Services
 {
     internal class SupplierService : ICalls<Supplier>
     {
-        public ICollection<Supplier> GetAll(SupplierFilter filter)
+        private string BuildQueryParams(SupplierFilter filter)
         {
-            ClientAPI client = new ClientAPI();
             var queryParameters = new List<string>();
 
             if (!string.IsNullOrEmpty(filter.Name))
@@ -28,6 +27,14 @@ namespace Winform.Services
                 queryParameters.Add("OriginalID=" + filter.OriginalID.ToString());
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+
+        public ICollection<Supplier> GetAll(SupplierFilter filter)
+        {
+            ClientAPI client = new ClientAPI();
+            string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier" + queryString).Result;
             if (response.IsSuccessStatusCode)
@@ -68,24 +75,7 @@ namespace Winform.Services
         public int Count(SupplierFilter filter)
         {
             ClientAPI client = new ClientAPI();
-            var queryParameters = new List<string>();
-
-            if (!string.IsNullOrEmpty(filter.Name))
-                queryParameters.Add($"Name={filter.Name}");
-            if (!string.IsNullOrEmpty(filter.Country))
-                queryParameters.Add($"Country={filter.Country}");
-            if (filter.Deprecated != null)
-                queryParameters.Add($"Deprecated={filter.Deprecated}");
-            if (filter.page != null)
-                queryParameters.Add($"page={filter.page}");
-            if (filter.CreatedDateFrom != null)
-                queryParameters.Add("InvoiceDateFrom=" + filter.CreatedDateFrom.ToString());
-            if (filter.CreatedDateTo != null)
-                queryParameters.Add("CreatedDateTo=" + filter.CreatedDateTo.ToString());
-            if (filter.OriginalID != null)
-                queryParameters.Add("OriginalID=" + filter.OriginalID.ToString());
-
-            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier/count" + queryString).Result;
             if (response.IsSuccessStatusCode)

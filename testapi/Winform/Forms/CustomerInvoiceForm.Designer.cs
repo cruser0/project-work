@@ -41,7 +41,7 @@
             // CenterPanel
             // 
             this.CenterPanel.Location = new System.Drawing.Point(200, 0);
-            this.CenterPanel.Size = new System.Drawing.Size(400, 350);
+            this.CenterPanel.Size = new System.Drawing.Size(468, 290);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -84,7 +84,7 @@
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 350);
+            this.LeftPanel.Size = new System.Drawing.Size(200, 290);
             this.LeftPanel.TabIndex = 2;
             // 
             // leftSideBar
@@ -93,14 +93,14 @@
             this.leftSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBar.Location = new System.Drawing.Point(0, 0);
             this.leftSideBar.Name = "leftSideBar";
-            this.leftSideBar.Size = new System.Drawing.Size(200, 350);
+            this.leftSideBar.Size = new System.Drawing.Size(200, 290);
             this.leftSideBar.TabIndex = 0;
             // 
             // CustomerInvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(868, 390);
             this.Controls.Add(this.LeftPanel);
             this.Name = "CustomerInvoiceForm";
             this.Text = "CustomerInvoiceForm";

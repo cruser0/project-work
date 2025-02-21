@@ -7,9 +7,8 @@ namespace Winform.Services
 {
     internal class SaleService : ICalls<Sale>
     {
-        public ICollection<Sale> GetAll(SaleFilter filter)
+        private string BuildQueryParams(SaleFilter filter)
         {
-            ClientAPI client = new ClientAPI();
             var queryParameters = new List<string>();
 
             if (!string.IsNullOrEmpty(filter.BookingNumber))
@@ -33,6 +32,13 @@ namespace Winform.Services
             if (filter.page != null)
                 queryParameters.Add($"page={filter.page}");
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+        public ICollection<Sale> GetAll(SaleFilter filter)
+        {
+            ClientAPI client = new ClientAPI();
+            string queryString = BuildQueryParams(filter);
 
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "sale" + queryString).Result;
@@ -74,27 +80,7 @@ namespace Winform.Services
         public int Count(SaleFilter filter)
         {
             ClientAPI client = new ClientAPI();
-            var queryParameters = new List<string>();
-
-            if (!string.IsNullOrEmpty(filter.BookingNumber))
-                queryParameters.Add($"BookingNumber={filter.BookingNumber}");
-            if (!string.IsNullOrEmpty(filter.BoLnumber))
-                queryParameters.Add($"BoLnumber={filter.BoLnumber}");
-            if (filter.SaleDateFrom != null)
-                queryParameters.Add($"SaleDateFrom={filter.SaleDateFrom}");
-            if (filter.RevenueFrom != null)
-                queryParameters.Add($"RevenueFrom={filter.RevenueFrom}");
-            if (filter.RevenueTo != null)
-                queryParameters.Add($"RevenueTo={filter.RevenueTo}");
-            if (filter.SaleDateTo != null)
-                queryParameters.Add($"SaleDateTo={filter.SaleDateTo}");
-            if (filter.CustomerId != null)
-                queryParameters.Add($"CustomerId={filter.CustomerId}");
-            if (!string.IsNullOrEmpty(filter.Status))
-                queryParameters.Add($"Status={filter.Status}");
-            if (filter.page != null)
-                queryParameters.Add($"page={filter.page}");
-            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            string queryString = BuildQueryParams(filter);
 
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "sale/count" + queryString).Result;

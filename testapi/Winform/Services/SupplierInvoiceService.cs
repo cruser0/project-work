@@ -7,9 +7,8 @@ namespace Winform.Services
 {
     internal class SupplierInvoiceService : ICalls<SupplierInvoice>
     {
-        public ICollection<SupplierInvoice> GetAll(SupplierInvoiceFilter filter)
+        private string BuildQueryParams(SupplierInvoiceFilter filter)
         {
-            ClientAPI client = new ClientAPI();
             List<string> parameters = new();
             if (filter.SaleID != null)
                 parameters.Add($"SaleID={filter.SaleID}");
@@ -30,6 +29,13 @@ namespace Winform.Services
             if (filter.page != null)
                 parameters.Add($"page={filter.page}");
             string queryString = parameters.Any() ? "?" + string.Join("&", parameters) : string.Empty;
+
+            return queryString;
+        }
+        public ICollection<SupplierInvoice> GetAll(SupplierInvoiceFilter filter)
+        {
+            ClientAPI client = new ClientAPI();
+            string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice" + queryString).Result;
             if (response.IsSuccessStatusCode)
@@ -70,24 +76,7 @@ namespace Winform.Services
         public int Count(SupplierInvoiceFilter filter)
         {
             ClientAPI client = new ClientAPI();
-            List<string> parameters = new();
-            if (filter.SaleID != null)
-                parameters.Add($"SaleID={filter.SaleID}");
-            if (filter.SupplierID != null)
-                parameters.Add($"SupplierID={filter.SupplierID}");
-            if (filter.InvoiceDateFrom != null)
-                parameters.Add("InvoiceDateFrom=" + filter.InvoiceDateFrom.ToString());
-            if (filter.InvoiceDateTo != null)
-                parameters.Add("InvoiceDateTo=" + filter.InvoiceDateTo.ToString());
-            if (filter.Status != null)
-                parameters.Add("Status=" + filter.Status);
-            if (filter.InvoiceAmountFrom != null)
-                parameters.Add($"InvoiceAmountFrom={filter.InvoiceAmountFrom}");
-            if (filter.InvoiceAmountTo != null)
-                parameters.Add($"InvoiceAmountTo={filter.InvoiceAmountTo}");
-            if (filter.page != null)
-                parameters.Add($"page={filter.page}");
-            string queryString = parameters.Any() ? "?" + string.Join("&", parameters) : string.Empty;
+            string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice/count" + queryString).Result;
             if (response.IsSuccessStatusCode)

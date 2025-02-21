@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.panel3.SuspendLayout();
@@ -36,7 +41,42 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(200, 0);
-            this.panel1.Size = new System.Drawing.Size(400, 450);
+            this.panel1.Size = new System.Drawing.Size(288, 234);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SupplierInvoiceCostsId";
+            this.dataGridViewTextBoxColumn1.HeaderText = "SupplierInvoiceCostsId";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "SupplierInvoiceId";
+            this.dataGridViewTextBoxColumn2.HeaderText = "SupplierInvoiceId";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Cost";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Cost";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Quantity";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Quantity";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // panel3
             // 
@@ -44,7 +84,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 450);
+            this.panel3.Size = new System.Drawing.Size(200, 234);
             this.panel3.TabIndex = 2;
             // 
             // leftSideBaruSerControl1
@@ -53,14 +93,14 @@
             this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 450);
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 234);
             this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // SupplierInvoiceCostsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(688, 334);
             this.Controls.Add(this.panel3);
             this.Name = "SupplierInvoiceCostsForm";
             this.Text = "SupplierInvoiceCostsForm";
@@ -75,5 +115,10 @@
 
         private Panel panel3;
         private control.LeftSideBarUSerControl leftSideBaruSerControl1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
