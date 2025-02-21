@@ -10,6 +10,7 @@ namespace Winform.Forms.CreateWindow
         int? invoiceId;
         int? costFrom;
         int? costTo;
+        string? name;
         readonly SupplierInvoiceCostService _supplierInvoiceCostService;
         int pages;
         double itemsPage = 10.0;
@@ -60,18 +61,21 @@ namespace Winform.Forms.CreateWindow
             invoiceId = !string.IsNullOrEmpty(InvoiceIDTxt.GetText()) ? int.Parse(InvoiceIDTxt.GetText()) : null;
             costFrom = !string.IsNullOrEmpty(CostFromTxt.GetText()) ? int.Parse(CostFromTxt.GetText()) : null;
             costTo = !string.IsNullOrEmpty(CostToTxt.GetText()) ? int.Parse(CostToTxt.GetText()) : null;
+            name = !string.IsNullOrEmpty(NameTxt.Text) ? NameTxt.Text : null;
             SupplierInvoiceCostFilter filter = new SupplierInvoiceCostFilter
             {
                 SupplierInvoiceId = invoiceId,
                 CostFrom = costFrom,
                 CostTo = costTo,
-                page = PaginationUserControl.CurrentPage
+                page = PaginationUserControl.CurrentPage,
+                Name =NameTxt.Text,
             };
             SupplierInvoiceCostFilter filterPage = new SupplierInvoiceCostFilter
             {
                 SupplierInvoiceId = invoiceId,
                 CostFrom = costFrom,
-                CostTo = costTo
+                CostTo = costTo,
+                Name = NameTxt.Text,
             };
             IEnumerable<SupplierInvoiceCost> query = _supplierInvoiceCostService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_supplierInvoiceCostService.Count(filterPage) / itemsPage)).ToString();
@@ -88,7 +92,8 @@ namespace Winform.Forms.CreateWindow
                 SupplierInvoiceId = invoiceId,
                 CostFrom = costFrom,
                 CostTo = costTo,
-                page = PaginationUserControl.CurrentPage
+                page = PaginationUserControl.CurrentPage,
+                Name = NameTxt.Text,
             };
 
             IEnumerable<SupplierInvoiceCost> query = _supplierInvoiceCostService.GetAll(filter);

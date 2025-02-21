@@ -41,6 +41,8 @@
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
+            this.NameTxt = new System.Windows.Forms.TextBox();
+            this.NameLbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).BeginInit();
             this.panel2.SuspendLayout();
@@ -84,6 +86,8 @@
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostToTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CostFromTxt);
@@ -92,7 +96,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 150);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 246);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 286);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // CostToTxt
@@ -173,6 +177,26 @@
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
             // 
+            // NameTxt
+            // 
+            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameTxt.Location = new System.Drawing.Point(4, 174);
+            this.NameTxt.MaxLength = 100;
+            this.NameTxt.Name = "NameTxt";
+            this.NameTxt.Size = new System.Drawing.Size(194, 23);
+            this.NameTxt.TabIndex = 15;
+            // 
+            // NameLbl
+            // 
+            this.NameLbl.AutoSize = true;
+            this.NameLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NameLbl.Location = new System.Drawing.Point(4, 153);
+            this.NameLbl.Name = "NameLbl";
+            this.NameLbl.Size = new System.Drawing.Size(113, 18);
+            this.NameLbl.TabIndex = 16;
+            this.NameLbl.Text = "Desciption Name";
+            // 
             // SupplierInvoiceCostGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -209,5 +233,7 @@
         private Label label1;
         private Panel BottomPanel;
         private control.PaginationUserControl PaginationUserControl;
+        private TextBox NameTxt;
+        private Label NameLbl;
     }
 }
