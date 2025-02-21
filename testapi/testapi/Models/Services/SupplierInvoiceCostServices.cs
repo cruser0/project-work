@@ -47,7 +47,7 @@ namespace API.Models.Services
             }
             if (!string.IsNullOrEmpty(filter.Name))
             {
-                query = query.Where(x => x.Name == filter.Name);
+                query = query.Where(x => x.Name.Contains(filter.Name));
             }
 
             if (filter.CostFrom != null && filter.CostTo != null)
