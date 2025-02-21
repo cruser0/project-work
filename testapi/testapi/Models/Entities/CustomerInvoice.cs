@@ -9,5 +9,6 @@
         public string? Status { get; set; }
 
         public virtual Sale? Sale { get; set; }
+        public virtual ICollection<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace API.Models
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<SupplierInvoice> SupplierInvoices { get; set; } = null!;
         public virtual DbSet<SupplierInvoiceCost> SupplierInvoiceCosts { get; set; } = null!;
+        public virtual DbSet<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; } = null!;
         public virtual DbSet<ProfitClassification> ProfitClassifications { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceStatus> CustomerInvoiceStatuses { get; set; } = null!;
         public virtual DbSet<ProfitSaleID> ProfitSaleIDs { get; set; } = null!;
@@ -33,6 +34,7 @@ namespace API.Models
         public virtual DbSet<RevenuePerSaleID> RevenuePerSaleIDs { get; set; } = null!;
         public virtual DbSet<AmountSpentSaleID> AmountSpentSaleIDs { get; set; } = null!;
         public virtual DbSet<TotalSpentPerSupplier> TotalSpentPerSuppliers { get; set; } = null!;
+        public virtual DbSet<TotalSpentPerCustomerInvoiceID> TotalSpentPerCustomerInvoiceIDs { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -240,10 +242,36 @@ namespace API.Models
 
                 entity.Property(e => e.SupplierInvoiceId).HasColumnName("SupplierInvoiceID");
 
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.SupplierInvoice)
                     .WithMany(p => p.SupplierInvoiceCosts)
                     .HasForeignKey(d => d.SupplierInvoiceId)
                     .HasConstraintName("SupplierInvoiceID_SupplierInvoiceCosts_fk");
+            });
+            modelBuilder.Entity<CustomerInvoiceCost>(entity =>
+            {
+                entity.HasKey(e => e.CustomerInvoiceCostsId)
+                    .HasName("PK__Customer__45346B41A6779A70");
+
+                entity.Property(e => e.CustomerInvoiceCostsId)
+
+                    .HasColumnName("CustomerInvoiceCostsID");
+
+                entity.Property(e => e.Cost).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.CustomerInvoiceId).HasColumnName("CustomerInvoiceID");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CustomerInvoice)
+                    .WithMany(p => p.CustomerInvoiceCosts)
+                    .HasForeignKey(d => d.CustomerInvoiceId)
+                    .HasConstraintName("FK_CustomerInvoiceCosts_CustomerInvoices");
             });
 
             modelBuilder.Entity<ProfitClassification>().HasNoKey().ToView(null);
@@ -257,6 +285,7 @@ namespace API.Models
             modelBuilder.Entity<RevenuePerSaleID>().HasNoKey().ToView(null);
             modelBuilder.Entity<AmountSpentSaleID>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalSpentPerSupplier>().HasNoKey().ToView(null);
+            modelBuilder.Entity<TotalSpentPerCustomerInvoiceID>().HasNoKey().ToView(null);
 
             OnModelCreatingPartial(modelBuilder);
         }

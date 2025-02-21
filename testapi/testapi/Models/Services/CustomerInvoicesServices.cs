@@ -99,27 +99,23 @@ namespace API.Models.Services
 
             // Check if any required fields in the customerInvoice object are null or empty
             if (customerInvoice.SaleId == null) nullFields.Add("SaleID");
-            if (customerInvoice.InvoiceAmount == null) nullFields.Add("InvoiceAmount");
             if (customerInvoice.InvoiceDate == null) nullFields.Add("Date");
             if (string.IsNullOrEmpty(customerInvoice.Status)) nullFields.Add("Status");
 
             // If any fields are null, throw an exception with the list of missing fields
             if (nullFields.Any())
                 throw new ArgumentException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
-
-            // Check if the invoice amount is less than or equal to 0
-            if (customerInvoice.InvoiceAmount <= 0)
-                throw new ArgumentException("The amount can't be less or equal than 0");
-
             // Check if the provided status is valid
             if (!statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
-
             // Check if a sale exists with the provided SaleId
             var sale = _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).FirstOrDefault();
             if (sale == null)
                 throw new ArgumentException($"There is no sale with id {customerInvoice.SaleId}");
+            if(sale.Status.ToLower().Equals("closed"))
+                throw new ArgumentException($"The Sale is already closed");
 
+            customerInvoice.InvoiceAmount = 0;
             // Add the customerInvoice to the database and save the changes
             _context.Add(customerInvoice);
             _context.SaveChanges();
@@ -152,6 +148,8 @@ namespace API.Models.Services
             ciDB.SaleId = customerInvoice.SaleId ?? ciDB.SaleId;
             if (!_context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).Any())
                 throw new ArgumentException("SaleId not found");
+            if (!_context.Sales.Where(x => x.SaleId == ciDB.SaleId).Any())
+                throw new ArgumentException("Old SaleId not found");
             ciDB.InvoiceAmount = customerInvoice.InvoiceAmount ?? ciDB.InvoiceAmount;
             ciDB.InvoiceDate = customerInvoice.InvoiceDate ?? ciDB.InvoiceDate;
             ciDB.Status = customerInvoice.Status ?? ciDB.Status;
@@ -159,7 +157,9 @@ namespace API.Models.Services
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(customerInvoice.Status) && !statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
-
+            Sale sale= _context.Sales.Where(x => x.SaleId == ciDB.SaleId).First();
+            if (sale.Status.ToLower().Equals("closed"))
+                throw new ArgumentException($"The current Sale is already closed");
             // Validate that the invoice amount is greater than zero
             if (customerInvoice.InvoiceAmount <= 0)
                 throw new ArgumentException("The amount can't be less or equal than 0");
@@ -172,6 +172,9 @@ namespace API.Models.Services
             if (oldSaleId.HasValue)
             {
                 // Recalculate revenue for the old sale
+                var newSale = _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefault();
+                if (newSale.Status.ToLower().Equals("closed"))
+                    throw new ArgumentException($"The current Sale is already closed");
                 var TotalOldSale = _context.RevenuePerSaleIDs
                     .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{oldSaleId.Value}\"")
                     .ToList()
@@ -186,7 +189,6 @@ namespace API.Models.Services
                     .ToList()
                     .FirstOrDefault()?.TotalRevenue;
 
-                var newSale = _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefault();
                 newSale.TotalRevenue = TotalNewSale;
 
                 // Update the sales in the database
@@ -202,15 +204,22 @@ namespace API.Models.Services
         public CustomerInvoiceDTOGet DeleteCustomerInvoice(int id)
         {
             // Retrieve the customer invoice from the database using the provided ID
-            var data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
 
+            CustomerInvoice? data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
             // Check if the customer invoice exists
             if (data == null)
                 throw new ArgumentNullException("Customer invoice not found!");
+            Sale? sale = _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefault();
+            if(sale == null)
+                throw new ArgumentNullException("Sale not found!");
+
+            if(sale.Status.ToLower().Equals("closed"))
+                throw new ArgumentNullException("Sale is closed,can't delete!");
+            sale.TotalRevenue=sale.TotalRevenue-data.InvoiceAmount;
 
             // Remove the customer invoice from the database
             _context.CustomerInvoices.Remove(data);
-
+            _context.Sales.Update(sale);
             // Save the changes to commit the deletion
             _context.SaveChanges();
 

@@ -45,6 +45,10 @@ namespace API.Models.Services
             {
                 query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceId);
             }
+            if (!string.IsNullOrEmpty(filter.Name))
+            {
+                query = query.Where(x => x.Name == filter.Name);
+            }
 
             if (filter.CostFrom != null && filter.CostTo != null)
             {
@@ -97,8 +101,12 @@ namespace API.Models.Services
                 throw new ArgumentException("Supplier Invoice Id not found!");
             if (supplierInvoiceCost.Cost < 0 || supplierInvoiceCost.Quantity < 1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
                 throw new ArgumentException("Values can't be lesser than 1 or null");
-
+            if(string.IsNullOrEmpty(supplierInvoiceCost.Name))
+                throw new ArgumentException("Name can't be empty");
             si = _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).First();
+            if(si.Status.ToLower().Equals("approved"))
+                throw new ArgumentException("Supplier Invoice is already approved");
+
 
             decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == supplierInvoiceCost.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
 
@@ -113,16 +121,21 @@ namespace API.Models.Services
         {
             SupplierInvoice? si;
             var sicDB = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
+            SupplierInvoice? oldSi = _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefault();
+                oldSi.InvoiceAmount = oldSi.InvoiceAmount -(sicDB.Cost*sicDB.Quantity);
             if (sicDB != null && id >= 0)
             {
                 if (supplierInvoiceCost.SupplierInvoiceId != null)
                     sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
+                if (_context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefault().Status.ToLower().Equals("approved"))
+                    throw new ArgumentException("Supplier Invoice is already approved");
                 if (!_context.SupplierInvoices.Any(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
                     throw new ArgumentNullException("Supplier Invoice not Found");
                 if (supplierInvoiceCost.Quantity > 0)
                     sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
                 if (supplierInvoiceCost.Cost > 0)
                     sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
+                sicDB.Name=supplierInvoiceCost.Name??sicDB.Name;
                 _context.SupplierInvoiceCosts.Update(sicDB);
                 _context.SaveChanges();
                 if (sicDB.Cost > 0 && sicDB.Quantity > 0)
@@ -131,6 +144,7 @@ namespace API.Models.Services
                     decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
                     si.InvoiceAmount = total;
                     _context.SupplierInvoices.Update(si);
+                    _context.SupplierInvoices.Update(oldSi);
                     _context.SaveChanges();
                 }
                 return SupplierInvoiceCostMapper.MapGet(sicDB);
