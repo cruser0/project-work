@@ -1,4 +1,5 @@
 ﻿using Winform.Forms;
+using Winform.Forms.AddForms;
 
 namespace Winform
 {
@@ -41,6 +42,7 @@ namespace Winform
                     "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
                     "Show Sales" => new SaleForm(),
                     "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
+                    "Show Customer Invoices Costs" => new CustomerInvoiceCostForm(),
                     _ => throw new Exception("Unknown option")
                 };
 
