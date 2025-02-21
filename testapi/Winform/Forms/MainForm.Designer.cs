@@ -36,6 +36,8 @@
             this.customerInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showCustomerInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCustomerInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerInvoiceCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCustomerInvoicesCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.AddSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +63,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerStripButton,
             this.customerInvoicesToolStripMenuItem,
+            this.customerInvoiceCostsToolStripMenuItem,
             this.SuppliersStripToolButton,
             this.supplierInvoicesToolStripMenuItem,
             this.supplierInvoiceCostsToolStripMenuItem,
@@ -121,6 +124,22 @@
             this.addCustomerInvoiceToolStripMenuItem.Name = "addCustomerInvoiceToolStripMenuItem";
             this.addCustomerInvoiceToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.addCustomerInvoiceToolStripMenuItem.Text = "Add Customer Invoice";
+            // 
+            // customerInvoiceCostsToolStripMenuItem
+            // 
+            this.customerInvoiceCostsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showCustomerInvoicesCostsToolStripMenuItem});
+            this.customerInvoiceCostsToolStripMenuItem.Image = global::Winform.Properties.Resources.Invoice_Icon;
+            this.customerInvoiceCostsToolStripMenuItem.Name = "customerInvoiceCostsToolStripMenuItem";
+            this.customerInvoiceCostsToolStripMenuItem.Size = new System.Drawing.Size(160, 20);
+            this.customerInvoiceCostsToolStripMenuItem.Text = "Customer Invoice Costs";
+            // 
+            // showCustomerInvoicesCostsToolStripMenuItem
+            // 
+            this.showCustomerInvoicesCostsToolStripMenuItem.Name = "showCustomerInvoicesCostsToolStripMenuItem";
+            this.showCustomerInvoicesCostsToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.showCustomerInvoicesCostsToolStripMenuItem.Text = "Show Customer Invoices Costs";
+            this.showCustomerInvoicesCostsToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // SuppliersStripToolButton
             // 
@@ -287,5 +306,7 @@
         private ToolStripMenuItem supplierInvoiceCostsToolStripMenuItem;
         private ToolStripMenuItem showSupplierInvoicesCostsToolStripMenuItem;
         private TabControl tabControl1;
+        private ToolStripMenuItem customerInvoiceCostsToolStripMenuItem;
+        private ToolStripMenuItem showCustomerInvoicesCostsToolStripMenuItem;
     }
 }

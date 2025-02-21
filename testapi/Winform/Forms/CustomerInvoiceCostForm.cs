@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Winform.Forms.GridForms;
 
-namespace Winform.Forms.GridForms
+namespace Winform.Forms.AddForms
 {
-    public partial class CustomerInvoiceCostGrid : Form
+    public partial class CustomerInvoiceCostForm : CustomerInvoiceCostGridForm
     {
-        public CustomerInvoiceCostGrid()
+        public CustomerInvoiceCostForm()
         {
             InitializeComponent();
         }
