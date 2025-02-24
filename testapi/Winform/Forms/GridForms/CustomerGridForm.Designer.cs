@@ -68,7 +68,6 @@
             // 
             // CountryTxt
             // 
-            this.CountryTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CountryTxt.Location = new System.Drawing.Point(3, 69);
             this.CountryTxt.MaxLength = 50;
