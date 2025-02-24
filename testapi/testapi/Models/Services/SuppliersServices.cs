@@ -124,7 +124,7 @@ namespace API.Models.Services
                 _context.SaveChanges();
                 return SupplierMapper.MapGet(supplier);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new ArgumentException("This supplier already exists");
             }

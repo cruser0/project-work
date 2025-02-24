@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DateFromLbl = new System.Windows.Forms.Label();
+            this.DateToClnd = new System.Windows.Forms.DateTimePicker();
+            this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.NameSupplierTxt = new System.Windows.Forms.TextBox();
@@ -73,17 +77,66 @@
             // 
             // TextBoxesRightPanel
             // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.label2);
+            this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.DateToClnd);
+            this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
             this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
             this.TextBoxesRightPanel.Controls.Add(this.NameSupplierTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
             this.TextBoxesRightPanel.Controls.Add(this.CountrySupplierTxt);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(-1, 106);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 287);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 351);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(3, 201);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 18);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Date To";
+            // 
+            // DateFromLbl
+            // 
+            this.DateFromLbl.AutoSize = true;
+            this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Location = new System.Drawing.Point(3, 154);
+            this.DateFromLbl.Name = "DateFromLbl";
+            this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
+            this.DateFromLbl.TabIndex = 17;
+            this.DateFromLbl.Text = "Date From";
+            // 
+            // DateToClnd
+            // 
+            this.DateToClnd.Checked = false;
+            this.DateToClnd.CustomFormat = "ddMMMMyyyy";
+            this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateToClnd.Location = new System.Drawing.Point(3, 222);
+            this.DateToClnd.Name = "DateToClnd";
+            this.DateToClnd.ShowCheckBox = true;
+            this.DateToClnd.Size = new System.Drawing.Size(180, 23);
+            this.DateToClnd.TabIndex = 16;
+            // 
+            // DateFromClnd
+            // 
+            this.DateFromClnd.CalendarMonthBackground = System.Drawing.Color.Gainsboro;
+            this.DateFromClnd.Checked = false;
+            this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
+            this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateFromClnd.Location = new System.Drawing.Point(3, 175);
+            this.DateFromClnd.Name = "DateFromClnd";
+            this.DateFromClnd.ShowCheckBox = true;
+            this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
+            this.DateFromClnd.TabIndex = 15;
             // 
             // StatusLbl
             // 
@@ -107,7 +160,7 @@
             "Deprecated"});
             this.comboBox1.Location = new System.Drawing.Point(3, 125);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(194, 23);
+            this.comboBox1.Size = new System.Drawing.Size(180, 23);
             this.comboBox1.TabIndex = 5;
             // 
             // NameSupplierTxt
@@ -117,7 +170,7 @@
             this.NameSupplierTxt.Location = new System.Drawing.Point(3, 26);
             this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
-            this.NameSupplierTxt.Size = new System.Drawing.Size(194, 23);
+            this.NameSupplierTxt.Size = new System.Drawing.Size(180, 23);
             this.NameSupplierTxt.TabIndex = 1;
             // 
             // label1
@@ -147,7 +200,7 @@
             this.CountrySupplierTxt.Location = new System.Drawing.Point(3, 73);
             this.CountrySupplierTxt.MaxLength = 50;
             this.CountrySupplierTxt.Name = "CountrySupplierTxt";
-            this.CountrySupplierTxt.Size = new System.Drawing.Size(194, 23);
+            this.CountrySupplierTxt.Size = new System.Drawing.Size(180, 23);
             this.CountrySupplierTxt.TabIndex = 2;
             // 
             // RightSideBar
@@ -239,13 +292,13 @@
             this.SupplierOriginalIDTsmi,
             this.SupplierStatusTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(181, 158);
+            this.RightClickDgv.Size = new System.Drawing.Size(163, 136);
             // 
             // SupplierIDTsmi
             // 
             this.SupplierIDTsmi.CheckOnClick = true;
             this.SupplierIDTsmi.Name = "SupplierIDTsmi";
-            this.SupplierIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.SupplierIDTsmi.Text = "Show ID";
             this.SupplierIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -255,7 +308,7 @@
             this.SupplierNameTsmi.CheckOnClick = true;
             this.SupplierNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierNameTsmi.Name = "SupplierNameTsmi";
-            this.SupplierNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierNameTsmi.Size = new System.Drawing.Size(162, 22);
             this.SupplierNameTsmi.Text = "Show Name";
             this.SupplierNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -265,7 +318,7 @@
             this.SupplierCountryTsmi.CheckOnClick = true;
             this.SupplierCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierCountryTsmi.Name = "SupplierCountryTsmi";
-            this.SupplierCountryTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierCountryTsmi.Size = new System.Drawing.Size(162, 22);
             this.SupplierCountryTsmi.Text = "Show Country";
             this.SupplierCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -275,7 +328,7 @@
             this.SupplierDateTsmi.CheckOnClick = true;
             this.SupplierDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierDateTsmi.Name = "SupplierDateTsmi";
-            this.SupplierDateTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierDateTsmi.Size = new System.Drawing.Size(162, 22);
             this.SupplierDateTsmi.Text = "Show Date";
             this.SupplierDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -283,7 +336,7 @@
             // 
             this.SupplierOriginalIDTsmi.CheckOnClick = true;
             this.SupplierOriginalIDTsmi.Name = "SupplierOriginalIDTsmi";
-            this.SupplierOriginalIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierOriginalIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.SupplierOriginalIDTsmi.Text = "Show Original ID";
             this.SupplierOriginalIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -293,7 +346,7 @@
             this.SupplierStatusTsmi.CheckOnClick = true;
             this.SupplierStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierStatusTsmi.Name = "SupplierStatusTsmi";
-            this.SupplierStatusTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierStatusTsmi.Size = new System.Drawing.Size(162, 22);
             this.SupplierStatusTsmi.Text = "Show Status";
             this.SupplierStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -346,5 +399,9 @@
         private ToolStripMenuItem SupplierDateTsmi;
         private ToolStripMenuItem SupplierOriginalIDTsmi;
         private ToolStripMenuItem SupplierStatusTsmi;
+        private Label label2;
+        private Label DateFromLbl;
+        private DateTimePicker DateToClnd;
+        private DateTimePicker DateFromClnd;
     }
 }

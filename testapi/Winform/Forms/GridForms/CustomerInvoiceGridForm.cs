@@ -9,6 +9,8 @@ namespace Winform.Forms.CreateWindow
         string? saleID;
         DateTime? invoiceDateFrom;
         DateTime? invoiceDateTo;
+        int? invoiceAmountFrom;
+        int? invoiceAmountTo;
         string status;
         double itemsPage = 10.0;
         int pages;
@@ -72,7 +74,9 @@ namespace Winform.Forms.CreateWindow
                 InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
                 Status = StatusCmb.Text,
                 page = PaginationUserControl.CurrentPage,
-                //InvoiceAmount
+                InvoiceAmountFrom = !string.IsNullOrEmpty(AmountFromTxt.GetText()) ? int.Parse(AmountFromTxt.GetText()) : null,
+                InvoiceAmountTo = !string.IsNullOrEmpty(AmountToTxt.GetText()) ? int.Parse(AmountToTxt.GetText()) : null
+
             };
             CustomerInvoiceFilter filterPage = new CustomerInvoiceFilter
             {
@@ -80,12 +84,15 @@ namespace Winform.Forms.CreateWindow
                 InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
                 InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
                 Status = StatusCmb.Text,
-                //InvoiceAmount = 0,
+                InvoiceAmountFrom = !string.IsNullOrEmpty(AmountFromTxt.GetText()) ? int.Parse(AmountFromTxt.GetText()) : null,
+                InvoiceAmountTo = !string.IsNullOrEmpty(AmountToTxt.GetText()) ? int.Parse(AmountToTxt.GetText()) : null
             };
             saleID = SaleIDTxt.GetText();
             invoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
             invoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null;
             status = StatusCmb.Text;
+            invoiceAmountFrom = !string.IsNullOrEmpty(AmountFromTxt.GetText()) ? int.Parse(AmountFromTxt.GetText()) : null;
+            invoiceAmountTo = !string.IsNullOrEmpty(AmountToTxt.GetText()) ? int.Parse(AmountToTxt.GetText()) : null;
 
             IEnumerable<CustomerInvoice> query = _customerService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerService.Count(filterPage) / itemsPage)).ToString();
@@ -109,7 +116,8 @@ namespace Winform.Forms.CreateWindow
                 InvoiceDateTo = invoiceDateTo,
                 Status = status,
                 page = PaginationUserControl.CurrentPage,
-                //InvoiceAmount
+                InvoiceAmountFrom = invoiceAmountFrom,
+                InvoiceAmountTo = invoiceAmountTo
             };
 
             IEnumerable<CustomerInvoice> query = _customerService.GetAll(filter);
@@ -170,14 +178,14 @@ namespace Winform.Forms.CreateWindow
 
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
-
+            TextBoxesRightPanel.Height = Height / 2;
         }
 
         private void RightClickDhvEvent(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
-                var hitTest=CenterDgv.HitTest(e.X,e.Y);
+                var hitTest = CenterDgv.HitTest(e.X, e.Y);
                 if (hitTest.RowIndex >= 0)
                 {
                     RightClickDgv.Show(CenterDgv, e.Location);

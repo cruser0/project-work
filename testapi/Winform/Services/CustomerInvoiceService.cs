@@ -15,8 +15,8 @@ namespace Winform.Services
             {
                 { "SaleId", filter.SaleId },
                 { "InvoiceAmountFrom", filter.InvoiceAmountFrom },
-                { "InvoiceAmountTo", filter.InvoiceAmountTo },
-                { "InvoiceDateFrom", filter.InvoiceDateFrom },
+                { "InvoiceAmountTo", filter.InvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "InvoiceDateFrom", filter.InvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
                 { "InvoiceDateTo", filter.InvoiceDateTo },
                 { "Status", filter.Status?.ToLower() != "all" ? filter.Status : null },
                 { "page", filter.page }

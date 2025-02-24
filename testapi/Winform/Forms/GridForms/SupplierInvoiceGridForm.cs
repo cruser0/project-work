@@ -1,5 +1,4 @@
 ﻿using API.Models.Filters;
-using Winform.Entities;
 using Winform.Entities.DTO;
 using Winform.Services;
 
@@ -112,6 +111,8 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             SaleID = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null;
             SupplierID = !string.IsNullOrEmpty(SupplierIDTxt.GetText()) ? int.Parse(SupplierIDTxt.GetText()) : null;
+            InvoiceAmountFrom = !string.IsNullOrEmpty(InvoiceAmountFromTxt.GetText()) ? int.Parse(InvoiceAmountFromTxt.GetText()) : null;
+            InvoiceAmountTo = !string.IsNullOrEmpty(InvoiceAmountToTxt.GetText()) ? int.Parse(InvoiceAmountToTxt.GetText()) : null;
             InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
             InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null;
             Status = StatusCmb.Text;
@@ -143,8 +144,8 @@ namespace Winform.Forms
             if (!PaginationUserControl.Visible)
             {
                 PaginationUserControl.Visible = true;
-                SupplierInvoiceDgv.Columns["InvoiceID"].Visible=false;
-                SupplierInvoiceDgv.Columns["SupplierID"].Visible=false;
+                SupplierInvoiceDgv.Columns["InvoiceID"].Visible = false;
+                SupplierInvoiceDgv.Columns["SupplierID"].Visible = false;
 
             }
         }
@@ -203,6 +204,8 @@ namespace Winform.Forms
             BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
 
+
+            TextBoxesRightPanel.Height = Height / 2;
         }
 
         private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
@@ -224,13 +227,13 @@ namespace Winform.Forms
                 switch (name)
                 {
                     case "SupplierInvoiceIDTsmi":
-                            SupplierInvoiceDgv.Columns["InvoiceID"].Visible = tsmi.Checked;
+                        SupplierInvoiceDgv.Columns["InvoiceID"].Visible = tsmi.Checked;
                         break;
                     case "SupplierInvoiceSaleIDTsmi":
-                            SupplierInvoiceDgv.Columns["SaleID"].Visible = tsmi.Checked;
+                        SupplierInvoiceDgv.Columns["SaleID"].Visible = tsmi.Checked;
                         break;
                     case "SupplierInvoiceInvoiceAmountTsmi":
-                            SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = tsmi.Checked;
+                        SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = tsmi.Checked;
                         break;
                     case "SupplierInvoiceDateTsmi":
                         SupplierInvoiceDgv.Columns["InvoiceDate"].Visible = tsmi.Checked;

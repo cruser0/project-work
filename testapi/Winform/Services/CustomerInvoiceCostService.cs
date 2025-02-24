@@ -1,15 +1,11 @@
 ﻿using API.Models.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Winform.Entities;
 
 namespace Winform.Services
 {
-    internal class CustomerInvoiceCostService:ICalls<CustomerInvoiceCost>
+    internal class CustomerInvoiceCostService : ICalls<CustomerInvoiceCost>
     {
 
         private string BuildQueryParams(CustomerInvoiceCostFilter filter)

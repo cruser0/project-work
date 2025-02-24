@@ -24,6 +24,14 @@
 
         public void buttonShowForm_Click(object sender, EventArgs e)
         {
+            int? countOpenForms = mainForm.MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
+            List<Form?> childrenOpen = mainForm.MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+
+            if (countOpenForms >= 4)
+                mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
+            else
+                mainForm.LayoutMdi(MdiLayout.TileVertical);
+
             form.WindowState = FormWindowState.Normal;
 
             form.Show();

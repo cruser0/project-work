@@ -88,7 +88,7 @@ namespace API.Models.Services
             {
                 query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
-            return query.Select(x => new SupplierInvoiceSupplierDTO(x.SupplierInvoice,x.Supplier));
+            return query.Select(x => new SupplierInvoiceSupplierDTO(x.SupplierInvoice, x.Supplier));
         }
 
         public SupplierInvoiceSupplierDTO GetSupplierInvoiceById(int id)
@@ -96,7 +96,7 @@ namespace API.Models.Services
             var si = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
             var supplier = _context.Suppliers.Where(x => x.SupplierId == si.SupplierId).FirstOrDefault();
             var result = new SupplierInvoiceSupplierDTO(si, supplier);
-            if (si == null||supplier==null)
+            if (si == null || supplier == null)
             {
                 throw new ArgumentException("Supplier Invoice not found!");
             }

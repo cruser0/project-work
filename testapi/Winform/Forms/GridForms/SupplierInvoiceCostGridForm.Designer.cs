@@ -44,14 +44,12 @@
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
-
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SupplierInvoiceCostIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostSupplierInvoiceIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
-
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).BeginInit();
             this.panel2.SuspendLayout();
@@ -66,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 464);
+            this.panel1.Size = new System.Drawing.Size(600, 467);
             this.panel1.TabIndex = 0;
             // 
             // SupplierInvoiceCostDgv
@@ -79,7 +77,7 @@
             this.SupplierInvoiceCostDgv.Name = "SupplierInvoiceCostDgv";
             this.SupplierInvoiceCostDgv.ReadOnly = true;
             this.SupplierInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(600, 464);
+            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(600, 467);
             this.SupplierInvoiceCostDgv.TabIndex = 0;
             this.SupplierInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SupplierInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -91,11 +89,13 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(600, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 464);
+            this.panel2.Size = new System.Drawing.Size(200, 467);
             this.panel2.TabIndex = 1;
             // 
             // TextBoxesRightPanel
             // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
@@ -105,12 +105,11 @@
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 150);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 286);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 365);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
-
             // NameTxt
             // 
             this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
@@ -118,7 +117,7 @@
             this.NameTxt.Location = new System.Drawing.Point(4, 174);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(194, 23);
+            this.NameTxt.Size = new System.Drawing.Size(180, 23);
             this.NameTxt.TabIndex = 15;
             // 
             // NameLbl
@@ -127,16 +126,15 @@
             this.NameLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.NameLbl.Location = new System.Drawing.Point(4, 153);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(113, 18);
+            this.NameLbl.Size = new System.Drawing.Size(118, 18);
             this.NameLbl.TabIndex = 16;
-            this.NameLbl.Text = "Desciption Name";
+            this.NameLbl.Text = "Description Name";
             // 
-
             // CostToTxt
             // 
             this.CostToTxt.Location = new System.Drawing.Point(4, 122);
             this.CostToTxt.Name = "CostToTxt";
-            this.CostToTxt.Size = new System.Drawing.Size(194, 23);
+            this.CostToTxt.Size = new System.Drawing.Size(180, 23);
             this.CostToTxt.TabIndex = 14;
             // 
             // label1
@@ -153,14 +151,14 @@
             // 
             this.CostFromTxt.Location = new System.Drawing.Point(3, 68);
             this.CostFromTxt.Name = "CostFromTxt";
-            this.CostFromTxt.Size = new System.Drawing.Size(194, 23);
+            this.CostFromTxt.Size = new System.Drawing.Size(180, 23);
             this.CostFromTxt.TabIndex = 12;
             // 
             // InvoiceIDTxt
             // 
             this.InvoiceIDTxt.Location = new System.Drawing.Point(3, 21);
             this.InvoiceIDTxt.Name = "InvoiceIDTxt";
-            this.InvoiceIDTxt.Size = new System.Drawing.Size(194, 23);
+            this.InvoiceIDTxt.Size = new System.Drawing.Size(180, 23);
             this.InvoiceIDTxt.TabIndex = 11;
             // 
             // InvoiceIDLbl
@@ -189,7 +187,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 464);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 467);
             this.RightSideBar.TabIndex = 0;
             // 
             // BottomPanel
@@ -197,7 +195,7 @@
             this.BottomPanel.BackColor = System.Drawing.Color.DarkGray;
             this.BottomPanel.Controls.Add(this.PaginationUserControl);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 464);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 467);
             this.BottomPanel.Name = "BottomPanel";
             this.BottomPanel.Size = new System.Drawing.Size(800, 100);
             this.BottomPanel.TabIndex = 2;
@@ -210,7 +208,6 @@
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
             // 
-
             // RightClickDgv
             // 
             this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -270,12 +267,11 @@
             this.SupplierInvoiceCostNameTsmi.Text = "Show Description Name";
             this.SupplierInvoiceCostNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-
             // SupplierInvoiceCostGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 564);
+            this.ClientSize = new System.Drawing.Size(800, 567);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.BottomPanel);

@@ -10,6 +10,8 @@ namespace Winform.Forms
         string country;
         int status;
         int pages;
+        DateTime? dateFrom;
+        DateTime? dateTo;
         double itemsPage = 10.0;
         private SupplierService _supplierService;
         private CreateSupplierInvoicesForm _father;
@@ -75,9 +77,10 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
+                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
                 page = PaginationUserControl.CurrentPage
-                //OriginalID
-                //CreatedOn
+
             };
             SupplierFilter filterPage = new SupplierFilter
             {
@@ -89,14 +92,15 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
-                //OriginalID
-                //CreatedOn
+                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
+
             };
             name = NameSupplierTxt.Text;
             country = CountrySupplierTxt.Text;
             status = comboBox1.SelectedIndex;
-            //OriginalID
-            //CreatedOn
+            dateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
+            dateTo = DateToClnd.Checked ? DateToClnd.Value : null;
             IEnumerable<Supplier> query = _supplierService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_supplierService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
@@ -123,16 +127,13 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
+                CreatedDateFrom = dateFrom,
+                CreatedDateTo = dateTo,
                 page = PaginationUserControl.CurrentPage
             };
 
             IEnumerable<Supplier> query = _supplierService.GetAll(filter);
             SupplierDgv.DataSource = query.ToList();
-        }
-
-        private void baseGridComponent_Load(object sender, EventArgs e)
-        {
-
         }
 
         public virtual void SupplierDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -179,7 +180,7 @@ namespace Winform.Forms
 
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
-
+            TextBoxesRightPanel.Height = Height / 2;
         }
 
         private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)

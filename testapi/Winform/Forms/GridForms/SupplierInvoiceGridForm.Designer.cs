@@ -32,6 +32,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.RigtPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.InvoiceAmountToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.InvoiceAmountFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SupplierIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.SaleIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,9 +71,10 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.RigtPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(739, 0);
+            this.panel1.Location = new System.Drawing.Point(619, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 547);
             this.panel1.TabIndex = 16;
@@ -86,7 +91,13 @@
             // 
             // TextBoxesRightPanel
             // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountToTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountFromTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.label2);
+            this.TextBoxesRightPanel.Controls.Add(this.label3);
             this.TextBoxesRightPanel.Controls.Add(this.SupplierIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.SaleIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
@@ -97,23 +108,57 @@
             this.TextBoxesRightPanel.Controls.Add(this.SaleIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.SupplierIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 141);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 246);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 444);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // InvoiceAmountToTxt
+            // 
+            this.InvoiceAmountToTxt.Location = new System.Drawing.Point(3, 303);
+            this.InvoiceAmountToTxt.Name = "InvoiceAmountToTxt";
+            this.InvoiceAmountToTxt.Size = new System.Drawing.Size(180, 23);
+            this.InvoiceAmountToTxt.TabIndex = 16;
+            // 
+            // InvoiceAmountFromTxt
+            // 
+            this.InvoiceAmountFromTxt.Location = new System.Drawing.Point(3, 256);
+            this.InvoiceAmountFromTxt.Name = "InvoiceAmountFromTxt";
+            this.InvoiceAmountFromTxt.Size = new System.Drawing.Size(180, 23);
+            this.InvoiceAmountFromTxt.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(3, 235);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 18);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Invoice Amount From";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(3, 282);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 18);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Invoice Amount To";
             // 
             // SupplierIDTxt
             // 
             this.SupplierIDTxt.Location = new System.Drawing.Point(3, 68);
             this.SupplierIDTxt.Name = "SupplierIDTxt";
-            this.SupplierIDTxt.Size = new System.Drawing.Size(194, 23);
+            this.SupplierIDTxt.Size = new System.Drawing.Size(180, 23);
             this.SupplierIDTxt.TabIndex = 12;
             // 
             // SaleIDTxt
             // 
             this.SaleIDTxt.Location = new System.Drawing.Point(3, 21);
             this.SaleIDTxt.Name = "SaleIDTxt";
-            this.SaleIDTxt.Size = new System.Drawing.Size(194, 23);
+            this.SaleIDTxt.Size = new System.Drawing.Size(180, 23);
             this.SaleIDTxt.TabIndex = 11;
             // 
             // label1
@@ -158,7 +203,7 @@
             "Unapproved"});
             this.StatusCmb.Location = new System.Drawing.Point(3, 209);
             this.StatusCmb.Name = "StatusCmb";
-            this.StatusCmb.Size = new System.Drawing.Size(194, 23);
+            this.StatusCmb.Size = new System.Drawing.Size(180, 23);
             this.StatusCmb.TabIndex = 5;
             // 
             // DateToClnd
@@ -169,7 +214,7 @@
             this.DateToClnd.Location = new System.Drawing.Point(3, 162);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
-            this.DateToClnd.Size = new System.Drawing.Size(193, 23);
+            this.DateToClnd.Size = new System.Drawing.Size(180, 23);
             this.DateToClnd.TabIndex = 6;
             // 
             // SaleIDLbl
@@ -201,7 +246,7 @@
             this.DateFromClnd.Location = new System.Drawing.Point(3, 115);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
-            this.DateFromClnd.Size = new System.Drawing.Size(193, 23);
+            this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
             this.DateFromClnd.TabIndex = 5;
             // 
             // RightSideBar
@@ -219,7 +264,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(739, 547);
+            this.CenterPanel.Size = new System.Drawing.Size(619, 547);
             this.CenterPanel.TabIndex = 18;
             // 
             // SupplierInvoiceDgv
@@ -232,7 +277,7 @@
             this.SupplierInvoiceDgv.Name = "SupplierInvoiceDgv";
             this.SupplierInvoiceDgv.ReadOnly = true;
             this.SupplierInvoiceDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(739, 547);
+            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(619, 547);
             this.SupplierInvoiceDgv.TabIndex = 9;
             this.SupplierInvoiceDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SupplierInvoiceDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -244,7 +289,7 @@
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 547);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(939, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(819, 100);
             this.BottomPanel.TabIndex = 19;
             // 
             // PaginationUserControl
@@ -349,7 +394,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 647);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(819, 647);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BottomPanel);
@@ -397,5 +443,9 @@
         private ToolStripMenuItem SupplierInvoiceSupplierIDTsmi;
         private ToolStripMenuItem SupplierInvoiceSupplierNameTsmi;
         private ToolStripMenuItem SupplierInvoiceCountryTsmi;
+        private control.IntegerTextBoxUserControl InvoiceAmountToTxt;
+        private control.IntegerTextBoxUserControl InvoiceAmountFromTxt;
+        private Label label2;
+        private Label label3;
     }
 }

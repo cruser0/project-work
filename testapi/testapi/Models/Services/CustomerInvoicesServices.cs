@@ -112,7 +112,7 @@ namespace API.Models.Services
             var sale = _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).FirstOrDefault();
             if (sale == null)
                 throw new ArgumentException($"There is no sale with id {customerInvoice.SaleId}");
-            if(sale.Status.ToLower().Equals("closed"))
+            if (sale.Status.ToLower().Equals("closed"))
                 throw new ArgumentException($"The Sale is already closed");
 
             customerInvoice.InvoiceAmount = 0;
@@ -157,7 +157,7 @@ namespace API.Models.Services
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(customerInvoice.Status) && !statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
-            Sale sale= _context.Sales.Where(x => x.SaleId == ciDB.SaleId).First();
+            Sale sale = _context.Sales.Where(x => x.SaleId == ciDB.SaleId).First();
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ArgumentException($"The current Sale is already closed");
             // Validate that the invoice amount is greater than zero
@@ -210,12 +210,12 @@ namespace API.Models.Services
             if (data == null)
                 throw new ArgumentNullException("Customer invoice not found!");
             Sale? sale = _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefault();
-            if(sale == null)
+            if (sale == null)
                 throw new ArgumentNullException("Sale not found!");
 
-            if(sale.Status.ToLower().Equals("closed"))
+            if (sale.Status.ToLower().Equals("closed"))
                 throw new ArgumentNullException("Sale is closed,can't delete!");
-            sale.TotalRevenue=sale.TotalRevenue-data.InvoiceAmount;
+            sale.TotalRevenue = sale.TotalRevenue - data.InvoiceAmount;
 
             // Remove the customer invoice from the database
             _context.CustomerInvoices.Remove(data);

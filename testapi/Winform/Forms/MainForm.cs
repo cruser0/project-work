@@ -19,7 +19,7 @@ namespace Winform
             minimizedPanel = new TableLayoutPanel
             {
                 Dock = DockStyle.Bottom,
-                Height = 50, // Adjust the height of the panel as needed
+                Height = 60, // Adjust the height of the panel as needed
                 RowCount = 1,
                 AutoScroll = true
             };
@@ -28,60 +28,75 @@ namespace Winform
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
         {
-            if (sender is ToolStripMenuItem menuItem)
+            var menuItem = sender as ToolStripMenuItem;
+
+            Cursor.Current = Cursors.WaitCursor;
+            string formName = menuItem.Text;
+            int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
+            List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+
+
+
+            // Check if the form is already open
+            Form? existingForm = MdiChildren.FirstOrDefault(f => f.Text == formName);
+            if (existingForm != null)
             {
-                Cursor.Current = Cursors.WaitCursor;
-                string formName = menuItem.Text;
+                // Check if the form is already minimized and exists in the minimized panel
+                var minimizedButton = minimizedPanel.Controls.OfType<formDockButton>()
+                    .FirstOrDefault(btn => btn.Name == formName);
 
-                // Check if the form is already open
-                Form? existingForm = MdiChildren.FirstOrDefault(f => f.Text == formName);
-                if (existingForm != null)
+                if (minimizedButton != null)
                 {
-                    // Check if the form is already minimized and exists in the minimized panel
-                    var minimizedButton = minimizedPanel.Controls.OfType<formDockButton>()
-                        .FirstOrDefault(btn => btn.Name == formName);
-
-                    if (minimizedButton != null)
-                    {
-                        // Trigger the button click event to show the form from the minimized state
-                        minimizedButton.ButtonShowForm?.PerformClick();
-                        Cursor.Current = Cursors.Default;
-                        return;
-                    }
-
-
-                    existingForm.WindowState = FormWindowState.Normal;
-                    existingForm.Activate();
+                    // Trigger the button click event to show the form from the minimized state
+                    minimizedButton.ButtonShowForm?.PerformClick();
                     Cursor.Current = Cursors.Default;
                     return;
                 }
 
+                if (countOpenForms >= 4)
+                    LayoutMdi(MdiLayout.ArrangeIcons);
+                else
+                    LayoutMdi(MdiLayout.TileVertical);
+
+                existingForm.WindowState = FormWindowState.Normal;
+                existingForm.Activate();
+                Cursor.Current = Cursors.Default;
+                return;
+            }
 
 
-                // Create a new form if it doesn't exist already
-                Form child = formName switch
-                {
-                    "Show Customers" => new CustomerForm(),
-                    "Show Customer Invoices" => new CustomerInvoiceForm(),
-                    "Show Suppliers" => new SupplierForm(),
-                    "Show Supplier Invoices" => new SupplierInvoiceForm(),
-                    "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
-                    "Show Sales" => new SaleForm(),
-                    "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
-                    "Show Customer Invoices Costs" => new CustomerInvoiceCostForm(),
-                    _ => throw new Exception("Unknown option")
-                };
 
-                child.Text = formName; // Set the title for future control
-                child.MdiParent = this;
+            // Create a new form if it doesn't exist already
+            Form child = formName switch
+            {
+                "Show Customers" => new CustomerForm(),
+                "Show Customer Invoices" => new CustomerInvoiceForm(),
+                "Show Suppliers" => new SupplierForm(),
+                "Show Supplier Invoices" => new SupplierInvoiceForm(),
+                "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
+                "Show Sales" => new SaleForm(),
+                "Add Customer" => new CreateCustomerForm(),
+                "Add Supplier" => new CreateSupplierForm(),
+                "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
+                "Show Customer Invoices Costs" => new CustomerInvoiceCostForm(),
+                _ => new Form()
+            };
 
-                child.Resize += ChildForm_Resize; // Handle resize event for child forms
+            child.Text = formName; // Set the title for future control
+            child.MdiParent = this;
+            child.Size = new Size(1000, 600);
 
-                child.Show();
+            child.Resize += ChildForm_Resize; // Handle resize event for child forms
+
+            child.Show();
+            if (countOpenForms >= 4)
+                LayoutMdi(MdiLayout.ArrangeIcons);
+            else
                 LayoutMdi(MdiLayout.TileVertical);
 
-                Cursor.Current = Cursors.Default;
-            }
+
+            Cursor.Current = Cursors.Default;
+
         }
 
 
@@ -102,7 +117,8 @@ namespace Winform
             // Create a new button for the minimized form
             var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, this)
             {
-                Name = childForm.Text
+                Name = childForm.Text,
+                Dock = DockStyle.Top
             };
 
             // Add the button to the table layout panel in the next available column
@@ -113,27 +129,6 @@ namespace Winform
 
             // Hide the minimized form in the MDI parent
             childForm.Hide();
-        }
-
-
-
-
-        private void AddCustomersStripToolButton_Click(object sender, EventArgs e)
-        {
-            CreateCustomerForm createCustomerForm = new CreateCustomerForm();
-            createCustomerForm.Show();
-        }
-
-        private void AddSuppliersStripToolButton_Click(object sender, EventArgs e)
-        {
-            CreateSupplierForm createSupplierForm = new CreateSupplierForm();
-            createSupplierForm.Show();
-        }
-
-        private void addSupplierInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateSupplierInvoicesForm createSupplierInvoicesForm = new CreateSupplierInvoicesForm();
-            createSupplierInvoicesForm.Show();
         }
     }
 }

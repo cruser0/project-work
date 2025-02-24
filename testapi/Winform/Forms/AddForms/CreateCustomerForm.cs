@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities;
+﻿using Winform.Entities;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -35,14 +26,15 @@ namespace Winform.Forms
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
 
-            }else
+            }
+            else
                 MessageBox.Show("Name and Country must not be empty");
 
         }
 
         private void OpenName_Click(object sender, EventArgs e)
         {
-            CustomerGridForm cgf=new CustomerGridForm();
+            CustomerGridForm cgf = new CustomerGridForm();
             cgf.ShowDialog();
         }
     }

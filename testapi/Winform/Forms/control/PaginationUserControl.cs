@@ -12,7 +12,6 @@
         public PaginationUserControl()
         {
             InitializeComponent();
-            double itemsPage = 100.0;
             PageNumber.Location = new Point((Width - PageNumber.Width) / 2, (Height - PageNumber.Height) / 2);
 
         }

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities.DTO;
+﻿using Winform.Entities.DTO;
 
 namespace Winform.Forms.control
 {
@@ -21,7 +12,7 @@ namespace Winform.Forms.control
 
         private void CreateSaveBtn_Click(object sender, EventArgs e)
         {
-            SupplierCustomerDTO supplierCustomerDTO= new SupplierCustomerDTO {Name=CreateNameTxt.Text,Country=CreateCountryTxt.Text };
+            SupplierCustomerDTO supplierCustomerDTO = new SupplierCustomerDTO { Name = CreateNameTxt.Text, Country = CreateCountryTxt.Text };
             createButton.Invoke(this, supplierCustomerDTO);
         }
     }
