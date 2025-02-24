@@ -33,6 +33,7 @@ namespace Winform.Forms
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CustomerDgv.ContextMenuStrip = RightClickDgv;
         }
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
@@ -78,6 +79,8 @@ namespace Winform.Forms
 
             if (!PaginationUserControl.Visible)
             {
+                CustomerDgv.Columns["CustomerID"].Visible = false;
+                CustomerDgv.Columns["OriginalID"].Visible = false;
                 PaginationUserControl.Visible = true;
             }
 
@@ -169,6 +172,68 @@ namespace Winform.Forms
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
 
+        }
+
+        private void CustomerDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var hitTest = CustomerDgv.HitTest(e.X, e.Y);
+                if (hitTest.RowIndex >= 0)
+                {
+                    RightClickDgv.Show(CustomerDgv, e.Location);
+                }
+            }
+        }
+
+        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if(sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "CustomerIDTsmi":
+                        if (tsmi.Checked)
+                            CustomerDgv.Columns["CustomerID"].Visible=true;
+                        else
+                            CustomerDgv.Columns["CustomerID"].Visible = false;
+                        break;
+                    case "CustomerNameTsmi":
+                        if (tsmi.Checked)
+                            CustomerDgv.Columns["CustomerName"].Visible = true;
+                        else
+                            CustomerDgv.Columns["CustomerName"].Visible = false;
+                        break;
+                    case "CustomerCountryTsmi":
+                        if (tsmi.Checked)
+                            CustomerDgv.Columns["Country"].Visible = true;
+                        else
+                            CustomerDgv.Columns["Country"].Visible = false;
+                        break;
+                    case "CustomerDateTsmi":
+                        if (tsmi.Checked)
+                            CustomerDgv.Columns["CreatedAt"].Visible = true;
+                        else
+                            CustomerDgv.Columns["CreatedAt"].Visible = false;
+                        break;
+                    case "CustomerOriginalIDTsmi":
+                        if (tsmi.Checked)
+                            CustomerDgv.Columns["OriginalID"].Visible = true;
+                        else
+                            CustomerDgv.Columns["OriginalID"].Visible = false;
+                        break;
+                    case "CustomerStatusTsmi":
+                        if (tsmi.Checked)
+                            CustomerDgv.Columns["Deprecated"].Visible = true;
+                        else
+                            CustomerDgv.Columns["Deprecated"].Visible = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
         }
     }
 }

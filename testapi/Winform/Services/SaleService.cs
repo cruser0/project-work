@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using Winform.Entities;
+using Winform.Entities.DTO;
 
 namespace Winform.Services
 {
@@ -34,7 +35,7 @@ namespace Winform.Services
 
             return queryString;
         }
-        public ICollection<Sale> GetAll(SaleFilter filter)
+        public ICollection<SaleCustomerDTO> GetAll(SaleFilter filter)
         {
             ClientAPI client = new ClientAPI();
             string queryString = BuildQueryParams(filter);
@@ -48,15 +49,15 @@ namespace Winform.Services
                 string json = response.Content.ReadAsStringAsync().Result;
 
                 // Deserializzare la risposta JSON in una lista di oggetti SaleDTOGet
-                var items = JsonSerializer.Deserialize<List<Sale>>(json,
+                var items = JsonSerializer.Deserialize<List<SaleCustomerDTO>>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return items;
 
             }
-            return new List<Sale>();
+            return new List<SaleCustomerDTO>();
         }
 
-        public Sale GetById(int id)
+        public SaleCustomerDTO GetById(int id)
         {
             ClientAPI client = new ClientAPI();
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"sale/{id}").Result;
@@ -67,7 +68,7 @@ namespace Winform.Services
                 string json = response.Content.ReadAsStringAsync().Result;
 
                 // Deserializzare la risposta JSON in una lista di oggetti SaleDTOGet
-                var items = JsonSerializer.Deserialize<Sale>(json,
+                var items = JsonSerializer.Deserialize<SaleCustomerDTO>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return items;
 

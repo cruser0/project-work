@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using Winform.Entities;
+using Winform.Entities.DTO;
 
 namespace Winform.Services
 {
@@ -34,7 +35,7 @@ namespace Winform.Services
 
             return queryString;
         }
-        public ICollection<SupplierInvoice> GetAll(SupplierInvoiceFilter filter)
+        public ICollection<SupplierInvoiceSupplierDTO> GetAll(SupplierInvoiceFilter filter)
         {
             ClientAPI client = new ClientAPI();
             string queryString = BuildQueryParams(filter);
@@ -47,15 +48,15 @@ namespace Winform.Services
                 string json = response.Content.ReadAsStringAsync().Result;
 
                 // Deserializzare la risposta JSON in una lista di oggetti SupplierInvoiceDTOGet
-                var items = JsonSerializer.Deserialize<List<SupplierInvoice>>(json,
+                var items = JsonSerializer.Deserialize<List<SupplierInvoiceSupplierDTO>>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return items;
 
             }
-            return new List<SupplierInvoice>();
+            return new List<SupplierInvoiceSupplierDTO>();
         }
 
-        public SupplierInvoice GetById(int id)
+        public SupplierInvoiceSupplierDTO GetById(int id)
         {
             ClientAPI client = new ClientAPI();
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"supplier-invoice/{id}").Result;
@@ -66,7 +67,7 @@ namespace Winform.Services
                 string json = response.Content.ReadAsStringAsync().Result;
 
                 // Deserializzare la risposta JSON in una lista di oggetti SupplierInvoiceDTOGet
-                var items = JsonSerializer.Deserialize<SupplierInvoice>(json,
+                var items = JsonSerializer.Deserialize<SupplierInvoiceSupplierDTO>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return items;
 

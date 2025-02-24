@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.StatusLbl = new System.Windows.Forms.Label();
@@ -44,12 +45,20 @@
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierOriginalIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).BeginInit();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -172,6 +181,7 @@
             this.SupplierDgv.Size = new System.Drawing.Size(819, 454);
             this.SupplierDgv.TabIndex = 8;
             this.SupplierDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellDoubleClick);
+            this.SupplierDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // BottomPanel
             // 
@@ -219,6 +229,74 @@
             this.panel3.Size = new System.Drawing.Size(0, 100);
             this.panel3.TabIndex = 0;
             // 
+            // RightClickDgv
+            // 
+            this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SupplierIDTsmi,
+            this.SupplierNameTsmi,
+            this.SupplierCountryTsmi,
+            this.SupplierDateTsmi,
+            this.SupplierOriginalIDTsmi,
+            this.SupplierStatusTsmi});
+            this.RightClickDgv.Name = "contextMenuStrip1";
+            this.RightClickDgv.Size = new System.Drawing.Size(181, 158);
+            // 
+            // SupplierIDTsmi
+            // 
+            this.SupplierIDTsmi.CheckOnClick = true;
+            this.SupplierIDTsmi.Name = "SupplierIDTsmi";
+            this.SupplierIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierIDTsmi.Text = "Show ID";
+            this.SupplierIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierNameTsmi
+            // 
+            this.SupplierNameTsmi.Checked = true;
+            this.SupplierNameTsmi.CheckOnClick = true;
+            this.SupplierNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierNameTsmi.Name = "SupplierNameTsmi";
+            this.SupplierNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierNameTsmi.Text = "Show Name";
+            this.SupplierNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierCountryTsmi
+            // 
+            this.SupplierCountryTsmi.Checked = true;
+            this.SupplierCountryTsmi.CheckOnClick = true;
+            this.SupplierCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierCountryTsmi.Name = "SupplierCountryTsmi";
+            this.SupplierCountryTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierCountryTsmi.Text = "Show Country";
+            this.SupplierCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierDateTsmi
+            // 
+            this.SupplierDateTsmi.Checked = true;
+            this.SupplierDateTsmi.CheckOnClick = true;
+            this.SupplierDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierDateTsmi.Name = "SupplierDateTsmi";
+            this.SupplierDateTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierDateTsmi.Text = "Show Date";
+            this.SupplierDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierOriginalIDTsmi
+            // 
+            this.SupplierOriginalIDTsmi.CheckOnClick = true;
+            this.SupplierOriginalIDTsmi.Name = "SupplierOriginalIDTsmi";
+            this.SupplierOriginalIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierOriginalIDTsmi.Text = "Show Original ID";
+            this.SupplierOriginalIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierStatusTsmi
+            // 
+            this.SupplierStatusTsmi.Checked = true;
+            this.SupplierStatusTsmi.CheckOnClick = true;
+            this.SupplierStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierStatusTsmi.Name = "SupplierStatusTsmi";
+            this.SupplierStatusTsmi.Size = new System.Drawing.Size(180, 22);
+            this.SupplierStatusTsmi.Text = "Show Status";
+            this.SupplierStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
             // SupplierGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -239,6 +317,7 @@
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.RightClickDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -260,5 +339,12 @@
         private control.PaginationUserControl PaginationUserControl;
         private Panel panel4;
         private Panel panel3;
+        private ContextMenuStrip RightClickDgv;
+        private ToolStripMenuItem SupplierIDTsmi;
+        private ToolStripMenuItem SupplierNameTsmi;
+        private ToolStripMenuItem SupplierCountryTsmi;
+        private ToolStripMenuItem SupplierDateTsmi;
+        private ToolStripMenuItem SupplierOriginalIDTsmi;
+        private ToolStripMenuItem SupplierStatusTsmi;
     }
 }

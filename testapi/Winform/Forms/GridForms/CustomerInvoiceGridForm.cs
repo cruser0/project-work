@@ -32,6 +32,7 @@ namespace Winform.Forms.CreateWindow
             PaginationUserControl.Visible = false;
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CenterDgv.ContextMenuStrip = RightClickDgv;
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -94,6 +95,7 @@ namespace Winform.Forms.CreateWindow
 
             if (!PaginationUserControl.Visible)
             {
+                CenterDgv.Columns["CustomerInvoiceID"].Visible = false;
                 PaginationUserControl.Visible = true;
             }
         }
@@ -168,6 +170,61 @@ namespace Winform.Forms.CreateWindow
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
 
+        }
+
+        private void RightClickDhvEvent(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var hitTest=CenterDgv.HitTest(e.X,e.Y);
+                if (hitTest.RowIndex >= 0)
+                {
+                    RightClickDgv.Show(CenterDgv, e.Location);
+                }
+            }
+        }
+        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "CustomerInvoiceIDTsmi":
+                        if (tsmi.Checked)
+                            CenterDgv.Columns["CustomerInvoiceID"].Visible = true;
+                        else
+                            CenterDgv.Columns["CustomerInvoiceID"].Visible = false;
+                        break;
+                    case "CustomerInvoiceSaleIDTsmi":
+                        if (tsmi.Checked)
+                            CenterDgv.Columns["SaleID"].Visible = true;
+                        else
+                            CenterDgv.Columns["SaleID"].Visible = false;
+                        break;
+                    case "CustomerInvoiceInvoiceAmountTsmi":
+                        if (tsmi.Checked)
+                            CenterDgv.Columns["InvoiceAmount"].Visible = true;
+                        else
+                            CenterDgv.Columns["InvoiceAmount"].Visible = false;
+                        break;
+                    case "CustomerInvoiceDateTsmi":
+                        if (tsmi.Checked)
+                            CenterDgv.Columns["InvoiceDate"].Visible = true;
+                        else
+                            CenterDgv.Columns["InvoiceDate"].Visible = false;
+                        break;
+                    case "CustomerInvoiceStatusTsmi":
+                        if (tsmi.Checked)
+                            CenterDgv.Columns["Status"].Visible = true;
+                        else
+                            CenterDgv.Columns["Status"].Visible = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
         }
     }
 }

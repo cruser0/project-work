@@ -32,6 +32,8 @@ namespace Winform.Forms.CreateWindow
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            SupplierInvoiceCostDgv.ContextMenuStrip = RightClickDgv;
+            PaginationUserControl.Visible = false;
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -82,6 +84,11 @@ namespace Winform.Forms.CreateWindow
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             SupplierInvoiceCostDgv.DataSource = query.ToList();
+            if (!PaginationUserControl.Visible)
+            {
+                PaginationUserControl.Visible = true;
+                SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = false;
+            }
 
         }
 
@@ -139,6 +146,61 @@ namespace Winform.Forms.CreateWindow
             BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
 
+        }
+
+        private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var test = SupplierInvoiceCostDgv.HitTest(e.X, e.Y);
+                if (test.RowIndex >= 0)
+                {
+                    RightClickDgv.Show(RightClickDgv, e.Location);
+                }
+            }
+        }
+        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "SupplierInvoiceCostIDTsmi":
+                        if (tsmi.Checked)
+                            SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = true;
+                        else
+                            SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = false;
+                        break;
+                    case "SupplierInvoiceCostSupplierInvoiceIDTsmi":
+                        if (tsmi.Checked)
+                            SupplierInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = true;
+                        else
+                            SupplierInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = false;
+                        break;
+                    case "SupplierInvoiceCostCostTsmi":
+                        if (tsmi.Checked)
+                            SupplierInvoiceCostDgv.Columns["Cost"].Visible = true;
+                        else
+                            SupplierInvoiceCostDgv.Columns["Cost"].Visible = false;
+                        break;
+                    case "SupplierInvoiceCostQuantityTsmi":
+                        if (tsmi.Checked)
+                            SupplierInvoiceCostDgv.Columns["Quantity"].Visible = true;
+                        else
+                            SupplierInvoiceCostDgv.Columns["Quantity"].Visible = false;
+                        break;
+                    case "SupplierInvoiceCostNameTsmi":
+                        if (tsmi.Checked)
+                            SupplierInvoiceCostDgv.Columns["Name"].Visible = true;
+                        else
+                            SupplierInvoiceCostDgv.Columns["Name"].Visible = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
         }
     }
 }

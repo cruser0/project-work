@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.RigtPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
@@ -46,12 +47,22 @@
             this.SupplierInvoiceDgv = new System.Windows.Forms.DataGridView();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
+            this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SupplierInvoiceIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceSaleIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceSupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceSupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).BeginInit();
             this.BottomPanel.SuspendLayout();
+            this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -224,6 +235,7 @@
             this.SupplierInvoiceDgv.Size = new System.Drawing.Size(739, 547);
             this.SupplierInvoiceDgv.TabIndex = 9;
             this.SupplierInvoiceDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            this.SupplierInvoiceDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // BottomPanel
             // 
@@ -242,6 +254,96 @@
             this.PaginationUserControl.Name = "PaginationUserControl";
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
+            // 
+            // RightClickDgv
+            // 
+            this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SupplierInvoiceIDTsmi,
+            this.SupplierInvoiceSaleIDTsmi,
+            this.SupplierInvoiceInvoiceAmountTsmi,
+            this.SupplierInvoiceDateTsmi,
+            this.SupplierInvoiceStatusTsmi,
+            this.SupplierInvoiceSupplierIDTsmi,
+            this.SupplierInvoiceSupplierNameTsmi,
+            this.SupplierInvoiceCountryTsmi});
+            this.RightClickDgv.Name = "contextMenuStrip1";
+            this.RightClickDgv.Size = new System.Drawing.Size(196, 180);
+            // 
+            // SupplierInvoiceIDTsmi
+            // 
+            this.SupplierInvoiceIDTsmi.CheckOnClick = true;
+            this.SupplierInvoiceIDTsmi.Name = "SupplierInvoiceIDTsmi";
+            this.SupplierInvoiceIDTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceIDTsmi.Text = "Show ID";
+            this.SupplierInvoiceIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceSaleIDTsmi
+            // 
+            this.SupplierInvoiceSaleIDTsmi.Checked = true;
+            this.SupplierInvoiceSaleIDTsmi.CheckOnClick = true;
+            this.SupplierInvoiceSaleIDTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceSaleIDTsmi.Name = "SupplierInvoiceSaleIDTsmi";
+            this.SupplierInvoiceSaleIDTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceSaleIDTsmi.Text = "Show Sale ID";
+            this.SupplierInvoiceSaleIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceInvoiceAmountTsmi
+            // 
+            this.SupplierInvoiceInvoiceAmountTsmi.Checked = true;
+            this.SupplierInvoiceInvoiceAmountTsmi.CheckOnClick = true;
+            this.SupplierInvoiceInvoiceAmountTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceInvoiceAmountTsmi.Name = "SupplierInvoiceInvoiceAmountTsmi";
+            this.SupplierInvoiceInvoiceAmountTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceInvoiceAmountTsmi.Text = "Show Invoice Amount";
+            this.SupplierInvoiceInvoiceAmountTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceDateTsmi
+            // 
+            this.SupplierInvoiceDateTsmi.Checked = true;
+            this.SupplierInvoiceDateTsmi.CheckOnClick = true;
+            this.SupplierInvoiceDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceDateTsmi.Name = "SupplierInvoiceDateTsmi";
+            this.SupplierInvoiceDateTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceDateTsmi.Text = "Show Invoice Date";
+            this.SupplierInvoiceDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceStatusTsmi
+            // 
+            this.SupplierInvoiceStatusTsmi.Checked = true;
+            this.SupplierInvoiceStatusTsmi.CheckOnClick = true;
+            this.SupplierInvoiceStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceStatusTsmi.Name = "SupplierInvoiceStatusTsmi";
+            this.SupplierInvoiceStatusTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceStatusTsmi.Text = "Show Status";
+            this.SupplierInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceSupplierIDTsmi
+            // 
+            this.SupplierInvoiceSupplierIDTsmi.CheckOnClick = true;
+            this.SupplierInvoiceSupplierIDTsmi.Name = "SupplierInvoiceSupplierIDTsmi";
+            this.SupplierInvoiceSupplierIDTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceSupplierIDTsmi.Text = "Show Supplier ID";
+            this.SupplierInvoiceSupplierIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceSupplierNameTsmi
+            // 
+            this.SupplierInvoiceSupplierNameTsmi.Checked = true;
+            this.SupplierInvoiceSupplierNameTsmi.CheckOnClick = true;
+            this.SupplierInvoiceSupplierNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceSupplierNameTsmi.Name = "SupplierInvoiceSupplierNameTsmi";
+            this.SupplierInvoiceSupplierNameTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceSupplierNameTsmi.Text = "Show Supplier Name";
+            this.SupplierInvoiceSupplierNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceCountryTsmi
+            // 
+            this.SupplierInvoiceCountryTsmi.Checked = true;
+            this.SupplierInvoiceCountryTsmi.CheckOnClick = true;
+            this.SupplierInvoiceCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceCountryTsmi.Name = "SupplierInvoiceCountryTsmi";
+            this.SupplierInvoiceCountryTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceCountryTsmi.Text = "Show Supplier Country";
+            this.SupplierInvoiceCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // SupplierInvoiceGridForm
             // 
@@ -262,6 +364,7 @@
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).EndInit();
             this.BottomPanel.ResumeLayout(false);
+            this.RightClickDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -285,5 +388,14 @@
         public Panel CenterPanel;
         private Panel BottomPanel;
         private control.PaginationUserControl PaginationUserControl;
+        private ContextMenuStrip RightClickDgv;
+        private ToolStripMenuItem SupplierInvoiceIDTsmi;
+        private ToolStripMenuItem SupplierInvoiceSaleIDTsmi;
+        private ToolStripMenuItem SupplierInvoiceInvoiceAmountTsmi;
+        private ToolStripMenuItem SupplierInvoiceDateTsmi;
+        private ToolStripMenuItem SupplierInvoiceStatusTsmi;
+        private ToolStripMenuItem SupplierInvoiceSupplierIDTsmi;
+        private ToolStripMenuItem SupplierInvoiceSupplierNameTsmi;
+        private ToolStripMenuItem SupplierInvoiceCountryTsmi;
     }
 }

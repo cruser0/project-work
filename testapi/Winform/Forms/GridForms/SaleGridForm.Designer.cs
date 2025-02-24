@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.DateFromDTP = new System.Windows.Forms.DateTimePicker();
             this.DateToDTP = new System.Windows.Forms.DateTimePicker();
             this.RigtPanel = new System.Windows.Forms.Panel();
@@ -50,12 +51,23 @@
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SaleIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleBkNumberTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleBoLNumberTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleCustomerIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).BeginInit();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // DateFromDTP
@@ -244,6 +256,7 @@
             this.SaleDgv.Size = new System.Drawing.Size(712, 501);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            this.SaleDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
             // 
             // BottomPanel
             // 
@@ -291,6 +304,107 @@
             this.panel3.Size = new System.Drawing.Size(0, 100);
             this.panel3.TabIndex = 0;
             // 
+            // RightClickDgv
+            // 
+            this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaleIDTsmi,
+            this.SaleBkNumberTsmi,
+            this.SaleBoLNumberTsmi,
+            this.SaleDateTsmi,
+            this.SaleCustomerIDTsmi,
+            this.SaleStatusTsmi,
+            this.SaleCustomerNameTsmi,
+            this.SaleCustomerCountryTsmi,
+            this.SaleTotalRevenueTsmi});
+            this.RightClickDgv.Name = "contextMenuStrip1";
+            this.RightClickDgv.Size = new System.Drawing.Size(205, 224);
+            // 
+            // SaleIDTsmi
+            // 
+            this.SaleIDTsmi.CheckOnClick = true;
+            this.SaleIDTsmi.Name = "SaleIDTsmi";
+            this.SaleIDTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleIDTsmi.Text = "Show ID";
+            this.SaleIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleBkNumberTsmi
+            // 
+            this.SaleBkNumberTsmi.Checked = true;
+            this.SaleBkNumberTsmi.CheckOnClick = true;
+            this.SaleBkNumberTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SaleBkNumberTsmi.Name = "SaleBkNumberTsmi";
+            this.SaleBkNumberTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleBkNumberTsmi.Text = "Show Booking Number";
+            this.SaleBkNumberTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleBoLNumberTsmi
+            // 
+            this.SaleBoLNumberTsmi.Checked = true;
+            this.SaleBoLNumberTsmi.CheckOnClick = true;
+            this.SaleBoLNumberTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SaleBoLNumberTsmi.Name = "SaleBoLNumberTsmi";
+            this.SaleBoLNumberTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleBoLNumberTsmi.Text = "Show BoL Number";
+            this.SaleBoLNumberTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleDateTsmi
+            // 
+            this.SaleDateTsmi.Checked = true;
+            this.SaleDateTsmi.CheckOnClick = true;
+            this.SaleDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SaleDateTsmi.Name = "SaleDateTsmi";
+            this.SaleDateTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleDateTsmi.Text = "Show Date";
+            this.SaleDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleCustomerIDTsmi
+            // 
+            this.SaleCustomerIDTsmi.CheckOnClick = true;
+            this.SaleCustomerIDTsmi.Name = "SaleCustomerIDTsmi";
+            this.SaleCustomerIDTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleCustomerIDTsmi.Text = "Show Customer ID";
+            this.SaleCustomerIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleStatusTsmi
+            // 
+            this.SaleStatusTsmi.Checked = true;
+            this.SaleStatusTsmi.CheckOnClick = true;
+            this.SaleStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SaleStatusTsmi.Name = "SaleStatusTsmi";
+            this.SaleStatusTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleStatusTsmi.Text = "Show Status";
+            this.SaleStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleCustomerNameTsmi
+            // 
+            this.SaleCustomerNameTsmi.Checked = true;
+            this.SaleCustomerNameTsmi.CheckOnClick = true;
+            this.SaleCustomerNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SaleCustomerNameTsmi.Name = "SaleCustomerNameTsmi";
+            this.SaleCustomerNameTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleCustomerNameTsmi.Text = "Show Customer Name";
+            this.SaleCustomerNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleCustomerCountryTsmi
+            // 
+            this.SaleCustomerCountryTsmi.Checked = true;
+            this.SaleCustomerCountryTsmi.CheckOnClick = true;
+            this.SaleCustomerCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SaleCustomerCountryTsmi.Name = "SaleCustomerCountryTsmi";
+            this.SaleCustomerCountryTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleCustomerCountryTsmi.Text = "Show Customer Country";
+            this.SaleCustomerCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SaleTotalRevenueTsmi
+            // 
+            this.SaleTotalRevenueTsmi.Checked = true;
+            this.SaleTotalRevenueTsmi.CheckOnClick = true;
+            this.SaleTotalRevenueTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SaleTotalRevenueTsmi.Name = "SaleTotalRevenueTsmi";
+            this.SaleTotalRevenueTsmi.Size = new System.Drawing.Size(204, 22);
+            this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
+            this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
             // SaleGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -311,6 +425,7 @@
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.RightClickDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -338,5 +453,15 @@
         private control.PaginationUserControl PaginationUserControl;
         private Panel panel4;
         private Panel panel3;
+        private ContextMenuStrip RightClickDgv;
+        private ToolStripMenuItem SaleIDTsmi;
+        private ToolStripMenuItem SaleBkNumberTsmi;
+        private ToolStripMenuItem SaleBoLNumberTsmi;
+        private ToolStripMenuItem SaleDateTsmi;
+        private ToolStripMenuItem SaleCustomerIDTsmi;
+        private ToolStripMenuItem SaleStatusTsmi;
+        private ToolStripMenuItem SaleCustomerNameTsmi;
+        private ToolStripMenuItem SaleCustomerCountryTsmi;
+        private ToolStripMenuItem SaleTotalRevenueTsmi;
     }
 }
