@@ -167,34 +167,19 @@ namespace Winform.Forms.GridForms
                 switch (name)
                 {
                     case "CustomerInvoiceCostIDTsmi":
-                        if (tsmi.Checked)
-                            CustomerInvoiceCostDgv.Columns["CustomerInvoiceCostsID"].Visible = true;
-                        else
-                            CustomerInvoiceCostDgv.Columns["CustomerInvoiceCostsID"].Visible = false;
+                        CustomerInvoiceCostDgv.Columns["CustomerInvoiceCostsID"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceCostCustomerInvoiceIDTsmi":
-                        if (tsmi.Checked)
-                            CustomerInvoiceCostDgv.Columns["CustomerInvoiceID"].Visible = true;
-                        else
-                            CustomerInvoiceCostDgv.Columns["CustomerInvoiceID"].Visible = false;
+                        CustomerInvoiceCostDgv.Columns["CustomerInvoiceID"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceCostCostTsmi":
-                        if (tsmi.Checked)
-                            CustomerInvoiceCostDgv.Columns["Cost"].Visible = true;
-                        else
-                            CustomerInvoiceCostDgv.Columns["Cost"].Visible = false;
+                        CustomerInvoiceCostDgv.Columns["Cost"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceCostQuantityTsmi":
-                        if (tsmi.Checked)
-                            CustomerInvoiceCostDgv.Columns["Quantity"].Visible = true;
-                        else
-                            CustomerInvoiceCostDgv.Columns["Quantity"].Visible = false;
+                        CustomerInvoiceCostDgv.Columns["Quantity"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceCostNameTsmi":
-                        if (tsmi.Checked)
-                            CustomerInvoiceCostDgv.Columns["Name"].Visible = true;
-                        else
-                            CustomerInvoiceCostDgv.Columns["Name"].Visible = false;
+                        CustomerInvoiceCostDgv.Columns["Name"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;

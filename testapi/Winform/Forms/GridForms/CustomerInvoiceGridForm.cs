@@ -192,34 +192,19 @@ namespace Winform.Forms.CreateWindow
                 switch (name)
                 {
                     case "CustomerInvoiceIDTsmi":
-                        if (tsmi.Checked)
-                            CenterDgv.Columns["CustomerInvoiceID"].Visible = true;
-                        else
-                            CenterDgv.Columns["CustomerInvoiceID"].Visible = false;
+                        CenterDgv.Columns["CustomerInvoiceID"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceSaleIDTsmi":
-                        if (tsmi.Checked)
-                            CenterDgv.Columns["SaleID"].Visible = true;
-                        else
-                            CenterDgv.Columns["SaleID"].Visible = false;
+                        CenterDgv.Columns["SaleID"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceInvoiceAmountTsmi":
-                        if (tsmi.Checked)
-                            CenterDgv.Columns["InvoiceAmount"].Visible = true;
-                        else
-                            CenterDgv.Columns["InvoiceAmount"].Visible = false;
+                        CenterDgv.Columns["InvoiceAmount"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceDateTsmi":
-                        if (tsmi.Checked)
-                            CenterDgv.Columns["InvoiceDate"].Visible = true;
-                        else
-                            CenterDgv.Columns["InvoiceDate"].Visible = false;
+                        CenterDgv.Columns["InvoiceDate"].Visible = tsmi.Checked;
                         break;
                     case "CustomerInvoiceStatusTsmi":
-                        if (tsmi.Checked)
-                            CenterDgv.Columns["Status"].Visible = true;
-                        else
-                            CenterDgv.Columns["Status"].Visible = false;
+                        CenterDgv.Columns["Status"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;

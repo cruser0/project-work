@@ -201,40 +201,22 @@ namespace Winform.Forms
                 switch (name)
                 {
                     case "SupplierIDTsmi":
-                        if (tsmi.Checked)
-                            SupplierDgv.Columns["SupplierID"].Visible = true;
-                        else
-                            SupplierDgv.Columns["SupplierID"].Visible = false;
+                        SupplierDgv.Columns["SupplierID"].Visible = tsmi.Checked;
                         break;
                     case "SupplierNameTsmi":
-                        if (tsmi.Checked)
-                            SupplierDgv.Columns["SupplierName"].Visible = true;
-                        else
-                            SupplierDgv.Columns["SupplierName"].Visible = false;
+                        SupplierDgv.Columns["SupplierName"].Visible = tsmi.Checked;
                         break;
                     case "SupplierCountryTsmi":
-                        if (tsmi.Checked)
-                            SupplierDgv.Columns["Country"].Visible = true;
-                        else
-                            SupplierDgv.Columns["Country"].Visible = false;
+                        SupplierDgv.Columns["Country"].Visible = tsmi.Checked;
                         break;
                     case "SupplierDateTsmi":
-                        if (tsmi.Checked)
-                            SupplierDgv.Columns["CreatedAt"].Visible = true;
-                        else
-                            SupplierDgv.Columns["CreatedAt"].Visible = false;
+                        SupplierDgv.Columns["CreatedAt"].Visible = tsmi.Checked;
                         break;
                     case "SupplierOriginalIDTsmi":
-                        if (tsmi.Checked)
-                            SupplierDgv.Columns["OriginalID"].Visible = true;
-                        else
-                            SupplierDgv.Columns["OriginalID"].Visible = false;
+                        SupplierDgv.Columns["OriginalID"].Visible = tsmi.Checked;
                         break;
                     case "SupplierStatusTsmi":
-                        if (tsmi.Checked)
-                            SupplierDgv.Columns["Deprecated"].Visible = true;
-                        else
-                            SupplierDgv.Columns["Deprecated"].Visible = false;
+                        SupplierDgv.Columns["Deprecated"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;
