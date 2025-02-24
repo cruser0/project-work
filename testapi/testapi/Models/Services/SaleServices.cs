@@ -7,8 +7,8 @@ namespace API.Models.Services
 {
     public interface ISalesService
     {
-        ICollection<SaleDTOGet> GetAllSales(SaleFilter filter);
-        SaleDTOGet GetSaleById(int id);
+        ICollection<SaleCustomerDTO> GetAllSales(SaleFilter filter);
+        SaleCustomerDTO GetSaleById(int id);
         SaleDTOGet CreateSale(Sale sale);
         SaleDTOGet UpdateSale(int id, Sale sale);
         SaleDTOGet DeleteSale(int id);
@@ -30,7 +30,7 @@ namespace API.Models.Services
             _siService = SIservice;
         }
 
-        public ICollection<SaleDTOGet> GetAllSales(SaleFilter filter)
+        public ICollection<SaleCustomerDTO> GetAllSales(SaleFilter filter)
         {
             // Retrieve all sales from the database and map each one to a SaleDTOGet
             return ApplyFilter(filter).ToList();
@@ -42,19 +42,22 @@ namespace API.Models.Services
             return ApplyFilter(filter).Count();
         }
 
-        private IQueryable<SaleDTOGet> ApplyFilter(SaleFilter filter)
+        private IQueryable<SaleCustomerDTO> ApplyFilter(SaleFilter filter)
         {
             int itemsPage = 10;
-            var query = _context.Sales.AsQueryable();
+            var query = (from s in _context.Sales
+                        join c in _context.Customers on s.CustomerId equals c.CustomerId into SaleGroup
+                        from customer in SaleGroup.DefaultIfEmpty()
+                        select new { Sale = s, Customer = customer }).AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.BookingNumber))
             {
-                query = query.Where(s => s.BookingNumber.StartsWith(filter.BookingNumber));
+                query = query.Where(s => s.Sale.BookingNumber.StartsWith(filter.BookingNumber));
             }
 
             if (!string.IsNullOrEmpty(filter.BoLnumber))
             {
-                query = query.Where(s => s.BoLnumber.StartsWith(filter.BoLnumber));
+                query = query.Where(s => s.Sale.BoLnumber.StartsWith(filter.BoLnumber));
             }
 
             if (filter.SaleDateFrom != null && filter.SaleDateTo != null)
@@ -64,15 +67,15 @@ namespace API.Models.Services
                     throw new ArgumentException("SaleDateFrom cannot be later than SaleDateTo.");
                 }
 
-                query = query.Where(s => s.SaleDate >= filter.SaleDateFrom && s.SaleDate <= filter.SaleDateTo);
+                query = query.Where(s => s.Sale.SaleDate >= filter.SaleDateFrom && s.Sale.SaleDate <= filter.SaleDateTo);
             }
             else if (filter.RevenueFrom != null)
             {
-                query = query.Where(s => s.TotalRevenue >= filter.RevenueFrom);
+                query = query.Where(s => s.Sale.TotalRevenue >= filter.RevenueFrom);
             }
             else if (filter.RevenueTo != null)
             {
-                query = query.Where(s => s.TotalRevenue <= filter.RevenueTo);
+                query = query.Where(s => s.Sale.TotalRevenue <= filter.RevenueTo);
             }
 
             if (filter.RevenueFrom != null && filter.RevenueTo != null)
@@ -82,44 +85,46 @@ namespace API.Models.Services
                     throw new ArgumentException("RevenueFrom cannot be later than RevenueTo.");
                 }
 
-                query = query.Where(s => s.TotalRevenue >= filter.RevenueFrom && s.TotalRevenue <= filter.RevenueTo);
+                query = query.Where(s => s.Sale.TotalRevenue >= filter.RevenueFrom && s.Sale.TotalRevenue <= filter.RevenueTo);
             }
             else if (filter.RevenueFrom != null)
             {
-                query = query.Where(s => s.TotalRevenue >= filter.RevenueFrom);
+                query = query.Where(s => s.Sale.TotalRevenue >= filter.RevenueFrom);
             }
             else if (filter.RevenueTo != null)
             {
-                query = query.Where(s => s.TotalRevenue <= filter.RevenueTo);
+                query = query.Where(s => s.Sale.TotalRevenue <= filter.RevenueTo);
             }
 
             if (filter.CustomerId != null)
             {
-                query = query.Where(s => s.CustomerId == filter.CustomerId);
+                query = query.Where(s => s.Sale.CustomerId == filter.CustomerId);
             }
 
             if (!string.IsNullOrEmpty(filter.Status))
             {
-                query = query.Where(s => s.Status == filter.Status);
+                query = query.Where(s => s.Sale.Status == filter.Status);
             }
             if (filter.page != null)
             {
                 query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
-            return query.Select(x => SaleMapper.MapGet(x));
+            return query.Select(x => new SaleCustomerDTO(x.Sale,x.Customer));
         }
 
-        public SaleDTOGet GetSaleById(int id)
+        public SaleCustomerDTO GetSaleById(int id)
         {
             // Retrieve the sale from the database using the provided ID
-            var data = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
+            var sale = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
+            var customer = _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefault();
+            var result=new SaleCustomerDTO(sale,customer);
 
             // Check if the sale exists
-            if (data == null)
+            if (result == null||sale==null)
                 throw new ArgumentException("Sale not found!");
 
             // Map the sale entity to a DTO and return the result
-            return SaleMapper.MapGet(data);
+            return result;
         }
 
         public SaleDTOGet CreateSale(Sale sale)

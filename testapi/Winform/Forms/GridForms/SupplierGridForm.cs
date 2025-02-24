@@ -32,6 +32,7 @@ namespace Winform.Forms
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            SupplierDgv.ContextMenuStrip = RightClickDgv;
         }
         public SupplierGridForm(CreateSupplierInvoicesForm father)
         {
@@ -53,6 +54,7 @@ namespace Winform.Forms
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            SupplierDgv.ContextMenuStrip = RightClickDgv;
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -104,6 +106,8 @@ namespace Winform.Forms
 
             if (!PaginationUserControl.Visible)
             {
+                SupplierDgv.Columns["SupplierID"].Visible = false;
+                SupplierDgv.Columns["OriginalID"].Visible = false;
                 PaginationUserControl.Visible = true;
             }
         }
@@ -176,6 +180,67 @@ namespace Winform.Forms
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
 
+        }
+
+        private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitTest = SupplierDgv.HitTest(e.X, e.Y);
+                if (hitTest.RowIndex >= 0)
+                {
+                    RightClickDgv.Show(SupplierDgv, e.Location);
+                }
+            }
+        }
+        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "SupplierIDTsmi":
+                        if (tsmi.Checked)
+                            SupplierDgv.Columns["SupplierID"].Visible = true;
+                        else
+                            SupplierDgv.Columns["SupplierID"].Visible = false;
+                        break;
+                    case "SupplierNameTsmi":
+                        if (tsmi.Checked)
+                            SupplierDgv.Columns["SupplierName"].Visible = true;
+                        else
+                            SupplierDgv.Columns["SupplierName"].Visible = false;
+                        break;
+                    case "SupplierCountryTsmi":
+                        if (tsmi.Checked)
+                            SupplierDgv.Columns["Country"].Visible = true;
+                        else
+                            SupplierDgv.Columns["Country"].Visible = false;
+                        break;
+                    case "SupplierDateTsmi":
+                        if (tsmi.Checked)
+                            SupplierDgv.Columns["CreatedAt"].Visible = true;
+                        else
+                            SupplierDgv.Columns["CreatedAt"].Visible = false;
+                        break;
+                    case "SupplierOriginalIDTsmi":
+                        if (tsmi.Checked)
+                            SupplierDgv.Columns["OriginalID"].Visible = true;
+                        else
+                            SupplierDgv.Columns["OriginalID"].Visible = false;
+                        break;
+                    case "SupplierStatusTsmi":
+                        if (tsmi.Checked)
+                            SupplierDgv.Columns["Deprecated"].Visible = true;
+                        else
+                            SupplierDgv.Columns["Deprecated"].Visible = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
         }
     }
 }

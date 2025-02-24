@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.DTO;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -36,6 +37,7 @@ namespace Winform.Forms
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            SaleDgv.ContextMenuStrip = RightClickDgv;
         }
 
 
@@ -100,12 +102,14 @@ namespace Winform.Forms
             status = StatusCB.Text == "All" ? null : StatusCB.Text;
 
 
-            IEnumerable<Sale> query = _saleService.GetAll(filter);
+            IEnumerable<SaleCustomerDTO> query = _saleService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_saleService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SaleDgv.DataSource = query.ToList();
             if (!PaginationUserControl.Visible)
             {
+                SaleDgv.Columns["SaleId"].Visible = false;
+                SaleDgv.Columns["CustomerId"].Visible = false;
                 PaginationUserControl.Visible = true;
             }
         }
@@ -124,7 +128,7 @@ namespace Winform.Forms
 
             };
 
-            IEnumerable<Sale> query = _saleService.GetAll(filter);
+            IEnumerable<SaleCustomerDTO> query = _saleService.GetAll(filter);
             SaleDgv.DataSource = query.ToList();
         }
         private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)
@@ -184,6 +188,84 @@ namespace Winform.Forms
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
 
+        }
+        private void CustomerDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitTest = SaleDgv.HitTest(e.X, e.Y);
+                if (hitTest.RowIndex >= 0)
+                {
+                    RightClickDgv.Show(SaleDgv, e.Location);
+                }
+            }
+        }
+        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "SaleIDTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["SaleID"].Visible = true;
+                        else
+                            SaleDgv.Columns["SaleID"].Visible = false;
+                        break;
+                    case "SaleBkNumberTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["BookingNumber"].Visible = true;
+                        else
+                            SaleDgv.Columns["BookingNumber"].Visible = false;
+                        break;
+                    case "SaleCustomerCountryTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["Country"].Visible = true;
+                        else
+                            SaleDgv.Columns["Country"].Visible = false;
+                        break;
+                    case "SaleCustomerNameTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["CustomerName"].Visible = true;
+                        else
+                            SaleDgv.Columns["CustomerName"].Visible = false;
+                        break;
+                    case "SaleBoLNumberTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["BoLNumber"].Visible = true;
+                        else
+                            SaleDgv.Columns["BoLNumber"].Visible = false;
+                        break;
+                    case "SaleCustomerIDTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["CustomerID"].Visible = true;
+                        else
+                            SaleDgv.Columns["CustomerID"].Visible = false;
+                        break;
+                    case "SaleTotalRevenueTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["TotalRevenue"].Visible = true;
+                        else
+                            SaleDgv.Columns["TotalRevenue"].Visible = false;
+                        break;
+                    case "SaleStatusTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["Status"].Visible = true;
+                        else
+                            SaleDgv.Columns["Status"].Visible = false;
+                        break;
+                    case "SaleDateTsmi":
+                        if (tsmi.Checked)
+                            SaleDgv.Columns["SaleDate"].Visible = true;
+                        else
+                            SaleDgv.Columns["SaleDate"].Visible = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
         }
     }
 }

@@ -7,8 +7,8 @@ namespace API.Models.Services
 {
     public interface ISupplierInvoiceService
     {
-        ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices(SupplierInvoiceFilter? filter);
-        SupplierInvoiceDTOGet GetSupplierInvoiceById(int id);
+        ICollection<SupplierInvoiceSupplierDTO> GetAllSupplierInvoices(SupplierInvoiceFilter? filter);
+        SupplierInvoiceSupplierDTO GetSupplierInvoiceById(int id);
         SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice);
         SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
         SupplierInvoiceDTOGet DeleteSupplierInvoice(int id);
@@ -26,7 +26,7 @@ namespace API.Models.Services
             _serviceCost = serviceCost;
         }
 
-        public ICollection<SupplierInvoiceDTOGet> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
+        public ICollection<SupplierInvoiceSupplierDTO> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
         {
             // Retrieve all customers from the database and map them to DTOs
             return ApplyFilter(filter).ToList();
@@ -37,65 +37,70 @@ namespace API.Models.Services
             return ApplyFilter(filter).Count();
         }
 
-        private IQueryable<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
+        private IQueryable<SupplierInvoiceSupplierDTO> ApplyFilter(SupplierInvoiceFilter? filter)
         {
             int itemsPage = 10;
-            var query = _context.SupplierInvoices.AsQueryable();
+            var query = (from si in _context.SupplierInvoices
+                         join s in _context.Suppliers on si.SupplierId equals s.SupplierId into SupplierInvoiceGroup
+                         from supplier in SupplierInvoiceGroup.DefaultIfEmpty()
+                         select new { SupplierInvoice = si, Supplier = supplier }).AsQueryable();
 
             if (filter.InvoiceDateFrom.HasValue)
             {
                 if ((filter.InvoiceDateFrom <= DateTime.Now && filter.InvoiceDateFrom > new DateTime(1975, 1, 1)))
                 {
-                    query = query.Where(x => x.InvoiceDate >= filter.InvoiceDateFrom);
+                    query = query.Where(x => x.SupplierInvoice.InvoiceDate >= filter.InvoiceDateFrom);
                 }
             }
             if (filter.InvoiceDateTo.HasValue)
             {
                 if (filter.InvoiceDateTo <= DateTime.Now && filter.InvoiceDateTo >= filter.InvoiceDateFrom)
-                    query = query.Where(x => x.InvoiceDate <= filter.InvoiceDateTo);
+                    query = query.Where(x => x.SupplierInvoice.InvoiceDate <= filter.InvoiceDateTo);
             }
 
             if (filter.InvoiceAmountFrom != null && filter.InvoiceAmountTo != null)
             {
-                query = query.Where(s => s.InvoiceAmount >= filter.InvoiceAmountFrom && s.InvoiceAmount <= filter.InvoiceAmountTo);
+                query = query.Where(s => s.SupplierInvoice.InvoiceAmount >= filter.InvoiceAmountFrom && s.SupplierInvoice.InvoiceAmount <= filter.InvoiceAmountTo);
             }
             else if (filter.InvoiceAmountFrom != null)
             {
-                query = query.Where(s => s.InvoiceAmount >= filter.InvoiceAmountFrom);
+                query = query.Where(s => s.SupplierInvoice.InvoiceAmount >= filter.InvoiceAmountFrom);
             }
             else if (filter.InvoiceAmountTo != null)
             {
-                query = query.Where(s => s.InvoiceAmount <= filter.InvoiceAmountTo);
+                query = query.Where(s => s.SupplierInvoice.InvoiceAmount <= filter.InvoiceAmountTo);
             }
 
             if (filter.SaleID != null)
             {
-                query = query.Where(x => x.SaleId == filter.SaleID);
+                query = query.Where(x => x.SupplierInvoice.SaleId == filter.SaleID);
             }
             if (filter.SupplierID != null)
             {
-                query = query.Where(x => x.SupplierId == filter.SupplierID);
+                query = query.Where(x => x.SupplierInvoice.SupplierId == filter.SupplierID);
             }
             if (!string.IsNullOrEmpty(filter.Status))
             {
                 if (!filter.Status.Equals("All"))
-                    query = query.Where(x => x.Status == filter.Status.ToLower());
+                    query = query.Where(x => x.SupplierInvoice.Status == filter.Status.ToLower());
             }
             if (filter.page != null)
             {
                 query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
-            return query.Select(x => SupplierInvoiceMapper.MapGet(x));
+            return query.Select(x => new SupplierInvoiceSupplierDTO(x.SupplierInvoice,x.Supplier));
         }
 
-        public SupplierInvoiceDTOGet GetSupplierInvoiceById(int id)
+        public SupplierInvoiceSupplierDTO GetSupplierInvoiceById(int id)
         {
-            var data = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
-            if (data == null)
+            var si = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
+            var supplier = _context.Suppliers.Where(x => x.SupplierId == si.SupplierId).FirstOrDefault();
+            var result = new SupplierInvoiceSupplierDTO(si, supplier);
+            if (si == null||supplier==null)
             {
                 throw new ArgumentException("Supplier Invoice not found!");
             }
-            return SupplierInvoiceMapper.MapGet(data);
+            return result;
         }
 
         public SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice)

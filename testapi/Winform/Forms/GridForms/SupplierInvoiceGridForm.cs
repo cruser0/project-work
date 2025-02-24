@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.DTO;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -37,7 +38,8 @@ namespace Winform.Forms
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-
+            SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
+            PaginationUserControl.Visible = false;
         }
         public SupplierInvoiceGridForm(string? id)
         {
@@ -51,6 +53,8 @@ namespace Winform.Forms
                 SupplierIDTxt.SetText(id);
                 MyControl_ButtonClicked(this, EventArgs.Empty);
             }
+            SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
+            PaginationUserControl.Visible = false;
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -131,11 +135,18 @@ namespace Winform.Forms
             };
 
 
-            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(filter);
+            IEnumerable<SupplierInvoiceSupplierDTO> query = _supplierInvoiceService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_supplierInvoiceService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             SupplierInvoiceDgv.DataSource = query.ToList();
+            if (!PaginationUserControl.Visible)
+            {
+                PaginationUserControl.Visible = true;
+                SupplierInvoiceDgv.Columns["InvoiceID"].Visible=false;
+                SupplierInvoiceDgv.Columns["SupplierID"].Visible=false;
+
+            }
         }
 
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
@@ -150,7 +161,7 @@ namespace Winform.Forms
                 page = PaginationUserControl.CurrentPage
             };
 
-            IEnumerable<SupplierInvoice> query = _supplierInvoiceService.GetAll(filter);
+            IEnumerable<SupplierInvoiceSupplierDTO> query = _supplierInvoiceService.GetAll(filter);
             SupplierInvoiceDgv.DataSource = query.ToList();
         }
 
@@ -192,6 +203,56 @@ namespace Winform.Forms
             BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
 
+        }
+
+        private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var test = SupplierInvoiceDgv.HitTest(e.X, e.Y);
+                if (test.RowIndex >= 0)
+                {
+                    RightClickDgv.Show(SupplierInvoiceDgv, e.Location);
+                }
+            }
+        }
+        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "SupplierInvoiceIDTsmi":
+                            SupplierInvoiceDgv.Columns["InvoiceID"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceSaleIDTsmi":
+                            SupplierInvoiceDgv.Columns["SaleID"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceInvoiceAmountTsmi":
+                            SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceDateTsmi":
+                        SupplierInvoiceDgv.Columns["InvoiceDate"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceStatusTsmi":
+                        SupplierInvoiceDgv.Columns["Status"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceSupplierNameTsmi":
+                        SupplierInvoiceDgv.Columns["SupplierName"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceCountryTsmi":
+                        SupplierInvoiceDgv.Columns["Country"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceSupplierIDTsmi":
+                        SupplierInvoiceDgv.Columns["SupplierID"].Visible = tsmi.Checked;
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
         }
     }
 }

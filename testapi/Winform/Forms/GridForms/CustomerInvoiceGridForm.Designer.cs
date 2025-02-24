@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.RightPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.SaleIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
@@ -46,12 +47,19 @@
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CustomerInvoiceIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerInvoiceSaleIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).BeginInit();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // RightPanel
@@ -198,6 +206,7 @@
             this.CenterDgv.Size = new System.Drawing.Size(741, 518);
             this.CenterDgv.TabIndex = 0;
             this.CenterDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CenterDgv_CellDoubleClick);
+            this.CenterDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDhvEvent);
             // 
             // BottomPanel
             // 
@@ -245,6 +254,65 @@
             this.panel3.Size = new System.Drawing.Size(0, 100);
             this.panel3.TabIndex = 0;
             // 
+            // RightClickDgv
+            // 
+            this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CustomerInvoiceIDTsmi,
+            this.CustomerInvoiceSaleIDTsmi,
+            this.CustomerInvoiceInvoiceAmountTsmi,
+            this.CustomerInvoiceDateTsmi,
+            this.CustomerInvoiceStatusTsmi});
+            this.RightClickDgv.Name = "contextMenuStrip1";
+            this.RightClickDgv.Size = new System.Drawing.Size(192, 136);
+            // 
+            // CustomerInvoiceIDTsmi
+            // 
+            this.CustomerInvoiceIDTsmi.CheckOnClick = true;
+            this.CustomerInvoiceIDTsmi.Name = "CustomerInvoiceIDTsmi";
+            this.CustomerInvoiceIDTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceIDTsmi.Text = "Show ID";
+            this.CustomerInvoiceIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerInvoiceSaleIDTsmi
+            // 
+            this.CustomerInvoiceSaleIDTsmi.Checked = true;
+            this.CustomerInvoiceSaleIDTsmi.CheckOnClick = true;
+            this.CustomerInvoiceSaleIDTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerInvoiceSaleIDTsmi.Name = "CustomerInvoiceSaleIDTsmi";
+            this.CustomerInvoiceSaleIDTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceSaleIDTsmi.Text = "Show Sale ID";
+            this.CustomerInvoiceSaleIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerInvoiceInvoiceAmountTsmi
+            // 
+            this.CustomerInvoiceInvoiceAmountTsmi.Checked = true;
+            this.CustomerInvoiceInvoiceAmountTsmi.CheckOnClick = true;
+            this.CustomerInvoiceInvoiceAmountTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerInvoiceInvoiceAmountTsmi.Name = "CustomerInvoiceInvoiceAmountTsmi";
+            this.CustomerInvoiceInvoiceAmountTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceInvoiceAmountTsmi.Text = "Show Invoice Amount";
+            this.CustomerInvoiceInvoiceAmountTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerInvoiceDateTsmi
+            // 
+            this.CustomerInvoiceDateTsmi.Checked = true;
+            this.CustomerInvoiceDateTsmi.CheckOnClick = true;
+            this.CustomerInvoiceDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerInvoiceDateTsmi.Name = "CustomerInvoiceDateTsmi";
+            this.CustomerInvoiceDateTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceDateTsmi.Text = "Show Invoice Date";
+            this.CustomerInvoiceDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerInvoiceStatusTsmi
+            // 
+            this.CustomerInvoiceStatusTsmi.Checked = true;
+            this.CustomerInvoiceStatusTsmi.CheckOnClick = true;
+            this.CustomerInvoiceStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerInvoiceStatusTsmi.Name = "CustomerInvoiceStatusTsmi";
+            this.CustomerInvoiceStatusTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceStatusTsmi.Text = "Show Status";
+            this.CustomerInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
             // CustomerInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -265,6 +333,7 @@
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.RightClickDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -289,5 +358,11 @@
         private control.PaginationUserControl PaginationUserControl;
         private Panel panel4;
         private Panel panel3;
+        private ContextMenuStrip RightClickDgv;
+        private ToolStripMenuItem CustomerInvoiceIDTsmi;
+        private ToolStripMenuItem CustomerInvoiceSaleIDTsmi;
+        private ToolStripMenuItem CustomerInvoiceInvoiceAmountTsmi;
+        private ToolStripMenuItem CustomerInvoiceDateTsmi;
+        private ToolStripMenuItem CustomerInvoiceStatusTsmi;
     }
 }

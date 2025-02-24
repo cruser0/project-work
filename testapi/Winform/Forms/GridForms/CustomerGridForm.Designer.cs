@@ -39,7 +39,13 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CustomerIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerOriginalIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CustomerDgv = new System.Windows.Forms.DataGridView();
             this.BottomPanel = new System.Windows.Forms.Panel();
@@ -50,6 +56,7 @@
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
+            this.RightClickDgv.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).BeginInit();
             this.BottomPanel.SuspendLayout();
@@ -166,10 +173,73 @@
             this.CustomerGdv.TabIndex = 6;
             this.CustomerGdv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
-            // contextMenuStrip1
+            // RightClickDgv
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CustomerIDTsmi,
+            this.CustomerNameTsmi,
+            this.CustomerCountryTsmi,
+            this.CustomerDateTsmi,
+            this.CustomerOriginalIDTsmi,
+            this.CustomerStatusTsmi});
+            this.RightClickDgv.Name = "contextMenuStrip1";
+            this.RightClickDgv.Size = new System.Drawing.Size(181, 158);
+            // 
+            // CustomerIDTsmi
+            // 
+            this.CustomerIDTsmi.CheckOnClick = true;
+            this.CustomerIDTsmi.Name = "CustomerIDTsmi";
+            this.CustomerIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerIDTsmi.Text = "Show ID";
+            this.CustomerIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerNameTsmi
+            // 
+            this.CustomerNameTsmi.Checked = true;
+            this.CustomerNameTsmi.CheckOnClick = true;
+            this.CustomerNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerNameTsmi.Name = "CustomerNameTsmi";
+            this.CustomerNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerNameTsmi.Text = "Show Name";
+            this.CustomerNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerCountryTsmi
+            // 
+            this.CustomerCountryTsmi.Checked = true;
+            this.CustomerCountryTsmi.CheckOnClick = true;
+            this.CustomerCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerCountryTsmi.Name = "CustomerCountryTsmi";
+            this.CustomerCountryTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerCountryTsmi.Text = "Show Country";
+            this.CustomerCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerDateTsmi
+            // 
+            this.CustomerDateTsmi.Checked = true;
+            this.CustomerDateTsmi.CheckOnClick = true;
+            this.CustomerDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerDateTsmi.Name = "CustomerDateTsmi";
+            this.CustomerDateTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerDateTsmi.Text = "Show Date";
+            this.CustomerDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerOriginalIDTsmi
+            // 
+            this.CustomerOriginalIDTsmi.CheckOnClick = true;
+            this.CustomerOriginalIDTsmi.Name = "CustomerOriginalIDTsmi";
+            this.CustomerOriginalIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerOriginalIDTsmi.Text = "Show Original ID";
+            this.CustomerOriginalIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerStatusTsmi
+            // 
+            this.CustomerStatusTsmi.Checked = true;
+            this.CustomerStatusTsmi.CheckOnClick = true;
+            this.CustomerStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerStatusTsmi.Name = "CustomerStatusTsmi";
+            this.CustomerStatusTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerStatusTsmi.Text = "Show Status";
+            this.CustomerStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CenterPanel
             // 
@@ -194,6 +264,7 @@
             this.CustomerDgv.Size = new System.Drawing.Size(790, 526);
             this.CustomerDgv.TabIndex = 7;
             this.CustomerDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            this.CustomerDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
             // 
             // BottomPanel
             // 
@@ -257,6 +328,7 @@
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).EndInit();
+            this.RightClickDgv.ResumeLayout(false);
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDgv)).EndInit();
             this.BottomPanel.ResumeLayout(false);
@@ -275,7 +347,7 @@
         private control.RightSideBarUserControl RightSideBar;
         private Panel TextBoxesRightPanel;
         private DataGridView CustomerGdv;
-        private ContextMenuStrip contextMenuStrip1;
+        private ContextMenuStrip RightClickDgv;
         private Label StatusLbl;
         private ComboBox comboBox1;
         public Panel CenterPanel;
@@ -285,5 +357,11 @@
         private Panel panel3;
         public Panel panel5;
         public DataGridView CustomerDgv;
+        private ToolStripMenuItem CustomerIDTsmi;
+        private ToolStripMenuItem CustomerNameTsmi;
+        private ToolStripMenuItem CustomerCountryTsmi;
+        private ToolStripMenuItem CustomerDateTsmi;
+        private ToolStripMenuItem CustomerOriginalIDTsmi;
+        private ToolStripMenuItem CustomerStatusTsmi;
     }
 }
