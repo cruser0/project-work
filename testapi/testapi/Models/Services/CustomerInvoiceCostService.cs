@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
-        public interface ICustomerInvoiceCostService
-        {
-            ICollection<CustomerInvoiceCostDTOGet> GetAllCustomerInvoiceCosts(CustomerInvoiceCostFilter filter);
-            CustomerInvoiceCostDTOGet GetCustomerInvoiceCostById(int id);
-            CustomerInvoiceCostDTOGet CreateCustomerInvoiceCost(CustomerInvoiceCost customerInvoiceCost);
-            CustomerInvoiceCostDTOGet UpdateCustomerInvoiceCost(int id, CustomerInvoiceCost customerInvoiceCost);
-            CustomerInvoiceCostDTOGet DeleteCustomerInvoiceCost(int id);
+    public interface ICustomerInvoiceCostService
+    {
+        ICollection<CustomerInvoiceCostDTOGet> GetAllCustomerInvoiceCosts(CustomerInvoiceCostFilter filter);
+        CustomerInvoiceCostDTOGet GetCustomerInvoiceCostById(int id);
+        CustomerInvoiceCostDTOGet CreateCustomerInvoiceCost(CustomerInvoiceCost customerInvoiceCost);
+        CustomerInvoiceCostDTOGet UpdateCustomerInvoiceCost(int id, CustomerInvoiceCost customerInvoiceCost);
+        CustomerInvoiceCostDTOGet DeleteCustomerInvoiceCost(int id);
 
-            int CountCustomerInvoiceCosts(CustomerInvoiceCostFilter filter);
-        }
-    public class CustomerInvoiceCostService: ICustomerInvoiceCostService
+        int CountCustomerInvoiceCosts(CustomerInvoiceCostFilter filter);
+    }
+    public class CustomerInvoiceCostService : ICustomerInvoiceCostService
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ICustomerInvoicesService _serviceCustomerInvoice;
@@ -105,7 +105,7 @@ namespace API.Models.Services
                 throw new ArgumentException("Name can't be empty");
 
             ci = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == customerInvoiceCost.CustomerInvoiceId).First();
-            if(ci.Status.ToLower().Equals("paid"))
+            if (ci.Status.ToLower().Equals("paid"))
                 throw new ArgumentException("Cannot add cost to a paid invoice");
             var total = _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{ci.CustomerInvoiceId}\"").ToList().FirstOrDefault()?.TotalSpent;
             if (total != null)
@@ -113,7 +113,7 @@ namespace API.Models.Services
             else
                 ci.InvoiceAmount = customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
             //_context.CustomerInvoices.Update(ci);
-            _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceId,ci);
+            _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceId, ci);
 
             _context.Add(customerInvoiceCost);
             _context.SaveChanges();
@@ -124,7 +124,7 @@ namespace API.Models.Services
         {
             CustomerInvoice? ci;
             var cicDB = _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceCostsId == id).FirstOrDefault();
-            var oldCi=_context.CustomerInvoices.Where(x=>x.CustomerInvoiceId==cicDB.CustomerInvoiceId).FirstOrDefault();
+            var oldCi = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == cicDB.CustomerInvoiceId).FirstOrDefault();
             oldCi.InvoiceAmount = oldCi.InvoiceAmount - (cicDB.Cost * cicDB.Quantity);
             if (cicDB != null && id >= 0)
             {
@@ -148,7 +148,7 @@ namespace API.Models.Services
                     ci.InvoiceAmount = total;
                     _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceId, ci);
                     _context.CustomerInvoices.Update(oldCi);
-                   _context.SaveChanges();
+                    _context.SaveChanges();
                 }
                 return CustomerInvoiceCostMapper.MapGet(cicDB);
             }

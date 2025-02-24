@@ -101,10 +101,10 @@ namespace API.Models.Services
                 throw new ArgumentException("Supplier Invoice Id not found!");
             if (supplierInvoiceCost.Cost < 0 || supplierInvoiceCost.Quantity < 1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
                 throw new ArgumentException("Values can't be lesser than 1 or null");
-            if(string.IsNullOrEmpty(supplierInvoiceCost.Name))
+            if (string.IsNullOrEmpty(supplierInvoiceCost.Name))
                 throw new ArgumentException("Name can't be empty");
             si = _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).First();
-            if(si.Status.ToLower().Equals("approved"))
+            if (si.Status.ToLower().Equals("approved"))
                 throw new ArgumentException("Supplier Invoice is already approved");
 
 
@@ -122,7 +122,7 @@ namespace API.Models.Services
             SupplierInvoice? si;
             var sicDB = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
             SupplierInvoice? oldSi = _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefault();
-                oldSi.InvoiceAmount = oldSi.InvoiceAmount -(sicDB.Cost*sicDB.Quantity);
+            oldSi.InvoiceAmount = oldSi.InvoiceAmount - (sicDB.Cost * sicDB.Quantity);
             if (sicDB != null && id >= 0)
             {
                 if (supplierInvoiceCost.SupplierInvoiceId != null)
@@ -135,7 +135,7 @@ namespace API.Models.Services
                     sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
                 if (supplierInvoiceCost.Cost > 0)
                     sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
-                sicDB.Name=supplierInvoiceCost.Name??sicDB.Name;
+                sicDB.Name = supplierInvoiceCost.Name ?? sicDB.Name;
                 _context.SupplierInvoiceCosts.Update(sicDB);
                 _context.SaveChanges();
                 if (sicDB.Cost > 0 && sicDB.Quantity > 0)

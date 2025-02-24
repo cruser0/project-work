@@ -93,6 +93,8 @@
             // 
             // TextBoxesRightPanel
             // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
@@ -102,9 +104,9 @@
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 150);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 286);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 464);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // NameTxt
@@ -114,7 +116,7 @@
             this.NameTxt.Location = new System.Drawing.Point(4, 174);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(194, 23);
+            this.NameTxt.Size = new System.Drawing.Size(180, 23);
             this.NameTxt.TabIndex = 15;
             // 
             // NameLbl
@@ -131,7 +133,7 @@
             // 
             this.CostToTxt.Location = new System.Drawing.Point(4, 122);
             this.CostToTxt.Name = "CostToTxt";
-            this.CostToTxt.Size = new System.Drawing.Size(194, 23);
+            this.CostToTxt.Size = new System.Drawing.Size(180, 23);
             this.CostToTxt.TabIndex = 14;
             // 
             // label1
@@ -148,14 +150,14 @@
             // 
             this.CostFromTxt.Location = new System.Drawing.Point(3, 68);
             this.CostFromTxt.Name = "CostFromTxt";
-            this.CostFromTxt.Size = new System.Drawing.Size(194, 23);
+            this.CostFromTxt.Size = new System.Drawing.Size(180, 23);
             this.CostFromTxt.TabIndex = 12;
             // 
             // InvoiceIDTxt
             // 
             this.InvoiceIDTxt.Location = new System.Drawing.Point(3, 21);
             this.InvoiceIDTxt.Name = "InvoiceIDTxt";
-            this.InvoiceIDTxt.Size = new System.Drawing.Size(194, 23);
+            this.InvoiceIDTxt.Size = new System.Drawing.Size(180, 23);
             this.InvoiceIDTxt.TabIndex = 11;
             // 
             // InvoiceIDLbl

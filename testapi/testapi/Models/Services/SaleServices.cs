@@ -46,9 +46,9 @@ namespace API.Models.Services
         {
             int itemsPage = 10;
             var query = (from s in _context.Sales
-                        join c in _context.Customers on s.CustomerId equals c.CustomerId into SaleGroup
-                        from customer in SaleGroup.DefaultIfEmpty()
-                        select new { Sale = s, Customer = customer }).AsQueryable();
+                         join c in _context.Customers on s.CustomerId equals c.CustomerId into SaleGroup
+                         from customer in SaleGroup.DefaultIfEmpty()
+                         select new { Sale = s, Customer = customer }).AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.BookingNumber))
             {
@@ -109,7 +109,7 @@ namespace API.Models.Services
             {
                 query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
             }
-            return query.Select(x => new SaleCustomerDTO(x.Sale,x.Customer));
+            return query.Select(x => new SaleCustomerDTO(x.Sale, x.Customer));
         }
 
         public SaleCustomerDTO GetSaleById(int id)
@@ -117,10 +117,10 @@ namespace API.Models.Services
             // Retrieve the sale from the database using the provided ID
             var sale = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
             var customer = _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefault();
-            var result=new SaleCustomerDTO(sale,customer);
+            var result = new SaleCustomerDTO(sale, customer);
 
             // Check if the sale exists
-            if (result == null||sale==null)
+            if (result == null || sale == null)
                 throw new ArgumentException("Sale not found!");
 
             // Map the sale entity to a DTO and return the result

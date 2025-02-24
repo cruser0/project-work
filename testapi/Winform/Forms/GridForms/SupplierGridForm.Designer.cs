@@ -77,6 +77,8 @@
             // 
             // TextBoxesRightPanel
             // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
@@ -88,9 +90,9 @@
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
             this.TextBoxesRightPanel.Controls.Add(this.CountrySupplierTxt);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(-1, 106);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 287);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 351);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // label2
@@ -121,7 +123,7 @@
             this.DateToClnd.Location = new System.Drawing.Point(3, 222);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
-            this.DateToClnd.Size = new System.Drawing.Size(193, 23);
+            this.DateToClnd.Size = new System.Drawing.Size(180, 23);
             this.DateToClnd.TabIndex = 16;
             // 
             // DateFromClnd
@@ -133,7 +135,7 @@
             this.DateFromClnd.Location = new System.Drawing.Point(3, 175);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
-            this.DateFromClnd.Size = new System.Drawing.Size(193, 23);
+            this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
             this.DateFromClnd.TabIndex = 15;
             // 
             // StatusLbl
@@ -158,7 +160,7 @@
             "Deprecated"});
             this.comboBox1.Location = new System.Drawing.Point(3, 125);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(194, 23);
+            this.comboBox1.Size = new System.Drawing.Size(180, 23);
             this.comboBox1.TabIndex = 5;
             // 
             // NameSupplierTxt
@@ -168,7 +170,7 @@
             this.NameSupplierTxt.Location = new System.Drawing.Point(3, 26);
             this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
-            this.NameSupplierTxt.Size = new System.Drawing.Size(194, 23);
+            this.NameSupplierTxt.Size = new System.Drawing.Size(180, 23);
             this.NameSupplierTxt.TabIndex = 1;
             // 
             // label1
@@ -198,7 +200,7 @@
             this.CountrySupplierTxt.Location = new System.Drawing.Point(3, 73);
             this.CountrySupplierTxt.MaxLength = 50;
             this.CountrySupplierTxt.Name = "CountrySupplierTxt";
-            this.CountrySupplierTxt.Size = new System.Drawing.Size(194, 23);
+            this.CountrySupplierTxt.Size = new System.Drawing.Size(180, 23);
             this.CountrySupplierTxt.TabIndex = 2;
             // 
             // RightSideBar

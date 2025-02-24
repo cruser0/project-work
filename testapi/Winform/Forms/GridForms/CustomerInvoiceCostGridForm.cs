@@ -145,7 +145,7 @@ namespace Winform.Forms.GridForms
 
             BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
-
+            TextBoxesRightPanel.Height = Height / 2;
         }
 
         private void CustomerDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)

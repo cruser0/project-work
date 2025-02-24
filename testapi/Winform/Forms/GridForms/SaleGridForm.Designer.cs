@@ -33,6 +33,10 @@
             this.DateToDTP = new System.Windows.Forms.DateTimePicker();
             this.RigtPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.RevenueFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.RevenueToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.CustomerIDTextBoxUserControl = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.DateToLbl = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
@@ -61,10 +65,6 @@
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.RevenueToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.RevenueFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.label2 = new System.Windows.Forms.Label();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -83,7 +83,7 @@
             this.DateFromDTP.Location = new System.Drawing.Point(3, 162);
             this.DateFromDTP.Name = "DateFromDTP";
             this.DateFromDTP.ShowCheckBox = true;
-            this.DateFromDTP.Size = new System.Drawing.Size(193, 23);
+            this.DateFromDTP.Size = new System.Drawing.Size(180, 23);
             this.DateFromDTP.TabIndex = 5;
             // 
             // DateToDTP
@@ -94,7 +94,7 @@
             this.DateToDTP.Location = new System.Drawing.Point(3, 209);
             this.DateToDTP.Name = "DateToDTP";
             this.DateToDTP.ShowCheckBox = true;
-            this.DateToDTP.Size = new System.Drawing.Size(193, 23);
+            this.DateToDTP.Size = new System.Drawing.Size(180, 23);
             this.DateToDTP.TabIndex = 6;
             // 
             // RigtPanel
@@ -109,6 +109,8 @@
             // 
             // TextBoxesRightPanel
             // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
             this.TextBoxesRightPanel.Controls.Add(this.RevenueFromTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
@@ -126,16 +128,50 @@
             this.TextBoxesRightPanel.Controls.Add(this.BillofLadingLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromDTP);
             this.TextBoxesRightPanel.Controls.Add(this.BoLTextBox);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 106);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 529);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 397);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // RevenueFromTxt
+            // 
+            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 303);
+            this.RevenueFromTxt.Name = "RevenueFromTxt";
+            this.RevenueFromTxt.Size = new System.Drawing.Size(180, 23);
+            this.RevenueFromTxt.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(3, 282);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 18);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Revenue From";
+            // 
+            // RevenueToTxt
+            // 
+            this.RevenueToTxt.Location = new System.Drawing.Point(3, 350);
+            this.RevenueToTxt.Name = "RevenueToTxt";
+            this.RevenueToTxt.Size = new System.Drawing.Size(180, 23);
+            this.RevenueToTxt.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(3, 329);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Revenue To";
             // 
             // CustomerIDTextBoxUserControl
             // 
             this.CustomerIDTextBoxUserControl.Location = new System.Drawing.Point(3, 115);
             this.CustomerIDTextBoxUserControl.Name = "CustomerIDTextBoxUserControl";
-            this.CustomerIDTextBoxUserControl.Size = new System.Drawing.Size(194, 23);
+            this.CustomerIDTextBoxUserControl.Size = new System.Drawing.Size(180, 23);
             this.CustomerIDTextBoxUserControl.TabIndex = 11;
             // 
             // DateToLbl
@@ -190,7 +226,7 @@
             "Closed"});
             this.StatusCB.Location = new System.Drawing.Point(3, 256);
             this.StatusCB.Name = "StatusCB";
-            this.StatusCB.Size = new System.Drawing.Size(194, 23);
+            this.StatusCB.Size = new System.Drawing.Size(180, 23);
             this.StatusCB.TabIndex = 5;
             // 
             // BNTextBox
@@ -200,7 +236,7 @@
             this.BNTextBox.Location = new System.Drawing.Point(3, 21);
             this.BNTextBox.MaxLength = 50;
             this.BNTextBox.Name = "BNTextBox";
-            this.BNTextBox.Size = new System.Drawing.Size(194, 23);
+            this.BNTextBox.Size = new System.Drawing.Size(180, 23);
             this.BNTextBox.TabIndex = 1;
             // 
             // BookingNumberLbl
@@ -230,7 +266,7 @@
             this.BoLTextBox.Location = new System.Drawing.Point(3, 68);
             this.BoLTextBox.MaxLength = 50;
             this.BoLTextBox.Name = "BoLTextBox";
-            this.BoLTextBox.Size = new System.Drawing.Size(194, 23);
+            this.BoLTextBox.Size = new System.Drawing.Size(180, 23);
             this.BoLTextBox.TabIndex = 2;
             // 
             // RightSideBar
@@ -412,40 +448,6 @@
             this.SaleTotalRevenueTsmi.Size = new System.Drawing.Size(204, 22);
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
-            // 
-            // RevenueToTxt
-            // 
-            this.RevenueToTxt.Location = new System.Drawing.Point(3, 357);
-            this.RevenueToTxt.Name = "RevenueToTxt";
-            this.RevenueToTxt.Size = new System.Drawing.Size(194, 23);
-            this.RevenueToTxt.TabIndex = 13;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 336);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 18);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Revenue To";
-            // 
-            // RevenueFromTxt
-            // 
-            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 310);
-            this.RevenueFromTxt.Name = "RevenueFromTxt";
-            this.RevenueFromTxt.Size = new System.Drawing.Size(194, 23);
-            this.RevenueFromTxt.TabIndex = 15;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(3, 289);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 18);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Revenue From";
             // 
             // SaleGridForm
             // 

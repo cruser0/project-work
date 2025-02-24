@@ -74,7 +74,7 @@
             this.NameTxt.Location = new System.Drawing.Point(3, 22);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(194, 23);
+            this.NameTxt.Size = new System.Drawing.Size(180, 23);
             this.NameTxt.TabIndex = 1;
             // 
             // CountryTxt
@@ -83,7 +83,7 @@
             this.CountryTxt.Location = new System.Drawing.Point(3, 69);
             this.CountryTxt.MaxLength = 50;
             this.CountryTxt.Name = "CountryTxt";
-            this.CountryTxt.Size = new System.Drawing.Size(194, 23);
+            this.CountryTxt.Size = new System.Drawing.Size(180, 23);
             this.CountryTxt.TabIndex = 2;
             // 
             // label1
@@ -118,6 +118,8 @@
             // 
             // TextBoxesRightPanel
             // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
@@ -129,9 +131,9 @@
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryTxt);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 106);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 287);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 423);
             this.TextBoxesRightPanel.TabIndex = 6;
             // 
             // label2
@@ -162,7 +164,7 @@
             this.DateToClnd.Location = new System.Drawing.Point(3, 221);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
-            this.DateToClnd.Size = new System.Drawing.Size(193, 23);
+            this.DateToClnd.Size = new System.Drawing.Size(180, 23);
             this.DateToClnd.TabIndex = 12;
             // 
             // DateFromClnd
@@ -174,7 +176,7 @@
             this.DateFromClnd.Location = new System.Drawing.Point(3, 174);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
-            this.DateFromClnd.Size = new System.Drawing.Size(193, 23);
+            this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
             this.DateFromClnd.TabIndex = 11;
             // 
             // StatusLbl
@@ -199,7 +201,7 @@
             "Deprecated"});
             this.comboBox1.Location = new System.Drawing.Point(3, 122);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(194, 23);
+            this.comboBox1.Size = new System.Drawing.Size(180, 23);
             this.comboBox1.TabIndex = 5;
             // 
             // RightSideBar

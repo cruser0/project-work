@@ -19,7 +19,7 @@ namespace Winform
             minimizedPanel = new TableLayoutPanel
             {
                 Dock = DockStyle.Bottom,
-                Height = 50, // Adjust the height of the panel as needed
+                Height = 60, // Adjust the height of the panel as needed
                 RowCount = 1,
                 AutoScroll = true
             };
@@ -32,6 +32,9 @@ namespace Winform
 
             Cursor.Current = Cursors.WaitCursor;
             string formName = menuItem.Text;
+            int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
+            List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+
 
 
             // Check if the form is already open
@@ -50,15 +53,16 @@ namespace Winform
                     return;
                 }
 
-
-
+                if (countOpenForms >= 4)
+                    LayoutMdi(MdiLayout.ArrangeIcons);
+                else
+                    LayoutMdi(MdiLayout.TileVertical);
 
                 existingForm.WindowState = FormWindowState.Normal;
                 existingForm.Activate();
                 Cursor.Current = Cursors.Default;
                 return;
             }
-
 
 
 
@@ -80,11 +84,16 @@ namespace Winform
 
             child.Text = formName; // Set the title for future control
             child.MdiParent = this;
+            child.Size = new Size(1000, 600);
 
             child.Resize += ChildForm_Resize; // Handle resize event for child forms
 
             child.Show();
-            LayoutMdi(MdiLayout.TileVertical);
+            if (countOpenForms >= 4)
+                LayoutMdi(MdiLayout.ArrangeIcons);
+            else
+                LayoutMdi(MdiLayout.TileVertical);
+
 
             Cursor.Current = Cursors.Default;
 
@@ -108,7 +117,8 @@ namespace Winform
             // Create a new button for the minimized form
             var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, this)
             {
-                Name = childForm.Text
+                Name = childForm.Text,
+                Dock = DockStyle.Top
             };
 
             // Add the button to the table layout panel in the next available column

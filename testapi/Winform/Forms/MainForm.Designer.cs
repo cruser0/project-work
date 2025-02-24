@@ -39,6 +39,7 @@
             this.addCustomerInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerInvoiceCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showCustomerInvoicesCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.SuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
             this.AddSuppliersStripToolButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +48,7 @@
             this.addSupplierInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierInvoiceCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showSupplierInvoicesCostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,8 +56,6 @@
             this.Logo = new System.Windows.Forms.PictureBox();
             this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -94,7 +94,7 @@
             // ShowCustomersStripToolButton
             // 
             this.ShowCustomersStripToolButton.Name = "ShowCustomersStripToolButton";
-            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
+            this.ShowCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
             this.ShowCustomersStripToolButton.Tag = "Show Customers";
             this.ShowCustomersStripToolButton.Text = "Show Customers";
             this.ShowCustomersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
@@ -102,7 +102,7 @@
             // AddCustomersStripToolButton
             // 
             this.AddCustomersStripToolButton.Name = "AddCustomersStripToolButton";
-            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(180, 22);
+            this.AddCustomersStripToolButton.Size = new System.Drawing.Size(163, 22);
             this.AddCustomersStripToolButton.Text = "Add Customer";
             this.AddCustomersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -147,6 +147,13 @@
             this.showCustomerInvoicesCostsToolStripMenuItem.Text = "Show Customer Invoices Costs";
             this.showCustomerInvoicesCostsToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(236, 22);
+            this.toolStripMenuItem2.Text = "Add Customer Invoices Cost";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // SuppliersStripToolButton
             // 
             this.SuppliersStripToolButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -160,7 +167,7 @@
             // ShowSuppliersStripToolButton
             // 
             this.ShowSuppliersStripToolButton.Name = "ShowSuppliersStripToolButton";
-            this.ShowSuppliersStripToolButton.Size = new System.Drawing.Size(180, 22);
+            this.ShowSuppliersStripToolButton.Size = new System.Drawing.Size(154, 22);
             this.ShowSuppliersStripToolButton.Tag = "Show Suppliers";
             this.ShowSuppliersStripToolButton.Text = "Show Suppliers";
             this.ShowSuppliersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
@@ -168,7 +175,7 @@
             // AddSuppliersStripToolButton
             // 
             this.AddSuppliersStripToolButton.Name = "AddSuppliersStripToolButton";
-            this.AddSuppliersStripToolButton.Size = new System.Drawing.Size(180, 22);
+            this.AddSuppliersStripToolButton.Size = new System.Drawing.Size(154, 22);
             this.AddSuppliersStripToolButton.Text = "Add Supplier";
             this.AddSuppliersStripToolButton.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -213,6 +220,13 @@
             this.showSupplierInvoicesCostsToolStripMenuItem.Text = "Show Supplier Invoices Costs";
             this.showSupplierInvoicesCostsToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(227, 22);
+            this.toolStripMenuItem1.Text = "Add Supplier Invoices Cost";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -233,7 +247,7 @@
             // addSalesToolStripMenuItem
             // 
             this.addSalesToolStripMenuItem.Name = "addSalesToolStripMenuItem";
-            this.addSalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addSalesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.addSalesToolStripMenuItem.Text = "Add Sale";
             this.addSalesToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -269,26 +283,12 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(227, 22);
-            this.toolStripMenuItem1.Text = "Add Supplier Invoices Cost";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(236, 22);
-            this.toolStripMenuItem2.Text = "Add Customer Invoices Cost";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1159, 762);
+            this.ClientSize = new System.Drawing.Size(1159, 675);
             this.Controls.Add(this.MenuPanel);
             this.DoubleBuffered = true;
             this.IsMdiContainer = true;
