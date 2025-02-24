@@ -1,5 +1,4 @@
 ﻿using API.Models.Filters;
-using Winform.Entities;
 using Winform.Entities.DTO;
 using Winform.Services;
 
@@ -12,6 +11,8 @@ namespace Winform.Forms
         string blNumber;
         DateTime? saleDateFrom;
         DateTime? saleDateTo;
+        int? revenueFrom;
+        int? revenueTo;
         string customerID;
         string status;
         int pages;
@@ -79,6 +80,8 @@ namespace Winform.Forms
                 BoLnumber = BoLTextBox.Text,
                 SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
                 SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
+                RevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
+                RevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
                 CustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
                 Status = StatusCB.Text == "All" ? null : StatusCB.Text,
                 page = PaginationUserControl.CurrentPage
@@ -90,6 +93,8 @@ namespace Winform.Forms
                 BoLnumber = BoLTextBox.Text,
                 SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
                 SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
+                RevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
+                RevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
                 CustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
                 Status = StatusCB.Text == "All" ? null : StatusCB.Text
             };
@@ -99,6 +104,8 @@ namespace Winform.Forms
             saleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null;
             saleDateTo = DateToDTP.Checked ? DateToDTP.Value : null;
             customerID = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : CustomerIDTextBoxUserControl.GetText();
+            revenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText());
+            revenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText());
             status = StatusCB.Text == "All" ? null : StatusCB.Text;
 
 
@@ -123,6 +130,8 @@ namespace Winform.Forms
                 SaleDateFrom = saleDateFrom,
                 SaleDateTo = saleDateTo,
                 CustomerId = int.TryParse(customerID, out outVal) ? outVal : null,
+                RevenueFrom = revenueFrom,
+                RevenueTo = revenueTo,
                 Status = status,
                 page = PaginationUserControl.CurrentPage
 

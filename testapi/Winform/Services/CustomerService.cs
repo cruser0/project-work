@@ -17,8 +17,8 @@ namespace Winform.Services
                 { "Country", filter.Country },
                 { "Deprecated", filter.Deprecated },
                 { "page", filter.page },
-                { "CreatedDateFrom", filter.CreatedDateFrom },
-                { "CreatedDateTo", filter.CreatedDateTo },
+                { "CreatedDateFrom", filter.CreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
+                { "CreatedDateTo", filter.CreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "OriginalID", filter.OriginalID }
 
             };

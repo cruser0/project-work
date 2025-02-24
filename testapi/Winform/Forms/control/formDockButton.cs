@@ -24,6 +24,14 @@
 
         public void buttonShowForm_Click(object sender, EventArgs e)
         {
+            /*int? countOpenForms = mainForm.MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
+            List<Form?> childrenOpen = mainForm.MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+
+            if (countOpenForms > 3)
+            {
+                childrenOpen[0].WindowState = FormWindowState.Minimized;
+            }*/
+
             form.WindowState = FormWindowState.Normal;
 
             form.Show();

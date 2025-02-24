@@ -61,6 +61,10 @@
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.RevenueToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RevenueFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label2 = new System.Windows.Forms.Label();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -106,6 +110,10 @@
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.RevenueFromTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.label2);
+            this.TextBoxesRightPanel.Controls.Add(this.RevenueToTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerIDTextBoxUserControl);
             this.TextBoxesRightPanel.Controls.Add(this.DateToLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
@@ -118,7 +126,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.BillofLadingLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromDTP);
             this.TextBoxesRightPanel.Controls.Add(this.BoLTextBox);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 141);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 106);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 529);
             this.TextBoxesRightPanel.TabIndex = 7;
@@ -317,7 +325,7 @@
             this.SaleCustomerCountryTsmi,
             this.SaleTotalRevenueTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(205, 224);
+            this.RightClickDgv.Size = new System.Drawing.Size(205, 202);
             // 
             // SaleIDTsmi
             // 
@@ -405,6 +413,40 @@
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // RevenueToTxt
+            // 
+            this.RevenueToTxt.Location = new System.Drawing.Point(3, 357);
+            this.RevenueToTxt.Name = "RevenueToTxt";
+            this.RevenueToTxt.Size = new System.Drawing.Size(194, 23);
+            this.RevenueToTxt.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(3, 336);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Revenue To";
+            // 
+            // RevenueFromTxt
+            // 
+            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 310);
+            this.RevenueFromTxt.Name = "RevenueFromTxt";
+            this.RevenueFromTxt.Size = new System.Drawing.Size(194, 23);
+            this.RevenueFromTxt.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(3, 289);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 18);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Revenue From";
+            // 
             // SaleGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -463,5 +505,9 @@
         private ToolStripMenuItem SaleCustomerNameTsmi;
         private ToolStripMenuItem SaleCustomerCountryTsmi;
         private ToolStripMenuItem SaleTotalRevenueTsmi;
+        private control.IntegerTextBoxUserControl RevenueFromTxt;
+        private Label label2;
+        private control.IntegerTextBoxUserControl RevenueToTxt;
+        private Label label1;
     }
 }

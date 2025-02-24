@@ -39,43 +39,52 @@ namespace API.Models.Services
 
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
-
-            int itemsPage = 10;
+            int itemsPerPage = 10;
             var query = _context.Customers.AsQueryable();
+
+            // Filtra per OriginalID se specificato
             if (filter.OriginalID != null)
             {
                 query = query.Where(x => x.OriginalID == filter.OriginalID);
             }
+
+            // Filtra per nome se specificato
             if (!string.IsNullOrEmpty(filter.Name))
             {
                 query = query.Where(x => x.CustomerName.Contains(filter.Name));
             }
-            if (filter.CreatedDateFrom.HasValue)
+
+            // Filtra per data di creazione
+            if (filter.CreatedDateFrom != null || filter.CreatedDateTo != null)
             {
-                if ((filter.CreatedDateFrom <= DateTime.Now && filter.CreatedDateFrom > new DateTime(1975, 1, 1)))
+                if (filter.CreatedDateFrom != null)
                 {
-                    query = query.Where(x => x.CreatedAt >= filter.CreatedDateFrom);
+                    query = query.Where(s => s.CreatedAt >= filter.CreatedDateFrom);
+                }
+                if (filter.CreatedDateTo != null)
+                {
+                    query = query.Where(s => s.CreatedAt <= filter.CreatedDateTo);
                 }
             }
-            if (filter.CreatedDateTo.HasValue)
-            {
-                if (filter.CreatedDateTo <= DateTime.Now && filter.CreatedDateTo >= filter.CreatedDateTo)
-                    query = query.Where(x => x.CreatedAt <= filter.CreatedDateTo);
-            }
 
+            // Filtra per paese se specificato
             if (!string.IsNullOrEmpty(filter.Country))
             {
                 query = query.Where(x => x.Country.Contains(filter.Country));
             }
 
+            // Filtra per stato di deprecazione se specificato
             if (filter.Deprecated != null)
             {
                 query = query.Where(x => x.Deprecated == filter.Deprecated);
             }
-            if (filter.page != null)
+
+            // Applica paginazione se specificata
+            if (filter.page != null && filter.page > 0)
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+                query = query.Skip(((int)filter.page - 1) * itemsPerPage).Take(itemsPerPage);
             }
+
             return query.Select(x => CustomerMapper.MapGet(x));
         }
 
@@ -113,6 +122,10 @@ namespace API.Models.Services
                     throw new ArgumentException("Can't create an already deprecated customer");
                 else
                     customer.Deprecated = false;
+            else
+                customer.Deprecated = false;
+
+            customer.CreatedAt = DateTime.Now;
 
             if (customer.CustomerName.Length > 100)
                 throw new ArgumentException("Customer name is too long");

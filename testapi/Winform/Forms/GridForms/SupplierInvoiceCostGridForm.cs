@@ -151,7 +151,7 @@ namespace Winform.Forms.CreateWindow
 
         private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
                 var test = SupplierInvoiceCostDgv.HitTest(e.X, e.Y);
                 if (test.RowIndex >= 0)
@@ -168,7 +168,7 @@ namespace Winform.Forms.CreateWindow
                 switch (name)
                 {
                     case "SupplierInvoiceCostIDTsmi":
-                            SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = tsmi.Checked;
+                        SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = tsmi.Checked;
                         break;
                     case "SupplierInvoiceCostSupplierInvoiceIDTsmi":
                         SupplierInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = tsmi.Checked;

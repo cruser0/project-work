@@ -56,6 +56,10 @@
             this.SupplierInvoiceSupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceSupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.InvoiceAmountToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.InvoiceAmountFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
@@ -87,6 +91,10 @@
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountToTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountFromTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.label2);
+            this.TextBoxesRightPanel.Controls.Add(this.label3);
             this.TextBoxesRightPanel.Controls.Add(this.SupplierIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.SaleIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
@@ -99,7 +107,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 141);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 246);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 347);
             this.TextBoxesRightPanel.TabIndex = 7;
             // 
             // SupplierIDTxt
@@ -345,6 +353,40 @@
             this.SupplierInvoiceCountryTsmi.Text = "Show Supplier Country";
             this.SupplierInvoiceCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // InvoiceAmountToTxt
+            // 
+            this.InvoiceAmountToTxt.Location = new System.Drawing.Point(3, 303);
+            this.InvoiceAmountToTxt.Name = "InvoiceAmountToTxt";
+            this.InvoiceAmountToTxt.Size = new System.Drawing.Size(194, 23);
+            this.InvoiceAmountToTxt.TabIndex = 16;
+            // 
+            // InvoiceAmountFromTxt
+            // 
+            this.InvoiceAmountFromTxt.Location = new System.Drawing.Point(3, 256);
+            this.InvoiceAmountFromTxt.Name = "InvoiceAmountFromTxt";
+            this.InvoiceAmountFromTxt.Size = new System.Drawing.Size(194, 23);
+            this.InvoiceAmountFromTxt.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(3, 235);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 18);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Invoice Amount From";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(3, 282);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 18);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Invoice Amount To";
+            // 
             // SupplierInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -397,5 +439,9 @@
         private ToolStripMenuItem SupplierInvoiceSupplierIDTsmi;
         private ToolStripMenuItem SupplierInvoiceSupplierNameTsmi;
         private ToolStripMenuItem SupplierInvoiceCountryTsmi;
+        private control.IntegerTextBoxUserControl InvoiceAmountToTxt;
+        private control.IntegerTextBoxUserControl InvoiceAmountFromTxt;
+        private Label label2;
+        private Label label3;
     }
 }

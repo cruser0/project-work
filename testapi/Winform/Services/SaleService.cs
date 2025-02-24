@@ -16,8 +16,8 @@ namespace Winform.Services
             {
                 { "BookingNumber", filter.BookingNumber },
                 { "BoLnumber", filter.BoLnumber },
-                { "SaleDateFrom", filter.SaleDateFrom },
-                { "SaleDateTo", filter.SaleDateTo },
+                { "SaleDateFrom", filter.SaleDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "SaleDateTo", filter.SaleDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "RevenueFrom", filter.RevenueFrom },
                 { "RevenueTo", filter.RevenueTo },
                 { "CustomerId", filter.CustomerId },

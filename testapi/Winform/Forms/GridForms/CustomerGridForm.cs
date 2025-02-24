@@ -9,6 +9,8 @@ namespace Winform.Forms
         string name;
         string country;
         int status;
+        DateTime? dateFrom;
+        DateTime? dateTo;
 
         private CustomerService _customerService;
         int pages;
@@ -49,9 +51,10 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
+                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
                 page = PaginationUserControl.CurrentPage
-                //OriginalID
-                //CreatedOn
+
             };
             CustomerFilter filterPage = new CustomerFilter
             {
@@ -63,12 +66,14 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
-                //OriginalID
-                //CreatedOn
+                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null
             };
             name = NameTxt.Text;
             country = CountryTxt.Text;
             status = comboBox1.SelectedIndex;
+            dateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
+            dateTo = DateToClnd.Checked ? DateToClnd.Value : null;
 
             IEnumerable<Customer> query = _customerService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerService.Count(filterPage) / itemsPage)).ToString();
@@ -87,6 +92,12 @@ namespace Winform.Forms
         }
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
+            if (dateFrom != null)
+                DateFromClnd.Checked = true;
+            if (dateTo != null)
+                DateToClnd.Checked = true;
+
+
             CustomerFilter filter = new CustomerFilter
             {
                 Name = name,
@@ -97,6 +108,8 @@ namespace Winform.Forms
                     2 => true,
                     _ => null
                 },
+                CreatedDateFrom = dateFrom,
+                CreatedDateTo = dateTo,
                 page = PaginationUserControl.CurrentPage
             };
 
@@ -178,7 +191,7 @@ namespace Winform.Forms
 
         private void CustomerDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
                 var hitTest = CustomerDgv.HitTest(e.X, e.Y);
                 if (hitTest.RowIndex >= 0)
@@ -190,7 +203,7 @@ namespace Winform.Forms
 
         private void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
-            if(sender is ToolStripMenuItem tsmi)
+            if (sender is ToolStripMenuItem tsmi)
             {
                 string name = tsmi.Name;
                 switch (name)

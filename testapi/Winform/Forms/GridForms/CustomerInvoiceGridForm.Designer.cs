@@ -53,6 +53,10 @@
             this.CustomerInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.AmountFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.AmountToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
@@ -75,6 +79,10 @@
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.label3);
+            this.TextBoxesRightPanel.Controls.Add(this.label2);
+            this.TextBoxesRightPanel.Controls.Add(this.AmountToTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.AmountFromTxt);
             this.TextBoxesRightPanel.Controls.Add(this.SaleIDTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
@@ -85,7 +93,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 141);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 246);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 355);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // SaleIDTxt
@@ -263,7 +271,7 @@
             this.CustomerInvoiceDateTsmi,
             this.CustomerInvoiceStatusTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(192, 136);
+            this.RightClickDgv.Size = new System.Drawing.Size(192, 114);
             // 
             // CustomerInvoiceIDTsmi
             // 
@@ -312,6 +320,40 @@
             this.CustomerInvoiceStatusTsmi.Size = new System.Drawing.Size(191, 22);
             this.CustomerInvoiceStatusTsmi.Text = "Show Status";
             this.CustomerInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // AmountFromTxt
+            // 
+            this.AmountFromTxt.Location = new System.Drawing.Point(4, 213);
+            this.AmountFromTxt.Name = "AmountFromTxt";
+            this.AmountFromTxt.Size = new System.Drawing.Size(194, 23);
+            this.AmountFromTxt.TabIndex = 12;
+            // 
+            // AmountToTxt
+            // 
+            this.AmountToTxt.Location = new System.Drawing.Point(4, 260);
+            this.AmountToTxt.Name = "AmountToTxt";
+            this.AmountToTxt.Size = new System.Drawing.Size(194, 23);
+            this.AmountToTxt.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(4, 192);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 18);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Invoice Amount From";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(3, 239);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 18);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Invoice Amount To";
             // 
             // CustomerInvoiceGridForm
             // 
@@ -364,5 +406,9 @@
         private ToolStripMenuItem CustomerInvoiceInvoiceAmountTsmi;
         private ToolStripMenuItem CustomerInvoiceDateTsmi;
         private ToolStripMenuItem CustomerInvoiceStatusTsmi;
+        private Label label3;
+        private Label label2;
+        private control.IntegerTextBoxUserControl AmountToTxt;
+        private control.IntegerTextBoxUserControl AmountFromTxt;
     }
 }

@@ -44,14 +44,12 @@
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
-
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SupplierInvoiceCostIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostSupplierInvoiceIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
-
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).BeginInit();
             this.panel2.SuspendLayout();
@@ -110,7 +108,6 @@
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(203, 286);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
-
             // NameTxt
             // 
             this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
@@ -127,11 +124,10 @@
             this.NameLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.NameLbl.Location = new System.Drawing.Point(4, 153);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(113, 18);
+            this.NameLbl.Size = new System.Drawing.Size(118, 18);
             this.NameLbl.TabIndex = 16;
-            this.NameLbl.Text = "Desciption Name";
+            this.NameLbl.Text = "Description Name";
             // 
-
             // CostToTxt
             // 
             this.CostToTxt.Location = new System.Drawing.Point(4, 122);
@@ -210,7 +206,6 @@
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
             // 
-
             // RightClickDgv
             // 
             this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -270,7 +265,6 @@
             this.SupplierInvoiceCostNameTsmi.Text = "Show Description Name";
             this.SupplierInvoiceCostNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-
             // SupplierInvoiceCostGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
