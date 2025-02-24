@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.CustomerStripButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,8 @@
             this.addSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.Logo = new System.Windows.Forms.PictureBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -249,16 +251,17 @@
             this.Logo.TabIndex = 7;
             this.Logo.TabStop = false;
             // 
-            // tabControl1
+            // sqlCommand1
             // 
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabControl1.ItemSize = new System.Drawing.Size(61, 30);
-            this.tabControl1.Location = new System.Drawing.Point(0, 46);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1159, 716);
-            this.tabControl1.TabIndex = 10;
+            this.sqlCommand1.CommandTimeout = 30;
+            this.sqlCommand1.Connection = null;
+            this.sqlCommand1.Notification = null;
+            this.sqlCommand1.Transaction = null;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // MainForm
             // 
@@ -266,11 +269,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1159, 762);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.MenuPanel);
             this.DoubleBuffered = true;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MdiChildrenMinimizedAnchorBottom = false;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -305,8 +308,9 @@
         private ToolStripMenuItem addCustomerInvoiceToolStripMenuItem;
         private ToolStripMenuItem supplierInvoiceCostsToolStripMenuItem;
         private ToolStripMenuItem showSupplierInvoicesCostsToolStripMenuItem;
-        private TabControl tabControl1;
         private ToolStripMenuItem customerInvoiceCostsToolStripMenuItem;
         private ToolStripMenuItem showCustomerInvoicesCostsToolStripMenuItem;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

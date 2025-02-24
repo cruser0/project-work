@@ -43,7 +43,7 @@
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            this.SearchButton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchButton_KeyPress);
+
             // 
             // RightSideBarUserControl
             // 

@@ -1,13 +1,4 @@
 ﻿using API.Models.Filters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Winform.Entities;
 using Winform.Services;
 
@@ -144,6 +135,7 @@ namespace Winform.Forms.GridForms
 
         private void CustomerGridForm_Resize(object sender, EventArgs e)
         {
+
             BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
 

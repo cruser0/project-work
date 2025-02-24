@@ -10,6 +10,9 @@
     <Compile Update="Forms\control\CustomerSupplierFilterUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\formDockButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\control\IntegerTextBoxUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

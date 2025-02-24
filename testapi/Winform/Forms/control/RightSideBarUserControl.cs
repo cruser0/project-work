@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Winform.Forms.control
+﻿namespace Winform.Forms.control
 {
     public partial class RightSideBarUserControl : UserControl
     {
         public event EventHandler searchBtnEvent;
         public event EventHandler closeBtnEvent;
-        public event EventHandler<KeyPressEventArgs> enterBtnEvent;
+
         public RightSideBarUserControl()
         {
             InitializeComponent();
@@ -30,10 +20,6 @@ namespace Winform.Forms.control
             closeBtnEvent.Invoke(this, EventArgs.Empty);
         }
 
-        private void SearchButton_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            enterBtnEvent.Invoke(this,e);
-            
-        }
+
     }
 }

@@ -68,7 +68,7 @@ namespace Winform.Forms.CreateWindow
                 CostFrom = costFrom,
                 CostTo = costTo,
                 page = PaginationUserControl.CurrentPage,
-                Name =NameTxt.Text,
+                Name = NameTxt.Text,
             };
             SupplierInvoiceCostFilter filterPage = new SupplierInvoiceCostFilter
             {
@@ -136,6 +136,7 @@ namespace Winform.Forms.CreateWindow
 
         private void CustomerGridForm_Resize(object sender, EventArgs e)
         {
+
             BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
 

@@ -1,39 +1,65 @@
 ﻿using Winform.Forms;
 using Winform.Forms.AddForms;
+using Winform.Forms.control;
 
 namespace Winform
 {
+
     public partial class MainForm : Form
     {
+        private TableLayoutPanel minimizedPanel; // Panel to hold minimized child forms
 
         public MainForm()
         {
             InitializeComponent();
+            IsMdiContainer = true; // Set the MDI container
+            this.WindowState = FormWindowState.Maximized;
+
+            // Create a panel to hold minimized forms at the bottom
+            minimizedPanel = new TableLayoutPanel
+            {
+                Dock = DockStyle.Bottom,
+                Height = 50, // Adjust the height of the panel as needed
+                RowCount = 1,
+                AutoScroll = true
+            };
+            this.Controls.Add(minimizedPanel);
         }
-
-
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem menuItem)
             {
                 Cursor.Current = Cursors.WaitCursor;
+                string formName = menuItem.Text;
 
-                string tabName = menuItem.Text.Substring(menuItem.Text.IndexOf(' ') + 1);
-
-                // Controlla se esiste già una tab con lo stesso nome
-                foreach (TabPage tab in tabControl1.TabPages)
+                // Check if the form is already open
+                Form? existingForm = MdiChildren.FirstOrDefault(f => f.Text == formName);
+                if (existingForm != null)
                 {
-                    if (tab.Text == tabName)
+                    // Check if the form is already minimized and exists in the minimized panel
+                    var minimizedButton = minimizedPanel.Controls.OfType<formDockButton>()
+                        .FirstOrDefault(btn => btn.Name == formName);
+
+                    if (minimizedButton != null)
                     {
-                        tabControl1.SelectedTab = tab;
+                        // Trigger the button click event to show the form from the minimized state
+                        minimizedButton.ButtonShowForm?.PerformClick();
                         Cursor.Current = Cursors.Default;
                         return;
                     }
+
+
+                    existingForm.WindowState = FormWindowState.Normal;
+                    existingForm.Activate();
+                    Cursor.Current = Cursors.Default;
+                    return;
                 }
 
-                // Crea una nuova finestra solo se non esiste già
-                Form child = menuItem.Text switch
+
+
+                // Create a new form if it doesn't exist already
+                Form child = formName switch
                 {
                     "Show Customers" => new CustomerForm(),
                     "Show Customer Invoices" => new CustomerInvoiceForm(),
@@ -46,21 +72,49 @@ namespace Winform
                     _ => throw new Exception("Unknown option")
                 };
 
-                child.Tag = tabName;
-                child.TopLevel = false;
-                child.FormBorderStyle = FormBorderStyle.None;
-                child.Dock = DockStyle.Fill;
+                child.Text = formName; // Set the title for future control
+                child.MdiParent = this;
 
-                TabPage newPage = new TabPage { Text = tabName };
-                newPage.Controls.Add(child);
-                tabControl1.Controls.Add(newPage);
-                tabControl1.SelectedTab = newPage;
+                child.Resize += ChildForm_Resize; // Handle resize event for child forms
 
                 child.Show();
+                LayoutMdi(MdiLayout.TileVertical);
 
                 Cursor.Current = Cursors.Default;
             }
         }
+
+
+
+        private void ChildForm_Resize(object sender, EventArgs e)
+        {
+            var childForm = sender as Form;
+
+            if (childForm == null ||
+                childForm.WindowState != FormWindowState.Minimized ||
+                minimizedPanel.Controls.OfType<formDockButton>().Any(btn => btn.Name == childForm.Text))
+            {
+                return;
+            }
+            // Increase the column count for each new button
+            minimizedPanel.ColumnCount += 1;
+
+            // Create a new button for the minimized form
+            var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, this)
+            {
+                Name = childForm.Text
+            };
+
+            // Add the button to the table layout panel in the next available column
+            minimizedPanel.Controls.Add(minimizedButton, minimizedPanel.ColumnCount - 1, 0);
+
+            // Set the column style to make buttons stretch horizontally
+            minimizedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+            // Hide the minimized form in the MDI parent
+            childForm.Hide();
+        }
+
 
 
 

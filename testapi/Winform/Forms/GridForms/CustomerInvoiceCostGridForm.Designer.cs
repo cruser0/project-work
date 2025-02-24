@@ -114,9 +114,9 @@
             this.NameLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.NameLbl.Location = new System.Drawing.Point(4, 153);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(113, 18);
+            this.NameLbl.Size = new System.Drawing.Size(118, 18);
             this.NameLbl.TabIndex = 16;
-            this.NameLbl.Text = "Desciption Name";
+            this.NameLbl.Text = "Description Name";
             // 
             // CostToTxt
             // 

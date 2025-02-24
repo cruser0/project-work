@@ -35,8 +35,8 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.button1 = new System.Windows.Forms.Button();
+            this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,15 +101,6 @@
             this.panel2.Size = new System.Drawing.Size(200, 325);
             this.panel2.TabIndex = 10;
             // 
-            // leftSideBaruSerControl1
-            // 
-            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
-            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
-            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 325);
-            this.leftSideBaruSerControl1.TabIndex = 0;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(12, 12);
@@ -119,6 +110,15 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // leftSideBaruSerControl1
+            // 
+            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
+            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
+            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 325);
+            this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // CustomerForm
             // 
