@@ -51,5 +51,10 @@ namespace Winform.Forms
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void EmailTxt_TextChanged(object sender, EventArgs e)
+        {
+            EnterBtn.Enabled = EmailTxt.Text.Length > 0 && PasswordTxt.Text.Length > 0;
+        }
     }
 }

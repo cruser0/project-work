@@ -43,6 +43,7 @@
             this.EmailTxt.Name = "EmailTxt";
             this.EmailTxt.Size = new System.Drawing.Size(200, 23);
             this.EmailTxt.TabIndex = 0;
+            this.EmailTxt.TextChanged += new System.EventHandler(this.EmailTxt_TextChanged);
             // 
             // PasswordTxt
             // 
@@ -51,6 +52,7 @@
             this.PasswordTxt.PasswordChar = '•';
             this.PasswordTxt.Size = new System.Drawing.Size(200, 23);
             this.PasswordTxt.TabIndex = 1;
+            this.PasswordTxt.TextChanged += new System.EventHandler(this.EmailTxt_TextChanged);
             // 
             // label1
             // 
@@ -72,6 +74,7 @@
             // 
             // EnterBtn
             // 
+            this.EnterBtn.Enabled = false;
             this.EnterBtn.Location = new System.Drawing.Point(402, 296);
             this.EnterBtn.Name = "EnterBtn";
             this.EnterBtn.Size = new System.Drawing.Size(75, 23);
