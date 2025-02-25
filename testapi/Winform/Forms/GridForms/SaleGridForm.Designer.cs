@@ -300,7 +300,7 @@
             this.SaleDgv.Size = new System.Drawing.Size(712, 501);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
-            this.SaleDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
+            this.SaleDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // BottomPanel
             // 

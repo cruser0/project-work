@@ -139,7 +139,7 @@ namespace Winform.Forms
         public virtual void SupplierDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView dgv)
-                _father.SetSupplierID(dgv.CurrentRow.Cells[0].Value.ToString());
+                _father.SetSupplierID(dgv.CurrentRow.Cells["SupplierID"].Value.ToString());
         }
         private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)
         {

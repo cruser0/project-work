@@ -23,7 +23,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error creating customer invoice cost: {errorMessage}");
+            throw new Exception($"Error during the registration of the User: {errorMessage}");
         }
         public UserAccessTemp Login(UserDTO entity)
         {
@@ -50,7 +50,7 @@ namespace Winform.Services
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error creating customer invoice cost: {errorMessage}");
+            throw new Exception($"Error during the login process: {errorMessage}");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Winform.Forms
         int pages;
         double itemsPage = 10.0;
         private SaleService _saleService;
-        private CreateSupplierInvoicesForm _father;
+        private Form _father;
         public SaleGridForm()
         {
             _saleService = new SaleService();
@@ -176,8 +176,11 @@ namespace Winform.Forms
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
-                return;
+            if (sender is DataGridView dgv)
+            {
+                if(_father is CreateSupplierInvoicesForm csif)
+                    csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
+            }
         }
 
 
@@ -198,16 +201,10 @@ namespace Winform.Forms
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
             TextBoxesRightPanel.Height = Height / 2;
         }
-        private void CustomerDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                var hitTest = SaleDgv.HitTest(e.X, e.Y);
-                if (hitTest.RowIndex >= 0)
-                {
-                    RightClickDgv.Show(SaleDgv, e.Location);
-                }
-            }
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+                RightClickDgv.Show(SaleDgv, SaleDgv.PointToClient(Cursor.Position));
         }
         private void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
