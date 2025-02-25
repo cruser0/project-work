@@ -35,7 +35,7 @@ namespace Winform.Services
         }
         public ICollection<Customer> GetAll(CustomerFilter filter)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer" + queryString).Result;
@@ -57,7 +57,7 @@ namespace Winform.Services
 
         public Customer GetById(int id)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"customer/{id}").Result;
             if (response.IsSuccessStatusCode)
             {
@@ -77,7 +77,7 @@ namespace Winform.Services
 
         public int Count(CustomerFilter filter)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer/count" + queryString).Result;
@@ -100,7 +100,7 @@ namespace Winform.Services
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnCustomer = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"customer", returnCustomer).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -123,7 +123,7 @@ namespace Winform.Services
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnCustomer = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"customer/{id}", returnCustomer).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -141,7 +141,7 @@ namespace Winform.Services
 
         public Customer Delete(int id)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().DeleteAsync(client.GetBaseUri() + $"customer/{id}").Result;
             if (response.IsSuccessStatusCode)
             {

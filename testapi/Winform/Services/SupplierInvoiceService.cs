@@ -37,7 +37,7 @@ namespace Winform.Services
         }
         public ICollection<SupplierInvoiceSupplierDTO> GetAll(SupplierInvoiceFilter filter)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice" + queryString).Result;
@@ -58,7 +58,7 @@ namespace Winform.Services
 
         public SupplierInvoiceSupplierDTO GetById(int id)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"supplier-invoice/{id}").Result;
             if (response.IsSuccessStatusCode)
             {
@@ -78,7 +78,7 @@ namespace Winform.Services
 
         public int Count(SupplierInvoiceFilter filter)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice/count" + queryString).Result;
@@ -101,7 +101,7 @@ namespace Winform.Services
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnSupplierInvoice = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"supplier-invoice", returnSupplierInvoice).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -124,7 +124,7 @@ namespace Winform.Services
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnSupllierInvoice = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"supplier-invoice/{id}", returnSupllierInvoice).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -144,7 +144,7 @@ namespace Winform.Services
 
         public SupplierInvoice Delete(int id)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().DeleteAsync(client.GetBaseUri() + $"supplier-invoice/{id}").Result;
             if (response.IsSuccessStatusCode)
             {

@@ -14,7 +14,10 @@ namespace Winform
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new LoginForm());
+            LoginForm form = new LoginForm();
+            form.ShowDialog();
+
+            Application.Run(new MainForm());
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Winform
         public MainForm()
         {
             InitializeComponent();
+            toolStripTextBox1.Text = "Role: " + UserAccessInfo.Role;
             IsMdiContainer = true; // Set the MDI container
             this.WindowState = FormWindowState.Maximized;
 

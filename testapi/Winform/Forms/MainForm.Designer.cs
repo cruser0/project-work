@@ -56,6 +56,7 @@
             this.Logo = new System.Windows.Forms.PictureBox();
             this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.menuStrip1.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -71,11 +72,12 @@
             this.SuppliersStripToolButton,
             this.supplierInvoicesToolStripMenuItem,
             this.supplierInvoiceCostsToolStripMenuItem,
-            this.salesToolStripMenuItem});
+            this.salesToolStripMenuItem,
+            this.toolStripTextBox1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(50, 12, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1159, 34);
+            this.menuStrip1.Size = new System.Drawing.Size(1159, 37);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,7 +90,7 @@
             this.CustomerStripButton.Image = global::Winform.Properties.Resources.User_Icon;
             this.CustomerStripButton.Name = "CustomerStripButton";
             this.CustomerStripButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CustomerStripButton.Size = new System.Drawing.Size(92, 20);
+            this.CustomerStripButton.Size = new System.Drawing.Size(92, 23);
             this.CustomerStripButton.Text = "Customers";
             // 
             // ShowCustomersStripToolButton
@@ -113,7 +115,7 @@
             this.addCustomerInvoiceToolStripMenuItem});
             this.customerInvoicesToolStripMenuItem.Image = global::Winform.Properties.Resources.Invoice_Icon;
             this.customerInvoicesToolStripMenuItem.Name = "customerInvoicesToolStripMenuItem";
-            this.customerInvoicesToolStripMenuItem.Size = new System.Drawing.Size(133, 20);
+            this.customerInvoicesToolStripMenuItem.Size = new System.Drawing.Size(133, 23);
             this.customerInvoicesToolStripMenuItem.Text = "Customer Invoices";
             // 
             // showCustomerInvoicesToolStripMenuItem
@@ -137,7 +139,7 @@
             this.toolStripMenuItem2});
             this.customerInvoiceCostsToolStripMenuItem.Image = global::Winform.Properties.Resources.Invoice_Icon;
             this.customerInvoiceCostsToolStripMenuItem.Name = "customerInvoiceCostsToolStripMenuItem";
-            this.customerInvoiceCostsToolStripMenuItem.Size = new System.Drawing.Size(160, 20);
+            this.customerInvoiceCostsToolStripMenuItem.Size = new System.Drawing.Size(160, 23);
             this.customerInvoiceCostsToolStripMenuItem.Text = "Customer Invoice Costs";
             // 
             // showCustomerInvoicesCostsToolStripMenuItem
@@ -161,7 +163,7 @@
             this.AddSuppliersStripToolButton});
             this.SuppliersStripToolButton.Image = global::Winform.Properties.Resources.Supplier_Icon;
             this.SuppliersStripToolButton.Name = "SuppliersStripToolButton";
-            this.SuppliersStripToolButton.Size = new System.Drawing.Size(83, 20);
+            this.SuppliersStripToolButton.Size = new System.Drawing.Size(83, 23);
             this.SuppliersStripToolButton.Text = "Suppliers";
             // 
             // ShowSuppliersStripToolButton
@@ -186,7 +188,7 @@
             this.addSupplierInvoiceToolStripMenuItem});
             this.supplierInvoicesToolStripMenuItem.Image = global::Winform.Properties.Resources.Invoice_Icon;
             this.supplierInvoicesToolStripMenuItem.Name = "supplierInvoicesToolStripMenuItem";
-            this.supplierInvoicesToolStripMenuItem.Size = new System.Drawing.Size(124, 20);
+            this.supplierInvoicesToolStripMenuItem.Size = new System.Drawing.Size(124, 23);
             this.supplierInvoicesToolStripMenuItem.Text = "Supplier Invoices";
             // 
             // showSupplierInvoicesToolStripMenuItem
@@ -210,7 +212,7 @@
             this.toolStripMenuItem1});
             this.supplierInvoiceCostsToolStripMenuItem.Image = global::Winform.Properties.Resources.Invoice_Icon;
             this.supplierInvoiceCostsToolStripMenuItem.Name = "supplierInvoiceCostsToolStripMenuItem";
-            this.supplierInvoiceCostsToolStripMenuItem.Size = new System.Drawing.Size(151, 20);
+            this.supplierInvoiceCostsToolStripMenuItem.Size = new System.Drawing.Size(151, 23);
             this.supplierInvoiceCostsToolStripMenuItem.Text = "Supplier Invoice Costs";
             // 
             // showSupplierInvoicesCostsToolStripMenuItem
@@ -234,7 +236,7 @@
             this.addSalesToolStripMenuItem});
             this.salesToolStripMenuItem.Image = global::Winform.Properties.Resources.Sale_Icon;
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(61, 23);
             this.salesToolStripMenuItem.Text = "Sales";
             // 
             // showSalesToolStripMenuItem
@@ -282,6 +284,11 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
             // 
             // MainForm
             // 
@@ -334,5 +341,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripTextBox toolStripTextBox1;
     }
 }

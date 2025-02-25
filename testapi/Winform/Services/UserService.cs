@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Winform.Entities;
 using Winform.Entities.DTO;
 
@@ -46,9 +42,10 @@ namespace Winform.Services
                 var items = JsonSerializer.Deserialize<UserAccessTemp>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 UserAccessInfo.Email = items.Email;
-                UserAccessInfo.Name= items.Name;
-                UserAccessInfo.Token= items.Token;
-                UserAccessInfo.LastName= items.LastName;
+                UserAccessInfo.Name = items.Name;
+                UserAccessInfo.Token = items.Token;
+                UserAccessInfo.LastName = items.LastName;
+                UserAccessInfo.Role = items.Role;
                 return items;
 
             }

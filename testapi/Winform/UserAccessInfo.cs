@@ -1,11 +1,4 @@
-﻿using API.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Winform
+﻿namespace Winform
 {
     public static class UserAccessInfo
     {
@@ -13,5 +6,7 @@ namespace Winform
         public static string Name { get; set; }
         public static string LastName { get; set; }
         public static string Email { get; set; }
+
+        public static string Role { get; set; }
     }
 }

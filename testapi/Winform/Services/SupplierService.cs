@@ -36,7 +36,7 @@ namespace Winform.Services
 
         public ICollection<Supplier> GetAll(SupplierFilter filter)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier" + queryString).Result;
@@ -57,7 +57,7 @@ namespace Winform.Services
 
         public Supplier GetById(int id)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"supplier/{id}").Result;
             if (response.IsSuccessStatusCode)
             {
@@ -77,7 +77,7 @@ namespace Winform.Services
 
         public int Count(SupplierFilter filter)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
             HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier/count" + queryString).Result;
@@ -100,7 +100,7 @@ namespace Winform.Services
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnSupplier = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"supplier", returnSupplier).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -123,7 +123,7 @@ namespace Winform.Services
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnSupplier = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"supplier/{id}", returnSupplier).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -141,7 +141,7 @@ namespace Winform.Services
 
         public Supplier Delete(int id)
         {
-            ClientAPI client = new ClientAPI();
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().DeleteAsync(client.GetBaseUri() + $"supplier/{id}").Result;
             if (response.IsSuccessStatusCode)
             {
