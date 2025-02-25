@@ -15,7 +15,7 @@ namespace API.Models.DTO
             Name = user.Name;
             LastName = user.LastName;
             Email = user.Email;
-            Role = user.Role;
+            //Role = user.Role;
         }
     }
 }

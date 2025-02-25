@@ -20,7 +20,7 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserDTOCreate request)
         {
-            User user;
+            UserRole user;
             try
             {
                user= _authenticationService.CreateUser(request);
@@ -39,7 +39,13 @@ namespace API.Controllers
             }catch (Exception ex) {return BadRequest(ex.Message);}
             if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
                 return BadRequest("Wrong Password!");
-            string token=_authenticationService.CreateToken(user);
+            List<string> roles=new List<string>();
+            foreach (var role in user.UserRoles)
+            {
+                roles.Add(role.Role.RoleName);
+            }
+            UserRoleDTO userDTO = new UserRoleDTO(user, roles);
+            string token=_authenticationService.CreateToken(userDTO);
             return Ok(new UserAccessInfoDTO(user,token));
         }
         
