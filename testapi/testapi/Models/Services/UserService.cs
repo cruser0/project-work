@@ -38,12 +38,12 @@ namespace API.Models.Services
         {
             List<Claim> claims = new List<Claim>
     {
-        new Claim(ClaimTypes.NameIdentifier, user.Email),
-        new Claim(ClaimTypes.Role, user.Role)
+        new Claim(ClaimTypes.NameIdentifier, user.Email.Trim()),
+        new Claim(ClaimTypes.Role, user.Role.Trim())
     };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]));
-            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 
             var token = new JwtSecurityToken(
                 claims: claims,
