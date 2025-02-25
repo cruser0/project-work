@@ -23,6 +23,7 @@ namespace API.Models
         public virtual DbSet<SupplierInvoice> SupplierInvoices { get; set; } = null!;
         public virtual DbSet<SupplierInvoiceCost> SupplierInvoiceCosts { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<ProfitClassification> ProfitClassifications { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceStatus> CustomerInvoiceStatuses { get; set; } = null!;
         public virtual DbSet<ProfitSaleID> ProfitSaleIDs { get; set; } = null!;
@@ -71,6 +72,41 @@ namespace API.Models
                     .HasDefaultValue(false);
                 entity.Property(e => e.OriginalID).HasColumnType("int");
                 entity.Property(e => e.CreatedAt).HasColumnType("date");
+            });
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.UserID);
+
+                entity.Property(e => e.UserID)
+                    .HasColumnName("UserID");
+                
+                entity.HasIndex(c =>c.Email)
+                .IsUnique();
+
+                entity.Property(e => e.Email)
+                    .HasColumnName("Email")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Role)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasswordSalt)
+                    .HasColumnType("varbinary(MAX)")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasswordHash)
+                    .HasColumnType("varbinary(MAX)")
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<CustomerInvoice>(entity =>
