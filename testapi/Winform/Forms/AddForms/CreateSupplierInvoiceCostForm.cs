@@ -49,5 +49,6 @@ namespace Winform.Forms.AddForms
         {
             SupplierInvoiceIDIntegerTxt.SetText(id);
         }
+
     }
 }

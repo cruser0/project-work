@@ -77,12 +77,14 @@ namespace Winform
                 "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
                 "Add Supplier Invoices Cost" => new CreateSupplierInvoiceCostForm(),
                 "Show Sales" => new SaleForm(),
+                "Add Sale" => new CreateSaleForm(),
                 "Add Customer" => new CreateCustomerForm(),
                 "Add Customer Invoice" => new CreateCustomerInvoiceForm(),
                 "Add Customer Invoice Cost" => new CreateCustomerInvoiceCostForm(),
                 "Add Supplier" => new CreateSupplierForm(),
                 "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
                 "Show Customer Invoices Costs" => new CustomerInvoiceCostForm(),
+
                 _ => new Form()
             };
 
