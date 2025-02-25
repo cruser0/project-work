@@ -10,8 +10,29 @@ namespace Winform.Forms
             InitializeComponent();
         }
 
+        public override void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
+        {
+            if (sender is DataGridView dgv)
+            {
+                if (e.RowIndex == -1)
+                    return;
 
+                foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+                {
+                    if (form is CustomerDetailsForm)
+                    {
+                        form.Close();
+                    }
+                }
 
+                CustomerDetailsForm cdf = new CustomerDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                cdf.StartPosition = FormStartPosition.Manual;
+                cdf.Location = new Point((Width - cdf.Width) / 2, (Height - cdf.Height) / 2);
+                cdf.Show();
+                cdf.BringToFront();
+
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog

@@ -182,27 +182,9 @@ namespace Winform.Forms
             this.Close();
         }
 
-        private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
+        public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
-            /*if (sender is DataGridView dgv)
-            {
-                if (e.RowIndex == -1)
-                    return;
-
-                foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
-                {
-                    if (form is CustomerDetailsForm)
-                    {
-                        form.Close();
-                    }
-                }
-
-                CustomerDetailsForm cdf = new CustomerDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
-                cdf.StartPosition = FormStartPosition.Manual;
-                cdf.Location = new Point((Width - cdf.Width) / 2, (Height - cdf.Height) / 2);
-                cdf.Show();
-                cdf.BringToFront();
-            }*/
+            
             if (sender is DataGridView dgv)
             {
                 if (_father is CreateSaleForm csf)
