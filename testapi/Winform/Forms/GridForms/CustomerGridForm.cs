@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Forms.AddForms;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -15,8 +16,32 @@ namespace Winform.Forms
         private CustomerService _customerService;
         int pages;
         double itemsPage = 10.0;
+        Form _father;
         public CustomerGridForm()
         {
+            _customerService = new CustomerService();
+            pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
+
+
+            InitializeComponent();
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+
+            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
+            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
+            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
+            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+
+            comboBox1.SelectedIndex = 1;
+            PaginationUserControl.Visible = false;
+            PaginationUserControl.SetMaxPage(pages.ToString());
+            PaginationUserControl.CurrentPage = 1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CustomerDgv.ContextMenuStrip = RightClickDgv;
+        }
+        public CustomerGridForm(CreateSaleForm father)
+        {
+            _father = father;
             _customerService = new CustomerService();
             pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
 
@@ -159,7 +184,7 @@ namespace Winform.Forms
 
         private void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
-            if (sender is DataGridView dgv)
+            /*if (sender is DataGridView dgv)
             {
                 if (e.RowIndex == -1)
                     return;
@@ -177,6 +202,13 @@ namespace Winform.Forms
                 cdf.Location = new Point((Width - cdf.Width) / 2, (Height - cdf.Height) / 2);
                 cdf.Show();
                 cdf.BringToFront();
+            }*/
+            if (sender is DataGridView dgv)
+            {
+                if (_father is CreateSaleForm csf)
+                {
+                    csf.SetCustomerID(dgv.CurrentRow.Cells["CustomerID"].Value.ToString());
+                }
             }
         }
 
