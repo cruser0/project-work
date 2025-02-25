@@ -38,8 +38,8 @@ namespace API.Models.Services
         {
             List<Claim> claims = new List<Claim>
     {
-        new Claim(ClaimTypes.NameIdentifier, user.Email.Trim()),
-        new Claim(ClaimTypes.Role, user.Role.Trim())
+        new Claim(ClaimTypes.NameIdentifier, user.Email),
+        new Claim(ClaimTypes.Role, user.Role)
     };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]));

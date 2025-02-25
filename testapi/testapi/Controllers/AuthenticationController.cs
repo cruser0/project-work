@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -30,7 +30,7 @@ namespace API.Controllers
         }
         //[Authorize(Roles ="Admin")]
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDTO request)
+        public async Task<ActionResult<UserAccessInfoDTO>> Login(UserDTO request)
         {
             User user;
             try
@@ -40,7 +40,7 @@ namespace API.Controllers
             if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
                 return BadRequest("Wrong Password!");
             string token=_authenticationService.CreateToken(user);
-            return Ok(token);
+            return Ok(new UserAccessInfoDTO(user,token));
         }
         
     }
