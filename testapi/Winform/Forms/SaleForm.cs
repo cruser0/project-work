@@ -13,7 +13,7 @@
             {
                 if (e.RowIndex == -1)
                     return;
-                SaleDetailsForm cdf = new SaleDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                SaleDetailsForm cdf = new SaleDetailsForm(int.Parse(dgv.CurrentRow.Cells["SaleID"].Value.ToString()));
                 cdf.Show();
             }
             else

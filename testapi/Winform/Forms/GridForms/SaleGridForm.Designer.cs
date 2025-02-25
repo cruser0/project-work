@@ -297,6 +297,7 @@
             this.SaleDgv.Name = "SaleDgv";
             this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
+            this.SaleDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.SaleDgv.Size = new System.Drawing.Size(712, 501);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
@@ -491,7 +492,6 @@
         private Label CustomerIDLbl;
         private control.IntegerTextBoxUserControl CustomerIDTextBoxUserControl;
         public Panel panel1;
-        public DataGridView SaleDgv;
         private Panel BottomPanel;
         private Panel panel5;
         private control.PaginationUserControl PaginationUserControl;
@@ -511,5 +511,6 @@
         private Label label2;
         private control.IntegerTextBoxUserControl RevenueToTxt;
         private Label label1;
+        private DataGridView SaleDgv;
     }
 }

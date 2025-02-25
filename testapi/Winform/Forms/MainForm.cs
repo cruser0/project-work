@@ -91,6 +91,7 @@ namespace Winform
             child.Size = new Size(1000, 600);
 
             child.Resize += ChildForm_Resize; // Handle resize event for child forms
+            child.FormClosing += ChildForm_Close;
 
             child.Show();
             if (countOpenForms >= 4)
@@ -103,6 +104,20 @@ namespace Winform
 
         }
 
+        private void ChildForm_Close(object sender, FormClosingEventArgs e)
+        {
+            this.BeginInvoke(new Action(UpdateMdiLayout));
+        }
+
+        private void UpdateMdiLayout()
+        {
+            int countOpenForms = MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+
+            if (countOpenForms > 4)
+                LayoutMdi(MdiLayout.ArrangeIcons);
+            else
+                LayoutMdi(MdiLayout.TileVertical);
+        }
 
 
         private void ChildForm_Resize(object sender, EventArgs e)
@@ -133,6 +148,13 @@ namespace Winform
 
             // Hide the minimized form in the MDI parent
             childForm.Hide();
+
+            int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
+            List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+            if (countOpenForms >= 4)
+                LayoutMdi(MdiLayout.ArrangeIcons);
+            else
+                LayoutMdi(MdiLayout.TileVertical);
         }
     }
 }
