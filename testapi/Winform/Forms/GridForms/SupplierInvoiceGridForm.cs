@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities.DTO;
+using Winform.Forms.AddForms;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -14,6 +15,7 @@ namespace Winform.Forms
         int? InvoiceAmountFrom;
         int? InvoiceAmountTo;
         string? Status;
+        Form _father;
 
         readonly SupplierInvoiceService _supplierInvoiceService;
         int pages;
@@ -24,6 +26,28 @@ namespace Winform.Forms
             pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
 
 
+            InitializeComponent();
+            StatusCmb.SelectedIndex = 0;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+
+            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
+            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
+            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
+            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+
+            PaginationUserControl.SetMaxPage(pages.ToString());
+            PaginationUserControl.CurrentPage = 1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
+            PaginationUserControl.Visible = false;
+        }
+        public SupplierInvoiceGridForm(Form father)
+        {
+            _supplierInvoiceService = new SupplierInvoiceService();
+            pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
+
+            _father=father;
             InitializeComponent();
             StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
@@ -61,19 +85,24 @@ namespace Winform.Forms
             this.Close();
         }
 
-        private void MyControl_OpenDetails_Clicked(object? sender, DataGridViewCellEventArgs e)
+        public virtual void MyControl_OpenDetails_Clicked(object? sender, DataGridViewCellEventArgs e)
         {
-            if (sender is DataGridView dgv)
+            /*if (sender is DataGridView dgv)
             {
                 if (e.RowIndex == -1)
                     return;
-                SupplierInvoiceDetailsForm sid = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
+                SupplierInvoiceDetailsForm sid = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells["InvoiceId"].Value.ToString()));
                 sid.Show();
             }
             else
             {
                 MessageBox.Show(sender.ToString());
 
+            }*/
+            if (sender is DataGridView dgv)
+            {
+                if (_father is CreateSupplierInvoiceCostForm sigf)
+                    sigf.SetSupplierID(dgv.CurrentRow.Cells["InvoiceID"].Value.ToString());
             }
         }
 

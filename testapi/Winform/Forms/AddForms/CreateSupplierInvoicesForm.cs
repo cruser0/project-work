@@ -48,6 +48,10 @@ namespace Winform.Forms
         {
             SupplierIDTxt1.SetText(id);
         }
+        public void SetSaleID(string id)
+        {
+            SaleIDTxt1.SetText(id);
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -55,23 +59,10 @@ namespace Winform.Forms
             sgf.ShowDialog();
 
         }
-
-        private void Sgf_SupplierGridDBClick(object? sender, string e)
-        {
-            if (sender is DataGridView dgv)
-            {
-                SupplierIDTxt1.SetText(dgv.CurrentRow.Cells[0].Value.ToString());
-            }
-        }
-
         private void OpenSale_Click(object sender, EventArgs e)
         {
             SaleGridForm sgf = new SaleGridForm(this);
             sgf.ShowDialog();
-        }
-        public void SetSaleID(string id)
-        {
-            SaleIDTxt1.SetText(id);
         }
     }
 }
