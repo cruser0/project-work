@@ -15,9 +15,13 @@ namespace Winform
             ApplicationConfiguration.Initialize();
 
             LoginForm form = new LoginForm();
-            form.ShowDialog();
 
-            Application.Run(new MainForm());
+            if (form.ShowDialog() == DialogResult.OK)
+                Application.Run(new MainForm());
+            else
+                Application.Exit();
+
+
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Winform.Forms
             {
                 Cursor.Current = Cursors.WaitCursor;
                 var ret = _userService.Login(user);
+                DialogResult = DialogResult.OK;
                 Close();
 
             }
@@ -40,12 +41,14 @@ namespace Winform.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             var ret = _userService.Login(new UserDTO() { Email = "string", Password = "string" });
+            DialogResult = DialogResult.OK;
             Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             var ret = _userService.Login(new UserDTO() { Email = "admin", Password = "admin" });
+            DialogResult = DialogResult.OK;
             Close();
         }
     }
