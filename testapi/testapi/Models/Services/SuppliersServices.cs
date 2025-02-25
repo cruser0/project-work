@@ -105,6 +105,10 @@ namespace API.Models.Services
                     throw new ArgumentException("Can't create an already deprecated supplier");
                 else
                     supplier.Deprecated = false;
+            else
+                supplier.Deprecated = false;
+
+            supplier.CreatedAt = DateTime.Now;
 
             if (supplier.SupplierName.Length > 100)
                 throw new ArgumentException("Supplier name is too long");
