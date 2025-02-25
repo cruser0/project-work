@@ -2,6 +2,7 @@
 {
     public partial class DecimalTextBoxUserControl : UserControl
     {
+        public event EventHandler<EventArgs> ValueChanged;
         public DecimalTextBoxUserControl()
         {
             InitializeComponent();
@@ -28,6 +29,11 @@
         public void SetText(string text)
         {
             NumericTxt.Text = text;
+        }
+
+        private void NumericTxt_TextChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

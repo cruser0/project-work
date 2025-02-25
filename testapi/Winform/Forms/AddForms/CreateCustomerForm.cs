@@ -10,32 +10,34 @@ namespace Winform.Forms
         {
             _customerService = new CustomerService();
             InitializeComponent();
-            CreateCustomerUserControl.createButton += CreateCustomerUserControl_createButton;
         }
 
-        private void CreateCustomerUserControl_createButton(object? sender, Entities.DTO.SupplierCustomerDTO e)
+
+
+        private void SaveBtn_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.Name) || !string.IsNullOrEmpty(e.Country))
+            Customer customer = new Customer()
             {
-                Customer customer = new Customer { CustomerName = e.Name, Country = e.Country };
-                try
-                {
-                    _customerService.Create(customer);
-                    MessageBox.Show("Customer created Successfully!");
-                    this.Close();
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                CustomerName = NameTxt.Text,
+                Country = CountryTxt.Text
+            };
+
+            try
+            {
+                _customerService.Create(customer);
+                MessageBox.Show("Customer Created Succesfully");
+                Close();
 
             }
-            else
-                MessageBox.Show("Name and Country must not be empty");
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void OpenName_Click(object sender, EventArgs e)
+        private void NameTxt_TextChanged(object sender, EventArgs e)
         {
-            CustomerGridForm cgf = new CustomerGridForm();
-            cgf.ShowDialog();
+            SaveBtn.Enabled = NameTxt.Text.Length > 0 && CountryTxt.Text.Length > 0;
         }
     }
 }

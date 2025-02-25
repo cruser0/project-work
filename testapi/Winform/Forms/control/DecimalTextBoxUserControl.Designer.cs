@@ -38,8 +38,9 @@
             this.NumericTxt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NumericTxt.Location = new System.Drawing.Point(0, 0);
             this.NumericTxt.Name = "NumericTxt";
-            this.NumericTxt.Size = new System.Drawing.Size(194, 23);
+            this.NumericTxt.Size = new System.Drawing.Size(200, 23);
             this.NumericTxt.TabIndex = 2;
+            this.NumericTxt.TextChanged += new System.EventHandler(this.NumericTxt_TextChanged);
             this.NumericTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericTxt_OnKeyPress);
             // 
             // DecimalTextBoxUserControl
@@ -48,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.NumericTxt);
             this.Name = "DecimalTextBoxUserControl";
-            this.Size = new System.Drawing.Size(194, 23);
+            this.Size = new System.Drawing.Size(200, 23);
             this.ResumeLayout(false);
             this.PerformLayout();
 

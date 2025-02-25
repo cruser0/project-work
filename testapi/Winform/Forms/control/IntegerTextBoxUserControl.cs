@@ -2,6 +2,8 @@
 {
     public partial class IntegerTextBoxUserControl : UserControl
     {
+
+        public event EventHandler<EventArgs> ValueChanged;
         public IntegerTextBoxUserControl()
         {
             InitializeComponent();
@@ -25,6 +27,11 @@
         public void SetText(string text)
         {
             NumericTxt.Text = text;
+        }
+
+        private void NumericTxt_TextChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
