@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -100,6 +101,23 @@ namespace API.Models.Services
 
         }
 
+        internal void EditUser(int id, UserDTOEdit updateUser)
+        {
+            User user=GetUserByID(id);
+            user.Name = string.IsNullOrEmpty(updateUser.Name)?user.Name : updateUser.Name;
+            user.LastName = string.IsNullOrEmpty(updateUser.LastName) ?user.LastName : updateUser.LastName;
+            user.Email = string.IsNullOrEmpty(updateUser.Email) ?user.Email : updateUser.Email;
+            if (!string.IsNullOrEmpty(updateUser.Password))
+            {
+                CreatePasswordHash(updateUser.Password, out byte[] hash, out byte[] salt);
+                user.PasswordHash=hash;
+                user.PasswordSalt=salt;
+            }
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+        }
+
         internal void DeleteUser(int id)
         {
             var rolesList = GetAllRolesByUserID(id);
@@ -125,17 +143,74 @@ namespace API.Models.Services
                 throw new Exception("User not Found");
             return user;
         }
-        public UserRoleDTO GetUserByID(int id)
+        public User GetUserByID(int id)
         {
-            List<string> data = _context.Users.Where(x => x.UserID == id).SelectMany(x => x.UserRoles.Select(ur => ur.Role.RoleName)).ToList();
-
-            var user = _context.Users.FirstOrDefault(x => x.UserID == id);
-
-            if (data == null || user == null)
-                throw new Exception("User not found");
-
-            return new UserRoleDTO(user, data);
+            var user = _context.Users
+                .Where(u => u.UserID==id)
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+                .FirstOrDefault();
+            if (user == null)
+                throw new Exception("User not Found");
+            return user;
         }
+        public UserRoleDTO GetUserRoleDTOByID(int id)
+        {
+            var user = _context.Users
+                .Where(x => x.UserID==id)
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role).FirstOrDefault();
+            if (user == null)
+                throw new Exception("User not Found");
+            List<string> roleList=user.UserRoles.Select(x => x.Role.RoleName).ToList();
+            return new UserRoleDTO(user,roleList);
+        }
+        public ICollection<UserRoleDTO> GetAllUsers(UserFilter filter)
+        {
+            // Retrieve all sales from the database and map each one to a SaleDTOGet
+            return ApplyFilter(filter);
+        }
+
+        public int CountUsers(UserFilter filter)
+        {
+            // Retrieve all sales from the database and map each one to a SaleDTOGet
+            return ApplyFilter(filter).Count();
+        }
+
+        private ICollection<UserRoleDTO> ApplyFilter(UserFilter filter)
+        {
+            int itemsPage = 10;
+            var query = _context.Users
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role).AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.Name))
+                query = query.Where(s => s.Name.StartsWith(filter.Name));
+            if (!string.IsNullOrEmpty(filter.LastName))
+                query = query.Where(s => s.LastName.StartsWith(filter.LastName));
+            if (!string.IsNullOrEmpty(filter.Email))
+                query = query.Where(s => s.Email.StartsWith(filter.Email));
+            if (filter.Roles.Count>0)
+            {
+                foreach (var role in filter.Roles)
+                    query = query.Where(x => x.UserRoles.Any(x => x.Role.RoleName.Contains(role)));
+            }
+            if (filter.page != null)
+            {
+                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+            }
+            
+            List<User> userList = query.ToList();
+            List<UserRoleDTO> returnList=new List<UserRoleDTO>();
+            List<string> roleList;
+            foreach(User user in userList)
+            {
+                roleList=user.UserRoles.Select(x=>x.Role.RoleName).ToList();
+                returnList.Add(new UserRoleDTO(user, roleList));
+            }
+            return returnList;
+        }
+
         public Role GetRole(string role)
         {
             var data = _context.Roles.FirstOrDefault(x => x.RoleName == role);
