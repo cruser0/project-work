@@ -15,6 +15,15 @@ namespace Winform.Forms
             {
                 if (e.RowIndex == -1)
                     return;
+
+                foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+                {
+                    if (form is SaleDetailsForm)
+                    {
+                        form.Close();
+                    }
+                }
+
                 SaleDetailsForm cdf = new SaleDetailsForm(int.Parse(dgv.CurrentRow.Cells["SaleID"].Value.ToString()));
                 cdf.MdiParent = MdiParent;
                 cdf.Size = new Size((int)Math.Floor(MdiParent.Width * 0.48),

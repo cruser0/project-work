@@ -13,21 +13,31 @@ namespace Winform
         {
             InitializeComponent();
             IsMdiContainer = true; // Set the MDI container
-            this.WindowState = FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;
 
-            // Create a panel to hold minimized forms at the bottom
+            CreateDockPanel();
+            SetAuthorizations();
+
+        }
+
+        private void CreateDockPanel()
+        {
             minimizedPanel = new TableLayoutPanel
             {
                 Name = "minimizedPanel",
                 Dock = DockStyle.Bottom,
-                Height = 60, // Adjust the height of the panel as needed
+                Height = 60,
                 RowCount = 1,
                 AutoScroll = true
             };
             this.Controls.Add(minimizedPanel);
+        }
 
+        private void SetAuthorizations()
+        {
             adminToolStripMenuItem.Visible = Authorize(new List<string>
                 { "Admin" });
+
             CustomerStripButton.Visible = Authorize(new List<string>
                 { "Admin", "CustomerRead", "CustomerWrite", "CustomerDelete" });
             AddCustomersStripToolButton.Visible = Authorize(new List<string>
@@ -62,9 +72,7 @@ namespace Winform
                 { "Admin", "SaleRead", "SaleWrite", "SaleDelete" });
             addSalesToolStripMenuItem.Visible = Authorize(new List<string>
                 { "Admin", "SaleWrite"});
-
         }
-
 
         private bool Authorize(List<string> allowedRoles)
         {
@@ -160,7 +168,6 @@ namespace Winform
             int countOpenForms = MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
             LayoutMdi(MdiLayout.ArrangeIcons);
         }
-
 
         public void ChildForm_Resize(object sender, EventArgs e)
         {

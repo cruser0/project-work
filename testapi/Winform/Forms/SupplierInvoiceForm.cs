@@ -14,6 +14,14 @@ namespace Winform.Forms
             {
                 if (e.RowIndex == -1)
                     return;
+
+                foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
+                {
+                    if (form is SupplierInvoiceDetailsForm)
+                    {
+                        form.Close();
+                    }
+                }
                 SupplierInvoiceDetailsForm cdf = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells["InvoiceId"].Value.ToString()));
                 cdf.MdiParent = MdiParent;
                 cdf.Size = new Size((int)Math.Floor(MdiParent.Width * 0.48),
