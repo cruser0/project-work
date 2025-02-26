@@ -12,7 +12,7 @@ namespace API.Models.DTO
     {
         public string Name { get; set; }
         public string LastName { get; set; }
-        public string Role { get; set; }
+        public List<string> Role { get; set; }
     }
     public class UserRoleDTO
     {

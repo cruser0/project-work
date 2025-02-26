@@ -20,7 +20,7 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserDTOCreate request)
         {
-            UserRole user;
+            User user;
             try
             {
                user= _authenticationService.CreateUser(request);

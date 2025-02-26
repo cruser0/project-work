@@ -86,13 +86,13 @@ namespace API.Models.Services
         }
         public Role GetRole(string role)
         {
-            try
-            {
+                var data = _context.Roles.FirstOrDefault(x => x.RoleName == role);
+            if (data == null)
+                throw new Exception("Role not found");
+            return data;
 
-            return _context.Roles.FirstOrDefault(x => x.RoleName==role);
-            }catch (Exception ex) { throw new Exception("Role not Found"); }
         }
-        public UserRole CreateUser(UserDTOCreate user)
+        public User CreateUser(UserDTOCreate user)
         {
             if (_context.Users.Any(x => x.Email.Equals(user.Email)))
                 throw new Exception("User is already registered");
@@ -103,14 +103,35 @@ namespace API.Models.Services
             returnUser.Email = user.Email;
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
-            Role role = GetRole(user.Role);
+
+            UserRole ur;
+            using var transaction=_context.Database.BeginTransaction();
+            try
+            {
             _context.Users.Add(returnUser);
             _context.SaveChanges();
-            UserRole ur = new UserRole
+            foreach(var role in user.Role)
             {
+
+                ur = new UserRole
+
+                {
+
+                    RoleID = GetRole(role).RoleID,
+                    UserID = returnUser.UserID
                
-            };
-            return ur;
+                };
+                    _context.UserRoles.Add(ur);
+                    _context.SaveChanges();
+            }
+                transaction.Commit();
+            }catch(Exception ex) {
+                transaction.Rollback();
+                throw new Exception(ex.InnerException.Message);
+            }
+
+            return returnUser;
+
         }
     }
 }
