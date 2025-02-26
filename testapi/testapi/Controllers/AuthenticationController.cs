@@ -49,7 +49,7 @@ namespace API.Controllers
             return Ok(new UserAccessInfoDTO(userDTO, token));
         }
 
-        [HttpPost("assign-roles")]
+        [HttpPut("assign-roles")]
         public async Task<ActionResult<string>> AssignRoles(int id,List<string> roles)
         {
             try
@@ -57,6 +57,16 @@ namespace API.Controllers
                 _authenticationService.EditRoles(id, roles);
             }catch(Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Role Updated");
+        }
+        [HttpDelete("assign-roles")]
+        public async Task<ActionResult<string>> DeleteUser(int id)
+        {
+            try
+            {
+                _authenticationService.DeleteUser(id);
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+            return Ok("User Deleted Successfully");
         }
 
     }

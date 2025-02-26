@@ -41,7 +41,7 @@ namespace API.Models.Services
     {
         new Claim(ClaimTypes.NameIdentifier, user.Email),
     };
-            foreach(string role in user.Role)
+            foreach (string role in user.Role)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
@@ -59,14 +59,16 @@ namespace API.Models.Services
         }
         public List<UserRole> GetAllRolesByUserID(int id)
         {
-            var data=_context.UserRoles.Where(x=>x.UserID==id).ToList();
+            var data = _context.UserRoles.Where(x => x.UserID == id).ToList();
             if (!data.Any())
-                throw new Exception("User has nor Roles");
+                throw new Exception("User has no Roles");
             return data;
         }
         public void EditRoles(int id, List<string> roles)
         {
-            var rolesList=GetAllRolesByUserID(id);
+            if (!roles.Any())
+                throw new Exception("Each user needs to have at least one Role");
+            var rolesList = GetAllRolesByUserID(id);
             if (!_context.Users.Any(x => x.UserID == id))
                 throw new Exception("User not Found");
             _context.UserRoles.RemoveRange(rolesList);
@@ -98,6 +100,20 @@ namespace API.Models.Services
 
         }
 
+        internal void DeleteUser(int id)
+        {
+            var rolesList = GetAllRolesByUserID(id);
+            if (!_context.Users.Any(x => x.UserID == id))
+                throw new Exception("User not Found");
+            _context.UserRoles.RemoveRange(rolesList);
+            _context.SaveChanges();
+            var user = _context.Users.Where(x => x.UserID == id).FirstOrDefault();
+            if (user == null)
+                throw new Exception("User not found!");
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+        }
+
         public User GetUserByEmail(string email)
         {
             var user = _context.Users
@@ -111,9 +127,9 @@ namespace API.Models.Services
         }
         public UserRoleDTO GetUserByID(int id)
         {
-            List<string> data = _context.Users.Where(x => x.UserID==id).SelectMany(x => x.UserRoles.Select(ur => ur.Role.RoleName)).ToList();
+            List<string> data = _context.Users.Where(x => x.UserID == id).SelectMany(x => x.UserRoles.Select(ur => ur.Role.RoleName)).ToList();
 
-            var user = _context.Users.FirstOrDefault(x => x.UserID==id);
+            var user = _context.Users.FirstOrDefault(x => x.UserID == id);
 
             if (data == null || user == null)
                 throw new Exception("User not found");
@@ -122,7 +138,7 @@ namespace API.Models.Services
         }
         public Role GetRole(string role)
         {
-                var data = _context.Roles.FirstOrDefault(x => x.RoleName == role);
+            var data = _context.Roles.FirstOrDefault(x => x.RoleName == role);
             if (data == null)
                 throw new Exception("Role not found");
             return data;
@@ -132,6 +148,8 @@ namespace API.Models.Services
         {
             if (_context.Users.Any(x => x.Email.Equals(user.Email)))
                 throw new Exception("User is already registered");
+            if (!user.Role.Any())
+                throw new Exception("Can't create a User with no Roles");
             User returnUser = new User();
             CreatePasswordHash(user.Password, out byte[] hash, out byte[] salt);
             returnUser.Name = user.Name;
@@ -140,26 +158,28 @@ namespace API.Models.Services
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
             UserRole ur;
-            using var transaction=_context.Database.BeginTransaction();
+            using var transaction = _context.Database.BeginTransaction();
             try
             {
-            _context.Users.Add(returnUser);
-            _context.SaveChanges();
-            foreach(var role in user.Role)
-            {
-
-                ur = new UserRole
-
+                _context.Users.Add(returnUser);
+                _context.SaveChanges();
+                foreach (var role in user.Role)
                 {
-                    RoleID = GetRole(role).RoleID,
-                    UserID = returnUser.UserID
-               
-                };
+
+                    ur = new UserRole
+
+                    {
+                        RoleID = GetRole(role).RoleID,
+                        UserID = returnUser.UserID
+
+                    };
                     _context.UserRoles.Add(ur);
                     _context.SaveChanges();
-            }
+                }
                 transaction.Commit();
-            }catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 transaction.Rollback();
                 throw new Exception(ex.InnerException.Message);
             }
