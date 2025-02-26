@@ -9,17 +9,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Authorize(Roles = "User")]
+
     [Route("api/customer")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
+
         private readonly ICustomerService _customerService;
         public CustomerController(ICustomerService customerService)
         {
             _customerService = customerService;
         }
         // GET: api/<CustomerController>
+
+        [Authorize(Roles = "Admin,CustomerRead")]
         [HttpGet]
         public IActionResult Get([FromQuery] CustomerFilter filter)
         {
@@ -35,6 +38,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [Authorize(Roles = "Admin,CustomerRead")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] CustomerFilter filter)
         {
@@ -43,6 +47,7 @@ namespace API.Controllers
         }
 
         // GET api/<CustomerController>/5
+        [Authorize(Roles = "Admin,CustomerRead")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -60,6 +65,7 @@ namespace API.Controllers
 
 
         // POST api/<CustomerController>
+        [Authorize(Roles = "Admin,CustomerWrite")]
         [HttpPost]
         public IActionResult Post(CustomerDTO customer)
         {
@@ -74,6 +80,7 @@ namespace API.Controllers
         }
 
         // PUT api/<CustomerController>/5
+        [Authorize(Roles = "Admin,CustomerWrite")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] CustomerDTO customer)
         {
@@ -89,6 +96,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<CustomerController>/5
+        [Authorize(Roles = "Admin,CustomerDelete")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

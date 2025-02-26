@@ -103,6 +103,7 @@ namespace API.Models.Services
             returnUser.Email = user.Email;
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
+<<<<<<< HEAD
             UserRole ur;
             using var transaction=_context.Database.BeginTransaction();
             try
@@ -127,6 +128,16 @@ namespace API.Models.Services
             }
 
             return returnUser;
+=======
+            Role role = GetRole(user.Role);
+            _context.Users.Add(returnUser);
+            _context.SaveChanges();
+            UserRole ur = new UserRole
+            {
+               
+            };
+            return ur;
+>>>>>>> ded7cc56383fb99bb5d3f115d84548baa2c7e8e0
         }
     }
 }

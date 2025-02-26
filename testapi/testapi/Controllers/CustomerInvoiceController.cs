@@ -2,6 +2,7 @@
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,6 +19,7 @@ namespace API.Controllers
             _customerInvoiceService = customerInvoiceService;
         }
         // GET: api/<CustomerInvoiceController>
+        [Authorize(Roles = "Admin,CustomerInvoiceRead")]
         [HttpGet]
         public IActionResult Get([FromQuery] CustomerInvoiceFilter filter)
         {
@@ -33,6 +35,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [Authorize(Roles = "Admin,CustomerInvoiceRead")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] CustomerInvoiceFilter filter)
         {
@@ -41,6 +44,7 @@ namespace API.Controllers
         }
 
         // GET api/<CustomerInvoiceController>/5
+        [Authorize(Roles = "Admin,CustomerInvoiceRead")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -56,6 +60,7 @@ namespace API.Controllers
         }
 
         // POST api/<CustomerInvoiceController>
+        [Authorize(Roles = "Admin,CustomerInvoiceWrite")]
         [HttpPost]
         public IActionResult Post(CustomerInvoiceDTO customerInvoice)
         {
@@ -71,6 +76,7 @@ namespace API.Controllers
         }
 
         // PUT api/<CustomerInvoiceController>/5
+        [Authorize(Roles = "Admin,CustomerInvoiceWrite")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
         {
@@ -86,6 +92,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<CustomerInvoiceController>/5
+        [Authorize(Roles = "Admin,CustomerInvoiceDelete")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

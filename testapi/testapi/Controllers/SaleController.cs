@@ -2,6 +2,7 @@
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,6 +19,7 @@ namespace API.Controllers
             _saleService = saleService;
         }
         // GET: api/<SaleController>
+        [Authorize(Roles = "Admin,SaleRead")]
         [HttpGet]
         public IActionResult Get([FromQuery] SaleFilter filter)
         {
@@ -33,6 +35,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [Authorize(Roles = "Admin,SaleRead")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] SaleFilter filter)
         {
@@ -43,6 +46,7 @@ namespace API.Controllers
         }
 
         // GET api/<SaleController>/5
+        [Authorize(Roles = "Admin,SaleRead")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -58,6 +62,7 @@ namespace API.Controllers
         }
 
         // POST api/<SaleController>
+        [Authorize(Roles = "Admin,SaleWrite")]
         [HttpPost]
         public IActionResult Post(SaleDTO sale)
         {
@@ -73,6 +78,7 @@ namespace API.Controllers
         }
 
         // PUT api/<SaleController>/5
+        [Authorize(Roles = "Admin,SaleWrite")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] SaleDTO sale)
         {
@@ -88,6 +94,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<SaleController>/5
+        [Authorize(Roles = "Admin,SaleDelete")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
