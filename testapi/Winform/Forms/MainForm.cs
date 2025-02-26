@@ -83,7 +83,7 @@ namespace Winform
                 "Add Supplier" => new CreateSupplierForm(),
                 "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
                 "Show Customer Invoices Costs" => new CustomerInvoiceCostForm(),
-                "Show Users" => new Form(),
+                "Show Users" => new UserForm(),
                 "Add User" => new Form(),
 
 
