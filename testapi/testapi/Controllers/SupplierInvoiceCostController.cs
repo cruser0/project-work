@@ -2,6 +2,7 @@
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,6 +19,7 @@ namespace API.Controllers
             _supplierInvoiceCostService = supplierInvoiceCostService;
         }
         // GET: api/<SupplierInvoiceCostController>
+        [Authorize(Roles = "Admin,SupplierInvoiceCostRead")]
         [HttpGet]
         public IActionResult Get([FromQuery] SupplierInvoiceCostFilter filter)
         {
@@ -33,6 +35,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [Authorize(Roles = "Admin,SupplierInvoiceCostRead")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] SupplierInvoiceCostFilter filter)
         {
@@ -43,6 +46,7 @@ namespace API.Controllers
         }
 
         // GET api/<SupplierInvoiceCostController>/5
+        [Authorize(Roles = "Admin,SupplierInvoiceCostRead")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -59,6 +63,7 @@ namespace API.Controllers
         }
 
         // POST api/<SupplierInvoiceCostController>
+        [Authorize(Roles = "Admin,SupplierInvoiceCostWrite")]
         [HttpPost]
         public IActionResult Post(SupplierInvoiceCostDTO supplierInvoiceCost)
         {
@@ -74,6 +79,7 @@ namespace API.Controllers
         }
 
         // PUT api/<SupplierInvoiceCostController>/5
+        [Authorize(Roles = "Admin,SupplierInvoiceCostWrite")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] SupplierInvoiceCostDTO supplierInvoiceCost)
         {
@@ -88,6 +94,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<SupplierInvoiceCostController>/5
+        [Authorize(Roles = "Admin,SupplierInvoiceCostDelete")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

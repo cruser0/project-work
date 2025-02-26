@@ -2,6 +2,7 @@
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,6 +19,7 @@ namespace API.Controllers
             _supplierService = supplierService;
         }
         // GET: api/<SupplierController>
+        [Authorize(Roles = "Admin,SupplierRead")]
         [HttpGet]
         public IActionResult Get([FromQuery] SupplierFilter filter)
         {
@@ -33,6 +35,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [Authorize(Roles = "Admin,SupplierRead")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] SupplierFilter filter)
         {
@@ -41,6 +44,7 @@ namespace API.Controllers
         }
 
         // GET api/<SupplierController>/5
+        [Authorize(Roles = "Admin,SupplierRead")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -55,6 +59,7 @@ namespace API.Controllers
         }
 
         // POST api/<SupplierController>
+        [Authorize(Roles = "Admin,SupplierWrite")]
         [HttpPost]
         public IActionResult Post(SupplierDTO supplier)
         {
@@ -69,6 +74,7 @@ namespace API.Controllers
         }
 
         // PUT api/<SupplierController>/5
+        [Authorize(Roles = "Admin,SupplierWrite")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] SupplierDTO supplier)
         {
@@ -84,6 +90,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<SupplierController>/5
+        [Authorize(Roles = "Admin,SupplierDelete")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
