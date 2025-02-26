@@ -62,7 +62,6 @@
             // 
             // panel1
             // 
-            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.FilterPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -203,6 +202,7 @@
             // 
             // PaginationPanel
             // 
+            this.PaginationPanel.BackColor = System.Drawing.Color.DarkGray;
             this.PaginationPanel.Controls.Add(this.paginationControl);
             this.PaginationPanel.Location = new System.Drawing.Point(224, 0);
             this.PaginationPanel.Name = "PaginationPanel";
@@ -252,14 +252,15 @@
             this.CustomerDateTsmi,
             this.CustomerStatusTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(181, 136);
+            this.RightClickDgv.Size = new System.Drawing.Size(163, 114);
             // 
             // CustomerIDTsmi
             // 
             this.CustomerIDTsmi.CheckOnClick = true;
             this.CustomerIDTsmi.Name = "CustomerIDTsmi";
-            this.CustomerIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerIDTsmi.Text = "Show ID";
+            this.CustomerIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerNameTsmi
             // 
@@ -267,8 +268,9 @@
             this.CustomerNameTsmi.CheckOnClick = true;
             this.CustomerNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerNameTsmi.Name = "CustomerNameTsmi";
-            this.CustomerNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerNameTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerNameTsmi.Text = "Show Name";
+            this.CustomerNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerCountryTsmi
             // 
@@ -276,8 +278,9 @@
             this.CustomerCountryTsmi.CheckOnClick = true;
             this.CustomerCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerCountryTsmi.Name = "CustomerCountryTsmi";
-            this.CustomerCountryTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerCountryTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerCountryTsmi.Text = "Show Last Name";
+            this.CustomerCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerDateTsmi
             // 
@@ -285,8 +288,9 @@
             this.CustomerDateTsmi.CheckOnClick = true;
             this.CustomerDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerDateTsmi.Name = "CustomerDateTsmi";
-            this.CustomerDateTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerDateTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerDateTsmi.Text = "Show Email";
+            this.CustomerDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerStatusTsmi
             // 
@@ -294,8 +298,9 @@
             this.CustomerStatusTsmi.CheckOnClick = true;
             this.CustomerStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerStatusTsmi.Name = "CustomerStatusTsmi";
-            this.CustomerStatusTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerStatusTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerStatusTsmi.Text = "Show Roles";
+            this.CustomerStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // UserGridForm
             // 
@@ -308,6 +313,7 @@
             this.Name = "UserGridForm";
             this.Text = "UserGridForm";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
             this.FilterPanel.ResumeLayout(false);
             this.FilterPanel.PerformLayout();
@@ -336,7 +342,6 @@
         private Panel panel2;
         private Panel PaginationPanel;
         private control.PaginationUserControl paginationControl;
-        private Panel panel3;
         private DataGridView userDgv;
         private ContextMenuStrip RightClickDgv;
         private ToolStripMenuItem CustomerIDTsmi;
@@ -344,5 +349,6 @@
         private ToolStripMenuItem CustomerCountryTsmi;
         private ToolStripMenuItem CustomerDateTsmi;
         private ToolStripMenuItem CustomerStatusTsmi;
+        public Panel panel3;
     }
 }

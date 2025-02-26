@@ -49,26 +49,30 @@ namespace Winform.Forms.GridForms
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
+            // Reset della paginazione
             paginationControl.CurrentPage = 1;
 
+            // Inizializza la lista dei ruoli selezionati
             selectedRoles = new List<string>();
 
+            // Controlla se il primo elemento della lista non è selezionato
             if (!rolesListBox.GetItemChecked(0))
             {
-                for (int i = 1; i < rolesListBox.Items.Count; i++) // Inizia da 1 per escludere il primo elemento
+                for (int i = 1; i < rolesListBox.Items.Count; i++) // Salta il primo elemento
                 {
-                    if (!rolesListBox.GetItemChecked(i)) // Verifica se l'elemento è selezionato
+                    if (rolesListBox.GetItemChecked(i)) // Solo elementi selezionati
                     {
-                        selectedRoles.Add(rolesListBox.Items[i].ToString()); // Aggiunge il testo dell'elemento alla lista
+                        selectedRoles.Add(rolesListBox.Items[i].ToString());
                     }
                 }
             }
 
+            // Recupera i dati dai campi di input
             name = nameTxt.Text;
             lastname = lastNameTxt.Text;
             email = Emailtxt.Text;
 
-
+            // Crea il filtro per il recupero dei dati
             UserFilter filter = new UserFilter
             {
                 Name = name,
@@ -76,8 +80,9 @@ namespace Winform.Forms.GridForms
                 Email = email,
                 Roles = selectedRoles,
                 page = paginationControl.CurrentPage
-
             };
+
+            // Filtro per il conteggio delle pagine
             UserFilter filterPage = new UserFilter
             {
                 Name = name,
@@ -86,20 +91,40 @@ namespace Winform.Forms.GridForms
                 Roles = selectedRoles
             };
 
+            // Recupera i dati filtrati e aggiorna la DataGridView
             IEnumerable<UserRoleDTO> query = _userService.GetAll(filter);
-            paginationControl.maxPage = ((int)Math.Ceiling(_userService.Count(filterPage) / itemsPage)).ToString();
-            paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
-
             userDgv.DataSource = query.ToList();
 
-
-            if (!paginationControl.Visible)
+            // Aggiungi la colonna per i ruoli, se non presente
+            if (!userDgv.Columns.Contains("Roles"))
             {
-                userDgv.Columns["UserID"].Visible = false;
-                paginationControl.Visible = true;
+                DataGridViewTextBoxColumn rolesColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "Roles",
+                    HeaderText = "Roles",
+                    DataPropertyName = "RolesAsString" // Bind to the computed property
+                };
+                userDgv.Columns.Add(rolesColumn);
             }
 
+            // Aggiorna il numero massimo di pagine per la paginazione
+            int totalRecords = _userService.Count(filterPage);
+            int maxPages = (int)Math.Ceiling((double)totalRecords / itemsPage);
+            paginationControl.maxPage = maxPages.ToString();
+            paginationControl.SetPageLbl($"{paginationControl.CurrentPage}/{maxPages}");
+
+            // Imposta la visibilità e le colonne della DataGridView
+            if (!paginationControl.Visible)
+            {
+                if (userDgv.Columns.Contains("UserID"))
+                {
+                    userDgv.Columns["UserID"].Visible = false;
+                    userDgv.Columns["RolesAsString"].Visible = false;
+                }
+                paginationControl.Visible = true;
+            }
         }
+
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
 
@@ -168,8 +193,11 @@ namespace Winform.Forms.GridForms
         {
 
             PaginationPanel.Location = new Point((Width - PaginationPanel.Width) / 2, 0);
-            paginationControl.Location = new Point((PaginationPanel.Width - paginationControl.Width) / 2, (PaginationPanel.Height - paginationControl.Height) / 2);
-            int newHeight = Top - FilterPanel.Top;
+            paginationControl.Location = new Point((PaginationPanel.Width - paginationControl.Width) / 2,
+                (PaginationPanel.Height - paginationControl.Height) / 2);
+
+
+            int newHeight = (int)((Height - FilterPanel.Top) * 0.9);
             if (FilterPanel.Height != newHeight)
             {
                 FilterPanel.Height = newHeight;
@@ -180,11 +208,7 @@ namespace Winform.Forms.GridForms
         {
             if (e.Button == MouseButtons.Right)
             {
-                var hitTest = userDgv.HitTest(e.X, e.Y);
-                if (hitTest.RowIndex >= 0)
-                {
-                    RightClickDgv.Show(userDgv, e.Location);
-                }
+                RightClickDgv.Show(userDgv, userDgv.PointToClient(Cursor.Position));
             }
         }
 
@@ -208,7 +232,7 @@ namespace Winform.Forms.GridForms
                         userDgv.Columns["Email"].Visible = tsmi.Checked;
                         break;
                     case "CustomerStatusTsmi":
-                        userDgv.Columns["Role"].Visible = tsmi.Checked;
+                        userDgv.Columns["Roles"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;

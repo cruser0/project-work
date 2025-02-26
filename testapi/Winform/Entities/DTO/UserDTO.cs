@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Winform.Entities.DTO
+﻿namespace Winform.Entities.DTO
 {
     public class UserDTO
     {
@@ -32,5 +26,12 @@ namespace Winform.Entities.DTO
         public string? Name { get; set; }
         public string? LastName { get; set; }
         public List<string>? Role { get; set; }
+        public string RolesAsString
+        {
+            get
+            {
+                return string.Join(", ", Role); // Converts the list to a comma-separated string
+            }
+        }
     }
 }
