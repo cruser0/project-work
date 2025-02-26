@@ -104,6 +104,10 @@ namespace API.Models.Services
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 499bd1b01ebbf567319132bc0ff859665f285c70
             UserRole ur;
             using var transaction=_context.Database.BeginTransaction();
             try
@@ -114,9 +118,12 @@ namespace API.Models.Services
             {
 
                 ur = new UserRole
+
                 {
+
                     RoleID = GetRole(role).RoleID,
                     UserID = returnUser.UserID
+               
                 };
                     _context.UserRoles.Add(ur);
                     _context.SaveChanges();
@@ -128,6 +135,7 @@ namespace API.Models.Services
             }
 
             return returnUser;
+<<<<<<< HEAD
 =======
             Role role = GetRole(user.Role);
             _context.Users.Add(returnUser);
@@ -138,6 +146,9 @@ namespace API.Models.Services
             };
             return ur;
 >>>>>>> ded7cc56383fb99bb5d3f115d84548baa2c7e8e0
+=======
+
+>>>>>>> 499bd1b01ebbf567319132bc0ff859665f285c70
         }
     }
 }
