@@ -33,6 +33,11 @@
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(200, 0);
+            this.panel3.Size = new System.Drawing.Size(400, 350);
+            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.leftSideBaruSerControl1);
@@ -60,6 +65,7 @@
             this.Name = "UserForm";
             this.Text = "UserForm";
             this.Controls.SetChildIndex(this.panel6, 0);
+            this.Controls.SetChildIndex(this.panel3, 0);
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 

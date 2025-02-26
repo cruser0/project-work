@@ -28,57 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.FilterPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.rightSideBarUserControl1 = new Winform.Forms.control.RightSideBarUserControl();
+            this.rolesListBox = new System.Windows.Forms.CheckedListBox();
+            this.Emailtxt = new System.Windows.Forms.TextBox();
+            this.lastNameTxt = new System.Windows.Forms.TextBox();
+            this.nameTxt = new System.Windows.Forms.TextBox();
+            this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.paginationUserControl1 = new Winform.Forms.control.PaginationUserControl();
+            this.PaginationPanel = new System.Windows.Forms.Panel();
+            this.paginationControl = new Winform.Forms.control.PaginationUserControl();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.userDgv = new System.Windows.Forms.DataGridView();
+            this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CustomerIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.PaginationPanel.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDgv)).BeginInit();
+            this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.rightSideBarUserControl1);
+            this.panel1.Controls.Add(this.FilterPanel);
+            this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(600, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 510);
             this.panel1.TabIndex = 0;
             // 
-            // panel4
+            // FilterPanel
             // 
-            this.panel4.AutoScroll = true;
-            this.panel4.AutoScrollMargin = new System.Drawing.Size(0, 30);
-            this.panel4.BackColor = System.Drawing.Color.DarkGray;
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.checkedListBox1);
-            this.panel4.Controls.Add(this.textBox3);
-            this.panel4.Controls.Add(this.textBox2);
-            this.panel4.Controls.Add(this.textBox1);
-            this.panel4.Location = new System.Drawing.Point(0, 103);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 407);
-            this.panel4.TabIndex = 1;
+            this.FilterPanel.AutoScroll = true;
+            this.FilterPanel.AutoScrollMargin = new System.Drawing.Size(0, 30);
+            this.FilterPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.FilterPanel.Controls.Add(this.label4);
+            this.FilterPanel.Controls.Add(this.label3);
+            this.FilterPanel.Controls.Add(this.label2);
+            this.FilterPanel.Controls.Add(this.label1);
+            this.FilterPanel.Controls.Add(this.rolesListBox);
+            this.FilterPanel.Controls.Add(this.Emailtxt);
+            this.FilterPanel.Controls.Add(this.lastNameTxt);
+            this.FilterPanel.Controls.Add(this.nameTxt);
+            this.FilterPanel.Location = new System.Drawing.Point(0, 103);
+            this.FilterPanel.Name = "FilterPanel";
+            this.FilterPanel.Size = new System.Drawing.Size(200, 407);
+            this.FilterPanel.TabIndex = 1;
             // 
             // label4
             // 
@@ -116,10 +124,12 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "First Name";
             // 
-            // checkedListBox1
+            // rolesListBox
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.rolesListBox.FormattingEnabled = true;
+            this.rolesListBox.HorizontalScrollbar = true;
+            this.rolesListBox.Items.AddRange(new object[] {
+            "All",
             "Admin",
             "CustomerRead",
             "CustomerWrite",
@@ -142,89 +152,143 @@
             "SaleRead",
             "SaleWrite",
             "SaleRead"});
-            this.checkedListBox1.Location = new System.Drawing.Point(0, 189);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(180, 148);
-            this.checkedListBox1.TabIndex = 4;
+            this.rolesListBox.Location = new System.Drawing.Point(3, 189);
+            this.rolesListBox.Name = "rolesListBox";
+            this.rolesListBox.Size = new System.Drawing.Size(180, 184);
+            this.rolesListBox.TabIndex = 4;
             // 
-            // textBox3
+            // Emailtxt
             // 
-            this.textBox3.Location = new System.Drawing.Point(0, 131);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(180, 23);
-            this.textBox3.TabIndex = 2;
+            this.Emailtxt.Location = new System.Drawing.Point(3, 131);
+            this.Emailtxt.Name = "Emailtxt";
+            this.Emailtxt.Size = new System.Drawing.Size(180, 23);
+            this.Emailtxt.TabIndex = 2;
             // 
-            // textBox2
+            // lastNameTxt
             // 
-            this.textBox2.Location = new System.Drawing.Point(0, 83);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(180, 23);
-            this.textBox2.TabIndex = 1;
+            this.lastNameTxt.Location = new System.Drawing.Point(3, 83);
+            this.lastNameTxt.Name = "lastNameTxt";
+            this.lastNameTxt.Size = new System.Drawing.Size(180, 23);
+            this.lastNameTxt.TabIndex = 1;
             // 
-            // textBox1
+            // nameTxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(0, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 23);
-            this.textBox1.TabIndex = 0;
+            this.nameTxt.Location = new System.Drawing.Point(3, 28);
+            this.nameTxt.Name = "nameTxt";
+            this.nameTxt.Size = new System.Drawing.Size(180, 23);
+            this.nameTxt.TabIndex = 0;
             // 
-            // rightSideBarUserControl1
+            // RightSideBar
             // 
-            this.rightSideBarUserControl1.BackColor = System.Drawing.Color.DarkGray;
-            this.rightSideBarUserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightSideBarUserControl1.Location = new System.Drawing.Point(0, 0);
-            this.rightSideBarUserControl1.Name = "rightSideBarUserControl1";
-            this.rightSideBarUserControl1.Size = new System.Drawing.Size(200, 510);
-            this.rightSideBarUserControl1.TabIndex = 0;
+            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 510);
+            this.RightSideBar.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkGray;
-            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.PaginationPanel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 510);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 100);
             this.panel2.TabIndex = 1;
             // 
-            // panel5
+            // PaginationPanel
             // 
-            this.panel5.Controls.Add(this.paginationUserControl1);
-            this.panel5.Location = new System.Drawing.Point(224, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(407, 100);
-            this.panel5.TabIndex = 0;
+            this.PaginationPanel.Controls.Add(this.paginationControl);
+            this.PaginationPanel.Location = new System.Drawing.Point(224, 0);
+            this.PaginationPanel.Name = "PaginationPanel";
+            this.PaginationPanel.Size = new System.Drawing.Size(407, 100);
+            this.PaginationPanel.TabIndex = 0;
             // 
-            // paginationUserControl1
+            // paginationControl
             // 
-            this.paginationUserControl1.CurrentPage = 0;
-            this.paginationUserControl1.Location = new System.Drawing.Point(45, 23);
-            this.paginationUserControl1.Name = "paginationUserControl1";
-            this.paginationUserControl1.Size = new System.Drawing.Size(316, 50);
-            this.paginationUserControl1.TabIndex = 0;
+            this.paginationControl.CurrentPage = 0;
+            this.paginationControl.Location = new System.Drawing.Point(45, 23);
+            this.paginationControl.Name = "paginationControl";
+            this.paginationControl.Size = new System.Drawing.Size(316, 50);
+            this.paginationControl.TabIndex = 0;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.userDgv);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(600, 510);
             this.panel3.TabIndex = 2;
             // 
-            // dataGridView1
+            // userDgv
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(600, 510);
-            this.dataGridView1.TabIndex = 0;
+            this.userDgv.AllowUserToAddRows = false;
+            this.userDgv.AllowUserToDeleteRows = false;
+            this.userDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.userDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userDgv.Location = new System.Drawing.Point(0, 0);
+            this.userDgv.Name = "userDgv";
+            this.userDgv.ReadOnly = true;
+            this.userDgv.RowTemplate.Height = 25;
+            this.userDgv.Size = new System.Drawing.Size(600, 510);
+            this.userDgv.TabIndex = 0;
+            // 
+            // RightClickDgv
+            // 
+            this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CustomerIDTsmi,
+            this.CustomerNameTsmi,
+            this.CustomerCountryTsmi,
+            this.CustomerDateTsmi,
+            this.CustomerStatusTsmi});
+            this.RightClickDgv.Name = "contextMenuStrip1";
+            this.RightClickDgv.Size = new System.Drawing.Size(163, 114);
+            // 
+            // CustomerIDTsmi
+            // 
+            this.CustomerIDTsmi.CheckOnClick = true;
+            this.CustomerIDTsmi.Name = "CustomerIDTsmi";
+            this.CustomerIDTsmi.Size = new System.Drawing.Size(162, 22);
+            this.CustomerIDTsmi.Text = "Show ID";
+            // 
+            // CustomerNameTsmi
+            // 
+            this.CustomerNameTsmi.Checked = true;
+            this.CustomerNameTsmi.CheckOnClick = true;
+            this.CustomerNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerNameTsmi.Name = "CustomerNameTsmi";
+            this.CustomerNameTsmi.Size = new System.Drawing.Size(162, 22);
+            this.CustomerNameTsmi.Text = "Show Name";
+            // 
+            // CustomerCountryTsmi
+            // 
+            this.CustomerCountryTsmi.Checked = true;
+            this.CustomerCountryTsmi.CheckOnClick = true;
+            this.CustomerCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerCountryTsmi.Name = "CustomerCountryTsmi";
+            this.CustomerCountryTsmi.Size = new System.Drawing.Size(162, 22);
+            this.CustomerCountryTsmi.Text = "Show Last Name";
+            // 
+            // CustomerDateTsmi
+            // 
+            this.CustomerDateTsmi.Checked = true;
+            this.CustomerDateTsmi.CheckOnClick = true;
+            this.CustomerDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerDateTsmi.Name = "CustomerDateTsmi";
+            this.CustomerDateTsmi.Size = new System.Drawing.Size(162, 22);
+            this.CustomerDateTsmi.Text = "Show Email";
+            // 
+            // CustomerStatusTsmi
+            // 
+            this.CustomerStatusTsmi.Checked = true;
+            this.CustomerStatusTsmi.CheckOnClick = true;
+            this.CustomerStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerStatusTsmi.Name = "CustomerStatusTsmi";
+            this.CustomerStatusTsmi.Size = new System.Drawing.Size(162, 22);
+            this.CustomerStatusTsmi.Text = "Show Roles";
             // 
             // UserGridForm
             // 
@@ -237,12 +301,13 @@
             this.Name = "UserGridForm";
             this.Text = "UserGridForm";
             this.panel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.FilterPanel.ResumeLayout(false);
+            this.FilterPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
+            this.PaginationPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDgv)).EndInit();
+            this.RightClickDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -250,20 +315,26 @@
         #endregion
 
         private Panel panel1;
-        private Panel panel4;
+        private Panel FilterPanel;
         private Label label4;
         private Label label3;
         private Label label2;
         private Label label1;
-        private CheckedListBox checkedListBox1;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private control.RightSideBarUserControl rightSideBarUserControl1;
+        private CheckedListBox rolesListBox;
+        private TextBox Emailtxt;
+        private TextBox lastNameTxt;
+        private TextBox nameTxt;
+        private control.RightSideBarUserControl RightSideBar;
         private Panel panel2;
-        private Panel panel5;
-        private control.PaginationUserControl paginationUserControl1;
-        private Panel panel3;
-        private DataGridView dataGridView1;
+        private Panel PaginationPanel;
+        private control.PaginationUserControl paginationControl;
+        private DataGridView userDgv;
+        private ContextMenuStrip RightClickDgv;
+        private ToolStripMenuItem CustomerIDTsmi;
+        private ToolStripMenuItem CustomerNameTsmi;
+        private ToolStripMenuItem CustomerCountryTsmi;
+        private ToolStripMenuItem CustomerDateTsmi;
+        private ToolStripMenuItem CustomerStatusTsmi;
+        public Panel panel3;
     }
 }
