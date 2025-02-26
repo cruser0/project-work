@@ -36,16 +36,6 @@ namespace API.Models.DTO
             Role = list;
         }
     }
-    public class UserRoleDTOPass : UserRoleDTO
-    {
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
-        public UserRoleDTOPass(User user, List<string> list) : base(user,list)
-        {
-            PasswordHash = user.PasswordHash;
-            PasswordSalt = user.PasswordSalt;
-        }
-    }
     public class AssignRoleDTO
     {
         public int Id { get; set; }

@@ -11,12 +11,15 @@ namespace Winform.Entities.DTO
         public string Email { get; set; }
         public string Password { get; set; }
     }
-    public class UserDTOCreate : UserDTO
+    public class UserDTOEdit : UserDTO
     {
         public string Name { get; set; }
         public string LastName { get; set; }
     }
-
+    public class UserDTOCreate : UserDTOEdit
+    {
+        public List<string> Role { get; set; } = new List<string>();
+    }
     public class AssignRoleDTO
     {
         public int Id { get; set; }
