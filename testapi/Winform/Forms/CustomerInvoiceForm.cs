@@ -24,6 +24,21 @@ namespace Winform.Forms
                     }
                 }
 
+                TableLayoutPanel minimizedPanel = (TableLayoutPanel)MdiParent.Controls.Find("minimizedPanel", true)[0];
+
+                foreach (var button in minimizedPanel.Controls)
+                {
+                    if (button is formDockButton btn)
+                    {
+                        if (btn.getForm() is CustomerInvoiceDetailsForm form)
+                        {
+                            form.Close();
+                            minimizedPanel.Controls.Remove(btn);
+                        }
+                    }
+
+                }
+
                 CustomerInvoiceDetailsForm cdf = new CustomerInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
                 cdf.MdiParent = MdiParent;
                 cdf.Size = new Size((int)Math.Floor(MdiParent.Width * 0.48),

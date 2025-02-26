@@ -22,6 +22,11 @@
             Dock = DockStyle.Top;
         }
 
+        public Form getForm()
+        {
+            return form;
+        }
+
         public void buttonShowForm_Click(object sender, EventArgs e)
         {
             int? countOpenForms = mainForm.MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();

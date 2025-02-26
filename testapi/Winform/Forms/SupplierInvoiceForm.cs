@@ -22,6 +22,22 @@ namespace Winform.Forms
                         form.Close();
                     }
                 }
+
+                TableLayoutPanel minimizedPanel = (TableLayoutPanel)MdiParent.Controls.Find("minimizedPanel", true)[0];
+
+                foreach (var button in minimizedPanel.Controls)
+                {
+                    if (button is formDockButton btn)
+                    {
+                        if (btn.getForm() is SupplierInvoiceDetailsForm form)
+                        {
+                            form.Close();
+                            minimizedPanel.Controls.Remove(btn);
+                        }
+                    }
+
+                }
+
                 SupplierInvoiceDetailsForm cdf = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells["InvoiceId"].Value.ToString()));
                 cdf.MdiParent = MdiParent;
                 cdf.Size = new Size((int)Math.Floor(MdiParent.Width * 0.48),
