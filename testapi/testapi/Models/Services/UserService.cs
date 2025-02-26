@@ -103,13 +103,13 @@ namespace API.Models.Services
             returnUser.Email = user.Email;
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
+            Role role = GetRole(user.Role);
+            _context.Users.Add(returnUser);
+            _context.SaveChanges();
             UserRole ur = new UserRole
             {
-                Role = GetRole(user.Role),
-                User = returnUser
+               
             };
-            _context.UserRoles.Add(ur);
-            _context.SaveChanges();
             return ur;
         }
     }
