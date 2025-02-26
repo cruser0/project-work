@@ -115,7 +115,6 @@ namespace API.Models.Services
                 ur = new UserRole
 
                 {
-
                     RoleID = GetRole(role).RoleID,
                     UserID = returnUser.UserID
                

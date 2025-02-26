@@ -46,7 +46,7 @@ namespace API.Controllers
             }
             UserRoleDTO userDTO = new UserRoleDTO(user, roles);
             string token=_authenticationService.CreateToken(userDTO);
-            return Ok(new UserAccessInfoDTO(user,token));
+            return Ok(new UserAccessInfoDTO(userDTO, token));
         }
         
     }
