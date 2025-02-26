@@ -71,7 +71,7 @@ namespace API.Controllers
         }
 
         [HttpPut("user/edit-user")]
-        public async Task<ActionResult<string>> EditUser(int id, UserDTO updateUser)
+        public async Task<ActionResult<string>> EditUser(int id, UserDTOEdit updateUser)
         {
             try
             {
