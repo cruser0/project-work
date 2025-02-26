@@ -30,10 +30,14 @@ namespace Winform.Forms.GridForms
             paginationControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             paginationControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
 
+            rolesListBox.ItemCheck -= rolesListBox_ItemCheck;
             for (int i = 0; i < rolesListBox.Items.Count; i++)
             {
                 rolesListBox.SetItemChecked(i, true);
             }
+            rolesListBox.ItemCheck += rolesListBox_ItemCheck;
+
+
 
 
             paginationControl.Visible = false;
@@ -165,8 +169,11 @@ namespace Winform.Forms.GridForms
 
             PaginationPanel.Location = new Point((Width - PaginationPanel.Width) / 2, 0);
             paginationControl.Location = new Point((PaginationPanel.Width - paginationControl.Width) / 2, (PaginationPanel.Height - paginationControl.Height) / 2);
-            FilterPanel.Height = Height / 2;
-
+            int newHeight = Top - FilterPanel.Top;
+            if (FilterPanel.Height != newHeight)
+            {
+                FilterPanel.Height = newHeight;
+            }
         }
 
         private void userDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -207,6 +214,50 @@ namespace Winform.Forms.GridForms
                         break;
                 }
 
+            }
+        }
+
+        private void rolesListBox_Click(object sender, EventArgs e)
+        {
+            CheckedListBox clb = sender as CheckedListBox;
+            int index = clb.SelectedIndex;
+
+            bool checkState = !clb.GetItemChecked(index); // Inverti lo stato
+            clb.SetItemChecked(index, checkState); // Aggiorna il primo elemento
+
+
+        }
+
+        private void rolesListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox clb = sender as CheckedListBox;
+
+            if (e.Index == 0) // Se è il primo elemento (Seleziona/Deseleziona tutto)
+            {
+                this.BeginInvoke(new Action(() =>
+                {
+                    bool checkState = e.NewValue == CheckState.Checked;
+                    for (int i = 1; i < clb.Items.Count; i++)
+                    {
+                        clb.SetItemChecked(i, checkState);
+                    }
+                }));
+            }
+            else // Se si sta modificando un altro elemento
+            {
+                this.BeginInvoke(new Action(() =>
+                {
+                    bool allChecked = true;
+                    for (int i = 1; i < clb.Items.Count; i++)
+                    {
+                        if (!clb.GetItemChecked(i))
+                        {
+                            allChecked = false;
+                            break;
+                        }
+                    }
+                    clb.SetItemChecked(0, allChecked); // Se tutti gli elementi sono checkati, checka anche il primo
+                }));
             }
         }
 
