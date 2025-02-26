@@ -81,7 +81,7 @@
             "SupplierInvoiceCostDelete",
             "SaleRead",
             "SaleWrite",
-            "SaleRead"});
+            "SaleDelete"});
             this.rolesListBox.Location = new System.Drawing.Point(405, 101);
             this.rolesListBox.MultiColumn = true;
             this.rolesListBox.Name = "rolesListBox";

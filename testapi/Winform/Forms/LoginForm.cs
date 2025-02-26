@@ -47,7 +47,7 @@ namespace Winform.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var ret = _userService.Login(new UserDTO() { Email = "Admin", Password = "Admin" });
+            var ret = _userService.Login(new UserDTO() { Email = "Admin", Password = "string" });
             DialogResult = DialogResult.OK;
             Close();
         }

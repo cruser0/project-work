@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities.DTO;
+﻿using Winform.Entities.DTO;
 using Winform.Services;
 
 namespace Winform.Forms.DetailsForms
@@ -18,14 +9,14 @@ namespace Winform.Forms.DetailsForms
         UserRoleDTO user;
         public UserDetails(int id)
         {
-            _userService=new UserService();
+            _userService = new UserService();
             InitializeComponent();
             user = _userService.GetById(id);
             UserIDTxt.Text = user.UserID.ToString();
-            UserNameTxt.Text=user.Name;
-            UserLastNameTxt.Text=user.LastName;
-            UserEmailTxt.Text=user.Email;
-            foreach(var role in user.Role)
+            UserNameTxt.Text = user.Name;
+            UserLastNameTxt.Text = user.LastName;
+            UserEmailTxt.Text = user.Email;
+            foreach (var role in user.Role)
             {
                 int roleIndex = rolesListBox.Items.IndexOf(role);
                 if (roleIndex != -1)
@@ -54,10 +45,9 @@ namespace Winform.Forms.DetailsForms
         }
         private bool TwoListCheck(List<string> list1, List<string> list2)
         {
-            bool flag=false;
             list1.Sort();
             list2.Sort();
-            if(list1.Count != list2.Count)
+            if (list1.Count != list2.Count)
                 return false;
             for (int i = 0; i < list1.Count; i++)
             {
@@ -71,8 +61,8 @@ namespace Winform.Forms.DetailsForms
         private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
             var list = rolesListBox.CheckedItems;
-            List<string> roles=new List<string>();
-            foreach(var role in list)
+            List<string> roles = new List<string>();
+            foreach (var role in list)
             {
                 roles.Add(role.ToString());
             }
@@ -84,9 +74,9 @@ namespace Winform.Forms.DetailsForms
             UserDTOEdit si = new UserDTOEdit
             {
                 Email = UserEmailTxt.Text,
-                LastName =UserLastNameTxt.Text,
-                Name =UserNameTxt.Text,
-                Password = !string.IsNullOrEmpty(PasswordTxt.Text)? PasswordTxt.Text:null,
+                LastName = UserLastNameTxt.Text,
+                Name = UserNameTxt.Text,
+                Password = !string.IsNullOrEmpty(PasswordTxt.Text) ? PasswordTxt.Text : null,
             };
             AssignRoleDTO ar = new AssignRoleDTO
             {
@@ -106,8 +96,8 @@ namespace Winform.Forms.DetailsForms
 
         private void PasswordSeeBtn_Click(object sender, EventArgs e)
         {
-            if (PasswordTxt.PasswordChar.Equals("*"))
-                PasswordTxt.PasswordChar = default;
+            if (PasswordTxt.PasswordChar.Equals('*'))
+                PasswordTxt.PasswordChar = default(char);
             else
                 PasswordTxt.PasswordChar = '*';
         }
