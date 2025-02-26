@@ -29,13 +29,11 @@
 
             if (countOpenForms >= 4)
                 mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
-            else
-                mainForm.LayoutMdi(MdiLayout.TileVertical);
 
             form.WindowState = FormWindowState.Normal;
 
             form.Show();
-            mainForm.LayoutMdi(MdiLayout.TileVertical);
+            mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
             panel.Controls.Remove(this);
 
         }
@@ -44,7 +42,7 @@
         private void buttonCloseForm_Click(object sender, EventArgs e)
         {
             form.Close();
-            mainForm.LayoutMdi(MdiLayout.TileVertical);
+            mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
             panel.Controls.Remove(this);
         }
     }

@@ -54,10 +54,8 @@ namespace Winform
                     return;
                 }
 
-                if (countOpenForms >= 4)
-                    LayoutMdi(MdiLayout.ArrangeIcons);
-                else
-                    LayoutMdi(MdiLayout.TileVertical);
+                LayoutMdi(MdiLayout.ArrangeIcons);
+
 
                 existingForm.WindowState = FormWindowState.Normal;
                 existingForm.Activate();
@@ -96,10 +94,8 @@ namespace Winform
             child.FormClosing += ChildForm_Close;
 
             child.Show();
-            if (countOpenForms >= 4)
-                LayoutMdi(MdiLayout.ArrangeIcons);
-            else
-                LayoutMdi(MdiLayout.TileVertical);
+            LayoutMdi(MdiLayout.ArrangeIcons);
+
 
 
             Cursor.Current = Cursors.Default;
@@ -114,11 +110,7 @@ namespace Winform
         private void UpdateMdiLayout()
         {
             int countOpenForms = MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
-
-            if (countOpenForms > 4)
-                LayoutMdi(MdiLayout.ArrangeIcons);
-            else
-                LayoutMdi(MdiLayout.TileVertical);
+            LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
 
@@ -153,10 +145,8 @@ namespace Winform
 
             int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
             List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
-            if (countOpenForms >= 4)
-                LayoutMdi(MdiLayout.ArrangeIcons);
-            else
-                LayoutMdi(MdiLayout.TileVertical);
+            LayoutMdi(MdiLayout.ArrangeIcons);
+
         }
     }
 }
