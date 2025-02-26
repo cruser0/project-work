@@ -34,6 +34,9 @@
     <Compile Update="Forms\control\PaginationUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\PasswordTxtUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\control\RightSideBarUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

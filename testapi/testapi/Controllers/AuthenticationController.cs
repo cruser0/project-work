@@ -71,8 +71,8 @@ namespace API.Controllers
             return Ok("User Deleted Successfully");
         }
 
-        [HttpPut("user/edit-user")]
-        public async Task<ActionResult<string>> EditUser(int id, UserDTOEdit updateUser)
+        [HttpPut("user/edit-user/{id}")]
+        public async Task<ActionResult<string>> EditUser(int id, [FromBody] UserDTOEdit updateUser)
         {
             try
             {
