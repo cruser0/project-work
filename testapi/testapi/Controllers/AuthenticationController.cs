@@ -50,16 +50,16 @@ namespace API.Controllers
             return Ok(new UserAccessInfoDTO(userDTO, token));
         }
 
-        [HttpPut("assign-roles")]
-        public async Task<ActionResult<string>> AssignRoles(int id,List<string> roles)
+        [HttpPut("user/assign-roles")]
+        public async Task<ActionResult<string>> AssignRoles(AssignRoleDTO assignRole)
         {
             try
             {
-                _authenticationService.EditRoles(id, roles);
+                _authenticationService.EditRoles(assignRole.Id, assignRole.Roles);
             }catch(Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Role Updated");
         }
-        [HttpDelete("delete-user")]
+        [HttpDelete("user/delete-user/{id}")]
         public async Task<ActionResult<string>> DeleteUser(int id)
         {
             try
@@ -70,8 +70,8 @@ namespace API.Controllers
             return Ok("User Deleted Successfully");
         }
 
-        [HttpPut("edit-user")]
-        public async Task<ActionResult<string>> EditUser(int id, UserDTOEdit updateUser)
+        [HttpPut("user/edit-user")]
+        public async Task<ActionResult<string>> EditUser(int id, UserDTO updateUser)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace API.Controllers
             return Ok("User Updated Successfully");
         }
 
-        [HttpGet("get-all-users")]
+        [HttpGet("user/get-all-users")]
         public IActionResult Get([FromQuery] UserFilter filter)
         {
             try
@@ -96,14 +96,14 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
-        [HttpGet("count")]
+        [HttpGet("user/count")]
         public IActionResult GetCount([FromQuery] UserFilter filter)
         {
             var data = _authenticationService.CountUsers(filter);
             return Ok(data);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("user/{id}")]
         public IActionResult Get(int id)
         {
             UserRoleDTO data;
