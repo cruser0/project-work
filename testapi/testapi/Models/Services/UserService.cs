@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -34,13 +35,16 @@ namespace API.Models.Services
                 return compuuteHash.SequenceEqual(hash);
             }
         }
-        public string CreateToken(User user)
+        public string CreateToken(UserRoleDTO user)
         {
             List<Claim> claims = new List<Claim>
     {
         new Claim(ClaimTypes.NameIdentifier, user.Email),
-        new Claim(ClaimTypes.Role, user.Role)
     };
+            foreach(string role in user.Role)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]));
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
@@ -57,19 +61,38 @@ namespace API.Models.Services
 
         public User GetUserByEmail(string email)
         {
-            var data = _context.Users.Where(x => x.Email == email).FirstOrDefault();
-            if (data == null)
-                throw new Exception("User not found");
-            return data;
+            var user = _context.Users
+                .Where(u => u.Email.Equals(email))
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+                .FirstOrDefault();
+            foreach(var userRole in user.UserRoles)
+            {
+                Console.WriteLine(userRole.Role.RoleName);
+            }
+
+            return user;
         }
-        public User GetUserByID(int id)
+        public UserRoleDTO GetUserByID(int id)
         {
-            var data = _context.Users.Where(x => x.UserID == id).FirstOrDefault();
-            if (data == null)
+            List<string> data = _context.Users.Where(x => x.UserID==id).SelectMany(x => x.UserRoles.Select(ur => ur.Role.RoleName)).ToList();
+
+            var user = _context.Users.FirstOrDefault(x => x.UserID==id);
+
+            if (data == null || user == null)
                 throw new Exception("User not found");
-            return data;
+
+            return new UserRoleDTO(user, data);
         }
-        public User CreateUser(UserDTOCreate user)
+        public Role GetRole(string role)
+        {
+            try
+            {
+
+            return _context.Roles.FirstOrDefault(x => x.RoleName==role);
+            }catch (Exception ex) { throw new Exception("Role not Found"); }
+        }
+        public UserRole CreateUser(UserDTOCreate user)
         {
             if (_context.Users.Any(x => x.Email.Equals(user.Email)))
                 throw new Exception("User is already registered");
@@ -80,10 +103,14 @@ namespace API.Models.Services
             returnUser.Email = user.Email;
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
-            returnUser.Role = "User";
+            Role role = GetRole(user.Role);
             _context.Users.Add(returnUser);
             _context.SaveChanges();
-            return returnUser;
+            UserRole ur = new UserRole
+            {
+               
+            };
+            return ur;
         }
     }
 }

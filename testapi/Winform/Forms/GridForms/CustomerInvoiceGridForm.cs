@@ -124,7 +124,7 @@ namespace Winform.Forms.CreateWindow
             CenterDgv.DataSource = query.ToList();
         }
 
-        private void CenterDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        public virtual void CenterDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView dgv)
             {

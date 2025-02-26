@@ -24,6 +24,8 @@ namespace API.Models
         public virtual DbSet<SupplierInvoiceCost> SupplierInvoiceCosts { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<Role> Roles { get; set; } = null!;
+        public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
         public virtual DbSet<ProfitClassification> ProfitClassifications { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceStatus> CustomerInvoiceStatuses { get; set; } = null!;
         public virtual DbSet<ProfitSaleID> ProfitSaleIDs { get; set; } = null!;
@@ -96,10 +98,6 @@ namespace API.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Role)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.PasswordSalt)
                     .HasColumnType("varbinary(MAX)")
                     .IsUnicode(false);
@@ -108,6 +106,36 @@ namespace API.Models
                     .HasColumnType("varbinary(MAX)")
                     .IsUnicode(false);
             });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(e => e.RoleID);
+
+                entity.Property(e => e.RoleID)
+                    .HasColumnName("RoleID");
+
+                entity.HasIndex(c => c.RoleName)
+                .IsUnique();
+
+                entity.Property(e => e.RoleName)
+                    .HasColumnName("RoleName")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UserRole>()
+           .HasKey(ur => new { ur.UserID, ur.RoleID });
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(ur => ur.User)
+                .WithMany(u => u.UserRoles)
+                .HasForeignKey(ur => ur.UserID);
+
+            modelBuilder.Entity<UserRole>()
+                .HasOne(ur => ur.Role)
+                .WithMany(r => r.UserRoles)
+                .HasForeignKey(ur => ur.RoleID);
+
 
             modelBuilder.Entity<CustomerInvoice>(entity =>
             {
