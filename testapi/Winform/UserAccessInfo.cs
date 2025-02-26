@@ -7,6 +7,6 @@
         public static string LastName { get; set; }
         public static string Email { get; set; }
 
-        public static string Role { get; set; }
+        public static List<string> Role { get; set; }
     }
 }
