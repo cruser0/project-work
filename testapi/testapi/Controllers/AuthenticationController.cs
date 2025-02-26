@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -58,7 +59,7 @@ namespace API.Controllers
             }catch(Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Role Updated");
         }
-        [HttpDelete("assign-roles")]
+        [HttpDelete("delete-user")]
         public async Task<ActionResult<string>> DeleteUser(int id)
         {
             try
@@ -67,6 +68,53 @@ namespace API.Controllers
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Deleted Successfully");
+        }
+
+        [HttpPut("edit-user")]
+        public async Task<ActionResult<string>> EditUser(int id, UserDTOEdit updateUser)
+        {
+            try
+            {
+                _authenticationService.EditUser(id,updateUser);
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+            return Ok("User Updated Successfully");
+        }
+
+        [HttpGet("get-all-users")]
+        public IActionResult Get([FromQuery] UserFilter filter)
+        {
+            try
+            {
+                var result = _authenticationService.GetAllUsers(filter);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+                else throw new Exception("Users not found");
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
+        [HttpGet("count")]
+        public IActionResult GetCount([FromQuery] UserFilter filter)
+        {
+            var data = _authenticationService.CountUsers(filter);
+            return Ok(data);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            UserRoleDTO data;
+            try
+            {
+                data = _authenticationService.GetUserRoleDTOByID(id);
+                if (data == null)
+                    throw new Exception("Customer Invoices not found");
+            }
+            catch (Exception ae) { return BadRequest(ae.Message); }
+            return Ok(data);
         }
 
     }
