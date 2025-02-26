@@ -12,7 +12,6 @@ namespace Winform
         public MainForm()
         {
             InitializeComponent();
-            toolStripTextBox1.Text = "Role: " + UserAccessInfo.Role;
             IsMdiContainer = true; // Set the MDI container
             this.WindowState = FormWindowState.Maximized;
 
@@ -25,6 +24,8 @@ namespace Winform
                 AutoScroll = true
             };
             this.Controls.Add(minimizedPanel);
+
+            adminToolStripMenuItem.Visible = UserAccessInfo.Role.Contains("Admin");
         }
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
@@ -73,8 +74,8 @@ namespace Winform
                 "Show Suppliers" => new SupplierForm(),
                 "Show Supplier Invoices" => new SupplierInvoiceForm(),
                 "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
-                "Add Supplier Invoices Cost" => new CreateSupplierInvoiceCostForm(),
                 "Show Sales" => new SaleForm(),
+                "Add Supplier Invoices Cost" => new CreateSupplierInvoiceCostForm(),
                 "Add Sale" => new CreateSaleForm(),
                 "Add Customer" => new CreateCustomerForm(),
                 "Add Customer Invoice" => new CreateCustomerInvoiceForm(),
@@ -82,13 +83,16 @@ namespace Winform
                 "Add Supplier" => new CreateSupplierForm(),
                 "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
                 "Show Customer Invoices Costs" => new CustomerInvoiceCostForm(),
+                "Show Users" => new Form(),
+                "Add User" => new Form(),
+
 
                 _ => new Form()
             };
 
             child.Text = formName; // Set the title for future control
             child.MdiParent = this;
-            child.Size = new Size(1000, 600);
+            child.Size = new Size((int)Math.Floor(Width * 0.48), (int)Math.Floor((Height - minimizedPanel.Height - menuStrip1.Height) * 0.48));
 
             child.Resize += ChildForm_Resize; // Handle resize event for child forms
             child.FormClosing += ChildForm_Close;
