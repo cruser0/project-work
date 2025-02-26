@@ -1,5 +1,6 @@
 ﻿using Winform.Forms.control;
 using Winform.Forms.CreateWindow;
+using Winform.Forms.DetailsForms;
 
 namespace Winform.Forms
 {

@@ -72,11 +72,7 @@ namespace Winform.Services
 
                 // Leggere il contenuto della risposta
                 string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<string>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
+                return json;
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
@@ -86,7 +82,7 @@ namespace Winform.Services
 
 
 
-        public Supplier Delete(int id)
+        public string Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             HttpResponseMessage response = client.GetClient().DeleteAsync(client.GetBaseUri() + $"user/delete-user/{id}").Result;
@@ -95,11 +91,7 @@ namespace Winform.Services
 
                 // Leggere il contenuto della risposta
                 string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierDTOGet
-                var items = JsonSerializer.Deserialize<Supplier>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
+                return json;
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
@@ -118,13 +110,7 @@ namespace Winform.Services
             HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"user/assign-roles", returnRoles).Result;
             if (response.IsSuccessStatusCode)
             {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<string>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var items = response.Content.ReadAsStringAsync().Result;
                 return items;
 
             }
@@ -147,14 +133,11 @@ namespace Winform.Services
             {
 
                 string json = response.Content.ReadAsStringAsync().Result;
-
-                var items = JsonSerializer.Deserialize<string>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
+                return json;
 
             }
             string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error updating supplier: {errorMessage}");
+            throw new Exception($"Error updating User: {errorMessage}");
         }
 
 

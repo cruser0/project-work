@@ -34,6 +34,9 @@
     <Compile Update="Forms\control\PaginationUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\PasswordTxtUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\control\RightSideBarUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -50,6 +53,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\DetailsForms\CustomerInvoiceCostDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DetailsForms\UserDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\GridForms\CustomerInvoiceCostGridForm.cs">
