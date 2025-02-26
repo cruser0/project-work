@@ -166,7 +166,6 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "UserID", filter.UserID },
                 { "Name", filter.Name },
                 { "LastName", filter.LastName },
                 { "page", filter.page },

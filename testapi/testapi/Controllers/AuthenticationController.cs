@@ -55,7 +55,8 @@ namespace API.Controllers
         {
             try
             {
-                _authenticationService.EditRoles(assignRole.Id, assignRole.Roles);
+                if(assignRole.UserID!=null)
+                    _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
             }catch(Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Role Updated");
         }

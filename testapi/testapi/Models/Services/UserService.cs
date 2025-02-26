@@ -65,13 +65,13 @@ namespace API.Models.Services
                 throw new Exception("User has no Roles");
             return data;
         }
-        public void EditRoles(int id, List<string> roles)
+        public void EditRoles(int? id, List<string> roles)
         {
             if (!roles.Any())
                 throw new Exception("Each user needs to have at least one Role");
-            var rolesList = GetAllRolesByUserID(id);
             if (!_context.Users.Any(x => x.UserID == id))
                 throw new Exception("User not Found");
+            var rolesList = GetAllRolesByUserID((int)id);
             _context.UserRoles.RemoveRange(rolesList);
             _context.SaveChanges();
             UserRole ur;
@@ -85,7 +85,7 @@ namespace API.Models.Services
 
                     {
                         RoleID = GetRole(role).RoleID,
-                        UserID = id
+                        UserID = (int)id
 
                     };
                     _context.UserRoles.Add(ur);
