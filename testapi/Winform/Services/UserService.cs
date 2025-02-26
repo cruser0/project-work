@@ -157,6 +157,10 @@ namespace Winform.Services
                 if (kvp.Value != null)
                     queryParameters.Add($"{kvp.Key}={kvp.Value}");
             }
+            foreach (var kvp in filter.Roles)
+            {
+                queryParameters.Add($"Roles={kvp}");
+            }
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 
