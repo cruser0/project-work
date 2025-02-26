@@ -32,7 +32,7 @@ namespace Winform.Forms.AddForms
 
         public void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
-            this.BeginInvoke(new Action(UpdateMdiLayout));
+            MdiParent.BeginInvoke(new Action(UpdateMdiLayout));
         }
 
         private void UpdateMdiLayout()
@@ -72,9 +72,6 @@ namespace Winform.Forms.AddForms
             // Hide the minimized form in the MDI parent
             childForm.Hide();
 
-            int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
-            List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
-            LayoutMdi(MdiLayout.ArrangeIcons);
 
         }
     }
