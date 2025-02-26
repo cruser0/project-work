@@ -8,14 +8,14 @@ namespace API.Models.DTO
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Role { get; set; }
-        public UserAccessInfoDTO(User user, string token)
+        public List<string> Role { get; set; }
+        public UserAccessInfoDTO(UserRoleDTO user, string token)
         {
             Token = token;
             Name = user.Name;
             LastName = user.LastName;
             Email = user.Email;
-            //Role = user.Role;
+            Role = user.Role;
         }
     }
 }

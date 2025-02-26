@@ -103,7 +103,6 @@ namespace API.Models.Services
             returnUser.Email = user.Email;
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
-
             UserRole ur;
             using var transaction=_context.Database.BeginTransaction();
             try
@@ -116,7 +115,6 @@ namespace API.Models.Services
                 ur = new UserRole
 
                 {
-
                     RoleID = GetRole(role).RoleID,
                     UserID = returnUser.UserID
                
