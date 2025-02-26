@@ -26,6 +26,9 @@ namespace Winform.Services
             string errorMessage = response.Content.ReadAsStringAsync().Result;
             throw new Exception($"Error during the registration of the User: {errorMessage}");
         }
+
+
+
         public UserAccessTemp Login(UserDTO entity)
         {
             string jsonContent = JsonSerializer.Serialize(entity);
@@ -54,6 +57,9 @@ namespace Winform.Services
             throw new Exception($"Error during the login process: {errorMessage}");
         }
 
+
+
+
         public string AssignRoles(AssignRoleDTO entity)
         {
             string jsonContent = JsonSerializer.Serialize(entity);
@@ -77,6 +83,9 @@ namespace Winform.Services
             throw new Exception($"Error during the login process: {errorMessage}");
         }
 
+
+
+
         public Supplier Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
@@ -96,7 +105,11 @@ namespace Winform.Services
             string errorMessage = response.Content.ReadAsStringAsync().Result;
             throw new Exception($"Error deleting supplier: {errorMessage}");
         }
-        public string EditUser(AssignRoleDTO entity)
+
+
+
+
+        public string EditUserRoles(AssignRoleDTO entity)
         {
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnRoles = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -118,7 +131,12 @@ namespace Winform.Services
             string errorMessage = response.Content.ReadAsStringAsync().Result;
             throw new Exception($"Error during the login process: {errorMessage}");
         }
-        public string Update(int id, UserDTOCreate entity)
+
+
+
+
+
+        public string Update(int id, UserDTOEdit entity)
         {
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnUser = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -138,6 +156,10 @@ namespace Winform.Services
             string errorMessage = response.Content.ReadAsStringAsync().Result;
             throw new Exception($"Error updating supplier: {errorMessage}");
         }
+
+
+
+
         private string BuildQueryParams(UserFilter filter)
         {
             var queryParameters = new List<string>();
@@ -166,6 +188,10 @@ namespace Winform.Services
 
             return queryString;
         }
+
+
+
+
         public ICollection<UserRoleDTO> GetAll(UserFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
@@ -186,5 +212,50 @@ namespace Winform.Services
             }
             return new List<UserRoleDTO>();
         }
+
+
+
+
+        public UserRoleDTO GetById(int id)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"user/{id}").Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+
+                // Deserializzare la risposta JSON in una lista di oggetti SupplierDTOGet
+                var items = JsonSerializer.Deserialize<UserRoleDTO>(json,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return items;
+
+            }
+            string errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"Error getting User: {errorMessage}");
+        }
+
+
+        public int Count(UserFilter filter)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            string queryString = BuildQueryParams(filter);
+
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "user/count" + queryString).Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+
+                int count = JsonSerializer.Deserialize<int>(json);
+                return count;
+
+
+            }
+            return 0;
+        }
+
     }
 }
