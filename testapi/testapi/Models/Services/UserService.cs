@@ -104,9 +104,9 @@ namespace API.Models.Services
         internal void EditUser(int id, UserDTOEdit updateUser)
         {
             User user=GetUserByID(id);
-            user.Name = string.IsNullOrEmpty(updateUser.Name)?user.Name : updateUser.Name;
-            user.LastName = string.IsNullOrEmpty(updateUser.LastName) ?user.LastName : updateUser.LastName;
-            user.Email = string.IsNullOrEmpty(updateUser.Email) ?user.Email : updateUser.Email;
+            user.Name = !string.IsNullOrEmpty(updateUser.Name)&&updateUser.Name.Length<=100? updateUser.LastName : user.LastName;
+            user.LastName = !string.IsNullOrEmpty(updateUser.LastName) && updateUser.LastName.Length <= 100 ? updateUser.LastName : user.LastName;
+            user.Email = !string.IsNullOrEmpty(updateUser.Email) && updateUser.Email.Length <= 100 ? updateUser.Email : user.Email;
             if (!string.IsNullOrEmpty(updateUser.Password))
             {
                 CreatePasswordHash(updateUser.Password, out byte[] hash, out byte[] salt);
@@ -226,10 +226,21 @@ namespace API.Models.Services
             if (!user.Role.Any())
                 throw new Exception("Can't create a User with no Roles");
             User returnUser = new User();
+            if (!string.IsNullOrEmpty(user.Name))
+                returnUser.Name = user.Name.Length <= 100 ? user.Name : throw new Exception("User Name needs to be shorter than 100 Character to be created");
+            else
+                throw new Exception("User Name can't be empty");
+            if (!string.IsNullOrEmpty(user.LastName))
+                returnUser.LastName = user.LastName.Length <= 100 ? user.LastName : throw new Exception("User Last Name needs to be shorter than 100 Character to be created");
+            else
+                throw new Exception("User Last Name can't be empty");
+            if (!string.IsNullOrEmpty(user.Email))
+                returnUser.Email =user.Email.Length <= 100 ? user.Email : throw new Exception("User Email needs to be shorter than 100 Character to be created");
+            else
+                throw new Exception("User Email can't be empty");
+            if (string.IsNullOrEmpty(user.Password))
+                throw new Exception("Password can't be empty");
             CreatePasswordHash(user.Password, out byte[] hash, out byte[] salt);
-            returnUser.Name = user.Name;
-            returnUser.LastName = user.LastName;
-            returnUser.Email = user.Email;
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
             UserRole ur;
