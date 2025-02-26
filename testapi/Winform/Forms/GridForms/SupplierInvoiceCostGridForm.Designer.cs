@@ -89,7 +89,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(600, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 467);
+            this.panel2.Size = new System.Drawing.Size(200, 567);
             this.panel2.TabIndex = 1;
             // 
             // TextBoxesRightPanel
@@ -107,7 +107,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 365);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 464);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // NameTxt
@@ -187,7 +187,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 467);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 567);
             this.RightSideBar.TabIndex = 0;
             // 
             // BottomPanel
@@ -197,7 +197,7 @@
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 467);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(800, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(600, 100);
             this.BottomPanel.TabIndex = 2;
             // 
             // PaginationUserControl
@@ -273,8 +273,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 567);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.BottomPanel);
+            this.Controls.Add(this.panel2);
             this.Name = "SupplierInvoiceCostGridForm";
             this.Text = "SupplierInvoiceCostGridForm";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);

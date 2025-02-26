@@ -104,7 +104,7 @@
             this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RigtPanel.Location = new System.Drawing.Point(712, 0);
             this.RigtPanel.Name = "RigtPanel";
-            this.RigtPanel.Size = new System.Drawing.Size(200, 501);
+            this.RigtPanel.Size = new System.Drawing.Size(200, 601);
             this.RigtPanel.TabIndex = 15;
             // 
             // TextBoxesRightPanel
@@ -130,7 +130,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.BoLTextBox);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 397);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 498);
             this.TextBoxesRightPanel.TabIndex = 7;
             // 
             // RevenueFromTxt
@@ -275,7 +275,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 501);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 601);
             this.RightSideBar.TabIndex = 1;
             // 
             // panel1
@@ -312,7 +312,7 @@
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 501);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(912, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(712, 100);
             this.BottomPanel.TabIndex = 18;
             // 
             // panel5
@@ -335,7 +335,7 @@
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(912, 0);
+            this.panel4.Location = new System.Drawing.Point(712, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 100);
             this.panel4.TabIndex = 1;
@@ -456,8 +456,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 601);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.RigtPanel);
             this.Controls.Add(this.BottomPanel);
+            this.Controls.Add(this.RigtPanel);
             this.Name = "SaleGridForm";
             this.Text = "SaleForm";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);

@@ -113,7 +113,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(790, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 526);
+            this.panel1.Size = new System.Drawing.Size(200, 626);
             this.panel1.TabIndex = 5;
             // 
             // TextBoxesRightPanel
@@ -133,7 +133,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.CountryTxt);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 423);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 523);
             this.TextBoxesRightPanel.TabIndex = 6;
             // 
             // label2
@@ -210,7 +210,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 526);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 626);
             this.RightSideBar.TabIndex = 0;
             // 
             // CustomerGdv
@@ -328,7 +328,7 @@
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 526);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(990, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(790, 100);
             this.BottomPanel.TabIndex = 7;
             // 
             // panel5
@@ -351,7 +351,7 @@
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(990, 0);
+            this.panel4.Location = new System.Drawing.Point(790, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 100);
             this.panel4.TabIndex = 1;
@@ -371,8 +371,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 626);
             this.Controls.Add(this.CenterPanel);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.BottomPanel);
+            this.Controls.Add(this.panel1);
             this.Name = "CustomerGridForm";
             this.Text = "testForm";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);

@@ -65,9 +65,9 @@
             this.panel1.Controls.Add(this.FilterPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(797, 0);
+            this.panel1.Location = new System.Drawing.Point(962, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 764);
+            this.panel1.Size = new System.Drawing.Size(200, 648);
             this.panel1.TabIndex = 0;
             // 
             // FilterPanel
@@ -187,7 +187,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 764);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 648);
             this.RightSideBar.TabIndex = 0;
             // 
             // panel2
@@ -195,9 +195,9 @@
             this.panel2.BackColor = System.Drawing.Color.DarkGray;
             this.panel2.Controls.Add(this.PaginationPanel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 664);
+            this.panel2.Location = new System.Drawing.Point(0, 548);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(797, 100);
+            this.panel2.Size = new System.Drawing.Size(962, 100);
             this.panel2.TabIndex = 1;
             // 
             // PaginationPanel
@@ -223,7 +223,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(797, 664);
+            this.panel3.Size = new System.Drawing.Size(962, 548);
             this.panel3.TabIndex = 2;
             // 
             // userDgv
@@ -238,7 +238,7 @@
             this.userDgv.Name = "userDgv";
             this.userDgv.ReadOnly = true;
             this.userDgv.RowTemplate.Height = 25;
-            this.userDgv.Size = new System.Drawing.Size(797, 664);
+            this.userDgv.Size = new System.Drawing.Size(962, 548);
             this.userDgv.TabIndex = 0;
             this.userDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.userDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDgv_RightClick);
@@ -306,7 +306,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 764);
+            this.ClientSize = new System.Drawing.Size(1162, 648);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

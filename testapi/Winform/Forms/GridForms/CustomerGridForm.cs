@@ -184,7 +184,7 @@ namespace Winform.Forms
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             if (sender is DataGridView dgv)
             {
                 if (_father is CreateSaleForm csf)
@@ -199,7 +199,11 @@ namespace Winform.Forms
 
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
-            TextBoxesRightPanel.Height = Height / 2;
+            int newHeight = (int)((Height - TextBoxesRightPanel.Top) * 0.9);
+            if (TextBoxesRightPanel.Height != newHeight)
+            {
+                TextBoxesRightPanel.Height = newHeight;
+            }
 
         }
 

@@ -178,7 +178,7 @@ namespace Winform.Forms
         {
             if (sender is DataGridView dgv)
             {
-                if(_father is CreateSupplierInvoicesForm csif)
+                if (_father is CreateSupplierInvoicesForm csif)
                     csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
             }
         }
@@ -199,7 +199,11 @@ namespace Winform.Forms
 
             panel5.Location = new Point((Width - panel5.Width) / 2, 0);
             PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
-            TextBoxesRightPanel.Height = Height / 2;
+            int newHeight = (int)((Height - TextBoxesRightPanel.Top) * 0.9);
+            if (TextBoxesRightPanel.Height != newHeight)
+            {
+                TextBoxesRightPanel.Height = newHeight;
+            }
         }
         private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
         {

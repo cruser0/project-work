@@ -138,7 +138,11 @@ namespace Winform.Forms.CreateWindow
             BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
 
-            TextBoxesRightPanel.Height = Height / 2;
+            int newHeight = (int)((Height - TextBoxesRightPanel.Top) * 0.9);
+            if (TextBoxesRightPanel.Height != newHeight)
+            {
+                TextBoxesRightPanel.Height = newHeight;
+            }
         }
 
         private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)

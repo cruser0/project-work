@@ -47,7 +47,7 @@ namespace Winform.Forms
             _supplierInvoiceService = new SupplierInvoiceService();
             pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
 
-            _father=father;
+            _father = father;
             InitializeComponent();
             StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
@@ -234,7 +234,11 @@ namespace Winform.Forms
             PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
 
 
-            TextBoxesRightPanel.Height = Height / 2;
+            int newHeight = (int)((Height - TextBoxesRightPanel.Top) * 0.9);
+            if (TextBoxesRightPanel.Height != newHeight)
+            {
+                TextBoxesRightPanel.Height = newHeight;
+            }
         }
 
         private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
