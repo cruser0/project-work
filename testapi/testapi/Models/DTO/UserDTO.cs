@@ -18,7 +18,7 @@ namespace API.Models.DTO
     public class UserDTOCreate: UserDTOEdit
     {
         
-        public List<string> Role { get; set; }
+        public List<string> Role { get; set; }=new List<string>();
     }
     public class UserRoleDTO
     {

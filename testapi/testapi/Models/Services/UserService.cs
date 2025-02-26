@@ -226,10 +226,10 @@ namespace API.Models.Services
             if (!user.Role.Any())
                 throw new Exception("Can't create a User with no Roles");
             User returnUser = new User();
+            returnUser.Name = !string.IsNullOrEmpty(user.Name)? user.Name:throw new Exception("User Needs a Name to be created");
+            returnUser.LastName = !string.IsNullOrEmpty(user.LastName) ? user.LastName : throw new Exception("User Needs a LastName to be created");
+            returnUser.Email = !string.IsNullOrEmpty(user.Email) ? user.Email : throw new Exception("User Needs an Email to be created");
             CreatePasswordHash(user.Password, out byte[] hash, out byte[] salt);
-            returnUser.Name = user.Name;
-            returnUser.LastName = user.LastName;
-            returnUser.Email = user.Email;
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
             UserRole ur;
