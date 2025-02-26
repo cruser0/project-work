@@ -57,7 +57,46 @@ namespace API.Models.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        public List<UserRole> GetAllRolesByUserID(int id)
+        {
+            var data=_context.UserRoles.Where(x=>x.UserID==id).ToList();
+            if (!data.Any())
+                throw new Exception("User has nor Roles");
+            return data;
+        }
+        public void EditRoles(int id, List<string> roles)
+        {
+            var rolesList=GetAllRolesByUserID(id);
+            if (!_context.Users.Any(x => x.UserID == id))
+                throw new Exception("User not Found");
+            _context.UserRoles.RemoveRange(rolesList);
+            _context.SaveChanges();
+            UserRole ur;
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                foreach (var role in roles)
+                {
 
+                    ur = new UserRole
+
+                    {
+                        RoleID = GetRole(role).RoleID,
+                        UserID = id
+
+                    };
+                    _context.UserRoles.Add(ur);
+                    _context.SaveChanges();
+                }
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw new Exception(ex.InnerException.Message);
+            }
+
+        }
 
         public User GetUserByEmail(string email)
         {
@@ -66,11 +105,8 @@ namespace API.Models.Services
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
                 .FirstOrDefault();
-            foreach(var userRole in user.UserRoles)
-            {
-                Console.WriteLine(userRole.Role.RoleName);
-            }
-
+            if (user == null)
+                throw new Exception("User not Found");
             return user;
         }
         public UserRoleDTO GetUserByID(int id)
