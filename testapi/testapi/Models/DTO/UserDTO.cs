@@ -18,15 +18,15 @@ namespace API.Models.DTO
     public class UserDTOCreate: UserDTOEdit
     {
         
-        public List<string> Role { get; set; }=new List<string>();
+        public List<string>? Role { get; set; }=new List<string>();
     }
     public class UserRoleDTO
     {
-        public int UserID { get; set; }
-        public string Email { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public List<string> Role { get; set; }
+        public int? UserID { get; set; }
+        public string? Email { get; set; }
+        public string? Name { get; set; }
+        public string? LastName { get; set; }
+        public List<string>? Role { get; set; }
         public UserRoleDTO(User user,List<string> list)
         {
             UserID = user.UserID;
@@ -38,8 +38,8 @@ namespace API.Models.DTO
     }
     public class AssignRoleDTO
     {
-        public int Id { get; set; }
-        public List<string> Roles { get; set; }
+        public int? UserID { get; set; }
+        public List<string>? Roles { get; set; }
     }
 
 }
