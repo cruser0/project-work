@@ -57,7 +57,6 @@
             this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.Logo = new System.Windows.Forms.PictureBox();
-            this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -298,13 +297,6 @@
             this.Logo.TabIndex = 7;
             this.Logo.TabStop = false;
             // 
-            // sqlCommand1
-            // 
-            this.sqlCommand1.CommandTimeout = 30;
-            this.sqlCommand1.Connection = null;
-            this.sqlCommand1.Notification = null;
-            this.sqlCommand1.Transaction = null;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -357,7 +349,6 @@
         private ToolStripMenuItem showSupplierInvoicesCostsToolStripMenuItem;
         private ToolStripMenuItem customerInvoiceCostsToolStripMenuItem;
         private ToolStripMenuItem showCustomerInvoicesCostsToolStripMenuItem;
-        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem1;

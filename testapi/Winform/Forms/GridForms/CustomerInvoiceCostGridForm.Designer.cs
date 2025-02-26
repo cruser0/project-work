@@ -79,6 +79,7 @@
             this.CustomerInvoiceCostDgv.RowTemplate.Height = 25;
             this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(600, 567);
             this.CustomerInvoiceCostDgv.TabIndex = 0;
+            this.CustomerInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.CustomerInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
             // 
             // panel2

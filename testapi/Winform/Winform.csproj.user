@@ -49,6 +49,9 @@
     <Compile Update="Forms\CustomerInvoiceCostForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\DetailsForms\CustomerInvoiceCostDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\GridForms\CustomerInvoiceCostGridForm.cs">
       <SubType>Form</SubType>
     </Compile>

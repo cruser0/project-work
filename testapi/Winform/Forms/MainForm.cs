@@ -18,6 +18,7 @@ namespace Winform
             // Create a panel to hold minimized forms at the bottom
             minimizedPanel = new TableLayoutPanel
             {
+                Name = "minimizedPanel",
                 Dock = DockStyle.Bottom,
                 Height = 60, // Adjust the height of the panel as needed
                 RowCount = 1,
@@ -25,7 +26,49 @@ namespace Winform
             };
             this.Controls.Add(minimizedPanel);
 
-            adminToolStripMenuItem.Visible = UserAccessInfo.Role.Contains("Admin");
+            adminToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin" });
+            CustomerStripButton.Visible = Authorize(new List<string>
+                { "Admin", "CustomerRead", "CustomerWrite", "CustomerDelete" });
+            AddCustomersStripToolButton.Visible = Authorize(new List<string>
+                { "Admin", "CustomerWrite" });
+
+            customerInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceDelete" });
+            addCustomerInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceWrite"});
+
+            customerInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostDelete" });
+            toolStripMenuItem2.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceCostWrite"});
+
+            SuppliersStripToolButton.Visible = Authorize(new List<string>
+                { "Admin", "SupplierRead", "SupplierWrite", "SupplierDelete" });
+            AddSuppliersStripToolButton.Visible = Authorize(new List<string>
+                { "Admin", "SupplierWrite"});
+
+            supplierInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceDelete" });
+            addSupplierInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoiceWrite"});
+
+            supplierInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostDelete" });
+            toolStripMenuItem1.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoicesCostWrite"});
+
+            salesToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "SaleRead", "SaleWrite", "SaleDelete" });
+            addSalesToolStripMenuItem.Visible = Authorize(new List<string>
+                { "Admin", "SaleWrite"});
+
+        }
+
+
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
@@ -92,7 +135,8 @@ namespace Winform
 
             child.Text = formName; // Set the title for future control
             child.MdiParent = this;
-            child.Size = new Size((int)Math.Floor(Width * 0.48), (int)Math.Floor((Height - minimizedPanel.Height - menuStrip1.Height) * 0.48));
+            child.Size = new Size((int)Math.Floor(Width * 0.48),
+                (int)Math.Floor(Height * 0.40));
 
             child.Resize += ChildForm_Resize; // Handle resize event for child forms
             child.FormClosing += ChildForm_Close;
@@ -106,7 +150,7 @@ namespace Winform
 
         }
 
-        private void ChildForm_Close(object sender, FormClosingEventArgs e)
+        public void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
             this.BeginInvoke(new Action(UpdateMdiLayout));
         }
@@ -118,7 +162,7 @@ namespace Winform
         }
 
 
-        private void ChildForm_Resize(object sender, EventArgs e)
+        public void ChildForm_Resize(object sender, EventArgs e)
         {
             var childForm = sender as Form;
 
@@ -151,6 +195,11 @@ namespace Winform
             List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
             LayoutMdi(MdiLayout.ArrangeIcons);
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //MdiChildren.ToList().ForEach(form => form.WindowState = FormWindowState.Minimized);
         }
     }
 }

@@ -40,21 +40,11 @@ namespace Winform.Forms.GridForms
             this.Close();
         }
 
-        /*private void MyControl_OpenDetails_Clicked(object? sender, DataGridViewCellEventArgs e)
-        {
-            if (sender is DataGridView dgv)
-            {
-                if (e.RowIndex == -1)
-                    return;
-                CustomerInvoiceCostDetailsForm sid = new CustomerInvoiceCostDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
-                sid.Show();
-            }
-            else
-            {
-                MessageBox.Show(sender.ToString());
 
-            }
-        }*/
+        public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
 
         private void MyControl_ButtonClicked(object? sender, EventArgs e)
         {
