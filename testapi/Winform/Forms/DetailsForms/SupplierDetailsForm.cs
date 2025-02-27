@@ -17,6 +17,28 @@ namespace Winform.Forms
             IdSupplierTxt.Enabled = false;
             NameSupplierTxt.Enabled = false;
             CountrySupplierTxt.Enabled = false;
+            List<string> authRolesWrite = new List<string>
+            {
+                "SupplierWrite",
+                "SupplierAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "SupplierAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                SaveEditSupplierBtn.Visible = false;
+                EditSupplierCbx.Visible = false;
+            }
+            if (!Authorize(authRoles))
+                DeleteBtn.Visible = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void EditSupplierCbx_CheckedChanged(object sender, EventArgs e)

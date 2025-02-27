@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities.DTO;
+using Winform.Forms.AddForms;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -19,6 +20,11 @@ namespace Winform.Forms
         double itemsPage = 10.0;
         private SaleService _saleService;
         private Form _father;
+        List<string> authRoles = new List<string>
+            {
+                "SaleAdmin",
+                "Admin"
+            };
         public SaleGridForm()
         {
             _saleService = new SaleService();
@@ -39,6 +45,12 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SaleDgv.ContextMenuStrip = RightClickDgv;
+            if (!Authorize(authRoles))
+            {
+                SaleCustomerIDTsmi.Visible = false;
+                SaleIDTsmi.Visible = false;
+
+            }
         }
 
 
@@ -64,6 +76,45 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
+            if (!Authorize(authRoles))
+            {
+                SaleCustomerIDTsmi.Visible = false;
+                SaleIDTsmi.Visible = false;
+
+            }
+        }
+        public SaleGridForm(CreateCustomerInvoiceForm father)
+        {
+            _father = father;
+            _saleService = new SaleService();
+
+            InitializeComponent();
+            pages = (int)Math.Ceiling(_saleService.Count(new SaleFilter()) / itemsPage);
+
+            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
+            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
+            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
+            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+
+            StatusCB.SelectedIndex = 0;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+
+            PaginationUserControl.Visible = false;
+            PaginationUserControl.SetMaxPage(pages.ToString());
+            PaginationUserControl.CurrentPage = 1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+
+            if (!Authorize(authRoles))
+            {
+                SaleCustomerIDTsmi.Visible = false;
+                SaleIDTsmi.Visible = false;
+
+            }
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -180,6 +231,8 @@ namespace Winform.Forms
             {
                 if (_father is CreateSupplierInvoicesForm csif)
                     csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
+                if (_father is CreateCustomerInvoiceForm ccif)
+                    ccif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
             }
         }
 

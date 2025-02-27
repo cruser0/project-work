@@ -25,8 +25,30 @@ namespace Winform.Forms
             NameCustomerTxt.Enabled = false;
             CountryCustomerTxt.Enabled = false;
             StatusTxt.Enabled = false;
-        }
 
+            List<string> authRolesWrite = new List<string>
+            {
+                "CustomerWrite",
+                "CustomerAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "CustomerAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                EditCustomerCbx.Visible = false;
+                SaveEditCustomerBtn.Visible = false;
+            }
+            if(!Authorize(authRoles))
+                DeleteBtn.Visible = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+        }
         private void EditCustomerCbx_CheckedChanged(object sender, EventArgs e)
         {
             if (EditCustomerCbx.Checked)

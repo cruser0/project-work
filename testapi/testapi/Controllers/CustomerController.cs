@@ -22,7 +22,7 @@ namespace API.Controllers
         }
         // GET: api/<CustomerController>
 
-        [Authorize(Roles = "Admin,CustomerRead")]
+        [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin,SaleWrite,SaleAdmin")]
         [HttpGet]
         public IActionResult Get([FromQuery] CustomerFilter filter)
         {
@@ -38,7 +38,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
-        [Authorize(Roles = "Admin,CustomerRead")]
+        [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin,SaleWrite,SaleAdmin")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] CustomerFilter filter)
         {
@@ -47,7 +47,7 @@ namespace API.Controllers
         }
 
         // GET api/<CustomerController>/5
-        [Authorize(Roles = "Admin,CustomerRead")]
+        [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -65,7 +65,7 @@ namespace API.Controllers
 
 
         // POST api/<CustomerController>
-        [Authorize(Roles = "Admin,CustomerWrite")]
+        [Authorize(Roles = "Admin,CustomerWrite,CustomerAdmin")]
         [HttpPost]
         public IActionResult Post(CustomerDTO customer)
         {
@@ -80,7 +80,7 @@ namespace API.Controllers
         }
 
         // PUT api/<CustomerController>/5
-        [Authorize(Roles = "Admin,CustomerWrite")]
+        [Authorize(Roles = "Admin,CustomerWrite,CustomerAdmin")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] CustomerDTO customer)
         {
@@ -96,7 +96,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<CustomerController>/5
-        [Authorize(Roles = "Admin,CustomerDelete")]
+        [Authorize(Roles = "Admin,CustomerAdmin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

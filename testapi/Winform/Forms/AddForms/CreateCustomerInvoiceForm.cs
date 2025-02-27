@@ -37,5 +37,15 @@ namespace Winform.Forms.AddForms
         {
             SaveBtn.Enabled = integerTextBoxUserControl1.GetText().Length > 0 && dateTimePicker1.Checked;
         }
+
+        private void OpenSale_Click(object sender, EventArgs e)
+        {
+            SaleGridForm sgf = new SaleGridForm(this);
+            sgf.ShowDialog();
+        }
+        public void SetSaleID(string id)
+        {
+            integerTextBoxUserControl1.SetText(id);
+        }
     }
 }

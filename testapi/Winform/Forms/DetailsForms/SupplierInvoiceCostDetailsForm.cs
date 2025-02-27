@@ -24,6 +24,28 @@ namespace Winform.Forms
             SupplierInvoiceIDtxt.Enabled = false;
             button1.Enabled = false;
 
+            List<string> authRolesWrite = new List<string>
+            {
+                "SupplierInvoiceCostWrite",
+                "SupplierInvoiceCostAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "SupplierInvoiceCostAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                button1.Visible = false;
+                checkBox1.Visible = false;
+            }
+            if (!Authorize(authRoles))
+                DeleteBtn.Visible = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void EditCB_CheckedChanged(object sender, EventArgs e)

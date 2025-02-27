@@ -39,37 +39,37 @@ namespace Winform
                 { "Admin" });
 
             CustomerStripButton.Visible = Authorize(new List<string>
-                { "Admin", "CustomerRead", "CustomerWrite", "CustomerDelete" });
+                { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
             AddCustomersStripToolButton.Visible = Authorize(new List<string>
                 { "Admin", "CustomerWrite" });
 
             customerInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceDelete" });
+                { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
             addCustomerInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
                 { "Admin", "CustomerInvoiceWrite"});
 
             customerInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostDelete" });
+                { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
             toolStripMenuItem2.Visible = Authorize(new List<string>
                 { "Admin", "CustomerInvoiceCostWrite"});
 
             SuppliersStripToolButton.Visible = Authorize(new List<string>
-                { "Admin", "SupplierRead", "SupplierWrite", "SupplierDelete" });
+                { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
             AddSuppliersStripToolButton.Visible = Authorize(new List<string>
                 { "Admin", "SupplierWrite"});
 
             supplierInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceDelete" });
+                { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
             addSupplierInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
                 { "Admin", "SupplierInvoiceWrite"});
 
             supplierInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostDelete" });
+                { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin" });
             toolStripMenuItem1.Visible = Authorize(new List<string>
                 { "Admin", "SupplierInvoicesCostWrite"});
 
             salesToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SaleRead", "SaleWrite", "SaleDelete" });
+                { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
             addSalesToolStripMenuItem.Visible = Authorize(new List<string>
                 { "Admin", "SaleWrite"});
         }

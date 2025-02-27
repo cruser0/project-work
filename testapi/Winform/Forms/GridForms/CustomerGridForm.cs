@@ -17,6 +17,11 @@ namespace Winform.Forms
         int pages;
         double itemsPage = 10.0;
         Form _father;
+        List<string> authRoles = new List<string>
+            {
+                "CustomerAdmin",
+                "Admin"
+            };
         public CustomerGridForm()
         {
             _customerService = new CustomerService();
@@ -38,7 +43,13 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CustomerDgv.ContextMenuStrip = RightClickDgv;
+            if (!Authorize(authRoles))
+            {
+                CustomerIDTsmi.Visible = false;
+                CustomerOriginalIDTsmi.Visible = false;
+            }
         }
+        
         public CustomerGridForm(CreateSaleForm father)
         {
             _father = father;
@@ -61,8 +72,16 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CustomerDgv.ContextMenuStrip = RightClickDgv;
+            if (!Authorize(authRoles))
+            {
+                CustomerIDTsmi.Visible = false;
+                CustomerOriginalIDTsmi.Visible = false;
+            }
         }
-
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+        }
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;

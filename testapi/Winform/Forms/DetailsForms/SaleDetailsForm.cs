@@ -27,6 +27,28 @@ namespace Winform.Forms
             RevenueTxt.Enabled = false;
             StatusTxt.Enabled = false;
             saveBtn.Enabled = false;
+            List<string> authRolesWrite = new List<string>
+            {
+                "SaleWrite",
+                "SaleAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "SaleAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                saveBtn.Visible = false;
+                EditCB.Visible = false;
+            }
+            if (!Authorize(authRoles))
+                DeleteBtn.Visible = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void EditCB_CheckedChanged(object sender, EventArgs e)

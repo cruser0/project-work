@@ -52,7 +52,7 @@
             this.DeleteBtn.TabIndex = 19;
             this.DeleteBtn.Text = "Delete";
             this.DeleteBtn.UseVisualStyleBackColor = true;
-            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click_1);
             // 
             // CustomerInvoiceIdTxt
             // 
@@ -147,7 +147,7 @@
             this.checkBox1.TabIndex = 30;
             this.checkBox1.Text = "Edit";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Click += new System.EventHandler(this.EditCustomerCbx_CheckedChanged);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button1
             // 
@@ -157,7 +157,7 @@
             this.button1.TabIndex = 31;
             this.button1.Text = "Save Changes";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.SaveEditCustomerBtn_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // CustomerInvoiceDetailsForm
             // 
