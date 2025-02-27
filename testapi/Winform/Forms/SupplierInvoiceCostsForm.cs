@@ -5,8 +5,10 @@ namespace Winform.Forms
 {
     public partial class SupplierInvoiceCostsForm : SupplierInvoiceCostGridForm
     {
+        MainForm mainForm = Application.OpenForms.OfType<MainForm>().First();
         public SupplierInvoiceCostsForm()
         {
+
             InitializeComponent();
         }
 
@@ -25,7 +27,7 @@ namespace Winform.Forms
                     }
                 }
 
-                TableLayoutPanel minimizedPanel = (TableLayoutPanel)MdiParent.Controls.Find("minimizedPanel", true)[0];
+                TableLayoutPanel minimizedPanel = (TableLayoutPanel)mainForm.Controls.Find("minimizedPanel", true)[0];
 
                 foreach (var button in minimizedPanel.Controls)
                 {
@@ -41,10 +43,10 @@ namespace Winform.Forms
                 }
 
                 SupplierInvoiceCostDetailsForm cdf = new SupplierInvoiceCostDetailsForm(int.Parse(dgv.CurrentRow.Cells[0].Value.ToString()));
-                cdf.MdiParent = MdiParent;
-                cdf.Size = new Size((int)Math.Floor(MdiParent.Width * 0.48),
-                (int)Math.Floor(MdiParent.Height * 0.40));
-
+                cdf.MdiParent = mainForm;
+                cdf.Size = new Size((int)Math.Floor(mainForm.Width * 0.48),
+                (int)Math.Floor(mainForm.Height * 0.40));
+                cdf.Text = "Supplier Invoice Cost Details";
                 cdf.Resize += ChildForm_Resize;
                 cdf.FormClosing += ChildForm_Close;
 
@@ -53,22 +55,24 @@ namespace Winform.Forms
             }
         }
 
+
+
         public void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
-            MdiParent.BeginInvoke(new Action(UpdateMdiLayout));
+            mainForm.BeginInvoke(new Action(UpdateMdiLayout));
         }
 
         private void UpdateMdiLayout()
         {
-            int countOpenForms = MdiParent.MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
-            MdiParent.LayoutMdi(MdiLayout.ArrangeIcons);
+            int countOpenForms = mainForm.MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+            mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
 
         public void ChildForm_Resize(object sender, EventArgs e)
         {
             var childForm = sender as Form;
-            TableLayoutPanel minimizedPanel = (TableLayoutPanel)MdiParent.Controls.Find("minimizedPanel", true)[0];
+            TableLayoutPanel minimizedPanel = (TableLayoutPanel)mainForm.Controls.Find("minimizedPanel", true)[0];
 
             if (childForm == null ||
                 childForm.WindowState != FormWindowState.Minimized ||
@@ -80,7 +84,7 @@ namespace Winform.Forms
             minimizedPanel.ColumnCount += 1;
 
             // Create a new button for the minimized form
-            var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, (MainForm)MdiParent)
+            var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, mainForm)
             {
                 Name = childForm.Text,
                 Dock = DockStyle.Top

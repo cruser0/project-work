@@ -1,4 +1,6 @@
-﻿namespace Winform.Forms
+﻿using Winform.Forms.control;
+
+namespace Winform.Forms
 {
     partial class CustomerForm
     {
@@ -17,6 +19,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

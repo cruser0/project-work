@@ -46,6 +46,7 @@
 
         private void buttonCloseForm_Click(object sender, EventArgs e)
         {
+
             form.Close();
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
             panel.Controls.Remove(this);
