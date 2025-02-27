@@ -13,6 +13,9 @@
     <Compile Update="Forms\AddForms\CreateSupplierInvoiceCostForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\AddForms\CreateUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\control\BaseGridUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
