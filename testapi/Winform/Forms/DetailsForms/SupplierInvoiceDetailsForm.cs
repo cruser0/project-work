@@ -24,6 +24,28 @@ namespace Winform.Forms
             DateClnd.Enabled = false;
             SupplierIDTxt1.Enabled = false;
 
+            List<string> authRolesWrite = new List<string>
+            {
+                "SupplierInvoiceWrite",
+                "SupplierInvoiceAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "SupplierInvoiceAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                SaveEditCustomerBtn.Visible = false;
+                EditCbx.Visible = false;
+            }
+            if (!Authorize(authRoles))
+                DeleteBtn.Visible = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void EditCustomerCbx_CheckedChanged(object sender, EventArgs e)

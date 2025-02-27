@@ -33,6 +33,7 @@
             this.integerTextBoxUserControl1 = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.OpenSale = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -80,11 +81,26 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Sale ID *";
             // 
+            // OpenSale
+            // 
+            this.OpenSale.FlatAppearance.BorderSize = 0;
+            this.OpenSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.OpenSale.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.OpenSale.Location = new System.Drawing.Point(506, 174);
+            this.OpenSale.Name = "OpenSale";
+            this.OpenSale.Size = new System.Drawing.Size(64, 23);
+            this.OpenSale.TabIndex = 32;
+            this.OpenSale.Text = "Open-->";
+            this.OpenSale.UseVisualStyleBackColor = true;
+            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
+            // 
             // CreateCustomerInvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.OpenSale);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.integerTextBoxUserControl1);
@@ -104,5 +120,6 @@
         private control.IntegerTextBoxUserControl integerTextBoxUserControl1;
         private Button SaveBtn;
         private Label label1;
+        private Button OpenSale;
     }
 }

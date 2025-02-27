@@ -32,6 +32,28 @@ namespace Winform.Forms.DetailsForms
             UserNameTxt.Enabled = false;
             UserIDTxt.Enabled = false;
 
+            List<string> authRolesWrite = new List<string>
+            {
+                "UserWrite",
+                "UserAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "UserAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                button1.Visible = false;
+                checkBox1.Visible = false;
+            }
+            if (!Authorize(authRoles))
+                rolesListBox.Enabled = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

@@ -19,7 +19,7 @@ namespace API.Controllers
             _saleService = saleService;
         }
         // GET: api/<SaleController>
-        [Authorize(Roles = "Admin,SaleRead")]
+        [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet]
         public IActionResult Get([FromQuery] SaleFilter filter)
         {
@@ -35,7 +35,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
-        [Authorize(Roles = "Admin,SaleRead")]
+        [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] SaleFilter filter)
         {
@@ -46,7 +46,7 @@ namespace API.Controllers
         }
 
         // GET api/<SaleController>/5
-        [Authorize(Roles = "Admin,SaleRead")]
+        [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -62,7 +62,7 @@ namespace API.Controllers
         }
 
         // POST api/<SaleController>
-        [Authorize(Roles = "Admin,SaleWrite")]
+        [Authorize(Roles = "Admin,SaleWrite,SaleAdmin")]
         [HttpPost]
         public IActionResult Post(SaleDTO sale)
         {
@@ -78,7 +78,7 @@ namespace API.Controllers
         }
 
         // PUT api/<SaleController>/5
-        [Authorize(Roles = "Admin,SaleWrite")]
+        [Authorize(Roles = "Admin,SaleWrite,SaleAdmin")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] SaleDTO sale)
         {
@@ -94,7 +94,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<SaleController>/5
-        [Authorize(Roles = "Admin,SaleDelete")]
+        [Authorize(Roles = "Admin,SaleAdmin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

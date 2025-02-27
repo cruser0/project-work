@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Forms.AddForms;
 using Winform.Services;
 
 namespace Winform.Forms.CreateWindow
@@ -15,6 +16,12 @@ namespace Winform.Forms.CreateWindow
         double itemsPage = 10.0;
         int pages;
         CustomerInvoiceService _customerService;
+        Form _father;
+        List<string> authRoles = new List<string>
+            {
+                "CustomerInvoiceAdmin",
+                "Admin"
+            };
         public CustomerInvoiceGridForm()
         {
 
@@ -35,6 +42,36 @@ namespace Winform.Forms.CreateWindow
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CenterDgv.ContextMenuStrip = RightClickDgv;
+            if (!Authorize(authRoles))
+                CustomerInvoiceIDTsmi.Visible = false;
+        }
+        public CustomerInvoiceGridForm(CreateCustomerInvoiceCostForm father)
+        {
+            _father = father;
+            _customerService = new CustomerInvoiceService();
+            pages = (int)Math.Ceiling(_customerService.Count(new CustomerInvoiceFilter()) / itemsPage);
+
+            InitializeComponent();
+            PaginationUserControl.CurrentPage = 1;
+            StatusCmb.SelectedIndex = 0;
+            RightSideBar.searchBtnEvent += RightSideBar_searchBtnEvent;
+            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+
+            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
+            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
+            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
+            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            PaginationUserControl.Visible = false;
+            PaginationUserControl.SetMaxPage(pages.ToString());
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CenterDgv.ContextMenuStrip = RightClickDgv;
+            if (!Authorize(authRoles))
+                CustomerInvoiceIDTsmi.Visible = false;
+
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -126,7 +163,14 @@ namespace Winform.Forms.CreateWindow
 
         public virtual void CenterDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (sender is DataGridView dgv)
+            {
+                if (_father is CreateCustomerInvoiceCostForm csif)
+                    csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
+            }
+        
+            /*if (sender is DataGridView dgv)
             {
                 if (e.RowIndex == -1)
                     return;
@@ -138,7 +182,7 @@ namespace Winform.Forms.CreateWindow
             {
                 MessageBox.Show(sender.ToString());
 
-            }
+            }*/
         }
         private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)
         {

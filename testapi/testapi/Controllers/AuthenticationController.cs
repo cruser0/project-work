@@ -18,6 +18,9 @@ namespace API.Controllers
         {
             _authenticationService = auth;
         }
+
+
+
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserDTOCreate request)
         {
@@ -29,7 +32,9 @@ namespace API.Controllers
 
             return Ok("User Registered Successfully ");
         }
-        //[Authorize(Roles ="Admin")]
+
+
+
         [HttpPost("login")]
         public async Task<ActionResult<UserAccessInfoDTO>> Login(UserDTO request)
         {
@@ -50,6 +55,8 @@ namespace API.Controllers
             return Ok(new UserAccessInfoDTO(userDTO, token));
         }
 
+
+        [Authorize(Roles = "Admin,UserAdmin")]
         [HttpPut("user/assign-roles")]
         public async Task<ActionResult<string>> AssignRoles(AssignRoleDTO assignRole)
         {
@@ -60,6 +67,7 @@ namespace API.Controllers
             }catch(Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Role Updated");
         }
+        [Authorize(Roles = "Admin,UserAdmin")]
         [HttpDelete("user/delete-user/{id}")]
         public async Task<ActionResult<string>> DeleteUser(int id)
         {
@@ -71,6 +79,7 @@ namespace API.Controllers
             return Ok("User Deleted Successfully");
         }
 
+        [Authorize(Roles = "Admin,UserAdmin,UserWrite")]
         [HttpPut("user/edit-user/{id}")]
         public async Task<ActionResult<string>> EditUser(int id, [FromBody] UserDTOEdit updateUser)
         {
@@ -81,6 +90,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Updated Successfully");
         }
+        [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
 
         [HttpGet("user/get-all-users")]
         public IActionResult Get([FromQuery] UserFilter filter)
@@ -97,13 +107,14 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/count")]
         public IActionResult GetCount([FromQuery] UserFilter filter)
         {
             var data = _authenticationService.CountUsers(filter);
             return Ok(data);
         }
-
+        [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/{id}")]
         public IActionResult Get(int id)
         {

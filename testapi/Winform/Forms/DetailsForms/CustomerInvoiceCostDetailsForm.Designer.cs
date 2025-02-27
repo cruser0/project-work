@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.editchbx = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,24 +41,26 @@
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // saveBtn
             // 
-            this.button1.Location = new System.Drawing.Point(216, 347);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 23);
-            this.button1.TabIndex = 40;
-            this.button1.Text = "Save Changes";
-            this.button1.UseVisualStyleBackColor = true;
+            this.saveBtn.Location = new System.Drawing.Point(216, 347);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(92, 23);
+            this.saveBtn.TabIndex = 40;
+            this.saveBtn.Text = "Save Changes";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
-            // checkBox1
+            // editchbx
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(114, 351);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(46, 19);
-            this.checkBox1.TabIndex = 39;
-            this.checkBox1.Text = "Edit";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.editchbx.AutoSize = true;
+            this.editchbx.Location = new System.Drawing.Point(114, 351);
+            this.editchbx.Name = "editchbx";
+            this.editchbx.Size = new System.Drawing.Size(46, 19);
+            this.editchbx.TabIndex = 39;
+            this.editchbx.Text = "Edit";
+            this.editchbx.UseVisualStyleBackColor = true;
+            this.editchbx.CheckedChanged += new System.EventHandler(this.EditCB_CheckedChanged);
             // 
             // label4
             // 
@@ -103,10 +105,10 @@
             this.QuantityTxt.Size = new System.Drawing.Size(194, 23);
             this.QuantityTxt.TabIndex = 34;
             // 
-            // SupplierInvoiceIDtxt
+            // CustomerInvoiceIDtxt
             // 
             this.CustomerInvoiceIDtxt.Location = new System.Drawing.Point(114, 146);
-            this.CustomerInvoiceIDtxt.Name = "SupplierInvoiceIDtxt";
+            this.CustomerInvoiceIDtxt.Name = "CustomerInvoiceIDtxt";
             this.CustomerInvoiceIDtxt.Size = new System.Drawing.Size(194, 23);
             this.CustomerInvoiceIDtxt.TabIndex = 33;
             // 
@@ -117,10 +119,10 @@
             this.CostTxt.Size = new System.Drawing.Size(194, 23);
             this.CostTxt.TabIndex = 32;
             // 
-            // SupplierInvoiceCostIDtxt
+            // CustomerInvoiceCostIDtxt
             // 
             this.CustomerInvoiceCostIDtxt.Location = new System.Drawing.Point(114, 73);
-            this.CustomerInvoiceCostIDtxt.Name = "SupplierInvoiceCostIDtxt";
+            this.CustomerInvoiceCostIDtxt.Name = "CustomerInvoiceCostIDtxt";
             this.CustomerInvoiceCostIDtxt.Size = new System.Drawing.Size(194, 23);
             this.CustomerInvoiceCostIDtxt.TabIndex = 31;
             // 
@@ -133,14 +135,15 @@
             this.DeleteBtn.TabIndex = 30;
             this.DeleteBtn.Text = "Delete";
             this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
             // CustomerInvoiceCostDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.saveBtn);
+            this.Controls.Add(this.editchbx);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -159,8 +162,8 @@
 
         #endregion
 
-        private Button button1;
-        private CheckBox checkBox1;
+        private Button saveBtn;
+        private CheckBox editchbx;
         private Label label4;
         private Label label3;
         private Label label2;

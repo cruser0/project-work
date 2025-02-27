@@ -19,7 +19,7 @@ namespace API.Controllers
             _supplierInvoiceCostService = supplierInvoiceCostService;
         }
         // GET: api/<SupplierInvoiceCostController>
-        [Authorize(Roles = "Admin,SupplierInvoiceCostRead")]
+        [Authorize(Roles = "Admin,SupplierInvoiceCostRead,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet]
         public IActionResult Get([FromQuery] SupplierInvoiceCostFilter filter)
         {
@@ -35,7 +35,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
-        [Authorize(Roles = "Admin,SupplierInvoiceCostRead")]
+        [Authorize(Roles = "Admin,SupplierInvoiceCostRead,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] SupplierInvoiceCostFilter filter)
         {
@@ -46,7 +46,7 @@ namespace API.Controllers
         }
 
         // GET api/<SupplierInvoiceCostController>/5
-        [Authorize(Roles = "Admin,SupplierInvoiceCostRead")]
+        [Authorize(Roles = "Admin,SupplierInvoiceCostRead,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -63,7 +63,7 @@ namespace API.Controllers
         }
 
         // POST api/<SupplierInvoiceCostController>
-        [Authorize(Roles = "Admin,SupplierInvoiceCostWrite")]
+        [Authorize(Roles = "Admin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpPost]
         public IActionResult Post(SupplierInvoiceCostDTO supplierInvoiceCost)
         {
@@ -79,7 +79,7 @@ namespace API.Controllers
         }
 
         // PUT api/<SupplierInvoiceCostController>/5
-        [Authorize(Roles = "Admin,SupplierInvoiceCostWrite")]
+        [Authorize(Roles = "Admin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] SupplierInvoiceCostDTO supplierInvoiceCost)
         {
@@ -94,7 +94,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<SupplierInvoiceCostController>/5
-        [Authorize(Roles = "Admin,SupplierInvoiceCostDelete")]
+        [Authorize(Roles = "Admin,SupplierInvoiceCostAdmin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -1,4 +1,5 @@
 ﻿using Winform.Entities;
+using Winform.Forms.CreateWindow;
 using Winform.Services;
 
 namespace Winform.Forms.AddForms
@@ -45,6 +46,17 @@ namespace Winform.Forms.AddForms
                 CostTxt.GetText().Length > 0 &&
                 QuantityTxt.GetText().Length > 0 &&
                 NameTxt.Text.Length > 0;
+        }
+
+        private void OpenSale_Click(object sender, EventArgs e)
+        {
+
+                CustomerInvoiceGridForm sgf = new CustomerInvoiceGridForm(this);
+                sgf.ShowDialog();
+        }
+        public void SetCustomerInvoiceID(string id)
+        {
+            CustomerInvoiceIdTxt.SetText(id);
         }
     }
 }

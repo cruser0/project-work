@@ -26,21 +26,31 @@ namespace Winform.Forms
             SaleIdTxt.Enabled = false;
             InvoiceDateDTP.Enabled = false;
             button1.Enabled = false;
-
-
+            List<string> authRolesWrite = new List<string>
+            {
+                "CustomerInvoiceWrite",
+                "CustomerInvoiceAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "CustomerInvoiceAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                checkBox1.Visible = false;
+                button1.Visible = false;
+            }
+            if (!Authorize(authRoles))
+                DeleteBtn.Visible = false;
         }
-
-        private void EditCustomerCbx_CheckedChanged(object sender, EventArgs e)
+        private bool Authorize(List<string> allowedRoles)
         {
-
-            StatusCB.Enabled = !StatusCB.Enabled;
-            SaleIdTxt.Enabled = !SaleIdTxt.Enabled;
-            InvoiceDateDTP.Enabled = !InvoiceDateDTP.Enabled;
-            button1.Enabled = !button1.Enabled;
-
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
-        private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             CustomerInvoice si = new CustomerInvoice
             {
@@ -59,7 +69,19 @@ namespace Winform.Forms
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            StatusCB.Enabled = !StatusCB.Enabled;
+            SaleIdTxt.Enabled = !SaleIdTxt.Enabled;
+            InvoiceDateDTP.Enabled = !InvoiceDateDTP.Enabled;
+            button1.Enabled = !button1.Enabled;
+        }
+
+
+
+
+
+        private void DeleteBtn_Click_1(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
            "This action is permanent and it will delete all the history bound to this Customer Invoice!",

@@ -13,6 +13,11 @@ namespace Winform.Forms.GridForms
         readonly CustomerInvoiceCostService _customerInvoiceCostService;
         int pages;
         double itemsPage = 10.0;
+        List<string> authRoles = new List<string>
+            {
+                "CustomerInvoiceCostAdmin",
+                "Admin"
+            };
         public CustomerInvoiceCostGridForm()
         {
             _customerInvoiceCostService = new CustomerInvoiceCostService();
@@ -33,6 +38,13 @@ namespace Winform.Forms.GridForms
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CustomerInvoiceCostDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
+            if (!Authorize(authRoles))
+                CustomerInvoiceCostIDTsmi.Visible = false;
+
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
