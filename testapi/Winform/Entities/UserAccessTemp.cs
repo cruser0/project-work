@@ -7,5 +7,6 @@
         public string LastName { get; set; }
         public string Email { get; set; }
         public List<string> Role { get; set; }
+        public RefreshToken RefreshToken { get; set; }
     }
 }

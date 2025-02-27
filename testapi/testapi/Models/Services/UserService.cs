@@ -52,12 +52,41 @@ namespace API.Models.Services
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(1),
+                expires: DateTime.UtcNow.AddMinutes(int.Parse(_configuration["JwtConfig:AccessTokenExpiration"])),
                 signingCredentials: cred
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public RefreshToken GenerateRefreshToken(int userID)
+        {
+            var refreshToken = new RefreshToken
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(int.Parse(_configuration["JwtConfig:RefreshTokenExpiration"])),
+                Created = DateTime.Now,
+                UserID = userID
+            };
+            _context.RefreshTokens.Add(refreshToken);
+            _context.SaveChanges();
+            return refreshToken;
+        }
+
+        public RefreshToken userByRefreshToken(RefreshToken refTk)
+        {
+            User user=_context.Users.Where(x=>x.UserID==refTk.UserID).FirstOrDefault();
+            if (user == null)
+                throw new Exception("User not found");
+            RefreshToken refreshToken = _context.RefreshTokens
+                .Where(x => x.UserID == user.UserID)
+                .OrderByDescending(x => x.Created)
+                .FirstOrDefault();
+            if (refreshToken == null)
+                throw new Exception("User has no refresh tokens");
+            return refreshToken;
+        }
+
         public List<UserRole> GetAllRolesByUserID(int id)
         {
             var data = _context.UserRoles.Where(x => x.UserID == id).ToList();
@@ -89,8 +118,8 @@ namespace API.Models.Services
 
                     };
                     _context.UserRoles.Add(ur);
-                    _context.SaveChanges();
                 }
+                _context.SaveChanges();
                 transaction.Commit();
             }
             catch (Exception ex)
@@ -104,7 +133,7 @@ namespace API.Models.Services
         internal void EditUser(int id, UserDTOEdit updateUser)
         {
             User user=GetUserByID(id);
-            user.Name = !string.IsNullOrEmpty(updateUser.Name)&&updateUser.Name.Length<=100? updateUser.LastName : user.LastName;
+            user.Name = !string.IsNullOrEmpty(updateUser.Name)&&updateUser.Name.Length<=100? updateUser.Name : user.Name;
             user.LastName = !string.IsNullOrEmpty(updateUser.LastName) && updateUser.LastName.Length <= 100 ? updateUser.LastName : user.LastName;
             user.Email = !string.IsNullOrEmpty(updateUser.Email) && updateUser.Email.Length <= 100 ? updateUser.Email : user.Email;
             if (!string.IsNullOrEmpty(updateUser.Password))

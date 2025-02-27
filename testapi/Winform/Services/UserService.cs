@@ -50,6 +50,53 @@ namespace Winform.Services
                 UserAccessInfo.Token = items.Token;
                 UserAccessInfo.LastName = items.LastName;
                 UserAccessInfo.Role = items.Role;
+                UserAccessInfo.RefreshToken = items.RefreshToken.Token;
+                UserAccessInfo.RefreshCreated = items.RefreshToken.Created;
+                UserAccessInfo.RefreshExpires = items.RefreshToken.Expires;
+                UserAccessInfo.RefreshTokenID = items.RefreshToken.TokenID;
+                UserAccessInfo.RefreshUserID = items.RefreshToken.UserID;
+                return items;
+
+            }
+            string errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"Error during the login process: {errorMessage}");
+        }
+
+        public UserAccessTemp RefreshToken()
+        {
+            RefreshToken rt = new RefreshToken
+            {
+                TokenID = UserAccessInfo.RefreshTokenID,
+                Expires = UserAccessInfo.RefreshExpires,
+                Created = UserAccessInfo.RefreshCreated,
+                Token = UserAccessInfo.RefreshToken,
+                UserID = UserAccessInfo.RefreshUserID,
+
+            };
+            string jsonContent = JsonSerializer.Serialize(rt);
+            var returnRefreshToken = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            ClientAPI client = new ClientAPI();
+            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"refresh-token", returnRefreshToken).Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+
+                // Deserializzare la risposta JSON in una lista di oggetti CustomerInvoiceCostDTOGet
+                var items = JsonSerializer.Deserialize<UserAccessTemp>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                UserAccessInfo.Email = items.Email;
+                UserAccessInfo.Name = items.Name;
+                UserAccessInfo.Token = items.Token;
+                UserAccessInfo.LastName = items.LastName;
+                UserAccessInfo.Role = items.Role;
+                UserAccessInfo.RefreshToken = items.RefreshToken.Token;
+                UserAccessInfo.RefreshCreated = items.RefreshToken.Created;
+                UserAccessInfo.RefreshExpires = items.RefreshToken.Expires;
+                UserAccessInfo.RefreshTokenID = items.RefreshToken.TokenID;
+                UserAccessInfo.RefreshUserID = items.RefreshToken.UserID;
                 return items;
 
             }

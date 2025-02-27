@@ -24,6 +24,7 @@ namespace API.Models
         public virtual DbSet<SupplierInvoiceCost> SupplierInvoiceCosts { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
         public virtual DbSet<ProfitClassification> ProfitClassifications { get; set; } = null!;
@@ -121,7 +122,36 @@ namespace API.Models
                     .HasColumnName("RoleName")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
             });
+
+            modelBuilder.Entity<RefreshToken>(entity =>
+            {
+                entity.HasKey(e => e.TokenID);
+
+                entity.Property(e => e.TokenID)
+                    .HasColumnName("TokenID");
+
+                entity.Property(e => e.UserID)
+                    .HasColumnName("UserID");
+
+                entity.Property(e => e.Created)
+                .HasColumnType("date");
+
+                entity.Property(e => e.Expires)
+                .HasColumnType("date");
+
+                entity.Property(e => e.Token)
+                    .HasColumnType("varchar(MAX)")
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.RefreshTokens)
+                    .HasForeignKey(d => d.UserID)
+                    .HasConstraintName("FK_RefreshTokens_Users");
+
+            });
+
 
             modelBuilder.Entity<UserRole>()
            .HasKey(ur => new { ur.UserID, ur.RoleID });

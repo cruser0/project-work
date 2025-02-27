@@ -9,13 +9,15 @@ namespace API.Models.DTO
         public string LastName { get; set; }
         public string Email { get; set; }
         public List<string> Role { get; set; }
-        public UserAccessInfoDTO(UserRoleDTO user, string token)
+        public RefreshToken RefreshToken { get; set; }
+        public UserAccessInfoDTO(UserRoleDTO user, string token, RefreshToken refreshToken)
         {
             Token = token;
             Name = user.Name;
             LastName = user.LastName;
             Email = user.Email;
             Role = user.Role;
+            RefreshToken = refreshToken;
         }
     }
 }
