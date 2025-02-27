@@ -14,6 +14,11 @@ namespace Winform.Forms.CreateWindow
         readonly SupplierInvoiceCostService _supplierInvoiceCostService;
         int pages;
         double itemsPage = 10.0;
+        List<string> authRoles = new List<string>
+            {
+                "SupplierInvoiceCostAdmin",
+                "Admin"
+            };
         public SupplierInvoiceCostGridForm()
         {
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
@@ -34,8 +39,13 @@ namespace Winform.Forms.CreateWindow
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierInvoiceCostDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
+            if(!Authorize(authRoles))
+                SupplierInvoiceCostIDTsmi.Visible = false;
         }
-
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+        }
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
         {
             this.Close();

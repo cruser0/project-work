@@ -15,6 +15,11 @@ namespace Winform.Forms
         double itemsPage = 10.0;
         private SupplierService _supplierService;
         private CreateSupplierInvoicesForm _father;
+        List<string> authRoles = new List<string>
+            {
+                "SupplierAdmin",
+                "Admin"
+            };
         public SupplierGridForm()
         {
             _supplierService = new SupplierService();
@@ -35,6 +40,8 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierDgv.ContextMenuStrip = RightClickDgv;
+            if (!Authorize(authRoles))
+                SupplierIDTsmi.Visible = false;
         }
         public SupplierGridForm(CreateSupplierInvoicesForm father)
         {
@@ -57,6 +64,12 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierDgv.ContextMenuStrip = RightClickDgv;
+            if (!Authorize(authRoles))
+                SupplierIDTsmi.Visible = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)

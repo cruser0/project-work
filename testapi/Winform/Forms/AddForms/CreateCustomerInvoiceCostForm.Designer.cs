@@ -37,6 +37,7 @@
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.CostTxt = new Winform.Forms.control.DecimalTextBoxUserControl();
+            this.OpenSale = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SaveBtn
@@ -115,11 +116,26 @@
             this.CostTxt.Size = new System.Drawing.Size(200, 23);
             this.CostTxt.TabIndex = 21;
             // 
+            // OpenSale
+            // 
+            this.OpenSale.FlatAppearance.BorderSize = 0;
+            this.OpenSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.OpenSale.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.OpenSale.Location = new System.Drawing.Point(497, 108);
+            this.OpenSale.Name = "OpenSale";
+            this.OpenSale.Size = new System.Drawing.Size(64, 23);
+            this.OpenSale.TabIndex = 33;
+            this.OpenSale.Text = "Open-->";
+            this.OpenSale.UseVisualStyleBackColor = true;
+            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
+            // 
             // CreateCustomerInvoiceCostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.OpenSale);
             this.Controls.Add(this.CostTxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NameTxt);
@@ -147,5 +163,6 @@
         private TextBox NameTxt;
         private Label label4;
         private control.DecimalTextBoxUserControl CostTxt;
+        private Button OpenSale;
     }
 }

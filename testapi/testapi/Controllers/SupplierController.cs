@@ -19,7 +19,7 @@ namespace API.Controllers
             _supplierService = supplierService;
         }
         // GET: api/<SupplierController>
-        [Authorize(Roles = "Admin,SupplierRead")]
+        [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
         [HttpGet]
         public IActionResult Get([FromQuery] SupplierFilter filter)
         {
@@ -35,7 +35,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
-        [Authorize(Roles = "Admin,SupplierRead")]
+        [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
         [HttpGet("count")]
         public IActionResult GetCount([FromQuery] SupplierFilter filter)
         {
@@ -44,7 +44,7 @@ namespace API.Controllers
         }
 
         // GET api/<SupplierController>/5
-        [Authorize(Roles = "Admin,SupplierRead")]
+        [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -59,7 +59,7 @@ namespace API.Controllers
         }
 
         // POST api/<SupplierController>
-        [Authorize(Roles = "Admin,SupplierWrite")]
+        [Authorize(Roles = "Admin,SupplierWrite,SupplierAdmin")]
         [HttpPost]
         public IActionResult Post(SupplierDTO supplier)
         {
@@ -74,7 +74,7 @@ namespace API.Controllers
         }
 
         // PUT api/<SupplierController>/5
-        [Authorize(Roles = "Admin,SupplierWrite")]
+        [Authorize(Roles = "Admin,SupplierWrite,SupplierAdmin")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] SupplierDTO supplier)
         {
@@ -90,7 +90,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<SupplierController>/5
-        [Authorize(Roles = "Admin,SupplierDelete")]
+        [Authorize(Roles = "Admin,SupplierAdmin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

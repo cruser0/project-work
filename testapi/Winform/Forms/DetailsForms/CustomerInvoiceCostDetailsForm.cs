@@ -22,8 +22,29 @@ namespace Winform.Forms.DetailsForms
             QuantityTxt.Enabled = false;
             CostTxt.Enabled = false;
             CustomerInvoiceIDtxt.Enabled = false;
-            button1.Enabled = false;
-
+            saveBtn.Enabled = false;
+            List<string> authRolesWrite = new List<string>
+            {
+                "CustomerInvoiceCostWrite",
+                "CustomerInvoiceCostAdmin",
+                "Admin"
+            };
+            List<string> authRoles = new List<string>
+            {
+                "CustomerInvoiceCostAdmin",
+                "Admin"
+            };
+            if (!Authorize(authRolesWrite))
+            {
+                editchbx.Visible = false;
+                saveBtn.Visible = false;
+            }
+            if (!Authorize(authRoles))
+                DeleteBtn.Visible = false;
+        }
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void EditCB_CheckedChanged(object sender, EventArgs e)
@@ -31,7 +52,7 @@ namespace Winform.Forms.DetailsForms
             QuantityTxt.Enabled = !QuantityTxt.Enabled;
             CostTxt.Enabled = !CostTxt.Enabled;
             CustomerInvoiceIDtxt.Enabled = !CustomerInvoiceIDtxt.Enabled;
-            button1.Enabled = !button1.Enabled;
+            saveBtn.Enabled = !saveBtn.Enabled;
         }
 
         private void saveBtn_Click(object sender, EventArgs e)

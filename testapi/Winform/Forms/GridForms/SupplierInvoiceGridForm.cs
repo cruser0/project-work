@@ -20,6 +20,12 @@ namespace Winform.Forms
         readonly SupplierInvoiceService _supplierInvoiceService;
         int pages;
         double itemsPage = 10.0;
+
+        List<string> authRoles = new List<string>
+            {
+                "SupplierInvoiceAdmin",
+                "Admin"
+            };
         public SupplierInvoiceGridForm()
         {
             _supplierInvoiceService = new SupplierInvoiceService();
@@ -41,6 +47,11 @@ namespace Winform.Forms
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
+            if (!Authorize(authRoles))
+            {
+                SupplierInvoiceIDTsmi.Visible = false;
+                SupplierInvoiceSupplierIDTsmi.Visible = false;
+            }
         }
         public SupplierInvoiceGridForm(Form father)
         {
@@ -63,6 +74,11 @@ namespace Winform.Forms
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
+            if (!Authorize(authRoles))
+            {
+                SupplierInvoiceIDTsmi.Visible = false;
+                SupplierInvoiceSupplierIDTsmi.Visible = false;
+            }
         }
         public SupplierInvoiceGridForm(string? id)
         {
@@ -78,8 +94,16 @@ namespace Winform.Forms
             }
             SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
+            if (!Authorize(authRoles))
+            {
+                SupplierInvoiceIDTsmi.Visible = false;
+                SupplierInvoiceSupplierIDTsmi.Visible = false;
+            }
         }
-
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+        }
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
         {
             this.Close();

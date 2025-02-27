@@ -133,25 +133,25 @@
             "Admin",
             "CustomerRead",
             "CustomerWrite",
-            "CustomerDelete",
+            "CustomerAdmin",
             "CustomerInvoiceRead",
             "CustomerInvoiceWrite",
-            "CustomerInvoiceDelete",
+            "CustomerInvoiceAdmin",
             "CustomerInvoiceCostRead",
             "CustomerInvoiceCostWrite",
-            "CustomerInvoiceCostDelete",
+            "CustomerInvoiceCostAdmin",
             "SupplierRead",
             "SupplierWrite",
-            "SupplierDelete",
+            "SupplierAdmin",
             "SupplierInvoiceRead",
             "SupplierInvoiceWrite",
-            "SupplierInvoiceDelete",
+            "SupplierInvoiceAdmin",
             "SupplierInvoiceCostRead",
             "SupplierInvoiceCostWrite",
-            "SupplierInvoiceCostDelete",
+            "SupplierInvoiceCostAdmin",
             "SaleRead",
             "SaleWrite",
-            "SaleDelete"});
+            "SaleAdmin"});
             this.rolesListBox.Location = new System.Drawing.Point(3, 189);
             this.rolesListBox.MinimumSize = new System.Drawing.Size(0, 436);
             this.rolesListBox.Name = "rolesListBox";

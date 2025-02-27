@@ -15,6 +15,12 @@ namespace Winform.Forms.GridForms
 
         int pages;
         double itemsPage = 10.0;
+
+        List<string> authRoles = new List<string>
+            {
+                "UserAdmin",
+                "Admin"
+            };
         public UserGridForm()
         {
             _userService = new UserService();
@@ -45,6 +51,13 @@ namespace Winform.Forms.GridForms
             paginationControl.CurrentPage = 1;
             paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
             userDgv.ContextMenuStrip = RightClickDgv;
+            if(!Authorize(authRoles))
+                CustomerIDTsmi.Visible= false;
+        }
+
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
