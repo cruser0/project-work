@@ -50,6 +50,11 @@ namespace Winform.Services
                 UserAccessInfo.Token = items.Token;
                 UserAccessInfo.LastName = items.LastName;
                 UserAccessInfo.Role = items.Role;
+                UserAccessInfo.RefreshToken = items.RefreshToken;
+                UserAccessInfo.RefreshCreated = items.RefreshCreated;
+                UserAccessInfo.RefreshExpires = items.RefreshExpires;
+                UserAccessInfo.RefreshTokenID = items.RefreshTokenID;
+                UserAccessInfo.RefreshUserID = items.RefreshUserID;
                 return items;
 
             }
@@ -57,6 +62,36 @@ namespace Winform.Services
             throw new Exception($"Error during the login process: {errorMessage}");
         }
 
+        public async Task  RefreshToken()
+        {
+            ClientAPI client = new ClientAPI();
+            HttpResponseMessage response = await client.GetClient()
+                .PostAsync(client.GetBaseUri() + $"refresh-token?refToken={UserAccessInfo.RefreshToken}", null);
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+
+                // Deserializzare la risposta JSON in una lista di oggetti CustomerInvoiceCostDTOGet
+                var items = JsonSerializer.Deserialize<UserAccessTemp>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                UserAccessInfo.Email = items.Email;
+                UserAccessInfo.Name = items.Name;
+                UserAccessInfo.Token = items.Token;
+                UserAccessInfo.LastName = items.LastName;
+                UserAccessInfo.Role = items.Role;
+                UserAccessInfo.RefreshToken = items.RefreshToken;
+                UserAccessInfo.RefreshCreated = items.RefreshCreated;
+                UserAccessInfo.RefreshExpires = items.RefreshExpires;
+                UserAccessInfo.RefreshTokenID = items.RefreshTokenID;
+                UserAccessInfo.RefreshUserID = items.RefreshUserID;
+                return;
+
+            }
+            string errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"Error during the login process: {errorMessage}");
+        }
 
 
 
