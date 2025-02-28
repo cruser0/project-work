@@ -17,32 +17,81 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public ICollection<testDTO> GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
-                                                                             CustomerInvoiceFilter? invoiceFilter,
-                                                                             SaleFilter? saleFilter,
-                                                                             CustomerFilter? customerFilter)
+        public testDTO GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
+                                                CustomerInvoiceFilter? invoiceFilter,
+                                                SaleFilter? saleFilter,
+                                                CustomerFilter? customerFilter)
         {
-            var customerInvoiceCosts = ApplyFilter(costFilter).AsEnumerable();
-            var customerInvoices = ApplyFilter(invoiceFilter).AsEnumerable();
-            var customers = ApplyFilter(customerFilter).AsEnumerable();
-            var sales = ApplyFilter(saleFilter).AsEnumerable();
+            var customerInvoiceCosts = ApplyFilter(costFilter).ToList();
+            var customerInvoices = ApplyFilter(invoiceFilter).ToList();
+            var customers = ApplyFilter(customerFilter).ToList();
+            var sales = ApplyFilter(saleFilter).ToList();
 
-            //if (filter.SalePage != null)
-            //{
-            //    query = query.Skip(((int)filter.SalePage - 1) * itemsPerPage).Take(itemsPerPage);
-            //}
+            var query1 = (from customer in customers
+                          join sale in sales on customer.CustomerId equals sale.CustomerId
+                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
+                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
+                          select new CustomerDTOGet
+                          {
+                              CustomerId = customer.CustomerId,
+                              Country = customer.Country,
+                              CreatedAt = customer.CreatedAt,
+                              CustomerName = customer.CustomerName,
+                              Deprecated = customer.Deprecated,
+                              OriginalID = customer.OriginalID
+                          }).DistinctBy(x => x.CustomerId).ToList();
 
-            var query = (from customer in customers
-                         join sale in sales on customer.CustomerId equals sale.CustomerId
-                         join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
-                         join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
-                         select new { Customers = customer, Sales = sale, Invoices = invoice, Costs = invoiceCost }).ToList();
 
+            var query2 = (from customer in customers
+                          join sale in sales on customer.CustomerId equals sale.CustomerId
+                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
+                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
+                          select new SaleDTOGet
+                          {
+                              SaleId = sale.SaleId,
+                              BoLnumber = sale.BoLnumber,
+                              BookingNumber = sale.BookingNumber,
+                              CustomerId = customer.CustomerId,
+                              SaleDate = sale.SaleDate,
+                              Status = sale.Status,
+                              TotalRevenue = sale.TotalRevenue
+                          }).DistinctBy(x => x.SaleId).ToList();
 
+            var query3 = (from customer in customers
+                          join sale in sales on customer.CustomerId equals sale.CustomerId
+                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
+                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
+                          select new CustomerInvoiceDTOGet
+                          {
+                              Status = invoice.Status,
+                              SaleId = invoice.SaleId,
+                              CustomerInvoiceId = invoice.CustomerInvoiceId,
+                              InvoiceAmount = invoice.InvoiceAmount,
+                              InvoiceDate = invoice.InvoiceDate
+                          }).DistinctBy(x => x.CustomerInvoiceId).ToList();
 
+            var query4 = (from customer in customers
+                          join sale in sales on customer.CustomerId equals sale.CustomerId
+                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
+                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
+                          select new CustomerInvoiceCostDTOGet
+                          {
+                              CustomerInvoiceCostsId = invoiceCost.CustomerInvoiceCostsId,
+                              CustomerInvoiceId = invoiceCost.CustomerInvoiceId,
+                              Cost = invoiceCost.Cost,
+                              Name = invoiceCost.Name,
+                              Quantity = invoiceCost.Quantity
+                          }).DistinctBy(x => x.CustomerInvoiceCostsId).ToList();
 
-            return query.Select(x => new testDTO(x.Customers, x.Sales, x.Invoices, x.Costs)).ToList();
+            return new testDTO(query1, query2, query3, query4);
         }
+
+        //if (filter.SalePage != null)
+        //{
+        //    query = query.Skip(((int)filter.SalePage - 1) * itemsPerPage).Take(itemsPerPage);
+        //}
+
+
 
 
         private IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter? filter)

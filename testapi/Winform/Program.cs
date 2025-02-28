@@ -1,7 +1,3 @@
-
-using Winform.Forms;
-using Winform.Services;
-
 namespace Winform
 {
     internal static class Program
@@ -17,8 +13,6 @@ namespace Winform
             ApplicationConfiguration.Initialize();
 
 
-            UserService userService = new UserService();
-
 
             LoginForm form = new LoginForm();
 
@@ -28,6 +22,8 @@ namespace Winform
                 Application.Exit();
 
             //Application.Run(new mainformtest());
+
+
 
 
 

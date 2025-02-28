@@ -64,7 +64,13 @@
     <Compile Update="Forms\control\SearchSale.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\SearchSupplier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\control\SearchSupplierInvoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\control\SearchSupplierInvoiceCost.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Forms\CustomerInvoiceCostForm.cs">
