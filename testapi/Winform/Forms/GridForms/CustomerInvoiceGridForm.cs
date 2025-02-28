@@ -106,23 +106,23 @@ namespace Winform.Forms.CreateWindow
 
             CustomerInvoiceFilter filter = new CustomerInvoiceFilter
             {
-                SaleId = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null,
-                InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-                Status = StatusCmb.Text,
-                page = PaginationUserControl.CurrentPage,
-                InvoiceAmountFrom = !string.IsNullOrEmpty(AmountFromTxt.GetText()) ? int.Parse(AmountFromTxt.GetText()) : null,
-                InvoiceAmountTo = !string.IsNullOrEmpty(AmountToTxt.GetText()) ? int.Parse(AmountToTxt.GetText()) : null
+                CustomerInvoiceSaleId = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null,
+                CustomerInvoiceInvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CustomerInvoiceInvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
+                CustomerInvoiceStatus = StatusCmb.Text,
+                CustomerInvoicePage = PaginationUserControl.CurrentPage,
+                CustomerInvoiceInvoiceAmountFrom = !string.IsNullOrEmpty(AmountFromTxt.GetText()) ? int.Parse(AmountFromTxt.GetText()) : null,
+                CustomerInvoiceInvoiceAmountTo = !string.IsNullOrEmpty(AmountToTxt.GetText()) ? int.Parse(AmountToTxt.GetText()) : null
 
             };
             CustomerInvoiceFilter filterPage = new CustomerInvoiceFilter
             {
-                SaleId = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null,
-                InvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                InvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-                Status = StatusCmb.Text,
-                InvoiceAmountFrom = !string.IsNullOrEmpty(AmountFromTxt.GetText()) ? int.Parse(AmountFromTxt.GetText()) : null,
-                InvoiceAmountTo = !string.IsNullOrEmpty(AmountToTxt.GetText()) ? int.Parse(AmountToTxt.GetText()) : null
+                CustomerInvoiceSaleId = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null,
+                CustomerInvoiceInvoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CustomerInvoiceInvoiceDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
+                CustomerInvoiceStatus = StatusCmb.Text,
+                CustomerInvoiceInvoiceAmountFrom = !string.IsNullOrEmpty(AmountFromTxt.GetText()) ? int.Parse(AmountFromTxt.GetText()) : null,
+                CustomerInvoiceInvoiceAmountTo = !string.IsNullOrEmpty(AmountToTxt.GetText()) ? int.Parse(AmountToTxt.GetText()) : null
             };
             saleID = SaleIDTxt.GetText();
             invoiceDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
@@ -148,13 +148,13 @@ namespace Winform.Forms.CreateWindow
             int idNum;
             CustomerInvoiceFilter filter = new CustomerInvoiceFilter
             {
-                SaleId = int.TryParse(saleID, out idNum) ? idNum : null,
-                InvoiceDateFrom = invoiceDateFrom,
-                InvoiceDateTo = invoiceDateTo,
-                Status = status,
-                page = PaginationUserControl.CurrentPage,
-                InvoiceAmountFrom = invoiceAmountFrom,
-                InvoiceAmountTo = invoiceAmountTo
+                CustomerInvoiceSaleId = int.TryParse(saleID, out idNum) ? idNum : null,
+                CustomerInvoiceInvoiceDateFrom = invoiceDateFrom,
+                CustomerInvoiceInvoiceDateTo = invoiceDateTo,
+                CustomerInvoiceStatus = status,
+                CustomerInvoicePage = PaginationUserControl.CurrentPage,
+                CustomerInvoiceInvoiceAmountFrom = invoiceAmountFrom,
+                CustomerInvoiceInvoiceAmountTo = invoiceAmountTo
             };
 
             IEnumerable<CustomerInvoice> query = _customerService.GetAll(filter);

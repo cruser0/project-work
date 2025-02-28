@@ -2,13 +2,13 @@
 {
     public class SupplierInvoiceCostFilter
     {
-        public int? SupplierInvoiceId { get; set; }
+        public int? SupplierInvoiceCostSupplierInvoiceId { get; set; }
 
-        public int? CostFrom { get; set; }
-        public int? CostTo { get; set; }
-        public int? Quantity { get; set; }
-        public string? Name { get; set; }
+        public int? SupplierInvoiceCostCostFrom { get; set; }
+        public int? SupplierInvoiceCostCostTo { get; set; }
+        public int? SupplierInvoiceCostQuantity { get; set; }
+        public string? SupplierInvoiceCostName { get; set; }
 
-        public int? page { get; set; }
+        public int? SupplierInvoiceCostPage { get; set; }
     }
 }

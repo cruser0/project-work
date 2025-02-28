@@ -133,5 +133,11 @@
     <Compile Update="Forms\UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="fotmtest1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="mainformtest.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

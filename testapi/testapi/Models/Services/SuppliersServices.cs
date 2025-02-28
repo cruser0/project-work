@@ -42,41 +42,41 @@ namespace API.Models.Services
             int itemsPage = 10;
             var query = _context.Suppliers.AsQueryable();
 
-            if (filter.OriginalID != null)
+            if (filter.SupplierOriginalID != null)
             {
-                query = query.Where(x => x.OriginalID == filter.OriginalID);
+                query = query.Where(x => x.OriginalID == filter.SupplierOriginalID);
             }
-            if (!string.IsNullOrEmpty(filter.Name))
+            if (!string.IsNullOrEmpty(filter.SupplierName))
             {
-                query = query.Where(x => x.SupplierName.Contains(filter.Name));
+                query = query.Where(x => x.SupplierName.Contains(filter.SupplierName));
             }
-            if (filter.CreatedDateFrom.HasValue)
+            if (filter.SupplierCreatedDateFrom.HasValue)
             {
-                if ((filter.CreatedDateFrom <= DateTime.Now && filter.CreatedDateFrom > new DateTime(1975, 1, 1)))
+                if ((filter.SupplierCreatedDateFrom <= DateTime.Now && filter.SupplierCreatedDateFrom > new DateTime(1975, 1, 1)))
                 {
-                    query = query.Where(x => x.CreatedAt >= filter.CreatedDateFrom);
+                    query = query.Where(x => x.CreatedAt >= filter.SupplierCreatedDateFrom);
                 }
             }
-            if (filter.CreatedDateTo.HasValue)
+            if (filter.SupplierCreatedDateTo.HasValue)
             {
-                if (filter.CreatedDateTo <= DateTime.Now && filter.CreatedDateTo >= filter.CreatedDateTo)
-                    query = query.Where(x => x.CreatedAt <= filter.CreatedDateTo);
+                if (filter.SupplierCreatedDateTo <= DateTime.Now && filter.SupplierCreatedDateTo >= filter.SupplierCreatedDateTo)
+                    query = query.Where(x => x.CreatedAt <= filter.SupplierCreatedDateTo);
             }
 
 
 
-            if (!string.IsNullOrEmpty(filter.Country))
+            if (!string.IsNullOrEmpty(filter.SupplierCountry))
             {
-                query = query.Where(x => x.Country.Contains(filter.Country));
+                query = query.Where(x => x.Country.Contains(filter.SupplierCountry));
             }
 
-            if (filter.Deprecated != null)
+            if (filter.SupplierDeprecated != null)
             {
-                query = query.Where(x => x.Deprecated == filter.Deprecated);
+                query = query.Where(x => x.Deprecated == filter.SupplierDeprecated);
             }
-            if (filter.page != null)
+            if (filter.SupplierPage != null)
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+                query = query.Skip(((int)filter.SupplierPage - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => SupplierMapper.MapGet(x));
         }

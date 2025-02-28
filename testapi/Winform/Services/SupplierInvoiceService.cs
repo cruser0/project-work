@@ -14,14 +14,14 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "SaleID", filter.SaleID },
-                { "SupplierID", filter.SupplierID },
-                { "InvoiceDateFrom", filter.InvoiceDateFrom ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "InvoiceDateTo", filter.InvoiceDateTo ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "InvoiceAmountFrom", filter.InvoiceAmountFrom },
-                { "InvoiceAmountTo", filter.InvoiceAmountTo },
-                { "Status", filter.Status?.ToLower() != "all" ? filter.Status : null },
-                { "page", filter.page }
+                { "SaleID", filter.SupplierInvoiceSaleID },
+                { "SupplierID", filter.SupplierInvoiceSupplierID },
+                { "InvoiceDateFrom", filter.SupplierInvoiceInvoiceDateFrom ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "InvoiceDateTo", filter.SupplierInvoiceInvoiceDateTo ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "InvoiceAmountFrom", filter.SupplierInvoiceInvoiceAmountFrom },
+                { "InvoiceAmountTo", filter.SupplierInvoiceInvoiceAmountTo },
+                { "Status", filter.SupplierInvoiceStatus?.ToLower() != "all" ? filter.SupplierInvoiceStatus : null },
+                { "page", filter.SupplierInvoicePage }
 
             };
 

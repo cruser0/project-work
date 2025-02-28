@@ -41,40 +41,40 @@ namespace API.Models.Services
             int itemsPage = 10;
             var query = _context.SupplierInvoiceCosts.AsQueryable();
 
-            if (filter.SupplierInvoiceId != null)
+            if (filter.SupplierInvoiceCostSupplierInvoiceId != null)
             {
-                query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceId);
+                query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceCostSupplierInvoiceId);
             }
-            if (!string.IsNullOrEmpty(filter.Name))
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceCostName))
             {
-                query = query.Where(x => x.Name.Contains(filter.Name));
+                query = query.Where(x => x.Name.Contains(filter.SupplierInvoiceCostName));
             }
 
-            if (filter.CostFrom != null && filter.CostTo != null)
+            if (filter.SupplierInvoiceCostCostFrom != null && filter.SupplierInvoiceCostCostTo != null)
             {
-                if (filter.CostFrom > filter.CostTo)
+                if (filter.SupplierInvoiceCostCostFrom > filter.SupplierInvoiceCostCostTo)
                 {
                     throw new ArgumentException("CostFrom cannot be more than CostTo.");
                 }
 
-                query = query.Where(s => s.Cost >= filter.CostFrom && s.Cost <= filter.CostTo);
+                query = query.Where(s => s.Cost >= filter.SupplierInvoiceCostCostFrom && s.Cost <= filter.SupplierInvoiceCostCostTo);
             }
-            else if (filter.CostFrom != null)
+            else if (filter.SupplierInvoiceCostCostFrom != null)
             {
-                query = query.Where(s => s.Cost >= filter.CostFrom);
+                query = query.Where(s => s.Cost >= filter.SupplierInvoiceCostCostFrom);
             }
-            else if (filter.CostTo != null)
+            else if (filter.SupplierInvoiceCostCostTo != null)
             {
-                query = query.Where(s => s.Cost <= filter.CostTo);
+                query = query.Where(s => s.Cost <= filter.SupplierInvoiceCostCostTo);
             }
 
-            if (filter.Quantity != null)
+            if (filter.SupplierInvoiceCostQuantity != null)
             {
-                query = query.Where(x => x.Quantity == filter.Quantity);
+                query = query.Where(x => x.Quantity == filter.SupplierInvoiceCostQuantity);
             }
-            if (filter.page != null)
+            if (filter.SupplierInvoiceCostPage != null)
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+                query = query.Skip(((int)filter.SupplierInvoiceCostPage - 1) * itemsPage).Take(itemsPage);
             }
 
             return query.Select(x => SupplierInvoiceCostMapper.MapGet(x));

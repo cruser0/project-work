@@ -28,7 +28,7 @@ namespace API_Test.ControllerTest
         {
             //Arrange
             var suppliers = new List<SupplierDTOGet> { new SupplierDTOGet { SupplierId = 1, SupplierName = "Apple", Country = "Italy" } };
-            var filter = new SupplierFilter { Name = "", Country = "" };
+            var filter = new SupplierFilter { SupplierName = "", SupplierCountry = "" };
 
             _mockService.Setup(service => service.GetAllSuppliers(filter)).Returns(suppliers);
 
@@ -46,7 +46,7 @@ namespace API_Test.ControllerTest
         {
             //Arrange 
             var suppliers = new List<Supplier>();
-            var filter = new SupplierFilter { Name = "", Country = "" };
+            var filter = new SupplierFilter { SupplierName = "", SupplierCountry = "" };
             _mockService.Setup(service => service.GetAllSuppliers(filter)).Throws(new Exception("Suppliers not found!"));
 
             //Act

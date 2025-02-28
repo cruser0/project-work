@@ -184,10 +184,10 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "Name", filter.Name },
-                { "LastName", filter.LastName },
-                { "page", filter.page },
-                { "Email", filter.Email },
+                { "Name", filter.UserName },
+                { "LastName", filter.UserLastName },
+                { "page", filter.UserPage },
+                { "Email", filter.UserEmail },
 
             };
 
@@ -196,7 +196,7 @@ namespace Winform.Services
                 if (kvp.Value != null)
                     queryParameters.Add($"{kvp.Key}={kvp.Value}");
             }
-            foreach (var kvp in filter.Roles)
+            foreach (var kvp in filter.UserRoles)
             {
                 queryParameters.Add($"Roles={kvp}");
             }

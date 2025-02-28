@@ -127,27 +127,27 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             SaleFilter filter = new SaleFilter
             {
-                BookingNumber = BNTextBox.Text,
-                BoLnumber = BoLTextBox.Text,
+                SaleBookingNumber = BNTextBox.Text,
+                SaleBoLnumber = BoLTextBox.Text,
                 SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
                 SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
-                RevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
-                RevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
-                CustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
-                Status = StatusCB.Text == "All" ? null : StatusCB.Text,
-                page = PaginationUserControl.CurrentPage
+                SaleRevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
+                SaleRevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
+                SaleCustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
+                SaleStatus = StatusCB.Text == "All" ? null : StatusCB.Text,
+                SalePage = PaginationUserControl.CurrentPage
 
             };
             SaleFilter filterPage = new SaleFilter
             {
-                BookingNumber = BNTextBox.Text,
-                BoLnumber = BoLTextBox.Text,
+                SaleBookingNumber = BNTextBox.Text,
+                SaleBoLnumber = BoLTextBox.Text,
                 SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
                 SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
-                RevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
-                RevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
-                CustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
-                Status = StatusCB.Text == "All" ? null : StatusCB.Text
+                SaleRevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
+                SaleRevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
+                SaleCustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
+                SaleStatus = StatusCB.Text == "All" ? null : StatusCB.Text
             };
 
             bkNumber = BNTextBox.Text;
@@ -176,15 +176,15 @@ namespace Winform.Forms
             int outVal;
             SaleFilter filter = new SaleFilter
             {
-                BookingNumber = bkNumber,
-                BoLnumber = blNumber,
+                SaleBookingNumber = bkNumber,
+                SaleBoLnumber = blNumber,
                 SaleDateFrom = saleDateFrom,
                 SaleDateTo = saleDateTo,
-                CustomerId = int.TryParse(customerID, out outVal) ? outVal : null,
-                RevenueFrom = revenueFrom,
-                RevenueTo = revenueTo,
-                Status = status,
-                page = PaginationUserControl.CurrentPage
+                SaleCustomerId = int.TryParse(customerID, out outVal) ? outVal : null,
+                SaleRevenueFrom = revenueFrom,
+                SaleRevenueTo = revenueTo,
+                SaleStatus = status,
+                SalePage = PaginationUserControl.CurrentPage
 
             };
 

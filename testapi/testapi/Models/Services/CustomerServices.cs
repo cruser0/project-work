@@ -43,46 +43,46 @@ namespace API.Models.Services
             var query = _context.Customers.AsQueryable();
 
             // Filtra per OriginalID se specificato
-            if (filter.OriginalID != null)
+            if (filter.CustomerOriginalID != null)
             {
-                query = query.Where(x => x.OriginalID == filter.OriginalID);
+                query = query.Where(x => x.OriginalID == filter.CustomerOriginalID);
             }
 
             // Filtra per nome se specificato
-            if (!string.IsNullOrEmpty(filter.Name))
+            if (!string.IsNullOrEmpty(filter.CustomerName))
             {
-                query = query.Where(x => x.CustomerName.Contains(filter.Name));
+                query = query.Where(x => x.CustomerName.Contains(filter.CustomerName));
             }
 
             // Filtra per data di creazione
-            if (filter.CreatedDateFrom != null || filter.CreatedDateTo != null)
+            if (filter.CustomerCreatedDateFrom != null || filter.CustomerCreatedDateTo != null)
             {
-                if (filter.CreatedDateFrom != null)
+                if (filter.CustomerCreatedDateFrom != null)
                 {
-                    query = query.Where(s => s.CreatedAt >= filter.CreatedDateFrom);
+                    query = query.Where(s => s.CreatedAt >= filter.CustomerCreatedDateFrom);
                 }
-                if (filter.CreatedDateTo != null)
+                if (filter.CustomerCreatedDateTo != null)
                 {
-                    query = query.Where(s => s.CreatedAt <= filter.CreatedDateTo);
+                    query = query.Where(s => s.CreatedAt <= filter.CustomerCreatedDateTo);
                 }
             }
 
             // Filtra per paese se specificato
-            if (!string.IsNullOrEmpty(filter.Country))
+            if (!string.IsNullOrEmpty(filter.CustomerCountry))
             {
-                query = query.Where(x => x.Country.Contains(filter.Country));
+                query = query.Where(x => x.Country.Contains(filter.CustomerCountry));
             }
 
             // Filtra per stato di deprecazione se specificato
-            if (filter.Deprecated != null)
+            if (filter.CustomerDeprecated != null)
             {
-                query = query.Where(x => x.Deprecated == filter.Deprecated);
+                query = query.Where(x => x.Deprecated == filter.CustomerDeprecated);
             }
 
             // Applica paginazione se specificata
-            if (filter.page != null && filter.page > 0)
+            if (filter.CustomerPage != null && filter.CustomerPage > 0)
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPerPage).Take(itemsPerPage);
+                query = query.Skip(((int)filter.CustomerPage - 1) * itemsPerPage).Take(itemsPerPage);
             }
 
             return query.Select(x => CustomerMapper.MapGet(x));

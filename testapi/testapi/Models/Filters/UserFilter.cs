@@ -3,10 +3,10 @@
     public class UserFilter
     {
 
-        public string? Name { get; set; }
-        public string? LastName { get; set; }
-        public string? Email { get; set; }
-        public List<string>? Roles { get; set; } = new List<string>();
-        public int? page { get; set; }
+        public string? UserName { get; set; }
+        public string? UserLastName { get; set; }
+        public string? UserEmail { get; set; }
+        public List<string>? UserRoles { get; set; } = new List<string>();
+        public int? UserPage { get; set; }
     }
 }

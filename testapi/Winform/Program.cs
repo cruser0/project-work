@@ -1,3 +1,4 @@
+
 using Winform.Forms;
 using Winform.Services;
 
@@ -14,15 +15,18 @@ namespace Winform
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            UserService userService = new UserService();
-            LoginForm form = new LoginForm();
 
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                Application.Run(new MainForm());
-            }
-            else
-                Application.Exit();
+            UserService userService = new UserService();
+
+
+            //LoginForm form = new LoginForm();
+
+            //if (form.ShowDialog() == DialogResult.OK)
+            //    Application.Run(new MainForm());
+            //else
+            //    Application.Exit();
+
+            Application.Run(new mainformtest());
 
 
         }

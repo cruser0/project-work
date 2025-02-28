@@ -45,48 +45,48 @@ namespace API.Models.Services
                          from supplier in SupplierInvoiceGroup.DefaultIfEmpty()
                          select new { SupplierInvoice = si, Supplier = supplier }).AsQueryable();
 
-            if (filter.InvoiceDateFrom.HasValue)
+            if (filter.SupplierInvoiceInvoiceDateFrom.HasValue)
             {
-                if ((filter.InvoiceDateFrom <= DateTime.Now && filter.InvoiceDateFrom > new DateTime(1975, 1, 1)))
+                if ((filter.SupplierInvoiceInvoiceDateFrom <= DateTime.Now && filter.SupplierInvoiceInvoiceDateFrom > new DateTime(1975, 1, 1)))
                 {
-                    query = query.Where(x => x.SupplierInvoice.InvoiceDate >= filter.InvoiceDateFrom);
+                    query = query.Where(x => x.SupplierInvoice.InvoiceDate >= filter.SupplierInvoiceInvoiceDateFrom);
                 }
             }
-            if (filter.InvoiceDateTo.HasValue)
+            if (filter.SupplierInvoiceInvoiceDateTo.HasValue)
             {
-                if (filter.InvoiceDateTo <= DateTime.Now && filter.InvoiceDateTo >= filter.InvoiceDateFrom)
-                    query = query.Where(x => x.SupplierInvoice.InvoiceDate <= filter.InvoiceDateTo);
+                if (filter.SupplierInvoiceInvoiceDateTo <= DateTime.Now && filter.SupplierInvoiceInvoiceDateTo >= filter.SupplierInvoiceInvoiceDateFrom)
+                    query = query.Where(x => x.SupplierInvoice.InvoiceDate <= filter.SupplierInvoiceInvoiceDateTo);
             }
 
-            if (filter.InvoiceAmountFrom != null && filter.InvoiceAmountTo != null)
+            if (filter.SupplierInvoiceInvoiceAmountFrom != null && filter.SupplierInvoiceInvoiceAmountTo != null)
             {
-                query = query.Where(s => s.SupplierInvoice.InvoiceAmount >= filter.InvoiceAmountFrom && s.SupplierInvoice.InvoiceAmount <= filter.InvoiceAmountTo);
+                query = query.Where(s => s.SupplierInvoice.InvoiceAmount >= filter.SupplierInvoiceInvoiceAmountFrom && s.SupplierInvoice.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
             }
-            else if (filter.InvoiceAmountFrom != null)
+            else if (filter.SupplierInvoiceInvoiceAmountFrom != null)
             {
-                query = query.Where(s => s.SupplierInvoice.InvoiceAmount >= filter.InvoiceAmountFrom);
+                query = query.Where(s => s.SupplierInvoice.InvoiceAmount >= filter.SupplierInvoiceInvoiceAmountFrom);
             }
-            else if (filter.InvoiceAmountTo != null)
+            else if (filter.SupplierInvoiceInvoiceAmountTo != null)
             {
-                query = query.Where(s => s.SupplierInvoice.InvoiceAmount <= filter.InvoiceAmountTo);
+                query = query.Where(s => s.SupplierInvoice.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
             }
 
-            if (filter.SaleID != null)
+            if (filter.SupplierInvoiceSaleID != null)
             {
-                query = query.Where(x => x.SupplierInvoice.SaleId == filter.SaleID);
+                query = query.Where(x => x.SupplierInvoice.SaleId == filter.SupplierInvoiceSaleID);
             }
-            if (filter.SupplierID != null)
+            if (filter.SupplierInvoiceSupplierID != null)
             {
-                query = query.Where(x => x.SupplierInvoice.SupplierId == filter.SupplierID);
+                query = query.Where(x => x.SupplierInvoice.SupplierId == filter.SupplierInvoiceSupplierID);
             }
-            if (!string.IsNullOrEmpty(filter.Status))
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
             {
-                if (!filter.Status.Equals("All"))
-                    query = query.Where(x => x.SupplierInvoice.Status == filter.Status.ToLower());
+                if (!filter.SupplierInvoiceStatus.Equals("All"))
+                    query = query.Where(x => x.SupplierInvoice.Status == filter.SupplierInvoiceStatus.ToLower());
             }
-            if (filter.page != null)
+            if (filter.SupplierInvoicePage != null)
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+                query = query.Skip(((int)filter.SupplierInvoicePage - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => new SupplierInvoiceSupplierDTO(x.SupplierInvoice, x.Supplier));
         }

@@ -2,15 +2,15 @@
 {
     public class SupplierInvoiceFilter
     {
-        public int? SaleID { get; set; }
-        public int? SupplierID { get; set; }
-        public DateTime? InvoiceDateFrom { get; set; }
-        public DateTime? InvoiceDateTo { get; set; }
+        public int? SupplierInvoiceSaleID { get; set; }
+        public int? SupplierInvoiceSupplierID { get; set; }
+        public DateTime? SupplierInvoiceInvoiceDateFrom { get; set; }
+        public DateTime? SupplierInvoiceInvoiceDateTo { get; set; }
 
-        public int? InvoiceAmountFrom { get; set; }
-        public int? InvoiceAmountTo { get; set; }
+        public int? SupplierInvoiceInvoiceAmountFrom { get; set; }
+        public int? SupplierInvoiceInvoiceAmountTo { get; set; }
 
-        public string? Status { get; set; }
-        public int? page { get; set; }
+        public string? SupplierInvoiceStatus { get; set; }
+        public int? SupplierInvoicePage { get; set; }
     }
 }
