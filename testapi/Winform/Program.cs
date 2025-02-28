@@ -20,13 +20,6 @@ namespace Winform
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Application.Run(new MainForm());
-                var startTimeSpan = TimeSpan.Zero;
-                var periodTimeSpan = TimeSpan.FromMinutes(12);
-
-                var timer = new System.Threading.Timer((e) =>
-                {
-                    userService.RefreshToken();
-                }, null, startTimeSpan, periodTimeSpan);
             }
             else
                 Application.Exit();

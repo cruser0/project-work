@@ -44,10 +44,11 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = false, 
+        ValidateIssuer = false,
         ValidateAudience = false,
-        RequireExpirationTime = false, 
-        ValidateLifetime = true 
+        ValidateLifetime = true,
+        RequireExpirationTime = true,
+        ClockSkew = TimeSpan.Zero
     };
 });
 

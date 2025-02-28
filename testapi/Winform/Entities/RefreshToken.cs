@@ -13,5 +13,6 @@ namespace Winform.Entities
         public string Token { get; set; }
         public DateTime Created { get; set; }
         public DateTime Expires { get; set; }
+        //KdiGeZ5baK5dLnsk2zQdf4ermF/nOV/m5CqNx8jNFzBVQSmV8lM2mROpWZOfZimahrlwyU8CjeEgSj04ksBUuQ==
     }
 }

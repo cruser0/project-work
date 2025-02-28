@@ -14,11 +14,15 @@ namespace API.Models.Services
     {
         private readonly IConfiguration _configuration;
         private readonly Progetto_FormativoContext _context;
+
         public UserService(IConfiguration conf, Progetto_FormativoContext ctx)
         {
             _context = ctx;
             _configuration = conf;
         }
+        /*
+         Creates a random Salt from the HMACSHA512 and and hashes the password
+        */
         public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())
@@ -52,11 +56,19 @@ namespace API.Models.Services
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(int.Parse(_configuration["JwtConfig:AccessTokenExpiration"])),
+                expires: DateTime.Now.AddMinutes(int.Parse(_configuration["JwtConfig:AccessTokenExpiration"])),
                 signingCredentials: cred
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        internal RefreshToken GetRefreshTokenByrefTokenString(string refToken)
+        {
+            RefreshToken dbRefToken = _context.RefreshTokens.Where(x => x.Token.Equals(refToken)).FirstOrDefault();
+            if (dbRefToken == null)
+                throw new Exception("Token not Found");
+            return dbRefToken;
         }
 
         public RefreshToken GenerateRefreshToken(int userID)
@@ -73,7 +85,7 @@ namespace API.Models.Services
             return refreshToken;
         }
 
-        public RefreshToken userByRefreshToken(RefreshToken refTk)
+        public RefreshToken GetNewerRefreshToken(RefreshTokenDTO refTk)
         {
             User user=_context.Users.Where(x=>x.UserID==refTk.UserID).FirstOrDefault();
             if (user == null)
@@ -196,13 +208,11 @@ namespace API.Models.Services
         }
         public ICollection<UserRoleDTO> GetAllUsers(UserFilter filter)
         {
-            // Retrieve all sales from the database and map each one to a SaleDTOGet
             return ApplyFilter(filter);
         }
 
         public int CountUsers(UserFilter filter)
         {
-            // Retrieve all sales from the database and map each one to a SaleDTOGet
             return ApplyFilter(filter).Count();
         }
 
@@ -248,6 +258,9 @@ namespace API.Models.Services
             return data;
 
         }
+        /*
+         Registers a user with hashed password and the salt in the db
+         */
         public User CreateUser(UserDTOCreate user)
         {
             if (_context.Users.Any(x => x.Email.Equals(user.Email)))

@@ -74,7 +74,7 @@ namespace API.Models
                     .HasColumnType("bit")
                     .HasDefaultValue(false);
                 entity.Property(e => e.OriginalID).HasColumnType("int");
-                entity.Property(e => e.CreatedAt).HasColumnType("date");
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             });
             modelBuilder.Entity<User>(entity =>
             {
@@ -136,10 +136,10 @@ namespace API.Models
                     .HasColumnName("UserID");
 
                 entity.Property(e => e.Created)
-                .HasColumnType("date");
+                .HasColumnType("datetime");
 
                 entity.Property(e => e.Expires)
-                .HasColumnType("date");
+                .HasColumnType("datetime");
 
                 entity.Property(e => e.Token)
                     .HasColumnType("varchar(MAX)")
@@ -175,7 +175,7 @@ namespace API.Models
 
                 entity.Property(e => e.InvoiceAmount).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.InvoiceDate).HasColumnType("date");
+                entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
 
                 entity.Property(e => e.SaleId).HasColumnName("SaleID");
 
@@ -206,7 +206,7 @@ namespace API.Models
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
-                entity.Property(e => e.SaleDate).HasColumnType("date");
+                entity.Property(e => e.SaleDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(20)
@@ -249,9 +249,9 @@ namespace API.Models
 
                 entity.Property(e => e.InvoiceAmount).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.InvoiceDate).HasColumnType("date");
+                entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
 
-                entity.Property(e => e.SaleDate).HasColumnType("date");
+                entity.Property(e => e.SaleDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(20)
@@ -287,7 +287,7 @@ namespace API.Models
                     .HasColumnType("bit")
                     .HasDefaultValue(false);
                 entity.Property(e => e.OriginalID).HasColumnType("int");
-                entity.Property(e => e.CreatedAt).HasColumnType("date");
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<SupplierInvoice>(entity =>
@@ -301,7 +301,7 @@ namespace API.Models
 
                 entity.Property(e => e.InvoiceAmount).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.InvoiceDate).HasColumnType("date");
+                entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
 
                 entity.Property(e => e.SaleId).HasColumnName("SaleID");
 

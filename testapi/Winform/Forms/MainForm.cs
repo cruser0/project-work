@@ -1,6 +1,7 @@
 ﻿using Winform.Forms;
 using Winform.Forms.AddForms;
 using Winform.Forms.control;
+using Winform.Services;
 
 namespace Winform
 {
@@ -8,18 +9,27 @@ namespace Winform
     public partial class MainForm : Form
     {
         private TableLayoutPanel minimizedPanel; // Panel to hold minimized child forms
-
+        UserService _serviceToken;
         public MainForm()
         {
+            _serviceToken = new UserService();
             InitializeComponent();
             IsMdiContainer = true; // Set the MDI container
             WindowState = FormWindowState.Maximized;
 
             CreateDockPanel();
             SetAuthorizations();
+            StartTokenRefreshLoop();
 
         }
-
+        private async void StartTokenRefreshLoop()
+        {
+            while (true)
+            {
+                await Task.Delay(12 * 60 * 1000);//12 minutes
+                await _serviceToken.RefreshToken();
+            }
+        }
         private void CreateDockPanel()
         {
             minimizedPanel = new TableLayoutPanel

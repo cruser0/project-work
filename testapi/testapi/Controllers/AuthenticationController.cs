@@ -60,19 +60,23 @@ namespace API.Controllers
         }
 
         [HttpPost("refresh-token")]
-        public async Task<ActionResult<UserAccessInfoDTO>> RefreshToken(RefreshToken refToken)
+        public async Task<ActionResult<UserAccessInfoDTO>> RefreshToken(string refToken)
         {
-            var refreshToken = _authenticationService.userByRefreshToken(refToken);
-            if(!refreshToken.Equals(refToken))
+            try
+            {
+            RefreshTokenDTO dbRefToken = new RefreshTokenDTO(_authenticationService.GetRefreshTokenByrefTokenString(refToken));
+            RefreshToken refreshToken = _authenticationService.GetNewerRefreshToken(dbRefToken);
+            if(!refreshToken.Token.Equals(refToken))
                 return Unauthorized("Invalid Refresh Token");
             else if (refreshToken.Expires < DateTime.Now)
             {
                 return Unauthorized("Outdated Refresh Token");
             }
-            UserRoleDTO userDTO = _authenticationService.GetUserRoleDTOByID(refToken.UserID);
+            UserRoleDTO userDTO = _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
             string token = _authenticationService.CreateToken(userDTO);
             RefreshToken newRefToken = _authenticationService.GenerateRefreshToken((int)userDTO.UserID);
             return Ok(new UserAccessInfoDTO(userDTO, token, newRefToken));
+            }catch (Exception ex) { return BadRequest(ex.Message); }
 
         }
 
