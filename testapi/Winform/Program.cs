@@ -20,14 +20,14 @@ namespace Winform
             UserService userService = new UserService();
 
 
-            //LoginForm form = new LoginForm();
+            LoginForm form = new LoginForm();
 
-            //if (form.ShowDialog() == DialogResult.OK)
-            //    Application.Run(new MainForm());
-            //else
-            //    Application.Exit();
+            if (form.ShowDialog() == DialogResult.OK)
+                Application.Run(new MainForm());
+            else
+                Application.Exit();
 
-            Application.Run(new mainformtest());
+            //Application.Run(new mainformtest());
 
 
 

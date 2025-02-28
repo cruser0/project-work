@@ -52,6 +52,21 @@
     <Compile Update="Forms\AddForms\CreateSupplierInvoicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\control\SearchCustomer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\control\SearchCustomerInvoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\control\SearchCustomerInvoiceCost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\control\SearchSale.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\control\SearchSupplierInvoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\CustomerInvoiceCostForm.cs">
       <SubType>Form</SubType>
     </Compile>

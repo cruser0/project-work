@@ -49,20 +49,6 @@
             flowLayoutPanel.Controls.Add(group2);
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            fotmtest1 form = new fotmtest1();
-            form.MdiParent = this;
-            panel1.Controls.Add(form);
-            form.Show();
-
-            TabPage tabPage = new TabPage("My Tab");
-
-            // Aggiungi il FlowLayoutPanel alla TabPage
-            tabPage.Controls.Add(flowLayoutPanel);
-
-            // Aggiungi la TabPage al TabControl
-            tabControl1.TabPages.Add(tabPage);
-        }
+       
     }
 }
