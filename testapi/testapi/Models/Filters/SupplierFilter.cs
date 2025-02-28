@@ -2,12 +2,12 @@
 {
     public class SupplierFilter
     {
-        public string? Name { get; set; }
-        public string? Country { get; set; }
-        public bool? Deprecated { get; set; }
-        public int? page { get; set; }
-        public DateTime? CreatedDateFrom { get; set; }
-        public DateTime? CreatedDateTo { get; set; }
-        public int? OriginalID { get; set; }
+        public string? SupplierName { get; set; }
+        public string? SupplierCountry { get; set; }
+        public bool? SupplierDeprecated { get; set; }
+        public int? SupplierPage { get; set; }
+        public DateTime? SupplierCreatedDateFrom { get; set; }
+        public DateTime? SupplierCreatedDateTo { get; set; }
+        public int? SupplierOriginalID { get; set; }
     }
 }

@@ -45,46 +45,46 @@ namespace API.Models.Services
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
             var query = _context.CustomerInvoices.AsQueryable();
 
-            if (filter.SaleId != null)
+            if (filter.CustomerInvoiceSaleId != null)
             {
-                query = query.Where(x => x.SaleId == filter.SaleId);
+                query = query.Where(x => x.SaleId == filter.CustomerInvoiceSaleId);
             }
 
 
 
-            if (filter.InvoiceAmountFrom != null && filter.InvoiceAmountTo != null)
+            if (filter.CustomerInvoiceInvoiceAmountFrom != null && filter.CustomerInvoiceInvoiceAmountTo != null)
             {
-                query = query.Where(s => s.InvoiceAmount >= filter.InvoiceAmountFrom && s.InvoiceAmount <= filter.InvoiceAmountTo);
+                query = query.Where(s => s.InvoiceAmount >= filter.CustomerInvoiceInvoiceAmountFrom && s.InvoiceAmount <= filter.CustomerInvoiceInvoiceAmountTo);
             }
-            else if (filter.InvoiceAmountFrom != null)
+            else if (filter.CustomerInvoiceInvoiceAmountFrom != null)
             {
-                query = query.Where(s => s.InvoiceAmount >= filter.InvoiceAmountFrom);
+                query = query.Where(s => s.InvoiceAmount >= filter.CustomerInvoiceInvoiceAmountFrom);
             }
-            else if (filter.InvoiceAmountTo != null)
+            else if (filter.CustomerInvoiceInvoiceAmountTo != null)
             {
-                query = query.Where(s => s.InvoiceAmount <= filter.InvoiceAmountTo);
-            }
-
-            if (filter.InvoiceDateFrom != null && filter.InvoiceDateTo != null)
-            {
-                query = query.Where(s => s.InvoiceDate >= filter.InvoiceDateFrom && s.InvoiceDate <= filter.InvoiceDateTo);
-            }
-            else if (filter.InvoiceDateFrom != null)
-            {
-                query = query.Where(s => s.InvoiceDate >= filter.InvoiceDateFrom);
-            }
-            else if (filter.InvoiceDateTo != null)
-            {
-                query = query.Where(s => s.InvoiceDate <= filter.InvoiceDateTo);
+                query = query.Where(s => s.InvoiceAmount <= filter.CustomerInvoiceInvoiceAmountTo);
             }
 
-            if (!string.IsNullOrEmpty(filter.Status))
+            if (filter.CustomerInvoiceInvoiceDateFrom != null && filter.CustomerInvoiceInvoiceDateTo != null)
             {
-                query = query.Where(s => s.Status == filter.Status);
+                query = query.Where(s => s.InvoiceDate >= filter.CustomerInvoiceInvoiceDateFrom && s.InvoiceDate <= filter.CustomerInvoiceInvoiceDateTo);
             }
-            if (filter.page != null)
+            else if (filter.CustomerInvoiceInvoiceDateFrom != null)
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+                query = query.Where(s => s.InvoiceDate >= filter.CustomerInvoiceInvoiceDateFrom);
+            }
+            else if (filter.CustomerInvoiceInvoiceDateTo != null)
+            {
+                query = query.Where(s => s.InvoiceDate <= filter.CustomerInvoiceInvoiceDateTo);
+            }
+
+            if (!string.IsNullOrEmpty(filter.CustomerInvoiceStatus))
+            {
+                query = query.Where(s => s.Status == filter.CustomerInvoiceStatus);
+            }
+            if (filter.CustomerInvoicePage != null)
+            {
+                query = query.Skip(((int)filter.CustomerInvoicePage - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => CustomerInvoiceMapper.MapGet(x));
         }

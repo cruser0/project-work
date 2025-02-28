@@ -88,20 +88,20 @@ namespace Winform.Forms.GridForms
             // Crea il filtro per il recupero dei dati
             UserFilter filter = new UserFilter
             {
-                Name = name,
-                LastName = lastname,
-                Email = email,
-                Roles = selectedRoles,
-                page = paginationControl.CurrentPage
+                UserName = name,
+                UserLastName = lastname,
+                UserEmail = email,
+                UserRoles = selectedRoles,
+                UserPage = paginationControl.CurrentPage
             };
 
             // Filtro per il conteggio delle pagine
             UserFilter filterPage = new UserFilter
             {
-                Name = name,
-                LastName = lastname,
-                Email = email,
-                Roles = selectedRoles
+                UserName = name,
+                UserLastName = lastname,
+                UserEmail = email,
+                UserRoles = selectedRoles
             };
 
             // Recupera i dati filtrati e aggiorna la DataGridView
@@ -144,11 +144,11 @@ namespace Winform.Forms.GridForms
 
             UserFilter filter = new UserFilter
             {
-                Name = name,
-                LastName = lastname,
-                Email = email,
-                Roles = selectedRoles,
-                page = paginationControl.CurrentPage
+                UserName = name,
+                UserLastName = lastname,
+                UserEmail = email,
+                UserRoles = selectedRoles,
+                UserPage = paginationControl.CurrentPage
 
             };
 

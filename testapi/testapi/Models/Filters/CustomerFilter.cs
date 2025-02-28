@@ -2,12 +2,12 @@
 {
     public class CustomerFilter
     {
-        public string? Name { get; set; }
-        public string? Country { get; set; }
-        public bool? Deprecated { get; set; }
-        public DateTime? CreatedDateFrom { get; set; }
-        public DateTime? CreatedDateTo { get; set; }
-        public int? OriginalID { get; set; }
-        public int? page { get; set; }
+        public string? CustomerName { get; set; }
+        public string? CustomerCountry { get; set; }
+        public bool? CustomerDeprecated { get; set; }
+        public DateTime? CustomerCreatedDateFrom { get; set; }
+        public DateTime? CustomerCreatedDateTo { get; set; }
+        public int? CustomerOriginalID { get; set; }
+        public int? CustomerPage { get; set; }
     }
 }

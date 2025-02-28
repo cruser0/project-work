@@ -172,20 +172,20 @@ namespace Winform.Forms
 
             SupplierInvoiceFilter filter = new SupplierInvoiceFilter
             {
-                SaleID = SaleID,
-                SupplierID = SupplierID,
-                InvoiceDateFrom = InvoiceDateFrom,
-                InvoiceDateTo = InvoiceDateTo,
-                Status = Status,
-                page = PaginationUserControl.CurrentPage
+                SupplierInvoiceSaleID = SaleID,
+                SupplierInvoiceSupplierID = SupplierID,
+                SupplierInvoiceInvoiceDateFrom = InvoiceDateFrom,
+                SupplierInvoiceInvoiceDateTo = InvoiceDateTo,
+                SupplierInvoiceStatus = Status,
+                SupplierInvoicePage = PaginationUserControl.CurrentPage
             };
             SupplierInvoiceFilter filterPage = new SupplierInvoiceFilter
             {
-                SaleID = SaleID,
-                SupplierID = SupplierID,
-                InvoiceDateFrom = InvoiceDateFrom,
-                InvoiceDateTo = InvoiceDateTo,
-                Status = Status,
+                SupplierInvoiceSaleID = SaleID,
+                SupplierInvoiceSupplierID = SupplierID,
+                SupplierInvoiceInvoiceDateFrom = InvoiceDateFrom,
+                SupplierInvoiceInvoiceDateTo = InvoiceDateTo,
+                SupplierInvoiceStatus = Status,
             };
 
 
@@ -207,12 +207,12 @@ namespace Winform.Forms
         {
             SupplierInvoiceFilter filter = new SupplierInvoiceFilter
             {
-                SaleID = SaleID,
-                SupplierID = SupplierID,
-                InvoiceDateFrom = InvoiceDateFrom,
-                InvoiceDateTo = InvoiceDateTo,
-                Status = Status,
-                page = PaginationUserControl.CurrentPage
+                SupplierInvoiceSaleID = SaleID,
+                SupplierInvoiceSupplierID = SupplierID,
+                SupplierInvoiceInvoiceDateFrom = InvoiceDateFrom,
+                SupplierInvoiceInvoiceDateTo = InvoiceDateTo,
+                SupplierInvoiceStatus = Status,
+                SupplierInvoicePage = PaginationUserControl.CurrentPage
             };
 
             IEnumerable<SupplierInvoiceSupplierDTO> query = _supplierInvoiceService.GetAll(filter);

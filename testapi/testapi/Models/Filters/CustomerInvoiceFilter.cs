@@ -2,14 +2,14 @@
 {
     public class CustomerInvoiceFilter
     {
-        public int? SaleId { get; set; }
+        public int? CustomerInvoiceSaleId { get; set; }
 
-        public int? InvoiceAmountFrom { get; set; }
-        public int? InvoiceAmountTo { get; set; }
+        public int? CustomerInvoiceInvoiceAmountFrom { get; set; }
+        public int? CustomerInvoiceInvoiceAmountTo { get; set; }
 
-        public DateTime? InvoiceDateFrom { get; set; }
-        public DateTime? InvoiceDateTo { get; set; }
-        public string? Status { get; set; }
-        public int? page { get; set; }
+        public DateTime? CustomerInvoiceInvoiceDateFrom { get; set; }
+        public DateTime? CustomerInvoiceInvoiceDateTo { get; set; }
+        public string? CustomerInvoiceStatus { get; set; }
+        public int? CustomerInvoicePage { get; set; }
     }
 }

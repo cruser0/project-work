@@ -50,14 +50,14 @@ namespace API.Models.Services
                          from customer in SaleGroup.DefaultIfEmpty()
                          select new { Sale = s, Customer = customer }).AsQueryable();
 
-            if (!string.IsNullOrEmpty(filter.BookingNumber))
+            if (!string.IsNullOrEmpty(filter.SaleBookingNumber))
             {
-                query = query.Where(s => s.Sale.BookingNumber.StartsWith(filter.BookingNumber));
+                query = query.Where(s => s.Sale.BookingNumber.StartsWith(filter.SaleBookingNumber));
             }
 
-            if (!string.IsNullOrEmpty(filter.BoLnumber))
+            if (!string.IsNullOrEmpty(filter.SaleBoLnumber))
             {
-                query = query.Where(s => s.Sale.BoLnumber.StartsWith(filter.BoLnumber));
+                query = query.Where(s => s.Sale.BoLnumber.StartsWith(filter.SaleBoLnumber));
             }
 
             if (filter.SaleDateFrom != null && filter.SaleDateTo != null)
@@ -69,45 +69,45 @@ namespace API.Models.Services
 
                 query = query.Where(s => s.Sale.SaleDate >= filter.SaleDateFrom && s.Sale.SaleDate <= filter.SaleDateTo);
             }
-            else if (filter.RevenueFrom != null)
+            else if (filter.SaleRevenueFrom != null)
             {
-                query = query.Where(s => s.Sale.TotalRevenue >= filter.RevenueFrom);
+                query = query.Where(s => s.Sale.TotalRevenue >= filter.SaleRevenueFrom);
             }
-            else if (filter.RevenueTo != null)
+            else if (filter.SaleRevenueTo != null)
             {
-                query = query.Where(s => s.Sale.TotalRevenue <= filter.RevenueTo);
+                query = query.Where(s => s.Sale.TotalRevenue <= filter.SaleRevenueTo);
             }
 
-            if (filter.RevenueFrom != null && filter.RevenueTo != null)
+            if (filter.SaleRevenueFrom != null && filter.SaleRevenueTo != null)
             {
-                if (filter.RevenueFrom > filter.RevenueTo)
+                if (filter.SaleRevenueFrom > filter.SaleRevenueTo)
                 {
                     throw new ArgumentException("RevenueFrom cannot be later than RevenueTo.");
                 }
 
-                query = query.Where(s => s.Sale.TotalRevenue >= filter.RevenueFrom && s.Sale.TotalRevenue <= filter.RevenueTo);
+                query = query.Where(s => s.Sale.TotalRevenue >= filter.SaleRevenueFrom && s.Sale.TotalRevenue <= filter.SaleRevenueTo);
             }
-            else if (filter.RevenueFrom != null)
+            else if (filter.SaleRevenueFrom != null)
             {
-                query = query.Where(s => s.Sale.TotalRevenue >= filter.RevenueFrom);
+                query = query.Where(s => s.Sale.TotalRevenue >= filter.SaleRevenueFrom);
             }
-            else if (filter.RevenueTo != null)
+            else if (filter.SaleRevenueTo != null)
             {
-                query = query.Where(s => s.Sale.TotalRevenue <= filter.RevenueTo);
-            }
-
-            if (filter.CustomerId != null)
-            {
-                query = query.Where(s => s.Sale.CustomerId == filter.CustomerId);
+                query = query.Where(s => s.Sale.TotalRevenue <= filter.SaleRevenueTo);
             }
 
-            if (!string.IsNullOrEmpty(filter.Status))
+            if (filter.SaleCustomerId != null)
             {
-                query = query.Where(s => s.Sale.Status == filter.Status);
+                query = query.Where(s => s.Sale.CustomerId == filter.SaleCustomerId);
             }
-            if (filter.page != null)
+
+            if (!string.IsNullOrEmpty(filter.SaleStatus))
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+                query = query.Where(s => s.Sale.Status == filter.SaleStatus);
+            }
+            if (filter.SalePage != null)
+            {
+                query = query.Skip(((int)filter.SalePage - 1) * itemsPage).Take(itemsPage);
             }
             return query.Select(x => new SaleCustomerDTO(x.Sale, x.Customer));
         }

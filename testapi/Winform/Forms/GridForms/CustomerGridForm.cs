@@ -87,31 +87,31 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             CustomerFilter filter = new CustomerFilter
             {
-                Name = NameTxt.Text,
-                Country = CountryTxt.Text,
-                Deprecated = comboBox1.SelectedIndex switch
+                CustomerName = NameTxt.Text,
+                CustomerCountry = CountryTxt.Text,
+                CustomerDeprecated = comboBox1.SelectedIndex switch
                 {
                     1 => false,
                     2 => true,
                     _ => null
                 },
-                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-                page = PaginationUserControl.CurrentPage
+                CustomerCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CustomerCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
+                CustomerPage = PaginationUserControl.CurrentPage
 
             };
             CustomerFilter filterPage = new CustomerFilter
             {
-                Name = NameTxt.Text,
-                Country = CountryTxt.Text,
-                Deprecated = comboBox1.SelectedIndex switch
+                CustomerName = NameTxt.Text,
+                CustomerCountry = CountryTxt.Text,
+                CustomerDeprecated = comboBox1.SelectedIndex switch
                 {
                     1 => false,
                     2 => true,
                     _ => null
                 },
-                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null
+                CustomerCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                CustomerCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null
             };
             name = NameTxt.Text;
             country = CountryTxt.Text;
@@ -144,17 +144,17 @@ namespace Winform.Forms
 
             CustomerFilter filter = new CustomerFilter
             {
-                Name = name,
-                Country = country,
-                Deprecated = status switch
+                CustomerName = name,
+                CustomerCountry = country,
+                CustomerDeprecated = status switch
                 {
                     1 => false,
                     2 => true,
                     _ => null
                 },
-                CreatedDateFrom = dateFrom,
-                CreatedDateTo = dateTo,
-                page = PaginationUserControl.CurrentPage
+                CustomerCreatedDateFrom = dateFrom,
+                CustomerCreatedDateTo = dateTo,
+                CustomerPage = PaginationUserControl.CurrentPage
             };
 
             IEnumerable<Customer> query = _customerService.GetAll(filter);

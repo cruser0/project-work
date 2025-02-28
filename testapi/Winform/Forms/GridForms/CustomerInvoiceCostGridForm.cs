@@ -67,18 +67,18 @@ namespace Winform.Forms.GridForms
             name = !string.IsNullOrEmpty(NameTxt.Text) ? NameTxt.Text : null;
             CustomerInvoiceCostFilter filter = new CustomerInvoiceCostFilter
             {
-                CustomerInvoiceId = invoiceId,
-                CostFrom = costFrom,
-                CostTo = costTo,
-                page = PaginationUserControl.CurrentPage,
-                Name = NameTxt.Text,
+                CustomerInvoiceCostCustomerInvoiceId = invoiceId,
+                CustomerInvoiceCostCostFrom = costFrom,
+                CustomerInvoiceCostCostTo = costTo,
+                CustomerInvoiceCostPage = PaginationUserControl.CurrentPage,
+                CustomerInvoiceCostName = NameTxt.Text,
             };
             CustomerInvoiceCostFilter filterPage = new CustomerInvoiceCostFilter
             {
-                CustomerInvoiceId = invoiceId,
-                CostFrom = costFrom,
-                CostTo = costTo,
-                Name = NameTxt.Text,
+                CustomerInvoiceCostCustomerInvoiceId = invoiceId,
+                CustomerInvoiceCostCostFrom = costFrom,
+                CustomerInvoiceCostCostTo = costTo,
+                CustomerInvoiceCostName = NameTxt.Text,
             };
             IEnumerable<CustomerInvoiceCost> query = _customerInvoiceCostService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerInvoiceCostService.Count(filterPage) / itemsPage)).ToString();
@@ -97,11 +97,11 @@ namespace Winform.Forms.GridForms
         {
             CustomerInvoiceCostFilter filter = new CustomerInvoiceCostFilter
             {
-                CustomerInvoiceId = invoiceId,
-                CostFrom = costFrom,
-                CostTo = costTo,
-                page = PaginationUserControl.CurrentPage,
-                Name = NameTxt.Text,
+                CustomerInvoiceCostCustomerInvoiceId = invoiceId,
+                CustomerInvoiceCostCostFrom = costFrom,
+                CustomerInvoiceCostCostTo = costTo,
+                CustomerInvoiceCostPage = PaginationUserControl.CurrentPage,
+                CustomerInvoiceCostName = NameTxt.Text,
             };
 
             IEnumerable<CustomerInvoiceCost> query = _customerInvoiceCostService.GetAll(filter);

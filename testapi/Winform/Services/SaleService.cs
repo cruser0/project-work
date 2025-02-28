@@ -14,15 +14,15 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "BookingNumber", filter.BookingNumber },
-                { "BoLnumber", filter.BoLnumber },
+                { "BookingNumber", filter.SaleBookingNumber },
+                { "BoLnumber", filter.SaleBoLnumber },
                 { "SaleDateFrom", filter.SaleDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "SaleDateTo", filter.SaleDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "RevenueFrom", filter.RevenueFrom },
-                { "RevenueTo", filter.RevenueTo },
-                { "CustomerId", filter.CustomerId },
-                { "Status", filter.Status?.ToLower() != "all" ? filter.Status : null },
-                { "page", filter.page }
+                { "RevenueFrom", filter.SaleRevenueFrom },
+                { "RevenueTo", filter.SaleRevenueTo },
+                { "CustomerId", filter.SaleCustomerId },
+                { "Status", filter.SaleStatus?.ToLower() != "all" ? filter.SaleStatus : null },
+                { "page", filter.SalePage }
             };
 
             foreach (var kvp in filters)

@@ -82,31 +82,31 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             SupplierFilter filter = new SupplierFilter
             {
-                Name = NameSupplierTxt.Text,
-                Country = CountrySupplierTxt.Text,
-                Deprecated = comboBox1.SelectedIndex switch
+                SupplierName = NameSupplierTxt.Text,
+                SupplierCountry = CountrySupplierTxt.Text,
+                SupplierDeprecated = comboBox1.SelectedIndex switch
                 {
                     1 => false,
                     2 => true,
                     _ => null
                 },
-                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-                page = PaginationUserControl.CurrentPage
+                SupplierCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                SupplierCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
+                SupplierPage = PaginationUserControl.CurrentPage
 
             };
             SupplierFilter filterPage = new SupplierFilter
             {
-                Name = NameSupplierTxt.Text,
-                Country = CountrySupplierTxt.Text,
-                Deprecated = comboBox1.SelectedIndex switch
+                SupplierName = NameSupplierTxt.Text,
+                SupplierCountry = CountrySupplierTxt.Text,
+                SupplierDeprecated = comboBox1.SelectedIndex switch
                 {
                     1 => false,
                     2 => true,
                     _ => null
                 },
-                CreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                CreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
+                SupplierCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
+                SupplierCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
 
             };
             name = NameSupplierTxt.Text;
@@ -132,17 +132,17 @@ namespace Winform.Forms
         {
             SupplierFilter filter = new SupplierFilter
             {
-                Name = name,
-                Country = country,
-                Deprecated = status switch
+                SupplierName = name,
+                SupplierCountry = country,
+                SupplierDeprecated = status switch
                 {
                     1 => false,
                     2 => true,
                     _ => null
                 },
-                CreatedDateFrom = dateFrom,
-                CreatedDateTo = dateTo,
-                page = PaginationUserControl.CurrentPage
+                SupplierCreatedDateFrom = dateFrom,
+                SupplierCreatedDateTo = dateTo,
+                SupplierPage = PaginationUserControl.CurrentPage
             };
 
             IEnumerable<Supplier> query = _supplierService.GetAll(filter);

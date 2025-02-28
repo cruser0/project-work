@@ -223,20 +223,20 @@ namespace API.Models.Services
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role).AsQueryable();
 
-            if (!string.IsNullOrEmpty(filter.Name))
-                query = query.Where(s => s.Name.StartsWith(filter.Name));
-            if (!string.IsNullOrEmpty(filter.LastName))
-                query = query.Where(s => s.LastName.StartsWith(filter.LastName));
-            if (!string.IsNullOrEmpty(filter.Email))
-                query = query.Where(s => s.Email.StartsWith(filter.Email));
-            if (filter.Roles.Count>0)
+            if (!string.IsNullOrEmpty(filter.UserName))
+                query = query.Where(s => s.Name.StartsWith(filter.UserName));
+            if (!string.IsNullOrEmpty(filter.UserLastName))
+                query = query.Where(s => s.LastName.StartsWith(filter.UserLastName));
+            if (!string.IsNullOrEmpty(filter.UserEmail))
+                query = query.Where(s => s.Email.StartsWith(filter.UserEmail));
+            if (filter.UserRoles.Count>0)
             {
-                foreach (var role in filter.Roles)
+                foreach (var role in filter.UserRoles)
                     query = query.Where(x => x.UserRoles.Any(x => x.Role.RoleName.Contains(role)));
             }
-            if (filter.page != null)
+            if (filter.UserPage != null)
             {
-                query = query.Skip(((int)filter.page - 1) * itemsPage).Take(itemsPage);
+                query = query.Skip(((int)filter.UserPage - 1) * itemsPage).Take(itemsPage);
             }
             
             List<User> userList = query.ToList();

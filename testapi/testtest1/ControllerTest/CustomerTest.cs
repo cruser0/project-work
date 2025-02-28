@@ -31,7 +31,7 @@ namespace API_Test.ControllerTest
         {
             new CustomerDTOGet { CustomerId = 1, CustomerName = "Pier Paolo Pittavino", Country = "Italy" }
         };
-            var filter = new CustomerFilter { Name = "", Country = "" };
+            var filter = new CustomerFilter { CustomerName = "", CustomerCountry = "" };
             _mockCustomerService.Setup(service => service.GetAllCustomers(filter)).Returns(customers);
 
             // Act
@@ -50,7 +50,7 @@ namespace API_Test.ControllerTest
             var customers = new List<CustomerDTOGet>
             {
             };
-            var filter = new CustomerFilter { Name = "", Country = "" };
+            var filter = new CustomerFilter { CustomerName = "", CustomerCountry = "" };
             _mockCustomerService.Setup(service => service.GetAllCustomers(filter)).Returns(customers);
 
             // Act

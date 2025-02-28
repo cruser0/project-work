@@ -13,13 +13,13 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "Name", filter.Name },
-                { "Country", filter.Country },
-                { "Deprecated", filter.Deprecated },
-                { "page", filter.page },
-                { "CreatedDateFrom", filter.CreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "CreatedDateTo", filter.CreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty},
-                { "OriginalID", filter.OriginalID }
+                { "Name", filter.SupplierName },
+                { "Country", filter.SupplierCountry },
+                { "Deprecated", filter.SupplierDeprecated },
+                { "page", filter.SupplierPage },
+                { "CreatedDateFrom", filter.SupplierCreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "CreatedDateTo", filter.SupplierCreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty},
+                { "OriginalID", filter.SupplierOriginalID }
 
             };
 

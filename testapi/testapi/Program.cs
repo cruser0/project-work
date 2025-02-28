@@ -27,6 +27,7 @@ builder.Services.AddScoped<ISupplierInvoiceCostService, SupplierInvoiceCostServi
 builder.Services.AddScoped<ICustomerInvoiceCostService, CustomerInvoiceCostService>();
 builder.Services.AddScoped<ISupplierInvoiceService, SupplierInvoiceService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
+builder.Services.AddScoped<ValueServices>();
 builder.Services.AddScoped<UserService>();
 builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("JwtConfig"));
 builder.Services.AddAuthentication(options =>
@@ -46,9 +47,12 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(key),
         ValidateIssuer = false,
         ValidateAudience = false,
+
+
         ValidateLifetime = true,
         RequireExpirationTime = true,
         ClockSkew = TimeSpan.Zero
+
     };
 });
 
