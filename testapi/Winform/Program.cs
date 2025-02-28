@@ -1,7 +1,3 @@
-
-using Winform.Forms;
-using Winform.Services;
-
 namespace Winform
 {
     internal static class Program
@@ -15,9 +11,6 @@ namespace Winform
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
-            UserService userService = new UserService();
-
 
             //LoginForm form = new LoginForm();
 

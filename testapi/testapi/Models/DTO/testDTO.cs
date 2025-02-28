@@ -2,7 +2,7 @@
 {
     public class testDTO
     {
-        public testDTO(CustomerDTOGet c, SaleDTOGet s, CustomerInvoiceDTOGet ci, CustomerInvoiceCostDTOGet cic)
+        public testDTO(List<CustomerDTOGet> c, List<SaleDTOGet> s, List<CustomerInvoiceDTOGet> ci, List<CustomerInvoiceCostDTOGet> cic)
         {
             customers = c;
             sales = s;
@@ -10,10 +10,10 @@
             invoiceCosts = cic;
         }
 
-        public CustomerDTOGet customers { get; set; }
-        public SaleDTOGet sales { get; set; }
-        public CustomerInvoiceDTOGet invoices { get; set; }
-        public CustomerInvoiceCostDTOGet invoiceCosts { get; set; }
+        public List<CustomerDTOGet> customers { get; set; }
+        public List<SaleDTOGet> sales { get; set; }
+        public List<CustomerInvoiceDTOGet> invoices { get; set; }
+        public List<CustomerInvoiceCostDTOGet> invoiceCosts { get; set; }
 
 
     }

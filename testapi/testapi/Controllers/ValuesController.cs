@@ -15,7 +15,7 @@ namespace API.Controllers
             _valueServices = valueServices;
         }
 
-        [HttpGet("customer-invoice-costs")]
+        [HttpGet()]
         public IActionResult GetCustomerInvoiceCosts([FromQuery] CustomerInvoiceCostFilter? costFilter,
                                                      [FromQuery] CustomerInvoiceFilter? invoiceFilter,
                                                      [FromQuery] SaleFilter? saleFilter,

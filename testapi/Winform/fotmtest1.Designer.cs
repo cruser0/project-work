@@ -111,6 +111,7 @@
             this.CustomerInvoiceCostFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceDgv)).BeginInit();
             this.toolStrip3.SuspendLayout();
@@ -998,11 +999,22 @@
             this.CostLbl.TabIndex = 4;
             this.CostLbl.Text = "Cost From";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(20, 205);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.searchButton_Click);
+            // 
             // fotmtest1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1485, 733);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel1);
@@ -1136,5 +1148,6 @@
         private Forms.control.IntegerTextBoxUserControl CustomerInvoiceCostFromTxt;
         private Label InvoiceIDLbl;
         private Label CostLbl;
+        private Button button4;
     }
 }

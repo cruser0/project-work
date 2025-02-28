@@ -11,6 +11,7 @@ namespace Winform
         private CustomerInvoiceService _customerInvoiceService;
         private CustomerInvoiceCostService _customerInvoiceCostService;
         private SaleService _saleService;
+        private ValueService _valueService;
 
         //customer filter
         string customerName;
@@ -56,6 +57,7 @@ namespace Winform
             _customerInvoiceService = new CustomerInvoiceService();
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             _saleService = new SaleService();
+            _valueService = new ValueService();
 
             customerPages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
 
@@ -68,6 +70,8 @@ namespace Winform
 
             var data = _customerService.GetAll(new CustomerFilter());
             customerDgv.DataSource = data;
+
+
         }
 
         private void customerDgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -80,6 +84,7 @@ namespace Winform
 
             var data = _saleService.GetAll(new SaleFilter() { SaleCustomerId = (int)dgv.CurrentRow.Cells["CustomerID"].Value });
             SaleDgv.DataSource = data;
+
 
         }
 
@@ -120,6 +125,10 @@ namespace Winform
 
         private void searchButton_Click(object sender, EventArgs e)
         {
+            customerDgv.DataSourceChanged -= customerDgv_DataSourceChanged;
+            SaleDgv.DataSourceChanged -= SaleDgv_DataSourceChanged;
+            customerInvoiceDgv.DataSourceChanged -= customerInvoiceDgv_DataSourceChanged;
+
             customerName = CustomerNameTxt.Text;
             customerCountry = CustomerCountryTxt.Text;
             customerStatus = CustomerStatusCombo.SelectedIndex switch
@@ -132,7 +141,7 @@ namespace Winform
             customerDateTo = CustomerDateToDtp.Checked ? CustomerDateToDtp.Value : null;
 
 
-            CustomerFilter filter = new CustomerFilter()
+            CustomerFilter filter1 = new CustomerFilter()
             {
                 CustomerName = customerName,
                 CustomerCountry = customerCountry,
@@ -156,8 +165,43 @@ namespace Winform
                 CustomerInvoiceCostCustomerInvoiceId = (int)customerInvoiceDgv.CurrentRow.Cells["CustomerInvoiceID"].Value
             };
 
+            testDTO tabelle = _valueService.GetTables(filter1, filter2, filter3, filter4);
 
+            customerDgv.DataSource = tabelle.customers;
+            SaleDgv.DataSource = tabelle.sales;
+            customerInvoiceDgv.DataSource = tabelle.invoices;
+            customerInvoiceCostDgv.DataSource = tabelle.invoiceCosts;
+
+            customerDgv.DataSourceChanged += customerDgv_DataSourceChanged;
+            SaleDgv.DataSourceChanged += SaleDgv_DataSourceChanged;
+            customerInvoiceDgv.DataSourceChanged += customerInvoiceDgv_DataSourceChanged;
 
         }
+
+        private void SaleDgv_DataSourceChanged(object sender, EventArgs e)
+        {
+
+            var data = _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
+            { CustomerInvoiceSaleId = (int)customerDgv.CurrentRow.Cells["SaleID"].Value });
+            customerInvoiceDgv.DataSource = data;
+        }
+
+        private void customerDgv_DataSourceChanged(object sender, EventArgs e)
+        {
+
+            var data = _saleService.GetAll(new SaleFilter()
+            { SaleCustomerId = (int)SaleDgv.CurrentRow.Cells["CustomerID"].Value });
+            SaleDgv.DataSource = data;
+        }
+
+        private void customerInvoiceDgv_DataSourceChanged(object sender, EventArgs e)
+        {
+
+            var data = _customerInvoiceCostService.GetAll(new CustomerInvoiceCostFilter()
+            { CustomerInvoiceCostCustomerInvoiceId = (int)customerInvoiceDgv.CurrentRow.Cells["CustomerInvoiceID"].Value });
+            customerInvoiceCostDgv.DataSource = data;
+        }
+
+
     }
 }

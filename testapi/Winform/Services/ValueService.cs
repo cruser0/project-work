@@ -1,6 +1,6 @@
 ﻿using API.Models.Filters;
 using System.Text.Json;
-using Winform.Entities;
+using Winform.Entities.DTO;
 
 
 //http://localhost:5069/api/Values/customer-invoice-costs
@@ -15,12 +15,12 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "CustomerName", filter.CustomerName },
-                { "CustomerCountry", filter.CustomerCountry },
-                { "CustomerDeprecated", filter.CustomerDeprecated },
-                { "CustomerPage", filter.CustomerPage },
-                { "CustomerCreatedDateFrom", filter.CustomerCreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
-                { "CustomerCreatedDateTo", filter.CustomerCreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty }
+                { "CustomerName", filter.CustomerName??null },
+                { "CustomerCountry", filter.CustomerCountry??null },
+                { "CustomerDeprecated", filter.CustomerDeprecated??null },
+                { "CustomerPage", filter.CustomerPage??null },
+                { "CustomerCreatedDateFrom", filter.CustomerCreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
+                { "CustomerCreatedDateTo", filter.CustomerCreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ??null }
 
             };
 
@@ -30,7 +30,7 @@ namespace Winform.Services
                     queryParameters.Add($"{kvp.Key}={kvp.Value}");
             }
 
-            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            string queryString = queryParameters.Any() ? string.Join("&", queryParameters) : string.Empty;
 
             return queryString;
         }
@@ -41,15 +41,15 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "SaleBookingNumber", filter.SaleBookingNumber },
-                { "SaleBoLnumber", filter.SaleBoLnumber },
-                { "SaleDateFrom", filter.SaleDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "SaleDateTo", filter.SaleDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "SaleRevenueFrom", filter.SaleRevenueFrom },
-                { "SaleRevenueTo", filter.SaleRevenueTo },
-                { "SaleCustomerId", filter.SaleCustomerId },
+                { "SaleBookingNumber", filter.SaleBookingNumber??null },
+                { "SaleBoLnumber", filter.SaleBoLnumber ??null},
+                { "SaleDateFrom", filter.SaleDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
+                { "SaleDateTo", filter.SaleDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
+                { "SaleRevenueFrom", filter.SaleRevenueFrom ??null},
+                { "SaleRevenueTo", filter.SaleRevenueTo ??null},
+                { "SaleCustomerId", filter.SaleCustomerId ??null},
                 { "SaleStatus", filter.SaleStatus?.ToLower() != "all" ? filter.SaleStatus : null },
-                { "SalePage", filter.SalePage }
+                { "SalePage", filter.SalePage ??null}
             };
 
             foreach (var kvp in filters)
@@ -58,7 +58,7 @@ namespace Winform.Services
                     queryParameters.Add($"{kvp.Key}={kvp.Value}");
             }
 
-            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            string queryString = queryParameters.Any() ? string.Join("&", queryParameters) : string.Empty;
 
             return queryString;
         }
@@ -69,13 +69,13 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "CustomerInvoiceSaleId", filter.CustomerInvoiceSaleId },
-                { "CustomerInvoiceInvoiceAmountFrom", filter.CustomerInvoiceInvoiceAmountFrom },
-                { "CustomerInvoiceInvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "CustomerInvoiceInvoiceDateFrom", filter.CustomerInvoiceInvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
-                { "CustomerInvoiceInvoiceDateTo", filter.CustomerInvoiceInvoiceDateTo },
+                { "CustomerInvoiceSaleId", filter.CustomerInvoiceSaleId ??null},
+                { "CustomerInvoiceInvoiceAmountFrom", filter.CustomerInvoiceInvoiceAmountFrom ??null},
+                { "CustomerInvoiceInvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
+                { "CustomerInvoiceInvoiceDateFrom", filter.CustomerInvoiceInvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
+                { "CustomerInvoiceInvoiceDateTo", filter.CustomerInvoiceInvoiceDateTo ??null},
                 { "CustomerInvoiceStatus", filter.CustomerInvoiceStatus?.ToLower() != "all" ? filter.CustomerInvoiceStatus : null },
-                { "CustomerInvoicePage", filter.CustomerInvoicePage }
+                { "CustomerInvoicePage", filter.CustomerInvoicePage ??null}
             };
 
             foreach (var kvp in filters)
@@ -85,7 +85,7 @@ namespace Winform.Services
             }
 
 
-            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            string queryString = queryParameters.Any() ? string.Join("&", queryParameters) : string.Empty;
 
             return queryString;
         }
@@ -96,12 +96,12 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "CustomerInvoiceCostCustomerInvoiceId", filter.CustomerInvoiceCostCustomerInvoiceId },
-                { "CustomerInvoiceCostCostFrom", filter.CustomerInvoiceCostCostFrom },
-                { "CustomerInvoiceCostCostTo", filter.CustomerInvoiceCostCostTo },
-                { "CustomerInvoiceCostQuantity", filter.CustomerInvoiceCostQuantity },
-                { "CustomerInvoiceCostPage", filter.CustomerInvoiceCostPage },
-                { "CustomerInvoiceCostName", filter.CustomerInvoiceCostName },
+                { "CustomerInvoiceCostCustomerInvoiceId", filter.CustomerInvoiceCostCustomerInvoiceId??null },
+                { "CustomerInvoiceCostCostFrom", filter.CustomerInvoiceCostCostFrom??null },
+                { "CustomerInvoiceCostCostTo", filter.CustomerInvoiceCostCostTo ??null},
+                { "CustomerInvoiceCostQuantity", filter.CustomerInvoiceCostQuantity??null },
+                { "CustomerInvoiceCostPage", filter.CustomerInvoiceCostPage??null },
+                { "CustomerInvoiceCostName", filter.CustomerInvoiceCostName ??null},
             };
 
             foreach (var kvp in filters)
@@ -111,18 +111,25 @@ namespace Winform.Services
             }
 
 
-            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            string queryString = queryParameters.Any() ? string.Join("&", queryParameters) : string.Empty;
 
             return queryString;
         }
 
-        public ICollection<Customer> GetCustomers(CustomerFilter filter)
+
+        public testDTO GetTables(CustomerFilter cfilter, SaleFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsCustomer(filter);
+            string queryString1 = BuildQueryParamsCustomer(cfilter);
+            string queryString2 = BuildQueryParamsSale(sfilter);
+            string queryString3 = BuildQueryParamsCustomerInvoice(cifilter);
+            string queryString4 = BuildQueryParamsCustomerInvoiceCost(cicfilter);
 
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer" + queryString).Result;
+            string queryString = queryString1 + "&" + queryString2 + "&" + queryString3 + "&" + queryString4;
+            if (queryString.Length > 0) queryString = "?" + queryString;
 
+
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "Values" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 
@@ -130,33 +137,12 @@ namespace Winform.Services
                 string json = response.Content.ReadAsStringAsync().Result;
 
                 // Deserializzare la risposta JSON in una lista di oggetti CustomerDTOGet
-                var items = JsonSerializer.Deserialize<List<Customer>>(json,
+                var items = JsonSerializer.Deserialize<testDTO>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return items;
 
             }
-            return new List<Customer>();
-        }
-
-        public ICollection<CustomerInvoice> GetCustomerInvoices(CustomerInvoiceFilter filter)
-        {
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsCustomerInvoice(filter);
-
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "customer-invoice" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerDTOGet
-                var items = JsonSerializer.Deserialize<List<CustomerInvoice>>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            return new List<CustomerInvoice>();
+            return new testDTO();
         }
     }
 }
