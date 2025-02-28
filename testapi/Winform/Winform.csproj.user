@@ -82,6 +82,12 @@
     <Compile Update="Forms\DetailsForms\UserDetails.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FInalForms\CustomerFinalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FInalForms\SupplierFinalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\GridForms\CustomerInvoiceCostGridForm.cs">
       <SubType>Form</SubType>
     </Compile>

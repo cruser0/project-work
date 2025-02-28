@@ -18,7 +18,7 @@ namespace Winform
             WindowState = FormWindowState.Maximized;
 
             CreateDockPanel();
-            SetAuthorizations();
+            //SetAuthorizations();
             StartTokenRefreshLoop();
 
         }
@@ -43,46 +43,46 @@ namespace Winform
             this.Controls.Add(minimizedPanel);
         }
 
-        private void SetAuthorizations()
-        {
-            adminToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin" });
+        //private void SetAuthorizations()
+        //{
+        //    adminToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin" });
 
-            CustomerStripButton.Visible = Authorize(new List<string>
-                { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
-            AddCustomersStripToolButton.Visible = Authorize(new List<string>
-                { "Admin", "CustomerWrite" });
+        //    CustomerStripButton.Visible = Authorize(new List<string>
+        //        { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
+        //    AddCustomersStripToolButton.Visible = Authorize(new List<string>
+        //        { "Admin", "CustomerWrite" });
 
-            customerInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
-            addCustomerInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceWrite"});
+        //    customerInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
+        //    addCustomerInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "CustomerInvoiceWrite"});
 
-            customerInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
-            toolStripMenuItem2.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceCostWrite"});
+        //    customerInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
+        //    toolStripMenuItem2.Visible = Authorize(new List<string>
+        //        { "Admin", "CustomerInvoiceCostWrite"});
 
-            SuppliersStripToolButton.Visible = Authorize(new List<string>
-                { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
-            AddSuppliersStripToolButton.Visible = Authorize(new List<string>
-                { "Admin", "SupplierWrite"});
+        //    SuppliersStripToolButton.Visible = Authorize(new List<string>
+        //        { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
+        //    AddSuppliersStripToolButton.Visible = Authorize(new List<string>
+        //        { "Admin", "SupplierWrite"});
 
-            supplierInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
-            addSupplierInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceWrite"});
+        //    supplierInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
+        //    addSupplierInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "SupplierInvoiceWrite"});
 
-            supplierInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin" });
-            toolStripMenuItem1.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoicesCostWrite"});
+        //    supplierInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin" });
+        //    toolStripMenuItem1.Visible = Authorize(new List<string>
+        //        { "Admin", "SupplierInvoicesCostWrite"});
 
-            salesToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
-            addSalesToolStripMenuItem.Visible = Authorize(new List<string>
-                { "Admin", "SaleWrite"});
-        }
+        //    salesToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
+        //    addSalesToolStripMenuItem.Visible = Authorize(new List<string>
+        //        { "Admin", "SaleWrite"});
+        //}
 
         private bool Authorize(List<string> allowedRoles)
         {
@@ -91,10 +91,11 @@ namespace Winform
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
         {
-            var menuItem = sender as ToolStripMenuItem;
+            var menuItem = sender as ToolStripButton;
 
             Cursor.Current = Cursors.WaitCursor;
-            string formName = menuItem.Text;
+            string tabName = menuItem.GetCurrentParent().Name;
+            string formName = tabName+" "+menuItem.Text;
             int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
             List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
@@ -130,21 +131,21 @@ namespace Winform
             // Create a new form if it doesn't exist already
             Form child = formName switch
             {
-                "Show Customers" => new CustomerForm(),
-                "Show Customer Invoices" => new CustomerInvoiceForm(),
-                "Show Suppliers" => new SupplierForm(),
-                "Show Supplier Invoices" => new SupplierInvoiceForm(),
-                "Show Supplier Invoices Costs" => new SupplierInvoiceCostsForm(),
-                "Show Sales" => new SaleForm(),
-                "Add Supplier Invoices Cost" => new CreateSupplierInvoiceCostForm(),
+                "Show Customer" => new CustomerForm(),
+                "Show Customer Invoice" => new CustomerInvoiceForm(),
+                "Show Supplier" => new SupplierForm(),
+                "Show Supplier Invoice" => new SupplierInvoiceForm(),
+                "Show Supplier Invoice Cost" => new SupplierInvoiceCostsForm(),
+                "Show Sale" => new SaleForm(),
+                "Add Supplier Invoice Cost" => new CreateSupplierInvoiceCostForm(),
                 "Add Sale" => new CreateSaleForm(),
                 "Add Customer" => new CreateCustomerForm(),
                 "Add Customer Invoice" => new CreateCustomerInvoiceForm(),
                 "Add Customer Invoice Cost" => new CreateCustomerInvoiceCostForm(),
                 "Add Supplier" => new CreateSupplierForm(),
                 "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
-                "Show Customer Invoices Costs" => new CustomerInvoiceCostForm(),
-                "Show Users" => new UserForm(),
+                "Show Customer Invoice Cost" => new CustomerInvoiceCostForm(),
+                "Show User" => new UserForm(),
                 "Add User" => new CreateUserForm(),
 
 

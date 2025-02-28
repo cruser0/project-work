@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
             this.CountrySupplierTxt = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +48,7 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateToClnd);
@@ -60,14 +62,14 @@
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 265);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 309);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(3, 201);
+            this.label2.Location = new System.Drawing.Point(0, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 18);
             this.label2.TabIndex = 18;
@@ -77,7 +79,7 @@
             // 
             this.DateFromLbl.AutoSize = true;
             this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateFromLbl.Location = new System.Drawing.Point(3, 154);
+            this.DateFromLbl.Location = new System.Drawing.Point(0, 179);
             this.DateFromLbl.Name = "DateFromLbl";
             this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
             this.DateFromLbl.TabIndex = 17;
@@ -88,7 +90,7 @@
             this.DateToClnd.Checked = false;
             this.DateToClnd.CustomFormat = "ddMMMMyyyy";
             this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToClnd.Location = new System.Drawing.Point(3, 222);
+            this.DateToClnd.Location = new System.Drawing.Point(0, 247);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
             this.DateToClnd.Size = new System.Drawing.Size(180, 23);
@@ -100,7 +102,7 @@
             this.DateFromClnd.Checked = false;
             this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
             this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromClnd.Location = new System.Drawing.Point(3, 175);
+            this.DateFromClnd.Location = new System.Drawing.Point(0, 200);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
             this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
@@ -110,7 +112,7 @@
             // 
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLbl.Location = new System.Drawing.Point(3, 104);
+            this.StatusLbl.Location = new System.Drawing.Point(0, 129);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(45, 18);
             this.StatusLbl.TabIndex = 6;
@@ -126,7 +128,7 @@
             "All",
             "Active",
             "Deprecated"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 125);
+            this.comboBox1.Location = new System.Drawing.Point(0, 150);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(180, 23);
             this.comboBox1.TabIndex = 5;
@@ -135,7 +137,7 @@
             // 
             this.NameSupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.NameSupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameSupplierTxt.Location = new System.Drawing.Point(3, 26);
+            this.NameSupplierTxt.Location = new System.Drawing.Point(0, 51);
             this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
             this.NameSupplierTxt.Size = new System.Drawing.Size(180, 23);
@@ -145,7 +147,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 5);
+            this.label1.Location = new System.Drawing.Point(0, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 18);
             this.label1.TabIndex = 3;
@@ -155,7 +157,7 @@
             // 
             this.CountryLvl.AutoSize = true;
             this.CountryLvl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CountryLvl.Location = new System.Drawing.Point(3, 52);
+            this.CountryLvl.Location = new System.Drawing.Point(0, 77);
             this.CountryLvl.Name = "CountryLvl";
             this.CountryLvl.Size = new System.Drawing.Size(56, 18);
             this.CountryLvl.TabIndex = 4;
@@ -165,11 +167,21 @@
             // 
             this.CountrySupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.CountrySupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountrySupplierTxt.Location = new System.Drawing.Point(3, 73);
+            this.CountrySupplierTxt.Location = new System.Drawing.Point(0, 98);
             this.CountrySupplierTxt.MaxLength = 50;
             this.CountrySupplierTxt.Name = "CountrySupplierTxt";
             this.CountrySupplierTxt.Size = new System.Drawing.Size(180, 23);
             this.CountrySupplierTxt.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(0, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 18);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Supplier";
             // 
             // SearchSupplier
             // 
@@ -177,7 +189,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplier";
-            this.Size = new System.Drawing.Size(200, 265);
+            this.Size = new System.Drawing.Size(200, 309);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -197,5 +209,6 @@
         private Label label1;
         private Label CountryLvl;
         private TextBox CountrySupplierTxt;
+        private Label label4;
     }
 }
