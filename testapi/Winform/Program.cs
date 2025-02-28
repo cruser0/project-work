@@ -12,6 +12,8 @@ namespace Winform
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+
+
             //LoginForm form = new LoginForm();
 
             //if (form.ShowDialog() == DialogResult.OK)
@@ -20,6 +22,8 @@ namespace Winform
             //    Application.Exit();
 
             Application.Run(new mainformtest());
+
+
 
 
         }

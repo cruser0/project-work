@@ -48,6 +48,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = false,
         ValidateAudience = false,
 
+
         ValidateLifetime = true,
         RequireExpirationTime = true,
         ClockSkew = TimeSpan.Zero
