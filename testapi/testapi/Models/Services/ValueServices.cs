@@ -45,46 +45,7 @@ namespace API.Models.Services
             var supplierInvoices = ApplyFilter(invoiceFilter).ToList();
             var suppliers = ApplyFilter(supplierFilter).ToList();
 
-            var query1 = (from s in suppliers
-                          join si in supplierInvoices on s.SupplierId equals si.SupplierId
-                          join sic in supplierInvoiceCosts on si.InvoiceId equals sic.SupplierInvoiceId
-                          select new SupplierDTOGet
-                          {
-                              SupplierId = s.SupplierId,
-                              Country = s.Country,
-                              CreatedAt = s.CreatedAt,
-                              SupplierName = s.SupplierName,
-                              Deprecated = s.Deprecated,
-                              OriginalID = s.OriginalID
-                          }).DistinctBy(x => x.SupplierId).ToList();
-
-            var query2 = (from s in suppliers
-                          join si in supplierInvoices on s.SupplierId equals si.SupplierId
-                          join sic in supplierInvoiceCosts on si.InvoiceId equals sic.SupplierInvoiceId
-                          select new SupplierInvoiceDTOGet
-                          {
-                              InvoiceId = si.InvoiceId,
-                              SupplierId = si.SupplierId,
-                              InvoiceAmount = si.InvoiceAmount,
-                              InvoiceDate = si.InvoiceDate,
-                              SaleId = si.SaleId,
-                              Status = si.Status
-                          }).DistinctBy(x => x.InvoiceId).ToList();
-
-            var query3 = (from s in suppliers
-                          join si in supplierInvoices on s.SupplierId equals si.SupplierId
-                          join sic in supplierInvoiceCosts on si.InvoiceId equals sic.SupplierInvoiceId
-                          select new SupplierInvoiceCostDTOGet
-                          {
-                              SupplierInvoiceCostsId = sic.SupplierInvoiceCostsId,
-                              Cost = sic.Cost,
-                              Name = sic.Name,
-                              Quantity = sic.Quantity,
-                              SupplierInvoiceId = sic.SupplierInvoiceId
-                          }).DistinctBy(x => x.SupplierInvoiceCostsId).ToList();
-
-
-            return new TabelleSupplierDto(query1, query2, query3);
+            return new TabelleSupplierDto(suppliers, supplierInvoices, supplierInvoiceCosts);
         }
 
         private IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter? filter)
