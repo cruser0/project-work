@@ -148,7 +148,11 @@ namespace Winform
                 "Show Customer Invoice Cost" => new CustomerInvoiceCostForm(),
                 "Show User" => new UserForm(),
                 "Add User" => new CreateUserForm(),
+
                 "Group Supplier" => new SupplierFinalForm(),
+
+                "Group Customer"=> new CustomerFinalForm(),
+
 
 
                 _ => new Form()

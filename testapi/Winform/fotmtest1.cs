@@ -349,7 +349,7 @@ namespace Winform
                 CustomerInvoiceCostCustomerInvoiceId = (int)customerInvoiceDgv.CurrentRow.Cells["CustomerInvoiceID"].Value
             };
 
-            testDTO tabelle = _valueService.GetTables(filter1, filter2, filter3, filter4);
+            CustomerGroupDTO tabelle = _valueService.GetTables(filter1, filter2, filter3, filter4);
 
             customerDgv.DataSource = tabelle.customers;
             SaleDgv.DataSource = tabelle.sales;

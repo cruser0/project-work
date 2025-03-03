@@ -10,6 +10,6 @@
     }
     public class CustomerInvoiceCostDTOGet : CustomerInvoiceCostDTO
     {
-        public int CustomerInvoiceCostsId { get; set; }
+        public int? CustomerInvoiceCostsId { get; set; }
     }
 }

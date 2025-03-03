@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.RevenueFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.label2 = new System.Windows.Forms.Label();
             this.RevenueToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.CustomerIDTextBoxUserControl = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.DateToLbl = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
-            this.CustomerIDLbl = new System.Windows.Forms.Label();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.StatusCB = new System.Windows.Forms.ComboBox();
             this.BNTextBox = new System.Windows.Forms.TextBox();
@@ -45,7 +44,6 @@
             this.BillofLadingLbl = new System.Windows.Forms.Label();
             this.DateFromDTP = new System.Windows.Forms.DateTimePicker();
             this.BoLTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,10 +57,8 @@
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.RevenueToTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
-            this.TextBoxesRightPanel.Controls.Add(this.CustomerIDTextBoxUserControl);
             this.TextBoxesRightPanel.Controls.Add(this.DateToLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.CustomerIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
             this.TextBoxesRightPanel.Controls.Add(this.StatusCB);
             this.TextBoxesRightPanel.Controls.Add(this.BNTextBox);
@@ -74,12 +70,22 @@
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 474);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 370);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 18);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Sale";
             // 
             // RevenueFromTxt
             // 
-            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 327);
+            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 280);
             this.RevenueFromTxt.Name = "RevenueFromTxt";
             this.RevenueFromTxt.Size = new System.Drawing.Size(180, 23);
             this.RevenueFromTxt.TabIndex = 15;
@@ -88,7 +94,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(3, 306);
+            this.label2.Location = new System.Drawing.Point(3, 259);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 18);
             this.label2.TabIndex = 14;
@@ -96,7 +102,7 @@
             // 
             // RevenueToTxt
             // 
-            this.RevenueToTxt.Location = new System.Drawing.Point(3, 374);
+            this.RevenueToTxt.Location = new System.Drawing.Point(3, 327);
             this.RevenueToTxt.Name = "RevenueToTxt";
             this.RevenueToTxt.Size = new System.Drawing.Size(180, 23);
             this.RevenueToTxt.TabIndex = 13;
@@ -105,24 +111,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 353);
+            this.label1.Location = new System.Drawing.Point(3, 306);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 18);
             this.label1.TabIndex = 12;
             this.label1.Text = "Revenue To";
             // 
-            // CustomerIDTextBoxUserControl
-            // 
-            this.CustomerIDTextBoxUserControl.Location = new System.Drawing.Point(3, 139);
-            this.CustomerIDTextBoxUserControl.Name = "CustomerIDTextBoxUserControl";
-            this.CustomerIDTextBoxUserControl.Size = new System.Drawing.Size(180, 23);
-            this.CustomerIDTextBoxUserControl.TabIndex = 11;
-            // 
             // DateToLbl
             // 
             this.DateToLbl.AutoSize = true;
             this.DateToLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateToLbl.Location = new System.Drawing.Point(3, 212);
+            this.DateToLbl.Location = new System.Drawing.Point(3, 165);
             this.DateToLbl.Name = "DateToLbl";
             this.DateToLbl.Size = new System.Drawing.Size(56, 18);
             this.DateToLbl.TabIndex = 10;
@@ -132,27 +131,17 @@
             // 
             this.DateFromLbl.AutoSize = true;
             this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateFromLbl.Location = new System.Drawing.Point(3, 165);
+            this.DateFromLbl.Location = new System.Drawing.Point(3, 118);
             this.DateFromLbl.Name = "DateFromLbl";
             this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
             this.DateFromLbl.TabIndex = 9;
             this.DateFromLbl.Text = "Date From";
             // 
-            // CustomerIDLbl
-            // 
-            this.CustomerIDLbl.AutoSize = true;
-            this.CustomerIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CustomerIDLbl.Location = new System.Drawing.Point(3, 118);
-            this.CustomerIDLbl.Name = "CustomerIDLbl";
-            this.CustomerIDLbl.Size = new System.Drawing.Size(85, 18);
-            this.CustomerIDLbl.TabIndex = 8;
-            this.CustomerIDLbl.Text = "Customer ID";
-            // 
             // StatusLbl
             // 
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLbl.Location = new System.Drawing.Point(3, 259);
+            this.StatusLbl.Location = new System.Drawing.Point(3, 212);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(45, 18);
             this.StatusLbl.TabIndex = 6;
@@ -168,7 +157,7 @@
             "All",
             "Active",
             "Closed"});
-            this.StatusCB.Location = new System.Drawing.Point(3, 280);
+            this.StatusCB.Location = new System.Drawing.Point(3, 233);
             this.StatusCB.Name = "StatusCB";
             this.StatusCB.Size = new System.Drawing.Size(180, 23);
             this.StatusCB.TabIndex = 5;
@@ -188,7 +177,7 @@
             this.DateToDTP.Checked = false;
             this.DateToDTP.CustomFormat = "ddMMMMyyyy";
             this.DateToDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToDTP.Location = new System.Drawing.Point(3, 233);
+            this.DateToDTP.Location = new System.Drawing.Point(3, 186);
             this.DateToDTP.Name = "DateToDTP";
             this.DateToDTP.ShowCheckBox = true;
             this.DateToDTP.Size = new System.Drawing.Size(180, 23);
@@ -220,7 +209,7 @@
             this.DateFromDTP.Checked = false;
             this.DateFromDTP.CustomFormat = "ddMMMMyyyy";
             this.DateFromDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromDTP.Location = new System.Drawing.Point(3, 186);
+            this.DateFromDTP.Location = new System.Drawing.Point(3, 139);
             this.DateFromDTP.Name = "DateFromDTP";
             this.DateFromDTP.ShowCheckBox = true;
             this.DateFromDTP.Size = new System.Drawing.Size(180, 23);
@@ -236,23 +225,13 @@
             this.BoLTextBox.Size = new System.Drawing.Size(180, 23);
             this.BoLTextBox.TabIndex = 2;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 18);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Sale";
-            // 
             // SearchSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSale";
-            this.Size = new System.Drawing.Size(200, 474);
+            this.Size = new System.Drawing.Size(200, 370);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -262,22 +241,20 @@
         #endregion
 
         private Panel TextBoxesRightPanel;
-        private IntegerTextBoxUserControl RevenueFromTxt;
         private Label label2;
-        private IntegerTextBoxUserControl RevenueToTxt;
         private Label label1;
-        private IntegerTextBoxUserControl CustomerIDTextBoxUserControl;
         private Label DateToLbl;
         private Label DateFromLbl;
-        private Label CustomerIDLbl;
         private Label StatusLbl;
-        private ComboBox StatusCB;
-        private TextBox BNTextBox;
-        private DateTimePicker DateToDTP;
         private Label BookingNumberLbl;
         private Label BillofLadingLbl;
-        private DateTimePicker DateFromDTP;
-        private TextBox BoLTextBox;
         private Label label4;
+        public IntegerTextBoxUserControl RevenueFromTxt;
+        public IntegerTextBoxUserControl RevenueToTxt;
+        public ComboBox StatusCB;
+        public DateTimePicker DateToDTP;
+        public DateTimePicker DateFromDTP;
+        public TextBox BoLTextBox;
+        public TextBox BNTextBox;
     }
 }

@@ -32,7 +32,7 @@
             this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.SpliContainerDGV = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft = new System.Windows.Forms.ToolStripButton();
             this.Left = new System.Windows.Forms.ToolStripButton();
             this.Right = new System.Windows.Forms.ToolStripButton();
@@ -40,7 +40,7 @@
             this.TSLbl1 = new System.Windows.Forms.ToolStripLabel();
             this.SplitContainerDGV2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft2 = new System.Windows.Forms.ToolStripButton();
             this.Left1 = new System.Windows.Forms.ToolStripButton();
             this.Right2 = new System.Windows.Forms.ToolStripButton();
@@ -67,6 +67,7 @@
             this.searchSale1 = new Winform.Forms.control.SearchSale();
             this.searchCustomerInvoiceCost1 = new Winform.Forms.control.SearchCustomerInvoiceCost();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.SearchBtn = new System.Windows.Forms.Button();
             this.FooterPanel = new System.Windows.Forms.Panel();
             this.LeftPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
@@ -78,13 +79,13 @@
             this.SpliContainerDGV.Panel2.SuspendLayout();
             this.SpliContainerDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.toolStrip2.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).BeginInit();
             this.SplitContainerDGV2.Panel1.SuspendLayout();
             this.SplitContainerDGV2.Panel2.SuspendLayout();
             this.SplitContainerDGV2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.toolStrip1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -94,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.toolStrip4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // LeftPane
@@ -133,7 +135,7 @@
             // SpliContainerDGV.Panel1
             // 
             this.SpliContainerDGV.Panel1.Controls.Add(this.dataGridView1);
-            this.SpliContainerDGV.Panel1.Controls.Add(this.toolStrip2);
+            this.SpliContainerDGV.Panel1.Controls.Add(this.toolStrip);
             // 
             // SpliContainerDGV.Panel2
             // 
@@ -144,6 +146,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -153,20 +156,20 @@
             this.dataGridView1.Size = new System.Drawing.Size(1093, 166);
             this.dataGridView1.TabIndex = 0;
             // 
-            // toolStrip2
+            // toolStrip
             // 
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft,
             this.Left,
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 166);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1093, 25);
-            this.toolStrip2.TabIndex = 2;
-            this.toolStrip2.Text = "toolStrip2";
+            this.toolStrip.Location = new System.Drawing.Point(0, 166);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(1093, 25);
+            this.toolStrip.TabIndex = 2;
+            this.toolStrip.Text = "toolStrip2";
             // 
             // DoubleLeft
             // 
@@ -220,7 +223,7 @@
             // SplitContainerDGV2.Panel1
             // 
             this.SplitContainerDGV2.Panel1.Controls.Add(this.dataGridView2);
-            this.SplitContainerDGV2.Panel1.Controls.Add(this.toolStrip1);
+            this.SplitContainerDGV2.Panel1.Controls.Add(this.toolStrip2);
             // 
             // SplitContainerDGV2.Panel2
             // 
@@ -231,6 +234,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -240,20 +244,20 @@
             this.dataGridView2.Size = new System.Drawing.Size(1093, 191);
             this.dataGridView2.TabIndex = 0;
             // 
-            // toolStrip1
+            // toolStrip2
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft2,
             this.Left1,
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 191);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1093, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip2.Location = new System.Drawing.Point(0, 191);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1093, 25);
+            this.toolStrip2.TabIndex = 2;
+            this.toolStrip2.Text = "toolStrip1";
             // 
             // DoubleLeft2
             // 
@@ -318,6 +322,7 @@
             // 
             // dataGridView4
             // 
+            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -386,6 +391,7 @@
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -475,21 +481,21 @@
             // 
             // searchCustomer1
             // 
-            this.searchCustomer1.Location = new System.Drawing.Point(209, 3);
+            this.searchCustomer1.Location = new System.Drawing.Point(3, 402);
             this.searchCustomer1.Name = "searchCustomer1";
             this.searchCustomer1.Size = new System.Drawing.Size(227, 329);
             this.searchCustomer1.TabIndex = 0;
             // 
             // searchSale1
             // 
-            this.searchSale1.Location = new System.Drawing.Point(442, 3);
+            this.searchSale1.Location = new System.Drawing.Point(3, 737);
             this.searchSale1.Name = "searchSale1";
             this.searchSale1.Size = new System.Drawing.Size(200, 474);
             this.searchSale1.TabIndex = 2;
             // 
             // searchCustomerInvoiceCost1
             // 
-            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(648, 3);
+            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 1217);
             this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
             this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(200, 279);
             this.searchCustomerInvoiceCost1.TabIndex = 3;
@@ -497,11 +503,22 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.Controls.Add(this.SearchBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(68, 663);
             this.panel3.TabIndex = 0;
+            // 
+            // SearchBtn
+            // 
+            this.SearchBtn.Location = new System.Drawing.Point(-7, 42);
+            this.SearchBtn.Name = "SearchBtn";
+            this.SearchBtn.Size = new System.Drawing.Size(75, 23);
+            this.SearchBtn.TabIndex = 0;
+            this.SearchBtn.Text = "Search";
+            this.SearchBtn.UseVisualStyleBackColor = true;
+            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
             // FooterPanel
             // 
@@ -521,6 +538,7 @@
             this.Controls.Add(this.FooterPanel);
             this.Name = "CustomerFinalForm";
             this.Text = "CustomerFinalForm";
+            this.Load += new System.EventHandler(this.SearchBtn_Click);
             this.LeftPane.ResumeLayout(false);
             this.MainSplitContainer.Panel1.ResumeLayout(false);
             this.MainSplitContainer.Panel2.ResumeLayout(false);
@@ -532,16 +550,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpliContainerDGV)).EndInit();
             this.SpliContainerDGV.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.SplitContainerDGV2.Panel1.ResumeLayout(false);
             this.SplitContainerDGV2.Panel1.PerformLayout();
             this.SplitContainerDGV2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).EndInit();
             this.SplitContainerDGV2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -555,6 +573,7 @@
             this.toolStrip4.ResumeLayout(false);
             this.toolStrip4.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -577,12 +596,12 @@
         private SplitContainer splitContainer3;
         private DataGridView dataGridView4;
         private DataGridView dataGridView3;
-        private ToolStrip toolStrip2;
+        private ToolStrip toolStrip;
         private ToolStripButton DoubleLeft;
         private ToolStripButton Left;
         private ToolStripButton Right;
         private ToolStripButton DoubleRight;
-        private ToolStrip toolStrip1;
+        private ToolStrip toolStrip2;
         private ToolStripButton DoubleLeft2;
         private ToolStripButton Left1;
         private ToolStripButton Right2;
@@ -601,5 +620,6 @@
         private ToolStripLabel TSLbl2;
         private ToolStripLabel TSLbl3;
         private ToolStripLabel TSLbl4;
+        private Button SearchBtn;
     }
 }

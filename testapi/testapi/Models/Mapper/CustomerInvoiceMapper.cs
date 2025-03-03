@@ -53,7 +53,7 @@ namespace API.Models.Mapper
                 return null;
             return new CustomerInvoice()
             {
-                CustomerInvoiceId = customerInvoice.CustomerInvoiceId,
+                CustomerInvoiceId = (int)customerInvoice.CustomerInvoiceId,
                 SaleId = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,

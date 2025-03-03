@@ -54,7 +54,7 @@ namespace API.Models.Mapper
                 return null;
             return new SupplierInvoiceCost()
             {
-                SupplierInvoiceCostsId = supplierInvoiceCost.SupplierInvoiceCostsId,
+                SupplierInvoiceCostsId = (int)supplierInvoiceCost.SupplierInvoiceCostsId,
                 SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity,

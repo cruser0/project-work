@@ -196,7 +196,7 @@ namespace Winform.Services
             return queryString;
         }
 
-        public testDTO GetTables(CustomerFilter cfilter, SaleFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
+        public CustomerGroupDTO GetTables(CustomerFilter cfilter, SaleFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString1 = BuildQueryParamsCustomer(cfilter);
@@ -216,12 +216,12 @@ namespace Winform.Services
                 string json = response.Content.ReadAsStringAsync().Result;
 
                 // Deserializzare la risposta JSON in una lista di oggetti CustomerDTOGet
-                var items = JsonSerializer.Deserialize<testDTO>(json,
+                var items = JsonSerializer.Deserialize<CustomerGroupDTO>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return items;
 
             }
-            return new testDTO();
+            return new CustomerGroupDTO();
         }
 
         public supplierGroupDTO GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceFilter sifilter, SupplierInvoiceCostFilter sicfilter)

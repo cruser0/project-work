@@ -10,6 +10,6 @@ public partial class SupplierInvoiceCostDTO
 }
 public class SupplierInvoiceCostDTOGet : SupplierInvoiceCostDTO
 {
-    public int SupplierInvoiceCostsId { get; set; }
+    public int? SupplierInvoiceCostsId { get; set; }
 }
 

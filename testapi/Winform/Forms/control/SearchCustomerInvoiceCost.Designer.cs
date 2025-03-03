@@ -29,15 +29,13 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.NameLbl = new System.Windows.Forms.Label();
             this.CostToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.label1 = new System.Windows.Forms.Label();
             this.CostFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.InvoiceIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,85 +50,12 @@
             this.TextBoxesRightPanel.Controls.Add(this.CostToTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CostFromTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 279);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 192);
             this.TextBoxesRightPanel.TabIndex = 9;
-            // 
-            // NameTxt
-            // 
-            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
-            this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameTxt.Location = new System.Drawing.Point(3, 203);
-            this.NameTxt.MaxLength = 100;
-            this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(180, 23);
-            this.NameTxt.TabIndex = 15;
-            // 
-            // NameLbl
-            // 
-            this.NameLbl.AutoSize = true;
-            this.NameLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NameLbl.Location = new System.Drawing.Point(3, 182);
-            this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(118, 18);
-            this.NameLbl.TabIndex = 16;
-            this.NameLbl.Text = "Description Name";
-            // 
-            // CostToTxt
-            // 
-            this.CostToTxt.Location = new System.Drawing.Point(3, 151);
-            this.CostToTxt.Name = "CostToTxt";
-            this.CostToTxt.Size = new System.Drawing.Size(180, 23);
-            this.CostToTxt.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 130);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 18);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Cost To";
-            // 
-            // CostFromTxt
-            // 
-            this.CostFromTxt.Location = new System.Drawing.Point(2, 97);
-            this.CostFromTxt.Name = "CostFromTxt";
-            this.CostFromTxt.Size = new System.Drawing.Size(180, 23);
-            this.CostFromTxt.TabIndex = 12;
-            // 
-            // InvoiceIDTxt
-            // 
-            this.InvoiceIDTxt.Location = new System.Drawing.Point(2, 50);
-            this.InvoiceIDTxt.Name = "InvoiceIDTxt";
-            this.InvoiceIDTxt.Size = new System.Drawing.Size(180, 23);
-            this.InvoiceIDTxt.TabIndex = 11;
-            // 
-            // InvoiceIDLbl
-            // 
-            this.InvoiceIDLbl.AutoSize = true;
-            this.InvoiceIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.InvoiceIDLbl.Location = new System.Drawing.Point(2, 29);
-            this.InvoiceIDLbl.Name = "InvoiceIDLbl";
-            this.InvoiceIDLbl.Size = new System.Drawing.Size(71, 18);
-            this.InvoiceIDLbl.TabIndex = 3;
-            this.InvoiceIDLbl.Text = "Invoice ID";
-            // 
-            // CostLbl
-            // 
-            this.CostLbl.AutoSize = true;
-            this.CostLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CostLbl.Location = new System.Drawing.Point(2, 76);
-            this.CostLbl.Name = "CostLbl";
-            this.CostLbl.Size = new System.Drawing.Size(68, 18);
-            this.CostLbl.TabIndex = 4;
-            this.CostLbl.Text = "Cost From";
             // 
             // label4
             // 
@@ -142,13 +67,67 @@
             this.label4.TabIndex = 20;
             this.label4.Text = "Customer Invoice Cost";
             // 
+            // NameTxt
+            // 
+            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameTxt.Location = new System.Drawing.Point(1, 145);
+            this.NameTxt.MaxLength = 100;
+            this.NameTxt.Name = "NameTxt";
+            this.NameTxt.Size = new System.Drawing.Size(180, 23);
+            this.NameTxt.TabIndex = 15;
+            // 
+            // NameLbl
+            // 
+            this.NameLbl.AutoSize = true;
+            this.NameLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NameLbl.Location = new System.Drawing.Point(1, 124);
+            this.NameLbl.Name = "NameLbl";
+            this.NameLbl.Size = new System.Drawing.Size(118, 18);
+            this.NameLbl.TabIndex = 16;
+            this.NameLbl.Text = "Description Name";
+            // 
+            // CostToTxt
+            // 
+            this.CostToTxt.Location = new System.Drawing.Point(1, 93);
+            this.CostToTxt.Name = "CostToTxt";
+            this.CostToTxt.Size = new System.Drawing.Size(180, 23);
+            this.CostToTxt.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(1, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 18);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Cost To";
+            // 
+            // CostFromTxt
+            // 
+            this.CostFromTxt.Location = new System.Drawing.Point(0, 39);
+            this.CostFromTxt.Name = "CostFromTxt";
+            this.CostFromTxt.Size = new System.Drawing.Size(180, 23);
+            this.CostFromTxt.TabIndex = 12;
+            // 
+            // CostLbl
+            // 
+            this.CostLbl.AutoSize = true;
+            this.CostLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CostLbl.Location = new System.Drawing.Point(0, 18);
+            this.CostLbl.Name = "CostLbl";
+            this.CostLbl.Size = new System.Drawing.Size(68, 18);
+            this.CostLbl.TabIndex = 4;
+            this.CostLbl.Text = "Cost From";
+            // 
             // SearchCustomerInvoiceCost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoiceCost";
-            this.Size = new System.Drawing.Size(200, 279);
+            this.Size = new System.Drawing.Size(200, 192);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -158,14 +137,12 @@
         #endregion
 
         private Panel TextBoxesRightPanel;
-        private TextBox NameTxt;
         private Label NameLbl;
-        private IntegerTextBoxUserControl CostToTxt;
         private Label label1;
-        private IntegerTextBoxUserControl CostFromTxt;
-        private IntegerTextBoxUserControl InvoiceIDTxt;
-        private Label InvoiceIDLbl;
         private Label CostLbl;
         private Label label4;
+        public IntegerTextBoxUserControl CostFromTxt;
+        public IntegerTextBoxUserControl CostToTxt;
+        public TextBox NameTxt;
     }
 }

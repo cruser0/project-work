@@ -10,5 +10,5 @@ public class CustomerInvoiceDTO
 }
 public class CustomerInvoiceDTOGet : CustomerInvoiceDTO
 {
-    public int CustomerInvoiceId { get; set; }
+    public int? CustomerInvoiceId { get; set; }
 }
