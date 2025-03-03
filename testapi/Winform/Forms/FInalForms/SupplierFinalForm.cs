@@ -1,20 +1,19 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.DTO;
 using Winform.Services;
 
 namespace Winform.Forms.FInalForms
 {
     public partial class SupplierFinalForm : Form
     {
-        private SupplierService _supplierService;
-        private SupplierInvoiceService _supplierInvoiceService;
-        private SupplierInvoiceCostService _supplierInvoiceCostService;
         private ValueService _valueService;
 
         SupplierFilter supplierFilter;
         SupplierInvoiceFilter supplierInvoiceFilter;
         SupplierInvoiceCostFilter supplierInvoiceCostFilter;
 
+        supplierGroupDTO data;
 
         private int pageSize = 10; // Numero di righe per pagina
 
@@ -35,23 +34,25 @@ namespace Winform.Forms.FInalForms
 
         public SupplierFinalForm()
         {
-            _supplierService = new SupplierService();
-            _supplierInvoiceService = new SupplierInvoiceService();
-            _supplierInvoiceCostService = new SupplierInvoiceCostService();
             _valueService = new ValueService();
-
             InitializeComponent();
         }
 
         private void SupplierFinalForm_Load(object sender, EventArgs e)
         {
+            int minSize = searchSupplier1.Width + 30;
+            MainSplitContainer.Panel2MinSize = minSize;
+            MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
+            panel1.Width = flowLayoutPanel1.Width;
+
+
             supplierFilter = searchSupplier1.GetFilter();
 
             supplierInvoiceFilter = searchSupplierInvoice1.GetFilter();
 
             supplierInvoiceCostFilter = searchSupplierInvoiceCost1.GetFilter();
 
-            var data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SuppliersSource.DataSource = data.suppliers;
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
@@ -73,71 +74,158 @@ namespace Winform.Forms.FInalForms
             var supplierPagedData = allSuppliers.Skip((supplierCurrentPage - 1) * pageSize).Take(pageSize).ToList();
             SupplierDgv.DataSource = supplierPagedData;
             supplierTotalPages = (int)Math.Ceiling((double)supplierTotalRecords / pageSize);
-            TSLbl1.Text = $"Pagina {supplierCurrentPage} di {supplierTotalPages}";
+            if (supplierTotalPages > 0)
+                TSLbl1.Text = $"Pagina {supplierCurrentPage} di {supplierTotalPages}";
+            else
+                TSLbl1.Text = "There is no Data";
         }
         private void LoadTableSupplierInvoice()
         {
             var supplierInvoicePagedData = allSupplierInvoices.Skip((supplierInvoiceCurrentPage - 1) * pageSize).Take(pageSize).ToList();
             SupInvoiceDgv.DataSource = supplierInvoicePagedData;
             supplierInvoiceTotalPages = (int)Math.Ceiling((double)supplierInvoiceTotalRecords / pageSize);
-            TSLbl2.Text = $"Pagina {supplierInvoiceCurrentPage} di {supplierInvoiceTotalPages}";
+            if (supplierInvoiceTotalPages > 0)
+                TSLbl2.Text = $"Pagina {supplierInvoiceCurrentPage} di {supplierInvoiceTotalPages}";
+            else
+                TSLbl2.Text = "There is no Data";
         }
         private void LoadTableSupplierInvoicecost()
         {
             var supplierInvoiceCostPagedData = allSupplierInvoiceCosts.Skip((supplierInvoiceCostCurrentPage - 1) * pageSize).Take(pageSize).ToList();
             SupInvoiceCostDgv.DataSource = supplierInvoiceCostPagedData;
             supplierInvoiceCostTotalPages = (int)Math.Ceiling((double)supplierInvoiceCostTotalRecords / pageSize);
-            TSLbl3.Text = $"Pagina {supplierInvoiceCostCurrentPage} di {supplierInvoiceCostTotalPages}";
+            if (supplierInvoiceCostTotalPages > 0)
+                TSLbl3.Text = $"Pagina {supplierInvoiceCostCurrentPage} di {supplierInvoiceCostTotalPages}";
+            else
+                TSLbl3.Text = "There is no Data";
         }
 
-        private void NextSupplier_click(object sender, EventArgs e)
-        {
-            if (supplierCurrentPage < supplierTotalPages)
-            {
-                supplierCurrentPage++;
-                LoadTableSupplier();
-            }
-        }
-        private void NextSupplierInvoice_click(object sender, EventArgs e)
-        {
-            if (supplierInvoiceCurrentPage < supplierInvoiceTotalPages)
-            {
-                supplierInvoiceCurrentPage++;
-                LoadTableSupplierInvoice();
-            }
-        }
-        private void NextSupplierInvoieCost_click(object sender, EventArgs e)
-        {
-            if (supplierInvoiceCostCurrentPage < supplierInvoiceCostTotalPages)
-            {
-                supplierInvoiceCostCurrentPage++;
-                LoadTableSupplierInvoicecost();
-            }
-        }
 
-        private void PreviousSupplier_click(object sender, EventArgs e)
+
+        private void ToolButton_click(object sender, EventArgs e)
         {
-            if (supplierCurrentPage > 1)
+            ToolStripButton btnNext = (ToolStripButton)sender;
+
+            switch (btnNext.Name)
             {
-                supplierCurrentPage--;
-                LoadTableSupplier();
+                case "Right":
+                    if (supplierCurrentPage < supplierTotalPages)
+                    {
+                        supplierCurrentPage++;
+                        LoadTableSupplier();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "Right2":
+                    if (supplierInvoiceCurrentPage < supplierInvoiceTotalPages)
+                    {
+                        supplierInvoiceCurrentPage++;
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "Right3":
+                    if (supplierInvoiceCostCurrentPage < supplierInvoiceCostTotalPages)
+                    {
+                        supplierInvoiceCostCurrentPage++;
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+
+
+                case "DoubleRight":
+                    if (supplierCurrentPage < supplierTotalPages)
+                    {
+                        supplierCurrentPage = supplierTotalPages;
+                        LoadTableSupplier();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "DoubleRight2":
+                    if (supplierInvoiceCurrentPage < supplierInvoiceTotalPages)
+                    {
+                        supplierInvoiceCurrentPage = supplierInvoiceTotalPages;
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "DoubleRight3":
+                    if (supplierInvoiceCostCurrentPage < supplierInvoiceCostTotalPages)
+                    {
+                        supplierInvoiceCostCurrentPage = supplierInvoiceCostTotalPages;
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+
+
+                case "Left":
+                    if (supplierCurrentPage > 1)
+                    {
+                        supplierCurrentPage--;
+                        LoadTableSupplier();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "Left2":
+                    if (supplierInvoiceCurrentPage > 1)
+                    {
+                        supplierInvoiceCurrentPage--;
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "Left3":
+                    if (supplierInvoiceCostCurrentPage > 1)
+                    {
+                        supplierInvoiceCostCurrentPage--;
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+
+                case "DoubleLeft":
+                    if (supplierCurrentPage > 1)
+                    {
+                        supplierCurrentPage = 1;
+                        LoadTableSupplier();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "DoubleLeft2":
+                    if (supplierInvoiceCurrentPage > 1)
+                    {
+                        supplierInvoiceCurrentPage = 1;
+                        ChangedSupplierInvoiceDgv();
+                        LoadTableSupplierInvoice();
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+                case "DoubleLeft3":
+                    if (supplierInvoiceCostCurrentPage > 1)
+                    {
+                        supplierInvoiceCostCurrentPage = 1;
+                        LoadTableSupplierInvoicecost();
+                    }
+                    break;
+
+                default:
+                    break;
             }
-        }
-        private void PreviousSupplierInvoice_click(object sender, EventArgs e)
-        {
-            if (supplierInvoiceCurrentPage > 1)
-            {
-                supplierInvoiceCurrentPage--;
-                LoadTableSupplierInvoice();
-            }
-        }
-        private void PreviousSupplierInvoiceCost_click(object sender, EventArgs e)
-        {
-            if (supplierInvoiceCostCurrentPage > 1)
-            {
-                supplierInvoiceCostCurrentPage--;
-                LoadTableSupplierInvoicecost();
-            }
+
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -148,16 +236,24 @@ namespace Winform.Forms.FInalForms
 
             supplierInvoiceCostFilter = searchSupplierInvoiceCost1.GetFilter();
 
-            var data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SuppliersSource.DataSource = data.suppliers;
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
 
             allSuppliers = (List<Supplier>)SuppliersSource.DataSource;
-            allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
-                .Where(x => x.SupplierId == data.suppliers.First().SupplierId).ToList();
-            allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
+
+            if (allSuppliers.Count > 0)
+                allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
+                    .Where(x => x.SupplierId == data.suppliers.First().SupplierId).ToList();
+            else
+                allSupplierInvoices = new List<SupplierInvoice>();
+
+            if (allSupplierInvoices.Count > 0)
+                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
                 .Where(x => x.SupplierInvoiceId == data.invoices.First().InvoiceId).ToList();
+            else
+                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
 
             supplierTotalRecords = allSuppliers.Count;
             supplierInvoiceTotalRecords = allSupplierInvoices.Count;
@@ -177,20 +273,11 @@ namespace Winform.Forms.FInalForms
             DataGridView dgv = (DataGridView)sender;
 
 
-            var data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
 
-            allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
-                .Where(x => x.SupplierId == (int?)dgv.CurrentRow.Cells["SupplierID"].Value).ToList();
-            allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
-                .Where(x => x.SupplierInvoiceId == data.invoices.First().InvoiceId).ToList();
-
-            supplierInvoiceTotalRecords = allSupplierInvoices.Count;
-            supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
-
-            supplierInvoiceCurrentPage = 1;
-            supplierInvoiceCostCurrentPage = 1;
+            ChangedSupplierDgv();
 
             LoadTableSupplierInvoice();
             LoadTableSupplierInvoicecost();
@@ -200,22 +287,99 @@ namespace Winform.Forms.FInalForms
         {
             DataGridView dgv = (DataGridView)sender;
 
-            var data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
 
+            ChangedSupplierInvoiceDgv();
+
+            LoadTableSupplierInvoicecost();
+        }
+
+        private void ChangedSupplierDgv()
+        {
             allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
                 .Where(x => x.SupplierId == (int?)SupplierDgv.CurrentRow.Cells["SupplierID"].Value).ToList();
-            allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
-                .Where(x => x.SupplierInvoiceId == (int?)dgv.CurrentRow.Cells["InvoiceID"].Value).ToList();
+
+            if (allSupplierInvoices.Count > 0)
+                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
+                    .Where(x => x.SupplierInvoiceId == data.invoices.Where(x => x.SupplierId == (int?)SupplierDgv.CurrentRow.Cells["SupplierID"].Value).ToList().First().InvoiceId).ToList();
+            else
+                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+
 
             supplierInvoiceTotalRecords = allSupplierInvoices.Count;
             supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
 
             supplierInvoiceCurrentPage = 1;
             supplierInvoiceCostCurrentPage = 1;
+        }
 
-            LoadTableSupplierInvoicecost();
+        private void ChangedSupplierInvoiceDgv()
+        {
+            allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
+                .Where(x => x.SupplierId == (int?)SupplierDgv.CurrentRow.Cells["SupplierID"].Value).ToList();
+
+            if (allSupplierInvoices.Count > 0)
+                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
+                .Where(x => x.SupplierInvoiceId == (int?)SupInvoiceDgv.CurrentRow.Cells["InvoiceID"].Value).ToList();
+            else
+                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+
+            supplierInvoiceTotalRecords = allSupplierInvoices.Count;
+            supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
+
+            supplierInvoiceCurrentPage = 1;
+            supplierInvoiceCostCurrentPage = 1;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            if (btn.Text == ">")
+            {
+                MainSplitContainer.Panel2MinSize = btn.Width;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - btn.Width;
+
+
+                searchSupplier1.Visible = false;
+                searchSupplierInvoice1.Visible = false;
+                searchSupplierInvoiceCost1.Visible = false;
+                panel1.Width = flowLayoutPanel1.Width;
+                btn.Text = "<";
+            }
+            else
+            {
+                searchSupplier1.Visible = true;
+                searchSupplierInvoice1.Visible = true;
+                searchSupplierInvoiceCost1.Visible = true;
+
+                int minSize = searchSupplier1.Width + 30;
+                MainSplitContainer.Panel2MinSize = minSize;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
+                panel1.Width = flowLayoutPanel1.Width;
+                btn.Text = ">";
+            }
+        }
+
+        private void SupplierFinalForm_ResizeEnd(object sender, EventArgs e)
+        {
+            if (button2.Text == ">")
+            {
+
+                int minSize = searchSupplier1.Width + 30;
+                MainSplitContainer.Panel2MinSize = minSize;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
+                panel1.Width = flowLayoutPanel1.Width;
+
+            }
+            else
+            {
+                MainSplitContainer.Panel2MinSize = button2.Width;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - button2.Width;
+                panel1.Width = flowLayoutPanel1.Width;
+            }
         }
     }
 }

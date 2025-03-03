@@ -58,6 +58,8 @@
             this.searchSupplier1 = new Winform.Forms.control.SearchSupplier();
             this.searchSupplierInvoice1 = new Winform.Forms.control.SearchSupplierInvoice();
             this.searchSupplierInvoiceCost1 = new Winform.Forms.control.SearchSupplierInvoiceCost();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.FooterPanel = new System.Windows.Forms.Panel();
@@ -84,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceCostDgv)).BeginInit();
             this.CostToolStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).BeginInit();
@@ -113,6 +116,7 @@
             // MainSplitContainer.Panel2
             // 
             this.MainSplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Size = new System.Drawing.Size(1136, 601);
             this.MainSplitContainer.SplitterDistance = 906;
             this.MainSplitContainer.TabIndex = 1;
@@ -172,6 +176,7 @@
             this.DoubleLeft.Name = "DoubleLeft";
             this.DoubleLeft.Size = new System.Drawing.Size(23, 22);
             this.DoubleLeft.Text = "toolStripButton1";
+            this.DoubleLeft.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // Left
             // 
@@ -181,7 +186,7 @@
             this.Left.Name = "Left";
             this.Left.Size = new System.Drawing.Size(23, 22);
             this.Left.Text = "toolStripButton2";
-            this.Left.Click += new System.EventHandler(this.PreviousSupplier_click);
+            this.Left.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // Right
             // 
@@ -191,7 +196,7 @@
             this.Right.Name = "Right";
             this.Right.Size = new System.Drawing.Size(23, 22);
             this.Right.Text = "toolStripButton3";
-            this.Right.Click += new System.EventHandler(this.NextSupplier_click);
+            this.Right.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // DoubleRight
             // 
@@ -201,6 +206,7 @@
             this.DoubleRight.Name = "DoubleRight";
             this.DoubleRight.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight.Text = "toolStripButton4";
+            this.DoubleRight.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // TSLbl1
             // 
@@ -263,6 +269,7 @@
             this.DoubleLeft2.Name = "DoubleLeft2";
             this.DoubleLeft2.Size = new System.Drawing.Size(23, 22);
             this.DoubleLeft2.Text = "toolStripButton1";
+            this.DoubleLeft2.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // Left2
             // 
@@ -272,7 +279,7 @@
             this.Left2.Name = "Left2";
             this.Left2.Size = new System.Drawing.Size(23, 22);
             this.Left2.Text = "toolStripButton2";
-            this.Left2.Click += new System.EventHandler(this.PreviousSupplierInvoice_click);
+            this.Left2.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // Right2
             // 
@@ -282,7 +289,7 @@
             this.Right2.Name = "Right2";
             this.Right2.Size = new System.Drawing.Size(23, 22);
             this.Right2.Text = "toolStripButton3";
-            this.Right2.Click += new System.EventHandler(this.NextSupplierInvoice_click);
+            this.Right2.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // DoubleRight2
             // 
@@ -292,6 +299,7 @@
             this.DoubleRight2.Name = "DoubleRight2";
             this.DoubleRight2.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight2.Text = "toolStripButton4";
+            this.DoubleRight2.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // TSLbl2
             // 
@@ -334,6 +342,7 @@
             this.DoubleLeft3.Name = "DoubleLeft3";
             this.DoubleLeft3.Size = new System.Drawing.Size(23, 22);
             this.DoubleLeft3.Text = "toolStripButton1";
+            this.DoubleLeft3.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // Left3
             // 
@@ -343,7 +352,7 @@
             this.Left3.Name = "Left3";
             this.Left3.Size = new System.Drawing.Size(23, 22);
             this.Left3.Text = "toolStripButton2";
-            this.Left3.Click += new System.EventHandler(this.PreviousSupplierInvoiceCost_click);
+            this.Left3.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // Right3
             // 
@@ -353,7 +362,7 @@
             this.Right3.Name = "Right3";
             this.Right3.Size = new System.Drawing.Size(23, 22);
             this.Right3.Text = "toolStripButton3";
-            this.Right3.Click += new System.EventHandler(this.NextSupplierInvoieCost_click);
+            this.Right3.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // DoubleRight3
             // 
@@ -363,6 +372,7 @@
             this.DoubleRight3.Name = "DoubleRight3";
             this.DoubleRight3.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight3.Text = "toolStripButton4";
+            this.DoubleRight3.Click += new System.EventHandler(this.ToolButton_click);
             // 
             // TSLbl3
             // 
@@ -378,9 +388,9 @@
             this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoice1);
             this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoiceCost1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 601);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 578);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchSupplier1
@@ -403,6 +413,27 @@
             this.searchSupplierInvoiceCost1.Name = "searchSupplierInvoiceCost1";
             this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(200, 246);
             this.searchSupplierInvoiceCost1.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(226, 23);
+            this.panel1.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(23, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = ">";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel3
             // 
@@ -443,6 +474,7 @@
             this.Name = "SupplierFinalForm";
             this.Text = "SupplierFinalForm";
             this.Load += new System.EventHandler(this.SupplierFinalForm_Load);
+            this.SizeChanged += new System.EventHandler(this.SupplierFinalForm_ResizeEnd);
             this.LeftPane.ResumeLayout(false);
             this.MainSplitContainer.Panel1.ResumeLayout(false);
             this.MainSplitContainer.Panel2.ResumeLayout(false);
@@ -469,6 +501,7 @@
             this.CostToolStrip.ResumeLayout(false);
             this.CostToolStrip.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).EndInit();
@@ -514,5 +547,7 @@
         private BindingSource SupplierInvoiceSource;
         private BindingSource SupplierInvoicecostSource;
         private Button button1;
+        private Panel panel1;
+        private Button button2;
     }
 }
