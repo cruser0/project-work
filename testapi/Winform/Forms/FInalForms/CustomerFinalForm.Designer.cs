@@ -47,14 +47,14 @@
             this.DoubleRight2 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl2 = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft3 = new System.Windows.Forms.ToolStripButton();
             this.Left3 = new System.Windows.Forms.ToolStripButton();
             this.Right3 = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight3 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl3 = new System.Windows.Forms.ToolStripLabel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft4 = new System.Windows.Forms.ToolStripButton();
             this.Left4 = new System.Windows.Forms.ToolStripButton();
@@ -90,9 +90,9 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.toolStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.toolStrip3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.toolStrip4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -155,6 +155,7 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(1093, 166);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDbClickLoadSale);
             // 
             // toolStrip
             // 
@@ -179,6 +180,7 @@
             this.DoubleLeft.Name = "DoubleLeft";
             this.DoubleLeft.Size = new System.Drawing.Size(23, 22);
             this.DoubleLeft.Text = "toolStripButton1";
+            this.DoubleLeft.Click += new System.EventHandler(this.DoubleLeft_Click);
             // 
             // Left
             // 
@@ -188,6 +190,7 @@
             this.Left.Name = "Left";
             this.Left.Size = new System.Drawing.Size(23, 22);
             this.Left.Text = "toolStripButton2";
+            this.Left.Click += new System.EventHandler(this.Left_Click);
             // 
             // Right
             // 
@@ -197,6 +200,7 @@
             this.Right.Name = "Right";
             this.Right.Size = new System.Drawing.Size(23, 22);
             this.Right.Text = "toolStripButton3";
+            this.Right.Click += new System.EventHandler(this.Right_Click);
             // 
             // DoubleRight
             // 
@@ -206,6 +210,7 @@
             this.DoubleRight.Name = "DoubleRight";
             this.DoubleRight.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight.Text = "toolStripButton4";
+            this.DoubleRight.Click += new System.EventHandler(this.DoubleRight_Click);
             // 
             // TSLbl1
             // 
@@ -243,6 +248,7 @@
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.Size = new System.Drawing.Size(1093, 191);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SaleDBClickLoadCustomerInvoice);
             // 
             // toolStrip2
             // 
@@ -267,6 +273,7 @@
             this.DoubleLeft2.Name = "DoubleLeft2";
             this.DoubleLeft2.Size = new System.Drawing.Size(23, 22);
             this.DoubleLeft2.Text = "toolStripButton1";
+            this.DoubleLeft2.Click += new System.EventHandler(this.DoubleLeft_Click);
             // 
             // Left1
             // 
@@ -276,6 +283,7 @@
             this.Left1.Name = "Left1";
             this.Left1.Size = new System.Drawing.Size(23, 22);
             this.Left1.Text = "toolStripButton2";
+            this.Left1.Click += new System.EventHandler(this.Left_Click);
             // 
             // Right2
             // 
@@ -285,6 +293,7 @@
             this.Right2.Name = "Right2";
             this.Right2.Size = new System.Drawing.Size(23, 22);
             this.Right2.Text = "toolStripButton3";
+            this.Right2.Click += new System.EventHandler(this.Right_Click);
             // 
             // DoubleRight2
             // 
@@ -294,6 +303,7 @@
             this.DoubleRight2.Name = "DoubleRight2";
             this.DoubleRight2.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight2.Text = "toolStripButton4";
+            this.DoubleRight2.Click += new System.EventHandler(this.DoubleRight_Click);
             // 
             // TSLbl2
             // 
@@ -309,28 +319,29 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.dataGridView4);
+            this.splitContainer3.Panel1.Controls.Add(this.dataGridView3);
             this.splitContainer3.Panel1.Controls.Add(this.toolStrip3);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.dataGridView3);
+            this.splitContainer3.Panel2.Controls.Add(this.dataGridView4);
             this.splitContainer3.Panel2.Controls.Add(this.toolStrip4);
             this.splitContainer3.Size = new System.Drawing.Size(1093, 248);
             this.splitContainer3.SplitterDistance = 364;
             this.splitContainer3.TabIndex = 0;
             // 
-            // dataGridView4
+            // dataGridView3
             // 
-            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(364, 223);
-            this.dataGridView4.TabIndex = 0;
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView3.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowTemplate.Height = 25;
+            this.dataGridView3.Size = new System.Drawing.Size(364, 223);
+            this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerInvoiceDBClickLoadCustomerInvoiceCost);
             // 
             // toolStrip3
             // 
@@ -355,6 +366,7 @@
             this.DoubleLeft3.Name = "DoubleLeft3";
             this.DoubleLeft3.Size = new System.Drawing.Size(23, 22);
             this.DoubleLeft3.Text = "toolStripButton1";
+            this.DoubleLeft3.Click += new System.EventHandler(this.DoubleLeft_Click);
             // 
             // Left3
             // 
@@ -364,6 +376,7 @@
             this.Left3.Name = "Left3";
             this.Left3.Size = new System.Drawing.Size(23, 22);
             this.Left3.Text = "toolStripButton2";
+            this.Left3.Click += new System.EventHandler(this.Left_Click);
             // 
             // Right3
             // 
@@ -373,6 +386,7 @@
             this.Right3.Name = "Right3";
             this.Right3.Size = new System.Drawing.Size(23, 22);
             this.Right3.Text = "toolStripButton3";
+            this.Right3.Click += new System.EventHandler(this.Right_Click);
             // 
             // DoubleRight3
             // 
@@ -382,6 +396,7 @@
             this.DoubleRight3.Name = "DoubleRight3";
             this.DoubleRight3.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight3.Text = "toolStripButton4";
+            this.DoubleRight3.Click += new System.EventHandler(this.DoubleRight_Click);
             // 
             // TSLbl3
             // 
@@ -389,17 +404,17 @@
             this.TSLbl3.Size = new System.Drawing.Size(86, 22);
             this.TSLbl3.Text = "toolStripLabel3";
             // 
-            // dataGridView3
+            // dataGridView4
             // 
-            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(725, 223);
-            this.dataGridView3.TabIndex = 0;
+            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowTemplate.Height = 25;
+            this.dataGridView4.Size = new System.Drawing.Size(725, 223);
+            this.dataGridView4.TabIndex = 0;
             // 
             // toolStrip4
             // 
@@ -424,6 +439,7 @@
             this.DoubleLeft4.Name = "DoubleLeft4";
             this.DoubleLeft4.Size = new System.Drawing.Size(23, 22);
             this.DoubleLeft4.Text = "toolStripButton1";
+            this.DoubleLeft4.Click += new System.EventHandler(this.DoubleLeft_Click);
             // 
             // Left4
             // 
@@ -433,6 +449,7 @@
             this.Left4.Name = "Left4";
             this.Left4.Size = new System.Drawing.Size(23, 22);
             this.Left4.Text = "toolStripButton2";
+            this.Left4.Click += new System.EventHandler(this.Left_Click);
             // 
             // Right4
             // 
@@ -442,6 +459,7 @@
             this.Right4.Name = "Right4";
             this.Right4.Size = new System.Drawing.Size(23, 22);
             this.Right4.Text = "toolStripButton3";
+            this.Right4.Click += new System.EventHandler(this.Right_Click);
             // 
             // DoubleRight5
             // 
@@ -451,6 +469,7 @@
             this.DoubleRight5.Name = "DoubleRight5";
             this.DoubleRight5.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight5.Text = "toolStripButton4";
+            this.DoubleRight5.Click += new System.EventHandler(this.DoubleRight_Click);
             // 
             // TSLbl4
             // 
@@ -566,10 +585,10 @@
             this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.toolStrip4.ResumeLayout(false);
             this.toolStrip4.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -594,8 +613,8 @@
         private SplitContainer SplitContainerDGV2;
         private DataGridView dataGridView2;
         private SplitContainer splitContainer3;
-        private DataGridView dataGridView4;
         private DataGridView dataGridView3;
+        private DataGridView dataGridView4;
         private ToolStrip toolStrip;
         private ToolStripButton DoubleLeft;
         private ToolStripButton Left;

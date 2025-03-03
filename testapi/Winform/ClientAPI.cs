@@ -1,10 +1,12 @@
-﻿namespace Winform
+﻿using Winform.Services;
+
+namespace Winform
 {
     internal class ClientAPI
     {
         public string BaseUri { get; private set; }
         public HttpClient Client { get; private set; }
-
+        UserService _serviceToken;
         public ClientAPI()
         {
             BaseUri = "http://localhost:5069/api/";
@@ -13,7 +15,9 @@
 
         public ClientAPI(string token)
         {
+            _serviceToken = new UserService();
             BaseUri = "http://localhost:5069/api/";
+            _serviceToken.RefreshToken();
             Client = new HttpClient { BaseAddress = new Uri(BaseUri) };
             Client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
         }

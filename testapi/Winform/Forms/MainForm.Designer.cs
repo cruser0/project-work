@@ -532,7 +532,6 @@
             this.UserCreateTS.Size = new System.Drawing.Size(100, 30);
             this.UserCreateTS.Text = "User";
             // 
-
             // GroupTP
             // 
             this.GroupTP.Controls.Add(this.Group);
@@ -568,6 +567,7 @@
             this.CustomerGroupTS.Name = "CustomerGroupTS";
             this.CustomerGroupTS.Size = new System.Drawing.Size(100, 30);
             this.CustomerGroupTS.Text = "Customer";
+            this.CustomerGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator12
             // 
@@ -626,7 +626,6 @@
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
-
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
