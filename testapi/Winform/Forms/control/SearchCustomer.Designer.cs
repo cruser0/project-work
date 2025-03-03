@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
             this.CountryTxt = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +48,7 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
             this.TextBoxesRightPanel.Controls.Add(this.DateToClnd);
@@ -60,14 +62,14 @@
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 264);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 329);
             this.TextBoxesRightPanel.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(3, 200);
+            this.label2.Location = new System.Drawing.Point(3, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 18);
             this.label2.TabIndex = 14;
@@ -77,7 +79,7 @@
             // 
             this.DateFromLbl.AutoSize = true;
             this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateFromLbl.Location = new System.Drawing.Point(3, 153);
+            this.DateFromLbl.Location = new System.Drawing.Point(3, 179);
             this.DateFromLbl.Name = "DateFromLbl";
             this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
             this.DateFromLbl.TabIndex = 13;
@@ -88,7 +90,7 @@
             this.DateToClnd.Checked = false;
             this.DateToClnd.CustomFormat = "ddMMMMyyyy";
             this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToClnd.Location = new System.Drawing.Point(3, 221);
+            this.DateToClnd.Location = new System.Drawing.Point(3, 247);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
             this.DateToClnd.Size = new System.Drawing.Size(180, 23);
@@ -100,7 +102,7 @@
             this.DateFromClnd.Checked = false;
             this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
             this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromClnd.Location = new System.Drawing.Point(3, 174);
+            this.DateFromClnd.Location = new System.Drawing.Point(3, 200);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
             this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
@@ -110,7 +112,7 @@
             // 
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLbl.Location = new System.Drawing.Point(0, 101);
+            this.StatusLbl.Location = new System.Drawing.Point(0, 127);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(45, 18);
             this.StatusLbl.TabIndex = 6;
@@ -126,7 +128,7 @@
             "All",
             "Active",
             "Deprecated"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 122);
+            this.comboBox1.Location = new System.Drawing.Point(3, 148);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(180, 23);
             this.comboBox1.TabIndex = 5;
@@ -135,7 +137,7 @@
             // 
             this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameTxt.Location = new System.Drawing.Point(3, 22);
+            this.NameTxt.Location = new System.Drawing.Point(3, 48);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
             this.NameTxt.Size = new System.Drawing.Size(180, 23);
@@ -145,7 +147,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 1);
+            this.label1.Location = new System.Drawing.Point(3, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 18);
             this.label1.TabIndex = 3;
@@ -155,7 +157,7 @@
             // 
             this.CountryLvl.AutoSize = true;
             this.CountryLvl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CountryLvl.Location = new System.Drawing.Point(3, 48);
+            this.CountryLvl.Location = new System.Drawing.Point(3, 74);
             this.CountryLvl.Name = "CountryLvl";
             this.CountryLvl.Size = new System.Drawing.Size(56, 18);
             this.CountryLvl.TabIndex = 4;
@@ -164,11 +166,21 @@
             // CountryTxt
             // 
             this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountryTxt.Location = new System.Drawing.Point(3, 69);
+            this.CountryTxt.Location = new System.Drawing.Point(3, 95);
             this.CountryTxt.MaxLength = 50;
             this.CountryTxt.Name = "CountryTxt";
             this.CountryTxt.Size = new System.Drawing.Size(180, 23);
             this.CountryTxt.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 18);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Customer";
             // 
             // SearchCustomer
             // 
@@ -176,7 +188,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomer";
-            this.Size = new System.Drawing.Size(200, 264);
+            this.Size = new System.Drawing.Size(200, 329);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -188,13 +200,14 @@
         private Panel TextBoxesRightPanel;
         private Label label2;
         private Label DateFromLbl;
-        private DateTimePicker DateToClnd;
-        private DateTimePicker DateFromClnd;
         private Label StatusLbl;
-        private ComboBox comboBox1;
-        private TextBox NameTxt;
         private Label label1;
         private Label CountryLvl;
-        private TextBox CountryTxt;
+        public DateTimePicker DateToClnd;
+        public DateTimePicker DateFromClnd;
+        public ComboBox comboBox1;
+        public TextBox NameTxt;
+        public TextBox CountryTxt;
+        private Label label4;
     }
 }

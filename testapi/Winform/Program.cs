@@ -1,3 +1,6 @@
+using Winform.Forms;
+using Winform.Forms.FInalForms;
+
 namespace Winform
 {
     internal static class Program
@@ -21,7 +24,10 @@ namespace Winform
             else
                 Application.Exit();
 
-            //Application.Run(new mainformtest());
+
+
+
+
 
 
 
