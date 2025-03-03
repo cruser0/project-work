@@ -14,14 +14,14 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "SaleID", filter.SupplierInvoiceSaleID },
-                { "SupplierID", filter.SupplierInvoiceSupplierID },
-                { "InvoiceDateFrom", filter.SupplierInvoiceInvoiceDateFrom ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "InvoiceDateTo", filter.SupplierInvoiceInvoiceDateTo ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "InvoiceAmountFrom", filter.SupplierInvoiceInvoiceAmountFrom },
-                { "InvoiceAmountTo", filter.SupplierInvoiceInvoiceAmountTo },
-                { "Status", filter.SupplierInvoiceStatus?.ToLower() != "all" ? filter.SupplierInvoiceStatus : null },
-                { "page", filter.SupplierInvoicePage }
+                { "SupplierInvoiceSaleID", filter.SupplierInvoiceSaleID },
+                { "SupplierInvoiceSupplierID", filter.SupplierInvoiceSupplierID },
+                { "SupplierInvoiceInvoiceDateFrom", filter.SupplierInvoiceInvoiceDateFrom ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "SupplierInvoiceInvoiceDateTo", filter.SupplierInvoiceInvoiceDateTo ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "SupplierInvoiceInvoiceAmountFrom", filter.SupplierInvoiceInvoiceAmountFrom },
+                { "SupplierInvoiceInvoiceAmountTo", filter.SupplierInvoiceInvoiceAmountTo },
+                { "SupplierInvoiceStatus", filter.SupplierInvoiceStatus?.ToLower() != "all" ? filter.SupplierInvoiceStatus : null },
+                { "SupplierInvoicePage", filter.SupplierInvoicePage }
 
             };
 

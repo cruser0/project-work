@@ -116,6 +116,85 @@ namespace Winform.Services
             return queryString;
         }
 
+        private string BuildQueryParamsSupplier(SupplierFilter filter)
+        {
+            var queryParameters = new List<string>();
+
+            var filters = new Dictionary<string, object?>
+            {
+                { "SupplierName", filter.SupplierName??string.Empty },
+                { "SupplierCountry", filter.SupplierCountry??string.Empty },
+                { "SupplierDeprecated", filter.SupplierDeprecated??null },
+                { "SupplierPage", filter.SupplierPage??null },
+                { "SupplierCreatedDateFrom", filter.SupplierCreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "SupplierCreatedDateTo", filter.SupplierCreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty},
+                { "SupplierOriginalID", filter.SupplierOriginalID??null }
+
+            };
+
+            foreach (var kvp in filters)
+            {
+                if (kvp.Value != null)
+                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
+
+            string queryString = queryParameters.Any() ? string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+
+        private string BuildQueryParamsSupplierInvoice(SupplierInvoiceFilter filter)
+        {
+            List<string> queryParameters = new();
+
+            var filters = new Dictionary<string, object?>
+            {
+                { "SupplierInvoiceSaleID", filter.SupplierInvoiceSaleID??null },
+                { "SupplierInvoiceSupplierID", filter.SupplierInvoiceSupplierID??null },
+                { "SupplierInvoiceInvoiceDateFrom", filter.SupplierInvoiceInvoiceDateFrom ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "SupplierInvoiceInvoiceDateTo", filter.SupplierInvoiceInvoiceDateTo ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "SupplierInvoiceInvoiceAmountFrom", filter.SupplierInvoiceInvoiceAmountFrom??null },
+                { "SupplierInvoiceInvoiceAmountTo", filter.SupplierInvoiceInvoiceAmountTo??null },
+                { "SupplierInvoiceStatus", filter.SupplierInvoiceStatus?.ToLower() != "all" ? filter.SupplierInvoiceStatus : string.Empty },
+                { "SupplierInvoicePage", filter.SupplierInvoicePage??null }
+
+            };
+
+            foreach (var kvp in filters)
+            {
+                if (kvp.Value != null)
+                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
+
+            string queryString = queryParameters.Any() ? string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+
+        private string BuildQueryParamsSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
+        {
+            var queryParameters = new List<string>();
+
+            var filters = new Dictionary<string, object?>
+            {
+                { "SupplierInvoiceCostSupplierInvoiceId", filter.SupplierInvoiceCostSupplierInvoiceId??null },
+                { "SupplierInvoiceCostCostFrom", filter.SupplierInvoiceCostCostFrom??null },
+                { "SupplierInvoiceCostCostTo", filter.SupplierInvoiceCostCostTo??null },
+                { "SupplierInvoiceCostQuantity", filter.SupplierInvoiceCostQuantity??null },
+                { "SupplierInvoiceCostName", filter.SupplierInvoiceCostName??string.Empty },
+                { "SupplierInvoiceCostPage", filter.SupplierInvoiceCostPage??null }
+            };
+
+            foreach (var kvp in filters)
+            {
+                if (kvp.Value != null)
+                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
+
+            string queryString = queryParameters.Any() ? string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
 
         public testDTO GetTables(CustomerFilter cfilter, SaleFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
         {
@@ -129,7 +208,7 @@ namespace Winform.Services
             if (queryString.Length > 0) queryString = "?" + queryString;
 
 
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "Values" + queryString).Result;
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "Values/customers" + queryString).Result;
             if (response.IsSuccessStatusCode)
             {
 
@@ -143,6 +222,33 @@ namespace Winform.Services
 
             }
             return new testDTO();
+        }
+
+        public supplierGroupDTO GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceFilter sifilter, SupplierInvoiceCostFilter sicfilter)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            string queryString1 = BuildQueryParamsSupplier(sfilter);
+            string queryString2 = BuildQueryParamsSupplierInvoice(sifilter);
+            string queryString3 = BuildQueryParamsSupplierInvoiceCosts(sicfilter);
+
+
+            string queryString = queryString1 + "&" + queryString2 + "&" + queryString3;
+            if (queryString.Length > 0) queryString = "?" + queryString;
+
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "Values/suppliers" + queryString).Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+
+                // Deserializzare la risposta JSON in una lista di oggetti CustomerDTOGet
+                var items = JsonSerializer.Deserialize<supplierGroupDTO>(json,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return items;
+
+            }
+            return new supplierGroupDTO();
         }
     }
 }

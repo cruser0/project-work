@@ -28,37 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LeftPane = new System.Windows.Forms.Panel();
             this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.SpliContainerDGV = new System.Windows.Forms.SplitContainer();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.SupplierDgv = new System.Windows.Forms.DataGridView();
+            this.SupplierToolStrip = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft = new System.Windows.Forms.ToolStripButton();
             this.Left = new System.Windows.Forms.ToolStripButton();
             this.Right = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight = new System.Windows.Forms.ToolStripButton();
             this.TSLbl1 = new System.Windows.Forms.ToolStripLabel();
             this.SplitContainerDGV2 = new System.Windows.Forms.SplitContainer();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.FooterPanel = new System.Windows.Forms.Panel();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.SupInvoiceDgv = new System.Windows.Forms.DataGridView();
+            this.InvoiceToolStrip = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft2 = new System.Windows.Forms.ToolStripButton();
             this.Left2 = new System.Windows.Forms.ToolStripButton();
             this.Right2 = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight2 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.SupInvoiceCostDgv = new System.Windows.Forms.DataGridView();
+            this.CostToolStrip = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft3 = new System.Windows.Forms.ToolStripButton();
             this.Left3 = new System.Windows.Forms.ToolStripButton();
             this.Right3 = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight3 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl3 = new System.Windows.Forms.ToolStripLabel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.searchSupplier1 = new Winform.Forms.control.SearchSupplier();
             this.searchSupplierInvoice1 = new Winform.Forms.control.SearchSupplierInvoice();
             this.searchSupplierInvoiceCost1 = new Winform.Forms.control.SearchSupplierInvoiceCost();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.FooterPanel = new System.Windows.Forms.Panel();
+            this.SuppliersSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SupplierInvoiceSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SupplierInvoicecostSource = new System.Windows.Forms.BindingSource(this.components);
             this.LeftPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -68,17 +73,21 @@
             this.SpliContainerDGV.Panel1.SuspendLayout();
             this.SpliContainerDGV.Panel2.SuspendLayout();
             this.SpliContainerDGV.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).BeginInit();
+            this.SupplierToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).BeginInit();
             this.SplitContainerDGV2.Panel1.SuspendLayout();
             this.SplitContainerDGV2.Panel2.SuspendLayout();
             this.SplitContainerDGV2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceDgv)).BeginInit();
+            this.InvoiceToolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceCostDgv)).BeginInit();
+            this.CostToolStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            this.toolStrip4.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoicecostSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LeftPane
@@ -117,8 +126,8 @@
             // 
             // SpliContainerDGV.Panel1
             // 
-            this.SpliContainerDGV.Panel1.Controls.Add(this.dataGridView1);
-            this.SpliContainerDGV.Panel1.Controls.Add(this.toolStrip2);
+            this.SpliContainerDGV.Panel1.Controls.Add(this.SupplierDgv);
+            this.SpliContainerDGV.Panel1.Controls.Add(this.SupplierToolStrip);
             // 
             // SpliContainerDGV.Panel2
             // 
@@ -127,31 +136,33 @@
             this.SpliContainerDGV.SplitterDistance = 173;
             this.SpliContainerDGV.TabIndex = 0;
             // 
-            // dataGridView1
+            // SupplierDgv
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(906, 148);
-            this.dataGridView1.TabIndex = 0;
+            this.SupplierDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SupplierDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SupplierDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SupplierDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SupplierDgv.Location = new System.Drawing.Point(0, 0);
+            this.SupplierDgv.Name = "SupplierDgv";
+            this.SupplierDgv.RowTemplate.Height = 25;
+            this.SupplierDgv.Size = new System.Drawing.Size(906, 148);
+            this.SupplierDgv.TabIndex = 0;
+            this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellClick);
             // 
-            // toolStrip2
+            // SupplierToolStrip
             // 
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SupplierToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SupplierToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft,
             this.Left,
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 148);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(906, 25);
-            this.toolStrip2.TabIndex = 2;
-            this.toolStrip2.Text = "toolStrip2";
+            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 148);
+            this.SupplierToolStrip.Name = "SupplierToolStrip";
+            this.SupplierToolStrip.Size = new System.Drawing.Size(906, 25);
+            this.SupplierToolStrip.TabIndex = 2;
+            this.SupplierToolStrip.Text = "toolStrip2";
             // 
             // DoubleLeft
             // 
@@ -170,6 +181,7 @@
             this.Left.Name = "Left";
             this.Left.Size = new System.Drawing.Size(23, 22);
             this.Left.Text = "toolStripButton2";
+            this.Left.Click += new System.EventHandler(this.PreviousSupplier_click);
             // 
             // Right
             // 
@@ -179,6 +191,7 @@
             this.Right.Name = "Right";
             this.Right.Size = new System.Drawing.Size(23, 22);
             this.Right.Text = "toolStripButton3";
+            this.Right.Click += new System.EventHandler(this.NextSupplier_click);
             // 
             // DoubleRight
             // 
@@ -203,84 +216,44 @@
             // 
             // SplitContainerDGV2.Panel1
             // 
-            this.SplitContainerDGV2.Panel1.Controls.Add(this.dataGridView4);
-            this.SplitContainerDGV2.Panel1.Controls.Add(this.toolStrip4);
+            this.SplitContainerDGV2.Panel1.Controls.Add(this.SupInvoiceDgv);
+            this.SplitContainerDGV2.Panel1.Controls.Add(this.InvoiceToolStrip);
             // 
             // SplitContainerDGV2.Panel2
             // 
-            this.SplitContainerDGV2.Panel2.Controls.Add(this.dataGridView3);
-            this.SplitContainerDGV2.Panel2.Controls.Add(this.toolStrip3);
+            this.SplitContainerDGV2.Panel2.Controls.Add(this.SupInvoiceCostDgv);
+            this.SplitContainerDGV2.Panel2.Controls.Add(this.CostToolStrip);
             this.SplitContainerDGV2.Size = new System.Drawing.Size(906, 424);
             this.SplitContainerDGV2.SplitterDistance = 332;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
-            // flowLayoutPanel1
+            // SupInvoiceDgv
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.flowLayoutPanel1.Controls.Add(this.searchSupplier1);
-            this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoice1);
-            this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoiceCost1);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 601);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.SupInvoiceDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SupInvoiceDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SupInvoiceDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SupInvoiceDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SupInvoiceDgv.Location = new System.Drawing.Point(0, 0);
+            this.SupInvoiceDgv.Name = "SupInvoiceDgv";
+            this.SupInvoiceDgv.RowTemplate.Height = 25;
+            this.SupInvoiceDgv.Size = new System.Drawing.Size(332, 399);
+            this.SupInvoiceDgv.TabIndex = 3;
+            this.SupInvoiceDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupInvoiceDgv_CellClick);
             // 
-            // panel3
+            // InvoiceToolStrip
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(68, 601);
-            this.panel3.TabIndex = 0;
-            // 
-            // FooterPanel
-            // 
-            this.FooterPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FooterPanel.Location = new System.Drawing.Point(0, 601);
-            this.FooterPanel.Name = "FooterPanel";
-            this.FooterPanel.Size = new System.Drawing.Size(1204, 100);
-            this.FooterPanel.TabIndex = 4;
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(332, 399);
-            this.dataGridView4.TabIndex = 3;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(570, 399);
-            this.dataGridView3.TabIndex = 4;
-            // 
-            // toolStrip4
-            // 
-            this.toolStrip4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.InvoiceToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.InvoiceToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft2,
             this.Left2,
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.toolStrip4.Location = new System.Drawing.Point(0, 399);
-            this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(332, 25);
-            this.toolStrip4.TabIndex = 5;
-            this.toolStrip4.Text = "toolStrip4";
+            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 399);
+            this.InvoiceToolStrip.Name = "InvoiceToolStrip";
+            this.InvoiceToolStrip.Size = new System.Drawing.Size(332, 25);
+            this.InvoiceToolStrip.TabIndex = 5;
+            this.InvoiceToolStrip.Text = "toolStrip4";
             // 
             // DoubleLeft2
             // 
@@ -299,6 +272,7 @@
             this.Left2.Name = "Left2";
             this.Left2.Size = new System.Drawing.Size(23, 22);
             this.Left2.Text = "toolStripButton2";
+            this.Left2.Click += new System.EventHandler(this.PreviousSupplierInvoice_click);
             // 
             // Right2
             // 
@@ -308,6 +282,7 @@
             this.Right2.Name = "Right2";
             this.Right2.Size = new System.Drawing.Size(23, 22);
             this.Right2.Text = "toolStripButton3";
+            this.Right2.Click += new System.EventHandler(this.NextSupplierInvoice_click);
             // 
             // DoubleRight2
             // 
@@ -324,20 +299,32 @@
             this.TSLbl2.Size = new System.Drawing.Size(86, 22);
             this.TSLbl2.Text = "toolStripLabel2";
             // 
-            // toolStrip3
+            // SupInvoiceCostDgv
             // 
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SupInvoiceCostDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SupInvoiceCostDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SupInvoiceCostDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SupInvoiceCostDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SupInvoiceCostDgv.Location = new System.Drawing.Point(0, 0);
+            this.SupInvoiceCostDgv.Name = "SupInvoiceCostDgv";
+            this.SupInvoiceCostDgv.RowTemplate.Height = 25;
+            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(570, 399);
+            this.SupInvoiceCostDgv.TabIndex = 4;
+            // 
+            // CostToolStrip
+            // 
+            this.CostToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CostToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft3,
             this.Left3,
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.toolStrip3.Location = new System.Drawing.Point(0, 399);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(570, 25);
-            this.toolStrip3.TabIndex = 6;
-            this.toolStrip3.Text = "toolStrip3";
+            this.CostToolStrip.Location = new System.Drawing.Point(0, 399);
+            this.CostToolStrip.Name = "CostToolStrip";
+            this.CostToolStrip.Size = new System.Drawing.Size(570, 25);
+            this.CostToolStrip.TabIndex = 6;
+            this.CostToolStrip.Text = "toolStrip3";
             // 
             // DoubleLeft3
             // 
@@ -356,6 +343,7 @@
             this.Left3.Name = "Left3";
             this.Left3.Size = new System.Drawing.Size(23, 22);
             this.Left3.Text = "toolStripButton2";
+            this.Left3.Click += new System.EventHandler(this.PreviousSupplierInvoiceCost_click);
             // 
             // Right3
             // 
@@ -365,6 +353,7 @@
             this.Right3.Name = "Right3";
             this.Right3.Size = new System.Drawing.Size(23, 22);
             this.Right3.Text = "toolStripButton3";
+            this.Right3.Click += new System.EventHandler(this.NextSupplierInvoieCost_click);
             // 
             // DoubleRight3
             // 
@@ -380,6 +369,19 @@
             this.TSLbl3.Name = "TSLbl3";
             this.TSLbl3.Size = new System.Drawing.Size(86, 22);
             this.TSLbl3.Text = "toolStripLabel3";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.flowLayoutPanel1.Controls.Add(this.searchSupplier1);
+            this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoice1);
+            this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoiceCost1);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 601);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchSupplier1
             // 
@@ -402,6 +404,35 @@
             this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(200, 246);
             this.searchSupplierInvoiceCost1.TabIndex = 2;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(68, 601);
+            this.panel3.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 74);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // FooterPanel
+            // 
+            this.FooterPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FooterPanel.Location = new System.Drawing.Point(0, 601);
+            this.FooterPanel.Name = "FooterPanel";
+            this.FooterPanel.Size = new System.Drawing.Size(1204, 100);
+            this.FooterPanel.TabIndex = 4;
+            // 
             // SupplierFinalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -411,6 +442,7 @@
             this.Controls.Add(this.FooterPanel);
             this.Name = "SupplierFinalForm";
             this.Text = "SupplierFinalForm";
+            this.Load += new System.EventHandler(this.SupplierFinalForm_Load);
             this.LeftPane.ResumeLayout(false);
             this.MainSplitContainer.Panel1.ResumeLayout(false);
             this.MainSplitContainer.Panel2.ResumeLayout(false);
@@ -421,22 +453,26 @@
             this.SpliContainerDGV.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SpliContainerDGV)).EndInit();
             this.SpliContainerDGV.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).EndInit();
+            this.SupplierToolStrip.ResumeLayout(false);
+            this.SupplierToolStrip.PerformLayout();
             this.SplitContainerDGV2.Panel1.ResumeLayout(false);
             this.SplitContainerDGV2.Panel1.PerformLayout();
             this.SplitContainerDGV2.Panel2.ResumeLayout(false);
             this.SplitContainerDGV2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).EndInit();
             this.SplitContainerDGV2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceDgv)).EndInit();
+            this.InvoiceToolStrip.ResumeLayout(false);
+            this.InvoiceToolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceCostDgv)).EndInit();
+            this.CostToolStrip.ResumeLayout(false);
+            this.CostToolStrip.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            this.toolStrip4.ResumeLayout(false);
-            this.toolStrip4.PerformLayout();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoicecostSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,23 +482,23 @@
         private Panel LeftPane;
         private SplitContainer MainSplitContainer;
         private SplitContainer SpliContainerDGV;
-        private DataGridView dataGridView1;
-        private ToolStrip toolStrip2;
+        private DataGridView SupplierDgv;
+        private ToolStrip SupplierToolStrip;
         private ToolStripButton DoubleLeft;
         private ToolStripButton Left;
         private ToolStripButton Right;
         private ToolStripButton DoubleRight;
         private ToolStripLabel TSLbl1;
         private SplitContainer SplitContainerDGV2;
-        private DataGridView dataGridView4;
-        private ToolStrip toolStrip4;
+        private DataGridView SupInvoiceDgv;
+        private ToolStrip InvoiceToolStrip;
         private ToolStripButton DoubleLeft2;
         private ToolStripButton Left2;
         private ToolStripButton Right2;
         private ToolStripButton DoubleRight2;
         private ToolStripLabel TSLbl2;
-        private DataGridView dataGridView3;
-        private ToolStrip toolStrip3;
+        private DataGridView SupInvoiceCostDgv;
+        private ToolStrip CostToolStrip;
         private ToolStripButton DoubleLeft3;
         private ToolStripButton Left3;
         private ToolStripButton Right3;
@@ -474,5 +510,9 @@
         private control.SearchSupplier searchSupplier1;
         private control.SearchSupplierInvoice searchSupplierInvoice1;
         private control.SearchSupplierInvoiceCost searchSupplierInvoiceCost1;
+        private BindingSource SuppliersSource;
+        private BindingSource SupplierInvoiceSource;
+        private BindingSource SupplierInvoicecostSource;
+        private Button button1;
     }
 }

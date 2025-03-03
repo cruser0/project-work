@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using API.Models.Filters;
 
 namespace Winform.Forms.control
 {
@@ -15,6 +7,18 @@ namespace Winform.Forms.control
         public SearchSupplierInvoiceCost()
         {
             InitializeComponent();
+        }
+
+        public SupplierInvoiceCostFilter GetFilter()
+        {
+            SupplierInvoiceCostFilter filter = new SupplierInvoiceCostFilter()
+            {
+                SupplierInvoiceCostName = NameTxt.Text,
+                SupplierInvoiceCostCostFrom = !string.IsNullOrEmpty(CostFromTxt.GetText()) ? int.Parse(CostFromTxt.GetText()) : null,
+                SupplierInvoiceCostCostTo = !string.IsNullOrEmpty(CostToTxt.GetText()) ? int.Parse(CostToTxt.GetText()) : null
+
+            };
+            return filter;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Winform.Forms;
 using Winform.Forms.AddForms;
 using Winform.Forms.control;
+using Winform.Forms.FInalForms;
 using Winform.Services;
 
 namespace Winform
@@ -95,7 +96,7 @@ namespace Winform
 
             Cursor.Current = Cursors.WaitCursor;
             string tabName = menuItem.GetCurrentParent().Name;
-            string formName = tabName+" "+menuItem.Text;
+            string formName = tabName + " " + menuItem.Text;
             int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
             List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
@@ -147,6 +148,7 @@ namespace Winform
                 "Show Customer Invoice Cost" => new CustomerInvoiceCostForm(),
                 "Show User" => new UserForm(),
                 "Add User" => new CreateUserForm(),
+                "Group Supplier" => new SupplierFinalForm(),
 
 
                 _ => new Form()

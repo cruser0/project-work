@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
@@ -39,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
             this.CountrySupplierTxt = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,16 @@
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 309);
             this.TextBoxesRightPanel.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(0, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 18);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Supplier";
             // 
             // label2
             // 
@@ -173,16 +183,6 @@
             this.CountrySupplierTxt.Size = new System.Drawing.Size(180, 23);
             this.CountrySupplierTxt.TabIndex = 2;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(0, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 18);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Supplier";
-            // 
             // SearchSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -197,18 +197,17 @@
         }
 
         #endregion
-
-        private Panel TextBoxesRightPanel;
-        private Label label2;
-        private Label DateFromLbl;
-        private DateTimePicker DateToClnd;
-        private DateTimePicker DateFromClnd;
-        private Label StatusLbl;
-        private ComboBox comboBox1;
-        private TextBox NameSupplierTxt;
-        private Label label1;
-        private Label CountryLvl;
-        private TextBox CountrySupplierTxt;
-        private Label label4;
+        public DateTimePicker DateToClnd;
+        public DateTimePicker DateFromClnd;
+        public ComboBox comboBox1;
+        public TextBox NameSupplierTxt;
+        public TextBox CountrySupplierTxt;
+        public Panel TextBoxesRightPanel;
+        public Label label2;
+        public Label DateFromLbl;
+        public Label StatusLbl;
+        public Label label1;
+        public Label CountryLvl;
+        public Label label4;
     }
 }

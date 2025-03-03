@@ -17,71 +17,67 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public TabelleCustomerDto GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
-                                                CustomerInvoiceFilter? invoiceFilter,
-                                                SaleFilter? saleFilter,
-                                                CustomerFilter? customerFilter)
+        public TabelleCustomerDto GetCustomerInvoiceCosts(
+    CustomerInvoiceCostFilter? costFilter,
+    CustomerInvoiceFilter? invoiceFilter,
+    SaleFilter? saleFilter,
+    CustomerFilter? customerFilter)
         {
-            var customerInvoiceCosts = ApplyFilter(costFilter).ToList();
-            var customerInvoices = ApplyFilter(invoiceFilter).ToList();
-            var customers = ApplyFilter(customerFilter).ToList();
-            var sales = ApplyFilter(saleFilter).ToList();
+            // Apply filters but do not materialize them yet
+            var customerInvoiceCosts = ApplyFilter(costFilter);
+            var customerInvoices = ApplyFilter(invoiceFilter);
+            var customers = ApplyFilter(customerFilter);
+            var sales = ApplyFilter(saleFilter);
 
-            var query1 = (from customer in customers
-                          join sale in sales on customer.CustomerId equals sale.CustomerId
-                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
-                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
-                          select new CustomerDTOGet
-                          {
-                              CustomerId = customer.CustomerId,
-                              Country = customer.Country,
-                              CreatedAt = customer.CreatedAt,
-                              CustomerName = customer.CustomerName,
-                              Deprecated = customer.Deprecated,
-                              OriginalID = customer.OriginalID
-                          }).DistinctBy(x => x.CustomerId).ToList();
+            // Perform the joins once
+            var joinedData = from customer in customers
+                             join sale in sales on customer.CustomerId equals sale.CustomerId
+                             join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
+                             join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
+                             select new
+                             {
+                                 Customer = new CustomerDTOGet
+                                 {
+                                     CustomerId = customer.CustomerId,
+                                     Country = customer.Country,
+                                     CreatedAt = customer.CreatedAt,
+                                     CustomerName = customer.CustomerName,
+                                     Deprecated = customer.Deprecated,
+                                     OriginalID = customer.OriginalID
+                                 },
+                                 Sale = new SaleDTOGet
+                                 {
+                                     SaleId = sale.SaleId,
+                                     BoLnumber = sale.BoLnumber,
+                                     BookingNumber = sale.BookingNumber,
+                                     CustomerId = customer.CustomerId,
+                                     SaleDate = sale.SaleDate,
+                                     Status = sale.Status,
+                                     TotalRevenue = sale.TotalRevenue
+                                 },
+                                 Invoice = new CustomerInvoiceDTOGet
+                                 {
+                                     Status = invoice.Status,
+                                     SaleId = invoice.SaleId,
+                                     CustomerInvoiceId = invoice.CustomerInvoiceId,
+                                     InvoiceAmount = invoice.InvoiceAmount,
+                                     InvoiceDate = invoice.InvoiceDate
+                                 },
+                                 InvoiceCost = new CustomerInvoiceCostDTOGet
+                                 {
+                                     CustomerInvoiceCostsId = invoiceCost.CustomerInvoiceCostsId,
+                                     CustomerInvoiceId = invoiceCost.CustomerInvoiceId,
+                                     Cost = invoiceCost.Cost,
+                                     Name = invoiceCost.Name,
+                                     Quantity = invoiceCost.Quantity
+                                 }
+                             };
 
-
-            var query2 = (from customer in customers
-                          join sale in sales on customer.CustomerId equals sale.CustomerId
-                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
-                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
-                          select new SaleDTOGet
-                          {
-                              SaleId = sale.SaleId,
-                              BoLnumber = sale.BoLnumber,
-                              BookingNumber = sale.BookingNumber,
-                              CustomerId = customer.CustomerId,
-                              SaleDate = sale.SaleDate,
-                              Status = sale.Status,
-                              TotalRevenue = sale.TotalRevenue
-                          }).DistinctBy(x => x.SaleId).ToList();
-
-            var query3 = (from customer in customers
-                          join sale in sales on customer.CustomerId equals sale.CustomerId
-                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
-                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
-                          select new CustomerInvoiceDTOGet
-                          {
-                              Status = invoice.Status,
-                              SaleId = invoice.SaleId,
-                              CustomerInvoiceId = invoice.CustomerInvoiceId,
-                              InvoiceAmount = invoice.InvoiceAmount,
-                              InvoiceDate = invoice.InvoiceDate
-                          }).DistinctBy(x => x.CustomerInvoiceId).ToList();
-
-            var query4 = (from customer in customers
-                          join sale in sales on customer.CustomerId equals sale.CustomerId
-                          join invoice in customerInvoices on sale.SaleId equals invoice.SaleId
-                          join invoiceCost in customerInvoiceCosts on invoice.CustomerInvoiceId equals invoiceCost.CustomerInvoiceId
-                          select new CustomerInvoiceCostDTOGet
-                          {
-                              CustomerInvoiceCostsId = invoiceCost.CustomerInvoiceCostsId,
-                              CustomerInvoiceId = invoiceCost.CustomerInvoiceId,
-                              Cost = invoiceCost.Cost,
-                              Name = invoiceCost.Name,
-                              Quantity = invoiceCost.Quantity
-                          }).DistinctBy(x => x.CustomerInvoiceCostsId).ToList();
+            // Extract distinct collections efficiently
+            var query1 = joinedData.Select(x => x.Customer).DistinctBy(x => x.CustomerId).ToList();
+            var query2 = joinedData.Select(x => x.Sale).DistinctBy(x => x.SaleId).ToList();
+            var query3 = joinedData.Select(x => x.Invoice).DistinctBy(x => x.CustomerInvoiceId).ToList();
+            var query4 = joinedData.Select(x => x.InvoiceCost).DistinctBy(x => x.CustomerInvoiceCostsId).ToList();
 
             return new TabelleCustomerDto(query1, query2, query3, query4);
         }
