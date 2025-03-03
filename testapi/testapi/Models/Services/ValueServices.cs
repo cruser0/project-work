@@ -17,7 +17,7 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public testDTO GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
+        public TabelleCustomerDto GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
                                                 CustomerInvoiceFilter? invoiceFilter,
                                                 SaleFilter? saleFilter,
                                                 CustomerFilter? customerFilter)
@@ -83,7 +83,7 @@ namespace API.Models.Services
                               Quantity = invoiceCost.Quantity
                           }).DistinctBy(x => x.CustomerInvoiceCostsId).ToList();
 
-            return new testDTO(query1, query2, query3, query4);
+            return new TabelleCustomerDto(query1, query2, query3, query4);
         }
 
         //if (filter.SalePage != null)
@@ -92,7 +92,55 @@ namespace API.Models.Services
         //}
 
 
+        public TabelleSupplierDto GetSupplierInvoiceCosts(SupplierInvoiceCostFilter? costFilter,
+                                                SupplierInvoiceFilter? invoiceFilter,
+                                                SupplierFilter? supplierFilter)
+        {
+            var supplierInvoiceCosts = ApplyFilter(costFilter).ToList();
+            var supplierInvoices = ApplyFilter(invoiceFilter).ToList();
+            var suppliers = ApplyFilter(supplierFilter).ToList();
 
+            var query1 = (from s in suppliers
+                          join si in supplierInvoices on s.SupplierId equals si.SupplierId
+                          join sic in supplierInvoiceCosts on si.InvoiceId equals sic.SupplierInvoiceId
+                          select new SupplierDTOGet
+                          {
+                              SupplierId = s.SupplierId,
+                              Country = s.Country,
+                              CreatedAt = s.CreatedAt,
+                              SupplierName = s.SupplierName,
+                              Deprecated = s.Deprecated,
+                              OriginalID = s.OriginalID
+                          }).DistinctBy(x => x.SupplierId).ToList();
+
+            var query2 = (from s in suppliers
+                          join si in supplierInvoices on s.SupplierId equals si.SupplierId
+                          join sic in supplierInvoiceCosts on si.InvoiceId equals sic.SupplierInvoiceId
+                          select new SupplierInvoiceDTOGet
+                          {
+                              InvoiceId = si.InvoiceId,
+                              SupplierId = si.SupplierId,
+                              InvoiceAmount = si.InvoiceAmount,
+                              InvoiceDate = si.InvoiceDate,
+                              SaleId = si.SaleId,
+                              Status = si.Status
+                          }).DistinctBy(x => x.InvoiceId).ToList();
+
+            var query3 = (from s in suppliers
+                          join si in supplierInvoices on s.SupplierId equals si.SupplierId
+                          join sic in supplierInvoiceCosts on si.InvoiceId equals sic.SupplierInvoiceId
+                          select new SupplierInvoiceCostDTOGet
+                          {
+                              SupplierInvoiceCostsId = sic.SupplierInvoiceCostsId,
+                              Cost = sic.Cost,
+                              Name = sic.Name,
+                              Quantity = sic.Quantity,
+                              SupplierInvoiceId = sic.SupplierInvoiceId
+                          }).DistinctBy(x => x.SupplierInvoiceCostsId).ToList();
+
+
+            return new TabelleSupplierDto(query1, query2, query3);
+        }
 
         private IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter? filter)
         {
@@ -299,5 +347,155 @@ namespace API.Models.Services
 
             return query.Select(x => CustomerMapper.MapGet(x));
         }
+
+        private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
+        {
+
+            var query = _context.Suppliers.AsQueryable();
+
+            if (filter != null)
+            {
+                if (filter.SupplierOriginalID != null)
+                {
+                    query = query.Where(x => x.OriginalID == filter.SupplierOriginalID);
+                }
+                if (!string.IsNullOrEmpty(filter.SupplierName))
+                {
+                    query = query.Where(x => x.SupplierName.Contains(filter.SupplierName));
+                }
+                if (filter.SupplierCreatedDateFrom.HasValue)
+                {
+                    if ((filter.SupplierCreatedDateFrom <= DateTime.Now && filter.SupplierCreatedDateFrom > new DateTime(1975, 1, 1)))
+                    {
+                        query = query.Where(x => x.CreatedAt >= filter.SupplierCreatedDateFrom);
+                    }
+                }
+                if (filter.SupplierCreatedDateTo.HasValue)
+                {
+                    if (filter.SupplierCreatedDateTo <= DateTime.Now && filter.SupplierCreatedDateTo >= filter.SupplierCreatedDateTo)
+                        query = query.Where(x => x.CreatedAt <= filter.SupplierCreatedDateTo);
+                }
+
+
+
+                if (!string.IsNullOrEmpty(filter.SupplierCountry))
+                {
+                    query = query.Where(x => x.Country.Contains(filter.SupplierCountry));
+                }
+
+                if (filter.SupplierDeprecated != null)
+                {
+                    query = query.Where(x => x.Deprecated == filter.SupplierDeprecated);
+                }
+                if (filter.SupplierPage != null)
+                {
+                    query = query.Skip(((int)filter.SupplierPage - 1) * itemsPerPage).Take(itemsPerPage);
+                }
+            }
+            return query.Select(x => SupplierMapper.MapGet(x));
+        }
+
+        private IQueryable<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
+        {
+
+            var query = _context.SupplierInvoices.AsQueryable();
+
+            if (filter != null)
+            {
+                if (filter.SupplierInvoiceInvoiceDateFrom.HasValue)
+                {
+                    if ((filter.SupplierInvoiceInvoiceDateFrom <= DateTime.Now && filter.SupplierInvoiceInvoiceDateFrom > new DateTime(1975, 1, 1)))
+                    {
+                        query = query.Where(x => x.InvoiceDate >= filter.SupplierInvoiceInvoiceDateFrom);
+                    }
+                }
+                if (filter.SupplierInvoiceInvoiceDateTo.HasValue)
+                {
+                    if (filter.SupplierInvoiceInvoiceDateTo <= DateTime.Now && filter.SupplierInvoiceInvoiceDateTo >= filter.SupplierInvoiceInvoiceDateFrom)
+                        query = query.Where(x => x.InvoiceDate <= filter.SupplierInvoiceInvoiceDateTo);
+                }
+
+                if (filter.SupplierInvoiceInvoiceAmountFrom != null && filter.SupplierInvoiceInvoiceAmountTo != null)
+                {
+                    query = query.Where(s => s.InvoiceAmount >= filter.SupplierInvoiceInvoiceAmountFrom && s.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
+                }
+                else if (filter.SupplierInvoiceInvoiceAmountFrom != null)
+                {
+                    query = query.Where(s => s.InvoiceAmount >= filter.SupplierInvoiceInvoiceAmountFrom);
+                }
+                else if (filter.SupplierInvoiceInvoiceAmountTo != null)
+                {
+                    query = query.Where(s => s.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
+                }
+
+                if (filter.SupplierInvoiceSaleID != null)
+                {
+                    query = query.Where(x => x.SaleId == filter.SupplierInvoiceSaleID);
+                }
+                if (filter.SupplierInvoiceSupplierID != null)
+                {
+                    query = query.Where(x => x.SupplierId == filter.SupplierInvoiceSupplierID);
+                }
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
+                {
+                    if (!filter.SupplierInvoiceStatus.Equals("All"))
+                        query = query.Where(x => x.Status == filter.SupplierInvoiceStatus.ToLower());
+                }
+                if (filter.SupplierInvoicePage != null)
+                {
+                    query = query.Skip(((int)filter.SupplierInvoicePage - 1) * itemsPerPage).Take(itemsPerPage);
+                }
+            }
+
+
+            return query.Select(x => SupplierInvoiceMapper.MapGet(x));
+        }
+
+        public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter? filter)
+        {
+            var query = _context.SupplierInvoiceCosts.AsQueryable();
+
+            if (filter != null)
+            {
+                if (filter.SupplierInvoiceCostSupplierInvoiceId != null)
+                {
+                    query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceCostSupplierInvoiceId);
+                }
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceCostName))
+                {
+                    query = query.Where(x => x.Name.Contains(filter.SupplierInvoiceCostName));
+                }
+
+                if (filter.SupplierInvoiceCostCostFrom != null && filter.SupplierInvoiceCostCostTo != null)
+                {
+                    if (filter.SupplierInvoiceCostCostFrom > filter.SupplierInvoiceCostCostTo)
+                    {
+                        throw new ArgumentException("CostFrom cannot be more than CostTo.");
+                    }
+
+                    query = query.Where(s => s.Cost >= filter.SupplierInvoiceCostCostFrom && s.Cost <= filter.SupplierInvoiceCostCostTo);
+                }
+                else if (filter.SupplierInvoiceCostCostFrom != null)
+                {
+                    query = query.Where(s => s.Cost >= filter.SupplierInvoiceCostCostFrom);
+                }
+                else if (filter.SupplierInvoiceCostCostTo != null)
+                {
+                    query = query.Where(s => s.Cost <= filter.SupplierInvoiceCostCostTo);
+                }
+
+                if (filter.SupplierInvoiceCostQuantity != null)
+                {
+                    query = query.Where(x => x.Quantity == filter.SupplierInvoiceCostQuantity);
+                }
+                if (filter.SupplierInvoiceCostPage != null)
+                {
+                    query = query.Skip(((int)filter.SupplierInvoiceCostPage - 1) * itemsPerPage).Take(itemsPerPage);
+                }
+            }
+
+            return query.Select(x => SupplierInvoiceCostMapper.MapGet(x));
+        }
+
     }
 }

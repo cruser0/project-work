@@ -15,7 +15,7 @@ namespace API.Controllers
             _valueServices = valueServices;
         }
 
-        [HttpGet()]
+        [HttpGet("customers")]
         public IActionResult GetCustomerInvoiceCosts([FromQuery] CustomerInvoiceCostFilter? costFilter,
                                                      [FromQuery] CustomerInvoiceFilter? invoiceFilter,
                                                      [FromQuery] SaleFilter? saleFilter,
@@ -27,37 +27,19 @@ namespace API.Controllers
             customerFilter = CheckFilter(customerFilter);
             var results = _valueServices.GetCustomerInvoiceCosts(costFilter, invoiceFilter, saleFilter, customerFilter);
             return Ok(results);
+
         }
-        /*
-        [HttpGet("customer-invoices")]
-        public IActionResult GetCustomerInvoices([FromQuery] CustomerInvoiceFilter? invoiceFilter,
-                                                 [FromQuery] SaleFilter? saleFilter,
-                                                 [FromQuery] CustomerFilter? customerFilter)
+        [HttpGet("suppliers")]
+        public IActionResult GetSupplierInvoiceCosts([FromQuery] SupplierInvoiceCostFilter? costFilter,
+                                                    [FromQuery] SupplierInvoiceFilter? invoiceFilter,
+                                                    [FromQuery] SupplierFilter? supplierFilter)
         {
+            costFilter = CheckFilter(costFilter);
             invoiceFilter = CheckFilter(invoiceFilter);
-            saleFilter = CheckFilter(saleFilter);
-            customerFilter = CheckFilter(customerFilter);
-            var results = _valueServices.GetCustomerInvoices(invoiceFilter, saleFilter, customerFilter);
+            supplierFilter = CheckFilter(supplierFilter);
+            var results = _valueServices.GetSupplierInvoiceCosts(costFilter, invoiceFilter, supplierFilter);
             return Ok(results);
         }
-
-        [HttpGet("sales")]
-        public IActionResult GetSales([FromQuery] SaleFilter? saleFilter,
-                                      [FromQuery] CustomerFilter? customerFilter)
-        {
-            saleFilter = CheckFilter(saleFilter);
-            customerFilter = CheckFilter(customerFilter);
-            var results = _valueServices.GetSales(saleFilter, customerFilter);
-            return Ok(results);
-        }
-
-        [HttpGet("customers")]
-        public IActionResult GetCustomers([FromQuery] CustomerFilter? customerFilter)
-        {
-            customerFilter = CheckFilter(customerFilter);
-            var results = _valueServices.GetCustomers(customerFilter);
-            return Ok(results);
-        }*/
 
         private T? CheckFilter<T>(T? filter) where T : class
         {

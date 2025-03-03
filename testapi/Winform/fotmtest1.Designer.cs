@@ -40,6 +40,7 @@
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.customerInvoiceCostDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
@@ -47,6 +48,7 @@
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip6 = new System.Windows.Forms.ToolStrip();
@@ -54,6 +56,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.customerDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -61,6 +64,7 @@
             this.Left = new System.Windows.Forms.ToolStripButton();
             this.Right = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -196,7 +200,8 @@
             this.toolStripButton5,
             this.toolStripButton6,
             this.toolStripButton7,
-            this.toolStripButton8});
+            this.toolStripButton8,
+            this.toolStripLabel3});
             this.toolStrip3.Location = new System.Drawing.Point(0, 144);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(402, 25);
@@ -220,6 +225,7 @@
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton6.Text = "toolStripButton2";
+            this.toolStripButton6.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // toolStripButton7
             // 
@@ -229,6 +235,7 @@
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton7.Text = "toolStripButton3";
+            this.toolStripButton7.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // toolStripButton8
             // 
@@ -238,6 +245,12 @@
             this.toolStripButton8.Name = "toolStripButton8";
             this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton8.Text = "toolStripButton4";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(86, 22);
+            this.toolStripLabel3.Text = "toolStripLabel3";
             // 
             // panel4
             // 
@@ -266,7 +279,8 @@
             this.toolStripButton9,
             this.toolStripButton10,
             this.toolStripButton11,
-            this.toolStripButton12});
+            this.toolStripButton12,
+            this.toolStripLabel4});
             this.toolStrip4.Location = new System.Drawing.Point(0, 144);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.Size = new System.Drawing.Size(402, 25);
@@ -290,6 +304,7 @@
             this.toolStripButton10.Name = "toolStripButton10";
             this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton10.Text = "toolStripButton2";
+            this.toolStripButton10.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // toolStripButton11
             // 
@@ -299,6 +314,7 @@
             this.toolStripButton11.Name = "toolStripButton11";
             this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton11.Text = "toolStripButton3";
+            this.toolStripButton11.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // toolStripButton12
             // 
@@ -308,6 +324,12 @@
             this.toolStripButton12.Name = "toolStripButton12";
             this.toolStripButton12.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton12.Text = "toolStripButton4";
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(86, 22);
+            this.toolStripLabel4.Text = "toolStripLabel4";
             // 
             // panel3
             // 
@@ -337,7 +359,8 @@
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripButton4});
+            this.toolStripButton4,
+            this.toolStripLabel2});
             this.toolStrip6.Location = new System.Drawing.Point(0, 190);
             this.toolStrip6.Name = "toolStrip6";
             this.toolStrip6.Size = new System.Drawing.Size(875, 25);
@@ -361,6 +384,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // toolStripButton3
             // 
@@ -370,6 +394,7 @@
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // toolStripButton4
             // 
@@ -379,6 +404,12 @@
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton4.Text = "toolStripButton4";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(86, 22);
+            this.toolStripLabel2.Text = "toolStripLabel2";
             // 
             // panel2
             // 
@@ -408,7 +439,8 @@
             this.DoubleLeft,
             this.Left,
             this.Right,
-            this.DoubleRight});
+            this.DoubleRight,
+            this.toolStripLabel1});
             this.toolStrip2.Location = new System.Drawing.Point(0, 175);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(875, 25);
@@ -432,6 +464,7 @@
             this.Left.Name = "Left";
             this.Left.Size = new System.Drawing.Size(23, 22);
             this.Left.Text = "toolStripButton2";
+            this.Left.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // Right
             // 
@@ -441,6 +474,7 @@
             this.Right.Name = "Right";
             this.Right.Size = new System.Drawing.Size(23, 22);
             this.Right.Text = "toolStripButton3";
+            this.Right.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // DoubleRight
             // 
@@ -450,6 +484,12 @@
             this.DoubleRight.Name = "DoubleRight";
             this.DoubleRight.Size = new System.Drawing.Size(23, 22);
             this.DoubleRight.Text = "toolStripButton4";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(86, 22);
+            this.toolStripLabel1.Text = "toolStripLabel1";
             // 
             // button1
             // 
@@ -1001,7 +1041,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(20, 205);
+            this.button4.Location = new System.Drawing.Point(12, 194);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 15;
@@ -1149,5 +1189,9 @@
         private Label InvoiceIDLbl;
         private Label CostLbl;
         private Button button4;
+        private ToolStripLabel toolStripLabel1;
+        private ToolStripLabel toolStripLabel3;
+        private ToolStripLabel toolStripLabel4;
+        private ToolStripLabel toolStripLabel2;
     }
 }
