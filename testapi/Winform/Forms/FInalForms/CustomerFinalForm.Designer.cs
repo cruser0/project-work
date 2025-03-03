@@ -61,14 +61,15 @@
             this.Right4 = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight5 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl4 = new System.Windows.Forms.ToolStripLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.searchCustomerInvoice1 = new Winform.Forms.control.SearchCustomerInvoice();
             this.searchCustomer1 = new Winform.Forms.control.SearchCustomer();
+            this.searchCustomerInvoice1 = new Winform.Forms.control.SearchCustomerInvoice();
             this.searchSale1 = new Winform.Forms.control.SearchSale();
             this.searchCustomerInvoiceCost1 = new Winform.Forms.control.SearchCustomerInvoiceCost();
             this.panel3 = new System.Windows.Forms.Panel();
             this.SearchBtn = new System.Windows.Forms.Button();
-            this.FooterPanel = new System.Windows.Forms.Panel();
             this.LeftPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -94,6 +95,7 @@
             this.toolStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.toolStrip4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -105,7 +107,7 @@
             this.LeftPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftPane.Location = new System.Drawing.Point(0, 0);
             this.LeftPane.Name = "LeftPane";
-            this.LeftPane.Size = new System.Drawing.Size(1309, 663);
+            this.LeftPane.Size = new System.Drawing.Size(1309, 763);
             this.LeftPane.TabIndex = 0;
             // 
             // MainSplitContainer
@@ -120,9 +122,10 @@
             // 
             // MainSplitContainer.Panel2
             // 
+            this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1241, 663);
-            this.MainSplitContainer.SplitterDistance = 1093;
+            this.MainSplitContainer.Size = new System.Drawing.Size(1241, 763);
+            this.MainSplitContainer.SplitterDistance = 993;
             this.MainSplitContainer.TabIndex = 1;
             // 
             // SpliContainerDGV
@@ -140,8 +143,8 @@
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(1093, 663);
-            this.SpliContainerDGV.SplitterDistance = 191;
+            this.SpliContainerDGV.Size = new System.Drawing.Size(993, 763);
+            this.SpliContainerDGV.SplitterDistance = 219;
             this.SpliContainerDGV.TabIndex = 0;
             // 
             // dataGridView1
@@ -153,7 +156,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1093, 166);
+            this.dataGridView1.Size = new System.Drawing.Size(993, 194);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDbClickLoadSale);
             // 
@@ -166,9 +169,9 @@
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.toolStrip.Location = new System.Drawing.Point(0, 166);
+            this.toolStrip.Location = new System.Drawing.Point(0, 194);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1093, 25);
+            this.toolStrip.Size = new System.Drawing.Size(993, 25);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip2";
             // 
@@ -233,8 +236,8 @@
             // SplitContainerDGV2.Panel2
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.splitContainer3);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(1093, 468);
-            this.SplitContainerDGV2.SplitterDistance = 216;
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(993, 540);
+            this.SplitContainerDGV2.SplitterDistance = 249;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
             // dataGridView2
@@ -246,7 +249,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(1093, 191);
+            this.dataGridView2.Size = new System.Drawing.Size(993, 224);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SaleDBClickLoadCustomerInvoice);
             // 
@@ -259,9 +262,9 @@
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 191);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 224);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1093, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(993, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip1";
             // 
@@ -326,8 +329,8 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridView4);
             this.splitContainer3.Panel2.Controls.Add(this.toolStrip4);
-            this.splitContainer3.Size = new System.Drawing.Size(1093, 248);
-            this.splitContainer3.SplitterDistance = 364;
+            this.splitContainer3.Size = new System.Drawing.Size(993, 287);
+            this.splitContainer3.SplitterDistance = 330;
             this.splitContainer3.TabIndex = 0;
             // 
             // dataGridView3
@@ -339,7 +342,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(0, 0);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(364, 223);
+            this.dataGridView3.Size = new System.Drawing.Size(330, 262);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerInvoiceDBClickLoadCustomerInvoiceCost);
             // 
@@ -352,9 +355,9 @@
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.toolStrip3.Location = new System.Drawing.Point(0, 223);
+            this.toolStrip3.Location = new System.Drawing.Point(0, 262);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(364, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(330, 25);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -413,7 +416,7 @@
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(725, 223);
+            this.dataGridView4.Size = new System.Drawing.Size(659, 262);
             this.dataGridView4.TabIndex = 0;
             // 
             // toolStrip4
@@ -425,9 +428,9 @@
             this.Right4,
             this.DoubleRight5,
             this.TSLbl4});
-            this.toolStrip4.Location = new System.Drawing.Point(0, 223);
+            this.toolStrip4.Location = new System.Drawing.Point(0, 262);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(725, 25);
+            this.toolStrip4.Size = new System.Drawing.Size(659, 25);
             this.toolStrip4.TabIndex = 2;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -477,46 +480,67 @@
             this.TSLbl4.Size = new System.Drawing.Size(86, 22);
             this.TSLbl4.Text = "toolStripLabel4";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(244, 23);
+            this.panel1.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(23, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = ">";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.flowLayoutPanel1.Controls.Add(this.searchCustomerInvoice1);
             this.flowLayoutPanel1.Controls.Add(this.searchCustomer1);
+            this.flowLayoutPanel1.Controls.Add(this.searchCustomerInvoice1);
             this.flowLayoutPanel1.Controls.Add(this.searchSale1);
             this.flowLayoutPanel1.Controls.Add(this.searchCustomerInvoiceCost1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(144, 663);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(244, 763);
             this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // searchCustomerInvoice1
-            // 
-            this.searchCustomerInvoice1.Location = new System.Drawing.Point(3, 3);
-            this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
-            this.searchCustomerInvoice1.Size = new System.Drawing.Size(200, 393);
-            this.searchCustomerInvoice1.TabIndex = 1;
             // 
             // searchCustomer1
             // 
-            this.searchCustomer1.Location = new System.Drawing.Point(3, 402);
+            this.searchCustomer1.Location = new System.Drawing.Point(3, 3);
             this.searchCustomer1.Name = "searchCustomer1";
-            this.searchCustomer1.Size = new System.Drawing.Size(227, 329);
+            this.searchCustomer1.Size = new System.Drawing.Size(212, 290);
             this.searchCustomer1.TabIndex = 0;
+            // 
+            // searchCustomerInvoice1
+            // 
+            this.searchCustomerInvoice1.Location = new System.Drawing.Point(3, 299);
+            this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(188, 279);
+            this.searchCustomerInvoice1.TabIndex = 1;
             // 
             // searchSale1
             // 
-            this.searchSale1.Location = new System.Drawing.Point(3, 737);
+            this.searchSale1.Location = new System.Drawing.Point(3, 584);
             this.searchSale1.Name = "searchSale1";
-            this.searchSale1.Size = new System.Drawing.Size(200, 474);
+            this.searchSale1.Size = new System.Drawing.Size(200, 370);
             this.searchSale1.TabIndex = 2;
             // 
             // searchCustomerInvoiceCost1
             // 
-            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 1217);
+            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 960);
             this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
-            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(200, 279);
+            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(200, 189);
             this.searchCustomerInvoiceCost1.TabIndex = 3;
             // 
             // panel3
@@ -526,7 +550,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(68, 663);
+            this.panel3.Size = new System.Drawing.Size(68, 763);
             this.panel3.TabIndex = 0;
             // 
             // SearchBtn
@@ -539,22 +563,12 @@
             this.SearchBtn.UseVisualStyleBackColor = true;
             this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
-            // FooterPanel
-            // 
-            this.FooterPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FooterPanel.Location = new System.Drawing.Point(0, 663);
-            this.FooterPanel.Name = "FooterPanel";
-            this.FooterPanel.Size = new System.Drawing.Size(1309, 100);
-            this.FooterPanel.TabIndex = 2;
-            // 
             // CustomerFinalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1309, 763);
             this.Controls.Add(this.LeftPane);
-            this.Controls.Add(this.FooterPanel);
             this.Name = "CustomerFinalForm";
             this.Text = "CustomerFinalForm";
             this.Load += new System.EventHandler(this.SearchBtn_Click);
@@ -591,6 +605,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.toolStrip4.ResumeLayout(false);
             this.toolStrip4.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -600,7 +615,6 @@
         #endregion
 
         private Panel LeftPane;
-        private Panel FooterPanel;
         private SplitContainer MainSplitContainer;
         private FlowLayoutPanel flowLayoutPanel1;
         private control.SearchCustomer searchCustomer1;
@@ -640,5 +654,7 @@
         private ToolStripLabel TSLbl3;
         private ToolStripLabel TSLbl4;
         private Button SearchBtn;
+        private Panel panel1;
+        private Button button2;
     }
 }

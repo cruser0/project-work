@@ -43,49 +43,13 @@ namespace Winform.Forms.FInalForms
             _valueService = new ValueService();
             _customerService=new CustomerService();
             InitializeComponent();
-
-
+            Load += CustomerFinalForm_ResizeEnd;
         }
 
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
-
-        //private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)
-        //{
-        //    if (PaginationUserControl.CurrentPage <= 1)
-        //        return;
-        //    PaginationUserControl.CurrentPage = PaginationUserControl.CurrentPage - 1;
-        //    PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-        //    MyControl_ButtonClicked_Pagination(sender, e);
-        //}
-
-        //private void PaginationUserControl_DoubleLeftArrowEvent(object? sender, EventArgs e)
-        //{
-
-        //    PaginationUserControl.CurrentPage = 1;
-        //    PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-        //    MyControl_ButtonClicked_Pagination(sender, e);
-        //}
-
-        //private void PaginationUserControl_DoubleRightArrowEvent(object? sender, EventArgs e)
-        //{
-        //    PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.GetmaxPage());
-        //    PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-        //    MyControl_ButtonClicked_Pagination(sender, e);
-        //}
-
-        //private void PaginationUserControl_SingleRightArrowEvent(object? sender, EventArgs e)
-        //{
-        //    if (PaginationUserControl.CurrentPage >= int.Parse(PaginationUserControl.GetmaxPage()))
-        //        return;
-        //    PaginationUserControl.CurrentPage++;
-        //    PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-        //    MyControl_ButtonClicked_Pagination(sender, e);
-
-        //}
-
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
         {
@@ -423,5 +387,63 @@ namespace Winform.Forms.FInalForms
                 }
             }
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            if (btn.Text == ">")
+            {
+                MainSplitContainer.Panel2MinSize = btn.Width;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - btn.Width;
+
+
+                searchCustomer1.Visible = false;
+                searchCustomerInvoice1.Visible = false;
+                searchCustomerInvoiceCost1.Visible = false;
+                searchSale1.Visible = false;
+                panel1.Width = flowLayoutPanel1.Width;
+                btn.Text = "<";
+            }
+            else
+            {
+                searchCustomer1.Visible = true;
+                searchCustomerInvoice1.Visible = true;
+                searchCustomerInvoiceCost1.Visible = true;
+                searchSale1.Visible = true;
+
+                int minSize = searchCustomer1.Width + 30;
+                MainSplitContainer.Panel2MinSize = minSize;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
+                panel1.Width = flowLayoutPanel1.Width;
+                btn.Text = ">";
+            }
+        }
+
+        private void CustomerFinalForm_ResizeEnd(object sender, EventArgs e)
+        {
+            if (button2.Text == ">")
+            {
+
+                int minSize = searchCustomer1.Width + 30;
+                MainSplitContainer.Panel2MinSize = minSize;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
+                panel1.Width = flowLayoutPanel1.Width;
+
+            }
+            else
+            {
+                MainSplitContainer.Panel2MinSize = button2.Width;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - button2.Width;
+                panel1.Width = flowLayoutPanel1.Width;
+            }
+        }
+
+
+
+
+
     }
+
+
+
 }
