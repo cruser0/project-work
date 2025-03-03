@@ -63,7 +63,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.DockButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.FooterPanel = new System.Windows.Forms.Panel();
             this.SuppliersSource = new System.Windows.Forms.BindingSource(this.components);
             this.SupplierInvoiceSource = new System.Windows.Forms.BindingSource(this.components);
             this.SupplierInvoicecostSource = new System.Windows.Forms.BindingSource(this.components);
@@ -101,7 +100,7 @@
             this.LeftPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftPane.Location = new System.Drawing.Point(0, 0);
             this.LeftPane.Name = "LeftPane";
-            this.LeftPane.Size = new System.Drawing.Size(1204, 601);
+            this.LeftPane.Size = new System.Drawing.Size(1204, 701);
             this.LeftPane.TabIndex = 3;
             // 
             // MainSplitContainer
@@ -119,7 +118,7 @@
             this.MainSplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1136, 601);
+            this.MainSplitContainer.Size = new System.Drawing.Size(1136, 701);
             this.MainSplitContainer.SplitterDistance = 906;
             this.MainSplitContainer.TabIndex = 1;
             // 
@@ -138,8 +137,8 @@
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(906, 601);
-            this.SpliContainerDGV.SplitterDistance = 173;
+            this.SpliContainerDGV.Size = new System.Drawing.Size(906, 701);
+            this.SpliContainerDGV.SplitterDistance = 201;
             this.SpliContainerDGV.TabIndex = 0;
             // 
             // SupplierDgv
@@ -151,7 +150,7 @@
             this.SupplierDgv.Location = new System.Drawing.Point(0, 0);
             this.SupplierDgv.Name = "SupplierDgv";
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(906, 148);
+            this.SupplierDgv.Size = new System.Drawing.Size(906, 176);
             this.SupplierDgv.TabIndex = 0;
             this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellClick);
             // 
@@ -164,7 +163,7 @@
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 148);
+            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 176);
             this.SupplierToolStrip.Name = "SupplierToolStrip";
             this.SupplierToolStrip.Size = new System.Drawing.Size(906, 25);
             this.SupplierToolStrip.TabIndex = 2;
@@ -231,7 +230,7 @@
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.SupInvoiceCostDgv);
             this.SplitContainerDGV2.Panel2.Controls.Add(this.CostToolStrip);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(906, 424);
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(906, 496);
             this.SplitContainerDGV2.SplitterDistance = 332;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
@@ -244,7 +243,7 @@
             this.SupInvoiceDgv.Location = new System.Drawing.Point(0, 0);
             this.SupInvoiceDgv.Name = "SupInvoiceDgv";
             this.SupInvoiceDgv.RowTemplate.Height = 25;
-            this.SupInvoiceDgv.Size = new System.Drawing.Size(332, 399);
+            this.SupInvoiceDgv.Size = new System.Drawing.Size(332, 471);
             this.SupInvoiceDgv.TabIndex = 3;
             this.SupInvoiceDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupInvoiceDgv_CellClick);
             // 
@@ -257,7 +256,7 @@
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 399);
+            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 471);
             this.InvoiceToolStrip.Name = "InvoiceToolStrip";
             this.InvoiceToolStrip.Size = new System.Drawing.Size(332, 25);
             this.InvoiceToolStrip.TabIndex = 5;
@@ -318,7 +317,7 @@
             this.SupInvoiceCostDgv.Location = new System.Drawing.Point(0, 0);
             this.SupInvoiceCostDgv.Name = "SupInvoiceCostDgv";
             this.SupInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(570, 399);
+            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(570, 471);
             this.SupInvoiceCostDgv.TabIndex = 4;
             // 
             // CostToolStrip
@@ -330,7 +329,7 @@
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.CostToolStrip.Location = new System.Drawing.Point(0, 399);
+            this.CostToolStrip.Location = new System.Drawing.Point(0, 471);
             this.CostToolStrip.Name = "CostToolStrip";
             this.CostToolStrip.Size = new System.Drawing.Size(570, 25);
             this.CostToolStrip.TabIndex = 6;
@@ -392,7 +391,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 528);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 628);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchSupplier1
@@ -421,7 +420,7 @@
             this.SearchPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.SearchPanel.Controls.Add(this.button1);
             this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SearchPanel.Location = new System.Drawing.Point(0, 551);
+            this.SearchPanel.Location = new System.Drawing.Point(0, 651);
             this.SearchPanel.Name = "SearchPanel";
             this.SearchPanel.Size = new System.Drawing.Size(226, 50);
             this.SearchPanel.TabIndex = 5;
@@ -463,17 +462,8 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(68, 601);
+            this.panel3.Size = new System.Drawing.Size(68, 701);
             this.panel3.TabIndex = 0;
-            // 
-            // FooterPanel
-            // 
-            this.FooterPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FooterPanel.Location = new System.Drawing.Point(0, 601);
-            this.FooterPanel.Name = "FooterPanel";
-            this.FooterPanel.Size = new System.Drawing.Size(1204, 100);
-            this.FooterPanel.TabIndex = 4;
             // 
             // SupplierFinalForm
             // 
@@ -481,7 +471,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 701);
             this.Controls.Add(this.LeftPane);
-            this.Controls.Add(this.FooterPanel);
             this.Name = "SupplierFinalForm";
             this.Text = "SupplierFinalForm";
             this.Load += new System.EventHandler(this.SupplierFinalForm_Load);
@@ -550,7 +539,6 @@
         private ToolStripLabel TSLbl3;
         private FlowLayoutPanel flowLayoutPanel1;
         private Panel panel3;
-        private Panel FooterPanel;
         private control.SearchSupplier searchSupplier1;
         private control.SearchSupplierInvoice searchSupplierInvoice1;
         private control.SearchSupplierInvoiceCost searchSupplierInvoiceCost1;

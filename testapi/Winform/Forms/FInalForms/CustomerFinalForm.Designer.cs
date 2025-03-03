@@ -61,15 +61,16 @@
             this.Right4 = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight5 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl4 = new System.Windows.Forms.ToolStripLabel();
+            this.SearchPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.DockButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.searchCustomer1 = new Winform.Forms.control.SearchCustomer();
             this.searchCustomerInvoice1 = new Winform.Forms.control.SearchCustomerInvoice();
             this.searchSale1 = new Winform.Forms.control.SearchSale();
             this.searchCustomerInvoiceCost1 = new Winform.Forms.control.SearchCustomerInvoiceCost();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.SearchBtn = new System.Windows.Forms.Button();
             this.LeftPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -95,9 +96,9 @@
             this.toolStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.toolStrip4.SuspendLayout();
+            this.SearchPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // LeftPane
@@ -122,8 +123,9 @@
             // 
             // MainSplitContainer.Panel2
             // 
-            this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
+            this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Size = new System.Drawing.Size(1241, 763);
             this.MainSplitContainer.SplitterDistance = 993;
             this.MainSplitContainer.TabIndex = 1;
@@ -480,26 +482,46 @@
             this.TSLbl4.Size = new System.Drawing.Size(86, 22);
             this.TSLbl4.Text = "toolStripLabel4";
             // 
+            // SearchPanel
+            // 
+            this.SearchPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.SearchPanel.Controls.Add(this.button1);
+            this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SearchPanel.Location = new System.Drawing.Point(0, 713);
+            this.SearchPanel.Name = "SearchPanel";
+            this.SearchPanel.Size = new System.Drawing.Size(244, 50);
+            this.SearchPanel.TabIndex = 6;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(45, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(134, 43);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.SearchBtn_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.DockButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(244, 23);
             this.panel1.TabIndex = 5;
             // 
-            // button2
+            // DockButton
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(23, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.DockButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DockButton.Location = new System.Drawing.Point(0, 0);
+            this.DockButton.Name = "DockButton";
+            this.DockButton.Size = new System.Drawing.Size(23, 23);
+            this.DockButton.TabIndex = 0;
+            this.DockButton.Text = ">";
+            this.DockButton.UseVisualStyleBackColor = true;
+            this.DockButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -510,9 +532,9 @@
             this.flowLayoutPanel1.Controls.Add(this.searchSale1);
             this.flowLayoutPanel1.Controls.Add(this.searchCustomerInvoiceCost1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(244, 763);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(244, 690);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchCustomer1
@@ -546,22 +568,11 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel3.Controls.Add(this.SearchBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(68, 763);
             this.panel3.TabIndex = 0;
-            // 
-            // SearchBtn
-            // 
-            this.SearchBtn.Location = new System.Drawing.Point(-7, 42);
-            this.SearchBtn.Name = "SearchBtn";
-            this.SearchBtn.Size = new System.Drawing.Size(75, 23);
-            this.SearchBtn.TabIndex = 0;
-            this.SearchBtn.Text = "Search";
-            this.SearchBtn.UseVisualStyleBackColor = true;
-            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
             // CustomerFinalForm
             // 
@@ -572,6 +583,7 @@
             this.Name = "CustomerFinalForm";
             this.Text = "CustomerFinalForm";
             this.Load += new System.EventHandler(this.SearchBtn_Click);
+            this.SizeChanged += new System.EventHandler(this.SupplierFinalForm_ResizeEnd);
             this.LeftPane.ResumeLayout(false);
             this.MainSplitContainer.Panel1.ResumeLayout(false);
             this.MainSplitContainer.Panel2.ResumeLayout(false);
@@ -605,9 +617,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.toolStrip4.ResumeLayout(false);
             this.toolStrip4.PerformLayout();
+            this.SearchPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -653,8 +665,9 @@
         private ToolStripLabel TSLbl2;
         private ToolStripLabel TSLbl3;
         private ToolStripLabel TSLbl4;
-        private Button SearchBtn;
         private Panel panel1;
-        private Button button2;
+        private Button DockButton;
+        private Panel SearchPanel;
+        private Button button1;
     }
 }

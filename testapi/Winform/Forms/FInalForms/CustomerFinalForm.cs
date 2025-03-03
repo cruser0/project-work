@@ -16,11 +16,10 @@ namespace Winform.Forms.FInalForms
 {
     public partial class CustomerFinalForm : Form
     {
-        CustomerFilter usedCustomerFilter=null;
+        CustomerFilter usedCustomerFilter = null;
         CustomerInvoiceFilter userCustomerInvoiceFilter = null;
-        CustomerInvoiceCostFilter usedCustomerInvoiceCostFilter=null;
-        SaleFilter usedSaleFilter=null;
-        CustomerService _customerService;
+        CustomerInvoiceCostFilter usedCustomerInvoiceCostFilter = null;
+        SaleFilter usedSaleFilter = null;
 
         private ValueService _valueService;
         int customerPage = 1;
@@ -41,9 +40,13 @@ namespace Winform.Forms.FInalForms
         public CustomerFinalForm()
         {
             _valueService = new ValueService();
-            _customerService=new CustomerService();
             InitializeComponent();
-            Load += CustomerFinalForm_ResizeEnd;
+            Load += SupplierFinalForm_ResizeEnd;
+            int minSize = searchCustomer1.Width + 30;
+            MainSplitContainer.Panel2MinSize = minSize;
+            MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
+            panel1.Width = flowLayoutPanel1.Width;
+            DockButton.Text = ">";
         }
 
         private bool Authorize(List<string> allowedRoles)
@@ -80,7 +83,7 @@ namespace Winform.Forms.FInalForms
                 SaleDateTo = searchSale1.DateToDTP.Checked ? searchSale1.DateToDTP.Value : null,
                 SaleRevenueFrom = string.IsNullOrEmpty(searchSale1.RevenueFromTxt.GetText()) ? null : int.Parse(searchSale1.RevenueFromTxt.GetText()),
                 SaleRevenueTo = string.IsNullOrEmpty(searchSale1.RevenueToTxt.GetText()) ? null : int.Parse(searchSale1.RevenueToTxt.GetText()),
-                SaleCustomerId =null,
+                SaleCustomerId = null,
                 SaleStatus = searchSale1.StatusCB.Text == "All" ? null : searchSale1.StatusCB.Text,
             };
             CustomerInvoiceFilter customerInvoiceFilter = new CustomerInvoiceFilter
@@ -99,39 +102,40 @@ namespace Winform.Forms.FInalForms
                 CustomerInvoiceCostCostTo = string.IsNullOrEmpty(searchCustomerInvoiceCost1.CostToTxt.GetText()) ? null : int.Parse(searchCustomerInvoiceCost1.CostToTxt.GetText()),
                 CustomerInvoiceCostName = searchCustomerInvoiceCost1.NameTxt.Text,
             };
-            CustomerGroupDTO result=new CustomerGroupDTO();
+            CustomerGroupDTO result = new CustomerGroupDTO();
             try
             {
-                 result=_valueService.GetTables(customerfilter, saleFilter, customerInvoiceFilter, customerInvoiceCostfilter);
-            }catch (Exception ex) { MessageBox.Show(Text, ex.Message); }
+                result = _valueService.GetTables(customerfilter, saleFilter, customerInvoiceFilter, customerInvoiceCostfilter);
+            }
+            catch (Exception ex) { MessageBox.Show(Text, ex.Message); }
 
-            if(usedCustomerFilter!=customerfilter ||
+            if (usedCustomerFilter != customerfilter ||
                 usedCustomerInvoiceCostFilter != customerInvoiceCostfilter ||
                 usedSaleFilter != saleFilter ||
                 userCustomerInvoiceFilter != customerInvoiceFilter)
             {
-            customerPage = 1;
-            salePage = 1;
-            customerInvoicePage = 1;
-            CustomerInvoiceCostPage = 1;
+                customerPage = 1;
+                salePage = 1;
+                customerInvoicePage = 1;
+                CustomerInvoiceCostPage = 1;
             }
             usedCustomerFilter = customerfilter;
             usedCustomerInvoiceCostFilter = customerInvoiceCostfilter;
-            usedSaleFilter=saleFilter;
+            usedSaleFilter = saleFilter;
             userCustomerInvoiceFilter = customerInvoiceFilter;
             valueGroupDTOList = result;
 
-            
-            
-            
+
+
+
             LoadCustomers();
         }
         private void LoadCustomers()
         {
-            dataGridView1.DataSource = valueGroupDTOList.customers.Skip((customerPage-1)*(int)itemsPage).Take((int)itemsPage).ToList();
+            dataGridView1.DataSource = valueGroupDTOList.customers.Skip((customerPage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
             if (dataGridView1.RowCount > 0)
             {
-                salePage=1;
+                salePage = 1;
                 LoadSales();
                 maxPageCustomer = (int)Math.Ceiling(valueGroupDTOList.customers.Count() / itemsPage);
                 TSLbl1.Text = customerPage.ToString() + "/" + maxPageCustomer.ToString();
@@ -187,12 +191,12 @@ namespace Winform.Forms.FInalForms
             if (saleId != null)
             {
                 dataGridView3.DataSource = valueGroupDTOList.invoices.Where(x => x.SaleId.ToString() == saleId.ToString()).Skip((customerInvoicePage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
-                if(dataGridView3.RowCount > 0)
+                if (dataGridView3.RowCount > 0)
                 {
-                CustomerInvoiceCostPage = 1;
-                LoadCustomerInvoicesCost();
+                    CustomerInvoiceCostPage = 1;
+                    LoadCustomerInvoicesCost();
                     maxPageCustomerInvoice = (int)Math.Ceiling(valueGroupDTOList.invoices.Where(x => x.SaleId.ToString() == saleId.ToString()).Count() / itemsPage);
-                TSLbl3.Text = customerInvoicePage.ToString() + "/" + maxPageCustomerInvoice.ToString();
+                    TSLbl3.Text = customerInvoicePage.ToString() + "/" + maxPageCustomerInvoice.ToString();
                 }
                 else
                 {
@@ -213,19 +217,19 @@ namespace Winform.Forms.FInalForms
         private void LoadCustomerInvoicesCost()
         {
             var customerInvoiceId = dataGridView3.CurrentRow.Cells["CustomerInvoiceId"].Value;
-            if (customerInvoiceId!=null)
-            {
             if (customerInvoiceId != null)
+            {
+                if (customerInvoiceId != null)
                 {
                     dataGridView4.DataSource = valueGroupDTOList.invoiceCosts.Where(x => x.CustomerInvoiceId.ToString() == customerInvoiceId.ToString()).Skip((CustomerInvoiceCostPage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
                     maxPageCustomerInvoiceCost = ((int)Math.Ceiling(valueGroupDTOList.invoiceCosts.Where(x => x.CustomerInvoiceId.ToString() == customerInvoiceId.ToString()).Count() / itemsPage));
                     TSLbl4.Text = CustomerInvoiceCostPage.ToString() + "/" + maxPageCustomerInvoiceCost.ToString();
                 }
-                }
+            }
             else
             {
-             dataGridView4.DataSource = new CustomerInvoiceCostFilter();
-            TSLbl4.Text = "N/A";
+                dataGridView4.DataSource = new CustomerInvoiceCostFilter();
+                TSLbl4.Text = "N/A";
             }
         }
 
@@ -246,7 +250,7 @@ namespace Winform.Forms.FInalForms
 
         private void DoubleLeft_Click(object sender, EventArgs e)
         {
-            if(sender is ToolStripButton tsb)
+            if (sender is ToolStripButton tsb)
             {
                 string parentName = tsb.GetCurrentParent().Name;
                 switch (parentName)
@@ -256,20 +260,20 @@ namespace Winform.Forms.FInalForms
                         customerPage = 1;
                         LoadCustomers();
                         break;
-                case "toolStrip2":
+                    case "toolStrip2":
                         salePage = 1;
                         LoadSales();
                         break;
-                case "toolStrip3":
+                    case "toolStrip3":
                         customerInvoicePage = 1;
                         LoadCustomerInvoices();
                         break;
-                case "toolStrip4":
+                    case "toolStrip4":
                         CustomerInvoiceCostPage = 1;
                         LoadCustomerInvoicesCost();
                         break;
-                default:
-                    break;
+                    default:
+                        break;
                 }
             }
         }
@@ -283,10 +287,10 @@ namespace Winform.Forms.FInalForms
                 {
 
                     case "toolStrip":
-                        if(customerPage> 1)
+                        if (customerPage > 1)
                         {
-                        customerPage -=1;
-                        LoadCustomers();
+                            customerPage -= 1;
+                            LoadCustomers();
                         }
                         break;
                     case "toolStrip2":
@@ -306,7 +310,7 @@ namespace Winform.Forms.FInalForms
                     case "toolStrip4":
                         if (CustomerInvoiceCostPage > 1)
                         {
-                            customerInvoicePage-= 1;
+                            customerInvoicePage -= 1;
                             LoadCustomerInvoicesCost();
                         }
                         break;
@@ -396,7 +400,7 @@ namespace Winform.Forms.FInalForms
                 MainSplitContainer.Panel2MinSize = btn.Width;
                 MainSplitContainer.SplitterDistance = MainSplitContainer.Width - btn.Width;
 
-
+                SearchPanel.Visible = false;
                 searchCustomer1.Visible = false;
                 searchCustomerInvoice1.Visible = false;
                 searchCustomerInvoiceCost1.Visible = false;
@@ -410,6 +414,7 @@ namespace Winform.Forms.FInalForms
                 searchCustomerInvoice1.Visible = true;
                 searchCustomerInvoiceCost1.Visible = true;
                 searchSale1.Visible = true;
+                SearchPanel.Visible = true;
 
                 int minSize = searchCustomer1.Width + 30;
                 MainSplitContainer.Panel2MinSize = minSize;
@@ -419,31 +424,29 @@ namespace Winform.Forms.FInalForms
             }
         }
 
-        private void CustomerFinalForm_ResizeEnd(object sender, EventArgs e)
+        private void SupplierFinalForm_ResizeEnd(object sender, EventArgs e)
         {
-            if (button2.Text == ">")
+            if (DockButton.Text == ">")
             {
-
                 int minSize = searchCustomer1.Width + 30;
                 MainSplitContainer.Panel2MinSize = minSize;
                 MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
                 panel1.Width = flowLayoutPanel1.Width;
-
             }
             else
             {
-                MainSplitContainer.Panel2MinSize = button2.Width;
-                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - button2.Width;
+                MainSplitContainer.Panel2MinSize = DockButton.Width;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - DockButton.Width;
                 panel1.Width = flowLayoutPanel1.Width;
             }
+
+
+
+
+
         }
 
 
 
-
-
     }
-
-
-
 }
