@@ -58,8 +58,29 @@ namespace Winform.Forms.FInalForms
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
 
             allSuppliers = (List<Supplier>)SuppliersSource.DataSource;
-            allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource).Where(x => x.SupplierId == allSuppliers.First().SupplierId).ToList();
-            allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource).Where(x => x.SupplierInvoiceId == allSupplierInvoices.First().InvoiceId).ToList();
+
+            if (allSuppliers.Any())
+            {
+                allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
+                    .Where(x => x.SupplierId == allSuppliers.First().SupplierId)
+                    .ToList();
+            }
+            else
+            {
+                allSupplierInvoices = new List<SupplierInvoice>();
+            }
+
+            if (allSupplierInvoices.Any())
+            {
+                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
+                    .Where(x => x.SupplierInvoiceId == allSupplierInvoices.First().InvoiceId)
+                    .ToList();
+            }
+            else
+            {
+                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+            }
+
 
             supplierTotalRecords = allSuppliers.Count;
             supplierInvoiceTotalRecords = allSupplierInvoices.Count;
@@ -79,6 +100,7 @@ namespace Winform.Forms.FInalForms
             else
                 TSLbl1.Text = "There is no Data";
         }
+
         private void LoadTableSupplierInvoice()
         {
             var supplierInvoicePagedData = allSupplierInvoices.Skip((supplierInvoiceCurrentPage - 1) * pageSize).Take(pageSize).ToList();
@@ -89,6 +111,7 @@ namespace Winform.Forms.FInalForms
             else
                 TSLbl2.Text = "There is no Data";
         }
+
         private void LoadTableSupplierInvoicecost()
         {
             var supplierInvoiceCostPagedData = allSupplierInvoiceCosts.Skip((supplierInvoiceCostCurrentPage - 1) * pageSize).Take(pageSize).ToList();
@@ -99,8 +122,6 @@ namespace Winform.Forms.FInalForms
             else
                 TSLbl3.Text = "There is no Data";
         }
-
-
 
         private void ToolButton_click(object sender, EventArgs e)
         {
@@ -285,8 +306,6 @@ namespace Winform.Forms.FInalForms
 
         private void SupInvoiceDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = (DataGridView)sender;
-
             data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
@@ -306,7 +325,6 @@ namespace Winform.Forms.FInalForms
                     .Where(x => x.SupplierInvoiceId == data.invoices.Where(x => x.SupplierId == (int?)SupplierDgv.CurrentRow.Cells["SupplierID"].Value).ToList().First().InvoiceId).ToList();
             else
                 allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
-
 
             supplierInvoiceTotalRecords = allSupplierInvoices.Count;
             supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
@@ -342,7 +360,7 @@ namespace Winform.Forms.FInalForms
                 MainSplitContainer.Panel2MinSize = btn.Width;
                 MainSplitContainer.SplitterDistance = MainSplitContainer.Width - btn.Width;
 
-
+                SearchPanel.Visible = false;
                 searchSupplier1.Visible = false;
                 searchSupplierInvoice1.Visible = false;
                 searchSupplierInvoiceCost1.Visible = false;
@@ -354,6 +372,7 @@ namespace Winform.Forms.FInalForms
                 searchSupplier1.Visible = true;
                 searchSupplierInvoice1.Visible = true;
                 searchSupplierInvoiceCost1.Visible = true;
+                SearchPanel.Visible = true;
 
                 int minSize = searchSupplier1.Width + 30;
                 MainSplitContainer.Panel2MinSize = minSize;
@@ -365,19 +384,17 @@ namespace Winform.Forms.FInalForms
 
         private void SupplierFinalForm_ResizeEnd(object sender, EventArgs e)
         {
-            if (button2.Text == ">")
+            if (DockButton.Text == ">")
             {
-
                 int minSize = searchSupplier1.Width + 30;
                 MainSplitContainer.Panel2MinSize = minSize;
                 MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
                 panel1.Width = flowLayoutPanel1.Width;
-
             }
             else
             {
-                MainSplitContainer.Panel2MinSize = button2.Width;
-                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - button2.Width;
+                MainSplitContainer.Panel2MinSize = DockButton.Width;
+                MainSplitContainer.SplitterDistance = MainSplitContainer.Width - DockButton.Width;
                 panel1.Width = flowLayoutPanel1.Width;
             }
         }

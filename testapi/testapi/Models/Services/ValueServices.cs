@@ -298,6 +298,7 @@ namespace API.Models.Services
 
             var query = _context.Suppliers.AsQueryable();
 
+
             if (filter != null)
             {
                 if (filter.SupplierOriginalID != null)

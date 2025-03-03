@@ -58,10 +58,11 @@
             this.searchSupplier1 = new Winform.Forms.control.SearchSupplier();
             this.searchSupplierInvoice1 = new Winform.Forms.control.SearchSupplierInvoice();
             this.searchSupplierInvoiceCost1 = new Winform.Forms.control.SearchSupplierInvoiceCost();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.SearchPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.DockButton = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.FooterPanel = new System.Windows.Forms.Panel();
             this.SuppliersSource = new System.Windows.Forms.BindingSource(this.components);
             this.SupplierInvoiceSource = new System.Windows.Forms.BindingSource(this.components);
@@ -86,8 +87,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceCostDgv)).BeginInit();
             this.CostToolStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.SearchPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoicecostSource)).BeginInit();
@@ -116,6 +117,7 @@
             // MainSplitContainer.Panel2
             // 
             this.MainSplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Size = new System.Drawing.Size(1136, 601);
             this.MainSplitContainer.SplitterDistance = 906;
@@ -390,7 +392,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 578);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 528);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchSupplier1
@@ -414,46 +416,55 @@
             this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(200, 246);
             this.searchSupplierInvoiceCost1.TabIndex = 2;
             // 
+            // SearchPanel
+            // 
+            this.SearchPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.SearchPanel.Controls.Add(this.button1);
+            this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SearchPanel.Location = new System.Drawing.Point(0, 551);
+            this.SearchPanel.Name = "SearchPanel";
+            this.SearchPanel.Size = new System.Drawing.Size(226, 50);
+            this.SearchPanel.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(45, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(134, 43);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.DockButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(226, 23);
             this.panel1.TabIndex = 4;
             // 
-            // button2
+            // DockButton
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(23, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.DockButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DockButton.Location = new System.Drawing.Point(0, 0);
+            this.DockButton.Name = "DockButton";
+            this.DockButton.Size = new System.Drawing.Size(23, 23);
+            this.DockButton.TabIndex = 0;
+            this.DockButton.Text = ">";
+            this.DockButton.UseVisualStyleBackColor = true;
+            this.DockButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel3.Controls.Add(this.button1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(68, 601);
             this.panel3.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 74);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // FooterPanel
             // 
@@ -501,8 +512,8 @@
             this.CostToolStrip.ResumeLayout(false);
             this.CostToolStrip.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.SearchPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoicecostSource)).EndInit();
@@ -546,8 +557,9 @@
         private BindingSource SuppliersSource;
         private BindingSource SupplierInvoiceSource;
         private BindingSource SupplierInvoicecostSource;
-        private Button button1;
         private Panel panel1;
-        private Button button2;
+        private Button DockButton;
+        private Panel SearchPanel;
+        private Button button1;
     }
 }
