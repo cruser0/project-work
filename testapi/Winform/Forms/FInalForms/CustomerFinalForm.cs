@@ -446,6 +446,153 @@ namespace Winform.Forms.FInalForms
 
         }
 
+        private void CustomerRightClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+            {
+                if (sender is DataGridView dgv)
+                {
+                    switch (dgv.Name)
+                    {
+                        case "dataGridView1":
+                            RightClickDgvCustomer.Show(dataGridView1, dataGridView1.PointToClient(Cursor.Position));
+                            break;
+                        case "dataGridView2":
+                            RightClickDgvSale.Show(dataGridView2, dataGridView2.PointToClient(Cursor.Position));
+                            break;
+                        case "dataGridView3":
+                            RightClickDgvCustomerInvoice.Show(dataGridView3, dataGridView3.PointToClient(Cursor.Position));
+                            break;
+                        case "dataGridView4":
+                            RightClickDgvCustomerInvoiceCost.Show(dataGridView4, dataGridView4.PointToClient(Cursor.Position));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        private void CustomerContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "CustomerIDTsmi":
+                        dataGridView1.Columns["CustomerID"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerNameTsmi":
+                        dataGridView1.Columns["CustomerName"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerCountryTsmi":
+                        dataGridView1.Columns["Country"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerDateTsmi":
+                        dataGridView1.Columns["CreatedAt"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerOriginalIDTsmi":
+                        dataGridView1.Columns["OriginalID"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerStatusTsmi":
+                        dataGridView1.Columns["Deprecated"].Visible = tsmi.Checked;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+        private void SaleContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "SaleIDTsmi":
+                        dataGridView2.Columns["SaleId"].Visible = tsmi.Checked;
+                        break;
+                    case "SaleBkNumberTsmi":
+                        dataGridView2.Columns["BookingNumber"].Visible = tsmi.Checked;
+                        break;
+                    case "SaleBoLNumberTsmi":
+                        dataGridView2.Columns["BoLnumber"].Visible = tsmi.Checked;
+                        break;
+                    case "SaleCustomerIDTsmi":
+                        dataGridView2.Columns["CustomerId"].Visible = tsmi.Checked;
+                        break;
+                    case "SaleTotalRevenueTsmi":
+                        dataGridView2.Columns["TotalRevenue"].Visible = tsmi.Checked;
+                        break;
+                    case "SaleStatusTsmi":
+                        dataGridView2.Columns["Status"].Visible = tsmi.Checked;
+                        break;
+                    case "SaleDateTsmi":
+                        dataGridView2.Columns["SaleDate"].Visible = tsmi.Checked;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+        private void CustomerInvoiceContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "CustomerInvoiceIDTsmi":
+                        dataGridView3.Columns["CustomerInvoiceID"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceSaleIDTsmi":
+                        dataGridView3.Columns["SaleID"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceInvoiceAmountTsmi":
+                        dataGridView3.Columns["InvoiceAmount"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceDateTsmi":
+                        dataGridView3.Columns["InvoiceDate"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceStatusTsmi":
+                        dataGridView3.Columns["Status"].Visible = tsmi.Checked;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+        private void CustomerInvoiceCostContextMenuStripCheckEvent(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "CustomerInvoiceCostIDTsmi":
+                        dataGridView4.Columns["CustomerInvoiceCostsID"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceCostCustomerInvoiceIDTsmi":
+                        dataGridView4.Columns["CustomerInvoiceID"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceCostCostTsmi":
+                        dataGridView4.Columns["Cost"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceCostQuantityTsmi":
+                        dataGridView4.Columns["Quantity"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceCostNameTsmi":
+                        dataGridView4.Columns["Name"].Visible = tsmi.Checked;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
 
 
     }

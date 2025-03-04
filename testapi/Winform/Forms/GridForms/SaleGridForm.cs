@@ -271,58 +271,31 @@ namespace Winform.Forms
                 switch (name)
                 {
                     case "SaleIDTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["SaleID"].Visible = true;
-                        else
-                            SaleDgv.Columns["SaleID"].Visible = false;
+                        SaleDgv.Columns["SaleID"].Visible = tsmi.Checked;
                         break;
                     case "SaleBkNumberTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["BookingNumber"].Visible = true;
-                        else
-                            SaleDgv.Columns["BookingNumber"].Visible = false;
+                        SaleDgv.Columns["BookingNumber"].Visible = tsmi.Checked;
                         break;
                     case "SaleCustomerCountryTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["Country"].Visible = true;
-                        else
-                            SaleDgv.Columns["Country"].Visible = false;
+                        SaleDgv.Columns["Country"].Visible = tsmi.Checked;
                         break;
                     case "SaleCustomerNameTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["CustomerName"].Visible = true;
-                        else
-                            SaleDgv.Columns["CustomerName"].Visible = false;
+                        SaleDgv.Columns["CustomerName"].Visible = tsmi.Checked;
                         break;
                     case "SaleBoLNumberTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["BoLNumber"].Visible = true;
-                        else
-                            SaleDgv.Columns["BoLNumber"].Visible = false;
+                        SaleDgv.Columns["BoLNumber"].Visible = tsmi.Checked;
                         break;
                     case "SaleCustomerIDTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["CustomerID"].Visible = true;
-                        else
-                            SaleDgv.Columns["CustomerID"].Visible = false;
+                        SaleDgv.Columns["CustomerID"].Visible = tsmi.Checked;
                         break;
                     case "SaleTotalRevenueTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["TotalRevenue"].Visible = true;
-                        else
-                            SaleDgv.Columns["TotalRevenue"].Visible = false;
+                        SaleDgv.Columns["TotalRevenue"].Visible = tsmi.Checked;
                         break;
                     case "SaleStatusTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["Status"].Visible = true;
-                        else
-                            SaleDgv.Columns["Status"].Visible = false;
+                        SaleDgv.Columns["Status"].Visible = tsmi.Checked;
                         break;
                     case "SaleDateTsmi":
-                        if (tsmi.Checked)
-                            SaleDgv.Columns["SaleDate"].Visible = true;
-                        else
-                            SaleDgv.Columns["SaleDate"].Visible = false;
+                        SaleDgv.Columns["SaleDate"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;

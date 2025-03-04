@@ -17,8 +17,11 @@ namespace Winform
             WindowState = FormWindowState.Maximized;
 
             CreateDockPanel();
-            //SetAuthorizations();
-
+            SetAuthorizations();
+            tabControl.TabPages.Remove(ShowTP);
+            tabControl.TabPages.Remove(EditTP);
+            tabControl.TabPages.Remove(AddTP);
+            tabControl.TabPages.Remove(GroupTP);
         }
 
         private void CreateDockPanel()
@@ -34,50 +37,93 @@ namespace Winform
             this.Controls.Add(minimizedPanel);
         }
 
-        //private void SetAuthorizations()
-        //{
-        //    adminToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin" });
+        private void SetAuthorizations()
+        {
+            if(Authorize(new List<string> {"Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead","UserRead",
+            "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite","UserWrite",
+            "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin","UserAdmin"}))
+            {
+                tabControl.TabPages.Add(ShowTP);
+            }
+            if (Authorize(new List<string> {"Admin","CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite","UserWrite",
+            "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin","UserAdmin"}))
+            {
+                tabControl.TabPages.Add(AddTP);
+                tabControl.TabPages.Add(EditTP);
+            }
+            if (AuthorizeGroup(new List<string> { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }) ||
+                AuthorizeGroup(new List<string> { "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite" }) ||
+                 AuthorizeGroup(new List<string> { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }) ||
+                 Authorize(new List<string> { "Admin" }) ||
+                 AuthorizeGroup(new List<string> { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }) ||
+                AuthorizeGroup(new List<string> { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }) ||
+                 AuthorizeGroup(new List<string> { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }))
+            {
+            tabControl.TabPages.Add(GroupTP);
+            }
+            
+            
+            CustomerShowTS.Visible = Authorize(new List<string>
+                { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
+            CustomerCreateTS.Visible = Authorize(new List<string>
+                { "Admin", "CustomerWrite","CustomerAdmin" });
 
-        //    CustomerStripButton.Visible = Authorize(new List<string>
-        //        { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
-        //    AddCustomersStripToolButton.Visible = Authorize(new List<string>
-        //        { "Admin", "CustomerWrite" });
+            CustomerInvoiceShowTS.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
+            CustomerInvoiceCreateTS.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceWrite", "CustomerInvoiceAdmin"});
 
-        //    customerInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
-        //    addCustomerInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "CustomerInvoiceWrite"});
+            CustomerInvoiceCostShowTS.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
+            CustomerInvoiceCostCreateTS.Visible = Authorize(new List<string>
+                { "Admin", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin"});
 
-        //    customerInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
-        //    toolStripMenuItem2.Visible = Authorize(new List<string>
-        //        { "Admin", "CustomerInvoiceCostWrite"});
+            SupplierShowTS.Visible = Authorize(new List<string>
+                { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
+            SupplierCreateTS.Visible = Authorize(new List<string>
+                { "Admin", "SupplierWrite", "SupplierAdmin"});
 
-        //    SuppliersStripToolButton.Visible = Authorize(new List<string>
-        //        { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
-        //    AddSuppliersStripToolButton.Visible = Authorize(new List<string>
-        //        { "Admin", "SupplierWrite"});
+            SupplierInvoiceShowTS.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
+            SupplierInvoiceCreateTS.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin"});
 
-        //    supplierInvoicesToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
-        //    addSupplierInvoiceToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "SupplierInvoiceWrite"});
-
-        //    supplierInvoiceCostsToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin" });
-        //    toolStripMenuItem1.Visible = Authorize(new List<string>
-        //        { "Admin", "SupplierInvoicesCostWrite"});
-
-        //    salesToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
-        //    addSalesToolStripMenuItem.Visible = Authorize(new List<string>
-        //        { "Admin", "SaleWrite"});
-        //}
+            SupplierInvoiceCostShowTS.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin" });
+            SupplierInvoiceCostCreateTS.Visible = Authorize(new List<string>
+                { "Admin", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin"});
+            SaleShowTS.Visible = Authorize(new List<string>
+                { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
+            SaleCreateTS.Visible = Authorize(new List<string>
+                { "Admin", "SaleWrite", "SaleAdmin"});
+            if (AuthorizeGroup(new List<string> { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }) ||
+                AuthorizeGroup(new List<string> { "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite" }) ||
+                 AuthorizeGroup(new List<string> { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }) ||
+                 Authorize(new List<string> { "Admin" }))
+            {
+                CustomerGroupTS.Visible = true;
+            }
+            if(Authorize(new List<string> { "Admin" }) ||
+                 AuthorizeGroup(new List<string> { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }) ||
+                AuthorizeGroup(new List<string> { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }) ||
+                 AuthorizeGroup(new List<string> { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }))
+            {
+                SupplierGroupTS.Visible = true;
+            }
+        }
 
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+        }
+        private bool AuthorizeGroup(List<string> allowedRoles)
+        {
+            foreach(string a in allowedRoles)
+            {
+                if (!UserAccessInfo.Role.Contains(a))
+                    return false;
+            }
+            return true;
         }
 
         private void buttonOpenChild_Click(object sender, EventArgs e)

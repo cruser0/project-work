@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.TabControl = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.ShowTP = new System.Windows.Forms.TabPage();
             this.Show = new System.Windows.Forms.ToolStrip();
             this.CustomerShowTS = new System.Windows.Forms.ToolStripButton();
@@ -80,7 +80,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
-            this.TabControl.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
             this.Show.SuspendLayout();
             this.EditTP.SuspendLayout();
@@ -95,7 +95,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.Controls.Add(this.TabControl);
+            this.panel1.Controls.Add(this.tabControl);
             this.panel1.Controls.Add(this.toolStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -103,18 +103,18 @@
             this.panel1.Size = new System.Drawing.Size(1159, 89);
             this.panel1.TabIndex = 8;
             // 
-            // TabControl
+            // tabControl
             // 
-            this.TabControl.Controls.Add(this.ShowTP);
-            this.TabControl.Controls.Add(this.EditTP);
-            this.TabControl.Controls.Add(this.AddTP);
-            this.TabControl.Controls.Add(this.GroupTP);
-            this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TabControl.Location = new System.Drawing.Point(0, 25);
-            this.TabControl.Name = "TabControl";
-            this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(1159, 64);
-            this.TabControl.TabIndex = 0;
+            this.tabControl.Controls.Add(this.ShowTP);
+            this.tabControl.Controls.Add(this.EditTP);
+            this.tabControl.Controls.Add(this.AddTP);
+            this.tabControl.Controls.Add(this.GroupTP);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 25);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1159, 64);
+            this.tabControl.TabIndex = 0;
             // 
             // ShowTP
             // 
@@ -640,7 +640,7 @@
             this.Text = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
-            this.TabControl.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.ShowTP.ResumeLayout(false);
             this.Show.ResumeLayout(false);
             this.Show.PerformLayout();
@@ -662,7 +662,7 @@
         #endregion
 
         private Panel panel1;
-        private TabControl TabControl;
+        private TabControl tabControl;
         private TabPage ShowTP;
         private ToolStrip Show;
         private ToolStripButton CustomerShowTS;
