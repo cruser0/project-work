@@ -17,11 +17,11 @@ namespace Winform
             WindowState = FormWindowState.Maximized;
 
             CreateDockPanel();
-            SetAuthorizations();
             tabControl.TabPages.Remove(ShowTP);
             tabControl.TabPages.Remove(EditTP);
             tabControl.TabPages.Remove(AddTP);
             tabControl.TabPages.Remove(GroupTP);
+            SetAuthorizations();
         }
 
         private void CreateDockPanel()
@@ -87,6 +87,11 @@ namespace Winform
                 { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
             SupplierInvoiceCreateTS.Visible = Authorize(new List<string>
                 { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin"});
+
+           UserShowTS.Visible = Authorize(new List<string>
+                { "Admin" });
+            UserCreateTS.Visible = Authorize(new List<string>
+                { "Admin" });
 
             SupplierInvoiceCostShowTS.Visible = Authorize(new List<string>
                 { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin" });
