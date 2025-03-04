@@ -144,8 +144,8 @@ namespace Winform.Forms.FInalForms
                     if (supplierInvoiceCurrentPage < supplierInvoiceTotalPages)
                     {
                         supplierInvoiceCurrentPage++;
-                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoicecost();
                     }
                     break;
@@ -173,8 +173,8 @@ namespace Winform.Forms.FInalForms
                     if (supplierInvoiceCurrentPage < supplierInvoiceTotalPages)
                     {
                         supplierInvoiceCurrentPage = supplierInvoiceTotalPages;
-                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoicecost();
                     }
                     break;
@@ -202,8 +202,8 @@ namespace Winform.Forms.FInalForms
                     if (supplierInvoiceCurrentPage > 1)
                     {
                         supplierInvoiceCurrentPage--;
-                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoicecost();
                     }
                     break;
@@ -230,8 +230,8 @@ namespace Winform.Forms.FInalForms
                     if (supplierInvoiceCurrentPage > 1)
                     {
                         supplierInvoiceCurrentPage = 1;
-                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoice();
+                        ChangedSupplierInvoiceDgv();
                         LoadTableSupplierInvoicecost();
                     }
                     break;
