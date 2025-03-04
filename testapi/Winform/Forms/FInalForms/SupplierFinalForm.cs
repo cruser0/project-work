@@ -32,10 +32,35 @@ namespace Winform.Forms.FInalForms
         private int supplierInvoiceCostTotalPages;
         private List<SupplierInvoiceCost> allSupplierInvoiceCosts = new List<SupplierInvoiceCost>(); // Lista completa dei supplier inv cost
 
+        List<string> authRoles1 = new List<string>
+            { "Admin" };
+        List<string> authRoles2 = new List<string>
+            { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" };
+
         public SupplierFinalForm()
         {
             _valueService = new ValueService();
             InitializeComponent();
+            if (!Authorize(authRoles1) || !AuthorizeGroup(authRoles2))
+                showIDToolStripMenuItem.Visible = false;
+            showIDToolStripMenuItem1.Visible = false;
+            showIDToolStripMenuItem2.Visible = false;
+            showOriginalIDToolStripMenuItem.Visible = false;
+            showSupplierIDToolStripMenuItem.Visible = false;
+        }
+
+        private bool Authorize(List<string> allowedRoles)
+        {
+            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+        }
+        private bool AuthorizeGroup(List<string> allowedRoles)
+        {
+            foreach (string a in allowedRoles)
+            {
+                if (!UserAccessInfo.Role.Contains(a))
+                    return false;
+            }
+            return true;
         }
 
         private void SupplierFinalForm_Load(object sender, EventArgs e)
