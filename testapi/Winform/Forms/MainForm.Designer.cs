@@ -75,10 +75,11 @@
             this.CustomerGroupTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierGroupTS = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToolStripTopMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.UserBtnTS = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -89,14 +90,14 @@
             this.Create.SuspendLayout();
             this.GroupTP.SuspendLayout();
             this.Group.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.ToolStripTopMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.Controls.Add(this.tabControl);
-            this.panel1.Controls.Add(this.toolStrip1);
+            this.panel1.Controls.Add(this.ToolStripTopMenu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -586,18 +587,19 @@
             this.SupplierGroupTS.Text = "Supplier";
             this.SupplierGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // toolStrip1
+            // ToolStripTopMenu
             // 
-            this.toolStrip1.AutoSize = false;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripTopMenu.AutoSize = false;
+            this.ToolStripTopMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
-            this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1159, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripButton3,
+            this.UserBtnTS});
+            this.ToolStripTopMenu.Location = new System.Drawing.Point(0, 0);
+            this.ToolStripTopMenu.Name = "ToolStripTopMenu";
+            this.ToolStripTopMenu.Size = new System.Drawing.Size(1159, 25);
+            this.ToolStripTopMenu.TabIndex = 0;
+            this.ToolStripTopMenu.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
@@ -626,6 +628,17 @@
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
+            // UserBtnTS
+            // 
+            this.UserBtnTS.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.UserBtnTS.Image = global::Winform.Properties.Resources.User_Icon;
+            this.UserBtnTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UserBtnTS.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.UserBtnTS.Name = "UserBtnTS";
+            this.UserBtnTS.Size = new System.Drawing.Size(114, 22);
+            this.UserBtnTS.Text = "toolStripButton4";
+            this.UserBtnTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -653,8 +666,8 @@
             this.GroupTP.ResumeLayout(false);
             this.Group.ResumeLayout(false);
             this.Group.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.ToolStripTopMenu.ResumeLayout(false);
+            this.ToolStripTopMenu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -695,7 +708,7 @@
         private ToolStripButton CustomerGroupTS;
         private ToolStripSeparator toolStripSeparator12;
         private ToolStripButton SupplierGroupTS;
-        private ToolStrip toolStrip1;
+        private ToolStrip ToolStripTopMenu;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
@@ -711,5 +724,6 @@
         private ToolStripButton SaleCreateTS;
         private ToolStripSeparator toolStripSeparator9;
         private ToolStripButton UserCreateTS;
+        private ToolStripButton UserBtnTS;
     }
 }

@@ -63,6 +63,16 @@ namespace Winform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cropped_logo_removebg_preview_50x50 {
+            get {
+                object obj = ResourceManager.GetObject("cropped-logo-removebg-preview_50x50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap double_left_resize {
             get {
                 object obj = ResourceManager.GetObject("double_left_resize", resourceCulture);

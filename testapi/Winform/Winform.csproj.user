@@ -52,6 +52,9 @@
     <Compile Update="Forms\AddForms\CreateSupplierInvoicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\control\RoleUserProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\control\SearchCustomer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,6 +161,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="fotmtest1.cs">

@@ -104,7 +104,7 @@ namespace API.Controllers
             return Ok("User Deleted Successfully");
         }
 
-        [Authorize(Roles = "Admin,UserAdmin,UserWrite")]
+        //[Authorize(Roles = "Admin,UserAdmin,UserWrite")]
         [HttpPut("user/edit-user/{id}")]
         public async Task<ActionResult<string>> EditUser(int id, [FromBody] UserDTOEdit updateUser)
         {
@@ -115,8 +115,8 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Updated Successfully");
         }
-        [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
 
+        [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/get-all-users")]
         public IActionResult Get([FromQuery] UserFilter filter)
         {
@@ -139,7 +139,7 @@ namespace API.Controllers
             var data = _authenticationService.CountUsers(filter);
             return Ok(data);
         }
-        [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
+       // [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/{id}")]
         public IActionResult Get(int id)
         {

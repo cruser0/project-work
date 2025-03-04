@@ -22,6 +22,7 @@ namespace Winform
             tabControl.TabPages.Remove(AddTP);
             tabControl.TabPages.Remove(GroupTP);
             SetAuthorizations();
+            UserBtnTS.Text = "Hello "+UserAccessInfo.Name;
         }
 
         private void CreateDockPanel()
@@ -136,8 +137,13 @@ namespace Winform
             var menuItem = sender as ToolStripButton;
 
             Cursor.Current = Cursors.WaitCursor;
+
             string tabName = menuItem.GetCurrentParent().Name;
-            string formName = tabName + " " + menuItem.Text;
+            string formName;
+            if(tabName.Equals("ToolStripTopMenu"))
+                formName= tabName + " " + menuItem.Name;
+            else
+                formName = tabName + " " + menuItem.Text;
             int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
             List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
@@ -173,6 +179,7 @@ namespace Winform
             // Create a new form if it doesn't exist already
             Form child = formName switch
             {
+                "ToolStripTopMenu UserBtnTS"=>new UserProfileForm(),
                 "Show Customer" => new CustomerForm(),
                 "Show Customer Invoice" => new CustomerInvoiceForm(),
                 "Show Supplier" => new SupplierForm(),
