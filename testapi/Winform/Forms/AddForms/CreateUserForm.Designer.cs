@@ -40,14 +40,21 @@
             this.UserNameTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.rolesListBox = new System.Windows.Forms.CheckedListBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PasswordSeeBtn
             // 
+            this.PasswordSeeBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PasswordSeeBtn.FlatAppearance.BorderSize = 0;
             this.PasswordSeeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PasswordSeeBtn.Image = global::Winform.Properties.Resources.eye_ri;
-            this.PasswordSeeBtn.Location = new System.Drawing.Point(286, 227);
+            this.PasswordSeeBtn.Location = new System.Drawing.Point(251, 235);
             this.PasswordSeeBtn.Name = "PasswordSeeBtn";
             this.PasswordSeeBtn.Size = new System.Drawing.Size(25, 23);
             this.PasswordSeeBtn.TabIndex = 52;
@@ -56,8 +63,9 @@
             // 
             // PasswordLbl
             // 
+            this.PasswordLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PasswordLbl.AutoSize = true;
-            this.PasswordLbl.Location = new System.Drawing.Point(87, 210);
+            this.PasswordLbl.Location = new System.Drawing.Point(45, 212);
             this.PasswordLbl.Name = "PasswordLbl";
             this.PasswordLbl.Size = new System.Drawing.Size(57, 15);
             this.PasswordLbl.TabIndex = 51;
@@ -65,18 +73,20 @@
             // 
             // PasswordTxt
             // 
-            this.PasswordTxt.Location = new System.Drawing.Point(86, 228);
+            this.PasswordTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PasswordTxt.Location = new System.Drawing.Point(45, 236);
             this.PasswordTxt.Name = "PasswordTxt";
-            this.PasswordTxt.PasswordChar = '*';
-            this.PasswordTxt.PlaceholderText = "************";
-            this.PasswordTxt.Size = new System.Drawing.Size(194, 23);
+            this.PasswordTxt.PasswordChar = '•';
+            this.PasswordTxt.PlaceholderText = "•••••••••••••";
+            this.PasswordTxt.Size = new System.Drawing.Size(200, 23);
             this.PasswordTxt.TabIndex = 50;
             this.PasswordTxt.TextChanged += new System.EventHandler(this.UserNameTxt_TextChanged);
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(257, 363);
+            this.button1.Location = new System.Drawing.Point(292, 314);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 23);
             this.button1.TabIndex = 49;
@@ -86,8 +96,9 @@
             // 
             // UserEmailLbl
             // 
+            this.UserEmailLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.UserEmailLbl.AutoSize = true;
-            this.UserEmailLbl.Location = new System.Drawing.Point(88, 157);
+            this.UserEmailLbl.Location = new System.Drawing.Point(45, 156);
             this.UserEmailLbl.Name = "UserEmailLbl";
             this.UserEmailLbl.Size = new System.Drawing.Size(36, 15);
             this.UserEmailLbl.TabIndex = 47;
@@ -95,16 +106,18 @@
             // 
             // UserEmailTxt
             // 
-            this.UserEmailTxt.Location = new System.Drawing.Point(86, 175);
+            this.UserEmailTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UserEmailTxt.Location = new System.Drawing.Point(45, 180);
             this.UserEmailTxt.Name = "UserEmailTxt";
-            this.UserEmailTxt.Size = new System.Drawing.Size(194, 23);
+            this.UserEmailTxt.Size = new System.Drawing.Size(200, 23);
             this.UserEmailTxt.TabIndex = 46;
             this.UserEmailTxt.TextChanged += new System.EventHandler(this.UserNameTxt_TextChanged);
             // 
             // UserLastNameLbl
             // 
+            this.UserLastNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.UserLastNameLbl.AutoSize = true;
-            this.UserLastNameLbl.Location = new System.Drawing.Point(87, 111);
+            this.UserLastNameLbl.Location = new System.Drawing.Point(45, 100);
             this.UserLastNameLbl.Name = "UserLastNameLbl";
             this.UserLastNameLbl.Size = new System.Drawing.Size(58, 15);
             this.UserLastNameLbl.TabIndex = 45;
@@ -112,16 +125,18 @@
             // 
             // UserLastNameTxt
             // 
-            this.UserLastNameTxt.Location = new System.Drawing.Point(86, 129);
+            this.UserLastNameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UserLastNameTxt.Location = new System.Drawing.Point(45, 124);
             this.UserLastNameTxt.Name = "UserLastNameTxt";
-            this.UserLastNameTxt.Size = new System.Drawing.Size(194, 23);
+            this.UserLastNameTxt.Size = new System.Drawing.Size(200, 23);
             this.UserLastNameTxt.TabIndex = 44;
             this.UserLastNameTxt.TextChanged += new System.EventHandler(this.UserNameTxt_TextChanged);
             // 
             // UserNameLbl
             // 
+            this.UserNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.UserNameLbl.AutoSize = true;
-            this.UserNameLbl.Location = new System.Drawing.Point(87, 64);
+            this.UserNameLbl.Location = new System.Drawing.Point(45, 44);
             this.UserNameLbl.Name = "UserNameLbl";
             this.UserNameLbl.Size = new System.Drawing.Size(39, 15);
             this.UserNameLbl.TabIndex = 43;
@@ -129,16 +144,18 @@
             // 
             // UserNameTxt
             // 
-            this.UserNameTxt.Location = new System.Drawing.Point(86, 82);
+            this.UserNameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UserNameTxt.Location = new System.Drawing.Point(45, 68);
             this.UserNameTxt.Name = "UserNameTxt";
-            this.UserNameTxt.Size = new System.Drawing.Size(194, 23);
+            this.UserNameTxt.Size = new System.Drawing.Size(200, 23);
             this.UserNameTxt.TabIndex = 42;
             this.UserNameTxt.TextChanged += new System.EventHandler(this.UserNameTxt_TextChanged);
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(313, 64);
+            this.label4.Location = new System.Drawing.Point(292, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 15);
             this.label4.TabIndex = 40;
@@ -146,6 +163,7 @@
             // 
             // rolesListBox
             // 
+            this.rolesListBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.rolesListBox.ColumnWidth = 200;
             this.rolesListBox.FormattingEnabled = true;
             this.rolesListBox.HorizontalScrollbar = true;
@@ -172,34 +190,83 @@
             "SaleRead",
             "SaleWrite",
             "SaleAdmin"});
-            this.rolesListBox.Location = new System.Drawing.Point(314, 82);
+            this.rolesListBox.Location = new System.Drawing.Point(292, 62);
             this.rolesListBox.MultiColumn = true;
             this.rolesListBox.Name = "rolesListBox";
             this.rolesListBox.Size = new System.Drawing.Size(404, 202);
             this.rolesListBox.TabIndex = 39;
             this.rolesListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.rolesListBox_CheckedItems);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.UserNameLbl);
+            this.panel1.Controls.Add(this.PasswordSeeBtn);
+            this.panel1.Controls.Add(this.rolesListBox);
+            this.panel1.Controls.Add(this.PasswordLbl);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.PasswordTxt);
+            this.panel1.Controls.Add(this.UserNameTxt);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.UserLastNameTxt);
+            this.panel1.Controls.Add(this.UserEmailLbl);
+            this.panel1.Controls.Add(this.UserLastNameLbl);
+            this.panel1.Controls.Add(this.UserEmailTxt);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(20, 20);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(744, 421);
+            this.panel1.TabIndex = 53;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(784, 20);
+            this.panel2.TabIndex = 54;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 441);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(784, 20);
+            this.panel3.TabIndex = 55;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 20);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(20, 421);
+            this.panel4.TabIndex = 56;
+            // 
+            // panel5
+            // 
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(764, 20);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(20, 421);
+            this.panel5.TabIndex = 57;
+            // 
             // CreateUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.PasswordSeeBtn);
-            this.Controls.Add(this.PasswordLbl);
-            this.Controls.Add(this.PasswordTxt);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.UserEmailLbl);
-            this.Controls.Add(this.UserEmailTxt);
-            this.Controls.Add(this.UserLastNameLbl);
-            this.Controls.Add(this.UserLastNameTxt);
-            this.Controls.Add(this.UserNameLbl);
-            this.Controls.Add(this.UserNameTxt);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.rolesListBox);
+            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CreateUserForm";
             this.Text = "CreateUserForm";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -216,5 +283,10 @@
         private TextBox UserNameTxt;
         private Label label4;
         private CheckedListBox rolesListBox;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private Panel panel5;
     }
 }

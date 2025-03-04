@@ -37,98 +37,74 @@ namespace Winform
             this.Controls.Add(minimizedPanel);
         }
 
+        private static readonly string[] AdminRoles = { "Admin" };
+        private static readonly string[] WriteRoles = { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
+        private static readonly string[] ReadRoles = { "Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "UserRead" };
+        private static readonly string[] AdminGroupRoles = { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
+
         private void SetAuthorizations()
         {
-            if (Authorize(new List<string> {"Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead","UserRead",
-            "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite","UserWrite",
-            "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin","UserAdmin"}))
+            // Convertiamo UserAccessInfo.Role in un HashSet per ottimizzare Contains()
+            var userRoles = new HashSet<string>(UserAccessInfo.Role);
+
+            if (IsAuthorized(userRoles, ReadRoles) || IsAuthorized(userRoles, WriteRoles) || IsAuthorized(userRoles, AdminGroupRoles) || IsAuthorized(userRoles, AdminRoles))
             {
                 tabControl.TabPages.Add(ShowTP);
             }
-            if (Authorize(new List<string> {"Admin","CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite","UserWrite",
-            "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin","UserAdmin"}))
+
+            if (IsAuthorized(userRoles, WriteRoles) || IsAuthorized(userRoles, AdminGroupRoles))
             {
                 tabControl.TabPages.Add(AddTP);
                 tabControl.TabPages.Add(EditTP);
             }
-            if (AuthorizeGroup(new List<string> { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }) ||
-                AuthorizeGroup(new List<string> { "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite" }) ||
-                 AuthorizeGroup(new List<string> { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }) ||
-                 Authorize(new List<string> { "Admin" }) ||
-                 AuthorizeGroup(new List<string> { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }) ||
-                AuthorizeGroup(new List<string> { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }) ||
-                 AuthorizeGroup(new List<string> { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }))
+
+            if (IsAuthorized(userRoles, new[] { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                IsAuthorized(userRoles, new[] { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
+                IsAuthorized(userRoles, AdminRoles))
             {
                 tabControl.TabPages.Add(GroupTP);
             }
 
+            // Impostazione visibilità ToolStripMenuItems
+            CustomerShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
+            CustomerCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerWrite", "CustomerAdmin" });
 
-            CustomerShowTS.Visible = Authorize(new List<string>
-                { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
-            CustomerCreateTS.Visible = Authorize(new List<string>
-                { "Admin", "CustomerWrite","CustomerAdmin" });
+            CustomerInvoiceShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
+            CustomerInvoiceCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
 
-            CustomerInvoiceShowTS.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
-            CustomerInvoiceCreateTS.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceWrite", "CustomerInvoiceAdmin"});
+            CustomerInvoiceCostShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
+            CustomerInvoiceCostCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
 
-            CustomerInvoiceCostShowTS.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
-            CustomerInvoiceCostCreateTS.Visible = Authorize(new List<string>
-                { "Admin", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin"});
+            SupplierShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
+            SupplierCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierWrite", "SupplierAdmin" });
 
-            SupplierShowTS.Visible = Authorize(new List<string>
-                { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
-            SupplierCreateTS.Visible = Authorize(new List<string>
-                { "Admin", "SupplierWrite", "SupplierAdmin"});
+            SupplierInvoiceShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
+            SupplierInvoiceCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
 
-            SupplierInvoiceShowTS.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
-            SupplierInvoiceCreateTS.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin"});
+            SupplierInvoiceCostShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceCostRead", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
+            SupplierInvoiceCostCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
 
-            UserShowTS.Visible = Authorize(new List<string>
-                { "Admin" });
-            UserCreateTS.Visible = Authorize(new List<string>
-                { "Admin" });
+            SaleShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
+            SaleCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SaleWrite", "SaleAdmin" });
 
-            SupplierInvoiceCostShowTS.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoiceCostRead", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin" });
-            SupplierInvoiceCostCreateTS.Visible = Authorize(new List<string>
-                { "Admin", "SupplierInvoicesCostWrite", "SupplierInvoicesCostAdmin"});
-            SaleShowTS.Visible = Authorize(new List<string>
-                { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
-            SaleCreateTS.Visible = Authorize(new List<string>
-                { "Admin", "SaleWrite", "SaleAdmin"});
-            if (AuthorizeGroup(new List<string> { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }) ||
-                AuthorizeGroup(new List<string> { "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite" }) ||
-                 AuthorizeGroup(new List<string> { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }) ||
-                 Authorize(new List<string> { "Admin" }))
-            {
-                CustomerGroupTS.Visible = true;
-            }
-            if (Authorize(new List<string> { "Admin" }) ||
-                 AuthorizeGroup(new List<string> { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }) ||
-                AuthorizeGroup(new List<string> { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }) ||
-                 AuthorizeGroup(new List<string> { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }))
-            {
-                SupplierGroupTS.Visible = true;
-            }
+            UserShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin" });
+            UserCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin" });
+
+            CustomerGroupTS.Visible = IsAuthorized(userRoles, ReadRoles, requireAll: true) ||
+                                      IsAuthorized(userRoles, WriteRoles, requireAll: true) ||
+                                      IsAuthorized(userRoles, AdminGroupRoles, requireAll: true) ||
+                                      IsAuthorized(userRoles, AdminRoles);
+
+            SupplierGroupTS.Visible = IsAuthorized(userRoles, AdminRoles) ||
+                                      IsAuthorized(userRoles, new[] { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
+                                      IsAuthorized(userRoles, new[] { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
+                                      IsAuthorized(userRoles, new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
         }
 
-        private bool Authorize(List<string> allowedRoles)
+        // Metodo per autorizzare gli utenti
+        private bool IsAuthorized(HashSet<string> userRoles, string[] requiredRoles, bool requireAll = false)
         {
-            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
-        }
-        private bool AuthorizeGroup(List<string> allowedRoles)
-        {
-            foreach (string a in allowedRoles)
-            {
-                if (!UserAccessInfo.Role.Contains(a))
-                    return false;
-            }
-            return true;
+            return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
         }
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
@@ -179,25 +155,30 @@ namespace Winform
             Form child = formName switch
             {
                 "ToolStripTopMenu UserBtnTS" => new UserProfileForm(),
+
                 "Show Customer" => new CustomerForm(),
                 "Show Customer Invoice" => new CustomerInvoiceForm(),
+                "Show Customer Invoice Cost" => new CustomerInvoiceCostForm(),
+
                 "Show Supplier" => new SupplierForm(),
                 "Show Supplier Invoice" => new SupplierInvoiceForm(),
                 "Show Supplier Invoice Cost" => new SupplierInvoiceCostsForm(),
+
                 "Show Sale" => new SaleForm(),
-                "Add Supplier Invoice Cost" => new CreateSupplierInvoiceCostForm(),
-                "Add Sale" => new CreateSaleForm(),
-                "Add Customer" => new CreateCustomerForm(),
-                "Add Customer Invoice" => new CreateCustomerInvoiceForm(),
-                "Add Customer Invoice Cost" => new CreateCustomerInvoiceCostForm(),
-                "Add Supplier" => new CreateSupplierForm(),
-                "Add Supplier Invoice" => new CreateSupplierInvoicesForm(),
-                "Show Customer Invoice Cost" => new CustomerInvoiceCostForm(),
                 "Show User" => new UserForm(),
-                "Add User" => new CreateUserForm(),
+
+                "Create Customer" => new CreateCustomerForm(),
+                "Create Customer Invoice" => new CreateCustomerInvoiceForm(),
+                "Create Customer Invoice Cost" => new CreateCustomerInvoiceCostForm(),
+
+                "Create Supplier" => new CreateSupplierForm(),
+                "Create Supplier Invoice" => new CreateSupplierInvoicesForm(),
+                "Create Supplier Invoice Cost" => new CreateSupplierInvoiceCostForm(),
+
+                "Create Sale" => new CreateSaleForm(),
+                "Create User" => new CreateUserForm(),
 
                 "Group Supplier" => new SupplierFinalForm(),
-
                 "Group Customer" => new CustomerFinalForm(),
 
 
@@ -205,12 +186,11 @@ namespace Winform
                 _ => new Form()
             };
 
-            child.Text = formName; // Set the title for future control
+            child.Text = formName.Equals("ToolStripTopMenu UserBtnTS") ? "User Area" : formName;
             child.MdiParent = this;
-            child.Size = new Size((int)Math.Floor(Width * 0.48),
-                (int)Math.Floor(Height * 0.40));
+            child.Size = new Size(800, 500);
 
-            child.Resize += ChildForm_Resize; // Handle resize event for child forms
+            child.Resize += ChildForm_Resize;
             child.FormClosing += ChildForm_Close;
 
             child.Show();
@@ -268,9 +248,28 @@ namespace Winform
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void Logout_Click(object sender, EventArgs e)
         {
-            //MdiChildren.ToList().ForEach(form => form.WindowState = FormWindowState.Minimized);
+            DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Logout Confirmation",
+                                                  MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Abort;  // Signal logout
+                this.Close();
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            foreach (var form in MdiChildren)
+            {
+                if (form.WindowState != FormWindowState.Minimized)
+                {
+                    form.WindowState = FormWindowState.Minimized;
+                }
+            }
         }
     }
 }

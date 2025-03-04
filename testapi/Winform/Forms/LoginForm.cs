@@ -40,7 +40,7 @@ namespace Winform.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var ret = _userService.Login(new UserDTO() { Email = "string", Password = "string" });
+            var ret = _userService.Login(new UserDTO() { Email = "CustomerAdmin", Password = "string" });
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -56,5 +56,14 @@ namespace Winform.Forms
         {
             EnterBtn.Enabled = EmailTxt.Text.Length > 0 && PasswordTxt.Text.Length > 0;
         }
+
+        private void PasswordSeeBtn_Click(object sender, EventArgs e)
+        {
+            if (PasswordTxt.PasswordChar.Equals('•'))
+                PasswordTxt.PasswordChar = default(char);
+            else
+                PasswordTxt.PasswordChar = '•';
+        }
+
     }
 }

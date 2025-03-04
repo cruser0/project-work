@@ -118,10 +118,10 @@ namespace Winform.Forms.DetailsForms
 
         private void PasswordSeeBtn_Click(object sender, EventArgs e)
         {
-            if (PasswordTxt.PasswordChar.Equals('*'))
+            if (PasswordTxt.PasswordChar.Equals('•'))
                 PasswordTxt.PasswordChar = default(char);
             else
-                PasswordTxt.PasswordChar = '*';
+                PasswordTxt.PasswordChar = '•';
         }
     }
 }

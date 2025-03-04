@@ -14,12 +14,12 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "CustomerInvoiceId", filter.CustomerInvoiceCostCustomerInvoiceId },
-                { "CostFrom", filter.CustomerInvoiceCostCostFrom },
-                { "CostTo", filter.CustomerInvoiceCostCostTo },
-                { "Quantity", filter.CustomerInvoiceCostQuantity },
-                { "page", filter.CustomerInvoiceCostPage },
-                { "Name", filter.CustomerInvoiceCostName },
+                { "CustomerInvoiceCostCustomerInvoiceId", filter.CustomerInvoiceCostCustomerInvoiceId },
+                { "CustomerInvoiceCostCostFrom", filter.CustomerInvoiceCostCostFrom },
+                { "CustomerInvoiceCostCostTo", filter.CustomerInvoiceCostCostTo },
+                { "CustomerInvoiceCostQuantity", filter.CustomerInvoiceCostQuantity },
+                { "CustomerInvoiceCostPage", filter.CustomerInvoiceCostPage },
+                { "CustomerInvoiceCostName", filter.CustomerInvoiceCostName },
             };
 
             foreach (var kvp in filters)

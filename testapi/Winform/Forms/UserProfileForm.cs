@@ -72,7 +72,7 @@ namespace Winform.Forms
         }
         private void PasswordSeeBtn_Click(object sender, EventArgs e)
         {
-            if (PasswordTxt.PasswordChar.Equals('*'))
+            if (PasswordTxt.PasswordChar.Equals('•'))
             {
                 PasswordTxt.PasswordChar = default(char);
                 ConfirmPasswordTxt.PasswordChar = default(char);
@@ -80,8 +80,8 @@ namespace Winform.Forms
             }
             else
             {
-                PasswordTxt.PasswordChar = '*';
-                ConfirmPasswordTxt.PasswordChar = '*';
+                PasswordTxt.PasswordChar = '•';
+                ConfirmPasswordTxt.PasswordChar = '•';
             }
         }
     }
