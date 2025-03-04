@@ -7,6 +7,7 @@
         public string? UserLastName { get; set; }
         public string? UserEmail { get; set; }
         public List<string>? UserRoles { get; set; } = new List<string>();
+        public List<string>? UserPreferences { get; set; } = new List<string>();
         public int? UserPage { get; set; }
     }
 }

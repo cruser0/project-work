@@ -87,7 +87,7 @@ namespace API.Models.Services
 
         public RefreshToken GetNewerRefreshToken(RefreshTokenDTO refTk)
         {
-            User user=_context.Users.Where(x=>x.UserID==refTk.UserID).FirstOrDefault();
+            User user = _context.Users.Where(x => x.UserID == refTk.UserID).FirstOrDefault();
             if (user == null)
                 throw new Exception("User not found");
             RefreshToken refreshToken = _context.RefreshTokens
@@ -142,17 +142,56 @@ namespace API.Models.Services
 
         }
 
+        public List<UserPreference> GetAllPrefsByUserID(int id)
+        {
+            var data = _context.UserPreferences.Where(x => x.UserID == id).ToList();
+            return data;
+        }
+
+        public void EditPreferences(int? id, Dictionary<string, string>? prefs)
+        {
+            if (!_context.Users.Any(x => x.UserID == id))
+                throw new Exception("User not Found");
+            var prefsList = GetAllPrefsByUserID((int)id);
+            _context.UserPreferences.RemoveRange(prefsList);
+            _context.SaveChanges();
+            UserPreference up;
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                foreach (var kvp in prefs)
+                {
+                    up = new UserPreference
+                    {
+                        PreferenceID = GetPreference(kvp.Key).PreferenceID,
+                        UserID = (int)id,
+                        Value = kvp.Value
+                    };
+                    _context.UserPreferences.Add(up);
+                }
+                _context.SaveChanges();
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw new Exception(ex.InnerException.Message);
+            }
+
+
+        }
+
         internal void EditUser(int id, UserDTOEdit updateUser)
         {
-            User user=GetUserByID(id);
-            user.Name = !string.IsNullOrEmpty(updateUser.Name)&&updateUser.Name.Length<=100? updateUser.Name : user.Name;
+            User user = GetUserByID(id);
+            user.Name = !string.IsNullOrEmpty(updateUser.Name) && updateUser.Name.Length <= 100 ? updateUser.Name : user.Name;
             user.LastName = !string.IsNullOrEmpty(updateUser.LastName) && updateUser.LastName.Length <= 100 ? updateUser.LastName : user.LastName;
             user.Email = !string.IsNullOrEmpty(updateUser.Email) && updateUser.Email.Length <= 100 ? updateUser.Email : user.Email;
             if (!string.IsNullOrEmpty(updateUser.Password))
             {
                 CreatePasswordHash(updateUser.Password, out byte[] hash, out byte[] salt);
-                user.PasswordHash=hash;
-                user.PasswordSalt=salt;
+                user.PasswordHash = hash;
+                user.PasswordSalt = salt;
             }
             _context.Users.Update(user);
             _context.SaveChanges();
@@ -187,7 +226,7 @@ namespace API.Models.Services
         public User GetUserByID(int id)
         {
             var user = _context.Users
-                .Where(u => u.UserID==id)
+                .Where(u => u.UserID == id)
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
                 .FirstOrDefault();
@@ -198,13 +237,15 @@ namespace API.Models.Services
         public UserRoleDTO GetUserRoleDTOByID(int id)
         {
             var user = _context.Users
-                .Where(x => x.UserID==id)
+                .Where(x => x.UserID == id)
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role).FirstOrDefault();
             if (user == null)
                 throw new Exception("User not Found");
-            List<string> roleList=user.UserRoles.Select(x => x.Role.RoleName).ToList();
-            return new UserRoleDTO(user,roleList);
+            List<string> roleList = user.UserRoles.Select(x => x.Role.RoleName).ToList();
+            Dictionary<string, string> PrefDict = user.UserPreferences
+                .ToDictionary(x => x.Preference.PreferenceName, x => x.Value);
+            return new UserRoleDTO(user, roleList, PrefDict);
         }
         public ICollection<UserRoleDTO> GetAllUsers(UserFilter filter)
         {
@@ -223,29 +264,39 @@ namespace API.Models.Services
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role).AsQueryable();
 
+            query = query.Include(u => u.UserPreferences)
+                .ThenInclude(up => up.Preference);
+
             if (!string.IsNullOrEmpty(filter.UserName))
                 query = query.Where(s => s.Name.StartsWith(filter.UserName));
             if (!string.IsNullOrEmpty(filter.UserLastName))
                 query = query.Where(s => s.LastName.StartsWith(filter.UserLastName));
             if (!string.IsNullOrEmpty(filter.UserEmail))
                 query = query.Where(s => s.Email.StartsWith(filter.UserEmail));
-            if (filter.UserRoles.Count>0)
+            if (filter.UserRoles.Count > 0)
             {
                 foreach (var role in filter.UserRoles)
                     query = query.Where(x => x.UserRoles.Any(x => x.Role.RoleName.Contains(role)));
+            }
+            if (filter.UserPreferences.Count > 0)
+            {
+                foreach (var preference in filter.UserPreferences)
+                    query = query.Where(x => x.UserPreferences.Any(x => x.Preference.PreferenceName.Contains(preference)));
             }
             if (filter.UserPage != null)
             {
                 query = query.Skip(((int)filter.UserPage - 1) * itemsPage).Take(itemsPage);
             }
-            
+
             List<User> userList = query.ToList();
-            List<UserRoleDTO> returnList=new List<UserRoleDTO>();
+            List<UserRoleDTO> returnList = new List<UserRoleDTO>();
             List<string> roleList;
-            foreach(User user in userList)
+            Dictionary<string, string> prefList;
+            foreach (User user in userList)
             {
-                roleList=user.UserRoles.Select(x=>x.Role.RoleName).ToList();
-                returnList.Add(new UserRoleDTO(user, roleList));
+                roleList = user.UserRoles.Select(x => x.Role.RoleName).ToList();
+                prefList = user.UserPreferences.ToDictionary(x => x.Preference.PreferenceName, x => x.Value);
+                returnList.Add(new UserRoleDTO(user, roleList, prefList));
             }
             return returnList;
         }
@@ -257,6 +308,14 @@ namespace API.Models.Services
                 throw new Exception("Role not found");
             return data;
 
+        }
+
+        public Preference GetPreference(string pref)
+        {
+            var data = _context.Preferences.FirstOrDefault(x => x.PreferenceName == pref);
+            if (data == null)
+                throw new Exception("Preference not found");
+            return data;
         }
         /*
          Registers a user with hashed password and the salt in the db
@@ -277,7 +336,7 @@ namespace API.Models.Services
             else
                 throw new Exception("User Last Name can't be empty");
             if (!string.IsNullOrEmpty(user.Email))
-                returnUser.Email =user.Email.Length <= 100 ? user.Email : throw new Exception("User Email needs to be shorter than 100 Character to be created");
+                returnUser.Email = user.Email.Length <= 100 ? user.Email : throw new Exception("User Email needs to be shorter than 100 Character to be created");
             else
                 throw new Exception("User Email can't be empty");
             if (string.IsNullOrEmpty(user.Password))
@@ -286,6 +345,7 @@ namespace API.Models.Services
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
             UserRole ur;
+            UserPreference up;
             using var transaction = _context.Database.BeginTransaction();
             try
             {
@@ -304,6 +364,20 @@ namespace API.Models.Services
                     _context.UserRoles.Add(ur);
                     _context.SaveChanges();
                 }
+
+                foreach (var kvp in user.Preferences)
+                {
+                    up = new UserPreference
+                    {
+                        PreferenceID = GetPreference(kvp.Key).PreferenceID,
+                        UserID = returnUser.UserID,
+                        Value = kvp.Value
+                    };
+                    _context.UserPreferences.Add(up);
+                    _context.SaveChanges();
+                }
+
+
                 transaction.Commit();
             }
             catch (Exception ex)

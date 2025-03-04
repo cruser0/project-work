@@ -2,10 +2,7 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
 
 namespace API.Controllers
 {
@@ -27,8 +24,9 @@ namespace API.Controllers
             User user;
             try
             {
-               user= _authenticationService.CreateUser(request);
-            }catch (Exception ex) { return BadRequest(ex.Message); }
+                user = _authenticationService.CreateUser(request);
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
 
             return Ok("User Registered Successfully ");
         }
@@ -41,22 +39,29 @@ namespace API.Controllers
             User user;
             try
             {
-            user=_authenticationService.GetUserByEmail(request.Email);
-            }catch (Exception ex) {return BadRequest(ex.Message);}
+                user = _authenticationService.GetUserByEmail(request.Email);
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
             if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
                 return BadRequest("Wrong Password!");
-            List<string> roles=new List<string>();
+            List<string> roles = new List<string>();
             foreach (var role in user.UserRoles)
             {
                 roles.Add(role.Role.RoleName);
             }
-            UserRoleDTO userDTO = new UserRoleDTO(user, roles);
-            string token=_authenticationService.CreateToken(userDTO);
+            Dictionary<string, string> preferences = new Dictionary<string, string>();
+            foreach (var pref in user.UserPreferences)
+            {
+                preferences.Add(pref.Preference.PreferenceName, pref.Value);
+            }
+
+            UserRoleDTO userDTO = new UserRoleDTO(user, roles, preferences);
+            string token = _authenticationService.CreateToken(userDTO);
 
             var refreshToken = _authenticationService.GenerateRefreshToken(user.UserID);
 
 
-            return Ok(new UserAccessInfoDTO(userDTO, token,refreshToken));
+            return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
         }
 
         [HttpPost("refresh-token")]
@@ -64,19 +69,20 @@ namespace API.Controllers
         {
             try
             {
-            RefreshTokenDTO dbRefToken = new RefreshTokenDTO(_authenticationService.GetRefreshTokenByrefTokenString(refToken));
-            RefreshToken refreshToken = _authenticationService.GetNewerRefreshToken(dbRefToken);
-            if(!refreshToken.Token.Equals(refToken))
-                return Unauthorized("Invalid Refresh Token");
-            else if (refreshToken.Expires < DateTime.Now)
-            {
-                return Unauthorized("Outdated Refresh Token");
+                RefreshTokenDTO dbRefToken = new RefreshTokenDTO(_authenticationService.GetRefreshTokenByrefTokenString(refToken));
+                RefreshToken refreshToken = _authenticationService.GetNewerRefreshToken(dbRefToken);
+                if (!refreshToken.Token.Equals(refToken))
+                    return Unauthorized("Invalid Refresh Token");
+                else if (refreshToken.Expires < DateTime.Now)
+                {
+                    return Unauthorized("Outdated Refresh Token");
+                }
+                UserRoleDTO userDTO = _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
+                string token = _authenticationService.CreateToken(userDTO);
+                RefreshToken newRefToken = _authenticationService.GenerateRefreshToken((int)userDTO.UserID);
+                return Ok(new UserAccessInfoDTO(userDTO, token, newRefToken));
             }
-            UserRoleDTO userDTO = _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
-            string token = _authenticationService.CreateToken(userDTO);
-            RefreshToken newRefToken = _authenticationService.GenerateRefreshToken((int)userDTO.UserID);
-            return Ok(new UserAccessInfoDTO(userDTO, token, newRefToken));
-            }catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (Exception ex) { return BadRequest(ex.Message); }
 
         }
 
@@ -87,11 +93,25 @@ namespace API.Controllers
         {
             try
             {
-                if(assignRole.UserID!=null)
+                if (assignRole.UserID != null)
                     _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
-            }catch(Exception ex) { return BadRequest(ex.Message); }
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Role Updated");
         }
+
+        [HttpPut("user/assign-preferences")]
+        public async Task<ActionResult<string>> AssignPreferences(AssignPrefDTO assignPref)
+        {
+            try
+            {
+                if (assignPref.UserID != null)
+                    _authenticationService.EditPreferences(assignPref.UserID, assignPref.Preferences);
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+            return Ok("User Role Updated");
+        }
+
         [Authorize(Roles = "Admin,UserAdmin")]
         [HttpDelete("user/delete-user/{id}")]
         public async Task<ActionResult<string>> DeleteUser(int id)
@@ -110,7 +130,7 @@ namespace API.Controllers
         {
             try
             {
-                _authenticationService.EditUser(id,updateUser);
+                _authenticationService.EditUser(id, updateUser);
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Updated Successfully");
@@ -139,7 +159,7 @@ namespace API.Controllers
             var data = _authenticationService.CountUsers(filter);
             return Ok(data);
         }
-       // [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
+        // [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/{id}")]
         public IActionResult Get(int id)
         {
@@ -153,6 +173,5 @@ namespace API.Controllers
             catch (Exception ae) { return BadRequest(ae.Message); }
             return Ok(data);
         }
-
     }
 }

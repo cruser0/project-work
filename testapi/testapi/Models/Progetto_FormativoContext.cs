@@ -27,6 +27,8 @@ namespace API.Models
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
+        public virtual DbSet<Preference> Preferences { get; set; } = null!;
+        public virtual DbSet<UserPreference> UserPreferences { get; set; } = null!;
         public virtual DbSet<ProfitClassification> ProfitClassifications { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceStatus> CustomerInvoiceStatuses { get; set; } = null!;
         public virtual DbSet<ProfitSaleID> ProfitSaleIDs { get; set; } = null!;
@@ -76,14 +78,15 @@ namespace API.Models
                 entity.Property(e => e.OriginalID).HasColumnType("int");
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             });
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.UserID);
 
                 entity.Property(e => e.UserID)
                     .HasColumnName("UserID");
-                
-                entity.HasIndex(c =>c.Email)
+
+                entity.HasIndex(c => c.Email)
                 .IsUnique();
 
                 entity.Property(e => e.Email)
@@ -124,6 +127,42 @@ namespace API.Models
                     .IsUnicode(false);
 
             });
+
+            modelBuilder.Entity<Preference>(entity =>
+            {
+                entity.HasKey(e => e.PreferenceID);
+
+                entity.Property(e => e.PreferenceID)
+                    .HasColumnName("PreferenceID");
+
+                entity.HasIndex(c => c.PreferenceName)
+                .IsUnique();
+
+                entity.Property(e => e.PreferenceName)
+                    .HasColumnName("PreferenceName")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+            });
+
+            modelBuilder.Entity<UserPreference>()
+           .HasKey(ur => new { ur.UserID, ur.PreferenceID });
+
+            modelBuilder.Entity<UserPreference>()
+                .HasOne(ur => ur.User)
+                .WithMany(u => u.UserPreferences)
+                .HasForeignKey(ur => ur.UserID);
+
+            modelBuilder.Entity<UserPreference>()
+                .HasOne(ur => ur.Preference)
+                .WithMany(r => r.UserPreferences)
+                .HasForeignKey(ur => ur.PreferenceID);
+
+            modelBuilder.Entity<UserPreference>()
+                .Property(e => e.Value)
+                .HasColumnName("Value")
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             modelBuilder.Entity<RefreshToken>(entity =>
             {
@@ -345,6 +384,7 @@ namespace API.Models
                     .HasForeignKey(d => d.SupplierInvoiceId)
                     .HasConstraintName("SupplierInvoiceID_SupplierInvoiceCosts_fk");
             });
+
             modelBuilder.Entity<CustomerInvoiceCost>(entity =>
             {
                 entity.HasKey(e => e.CustomerInvoiceCostsId)
