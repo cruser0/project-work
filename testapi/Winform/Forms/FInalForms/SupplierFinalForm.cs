@@ -41,28 +41,25 @@ namespace Winform.Forms.FInalForms
         {
             _valueService = new ValueService();
             InitializeComponent();
-            if (!Authorize(authRoles1) || !AuthorizeGroup(authRoles2))
+            if (!IsAuthorized(authRoles1, requireAll: false) || !IsAuthorized(authRoles2, requireAll: true))
             {
-                showIDToolStripMenuItem.Visible = false;
-                showIDToolStripMenuItem1.Visible = false;
-                showIDToolStripMenuItem2.Visible = false;
-                showOriginalIDToolStripMenuItem.Visible = false;
-                showSupplierIDToolStripMenuItem.Visible = false;
+                HideMenuItems();
             }
         }
 
-        private bool Authorize(List<string> allowedRoles)
+        private bool IsAuthorized(List<string> requiredRoles, bool requireAll)
         {
-            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+            var userRoles = new HashSet<string>(UserAccessInfo.Role);
+            return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
         }
-        private bool AuthorizeGroup(List<string> allowedRoles)
+
+        private void HideMenuItems()
         {
-            foreach (string a in allowedRoles)
-            {
-                if (!UserAccessInfo.Role.Contains(a))
-                    return false;
-            }
-            return true;
+            showIDToolStripMenuItem.Visible = false;
+            showIDToolStripMenuItem1.Visible = false;
+            showIDToolStripMenuItem2.Visible = false;
+            showOriginalIDToolStripMenuItem.Visible = false;
+            showSupplierIDToolStripMenuItem.Visible = false;
         }
 
         private void SupplierFinalForm_Load(object sender, EventArgs e)
