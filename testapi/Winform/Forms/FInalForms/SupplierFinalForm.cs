@@ -42,11 +42,13 @@ namespace Winform.Forms.FInalForms
             _valueService = new ValueService();
             InitializeComponent();
             if (!Authorize(authRoles1) || !AuthorizeGroup(authRoles2))
+            {
                 showIDToolStripMenuItem.Visible = false;
-            showIDToolStripMenuItem1.Visible = false;
-            showIDToolStripMenuItem2.Visible = false;
-            showOriginalIDToolStripMenuItem.Visible = false;
-            showSupplierIDToolStripMenuItem.Visible = false;
+                showIDToolStripMenuItem1.Visible = false;
+                showIDToolStripMenuItem2.Visible = false;
+                showOriginalIDToolStripMenuItem.Visible = false;
+                showSupplierIDToolStripMenuItem.Visible = false;
+            }
         }
 
         private bool Authorize(List<string> allowedRoles)
