@@ -142,44 +142,6 @@ namespace API.Models.Services
 
         }
 
-        public List<UserPreference> GetAllPrefsByUserID(int id)
-        {
-            var data = _context.UserPreferences.Where(x => x.UserID == id).ToList();
-            return data;
-        }
-
-        public void EditPreferences(int? id, Dictionary<string, string>? prefs)
-        {
-            if (!_context.Users.Any(x => x.UserID == id))
-                throw new Exception("User not Found");
-            var prefsList = GetAllPrefsByUserID((int)id);
-            _context.UserPreferences.RemoveRange(prefsList);
-            _context.SaveChanges();
-            UserPreference up;
-            using var transaction = _context.Database.BeginTransaction();
-            try
-            {
-                foreach (var kvp in prefs)
-                {
-                    up = new UserPreference
-                    {
-                        PreferenceID = GetPreference(kvp.Key).PreferenceID,
-                        UserID = (int)id,
-                        Value = kvp.Value
-                    };
-                    _context.UserPreferences.Add(up);
-                }
-                _context.SaveChanges();
-                transaction.Commit();
-            }
-            catch (Exception ex)
-            {
-                transaction.Rollback();
-                throw new Exception(ex.InnerException.Message);
-            }
-
-
-        }
 
         internal void EditUser(int id, UserDTOEdit updateUser)
         {
@@ -218,8 +180,6 @@ namespace API.Models.Services
                 .Where(u => u.Email.Equals(email))
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
-                .Include(u => u.UserPreferences)
-                .ThenInclude(up => up.Preference)
                 .FirstOrDefault();
             if (user == null)
                 throw new Exception("User not Found");
@@ -231,8 +191,6 @@ namespace API.Models.Services
                 .Where(u => u.UserID == id)
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
-                .Include(u => u.UserPreferences)
-                .ThenInclude(up => up.Preference)
                 .FirstOrDefault();
             if (user == null)
                 throw new Exception("User not Found");
@@ -243,16 +201,12 @@ namespace API.Models.Services
             var user = _context.Users
                 .Where(x => x.UserID == id)
                 .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role)
-                .Include(u => u.UserPreferences)
-                .ThenInclude(up => up.Preference).FirstOrDefault();
+                .ThenInclude(ur => ur.Role).FirstOrDefault();
 
             if (user == null)
                 throw new Exception("User not Found");
             List<string> roleList = user.UserRoles.Select(x => x.Role.RoleName).ToList();
-            Dictionary<string, string> PrefDict = user.UserPreferences
-                .ToDictionary(x => x.Preference.PreferenceName, x => x.Value);
-            return new UserRoleDTO(user, roleList, PrefDict);
+            return new UserRoleDTO(user, roleList);
         }
         public ICollection<UserRoleDTO> GetAllUsers(UserFilter filter)
         {
@@ -269,9 +223,7 @@ namespace API.Models.Services
             int itemsPage = 10;
             var query = _context.Users
                 .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role)
-                .Include(u => u.UserPreferences)
-                .ThenInclude(up => up.Preference).AsQueryable();
+                .ThenInclude(ur => ur.Role).AsQueryable();
 
 
             if (!string.IsNullOrEmpty(filter.UserName))
@@ -285,11 +237,6 @@ namespace API.Models.Services
                 foreach (var role in filter.UserRoles)
                     query = query.Where(x => x.UserRoles.Any(x => x.Role.RoleName.Contains(role)));
             }
-            if (filter.UserPreferences.Count > 0)
-            {
-                foreach (var preference in filter.UserPreferences)
-                    query = query.Where(x => x.UserPreferences.Any(x => x.Preference.PreferenceName.Contains(preference)));
-            }
             if (filter.UserPage != null)
             {
                 query = query.Skip(((int)filter.UserPage - 1) * itemsPage).Take(itemsPage);
@@ -302,8 +249,7 @@ namespace API.Models.Services
             foreach (User user in userList)
             {
                 roleList = user.UserRoles.Select(x => x.Role.RoleName).ToList();
-                prefList = user.UserPreferences.ToDictionary(x => x.Preference.PreferenceName, x => x.Value);
-                returnList.Add(new UserRoleDTO(user, roleList, prefList));
+                returnList.Add(new UserRoleDTO(user, roleList));
             }
             return returnList;
         }
@@ -317,13 +263,7 @@ namespace API.Models.Services
 
         }
 
-        public Preference GetPreference(string pref)
-        {
-            var data = _context.Preferences.FirstOrDefault(x => x.PreferenceName == pref);
-            if (data == null)
-                throw new Exception("Preference not found");
-            return data;
-        }
+       
         /*
          Registers a user with hashed password and the salt in the db
          */
@@ -352,7 +292,6 @@ namespace API.Models.Services
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
             UserRole ur;
-            UserPreference up;
             using var transaction = _context.Database.BeginTransaction();
             try
             {
@@ -371,20 +310,6 @@ namespace API.Models.Services
                     _context.UserRoles.Add(ur);
                     _context.SaveChanges();
                 }
-
-                foreach (var kvp in user.Preferences)
-                {
-                    up = new UserPreference
-                    {
-                        PreferenceID = GetPreference(kvp.Key).PreferenceID,
-                        UserID = returnUser.UserID,
-                        Value = kvp.Value
-                    };
-                    _context.UserPreferences.Add(up);
-                    _context.SaveChanges();
-                }
-
-
                 transaction.Commit();
             }
             catch (Exception ex)
@@ -395,6 +320,85 @@ namespace API.Models.Services
 
             return returnUser;
 
+        }
+        public CustomerDGV GetCustomerDGV(int userId)
+        {
+            CustomerDGV? cdgv = _context.CustomerDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Customer DGV not found");
+            return cdgv;
+        }
+        public CustomerDGV CreateUpdateCustomerDGV(CustomerDGV cdgv)
+        {
+            CustomerDGV cdgvDb = _context.CustomerDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if(cdgvDb == null)
+            {
+                _context.CustomerDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb.ShowOriginalID = cdgv.ShowOriginalID;
+                cdgvDb.ShowStatus=cdgv.ShowStatus;
+                cdgvDb.ShowID = cdgv.ShowID;
+                cdgvDb.ShowCountry = cdgv.ShowCountry;
+                cdgv.ShowDate=cdgv.ShowDate;
+                cdgv.ShowName = cdgv.ShowName;
+                _context.CustomerDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
+        }
+
+        public CustomerInvoiceDGV GetCustomerInvoiceDGV(int userId)
+        {
+            CustomerInvoiceDGV cdgv = _context.CustomerInvoiceDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Customer Invoice DGV not found");
+            return cdgv;
+        }
+        public CustomerInvoiceDGV CreateUpdateCustomerInvoiceDGV(CustomerInvoiceDGV cdgv)
+        {
+            CustomerInvoiceDGV cdgvDb = _context.CustomerInvoiceDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if (cdgvDb == null)
+            {
+                _context.CustomerInvoiceDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb = cdgv;
+                _context.CustomerInvoiceDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
+        }
+        public CustomerInvoiceCostDGV GetCustomerInvoiceCostDGV(int userId)
+        {
+            CustomerInvoiceCostDGV cdgv = _context.CustomerInvoiceCostDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Customer Invoice DGV not found");
+            return cdgv;
+        }
+
+        public CustomerInvoiceCostDGV CreateUpdateCustomerInvoiceCostDGV(CustomerInvoiceCostDGV cdgv)
+        {
+            CustomerInvoiceCostDGV cdgvDb = _context.CustomerInvoiceCostDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if (cdgvDb == null)
+            {
+                _context.CustomerInvoiceCostDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb = cdgv;
+                _context.CustomerInvoiceCostDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
         }
     }
 }

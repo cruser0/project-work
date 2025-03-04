@@ -307,7 +307,7 @@
             this.CustomerInvoiceDateTsmi,
             this.CustomerInvoiceStatusTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(192, 114);
+            this.RightClickDgv.Size = new System.Drawing.Size(192, 136);
             // 
             // CustomerInvoiceIDTsmi
             // 

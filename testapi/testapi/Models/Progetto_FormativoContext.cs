@@ -24,11 +24,28 @@ namespace API.Models
         public virtual DbSet<SupplierInvoiceCost> SupplierInvoiceCosts { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+
+
+
+
+        public virtual DbSet<FavouritePages> FavouritePages { get; set; } = null!;
+        public virtual DbSet<UserFavouritePage> UserFavouritePage { get; set; } = null!;
+        public virtual DbSet<CustomerDGV> CustomerDGV { get; set; } = null!;
+        public virtual DbSet<CustomerInvoiceDGV> CustomerInvoiceDGV{ get; set; } = null!;
+        public virtual DbSet<CustomerInvoiceCostDGV> CustomerInvoiceCostDGV { get; set; } = null!;
+        public virtual DbSet<SupplierDGV> SupplierDGV { get; set; } = null!;
+        public virtual DbSet<SupplierInvoiceDGV> SupplierInvoiceDGV { get; set; } = null!;
+        public virtual DbSet<SupplierInvoiceCostDGV> SupplierInvoiceCostDGV { get; set; } = null!;
+        public virtual DbSet<SaleDGV> SaleDGV { get; set; } = null!;
+        public virtual DbSet<CustomerGroupSplit> CustomerGroupSplit { get; set; } = null!;
+        public virtual DbSet<SupplierGroupSplit> SupplierGroupSplit { get; set; } = null!;
+        public virtual DbSet<UserDGV> UserDGV { get; set; } = null!;
+
+
+
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
-        public virtual DbSet<Preference> Preferences { get; set; } = null!;
-        public virtual DbSet<UserPreference> UserPreferences { get; set; } = null!;
         public virtual DbSet<ProfitClassification> ProfitClassifications { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceStatus> CustomerInvoiceStatuses { get; set; } = null!;
         public virtual DbSet<ProfitSaleID> ProfitSaleIDs { get; set; } = null!;
@@ -127,42 +144,308 @@ namespace API.Models
                     .IsUnicode(false);
 
             });
-
-            modelBuilder.Entity<Preference>(entity =>
+            modelBuilder.Entity<FavouritePages>(entity =>
             {
-                entity.HasKey(e => e.PreferenceID);
+                entity.HasKey(e => e.FavouritePageID);
 
-                entity.Property(e => e.PreferenceID)
-                    .HasColumnName("PreferenceID");
+                entity.Property(e => e.FavouritePageID)
+                    .HasColumnName("FavouritePageID");
 
-                entity.HasIndex(c => c.PreferenceName)
+                entity.HasIndex(c => c.Name)
                 .IsUnique();
 
-                entity.Property(e => e.PreferenceName)
-                    .HasColumnName("PreferenceName")
-                    .HasMaxLength(50)
+                entity.Property(e => e.Name)
+                    .HasColumnName("Name")
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
             });
 
-            modelBuilder.Entity<UserPreference>()
-           .HasKey(ur => new { ur.UserID, ur.PreferenceID });
+            modelBuilder.Entity<CustomerDGV>(entity =>
+            {
+                entity.HasKey(e=>e.CustomerDGVID);
+                entity.Property(e => e.CustomerDGVID)
+                    .HasColumnName("CustomerDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
 
-            modelBuilder.Entity<UserPreference>()
-                .HasOne(ur => ur.User)
-                .WithMany(u => u.UserPreferences)
-                .HasForeignKey(ur => ur.UserID);
+                entity.Property(e => e.ShowName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowCountry)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowDate)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowOriginalID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowStatus)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
 
-            modelBuilder.Entity<UserPreference>()
-                .HasOne(ur => ur.Preference)
-                .WithMany(r => r.UserPreferences)
-                .HasForeignKey(ur => ur.PreferenceID);
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d => d.UserID);
+            });
+            modelBuilder.Entity<SaleDGV>(entity =>
+            {
+                entity.HasKey(e => e.SaleDGVID);
+                entity.Property(e => e.SaleDGVID)
+                    .HasColumnName("SaleDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
 
-            modelBuilder.Entity<UserPreference>()
-                .Property(e => e.Value)
-                .HasColumnName("Value")
-                .HasMaxLength(50)
-                .IsUnicode(false);
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowBKNumber)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowBoLNumber)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowDate)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowCustomerID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowStatus)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowCustomerName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowCustomerCountry)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowTotalRevenue)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+            });
+            modelBuilder.Entity<SupplierDGV>(entity =>
+            {
+                entity.HasKey(e => e.SupplierDGVID);
+                entity.Property(e => e.SupplierDGVID)
+                    .HasColumnName("SupplierDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowCountry)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowDate)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowOriginalID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowStatus)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+            });
+            modelBuilder.Entity<CustomerGroupSplit>(entity =>
+            {
+                entity.HasKey(e => e.CustomerGroupSplitID);
+                entity.Property(e => e.CustomerGroupSplitID)
+                    .HasColumnName("CustomerGroupSplitID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.Split1)
+                   .HasColumnType("int");
+                entity.Property(e => e.Split2)
+                   .HasColumnType("int");
+                entity.Property(e => e.Split3)
+                   .HasColumnType("int");
+                entity.Property(e => e.Split4)
+                   .HasColumnType("int");
+            });
+
+            modelBuilder.Entity<SupplierGroupSplit>(entity =>
+            {
+                entity.HasKey(e => e.SupplierGroupSplitID);
+                entity.Property(e => e.SupplierGroupSplitID)
+                    .HasColumnName("SupplierGroupSplitID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.Split1)
+                   .HasColumnType("int");
+                entity.Property(e => e.Split2)
+                   .HasColumnType("int");
+                entity.Property(e => e.Split3)
+                   .HasColumnType("int");
+            });
+            modelBuilder.Entity<CustomerInvoiceCostDGV>(entity =>
+            {
+                entity.HasKey(e => e.CustomerInvoiceCostDGVID);
+                entity.Property(e => e.CustomerInvoiceCostDGVID)
+                    .HasColumnName("CustomerInvoiceCostDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowInvoiceID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowCost)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowQuantity)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+            });
+            modelBuilder.Entity<SupplierInvoiceCostDGV>(entity =>
+            {
+                entity.HasKey(e => e.SupplierInvoiceCostDGVID);
+                entity.Property(e => e.SupplierInvoiceCostDGVID)
+                    .HasColumnName("SupplierInvoiceCostDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowSupplierInvoiceID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowCost)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowQuantity)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+            });
+            modelBuilder.Entity<CustomerInvoiceDGV>(entity =>
+            {
+                entity.HasKey(e => e.CustomerInvoiceDGVID);
+                entity.Property(e => e.CustomerInvoiceDGVID)
+                    .HasColumnName("CustomerInvoiceDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowSaleID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowInvoiceAmount)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowDate)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowStatus)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+            });
+            modelBuilder.Entity<SupplierInvoiceDGV>(entity =>
+            {
+                entity.HasKey(e => e.SupplierInvoiceDGVID);
+                entity.Property(e => e.SupplierInvoiceDGVID)
+                    .HasColumnName("SupplierInvoiceDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowSaleID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowInvoiceAmount)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowDate)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowStatus)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowSupplierID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowSupplierName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowSupplierCountry)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+            });
+            modelBuilder.Entity<UserDGV>(entity =>
+            {
+                entity.HasKey(e => e.UserDGVID);
+                entity.Property(e => e.UserDGVID)
+                    .HasColumnName("UserDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.ShowID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowLastName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowEmail)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowRoles)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                //entity.HasOne(d => d.User)
+                //    .WithOne(p => p.CustomerDGV)
+                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+            });
+
+
 
             modelBuilder.Entity<RefreshToken>(entity =>
             {
@@ -191,6 +474,18 @@ namespace API.Models
 
             });
 
+            modelBuilder.Entity<UserFavouritePage>()
+          .HasKey(ur => new { ur.UserID, ur.FavouritePageID });
+
+            modelBuilder.Entity<UserFavouritePage>()
+                .HasOne(ur => ur.User)
+                .WithMany(u => u.UserFavouritePages)
+                .HasForeignKey(ur => ur.UserID);
+
+            modelBuilder.Entity<UserFavouritePage>()
+                .HasOne(ur => ur.FavouritePage)
+                .WithMany(r => r.UserFavourtitePages)
+                .HasForeignKey(ur => ur.FavouritePageID);
 
             modelBuilder.Entity<UserRole>()
            .HasKey(ur => new { ur.UserID, ur.RoleID });
