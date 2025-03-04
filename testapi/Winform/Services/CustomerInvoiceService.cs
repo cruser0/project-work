@@ -13,13 +13,13 @@ namespace Winform.Services
 
             var filters = new Dictionary<string, object?>
             {
-                { "SaleId", filter.CustomerInvoiceSaleId },
-                { "InvoiceAmountFrom", filter.CustomerInvoiceInvoiceAmountFrom },
-                { "InvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "InvoiceDateFrom", filter.CustomerInvoiceInvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
-                { "InvoiceDateTo", filter.CustomerInvoiceInvoiceDateTo },
-                { "Status", filter.CustomerInvoiceStatus?.ToLower() != "all" ? filter.CustomerInvoiceStatus : null },
-                { "page", filter.CustomerInvoicePage }
+                { "CustomerInvoiceSaleId", filter.CustomerInvoiceSaleId },
+                { "CustomerInvoiceInvoiceAmountFrom", filter.CustomerInvoiceInvoiceAmountFrom },
+                { "CustomerInvoiceInvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "CustomerInvoiceInvoiceDateFrom", filter.CustomerInvoiceInvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
+                { "CustomerInvoiceInvoiceDateTo", filter.CustomerInvoiceInvoiceDateTo },
+                { "CustomerInvoiceStatus", filter.CustomerInvoiceStatus?.ToLower() != "all" ? filter.CustomerInvoiceStatus : null },
+                { "CustomerInvoicePage", filter.CustomerInvoicePage }
             };
 
             foreach (var kvp in filters)

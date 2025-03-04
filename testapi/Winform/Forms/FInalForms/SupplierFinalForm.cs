@@ -388,7 +388,7 @@ namespace Winform.Forms.FInalForms
 
             if (allSupplierInvoices.Count > 0)
                 allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
-                .Where(x => x.SupplierInvoiceId == (int?)SupInvoiceDgv.CurrentRow.Cells["InvoiceID"].Value).ToList();
+                .Where(x => x.SupplierInvoiceId == allSupplierInvoices.First().InvoiceId).ToList();
             else
                 allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
 

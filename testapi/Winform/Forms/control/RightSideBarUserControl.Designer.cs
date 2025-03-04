@@ -36,14 +36,13 @@
             this.SearchButton.BackColor = System.Drawing.Color.LightGray;
             this.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SearchButton.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SearchButton.Location = new System.Drawing.Point(0, 58);
+            this.SearchButton.Location = new System.Drawing.Point(10, 58);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(200, 45);
+            this.SearchButton.Size = new System.Drawing.Size(180, 45);
             this.SearchButton.TabIndex = 0;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-
             // 
             // RightSideBarUserControl
             // 

@@ -1,5 +1,4 @@
 using Winform.Forms;
-using Winform.Forms.FInalForms;
 
 namespace Winform
 {
@@ -11,28 +10,37 @@ namespace Winform
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            while (true)  // Infinite loop for login/logout cycle
+            {
+                using (LoginForm loginForm = new LoginForm())
+                {
+                    if (loginForm.ShowDialog() != DialogResult.OK)
+                    {
+                        // If login is not successful, exit the application
+                        Application.Exit();
+                        return;
+                    }
+                }
 
-
-            LoginForm form = new LoginForm();
-
-            if (form.ShowDialog() == DialogResult.OK)
-                Application.Run(new MainForm());
-            else
-                Application.Exit();
-
-
-
-
-
-
-
-
-
-
+                // If login is successful, start the main form
+                using (MainForm mainForm = new MainForm())
+                {
+                    if (mainForm.ShowDialog() == DialogResult.Abort)
+                    {
+                        // If the user chooses to logout, restart the loop
+                        continue;
+                    }
+                    else
+                    {
+                        // Otherwise, exit the application
+                        Application.Exit();
+                        return;
+                    }
+                }
+            }
         }
+
     }
 }

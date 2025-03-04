@@ -219,8 +219,8 @@
             // 
             this.ConfirmPasswordTxt.Location = new System.Drawing.Point(195, 335);
             this.ConfirmPasswordTxt.Name = "ConfirmPasswordTxt";
-            this.ConfirmPasswordTxt.PasswordChar = '*';
-            this.ConfirmPasswordTxt.PlaceholderText = "************";
+            this.ConfirmPasswordTxt.PasswordChar = '•';
+            this.ConfirmPasswordTxt.PlaceholderText = "•••••••••";
             this.ConfirmPasswordTxt.Size = new System.Drawing.Size(194, 23);
             this.ConfirmPasswordTxt.TabIndex = 50;
             this.ConfirmPasswordTxt.Visible = false;

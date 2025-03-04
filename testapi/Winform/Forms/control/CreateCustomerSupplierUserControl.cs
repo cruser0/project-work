@@ -15,5 +15,25 @@ namespace Winform.Forms.control
             SupplierCustomerDTO supplierCustomerDTO = new SupplierCustomerDTO { Name = CreateNameTxt.Text, Country = CreateCountryTxt.Text };
             createButton.Invoke(this, supplierCustomerDTO);
         }
+
+        private void CreateCountryLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateNameLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateCountryTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateNameTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

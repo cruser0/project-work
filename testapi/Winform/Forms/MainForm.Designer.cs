@@ -79,6 +79,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.Logout = new System.Windows.Forms.ToolStripButton();
             this.UserBtnTS = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -440,6 +441,7 @@
             this.CustomerCreateTS.Name = "CustomerCreateTS";
             this.CustomerCreateTS.Size = new System.Drawing.Size(100, 30);
             this.CustomerCreateTS.Text = "Customer";
+            this.CustomerCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // CustomerInvoiceCreateTS
             // 
@@ -451,6 +453,7 @@
             this.CustomerInvoiceCreateTS.Name = "CustomerInvoiceCreateTS";
             this.CustomerInvoiceCreateTS.Size = new System.Drawing.Size(100, 30);
             this.CustomerInvoiceCreateTS.Text = "Customer Invoice";
+            this.CustomerInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // CustomerInvoiceCostCreateTS
             // 
@@ -462,6 +465,7 @@
             this.CustomerInvoiceCostCreateTS.Name = "CustomerInvoiceCostCreateTS";
             this.CustomerInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 30);
             this.CustomerInvoiceCostCreateTS.Text = "Customer Invoice Cost";
+            this.CustomerInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator7
             // 
@@ -478,6 +482,7 @@
             this.SupplierCreateTS.Name = "SupplierCreateTS";
             this.SupplierCreateTS.Size = new System.Drawing.Size(100, 30);
             this.SupplierCreateTS.Text = "Supplier";
+            this.SupplierCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // SupplierInvoiceCreateTS
             // 
@@ -489,6 +494,7 @@
             this.SupplierInvoiceCreateTS.Name = "SupplierInvoiceCreateTS";
             this.SupplierInvoiceCreateTS.Size = new System.Drawing.Size(100, 30);
             this.SupplierInvoiceCreateTS.Text = "Supplier Invoice";
+            this.SupplierInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // SupplierInvoiceCostCreateTS
             // 
@@ -500,6 +506,7 @@
             this.SupplierInvoiceCostCreateTS.Name = "SupplierInvoiceCostCreateTS";
             this.SupplierInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 30);
             this.SupplierInvoiceCostCreateTS.Text = "Supplier Invoice Cost";
+            this.SupplierInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator8
             // 
@@ -516,6 +523,7 @@
             this.SaleCreateTS.Name = "SaleCreateTS";
             this.SaleCreateTS.Size = new System.Drawing.Size(100, 30);
             this.SaleCreateTS.Text = "Sale";
+            this.SaleCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator9
             // 
@@ -532,6 +540,7 @@
             this.UserCreateTS.Name = "UserCreateTS";
             this.UserCreateTS.Size = new System.Drawing.Size(100, 30);
             this.UserCreateTS.Text = "User";
+            this.UserCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // GroupTP
             // 
@@ -594,6 +603,7 @@
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
+            this.Logout,
             this.UserBtnTS});
             this.ToolStripTopMenu.Location = new System.Drawing.Point(0, 0);
             this.ToolStripTopMenu.Name = "ToolStripTopMenu";
@@ -621,12 +631,25 @@
             // 
             // toolStripButton3
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(105, 22);
+            this.toolStripButton3.Text = "Hide All Forms";
+            this.toolStripButton3.ToolTipText = "Hide All";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // Logout
+            // 
+            this.Logout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.Logout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Logout.Image = global::Winform.Properties.Resources.User_Icon;
+            this.Logout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Logout.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.Logout.Name = "Logout";
+            this.Logout.Size = new System.Drawing.Size(49, 22);
+            this.Logout.Text = "Logout";
+            this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
             // UserBtnTS
             // 
@@ -725,5 +748,7 @@
         private ToolStripSeparator toolStripSeparator9;
         private ToolStripButton UserCreateTS;
         private ToolStripButton UserBtnTS;
+        private Panel panel2;
+        private ToolStripButton Logout;
     }
 }
