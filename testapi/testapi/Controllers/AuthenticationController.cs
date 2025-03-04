@@ -50,13 +50,8 @@ namespace API.Controllers
             {
                 roles.Add(role.Role.RoleName);
             }
-            Dictionary<string, string> preferences = new Dictionary<string, string>();
-            foreach (var pref in user.UserPreferences)
-            {
-                preferences.Add(pref.Preference.PreferenceName, pref.Value);
-            }
 
-            UserRoleDTO userDTO = new UserRoleDTO(user, roles, preferences);
+            UserRoleDTO userDTO = new UserRoleDTO(user, roles);
             string token = _authenticationService.CreateToken(userDTO);
 
             var refreshToken = _authenticationService.GenerateRefreshToken(user.UserID);
@@ -101,17 +96,7 @@ namespace API.Controllers
             return Ok("User Role Updated");
         }
 
-        [HttpPut("user/assign-preferences")]
-        public async Task<ActionResult<string>> AssignPreferences(AssignPrefDTO assignPref)
-        {
-            try
-            {
-                if (assignPref.UserID != null)
-                    _authenticationService.EditPreferences(assignPref.UserID, assignPref.Preferences);
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
-            return Ok("User Role Updated");
-        }
+        
 
         [Authorize(Roles = "Admin,UserAdmin")]
         [HttpDelete("user/delete-user/{id}")]

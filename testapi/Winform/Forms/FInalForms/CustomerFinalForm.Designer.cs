@@ -159,7 +159,7 @@
             this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Size = new System.Drawing.Size(1241, 763);
-            this.MainSplitContainer.SplitterDistance = 993;
+            this.MainSplitContainer.SplitterDistance = 1026;
             this.MainSplitContainer.TabIndex = 1;
             // 
             // SpliContainerDGV
@@ -177,7 +177,7 @@
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(993, 763);
+            this.SpliContainerDGV.Size = new System.Drawing.Size(1026, 763);
             this.SpliContainerDGV.SplitterDistance = 219;
             this.SpliContainerDGV.TabIndex = 0;
             // 
@@ -190,7 +190,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(993, 194);
+            this.dataGridView1.Size = new System.Drawing.Size(1026, 194);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDbClickLoadSale);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -206,7 +206,7 @@
             this.TSLbl1});
             this.toolStrip.Location = new System.Drawing.Point(0, 194);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(993, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1026, 25);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip2";
             // 
@@ -271,7 +271,7 @@
             // SplitContainerDGV2.Panel2
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.splitContainer3);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(993, 540);
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(1026, 540);
             this.SplitContainerDGV2.SplitterDistance = 249;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
@@ -284,7 +284,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(993, 224);
+            this.dataGridView2.Size = new System.Drawing.Size(1026, 224);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SaleDBClickLoadCustomerInvoice);
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -300,7 +300,7 @@
             this.TSLbl2});
             this.toolStrip2.Location = new System.Drawing.Point(0, 224);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(993, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(1026, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip1";
             // 
@@ -365,8 +365,8 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridView4);
             this.splitContainer3.Panel2.Controls.Add(this.toolStrip4);
-            this.splitContainer3.Size = new System.Drawing.Size(993, 287);
-            this.splitContainer3.SplitterDistance = 330;
+            this.splitContainer3.Size = new System.Drawing.Size(1026, 287);
+            this.splitContainer3.SplitterDistance = 340;
             this.splitContainer3.TabIndex = 0;
             // 
             // dataGridView3
@@ -378,7 +378,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(0, 0);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(330, 262);
+            this.dataGridView3.Size = new System.Drawing.Size(340, 262);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerInvoiceDBClickLoadCustomerInvoiceCost);
             this.dataGridView3.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -394,7 +394,7 @@
             this.TSLbl3});
             this.toolStrip3.Location = new System.Drawing.Point(0, 262);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(330, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(340, 25);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -453,7 +453,7 @@
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(659, 262);
+            this.dataGridView4.Size = new System.Drawing.Size(682, 262);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
@@ -468,7 +468,7 @@
             this.TSLbl4});
             this.toolStrip4.Location = new System.Drawing.Point(0, 262);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(659, 25);
+            this.toolStrip4.Size = new System.Drawing.Size(682, 25);
             this.toolStrip4.TabIndex = 2;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -529,7 +529,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(244, 690);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(211, 690);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchCustomer1
@@ -567,7 +567,7 @@
             this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SearchPanel.Location = new System.Drawing.Point(0, 713);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(244, 50);
+            this.SearchPanel.Size = new System.Drawing.Size(211, 50);
             this.SearchPanel.TabIndex = 6;
             // 
             // button1
@@ -587,7 +587,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 23);
+            this.panel1.Size = new System.Drawing.Size(211, 23);
             this.panel1.TabIndex = 5;
             // 
             // DockButton
@@ -620,13 +620,13 @@
             this.CustomerOriginalIDTsmi,
             this.CustomerStatusTsmi});
             this.RightClickDgvCustomer.Name = "contextMenuStrip1";
-            this.RightClickDgvCustomer.Size = new System.Drawing.Size(181, 158);
+            this.RightClickDgvCustomer.Size = new System.Drawing.Size(163, 136);
             // 
             // CustomerIDTsmi
             // 
             this.CustomerIDTsmi.CheckOnClick = true;
             this.CustomerIDTsmi.Name = "CustomerIDTsmi";
-            this.CustomerIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerIDTsmi.Text = "Show ID";
             this.CustomerIDTsmi.CheckedChanged += new System.EventHandler(this.CustomerContextMenuStripCheckEvent);
             // 
@@ -636,7 +636,7 @@
             this.CustomerNameTsmi.CheckOnClick = true;
             this.CustomerNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerNameTsmi.Name = "CustomerNameTsmi";
-            this.CustomerNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerNameTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerNameTsmi.Text = "Show Name";
             this.CustomerNameTsmi.CheckedChanged += new System.EventHandler(this.CustomerContextMenuStripCheckEvent);
             // 
@@ -646,7 +646,7 @@
             this.CustomerCountryTsmi.CheckOnClick = true;
             this.CustomerCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerCountryTsmi.Name = "CustomerCountryTsmi";
-            this.CustomerCountryTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerCountryTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerCountryTsmi.Text = "Show Country";
             this.CustomerCountryTsmi.CheckedChanged += new System.EventHandler(this.CustomerContextMenuStripCheckEvent);
             // 
@@ -656,7 +656,7 @@
             this.CustomerDateTsmi.CheckOnClick = true;
             this.CustomerDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerDateTsmi.Name = "CustomerDateTsmi";
-            this.CustomerDateTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerDateTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerDateTsmi.Text = "Show Date";
             this.CustomerDateTsmi.CheckedChanged += new System.EventHandler(this.CustomerContextMenuStripCheckEvent);
             // 
@@ -664,7 +664,7 @@
             // 
             this.CustomerOriginalIDTsmi.CheckOnClick = true;
             this.CustomerOriginalIDTsmi.Name = "CustomerOriginalIDTsmi";
-            this.CustomerOriginalIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerOriginalIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerOriginalIDTsmi.Text = "Show Original ID";
             this.CustomerOriginalIDTsmi.CheckedChanged += new System.EventHandler(this.CustomerContextMenuStripCheckEvent);
             // 
@@ -674,7 +674,7 @@
             this.CustomerStatusTsmi.CheckOnClick = true;
             this.CustomerStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerStatusTsmi.Name = "CustomerStatusTsmi";
-            this.CustomerStatusTsmi.Size = new System.Drawing.Size(180, 22);
+            this.CustomerStatusTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerStatusTsmi.Text = "Show Status";
             this.CustomerStatusTsmi.CheckedChanged += new System.EventHandler(this.CustomerContextMenuStripCheckEvent);
             // 

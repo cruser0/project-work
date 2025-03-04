@@ -30,14 +30,13 @@ namespace API.Models.DTO
         public Dictionary<string, string> Preferences { get; set; }
 
 
-        public UserRoleDTO(User user, List<string> list, Dictionary<string, string> dict)
+        public UserRoleDTO(User user, List<string> list)
         {
             UserID = user.UserID;
             Email = user.Email;
             Name = user.Name;
             LastName = user.LastName;
             Role = list;
-            Preferences = dict;
         }
     }
     public class AssignPrefDTO
