@@ -31,11 +31,8 @@ namespace Winform.Forms.FInalForms
         int maxPageCustomerInvoice = 0;
         int maxPageCustomerInvoiceCost = 0;
         double itemsPage = 10.0;
-        List<string> authRoles = new List<string>
-            {
-                "CustomerAdmin",
-                "Admin"
-            };
+        bool flag;
+        List<string> authRoles = new List<string> { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" };
         CustomerGroupDTO valueGroupDTOList = new CustomerGroupDTO();
         public CustomerFinalForm()
         {
@@ -47,11 +44,41 @@ namespace Winform.Forms.FInalForms
             MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
             panel1.Width = flowLayoutPanel1.Width;
             DockButton.Text = ">";
+            flag = false;
+            CustomerIDTsmi.Visible = false;
+            CustomerOriginalIDTsmi.Visible = false;
+            SaleIDTsmi.Visible = false;
+            SaleCustomerIDTsmi.Visible = false;
+            CustomerInvoiceIDTsmi.Visible = false;
+            CustomerInvoiceSaleIDTsmi.Visible = false;
+            CustomerInvoiceCostIDTsmi.Visible = false;
+            CustomerInvoiceCostCustomerInvoiceIDTsmi.Visible=false;
+            if(AuthorizeGroup(authRoles)||Authorize(new List<string> {"Admin" }))
+            {
+                CustomerIDTsmi.Visible = true;
+                CustomerOriginalIDTsmi.Visible = true;
+                SaleIDTsmi.Visible = true;
+                SaleCustomerIDTsmi.Visible = true;
+                CustomerInvoiceIDTsmi.Visible = true;
+                CustomerInvoiceSaleIDTsmi.Visible = true;
+                CustomerInvoiceCostIDTsmi.Visible = true;
+                CustomerInvoiceCostCustomerInvoiceIDTsmi.Visible = true;
+            }
+
         }
 
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+        }
+        private bool AuthorizeGroup(List<string> allowedRoles)
+        {
+            foreach (string a in allowedRoles)
+            {
+                if (!UserAccessInfo.Role.Contains(a))
+                    return false;
+            }
+            return true;
         }
 
         private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
@@ -129,10 +156,24 @@ namespace Winform.Forms.FInalForms
 
 
             LoadCustomers();
+
+            if (!flag)
+            {
+            dataGridView1.Columns["CustomerID"].Visible = false;
+            dataGridView1.Columns["OriginalID"].Visible = false;
+            dataGridView2.Columns["SaleId"].Visible =false;
+            dataGridView2.Columns["CustomerId"].Visible =false;
+            dataGridView3.Columns["CustomerInvoiceID"].Visible =false;
+            dataGridView3.Columns["SaleID"].Visible =false;
+            dataGridView4.Columns["CustomerInvoiceCostsID"].Visible =false;
+            dataGridView4.Columns["CustomerInvoiceID"].Visible =false;
+            flag = !flag;
+            }
         }
         private void LoadCustomers()
         {
             dataGridView1.DataSource = valueGroupDTOList.customers.Skip((customerPage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
+
             if (dataGridView1.RowCount > 0)
             {
                 salePage = 1;
@@ -191,8 +232,10 @@ namespace Winform.Forms.FInalForms
             if (saleId != null)
             {
                 dataGridView3.DataSource = valueGroupDTOList.invoices.Where(x => x.SaleId.ToString() == saleId.ToString()).Skip((customerInvoicePage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
+                
                 if (dataGridView3.RowCount > 0)
                 {
+
                     CustomerInvoiceCostPage = 1;
                     LoadCustomerInvoicesCost();
                     maxPageCustomerInvoice = (int)Math.Ceiling(valueGroupDTOList.invoices.Where(x => x.SaleId.ToString() == saleId.ToString()).Count() / itemsPage);
