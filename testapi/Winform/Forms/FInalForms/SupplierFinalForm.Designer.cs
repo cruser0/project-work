@@ -66,6 +66,26 @@
             this.SuppliersSource = new System.Windows.Forms.BindingSource(this.components);
             this.SupplierInvoiceSource = new System.Windows.Forms.BindingSource(this.components);
             this.SupplierInvoicecostSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SupplierCtxStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCountryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showOriginalIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupInvoiceCostCtxStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showIDToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCustomerInvoiceIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showQuantityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showDescriptionNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupInvoiceCtxStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showIDToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSaleIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showInvoiceAmountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showInvoiceDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showStatusToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSupplierIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LeftPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -91,6 +111,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoicecostSource)).BeginInit();
+            this.SupplierCtxStrip.SuspendLayout();
+            this.SupInvoiceCostCtxStrip.SuspendLayout();
+            this.SupInvoiceCtxStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // LeftPane
@@ -138,7 +161,7 @@
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
             this.SpliContainerDGV.Size = new System.Drawing.Size(906, 701);
-            this.SpliContainerDGV.SplitterDistance = 201;
+            this.SpliContainerDGV.SplitterDistance = 458;
             this.SpliContainerDGV.TabIndex = 0;
             // 
             // SupplierDgv
@@ -150,9 +173,10 @@
             this.SupplierDgv.Location = new System.Drawing.Point(0, 0);
             this.SupplierDgv.Name = "SupplierDgv";
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(906, 176);
+            this.SupplierDgv.Size = new System.Drawing.Size(906, 433);
             this.SupplierDgv.TabIndex = 0;
             this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellClick);
+            this.SupplierDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // SupplierToolStrip
             // 
@@ -163,7 +187,7 @@
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 176);
+            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 433);
             this.SupplierToolStrip.Name = "SupplierToolStrip";
             this.SupplierToolStrip.Size = new System.Drawing.Size(906, 25);
             this.SupplierToolStrip.TabIndex = 2;
@@ -230,7 +254,7 @@
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.SupInvoiceCostDgv);
             this.SplitContainerDGV2.Panel2.Controls.Add(this.CostToolStrip);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(906, 496);
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(906, 239);
             this.SplitContainerDGV2.SplitterDistance = 332;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
@@ -243,9 +267,10 @@
             this.SupInvoiceDgv.Location = new System.Drawing.Point(0, 0);
             this.SupInvoiceDgv.Name = "SupInvoiceDgv";
             this.SupInvoiceDgv.RowTemplate.Height = 25;
-            this.SupInvoiceDgv.Size = new System.Drawing.Size(332, 471);
+            this.SupInvoiceDgv.Size = new System.Drawing.Size(332, 214);
             this.SupInvoiceDgv.TabIndex = 3;
             this.SupInvoiceDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupInvoiceDgv_CellClick);
+            this.SupInvoiceDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // InvoiceToolStrip
             // 
@@ -256,7 +281,7 @@
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 471);
+            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 214);
             this.InvoiceToolStrip.Name = "InvoiceToolStrip";
             this.InvoiceToolStrip.Size = new System.Drawing.Size(332, 25);
             this.InvoiceToolStrip.TabIndex = 5;
@@ -317,8 +342,9 @@
             this.SupInvoiceCostDgv.Location = new System.Drawing.Point(0, 0);
             this.SupInvoiceCostDgv.Name = "SupInvoiceCostDgv";
             this.SupInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(570, 471);
+            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(570, 214);
             this.SupInvoiceCostDgv.TabIndex = 4;
+            this.SupInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // CostToolStrip
             // 
@@ -329,7 +355,7 @@
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.CostToolStrip.Location = new System.Drawing.Point(0, 471);
+            this.CostToolStrip.Location = new System.Drawing.Point(0, 214);
             this.CostToolStrip.Name = "CostToolStrip";
             this.CostToolStrip.Size = new System.Drawing.Size(570, 25);
             this.CostToolStrip.TabIndex = 6;
@@ -465,6 +491,201 @@
             this.panel3.Size = new System.Drawing.Size(68, 701);
             this.panel3.TabIndex = 0;
             // 
+            // SupplierCtxStrip
+            // 
+            this.SupplierCtxStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showIDToolStripMenuItem,
+            this.showNameToolStripMenuItem,
+            this.showCountryToolStripMenuItem,
+            this.showDateToolStripMenuItem,
+            this.showOriginalIDToolStripMenuItem,
+            this.showStatusToolStripMenuItem});
+            this.SupplierCtxStrip.Name = "SupplierCtxStrip";
+            this.SupplierCtxStrip.Size = new System.Drawing.Size(163, 136);
+            // 
+            // showIDToolStripMenuItem
+            // 
+            this.showIDToolStripMenuItem.CheckOnClick = true;
+            this.showIDToolStripMenuItem.Name = "showIDToolStripMenuItem";
+            this.showIDToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.showIDToolStripMenuItem.Text = "Show ID";
+            this.showIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupplierCtxItem_CheckedChanged);
+            // 
+            // showNameToolStripMenuItem
+            // 
+            this.showNameToolStripMenuItem.Checked = true;
+            this.showNameToolStripMenuItem.CheckOnClick = true;
+            this.showNameToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showNameToolStripMenuItem.Name = "showNameToolStripMenuItem";
+            this.showNameToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.showNameToolStripMenuItem.Text = "Show Name";
+            this.showNameToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupplierCtxItem_CheckedChanged);
+            // 
+            // showCountryToolStripMenuItem
+            // 
+            this.showCountryToolStripMenuItem.Checked = true;
+            this.showCountryToolStripMenuItem.CheckOnClick = true;
+            this.showCountryToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showCountryToolStripMenuItem.Name = "showCountryToolStripMenuItem";
+            this.showCountryToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.showCountryToolStripMenuItem.Text = "Show Country";
+            this.showCountryToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupplierCtxItem_CheckedChanged);
+            // 
+            // showDateToolStripMenuItem
+            // 
+            this.showDateToolStripMenuItem.Checked = true;
+            this.showDateToolStripMenuItem.CheckOnClick = true;
+            this.showDateToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showDateToolStripMenuItem.Name = "showDateToolStripMenuItem";
+            this.showDateToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.showDateToolStripMenuItem.Text = "Show Date";
+            this.showDateToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupplierCtxItem_CheckedChanged);
+            // 
+            // showOriginalIDToolStripMenuItem
+            // 
+            this.showOriginalIDToolStripMenuItem.CheckOnClick = true;
+            this.showOriginalIDToolStripMenuItem.Name = "showOriginalIDToolStripMenuItem";
+            this.showOriginalIDToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.showOriginalIDToolStripMenuItem.Text = "Show Original ID";
+            this.showOriginalIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupplierCtxItem_CheckedChanged);
+            // 
+            // showStatusToolStripMenuItem
+            // 
+            this.showStatusToolStripMenuItem.Checked = true;
+            this.showStatusToolStripMenuItem.CheckOnClick = true;
+            this.showStatusToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showStatusToolStripMenuItem.Name = "showStatusToolStripMenuItem";
+            this.showStatusToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.showStatusToolStripMenuItem.Text = "Show Status";
+            this.showStatusToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupplierCtxItem_CheckedChanged);
+            // 
+            // SupInvoiceCostCtxStrip
+            // 
+            this.SupInvoiceCostCtxStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showIDToolStripMenuItem1,
+            this.showCustomerInvoiceIDToolStripMenuItem,
+            this.showCostToolStripMenuItem,
+            this.showQuantityToolStripMenuItem,
+            this.showDescriptionNameToolStripMenuItem});
+            this.SupInvoiceCostCtxStrip.Name = "contextMenuStrip1";
+            this.SupInvoiceCostCtxStrip.Size = new System.Drawing.Size(214, 114);
+            // 
+            // showIDToolStripMenuItem1
+            // 
+            this.showIDToolStripMenuItem1.CheckOnClick = true;
+            this.showIDToolStripMenuItem1.Name = "showIDToolStripMenuItem1";
+            this.showIDToolStripMenuItem1.Size = new System.Drawing.Size(213, 22);
+            this.showIDToolStripMenuItem1.Text = "Show ID";
+            this.showIDToolStripMenuItem1.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
+            // 
+            // showCustomerInvoiceIDToolStripMenuItem
+            // 
+            this.showCustomerInvoiceIDToolStripMenuItem.Checked = true;
+            this.showCustomerInvoiceIDToolStripMenuItem.CheckOnClick = true;
+            this.showCustomerInvoiceIDToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showCustomerInvoiceIDToolStripMenuItem.Name = "showCustomerInvoiceIDToolStripMenuItem";
+            this.showCustomerInvoiceIDToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.showCustomerInvoiceIDToolStripMenuItem.Text = "Show Customer Invoice ID";
+            this.showCustomerInvoiceIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
+            // 
+            // showCostToolStripMenuItem
+            // 
+            this.showCostToolStripMenuItem.Checked = true;
+            this.showCostToolStripMenuItem.CheckOnClick = true;
+            this.showCostToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showCostToolStripMenuItem.Name = "showCostToolStripMenuItem";
+            this.showCostToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.showCostToolStripMenuItem.Text = "Show Cost";
+            this.showCostToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
+            // 
+            // showQuantityToolStripMenuItem
+            // 
+            this.showQuantityToolStripMenuItem.Checked = true;
+            this.showQuantityToolStripMenuItem.CheckOnClick = true;
+            this.showQuantityToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showQuantityToolStripMenuItem.Name = "showQuantityToolStripMenuItem";
+            this.showQuantityToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.showQuantityToolStripMenuItem.Text = "Show Quantity";
+            this.showQuantityToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
+            // 
+            // showDescriptionNameToolStripMenuItem
+            // 
+            this.showDescriptionNameToolStripMenuItem.Checked = true;
+            this.showDescriptionNameToolStripMenuItem.CheckOnClick = true;
+            this.showDescriptionNameToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showDescriptionNameToolStripMenuItem.Name = "showDescriptionNameToolStripMenuItem";
+            this.showDescriptionNameToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.showDescriptionNameToolStripMenuItem.Text = "Show Description Name";
+            this.showDescriptionNameToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
+            // 
+            // SupInvoiceCtxStrip
+            // 
+            this.SupInvoiceCtxStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showIDToolStripMenuItem2,
+            this.showSaleIDToolStripMenuItem,
+            this.showInvoiceAmountToolStripMenuItem,
+            this.showInvoiceDateToolStripMenuItem,
+            this.showStatusToolStripMenuItem1,
+            this.showSupplierIDToolStripMenuItem});
+            this.SupInvoiceCtxStrip.Name = "SupInvoiceCtxStrip";
+            this.SupInvoiceCtxStrip.Size = new System.Drawing.Size(192, 136);
+            // 
+            // showIDToolStripMenuItem2
+            // 
+            this.showIDToolStripMenuItem2.CheckOnClick = true;
+            this.showIDToolStripMenuItem2.Name = "showIDToolStripMenuItem2";
+            this.showIDToolStripMenuItem2.Size = new System.Drawing.Size(191, 22);
+            this.showIDToolStripMenuItem2.Text = "Show ID";
+            this.showIDToolStripMenuItem2.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showSaleIDToolStripMenuItem
+            // 
+            this.showSaleIDToolStripMenuItem.Checked = true;
+            this.showSaleIDToolStripMenuItem.CheckOnClick = true;
+            this.showSaleIDToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showSaleIDToolStripMenuItem.Name = "showSaleIDToolStripMenuItem";
+            this.showSaleIDToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.showSaleIDToolStripMenuItem.Text = "Show Sale ID";
+            this.showSaleIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showInvoiceAmountToolStripMenuItem
+            // 
+            this.showInvoiceAmountToolStripMenuItem.Checked = true;
+            this.showInvoiceAmountToolStripMenuItem.CheckOnClick = true;
+            this.showInvoiceAmountToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showInvoiceAmountToolStripMenuItem.Name = "showInvoiceAmountToolStripMenuItem";
+            this.showInvoiceAmountToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.showInvoiceAmountToolStripMenuItem.Text = "Show Invoice Amount";
+            this.showInvoiceAmountToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showInvoiceDateToolStripMenuItem
+            // 
+            this.showInvoiceDateToolStripMenuItem.Checked = true;
+            this.showInvoiceDateToolStripMenuItem.CheckOnClick = true;
+            this.showInvoiceDateToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showInvoiceDateToolStripMenuItem.Name = "showInvoiceDateToolStripMenuItem";
+            this.showInvoiceDateToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.showInvoiceDateToolStripMenuItem.Text = "Show Invoice Date";
+            this.showInvoiceDateToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showStatusToolStripMenuItem1
+            // 
+            this.showStatusToolStripMenuItem1.Checked = true;
+            this.showStatusToolStripMenuItem1.CheckOnClick = true;
+            this.showStatusToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showStatusToolStripMenuItem1.Name = "showStatusToolStripMenuItem1";
+            this.showStatusToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
+            this.showStatusToolStripMenuItem1.Text = "Show Status";
+            this.showStatusToolStripMenuItem1.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showSupplierIDToolStripMenuItem
+            // 
+            this.showSupplierIDToolStripMenuItem.CheckOnClick = true;
+            this.showSupplierIDToolStripMenuItem.Name = "showSupplierIDToolStripMenuItem";
+            this.showSupplierIDToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.showSupplierIDToolStripMenuItem.Text = "Show Supplier ID";
+            this.showSupplierIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
             // SupplierFinalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -506,6 +727,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.SuppliersSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoicecostSource)).EndInit();
+            this.SupplierCtxStrip.ResumeLayout(false);
+            this.SupInvoiceCostCtxStrip.ResumeLayout(false);
+            this.SupInvoiceCtxStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -549,5 +773,25 @@
         private Button DockButton;
         private Panel SearchPanel;
         private Button button1;
+        private ContextMenuStrip SupplierCtxStrip;
+        private ToolStripMenuItem showIDToolStripMenuItem;
+        private ToolStripMenuItem showNameToolStripMenuItem;
+        private ToolStripMenuItem showCountryToolStripMenuItem;
+        private ToolStripMenuItem showDateToolStripMenuItem;
+        private ToolStripMenuItem showOriginalIDToolStripMenuItem;
+        private ToolStripMenuItem showStatusToolStripMenuItem;
+        private ContextMenuStrip SupInvoiceCostCtxStrip;
+        private ContextMenuStrip SupInvoiceCtxStrip;
+        private ToolStripMenuItem showIDToolStripMenuItem1;
+        private ToolStripMenuItem showCustomerInvoiceIDToolStripMenuItem;
+        private ToolStripMenuItem showCostToolStripMenuItem;
+        private ToolStripMenuItem showQuantityToolStripMenuItem;
+        private ToolStripMenuItem showDescriptionNameToolStripMenuItem;
+        private ToolStripMenuItem showIDToolStripMenuItem2;
+        private ToolStripMenuItem showSaleIDToolStripMenuItem;
+        private ToolStripMenuItem showInvoiceAmountToolStripMenuItem;
+        private ToolStripMenuItem showInvoiceDateToolStripMenuItem;
+        private ToolStripMenuItem showStatusToolStripMenuItem1;
+        private ToolStripMenuItem showSupplierIDToolStripMenuItem;
     }
 }

@@ -94,6 +94,14 @@ namespace Winform.Forms.FInalForms
         {
             var supplierPagedData = allSuppliers.Skip((supplierCurrentPage - 1) * pageSize).Take(pageSize).ToList();
             SupplierDgv.DataSource = supplierPagedData;
+
+            SupplierDgv.Columns["SupplierID"].Visible = showIDToolStripMenuItem.Checked;
+            SupplierDgv.Columns["SupplierName"].Visible = showNameToolStripMenuItem.Checked;
+            SupplierDgv.Columns["Country"].Visible = showCountryToolStripMenuItem.Checked;
+            SupplierDgv.Columns["CreatedAt"].Visible = showDateToolStripMenuItem.Checked;
+            SupplierDgv.Columns["OriginalID"].Visible = showOriginalIDToolStripMenuItem.Checked;
+            SupplierDgv.Columns["Deprecated"].Visible = showStatusToolStripMenuItem.Checked;
+
             supplierTotalPages = (int)Math.Ceiling((double)supplierTotalRecords / pageSize);
             if (supplierTotalPages > 0)
                 TSLbl1.Text = $"Pagina {supplierCurrentPage} di {supplierTotalPages}";
@@ -105,6 +113,14 @@ namespace Winform.Forms.FInalForms
         {
             var supplierInvoicePagedData = allSupplierInvoices.Skip((supplierInvoiceCurrentPage - 1) * pageSize).Take(pageSize).ToList();
             SupInvoiceDgv.DataSource = supplierInvoicePagedData;
+
+            SupInvoiceDgv.Columns["InvoiceID"].Visible = showIDToolStripMenuItem2.Checked;
+            SupInvoiceDgv.Columns["SaleID"].Visible = showSaleIDToolStripMenuItem.Checked;
+            SupInvoiceDgv.Columns["InvoiceAmount"].Visible = showInvoiceAmountToolStripMenuItem.Checked;
+            SupInvoiceDgv.Columns["InvoiceDate"].Visible = showInvoiceDateToolStripMenuItem.Checked;
+            SupInvoiceDgv.Columns["Status"].Visible = showStatusToolStripMenuItem1.Checked;
+            SupInvoiceDgv.Columns["SupplierID"].Visible = showSupplierIDToolStripMenuItem.Checked;
+
             supplierInvoiceTotalPages = (int)Math.Ceiling((double)supplierInvoiceTotalRecords / pageSize);
             if (supplierInvoiceTotalPages > 0)
                 TSLbl2.Text = $"Pagina {supplierInvoiceCurrentPage} di {supplierInvoiceTotalPages}";
@@ -116,6 +132,14 @@ namespace Winform.Forms.FInalForms
         {
             var supplierInvoiceCostPagedData = allSupplierInvoiceCosts.Skip((supplierInvoiceCostCurrentPage - 1) * pageSize).Take(pageSize).ToList();
             SupInvoiceCostDgv.DataSource = supplierInvoiceCostPagedData;
+
+            SupInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = showIDToolStripMenuItem1.Checked;
+            SupInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = showCustomerInvoiceIDToolStripMenuItem.Checked;
+            SupInvoiceCostDgv.Columns["Cost"].Visible = showCostToolStripMenuItem.Checked;
+            SupInvoiceCostDgv.Columns["Quantity"].Visible = showQuantityToolStripMenuItem.Checked;
+            SupInvoiceCostDgv.Columns["Name"].Visible = showDescriptionNameToolStripMenuItem.Checked;
+
+
             supplierInvoiceCostTotalPages = (int)Math.Ceiling((double)supplierInvoiceCostTotalRecords / pageSize);
             if (supplierInvoiceCostTotalPages > 0)
                 TSLbl3.Text = $"Pagina {supplierInvoiceCostCurrentPage} di {supplierInvoiceCostTotalPages}";
@@ -396,6 +420,122 @@ namespace Winform.Forms.FInalForms
                 MainSplitContainer.Panel2MinSize = DockButton.Width;
                 MainSplitContainer.SplitterDistance = MainSplitContainer.Width - DockButton.Width;
                 panel1.Width = flowLayoutPanel1.Width;
+            }
+        }
+
+        private void RightClickDgvEvent(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView target = new DataGridView();
+            ContextMenuStrip ctxStrip = new ContextMenuStrip();
+            DataGridView dgv = (DataGridView)sender;
+
+            if (dgv.Name.Equals("SupplierDgv"))
+            {
+                target = SupplierDgv;
+                ctxStrip = SupplierCtxStrip;
+            }
+            else if (dgv.Name.Equals("SupInvoiceDgv"))
+            {
+                target = SupInvoiceDgv;
+                ctxStrip = SupInvoiceCtxStrip;
+            }
+            else if (dgv.Name.Equals("SupInvoiceCostDgv"))
+            {
+                target = SupInvoiceCostDgv;
+                ctxStrip = SupInvoiceCostCtxStrip;
+            }
+
+
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+                ctxStrip.Show(target, target.PointToClient(Cursor.Position));
+        }
+
+        private void SupplierCtxItem_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            string text = menuItem.Text;
+
+            switch (text)
+            {
+                case "Show ID":
+                    SupplierDgv.Columns["SupplierID"].Visible = menuItem.Checked;
+                    break;
+                case "Show Name":
+                    SupplierDgv.Columns["SupplierName"].Visible = menuItem.Checked;
+                    break;
+                case "Show Country":
+                    SupplierDgv.Columns["Country"].Visible = menuItem.Checked;
+                    break;
+                case "Show Date":
+                    SupplierDgv.Columns["CreatedAt"].Visible = menuItem.Checked;
+                    break;
+                case "Show Original ID":
+                    SupplierDgv.Columns["OriginalID"].Visible = menuItem.Checked;
+                    break;
+                case "Show Status":
+                    SupplierDgv.Columns["Deprecated"].Visible = menuItem.Checked;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        private void SupInvoiceCtxItem_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            string text = menuItem.Text;
+
+            switch (text)
+            {
+                case "Show ID":
+                    SupInvoiceDgv.Columns["InvoiceID"].Visible = menuItem.Checked;
+                    break;
+                case "Show Sale ID":
+                    SupInvoiceDgv.Columns["SaleID"].Visible = menuItem.Checked;
+                    break;
+                case "Show Invoice Amount":
+                    SupInvoiceDgv.Columns["InvoiceAmount"].Visible = menuItem.Checked;
+                    break;
+                case "Show Invoice Date":
+                    SupInvoiceDgv.Columns["InvoiceDate"].Visible = menuItem.Checked;
+                    break;
+                case "Show Status":
+                    SupInvoiceDgv.Columns["Status"].Visible = menuItem.Checked;
+                    break;
+                case "Show Supplier ID":
+                    SupInvoiceDgv.Columns["SupplierID"].Visible = menuItem.Checked;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SupInvoiceCostCtxItem_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            string text = menuItem.Text;
+
+            switch (text)
+            {
+                case "Show ID":
+                    SupInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = menuItem.Checked;
+                    break;
+                case "Show Customer Invoice ID":
+                    SupInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = menuItem.Checked;
+                    break;
+                case "Show Cost":
+                    SupInvoiceCostDgv.Columns["Cost"].Visible = menuItem.Checked;
+                    break;
+                case "Show Quantity":
+                    SupInvoiceCostDgv.Columns["Quantity"].Visible = menuItem.Checked;
+                    break;
+                case "Show Description Name":
+                    SupInvoiceCostDgv.Columns["Name"].Visible = menuItem.Checked;
+                    break;
+
+                default:
+                    break;
             }
         }
     }

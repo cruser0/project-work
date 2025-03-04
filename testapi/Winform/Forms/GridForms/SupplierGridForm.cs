@@ -205,6 +205,7 @@ namespace Winform.Forms
             if (e.Button == MouseButtons.Right)
             {
                 var hitTest = SupplierDgv.HitTest(e.X, e.Y);
+                MessageBox.Show($"{e.X}, {e.Y}");
                 if (hitTest.RowIndex >= 0)
                 {
                     RightClickDgv.Show(SupplierDgv, e.Location);
