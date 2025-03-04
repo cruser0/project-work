@@ -2,6 +2,7 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

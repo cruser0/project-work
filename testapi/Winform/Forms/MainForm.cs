@@ -2,7 +2,6 @@
 using Winform.Forms.AddForms;
 using Winform.Forms.control;
 using Winform.Forms.FInalForms;
-using Winform.Services;
 
 namespace Winform
 {
@@ -22,7 +21,7 @@ namespace Winform
             tabControl.TabPages.Remove(AddTP);
             tabControl.TabPages.Remove(GroupTP);
             SetAuthorizations();
-            UserBtnTS.Text = "Hello "+UserAccessInfo.Name;
+            UserBtnTS.Text = "Hello " + UserAccessInfo.Name;
         }
 
         private void CreateDockPanel()
@@ -40,7 +39,7 @@ namespace Winform
 
         private void SetAuthorizations()
         {
-            if(Authorize(new List<string> {"Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead","UserRead",
+            if (Authorize(new List<string> {"Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead","UserRead",
             "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite","UserWrite",
             "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin","UserAdmin"}))
             {
@@ -60,10 +59,10 @@ namespace Winform
                 AuthorizeGroup(new List<string> { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }) ||
                  AuthorizeGroup(new List<string> { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }))
             {
-            tabControl.TabPages.Add(GroupTP);
+                tabControl.TabPages.Add(GroupTP);
             }
-            
-            
+
+
             CustomerShowTS.Visible = Authorize(new List<string>
                 { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
             CustomerCreateTS.Visible = Authorize(new List<string>
@@ -89,7 +88,7 @@ namespace Winform
             SupplierInvoiceCreateTS.Visible = Authorize(new List<string>
                 { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin"});
 
-           UserShowTS.Visible = Authorize(new List<string>
+            UserShowTS.Visible = Authorize(new List<string>
                 { "Admin" });
             UserCreateTS.Visible = Authorize(new List<string>
                 { "Admin" });
@@ -109,7 +108,7 @@ namespace Winform
             {
                 CustomerGroupTS.Visible = true;
             }
-            if(Authorize(new List<string> { "Admin" }) ||
+            if (Authorize(new List<string> { "Admin" }) ||
                  AuthorizeGroup(new List<string> { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }) ||
                 AuthorizeGroup(new List<string> { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }) ||
                  AuthorizeGroup(new List<string> { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }))
@@ -124,7 +123,7 @@ namespace Winform
         }
         private bool AuthorizeGroup(List<string> allowedRoles)
         {
-            foreach(string a in allowedRoles)
+            foreach (string a in allowedRoles)
             {
                 if (!UserAccessInfo.Role.Contains(a))
                     return false;
@@ -140,8 +139,8 @@ namespace Winform
 
             string tabName = menuItem.GetCurrentParent().Name;
             string formName;
-            if(tabName.Equals("ToolStripTopMenu"))
-                formName= tabName + " " + menuItem.Name;
+            if (tabName.Equals("ToolStripTopMenu"))
+                formName = tabName + " " + menuItem.Name;
             else
                 formName = tabName + " " + menuItem.Text;
             int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
@@ -179,7 +178,7 @@ namespace Winform
             // Create a new form if it doesn't exist already
             Form child = formName switch
             {
-                "ToolStripTopMenu UserBtnTS"=>new UserProfileForm(),
+                "ToolStripTopMenu UserBtnTS" => new UserProfileForm(),
                 "Show Customer" => new CustomerForm(),
                 "Show Customer Invoice" => new CustomerInvoiceForm(),
                 "Show Supplier" => new SupplierForm(),
@@ -199,7 +198,7 @@ namespace Winform
 
                 "Group Supplier" => new SupplierFinalForm(),
 
-                "Group Customer"=> new CustomerFinalForm(),
+                "Group Customer" => new CustomerFinalForm(),
 
 
 
