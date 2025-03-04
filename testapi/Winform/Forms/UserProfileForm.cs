@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities;
-using Winform.Entities.DTO;
+﻿using Winform.Entities.DTO;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -24,12 +14,20 @@ namespace Winform.Forms
 
         private void UserProfileForm_Load(object sender, EventArgs e)
         {
-            foreach(string role in UserAccessInfo.Role)
+            foreach (string role in UserAccessInfo.Role)
             {
-                Label lbl=new Label();
-                lbl.Text=role;
+                Label lbl = new Label();
+                lbl.Text = role;
                 FlowPanelRoles.Controls.Add(lbl);
             }
+
+            foreach (var kvp in UserAccessInfo.Preferences)
+            {
+                Label lbl = new Label();
+                lbl.Text = $"{kvp.Key}: {kvp.Value}";
+                flowLayoutPanel1.Controls.Add(lbl);
+            }
+
             UserRoleDTO user = userService.GetById(UserAccessInfo.RefreshUserID);
             UserIDTxt.Text = user.UserID.ToString();
             UserNameTxt.Text = user.Name;

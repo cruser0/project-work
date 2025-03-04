@@ -54,10 +54,17 @@
             this.UserNameLbl = new System.Windows.Forms.Label();
             this.UserNameTxt = new System.Windows.Forms.TextBox();
             this.UserIDLbl = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.LeftPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.RightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // BottomPanel
@@ -144,6 +151,8 @@
             // 
             // RightPanel
             // 
+            this.RightPanel.Controls.Add(this.flowLayoutPanel1);
+            this.RightPanel.Controls.Add(this.panel4);
             this.RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RightPanel.Location = new System.Drawing.Point(846, 100);
             this.RightPanel.Name = "RightPanel";
@@ -318,6 +327,44 @@
             this.UserIDLbl.TabIndex = 39;
             this.UserIDLbl.Text = "User ID";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 111);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 283);
+            this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.pictureBox2);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 111);
+            this.panel4.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(0, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Roles:";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Winform.Properties.Resources.cropped_logo_removebg_preview_50x50;
+            this.pictureBox2.Location = new System.Drawing.Point(52, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(55, 53);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
             // UserProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -335,8 +382,12 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.RightPanel.ResumeLayout(false);
             this.CenterPanel.ResumeLayout(false);
             this.CenterPanel.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -369,5 +420,9 @@
         private Button PasswordSeeBtn;
         private Button button1;
         private CheckBox checkBox1;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Panel panel4;
+        private Label label1;
+        private PictureBox pictureBox2;
     }
 }

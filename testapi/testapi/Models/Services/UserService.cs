@@ -218,6 +218,8 @@ namespace API.Models.Services
                 .Where(u => u.Email.Equals(email))
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
+                .Include(u => u.UserPreferences)
+                .ThenInclude(up => up.Preference)
                 .FirstOrDefault();
             if (user == null)
                 throw new Exception("User not Found");
@@ -229,6 +231,8 @@ namespace API.Models.Services
                 .Where(u => u.UserID == id)
                 .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
+                .Include(u => u.UserPreferences)
+                .ThenInclude(up => up.Preference)
                 .FirstOrDefault();
             if (user == null)
                 throw new Exception("User not Found");
@@ -239,7 +243,10 @@ namespace API.Models.Services
             var user = _context.Users
                 .Where(x => x.UserID == id)
                 .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role).FirstOrDefault();
+                .ThenInclude(ur => ur.Role)
+                .Include(u => u.UserPreferences)
+                .ThenInclude(up => up.Preference).FirstOrDefault();
+
             if (user == null)
                 throw new Exception("User not Found");
             List<string> roleList = user.UserRoles.Select(x => x.Role.RoleName).ToList();
@@ -262,10 +269,10 @@ namespace API.Models.Services
             int itemsPage = 10;
             var query = _context.Users
                 .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role).AsQueryable();
+                .ThenInclude(ur => ur.Role)
+                .Include(u => u.UserPreferences)
+                .ThenInclude(up => up.Preference).AsQueryable();
 
-            query = query.Include(u => u.UserPreferences)
-                .ThenInclude(up => up.Preference);
 
             if (!string.IsNullOrEmpty(filter.UserName))
                 query = query.Where(s => s.Name.StartsWith(filter.UserName));

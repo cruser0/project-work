@@ -50,6 +50,7 @@ namespace Winform.Services
                 UserAccessInfo.Token = items.Token;
                 UserAccessInfo.LastName = items.LastName;
                 UserAccessInfo.Role = items.Role;
+                UserAccessInfo.Preferences = items.Preferences;
                 UserAccessInfo.RefreshToken = items.RefreshToken;
                 UserAccessInfo.RefreshCreated = items.RefreshCreated;
                 UserAccessInfo.RefreshExpires = items.RefreshExpires;
@@ -62,7 +63,7 @@ namespace Winform.Services
             throw new Exception($"Error during the login process: {errorMessage}");
         }
 
-        public async Task  RefreshToken()
+        public async Task RefreshToken()
         {
             ClientAPI client = new ClientAPI();
             HttpResponseMessage response = await client.GetClient()

@@ -22,6 +22,7 @@ namespace API.Models.DTO
             LastName = user.LastName;
             Email = user.Email;
             Role = user.Role;
+            Preferences = user.Preferences;
             RefreshUserID = refreshToken.UserID;
             RefreshExpires = refreshToken.Expires;
             RefreshCreated = refreshToken.Created;
