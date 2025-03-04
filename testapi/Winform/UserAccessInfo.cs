@@ -6,7 +6,6 @@
         public static string Name { get; set; }
         public static string LastName { get; set; }
         public static string Email { get; set; }
-        public static Dictionary<string, string> Preferences { get; set; }
         public static List<string> Role { get; set; }
         public static int RefreshTokenID { get; set; }
         public static int RefreshUserID { get; set; }

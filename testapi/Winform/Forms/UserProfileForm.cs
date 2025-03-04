@@ -21,12 +21,6 @@ namespace Winform.Forms
                 FlowPanelRoles.Controls.Add(lbl);
             }
 
-            foreach (var kvp in UserAccessInfo.Preferences)
-            {
-                Label lbl = new Label();
-                lbl.Text = $"{kvp.Key}: {kvp.Value}";
-                flowLayoutPanel1.Controls.Add(lbl);
-            }
 
             UserRoleDTO user = userService.GetById(UserAccessInfo.RefreshUserID);
             UserIDTxt.Text = user.UserID.ToString();
