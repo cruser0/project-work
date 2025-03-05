@@ -11,7 +11,7 @@ namespace API.Models.Services
         ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices(CustomerInvoiceFilter filter);
         CustomerInvoiceDTOGet GetCustomerInvoiceById(int id);
         CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customer);
-        CustomerInvoiceDTOGet UpdateCustomerInvoice(int id, CustomerInvoice customer);
+        Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customer);
         CustomerInvoiceDTOGet DeleteCustomerInvoice(int id);
         int CountCustomerInvoices(CustomerInvoiceFilter filter);
 
@@ -132,10 +132,10 @@ namespace API.Models.Services
             return CustomerInvoiceMapper.MapGet(customerInvoice);
         }
 
-        public CustomerInvoiceDTOGet UpdateCustomerInvoice(int id, CustomerInvoice customerInvoice)
+        public async Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customerInvoice)
         {
             // Retrieve the existing customer invoice from the database
-            var ciDB = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
+            var ciDB =await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
 
             // Check if the customer invoice exists
             if (ciDB == null)
@@ -146,9 +146,9 @@ namespace API.Models.Services
 
             // Update customer invoice fields only if a new one is provided
             ciDB.SaleId = customerInvoice.SaleId ?? ciDB.SaleId;
-            if (!_context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).Any())
+            if (!await _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).AnyAsync())
                 throw new ArgumentException("SaleId not found");
-            if (!_context.Sales.Where(x => x.SaleId == ciDB.SaleId).Any())
+            if (!await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).AnyAsync())
                 throw new ArgumentException("Old SaleId not found");
             ciDB.InvoiceAmount = customerInvoice.InvoiceAmount ?? ciDB.InvoiceAmount;
             ciDB.InvoiceDate = customerInvoice.InvoiceDate ?? ciDB.InvoiceDate;
@@ -157,7 +157,7 @@ namespace API.Models.Services
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(customerInvoice.Status) && !statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
-            Sale sale = _context.Sales.Where(x => x.SaleId == ciDB.SaleId).First();
+            Sale sale =await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstAsync();
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ArgumentException($"The current Sale is already closed");
             // Validate that the invoice amount is greater than zero
@@ -166,35 +166,33 @@ namespace API.Models.Services
 
             // Update the invoice in the database
             _context.CustomerInvoices.Update(ciDB);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // If the sale ID was modified, update revenue calculations for the old and new sales
             if (oldSaleId.HasValue)
             {
                 // Recalculate revenue for the old sale
-                var newSale = _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefault();
+                var newSale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefaultAsync();
                 if (newSale.Status.ToLower().Equals("closed"))
                     throw new ArgumentException($"The current Sale is already closed");
-                var TotalOldSale = _context.RevenuePerSaleIDs
+                var TotalOldSale = (await _context.RevenuePerSaleIDs
                     .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{oldSaleId.Value}\"")
-                    .ToList()
-                    .FirstOrDefault()?.TotalRevenue;
+                    .FirstOrDefaultAsync())?.TotalRevenue;
 
-                var oldSale = _context.Sales.Where(x => x.SaleId == oldSaleId.Value).FirstOrDefault();
+                var oldSale = await _context.Sales.Where(x => x.SaleId == oldSaleId.Value).FirstOrDefaultAsync();
                 oldSale.TotalRevenue = TotalOldSale;
 
                 // Recalculate revenue for the new sale
-                var TotalNewSale = _context.RevenuePerSaleIDs
+                var TotalNewSale = (await _context.RevenuePerSaleIDs
                     .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{ciDB.SaleId}\"")
-                    .ToList()
-                    .FirstOrDefault()?.TotalRevenue;
+                    .FirstOrDefaultAsync())?.TotalRevenue;
 
                 newSale.TotalRevenue = TotalNewSale;
 
                 // Update the sales in the database
                 _context.Sales.Update(oldSale);
                 _context.Sales.Update(newSale);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             // Return the updated customer invoice mapped to DTO
