@@ -65,16 +65,16 @@
             this.panel1.Controls.Add(this.FilterPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(962, 0);
+            this.panel1.Location = new System.Drawing.Point(584, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 648);
+            this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 0;
             // 
             // FilterPanel
             // 
             this.FilterPanel.AutoScroll = true;
             this.FilterPanel.AutoScrollMargin = new System.Drawing.Size(0, 30);
-            this.FilterPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.FilterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.FilterPanel.Controls.Add(this.label4);
             this.FilterPanel.Controls.Add(this.label3);
             this.FilterPanel.Controls.Add(this.label2);
@@ -85,47 +85,56 @@
             this.FilterPanel.Controls.Add(this.nameTxt);
             this.FilterPanel.Location = new System.Drawing.Point(0, 103);
             this.FilterPanel.Name = "FilterPanel";
-            this.FilterPanel.Size = new System.Drawing.Size(200, 661);
+            this.FilterPanel.Size = new System.Drawing.Size(200, 358);
             this.FilterPanel.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label4.Location = new System.Drawing.Point(0, 171);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 15);
+            this.label4.Size = new System.Drawing.Size(41, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Roles";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label3.Location = new System.Drawing.Point(0, 113);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 15);
+            this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Email";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label2.Location = new System.Drawing.Point(0, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 15);
+            this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Last Name";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(0, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 15);
+            this.label1.Size = new System.Drawing.Size(75, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "First Name";
             // 
             // rolesListBox
             // 
+            this.rolesListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.rolesListBox.FormattingEnabled = true;
             this.rolesListBox.HorizontalScrollbar = true;
             this.rolesListBox.Items.AddRange(new object[] {
@@ -162,6 +171,7 @@
             // 
             // Emailtxt
             // 
+            this.Emailtxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.Emailtxt.Location = new System.Drawing.Point(3, 131);
             this.Emailtxt.Name = "Emailtxt";
             this.Emailtxt.Size = new System.Drawing.Size(180, 23);
@@ -169,6 +179,7 @@
             // 
             // lastNameTxt
             // 
+            this.lastNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.lastNameTxt.Location = new System.Drawing.Point(3, 83);
             this.lastNameTxt.Name = "lastNameTxt";
             this.lastNameTxt.Size = new System.Drawing.Size(180, 23);
@@ -176,6 +187,7 @@
             // 
             // nameTxt
             // 
+            this.nameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.nameTxt.Location = new System.Drawing.Point(3, 28);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(180, 23);
@@ -183,28 +195,28 @@
             // 
             // RightSideBar
             // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 648);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.DarkGray;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel2.Controls.Add(this.PaginationPanel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 548);
+            this.panel2.Location = new System.Drawing.Point(0, 361);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(962, 100);
+            this.panel2.Size = new System.Drawing.Size(584, 100);
             this.panel2.TabIndex = 1;
             // 
             // PaginationPanel
             // 
-            this.PaginationPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.PaginationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.PaginationPanel.Controls.Add(this.paginationControl);
-            this.PaginationPanel.Location = new System.Drawing.Point(224, 0);
+            this.PaginationPanel.Location = new System.Drawing.Point(96, 0);
             this.PaginationPanel.Name = "PaginationPanel";
             this.PaginationPanel.Size = new System.Drawing.Size(407, 100);
             this.PaginationPanel.TabIndex = 0;
@@ -223,7 +235,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(962, 548);
+            this.panel3.Size = new System.Drawing.Size(584, 361);
             this.panel3.TabIndex = 2;
             // 
             // userDgv
@@ -231,14 +243,14 @@
             this.userDgv.AllowUserToAddRows = false;
             this.userDgv.AllowUserToDeleteRows = false;
             this.userDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.userDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.userDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.userDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userDgv.Location = new System.Drawing.Point(0, 0);
             this.userDgv.Name = "userDgv";
             this.userDgv.ReadOnly = true;
             this.userDgv.RowTemplate.Height = 25;
-            this.userDgv.Size = new System.Drawing.Size(962, 548);
+            this.userDgv.Size = new System.Drawing.Size(584, 361);
             this.userDgv.TabIndex = 0;
             this.userDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.userDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDgv_RightClick);
@@ -252,13 +264,13 @@
             this.UserEmailTsmi,
             this.UserrRoleTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(181, 136);
+            this.RightClickDgv.Size = new System.Drawing.Size(163, 114);
             // 
             // UserIDTsmi
             // 
             this.UserIDTsmi.CheckOnClick = true;
             this.UserIDTsmi.Name = "UserIDTsmi";
-            this.UserIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.UserIDTsmi.Text = "Show ID";
             this.UserIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -268,7 +280,7 @@
             this.UserNameTsmi.CheckOnClick = true;
             this.UserNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UserNameTsmi.Name = "UserNameTsmi";
-            this.UserNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserNameTsmi.Size = new System.Drawing.Size(162, 22);
             this.UserNameTsmi.Text = "Show Name";
             this.UserNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -278,7 +290,7 @@
             this.UserLastNameTsmi.CheckOnClick = true;
             this.UserLastNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UserLastNameTsmi.Name = "UserLastNameTsmi";
-            this.UserLastNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserLastNameTsmi.Size = new System.Drawing.Size(162, 22);
             this.UserLastNameTsmi.Text = "Show Last Name";
             this.UserLastNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -288,7 +300,7 @@
             this.UserEmailTsmi.CheckOnClick = true;
             this.UserEmailTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UserEmailTsmi.Name = "UserEmailTsmi";
-            this.UserEmailTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserEmailTsmi.Size = new System.Drawing.Size(162, 22);
             this.UserEmailTsmi.Text = "Show Email";
             this.UserEmailTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -298,7 +310,7 @@
             this.UserrRoleTsmi.CheckOnClick = true;
             this.UserrRoleTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UserrRoleTsmi.Name = "UserrRoleTsmi";
-            this.UserrRoleTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserrRoleTsmi.Size = new System.Drawing.Size(162, 22);
             this.UserrRoleTsmi.Text = "Show Roles";
             this.UserrRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -306,10 +318,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1162, 648);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "UserGridForm";
             this.Text = "UserGridForm";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);

@@ -44,18 +44,21 @@
             // CreateSaveBtn
             // 
             this.CreateSaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CreateSaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.CreateSaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CreateSaveBtn.Location = new System.Drawing.Point(365, 253);
             this.CreateSaveBtn.Name = "CreateSaveBtn";
             this.CreateSaveBtn.Size = new System.Drawing.Size(107, 23);
             this.CreateSaveBtn.TabIndex = 22;
             this.CreateSaveBtn.Text = "Save changes";
-            this.CreateSaveBtn.UseVisualStyleBackColor = true;
+            this.CreateSaveBtn.UseVisualStyleBackColor = false;
             this.CreateSaveBtn.Click += new System.EventHandler(this.CreateSaveBtn_Click);
             // 
             // CreateCountryLbl
             // 
             this.CreateCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CreateCountryLbl.AutoSize = true;
+            this.CreateCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CreateCountryLbl.Location = new System.Drawing.Point(272, 179);
             this.CreateCountryLbl.Name = "CreateCountryLbl";
             this.CreateCountryLbl.Size = new System.Drawing.Size(58, 15);
@@ -67,6 +70,7 @@
             // 
             this.CreateNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CreateNameLbl.AutoSize = true;
+            this.CreateNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CreateNameLbl.Location = new System.Drawing.Point(272, 114);
             this.CreateNameLbl.Name = "CreateNameLbl";
             this.CreateNameLbl.Size = new System.Drawing.Size(47, 15);
@@ -77,6 +81,7 @@
             // CreateCountryTxt
             // 
             this.CreateCountryTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CreateCountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CreateCountryTxt.Location = new System.Drawing.Point(272, 197);
             this.CreateCountryTxt.MaxLength = 50;
             this.CreateCountryTxt.Name = "CreateCountryTxt";
@@ -87,6 +92,7 @@
             // CreateNameTxt
             // 
             this.CreateNameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CreateNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CreateNameTxt.Location = new System.Drawing.Point(272, 130);
             this.CreateNameTxt.MaxLength = 100;
             this.CreateNameTxt.Name = "CreateNameTxt";
@@ -96,6 +102,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -104,6 +111,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 441);
             this.panel2.Name = "panel2";
@@ -112,7 +120,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.CreateNameLbl);
             this.panel3.Controls.Add(this.CreateNameTxt);
@@ -127,6 +135,7 @@
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 20);
             this.panel4.Name = "panel4";
@@ -135,6 +144,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel5.Location = new System.Drawing.Point(764, 20);
             this.panel5.Name = "panel5";

@@ -71,16 +71,16 @@
             this.RightPanel.Controls.Add(this.TextBoxesRightPanel);
             this.RightPanel.Controls.Add(this.RightSideBar);
             this.RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightPanel.Location = new System.Drawing.Point(741, 0);
+            this.RightPanel.Location = new System.Drawing.Point(584, 0);
             this.RightPanel.Name = "RightPanel";
-            this.RightPanel.Size = new System.Drawing.Size(200, 618);
+            this.RightPanel.Size = new System.Drawing.Size(200, 461);
             this.RightPanel.TabIndex = 0;
             // 
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
-            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.label3);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.AmountToTxt);
@@ -95,31 +95,35 @@
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 515);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 358);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label3.Location = new System.Drawing.Point(3, 239);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 18);
+            this.label3.Size = new System.Drawing.Size(125, 17);
             this.label3.TabIndex = 15;
             this.label3.Text = "Invoice Amount To";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label2.Location = new System.Drawing.Point(4, 192);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 18);
+            this.label2.Size = new System.Drawing.Size(142, 17);
             this.label2.TabIndex = 14;
             this.label2.Text = "Invoice Amount From";
             // 
             // AmountToTxt
             // 
+            this.AmountToTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.AmountToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.AmountToTxt.Location = new System.Drawing.Point(4, 260);
             this.AmountToTxt.Name = "AmountToTxt";
             this.AmountToTxt.Size = new System.Drawing.Size(180, 23);
@@ -127,6 +131,7 @@
             // 
             // AmountFromTxt
             // 
+            this.AmountFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.AmountFromTxt.Location = new System.Drawing.Point(4, 213);
             this.AmountFromTxt.Name = "AmountFromTxt";
             this.AmountFromTxt.Size = new System.Drawing.Size(180, 23);
@@ -134,6 +139,7 @@
             // 
             // SaleIDTxt
             // 
+            this.SaleIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SaleIDTxt.Location = new System.Drawing.Point(3, 21);
             this.SaleIDTxt.Name = "SaleIDTxt";
             this.SaleIDTxt.Size = new System.Drawing.Size(180, 23);
@@ -142,30 +148,33 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(3, 94);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 18);
+            this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Date To";
             // 
             // DateFromLbl
             // 
             this.DateFromLbl.AutoSize = true;
-            this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateFromLbl.Location = new System.Drawing.Point(3, 47);
             this.DateFromLbl.Name = "DateFromLbl";
-            this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
+            this.DateFromLbl.Size = new System.Drawing.Size(73, 17);
             this.DateFromLbl.TabIndex = 9;
             this.DateFromLbl.Text = "Date From";
             // 
             // DateToLbl
             // 
             this.DateToLbl.AutoSize = true;
-            this.DateToLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateToLbl.Location = new System.Drawing.Point(3, 141);
             this.DateToLbl.Name = "DateToLbl";
-            this.DateToLbl.Size = new System.Drawing.Size(45, 18);
+            this.DateToLbl.Size = new System.Drawing.Size(46, 17);
             this.DateToLbl.TabIndex = 6;
             this.DateToLbl.Text = "Status";
             // 
@@ -173,7 +182,7 @@
             // 
             this.StatusCmb.BackColor = System.Drawing.SystemColors.Window;
             this.StatusCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StatusCmb.ForeColor = System.Drawing.Color.Black;
+            this.StatusCmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusCmb.FormattingEnabled = true;
             this.StatusCmb.Items.AddRange(new object[] {
             "All",
@@ -198,10 +207,11 @@
             // SaleIDLbl
             // 
             this.SaleIDLbl.AutoSize = true;
-            this.SaleIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SaleIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SaleIDLbl.Location = new System.Drawing.Point(0, 0);
             this.SaleIDLbl.Name = "SaleIDLbl";
-            this.SaleIDLbl.Size = new System.Drawing.Size(53, 18);
+            this.SaleIDLbl.Size = new System.Drawing.Size(51, 17);
             this.SaleIDLbl.TabIndex = 3;
             this.SaleIDLbl.Text = "Sale ID";
             // 
@@ -219,11 +229,11 @@
             // 
             // RightSideBar
             // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 618);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // CenterPanel
@@ -232,7 +242,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(741, 518);
+            this.CenterPanel.Size = new System.Drawing.Size(584, 361);
             this.CenterPanel.TabIndex = 1;
             // 
             // CenterDgv
@@ -240,28 +250,28 @@
             this.CenterDgv.AllowUserToAddRows = false;
             this.CenterDgv.AllowUserToDeleteRows = false;
             this.CenterDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.CenterDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.CenterDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CenterDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CenterDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterDgv.Location = new System.Drawing.Point(0, 0);
             this.CenterDgv.Name = "CenterDgv";
             this.CenterDgv.ReadOnly = true;
             this.CenterDgv.RowTemplate.Height = 25;
-            this.CenterDgv.Size = new System.Drawing.Size(741, 518);
+            this.CenterDgv.Size = new System.Drawing.Size(584, 361);
             this.CenterDgv.TabIndex = 0;
             this.CenterDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CenterDgv_CellDoubleClick);
             this.CenterDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDhvEvent);
             // 
             // BottomPanel
             // 
-            this.BottomPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.BottomPanel.Controls.Add(this.panel5);
             this.BottomPanel.Controls.Add(this.panel4);
             this.BottomPanel.Controls.Add(this.panel3);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 518);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 361);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(741, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 100);
             this.BottomPanel.TabIndex = 8;
             // 
             // panel5
@@ -284,7 +294,7 @@
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(741, 0);
+            this.panel4.Location = new System.Drawing.Point(584, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 100);
             this.panel4.TabIndex = 1;
@@ -361,10 +371,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(941, 618);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.RightPanel);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerInvoiceGridForm";
             this.Text = "CustomerInvoiceGridForm";
             this.Load += new System.EventHandler(this.RightSideBar_searchBtnEvent);

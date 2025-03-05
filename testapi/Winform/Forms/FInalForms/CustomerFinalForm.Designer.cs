@@ -140,7 +140,7 @@
             this.LeftPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftPane.Location = new System.Drawing.Point(0, 0);
             this.LeftPane.Name = "LeftPane";
-            this.LeftPane.Size = new System.Drawing.Size(1309, 763);
+            this.LeftPane.Size = new System.Drawing.Size(784, 461);
             this.LeftPane.TabIndex = 0;
             // 
             // MainSplitContainer
@@ -158,8 +158,8 @@
             this.MainSplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1241, 763);
-            this.MainSplitContainer.SplitterDistance = 1026;
+            this.MainSplitContainer.Size = new System.Drawing.Size(716, 461);
+            this.MainSplitContainer.SplitterDistance = 477;
             this.MainSplitContainer.TabIndex = 1;
             // 
             // SpliContainerDGV
@@ -177,26 +177,27 @@
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(1026, 763);
-            this.SpliContainerDGV.SplitterDistance = 219;
+            this.SpliContainerDGV.Size = new System.Drawing.Size(477, 461);
+            this.SpliContainerDGV.SplitterDistance = 132;
             this.SpliContainerDGV.TabIndex = 0;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1026, 194);
+            this.dataGridView1.Size = new System.Drawing.Size(477, 107);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDbClickLoadSale);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
             // toolStrip
             // 
+            this.toolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft,
@@ -204,9 +205,9 @@
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.toolStrip.Location = new System.Drawing.Point(0, 194);
+            this.toolStrip.Location = new System.Drawing.Point(0, 107);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1026, 25);
+            this.toolStrip.Size = new System.Drawing.Size(477, 25);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip2";
             // 
@@ -271,26 +272,27 @@
             // SplitContainerDGV2.Panel2
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.splitContainer3);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(1026, 540);
-            this.SplitContainerDGV2.SplitterDistance = 249;
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(477, 325);
+            this.SplitContainerDGV2.SplitterDistance = 149;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
             // dataGridView2
             // 
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(1026, 224);
+            this.dataGridView2.Size = new System.Drawing.Size(477, 124);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SaleDBClickLoadCustomerInvoice);
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
             // toolStrip2
             // 
+            this.toolStrip2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft2,
@@ -298,9 +300,9 @@
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 224);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 124);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1026, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(477, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip1";
             // 
@@ -365,26 +367,27 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridView4);
             this.splitContainer3.Panel2.Controls.Add(this.toolStrip4);
-            this.splitContainer3.Size = new System.Drawing.Size(1026, 287);
-            this.splitContainer3.SplitterDistance = 340;
+            this.splitContainer3.Size = new System.Drawing.Size(477, 172);
+            this.splitContainer3.SplitterDistance = 199;
             this.splitContainer3.TabIndex = 0;
             // 
             // dataGridView3
             // 
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(0, 0);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(340, 262);
+            this.dataGridView3.Size = new System.Drawing.Size(199, 147);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerInvoiceDBClickLoadCustomerInvoiceCost);
             this.dataGridView3.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
             // toolStrip3
             // 
+            this.toolStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft3,
@@ -392,9 +395,9 @@
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.toolStrip3.Location = new System.Drawing.Point(0, 262);
+            this.toolStrip3.Location = new System.Drawing.Point(0, 147);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(340, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(199, 25);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -447,18 +450,19 @@
             // dataGridView4
             // 
             this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(682, 262);
+            this.dataGridView4.Size = new System.Drawing.Size(274, 147);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
             // toolStrip4
             // 
+            this.toolStrip4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft4,
@@ -466,9 +470,9 @@
             this.Right4,
             this.DoubleRight5,
             this.TSLbl4});
-            this.toolStrip4.Location = new System.Drawing.Point(0, 262);
+            this.toolStrip4.Location = new System.Drawing.Point(0, 147);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(682, 25);
+            this.toolStrip4.Size = new System.Drawing.Size(274, 25);
             this.toolStrip4.TabIndex = 2;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -521,7 +525,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.flowLayoutPanel1.Controls.Add(this.searchCustomer1);
             this.flowLayoutPanel1.Controls.Add(this.searchCustomerInvoice1);
             this.flowLayoutPanel1.Controls.Add(this.searchSale1);
@@ -529,7 +533,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(211, 690);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(235, 388);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchCustomer1
@@ -562,37 +566,41 @@
             // 
             // SearchPanel
             // 
-            this.SearchPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.SearchPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SearchPanel.Controls.Add(this.button1);
             this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SearchPanel.Location = new System.Drawing.Point(0, 713);
+            this.SearchPanel.Location = new System.Drawing.Point(0, 411);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(211, 50);
+            this.SearchPanel.Size = new System.Drawing.Size(235, 50);
             this.SearchPanel.TabIndex = 6;
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.button1.Location = new System.Drawing.Point(45, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 43);
             this.button1.TabIndex = 0;
             this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel1.Controls.Add(this.DockButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(211, 23);
+            this.panel1.Size = new System.Drawing.Size(235, 23);
             this.panel1.TabIndex = 5;
             // 
             // DockButton
             // 
             this.DockButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DockButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DockButton.Location = new System.Drawing.Point(0, 0);
             this.DockButton.Name = "DockButton";
             this.DockButton.Size = new System.Drawing.Size(23, 23);
@@ -603,11 +611,11 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(68, 763);
+            this.panel3.Size = new System.Drawing.Size(68, 461);
             this.panel3.TabIndex = 0;
             // 
             // RightClickDgvCustomer
@@ -875,8 +883,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1309, 763);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.LeftPane);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerFinalForm";
             this.Text = "CustomerFinalForm";
             this.Load += new System.EventHandler(this.SearchBtn_Click);

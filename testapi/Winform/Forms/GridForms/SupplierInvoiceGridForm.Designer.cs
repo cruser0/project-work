@@ -50,6 +50,7 @@
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.SupplierInvoiceDgv = new System.Windows.Forms.DataGridView();
             this.BottomPanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SupplierInvoiceIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,15 +61,14 @@
             this.SupplierInvoiceSupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceSupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).BeginInit();
             this.BottomPanel.SuspendLayout();
-            this.RightClickDgv.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,9 +76,9 @@
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.RigtPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(619, 0);
+            this.panel1.Location = new System.Drawing.Point(584, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 647);
+            this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 16;
             // 
             // RigtPanel
@@ -88,14 +88,14 @@
             this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RigtPanel.Location = new System.Drawing.Point(0, 0);
             this.RigtPanel.Name = "RigtPanel";
-            this.RigtPanel.Size = new System.Drawing.Size(200, 647);
+            this.RigtPanel.Size = new System.Drawing.Size(200, 461);
             this.RigtPanel.TabIndex = 16;
             // 
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
-            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountToTxt);
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountFromTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
@@ -112,11 +112,12 @@
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 544);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 358);
             this.TextBoxesRightPanel.TabIndex = 7;
             // 
             // InvoiceAmountToTxt
             // 
+            this.InvoiceAmountToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.InvoiceAmountToTxt.Location = new System.Drawing.Point(3, 303);
             this.InvoiceAmountToTxt.Name = "InvoiceAmountToTxt";
             this.InvoiceAmountToTxt.Size = new System.Drawing.Size(180, 23);
@@ -125,6 +126,7 @@
             // InvoiceAmountFromTxt
             // 
             this.InvoiceAmountFromTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.InvoiceAmountFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.InvoiceAmountFromTxt.Location = new System.Drawing.Point(3, 256);
             this.InvoiceAmountFromTxt.Name = "InvoiceAmountFromTxt";
             this.InvoiceAmountFromTxt.Size = new System.Drawing.Size(180, 23);
@@ -133,25 +135,28 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label2.Location = new System.Drawing.Point(3, 235);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 18);
+            this.label2.Size = new System.Drawing.Size(142, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "Invoice Amount From";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label3.Location = new System.Drawing.Point(3, 282);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 18);
+            this.label3.Size = new System.Drawing.Size(125, 17);
             this.label3.TabIndex = 14;
             this.label3.Text = "Invoice Amount To";
             // 
             // SupplierIDTxt
             // 
+            this.SupplierIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SupplierIDTxt.Location = new System.Drawing.Point(3, 68);
             this.SupplierIDTxt.Name = "SupplierIDTxt";
             this.SupplierIDTxt.Size = new System.Drawing.Size(180, 23);
@@ -159,6 +164,7 @@
             // 
             // SaleIDTxt
             // 
+            this.SaleIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SaleIDTxt.Location = new System.Drawing.Point(3, 21);
             this.SaleIDTxt.Name = "SaleIDTxt";
             this.SaleIDTxt.Size = new System.Drawing.Size(180, 23);
@@ -167,38 +173,40 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(3, 141);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 18);
+            this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Date To";
             // 
             // DateFromLbl
             // 
             this.DateFromLbl.AutoSize = true;
-            this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateFromLbl.Location = new System.Drawing.Point(3, 94);
             this.DateFromLbl.Name = "DateFromLbl";
-            this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
+            this.DateFromLbl.Size = new System.Drawing.Size(73, 17);
             this.DateFromLbl.TabIndex = 9;
             this.DateFromLbl.Text = "Date From";
             // 
             // DateToLbl
             // 
             this.DateToLbl.AutoSize = true;
-            this.DateToLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateToLbl.Location = new System.Drawing.Point(3, 188);
             this.DateToLbl.Name = "DateToLbl";
-            this.DateToLbl.Size = new System.Drawing.Size(45, 18);
+            this.DateToLbl.Size = new System.Drawing.Size(46, 17);
             this.DateToLbl.TabIndex = 6;
             this.DateToLbl.Text = "Status";
             // 
             // StatusCmb
             // 
             this.StatusCmb.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StatusCmb.ForeColor = System.Drawing.Color.Black;
+            this.StatusCmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusCmb.FormattingEnabled = true;
             this.StatusCmb.Items.AddRange(new object[] {
             "All",
@@ -223,20 +231,22 @@
             // SaleIDLbl
             // 
             this.SaleIDLbl.AutoSize = true;
-            this.SaleIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SaleIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SaleIDLbl.Location = new System.Drawing.Point(3, 0);
             this.SaleIDLbl.Name = "SaleIDLbl";
-            this.SaleIDLbl.Size = new System.Drawing.Size(53, 18);
+            this.SaleIDLbl.Size = new System.Drawing.Size(51, 17);
             this.SaleIDLbl.TabIndex = 3;
             this.SaleIDLbl.Text = "Sale ID";
             // 
             // SupplierIDLbl
             // 
             this.SupplierIDLbl.AutoSize = true;
-            this.SupplierIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SupplierIDLbl.Location = new System.Drawing.Point(3, 47);
             this.SupplierIDLbl.Name = "SupplierIDLbl";
-            this.SupplierIDLbl.Size = new System.Drawing.Size(79, 18);
+            this.SupplierIDLbl.Size = new System.Drawing.Size(77, 17);
             this.SupplierIDLbl.TabIndex = 4;
             this.SupplierIDLbl.Text = "Supplier ID";
             // 
@@ -254,11 +264,11 @@
             // 
             // RightSideBar
             // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 647);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 1;
             // 
             // CenterPanel
@@ -267,33 +277,41 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(619, 547);
+            this.CenterPanel.Size = new System.Drawing.Size(584, 361);
             this.CenterPanel.TabIndex = 18;
             // 
             // SupplierInvoiceDgv
             // 
             this.SupplierInvoiceDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SupplierInvoiceDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
+            this.SupplierInvoiceDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupplierInvoiceDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupplierInvoiceDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupplierInvoiceDgv.Location = new System.Drawing.Point(0, 0);
             this.SupplierInvoiceDgv.Name = "SupplierInvoiceDgv";
             this.SupplierInvoiceDgv.ReadOnly = true;
             this.SupplierInvoiceDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(619, 547);
+            this.SupplierInvoiceDgv.Size = new System.Drawing.Size(584, 361);
             this.SupplierInvoiceDgv.TabIndex = 9;
             this.SupplierInvoiceDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SupplierInvoiceDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // BottomPanel
             // 
-            this.BottomPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.BottomPanel.Controls.Add(this.panel2);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 547);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 361);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(619, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 100);
             this.BottomPanel.TabIndex = 19;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.PaginationUserControl);
+            this.panel2.Location = new System.Drawing.Point(87, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(407, 100);
+            this.panel2.TabIndex = 1;
             // 
             // PaginationUserControl
             // 
@@ -394,23 +412,16 @@
             this.SupplierInvoiceCountryTsmi.Text = "Show Supplier Country";
             this.SupplierInvoiceCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.PaginationUserControl);
-            this.panel2.Location = new System.Drawing.Point(87, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(407, 100);
-            this.panel2.TabIndex = 1;
-            // 
             // SupplierInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(819, 647);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.panel1);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SupplierInvoiceGridForm";
             this.Text = "SupplierInvoiceForm";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
@@ -422,8 +433,8 @@
             this.CenterPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).EndInit();
             this.BottomPanel.ResumeLayout(false);
-            this.RightClickDgv.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.RightClickDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

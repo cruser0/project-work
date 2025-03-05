@@ -102,9 +102,9 @@
             this.RigtPanel.Controls.Add(this.TextBoxesRightPanel);
             this.RigtPanel.Controls.Add(this.RightSideBar);
             this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RigtPanel.Location = new System.Drawing.Point(712, 0);
+            this.RigtPanel.Location = new System.Drawing.Point(584, 0);
             this.RigtPanel.Name = "RigtPanel";
-            this.RigtPanel.Size = new System.Drawing.Size(200, 601);
+            this.RigtPanel.Size = new System.Drawing.Size(200, 461);
             this.RigtPanel.TabIndex = 15;
             // 
             // TextBoxesRightPanel
@@ -130,7 +130,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.BoLTextBox);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 498);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 358);
             this.TextBoxesRightPanel.TabIndex = 7;
             // 
             // RevenueFromTxt
@@ -223,7 +223,6 @@
             // StatusCB
             // 
             this.StatusCB.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatusCB.ForeColor = System.Drawing.Color.Black;
             this.StatusCB.FormattingEnabled = true;
             this.StatusCB.Items.AddRange(new object[] {
@@ -283,7 +282,7 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 601);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 1;
             // 
             // panel1
@@ -292,7 +291,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(712, 501);
+            this.panel1.Size = new System.Drawing.Size(584, 361);
             this.panel1.TabIndex = 17;
             // 
             // SaleDgv
@@ -306,7 +305,7 @@
             this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
             this.SaleDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.SaleDgv.Size = new System.Drawing.Size(712, 501);
+            this.SaleDgv.Size = new System.Drawing.Size(584, 361);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SaleDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -318,9 +317,9 @@
             this.BottomPanel.Controls.Add(this.panel4);
             this.BottomPanel.Controls.Add(this.panel3);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 501);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 361);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(712, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 100);
             this.BottomPanel.TabIndex = 18;
             // 
             // panel5
@@ -343,7 +342,7 @@
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(712, 0);
+            this.panel4.Location = new System.Drawing.Point(584, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 100);
             this.panel4.TabIndex = 1;
@@ -462,10 +461,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 601);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.RigtPanel);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SaleGridForm";
             this.Text = "SaleForm";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);

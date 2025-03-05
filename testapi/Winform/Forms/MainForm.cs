@@ -32,7 +32,8 @@ namespace Winform
                 Dock = DockStyle.Bottom,
                 Height = 60,
                 RowCount = 1,
-                AutoScroll = true
+                AutoScroll = true,
+                BackColor = Color.FromArgb(174, 180, 194)
             };
             this.Controls.Add(minimizedPanel);
         }

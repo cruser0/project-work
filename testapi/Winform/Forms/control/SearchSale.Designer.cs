@@ -51,7 +51,7 @@
             // 
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
-            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.RevenueFromTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
@@ -76,16 +76,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 18);
+            this.label4.Size = new System.Drawing.Size(33, 17);
             this.label4.TabIndex = 20;
             this.label4.Text = "Sale";
             // 
             // RevenueFromTxt
             // 
             this.RevenueFromTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.RevenueFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.RevenueFromTxt.Location = new System.Drawing.Point(3, 280);
             this.RevenueFromTxt.Name = "RevenueFromTxt";
             this.RevenueFromTxt.Size = new System.Drawing.Size(180, 23);
@@ -94,16 +96,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label2.Location = new System.Drawing.Point(3, 259);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 18);
+            this.label2.Size = new System.Drawing.Size(96, 17);
             this.label2.TabIndex = 14;
             this.label2.Text = "Revenue From";
             // 
             // RevenueToTxt
             // 
             this.RevenueToTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.RevenueToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.RevenueToTxt.Location = new System.Drawing.Point(3, 327);
             this.RevenueToTxt.Name = "RevenueToTxt";
             this.RevenueToTxt.Size = new System.Drawing.Size(180, 23);
@@ -112,48 +116,51 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(3, 306);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.Size = new System.Drawing.Size(79, 17);
             this.label1.TabIndex = 12;
             this.label1.Text = "Revenue To";
             // 
             // DateToLbl
             // 
             this.DateToLbl.AutoSize = true;
-            this.DateToLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateToLbl.Location = new System.Drawing.Point(3, 165);
             this.DateToLbl.Name = "DateToLbl";
-            this.DateToLbl.Size = new System.Drawing.Size(56, 18);
+            this.DateToLbl.Size = new System.Drawing.Size(56, 17);
             this.DateToLbl.TabIndex = 10;
             this.DateToLbl.Text = "Date To";
             // 
             // DateFromLbl
             // 
             this.DateFromLbl.AutoSize = true;
-            this.DateFromLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateFromLbl.Location = new System.Drawing.Point(3, 118);
             this.DateFromLbl.Name = "DateFromLbl";
-            this.DateFromLbl.Size = new System.Drawing.Size(71, 18);
+            this.DateFromLbl.Size = new System.Drawing.Size(73, 17);
             this.DateFromLbl.TabIndex = 9;
             this.DateFromLbl.Text = "Date From";
             // 
             // StatusLbl
             // 
             this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusLbl.Location = new System.Drawing.Point(3, 212);
             this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(45, 18);
+            this.StatusLbl.Size = new System.Drawing.Size(46, 17);
             this.StatusLbl.TabIndex = 6;
             this.StatusLbl.Text = "Status";
             // 
             // StatusCB
             // 
             this.StatusCB.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StatusCB.ForeColor = System.Drawing.Color.Black;
+            this.StatusCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusCB.FormattingEnabled = true;
             this.StatusCB.Items.AddRange(new object[] {
             "All",
@@ -168,6 +175,7 @@
             // 
             this.BNTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BNTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BNTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.BNTextBox.Location = new System.Drawing.Point(3, 45);
             this.BNTextBox.MaxLength = 50;
             this.BNTextBox.Name = "BNTextBox";
@@ -188,20 +196,22 @@
             // BookingNumberLbl
             // 
             this.BookingNumberLbl.AutoSize = true;
-            this.BookingNumberLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BookingNumberLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BookingNumberLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.BookingNumberLbl.Location = new System.Drawing.Point(3, 24);
             this.BookingNumberLbl.Name = "BookingNumberLbl";
-            this.BookingNumberLbl.Size = new System.Drawing.Size(112, 18);
+            this.BookingNumberLbl.Size = new System.Drawing.Size(113, 17);
             this.BookingNumberLbl.TabIndex = 3;
             this.BookingNumberLbl.Text = "Booking Number";
             // 
             // BillofLadingLbl
             // 
             this.BillofLadingLbl.AutoSize = true;
-            this.BillofLadingLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BillofLadingLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BillofLadingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.BillofLadingLbl.Location = new System.Drawing.Point(3, 71);
             this.BillofLadingLbl.Name = "BillofLadingLbl";
-            this.BillofLadingLbl.Size = new System.Drawing.Size(89, 18);
+            this.BillofLadingLbl.Size = new System.Drawing.Size(91, 17);
             this.BillofLadingLbl.TabIndex = 4;
             this.BillofLadingLbl.Text = "Bill of Lading";
             // 
@@ -221,6 +231,7 @@
             // 
             this.BoLTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BoLTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BoLTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.BoLTextBox.Location = new System.Drawing.Point(3, 92);
             this.BoLTextBox.MaxLength = 50;
             this.BoLTextBox.Name = "BoLTextBox";

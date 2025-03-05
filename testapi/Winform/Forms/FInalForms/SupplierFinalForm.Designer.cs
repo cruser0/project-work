@@ -123,7 +123,7 @@
             this.LeftPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftPane.Location = new System.Drawing.Point(0, 0);
             this.LeftPane.Name = "LeftPane";
-            this.LeftPane.Size = new System.Drawing.Size(1204, 701);
+            this.LeftPane.Size = new System.Drawing.Size(784, 461);
             this.LeftPane.TabIndex = 3;
             // 
             // MainSplitContainer
@@ -141,8 +141,8 @@
             this.MainSplitContainer.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1136, 701);
-            this.MainSplitContainer.SplitterDistance = 906;
+            this.MainSplitContainer.Size = new System.Drawing.Size(716, 461);
+            this.MainSplitContainer.SplitterDistance = 484;
             this.MainSplitContainer.TabIndex = 1;
             // 
             // SpliContainerDGV
@@ -160,26 +160,27 @@
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(906, 701);
-            this.SpliContainerDGV.SplitterDistance = 458;
+            this.SpliContainerDGV.Size = new System.Drawing.Size(484, 461);
+            this.SpliContainerDGV.SplitterDistance = 301;
             this.SpliContainerDGV.TabIndex = 0;
             // 
             // SupplierDgv
             // 
             this.SupplierDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SupplierDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SupplierDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupplierDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupplierDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupplierDgv.Location = new System.Drawing.Point(0, 0);
             this.SupplierDgv.Name = "SupplierDgv";
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(906, 433);
+            this.SupplierDgv.Size = new System.Drawing.Size(484, 276);
             this.SupplierDgv.TabIndex = 0;
             this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellClick);
             this.SupplierDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // SupplierToolStrip
             // 
+            this.SupplierToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.SupplierToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SupplierToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft,
@@ -187,9 +188,9 @@
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 433);
+            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 276);
             this.SupplierToolStrip.Name = "SupplierToolStrip";
-            this.SupplierToolStrip.Size = new System.Drawing.Size(906, 25);
+            this.SupplierToolStrip.Size = new System.Drawing.Size(484, 25);
             this.SupplierToolStrip.TabIndex = 2;
             this.SupplierToolStrip.Text = "toolStrip2";
             // 
@@ -254,26 +255,27 @@
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.SupInvoiceCostDgv);
             this.SplitContainerDGV2.Panel2.Controls.Add(this.CostToolStrip);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(906, 239);
-            this.SplitContainerDGV2.SplitterDistance = 332;
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(484, 156);
+            this.SplitContainerDGV2.SplitterDistance = 210;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
             // SupInvoiceDgv
             // 
             this.SupInvoiceDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SupInvoiceDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SupInvoiceDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupInvoiceDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupInvoiceDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupInvoiceDgv.Location = new System.Drawing.Point(0, 0);
             this.SupInvoiceDgv.Name = "SupInvoiceDgv";
             this.SupInvoiceDgv.RowTemplate.Height = 25;
-            this.SupInvoiceDgv.Size = new System.Drawing.Size(332, 214);
+            this.SupInvoiceDgv.Size = new System.Drawing.Size(210, 131);
             this.SupInvoiceDgv.TabIndex = 3;
             this.SupInvoiceDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupInvoiceDgv_CellClick);
             this.SupInvoiceDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // InvoiceToolStrip
             // 
+            this.InvoiceToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.InvoiceToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.InvoiceToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft2,
@@ -281,9 +283,9 @@
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 214);
+            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 131);
             this.InvoiceToolStrip.Name = "InvoiceToolStrip";
-            this.InvoiceToolStrip.Size = new System.Drawing.Size(332, 25);
+            this.InvoiceToolStrip.Size = new System.Drawing.Size(210, 25);
             this.InvoiceToolStrip.TabIndex = 5;
             this.InvoiceToolStrip.Text = "toolStrip4";
             // 
@@ -336,18 +338,19 @@
             // SupInvoiceCostDgv
             // 
             this.SupInvoiceCostDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SupInvoiceCostDgv.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SupInvoiceCostDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupInvoiceCostDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupInvoiceCostDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupInvoiceCostDgv.Location = new System.Drawing.Point(0, 0);
             this.SupInvoiceCostDgv.Name = "SupInvoiceCostDgv";
             this.SupInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(570, 214);
+            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(270, 131);
             this.SupInvoiceCostDgv.TabIndex = 4;
             this.SupInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
             // CostToolStrip
             // 
+            this.CostToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.CostToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.CostToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft3,
@@ -355,9 +358,9 @@
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.CostToolStrip.Location = new System.Drawing.Point(0, 214);
+            this.CostToolStrip.Location = new System.Drawing.Point(0, 131);
             this.CostToolStrip.Name = "CostToolStrip";
-            this.CostToolStrip.Size = new System.Drawing.Size(570, 25);
+            this.CostToolStrip.Size = new System.Drawing.Size(270, 25);
             this.CostToolStrip.TabIndex = 6;
             this.CostToolStrip.Text = "toolStrip3";
             // 
@@ -410,14 +413,14 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.flowLayoutPanel1.Controls.Add(this.searchSupplier1);
             this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoice1);
             this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoiceCost1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 23);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 628);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(228, 388);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchSupplier1
@@ -443,37 +446,41 @@
             // 
             // SearchPanel
             // 
-            this.SearchPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.SearchPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SearchPanel.Controls.Add(this.button1);
             this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.SearchPanel.Location = new System.Drawing.Point(0, 651);
+            this.SearchPanel.Location = new System.Drawing.Point(0, 411);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(226, 50);
+            this.SearchPanel.Size = new System.Drawing.Size(228, 50);
             this.SearchPanel.TabIndex = 5;
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.button1.Location = new System.Drawing.Point(45, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 43);
             this.button1.TabIndex = 0;
             this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel1.Controls.Add(this.DockButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(226, 23);
+            this.panel1.Size = new System.Drawing.Size(228, 23);
             this.panel1.TabIndex = 4;
             // 
             // DockButton
             // 
             this.DockButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DockButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DockButton.Location = new System.Drawing.Point(0, 0);
             this.DockButton.Name = "DockButton";
             this.DockButton.Size = new System.Drawing.Size(23, 23);
@@ -484,11 +491,11 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(68, 701);
+            this.panel3.Size = new System.Drawing.Size(68, 461);
             this.panel3.TabIndex = 0;
             // 
             // SupplierCtxStrip
@@ -690,8 +697,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 701);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.LeftPane);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SupplierFinalForm";
             this.Text = "SupplierFinalForm";
             this.Load += new System.EventHandler(this.SupplierFinalForm_Load);
