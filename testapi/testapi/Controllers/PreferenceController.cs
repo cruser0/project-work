@@ -208,12 +208,32 @@ namespace API.Controllers
         }
 
         [HttpPost("add-user-favourite-page/{id}")]
-        public IActionResult AddUserFavouritePage([FromBody] List<string> value,int userID)
+        public IActionResult AddUserFavouritePage([FromBody] List<string> value,int id)
         {
             try
             {
-                _userService.AddFavouritePagesToUser(value, userID);
+                if (!value.Any())
+                {
+                    return BadRequest("Page list was empty")
+                }
+                _userService.AddFavouritePagesToUser(value, id);
                 return Ok("Favourite Page added to user Successfully");
+
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
+        [HttpDelete("remove-user-favourite-page/{id}")]
+        public IActionResult RemoveUserFavouritePage([FromBody] List<string> value,int id)
+        {
+            try
+            {
+                if (!value.Any())
+                {
+                    return BadRequest("Page list was empty")
+                }
+                _userService.RemoveFavouritePagesToUser(value, id);
+                return Ok("Favourite Page Removed to user Successfully");
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
