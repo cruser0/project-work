@@ -19,7 +19,7 @@ namespace Winform
             BaseUri = "http://localhost:5069/api/";
             _serviceToken.RefreshToken();
             Client = new HttpClient { BaseAddress = new Uri(BaseUri) };
-            Client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+            Client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Uri.EscapeDataString(token));
         }
 
         public string GetBaseUri() => BaseUri;

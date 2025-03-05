@@ -75,12 +75,12 @@
             this.CustomerGroupTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierGroupTS = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripTopMenu = new System.Windows.Forms.ToolStrip();
+            this.TS = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.Logout = new System.Windows.Forms.ToolStripButton();
-            this.UserBtnTS = new System.Windows.Forms.ToolStripButton();
+            this.UserProfile = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -91,14 +91,14 @@
             this.Create.SuspendLayout();
             this.GroupTP.SuspendLayout();
             this.Group.SuspendLayout();
-            this.ToolStripTopMenu.SuspendLayout();
+            this.TS.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.Controls.Add(this.tabControl);
-            this.panel1.Controls.Add(this.ToolStripTopMenu);
+            this.panel1.Controls.Add(this.TS);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -596,20 +596,20 @@
             this.SupplierGroupTS.Text = "Supplier";
             this.SupplierGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // ToolStripTopMenu
+            // TS
             // 
-            this.ToolStripTopMenu.AutoSize = false;
-            this.ToolStripTopMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TS.AutoSize = false;
+            this.TS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
             this.Logout,
-            this.UserBtnTS});
-            this.ToolStripTopMenu.Location = new System.Drawing.Point(0, 0);
-            this.ToolStripTopMenu.Name = "ToolStripTopMenu";
-            this.ToolStripTopMenu.Size = new System.Drawing.Size(1159, 25);
-            this.ToolStripTopMenu.TabIndex = 0;
-            this.ToolStripTopMenu.Text = "toolStrip1";
+            this.UserProfile});
+            this.TS.Location = new System.Drawing.Point(0, 0);
+            this.TS.Name = "TS";
+            this.TS.Size = new System.Drawing.Size(1159, 25);
+            this.TS.TabIndex = 0;
+            this.TS.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
@@ -651,16 +651,16 @@
             this.Logout.Text = "Logout";
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
-            // UserBtnTS
+            // UserProfile
             // 
-            this.UserBtnTS.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.UserBtnTS.Image = global::Winform.Properties.Resources.User_Icon;
-            this.UserBtnTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UserBtnTS.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
-            this.UserBtnTS.Name = "UserBtnTS";
-            this.UserBtnTS.Size = new System.Drawing.Size(114, 22);
-            this.UserBtnTS.Text = "toolStripButton4";
-            this.UserBtnTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            this.UserProfile.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.UserProfile.Image = global::Winform.Properties.Resources.User_Icon;
+            this.UserProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UserProfile.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.UserProfile.Name = "UserProfile";
+            this.UserProfile.Size = new System.Drawing.Size(114, 22);
+            this.UserProfile.Text = "toolStripButton4";
+            this.UserProfile.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // MainForm
             // 
@@ -689,8 +689,8 @@
             this.GroupTP.ResumeLayout(false);
             this.Group.ResumeLayout(false);
             this.Group.PerformLayout();
-            this.ToolStripTopMenu.ResumeLayout(false);
-            this.ToolStripTopMenu.PerformLayout();
+            this.TS.ResumeLayout(false);
+            this.TS.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -731,7 +731,7 @@
         private ToolStripButton CustomerGroupTS;
         private ToolStripSeparator toolStripSeparator12;
         private ToolStripButton SupplierGroupTS;
-        private ToolStrip ToolStripTopMenu;
+        private ToolStrip TS;
         private ToolStripButton toolStripButton1;
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
@@ -747,7 +747,7 @@
         private ToolStripButton SaleCreateTS;
         private ToolStripSeparator toolStripSeparator9;
         private ToolStripButton UserCreateTS;
-        private ToolStripButton UserBtnTS;
+        private ToolStripButton UserProfile;
         private Panel panel2;
         private ToolStripButton Logout;
     }

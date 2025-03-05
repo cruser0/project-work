@@ -206,7 +206,7 @@ namespace API.Models
                 entity.Property(e => e.ShowBKNumber)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
-                entity.Property(e => e.ShowBoLNumber)
+                entity.Property(e => e.ShowBoL)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
                 entity.Property(e => e.ShowDate)
@@ -397,7 +397,7 @@ namespace API.Models
                 entity.Property(e => e.ShowInvoiceAmount)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
-                entity.Property(e => e.ShowDate)
+                entity.Property(e => e.ShowInvoiceDate)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
                 entity.Property(e => e.ShowStatus)
@@ -409,7 +409,7 @@ namespace API.Models
                 entity.Property(e => e.ShowSupplierName)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
-                entity.Property(e => e.ShowSupplierCountry)
+                entity.Property(e => e.ShowCountry)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
 

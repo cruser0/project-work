@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.Preference;
 using Winform.Services;
 
 namespace Winform.Forms
@@ -20,10 +21,11 @@ namespace Winform.Forms
                 "SupplierAdmin",
                 "Admin"
             };
+        UserService _userService;
         public SupplierGridForm()
         {
             _supplierService = new SupplierService();
-
+            _userService=new UserService();
             InitializeComponent();
             pages = (int)Math.Ceiling(_supplierService.Count(new SupplierFilter()) / itemsPage);
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
@@ -45,6 +47,8 @@ namespace Winform.Forms
         }
         public SupplierGridForm(CreateSupplierInvoicesForm father)
         {
+            _userService = new UserService();
+
             _father = father;
             _supplierService = new SupplierService();
             InitializeComponent();
@@ -123,10 +127,26 @@ namespace Winform.Forms
 
             if (!PaginationUserControl.Visible)
             {
-                SupplierDgv.Columns["SupplierID"].Visible = false;
-                SupplierDgv.Columns["OriginalID"].Visible = false;
-                PaginationUserControl.Visible = true;
+                SetCheckBoxes();
             }
+        }
+
+        private void SetCheckBoxes()
+        {
+            SupplierDGV cdgv = _userService.GetSupplierDGV();
+            SupplierCountryTsmi.Checked = cdgv.ShowCountry;
+            SupplierDateTsmi.Checked = cdgv.ShowDate;
+            SupplierIDTsmi.Checked = cdgv.ShowID;
+            SupplierStatusTsmi.Checked = cdgv.ShowStatus;
+            SupplierOriginalIDTsmi.Checked = cdgv.ShowOriginalID;
+            SupplierNameTsmi.Checked = cdgv.ShowName;
+            SupplierDgv.Columns["SupplierName"].Visible = cdgv.ShowName;
+            SupplierDgv.Columns["Country"].Visible = cdgv.ShowCountry;
+            SupplierDgv.Columns["CreatedAt"].Visible = cdgv.ShowDate;
+            SupplierDgv.Columns["OriginalID"].Visible = cdgv.ShowOriginalID;
+            SupplierDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
+            SupplierDgv.Columns["SupplierID"].Visible = SupplierIDTsmi.Checked;
+            PaginationUserControl.Visible = true;
         }
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -240,6 +260,17 @@ namespace Winform.Forms
                     default:
                         break;
                 }
+                SupplierDGV cdgv = new SupplierDGV
+                {
+                    ShowDate = SupplierDateTsmi.Checked,
+                    ShowID = SupplierIDTsmi.Checked,
+                    ShowStatus = SupplierStatusTsmi.Checked,
+                    ShowOriginalID = SupplierOriginalIDTsmi.Checked,
+                    ShowCountry = SupplierCountryTsmi.Checked,
+                    ShowName = SupplierNameTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                _userService.PostSupplierDGV(cdgv);
 
             }
         }
