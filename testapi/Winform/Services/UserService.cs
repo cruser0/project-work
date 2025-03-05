@@ -631,7 +631,7 @@ namespace Winform.Services
             var returnUser = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"register", returnUser).Result;
+            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"preference/create-favourite-page", returnUser).Result;
             if (response.IsSuccessStatusCode)
             {
 
@@ -650,7 +650,25 @@ namespace Winform.Services
             var returnUser = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"add-user-favourite-page/{UserAccessInfo.RefreshUserID}", returnUser).Result;
+            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"preference/add-user-favourite-page/{UserAccessInfo.RefreshUserID}", returnUser).Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+                return json;
+
+            }
+            string errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"Error during the registration of the User: {errorMessage}");
+        }
+        public string RemoveUserFavouritePage(List<string> value)
+        {
+            string jsonContent = JsonSerializer.Serialize(value);
+            var returnUser = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            ClientAPI client = new ClientAPI();
+            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"preference/remove-user-favourite-page/{UserAccessInfo.RefreshUserID}", returnUser).Result;
             if (response.IsSuccessStatusCode)
             {
 

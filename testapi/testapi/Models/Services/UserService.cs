@@ -597,7 +597,16 @@ namespace API.Models.Services
         }
         public void RemoveFavouritePagesToUser(List<string> pageName, int userID)
         {
-
+            FavouritePages fp;
+            User user = GetUserByID(userID);
+            foreach (string page in pageName)
+            {
+                fp = GetFavouritePages(page);
+                UserFavouritePage ufp= _context.UserFavouritePage.Where(x => x.UserID == user.UserID).Where(x => x.FavouritePageID == fp.FavouritePageID).FirstOrDefault();
+                if(ufp != null)
+                    _context.UserFavouritePage.Remove(ufp);
+            }
+            _context.SaveChanges();
         }
     }
 }
