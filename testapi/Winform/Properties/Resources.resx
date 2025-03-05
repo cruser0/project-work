@@ -118,20 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Invoice_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Invoice_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="eye_r" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\eye_r.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="single_left_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\single_left_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="double_left_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\double_left_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="single_right_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\single_right_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="star_yellow-removebg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\star_yellow-removebg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sale_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Sale_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="single_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\single_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="star_yellow25x25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\star_yellow25x25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Supplier_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Supplier_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="double_left_resize1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\double_left_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,22 +142,34 @@
   <data name="User_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\User_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="double_left_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\double_left_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Invoice_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Invoice_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Supplier_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Supplier_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cropped-logo-removebg-preview_50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cropped-logo-removebg-preview_50x50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eye_r" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\eye_r.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="star25x25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\star25x25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="double_right_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\double_right_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="single_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\single_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eye_ri" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\eye_ri.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cropped-logo-removebg-preview_50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cropped-logo-removebg-preview_50x50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="star" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\star.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="double_right_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\double_right_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="single_right_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\single_right_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="single_left_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\single_left_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="star25x251" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\star25x25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

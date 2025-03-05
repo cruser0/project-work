@@ -38,6 +38,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.FavouriteBTN = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,6 +100,8 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.FavouriteBTN);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.SaveBtn);
             this.panel1.Controls.Add(this.label2);
@@ -153,6 +157,28 @@
             this.panel5.Size = new System.Drawing.Size(20, 421);
             this.panel5.TabIndex = 9;
             // 
+            // FavouriteBTN
+            // 
+            this.FavouriteBTN.FlatAppearance.BorderSize = 0;
+            this.FavouriteBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FavouriteBTN.Image = global::Winform.Properties.Resources.star25x251;
+            this.FavouriteBTN.Location = new System.Drawing.Point(604, 5);
+            this.FavouriteBTN.Name = "FavouriteBTN";
+            this.FavouriteBTN.Size = new System.Drawing.Size(31, 28);
+            this.FavouriteBTN.TabIndex = 5;
+            this.FavouriteBTN.UseVisualStyleBackColor = true;
+            this.FavouriteBTN.Click += new System.EventHandler(this.Favourite_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(641, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Add To Favourite";
+            // 
             // CreateCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -184,5 +210,7 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private Label label3;
+        private Button FavouriteBTN;
     }
 }
