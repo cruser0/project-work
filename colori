@@ -1,0 +1,21 @@
+Palette di colori per app WinForms gestionale (neutri/freddi)
+Colori principali:
+Sfondo principale: #F4F5F7
+Sfondo secondario: #D6DAE2
+Contrasto: #AEB4C2
+Testo principale: #303845
+Testo secondario/disattivato: #7C8493
+Accent: #5A7CA6
+Highlight: #98B4D4
+Colori per stati di sistema:
+Successo: #5B9E8F
+Errore: #B24C63
+Avviso: #C4A86B
+Colori per i bottoni:
+Bottoni primari (sfondo): #5A7CA6
+Testo su bottoni primari: #F4F5F7
+Bottoni secondari: #D6DAE2
+Testo su bottoni secondari: #303845
+Bottoni disattivati: #AEB4C2
+Font consigliato (nativo in Windows):
+Segoe UI
