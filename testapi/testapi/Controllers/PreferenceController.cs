@@ -214,7 +214,7 @@ namespace API.Controllers
             {
                 if (!value.Any())
                 {
-                    return BadRequest("Page list was empty")
+                    return BadRequest("Page list was empty");
                 }
                 _userService.AddFavouritePagesToUser(value, id);
                 return Ok("Favourite Page added to user Successfully");
@@ -230,7 +230,7 @@ namespace API.Controllers
             {
                 if (!value.Any())
                 {
-                    return BadRequest("Page list was empty")
+                    return BadRequest("Page list was empty");
                 }
                 _userService.RemoveFavouritePagesToUser(value, id);
                 return Ok("Favourite Page Removed to user Successfully");
