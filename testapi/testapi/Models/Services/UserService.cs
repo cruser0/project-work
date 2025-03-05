@@ -595,5 +595,9 @@ namespace API.Models.Services
             }
             _context.SaveChanges();
         }
+        public void RemoveFavouritePagesToUser(List<string> pageName, int userID)
+        {
+
+        }
     }
 }
