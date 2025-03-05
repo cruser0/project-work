@@ -89,7 +89,7 @@
             // 
             // leftSideBaruSerControl1
             // 
-            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.DarkGray;
+            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";

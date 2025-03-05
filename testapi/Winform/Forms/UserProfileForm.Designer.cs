@@ -93,6 +93,7 @@
             // FlowPanelRoles
             // 
             this.FlowPanelRoles.AutoScroll = true;
+            this.FlowPanelRoles.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.FlowPanelRoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowPanelRoles.Location = new System.Drawing.Point(0, 111);
             this.FlowPanelRoles.Name = "FlowPanelRoles";
@@ -101,6 +102,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel3.Controls.Add(this.RoleLbl);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;

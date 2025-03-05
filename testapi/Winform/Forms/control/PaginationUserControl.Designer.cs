@@ -39,7 +39,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel1.Controls.Add(this.PageNumber);
             this.panel1.Controls.Add(this.DoubleRightArrow);
             this.panel1.Controls.Add(this.SingleRightArrow);
@@ -54,6 +54,7 @@
             // PageNumber
             // 
             this.PageNumber.AutoSize = true;
+            this.PageNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.PageNumber.Location = new System.Drawing.Point(132, 16);
             this.PageNumber.Name = "PageNumber";
             this.PageNumber.Size = new System.Drawing.Size(38, 15);
@@ -64,6 +65,7 @@
             // 
             this.DoubleRightArrow.FlatAppearance.BorderSize = 0;
             this.DoubleRightArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DoubleRightArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DoubleRightArrow.Image = global::Winform.Properties.Resources.double_right_resize;
             this.DoubleRightArrow.Location = new System.Drawing.Point(273, 3);
             this.DoubleRightArrow.Name = "DoubleRightArrow";
@@ -76,6 +78,7 @@
             // 
             this.SingleRightArrow.FlatAppearance.BorderSize = 0;
             this.SingleRightArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SingleRightArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SingleRightArrow.Image = global::Winform.Properties.Resources.single_right_resize;
             this.SingleRightArrow.Location = new System.Drawing.Point(227, 3);
             this.SingleRightArrow.Name = "SingleRightArrow";
@@ -88,6 +91,7 @@
             // 
             this.SingleLeftArrow.FlatAppearance.BorderSize = 0;
             this.SingleLeftArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SingleLeftArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SingleLeftArrow.Image = global::Winform.Properties.Resources.single_left_resize;
             this.SingleLeftArrow.Location = new System.Drawing.Point(49, 3);
             this.SingleLeftArrow.Name = "SingleLeftArrow";
@@ -100,6 +104,7 @@
             // 
             this.DoubleLeftArrow.FlatAppearance.BorderSize = 0;
             this.DoubleLeftArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DoubleLeftArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DoubleLeftArrow.Image = global::Winform.Properties.Resources.double_left_resize1;
             this.DoubleLeftArrow.Location = new System.Drawing.Point(3, 3);
             this.DoubleLeftArrow.Name = "DoubleLeftArrow";

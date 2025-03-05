@@ -78,7 +78,7 @@
             // 
             // LeftPanel
             // 
-            this.LeftPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.LeftPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftPanel.Name = "LeftPanel";

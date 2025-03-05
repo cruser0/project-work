@@ -60,6 +60,7 @@
             this.SupplierInvoiceSupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceSupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
@@ -67,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).BeginInit();
             this.BottomPanel.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -271,7 +273,7 @@
             // SupplierInvoiceDgv
             // 
             this.SupplierInvoiceDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SupplierInvoiceDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.SupplierInvoiceDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.SupplierInvoiceDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupplierInvoiceDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupplierInvoiceDgv.Location = new System.Drawing.Point(0, 0);
@@ -286,7 +288,7 @@
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.Color.DarkGray;
-            this.BottomPanel.Controls.Add(this.PaginationUserControl);
+            this.BottomPanel.Controls.Add(this.panel2);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 547);
             this.BottomPanel.Name = "BottomPanel";
@@ -297,7 +299,7 @@
             // 
             this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(153, 24);
+            this.PaginationUserControl.Location = new System.Drawing.Point(35, 28);
             this.PaginationUserControl.Name = "PaginationUserControl";
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
@@ -392,6 +394,14 @@
             this.SupplierInvoiceCountryTsmi.Text = "Show Supplier Country";
             this.SupplierInvoiceCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.PaginationUserControl);
+            this.panel2.Location = new System.Drawing.Point(87, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(407, 100);
+            this.panel2.TabIndex = 1;
+            // 
             // SupplierInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -413,6 +423,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).EndInit();
             this.BottomPanel.ResumeLayout(false);
             this.RightClickDgv.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -449,5 +460,6 @@
         private control.IntegerTextBoxUserControl InvoiceAmountFromTxt;
         private Label label2;
         private Label label3;
+        private Panel panel2;
     }
 }

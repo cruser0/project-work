@@ -89,7 +89,7 @@
             // 
             // leftSideBar
             // 
-            this.leftSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.leftSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.leftSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBar.Location = new System.Drawing.Point(0, 0);
             this.leftSideBar.Name = "leftSideBar";

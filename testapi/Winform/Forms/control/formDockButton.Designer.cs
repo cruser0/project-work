@@ -36,12 +36,15 @@
             // 
             // buttonShowForm
             // 
+            this.buttonShowForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.buttonShowForm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.buttonShowForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.buttonShowForm.Location = new System.Drawing.Point(5, 5);
             this.buttonShowForm.Name = "buttonShowForm";
             this.buttonShowForm.Size = new System.Drawing.Size(160, 25);
             this.buttonShowForm.TabIndex = 0;
             this.buttonShowForm.Text = "button1";
-            this.buttonShowForm.UseVisualStyleBackColor = true;
+            this.buttonShowForm.UseVisualStyleBackColor = false;
             this.buttonShowForm.Click += new System.EventHandler(this.buttonShowForm_Click);
             // 
             // panel1
@@ -56,13 +59,16 @@
             // 
             // buttonCloseForm
             // 
+            this.buttonCloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.buttonCloseForm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
             this.buttonCloseForm.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonCloseForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.buttonCloseForm.Location = new System.Drawing.Point(170, 5);
             this.buttonCloseForm.Name = "buttonCloseForm";
             this.buttonCloseForm.Size = new System.Drawing.Size(25, 25);
             this.buttonCloseForm.TabIndex = 1;
             this.buttonCloseForm.Text = "X";
-            this.buttonCloseForm.UseVisualStyleBackColor = true;
+            this.buttonCloseForm.UseVisualStyleBackColor = false;
             this.buttonCloseForm.Click += new System.EventHandler(this.buttonCloseForm_Click);
             // 
             // formDockButton

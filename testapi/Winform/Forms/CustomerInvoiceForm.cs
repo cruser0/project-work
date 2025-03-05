@@ -10,6 +10,7 @@ namespace Winform.Forms
         {
 
             InitializeComponent();
+            LeftPanel.BackColor = Color.FromArgb(214, 218, 226);
         }
         public override void CenterDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
