@@ -46,11 +46,11 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.userDgv = new System.Windows.Forms.DataGridView();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CustomerIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserLastNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserEmailTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserrRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -246,61 +246,61 @@
             // RightClickDgv
             // 
             this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CustomerIDTsmi,
-            this.CustomerNameTsmi,
-            this.CustomerCountryTsmi,
-            this.CustomerDateTsmi,
-            this.CustomerStatusTsmi});
+            this.UserIDTsmi,
+            this.UserNameTsmi,
+            this.UserLastNameTsmi,
+            this.UserEmailTsmi,
+            this.UserrRoleTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(163, 114);
+            this.RightClickDgv.Size = new System.Drawing.Size(181, 136);
             // 
-            // CustomerIDTsmi
+            // UserIDTsmi
             // 
-            this.CustomerIDTsmi.CheckOnClick = true;
-            this.CustomerIDTsmi.Name = "CustomerIDTsmi";
-            this.CustomerIDTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerIDTsmi.Text = "Show ID";
-            this.CustomerIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.UserIDTsmi.CheckOnClick = true;
+            this.UserIDTsmi.Name = "UserIDTsmi";
+            this.UserIDTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserIDTsmi.Text = "Show ID";
+            this.UserIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerNameTsmi
+            // UserNameTsmi
             // 
-            this.CustomerNameTsmi.Checked = true;
-            this.CustomerNameTsmi.CheckOnClick = true;
-            this.CustomerNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerNameTsmi.Name = "CustomerNameTsmi";
-            this.CustomerNameTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerNameTsmi.Text = "Show Name";
-            this.CustomerNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.UserNameTsmi.Checked = true;
+            this.UserNameTsmi.CheckOnClick = true;
+            this.UserNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UserNameTsmi.Name = "UserNameTsmi";
+            this.UserNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserNameTsmi.Text = "Show Name";
+            this.UserNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerCountryTsmi
+            // UserLastNameTsmi
             // 
-            this.CustomerCountryTsmi.Checked = true;
-            this.CustomerCountryTsmi.CheckOnClick = true;
-            this.CustomerCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerCountryTsmi.Name = "CustomerCountryTsmi";
-            this.CustomerCountryTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerCountryTsmi.Text = "Show Last Name";
-            this.CustomerCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.UserLastNameTsmi.Checked = true;
+            this.UserLastNameTsmi.CheckOnClick = true;
+            this.UserLastNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UserLastNameTsmi.Name = "UserLastNameTsmi";
+            this.UserLastNameTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserLastNameTsmi.Text = "Show Last Name";
+            this.UserLastNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerDateTsmi
+            // UserEmailTsmi
             // 
-            this.CustomerDateTsmi.Checked = true;
-            this.CustomerDateTsmi.CheckOnClick = true;
-            this.CustomerDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerDateTsmi.Name = "CustomerDateTsmi";
-            this.CustomerDateTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerDateTsmi.Text = "Show Email";
-            this.CustomerDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.UserEmailTsmi.Checked = true;
+            this.UserEmailTsmi.CheckOnClick = true;
+            this.UserEmailTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UserEmailTsmi.Name = "UserEmailTsmi";
+            this.UserEmailTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserEmailTsmi.Text = "Show Email";
+            this.UserEmailTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerStatusTsmi
+            // UserrRoleTsmi
             // 
-            this.CustomerStatusTsmi.Checked = true;
-            this.CustomerStatusTsmi.CheckOnClick = true;
-            this.CustomerStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerStatusTsmi.Name = "CustomerStatusTsmi";
-            this.CustomerStatusTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerStatusTsmi.Text = "Show Roles";
-            this.CustomerStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.UserrRoleTsmi.Checked = true;
+            this.UserrRoleTsmi.CheckOnClick = true;
+            this.UserrRoleTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UserrRoleTsmi.Name = "UserrRoleTsmi";
+            this.UserrRoleTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserrRoleTsmi.Text = "Show Roles";
+            this.UserrRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // UserGridForm
             // 
@@ -344,11 +344,11 @@
         private control.PaginationUserControl paginationControl;
         private DataGridView userDgv;
         private ContextMenuStrip RightClickDgv;
-        private ToolStripMenuItem CustomerIDTsmi;
-        private ToolStripMenuItem CustomerNameTsmi;
-        private ToolStripMenuItem CustomerCountryTsmi;
-        private ToolStripMenuItem CustomerDateTsmi;
-        private ToolStripMenuItem CustomerStatusTsmi;
+        private ToolStripMenuItem UserIDTsmi;
+        private ToolStripMenuItem UserNameTsmi;
+        private ToolStripMenuItem UserLastNameTsmi;
+        private ToolStripMenuItem UserEmailTsmi;
+        private ToolStripMenuItem UserrRoleTsmi;
         public Panel panel3;
     }
 }

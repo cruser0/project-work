@@ -21,7 +21,7 @@ namespace Winform
             tabControl.TabPages.Remove(AddTP);
             tabControl.TabPages.Remove(GroupTP);
             SetAuthorizations();
-            UserBtnTS.Text = "Hello " + UserAccessInfo.Name;
+            UserProfile.Text = "Hello " + UserAccessInfo.Name;
         }
 
         private void CreateDockPanel()
@@ -154,7 +154,7 @@ namespace Winform
             // Create a new form if it doesn't exist already
             Form child = formName switch
             {
-                "ToolStripTopMenu UserBtnTS" => new UserProfileForm(),
+                "TS UserProfile" => new UserProfileForm(),
 
                 "Show Customer" => new CustomerForm(),
                 "Show Customer Invoice" => new CustomerInvoiceForm(),

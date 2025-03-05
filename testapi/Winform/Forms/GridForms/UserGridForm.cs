@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities.DTO;
+using Winform.Entities.Preference;
 using Winform.Services;
 
 namespace Winform.Forms.GridForms
@@ -52,7 +53,7 @@ namespace Winform.Forms.GridForms
             paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
             userDgv.ContextMenuStrip = RightClickDgv;
             if(!Authorize(authRoles))
-                CustomerIDTsmi.Visible= false;
+                UserIDTsmi.Visible= false;
         }
 
         private bool Authorize(List<string> allowedRoles)
@@ -129,15 +130,24 @@ namespace Winform.Forms.GridForms
             // Imposta la visibilità e le colonne della DataGridView
             if (!paginationControl.Visible)
             {
-                if (userDgv.Columns.Contains("UserID"))
-                {
-                    userDgv.Columns["UserID"].Visible = false;
-                    userDgv.Columns["RolesAsString"].Visible = false;
-                }
-                paginationControl.Visible = true;
+                SetCheckBoxes();
             }
         }
-
+        private void SetCheckBoxes()
+        {
+            UserDGV cdgv = _userService.GetUserDGV();
+            UserIDTsmi.Checked = cdgv.ShowID;
+            UserNameTsmi.Checked = cdgv.ShowName;
+            UserLastNameTsmi.Checked = cdgv.ShowLastName;
+            UserEmailTsmi.Checked= cdgv.ShowEmail;
+            UserrRoleTsmi.Checked = cdgv.ShowRoles;
+            paginationControl.Visible = true;
+            userDgv.Columns["UserID"].Visible = cdgv.ShowID;
+            userDgv.Columns["Name"].Visible = cdgv.ShowName;
+            userDgv.Columns["LastName"].Visible = cdgv.ShowLastName;
+            userDgv.Columns["Email"].Visible = cdgv.ShowEmail;
+            userDgv.Columns["Roles"].Visible = cdgv.ShowRoles;
+        }
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
 
@@ -232,24 +242,34 @@ namespace Winform.Forms.GridForms
                 string name = tsmi.Name;
                 switch (name)
                 {
-                    case "CustomerIDTsmi":
+                    case "UserIDTsmi":
                         userDgv.Columns["UserID"].Visible = tsmi.Checked;
                         break;
-                    case "CustomerNameTsmi":
+                    case "UserNameTsmi":
                         userDgv.Columns["Name"].Visible = tsmi.Checked;
                         break;
-                    case "CustomerCountryTsmi":
+                    case "UserLastNameTsmi":
                         userDgv.Columns["LastName"].Visible = tsmi.Checked;
                         break;
-                    case "CustomerDateTsmi":
+                    case "UserEmailTsmi":
                         userDgv.Columns["Email"].Visible = tsmi.Checked;
                         break;
-                    case "CustomerStatusTsmi":
-                        userDgv.Columns["Roles"].Visible = tsmi.Checked;
+                    case "UserRoleTsmi":
+                        userDgv.Columns["RoleAsString"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;
                 }
+                UserDGV cdgv = new UserDGV
+                {
+                    ShowID=UserIDTsmi.Checked,
+                    ShowLastName=UserLastNameTsmi.Checked,
+                    ShowEmail=UserEmailTsmi.Checked,
+                    ShowRoles=UserrRoleTsmi.Checked,
+                    ShowName = UserNameTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                _userService.PostUserDGV(cdgv);
 
             }
         }

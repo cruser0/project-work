@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.Preference;
 using Winform.Services;
 
 namespace Winform.Forms.GridForms
@@ -18,11 +19,12 @@ namespace Winform.Forms.GridForms
                 "CustomerInvoiceCostAdmin",
                 "Admin"
             };
+        UserService _userService;
         public CustomerInvoiceCostGridForm()
         {
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             pages = (int)Math.Ceiling(_customerInvoiceCostService.Count(new CustomerInvoiceCostFilter()) / itemsPage);
-
+            _userService= new UserService();
 
             InitializeComponent();
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
@@ -87,9 +89,24 @@ namespace Winform.Forms.GridForms
             CustomerInvoiceCostDgv.DataSource = query.ToList();
             if (!PaginationUserControl.Visible)
             {
-                PaginationUserControl.Visible = true;
-                CustomerInvoiceCostDgv.Columns["CustomerInvoiceCostsID"].Visible = false;
+                SetCheckBoxes();
             }
+
+        }
+        private void SetCheckBoxes()
+        {
+            CustomerInvoiceCostDGV cdgv = _userService.GetCustomerInvoiceCostDGV();
+            CustomerInvoiceCostCostTsmi.Checked = cdgv.ShowCost;
+            CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked = cdgv.ShowInvoiceID;
+            CustomerInvoiceCostIDTsmi.Checked = cdgv.ShowID;
+            CustomerInvoiceCostNameTsmi.Checked = cdgv.ShowName;
+            CustomerInvoiceCostQuantityTsmi.Checked = cdgv.ShowQuantity;
+            CustomerInvoiceCostDgv.Columns["CustomerInvoiceCostsID"].Visible = cdgv.ShowID;
+            CustomerInvoiceCostDgv.Columns["CustomerInvoiceID"].Visible = cdgv.ShowInvoiceID;
+            CustomerInvoiceCostDgv.Columns["Cost"].Visible = cdgv.ShowCost;
+            CustomerInvoiceCostDgv.Columns["Quantity"].Visible = cdgv.ShowQuantity;
+            CustomerInvoiceCostDgv.Columns["Name"].Visible = cdgv.ShowName;
+            PaginationUserControl.Visible = true;
 
         }
 
@@ -190,6 +207,16 @@ namespace Winform.Forms.GridForms
                     default:
                         break;
                 }
+                CustomerInvoiceCostDGV cdgv = new CustomerInvoiceCostDGV
+                {
+                    ShowCost=CustomerInvoiceCostCostTsmi.Checked,
+                    ShowQuantity=CustomerInvoiceCostQuantityTsmi.Checked,
+                    ShowName=CustomerInvoiceCostNameTsmi.Checked,
+                    ShowID=CustomerInvoiceCostIDTsmi.Checked,
+                    ShowInvoiceID=CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                _userService.PostCustomerInvoiceCostDGV(cdgv);
 
             }
         }

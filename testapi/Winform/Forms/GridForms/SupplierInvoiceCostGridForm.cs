@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.Preference;
 using Winform.Services;
 
 namespace Winform.Forms.CreateWindow
@@ -19,8 +20,10 @@ namespace Winform.Forms.CreateWindow
                 "SupplierInvoiceCostAdmin",
                 "Admin"
             };
+        UserService _userService;
         public SupplierInvoiceCostGridForm()
         {
+            _userService = new UserService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
             pages = (int)Math.Ceiling(_supplierInvoiceCostService.Count(new SupplierInvoiceCostFilter()) / itemsPage);
 
@@ -87,9 +90,24 @@ namespace Winform.Forms.CreateWindow
             SupplierInvoiceCostDgv.DataSource = query.ToList();
             if (!PaginationUserControl.Visible)
             {
-                PaginationUserControl.Visible = true;
-                SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = false;
+                SetCheckBoxes();
             }
+
+        }
+        private void SetCheckBoxes()
+        {
+            SupplierInvoiceCostDGV cdgv = _userService.GetSupplierInvoiceCostDGV();
+            SupplierInvoiceCostCostTsmi.Checked = cdgv.ShowCost;
+            SupplierInvoiceCostSupplierInvoiceIDTsmi.Checked = cdgv.ShowSupplierInvoiceID;
+            SupplierInvoiceCostIDTsmi.Checked = cdgv.ShowID;
+            SupplierInvoiceCostNameTsmi.Checked = cdgv.ShowName;
+            SupplierInvoiceCostQuantityTsmi.Checked = cdgv.ShowQuantity;
+            SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = cdgv.ShowID;
+            SupplierInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = cdgv.ShowSupplierInvoiceID;
+            SupplierInvoiceCostDgv.Columns["Cost"].Visible = cdgv.ShowCost;
+            SupplierInvoiceCostDgv.Columns["Quantity"].Visible = cdgv.ShowQuantity;
+            SupplierInvoiceCostDgv.Columns["Name"].Visible = cdgv.ShowName;
+            PaginationUserControl.Visible = true;
 
         }
 
@@ -191,6 +209,16 @@ namespace Winform.Forms.CreateWindow
                     default:
                         break;
                 }
+                SupplierInvoiceCostDGV cdgv = new SupplierInvoiceCostDGV
+                {
+                    ShowCost = SupplierInvoiceCostCostTsmi.Checked,
+                    ShowQuantity = SupplierInvoiceCostQuantityTsmi.Checked,
+                    ShowName = SupplierInvoiceCostNameTsmi.Checked,
+                    ShowID = SupplierInvoiceCostIDTsmi.Checked,
+                    ShowSupplierInvoiceID = SupplierInvoiceCostSupplierInvoiceIDTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                _userService.PostSupplierInvoiceCostDGV(cdgv);
 
             }
         }
