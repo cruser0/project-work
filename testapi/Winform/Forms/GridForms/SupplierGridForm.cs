@@ -24,38 +24,22 @@ namespace Winform.Forms
         UserService _userService;
         public SupplierGridForm()
         {
-            _supplierService = new SupplierService();
-            _userService=new UserService();
-            InitializeComponent();
-            pages = (int)Math.Ceiling(_supplierService.Count(new SupplierFilter()) / itemsPage);
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-
-            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
-            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
-            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
-            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
-            comboBox1.SelectedIndex = 1;
-
-            PaginationUserControl.Visible = false;
-            PaginationUserControl.SetMaxPage(pages.ToString());
-            PaginationUserControl.CurrentPage = 1;
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-            SupplierDgv.ContextMenuStrip = RightClickDgv;
-            if (!Authorize(authRoles))
-                SupplierIDTsmi.Visible = false;
+            Init();
         }
         public SupplierGridForm(CreateSupplierInvoicesForm father)
         {
-            _userService = new UserService();
-
             _father = father;
+            Init();
+        }
+
+        private void Init()
+        {
             _supplierService = new SupplierService();
+            _userService = new UserService();
             InitializeComponent();
             pages = (int)Math.Ceiling(_supplierService.Count(new SupplierFilter()) / itemsPage);
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
@@ -71,15 +55,13 @@ namespace Winform.Forms
             if (!Authorize(authRoles))
                 SupplierIDTsmi.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {

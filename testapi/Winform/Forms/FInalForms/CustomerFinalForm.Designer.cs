@@ -178,7 +178,7 @@
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
             this.SpliContainerDGV.Size = new System.Drawing.Size(477, 461);
-            this.SpliContainerDGV.SplitterDistance = 178;
+            this.SpliContainerDGV.SplitterDistance = 177;
             this.SpliContainerDGV.TabIndex = 0;
             // 
             // dataGridView1
@@ -190,7 +190,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(477, 153);
+            this.dataGridView1.Size = new System.Drawing.Size(477, 152);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDbClickLoadSale);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -199,13 +199,14 @@
             // 
             this.toolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft,
             this.Left,
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.toolStrip.Location = new System.Drawing.Point(0, 153);
+            this.toolStrip.Location = new System.Drawing.Point(0, 152);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(477, 25);
             this.toolStrip.TabIndex = 2;
@@ -272,7 +273,7 @@
             // SplitContainerDGV2.Panel2
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.splitContainer3);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(477, 279);
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(477, 280);
             this.SplitContainerDGV2.SplitterDistance = 151;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
@@ -294,6 +295,7 @@
             // 
             this.toolStrip2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft2,
             this.Left1,
@@ -367,7 +369,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridView4);
             this.splitContainer3.Panel2.Controls.Add(this.toolStrip4);
-            this.splitContainer3.Size = new System.Drawing.Size(477, 124);
+            this.splitContainer3.Size = new System.Drawing.Size(477, 125);
             this.splitContainer3.SplitterDistance = 199;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -380,7 +382,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(0, 0);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(199, 99);
+            this.dataGridView3.Size = new System.Drawing.Size(199, 100);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerInvoiceDBClickLoadCustomerInvoiceCost);
             this.dataGridView3.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -389,13 +391,14 @@
             // 
             this.toolStrip3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft3,
             this.Left3,
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.toolStrip3.Location = new System.Drawing.Point(0, 99);
+            this.toolStrip3.Location = new System.Drawing.Point(0, 100);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(199, 25);
             this.toolStrip3.TabIndex = 2;
@@ -456,7 +459,7 @@
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(274, 99);
+            this.dataGridView4.Size = new System.Drawing.Size(274, 100);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
@@ -464,13 +467,14 @@
             // 
             this.toolStrip4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.toolStrip4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft4,
             this.Left4,
             this.Right4,
             this.DoubleRight5,
             this.TSLbl4});
-            this.toolStrip4.Location = new System.Drawing.Point(0, 99);
+            this.toolStrip4.Location = new System.Drawing.Point(0, 100);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.Size = new System.Drawing.Size(274, 25);
             this.toolStrip4.TabIndex = 2;
@@ -883,6 +887,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.LeftPane);
             this.MinimumSize = new System.Drawing.Size(800, 500);

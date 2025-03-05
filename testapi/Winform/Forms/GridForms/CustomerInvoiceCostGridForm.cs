@@ -14,21 +14,15 @@ namespace Winform.Forms.GridForms
         readonly CustomerInvoiceCostService _customerInvoiceCostService;
         int pages;
         double itemsPage = 10.0;
-        List<string> authRoles = new List<string>
-            {
-                "CustomerInvoiceCostAdmin",
-                "Admin"
-            };
         UserService _userService;
         public CustomerInvoiceCostGridForm()
         {
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             pages = (int)Math.Ceiling(_customerInvoiceCostService.Count(new CustomerInvoiceCostFilter()) / itemsPage);
-            _userService= new UserService();
+            _userService = new UserService();
 
             InitializeComponent();
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
@@ -40,7 +34,7 @@ namespace Winform.Forms.GridForms
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CustomerInvoiceCostDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
-            if (!Authorize(authRoles))
+            if (!UtilityFunctions.IsAuthorized(new[] { "CustomerInvoiceCostAdmin", "Admin" }))
                 CustomerInvoiceCostIDTsmi.Visible = false;
 
         }
@@ -49,10 +43,7 @@ namespace Winform.Forms.GridForms
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
@@ -209,11 +200,11 @@ namespace Winform.Forms.GridForms
                 }
                 CustomerInvoiceCostDGV cdgv = new CustomerInvoiceCostDGV
                 {
-                    ShowCost=CustomerInvoiceCostCostTsmi.Checked,
-                    ShowQuantity=CustomerInvoiceCostQuantityTsmi.Checked,
-                    ShowName=CustomerInvoiceCostNameTsmi.Checked,
-                    ShowID=CustomerInvoiceCostIDTsmi.Checked,
-                    ShowInvoiceID=CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked,
+                    ShowCost = CustomerInvoiceCostCostTsmi.Checked,
+                    ShowQuantity = CustomerInvoiceCostQuantityTsmi.Checked,
+                    ShowName = CustomerInvoiceCostNameTsmi.Checked,
+                    ShowID = CustomerInvoiceCostIDTsmi.Checked,
+                    ShowInvoiceID = CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 _userService.PostCustomerInvoiceCostDGV(cdgv);

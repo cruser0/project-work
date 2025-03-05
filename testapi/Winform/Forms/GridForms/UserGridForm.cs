@@ -17,11 +17,6 @@ namespace Winform.Forms.GridForms
         int pages;
         double itemsPage = 10.0;
 
-        List<string> authRoles = new List<string>
-            {
-                "UserAdmin",
-                "Admin"
-            };
         public UserGridForm()
         {
             _userService = new UserService();
@@ -30,7 +25,6 @@ namespace Winform.Forms.GridForms
 
             InitializeComponent();
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
 
             paginationControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
             paginationControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
@@ -44,21 +38,13 @@ namespace Winform.Forms.GridForms
             }
             rolesListBox.ItemCheck += rolesListBox_ItemCheck;
 
-
-
-
             paginationControl.Visible = false;
             paginationControl.SetMaxPage(pages.ToString());
             paginationControl.CurrentPage = 1;
             paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
             userDgv.ContextMenuStrip = RightClickDgv;
-            if(!Authorize(authRoles))
-                UserIDTsmi.Visible= false;
-        }
-
-        private bool Authorize(List<string> allowedRoles)
-        {
-            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
+            if (!UtilityFunctions.IsAuthorized(new[] { "UserAdmin", "Admin" }))
+                UserIDTsmi.Visible = false;
         }
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
@@ -139,7 +125,7 @@ namespace Winform.Forms.GridForms
             UserIDTsmi.Checked = cdgv.ShowID;
             UserNameTsmi.Checked = cdgv.ShowName;
             UserLastNameTsmi.Checked = cdgv.ShowLastName;
-            UserEmailTsmi.Checked= cdgv.ShowEmail;
+            UserEmailTsmi.Checked = cdgv.ShowEmail;
             UserrRoleTsmi.Checked = cdgv.ShowRoles;
             paginationControl.Visible = true;
             userDgv.Columns["UserID"].Visible = cdgv.ShowID;
@@ -202,10 +188,7 @@ namespace Winform.Forms.GridForms
         }
 
 
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
@@ -262,10 +245,10 @@ namespace Winform.Forms.GridForms
                 }
                 UserDGV cdgv = new UserDGV
                 {
-                    ShowID=UserIDTsmi.Checked,
-                    ShowLastName=UserLastNameTsmi.Checked,
-                    ShowEmail=UserEmailTsmi.Checked,
-                    ShowRoles=UserrRoleTsmi.Checked,
+                    ShowID = UserIDTsmi.Checked,
+                    ShowLastName = UserLastNameTsmi.Checked,
+                    ShowEmail = UserEmailTsmi.Checked,
+                    ShowRoles = UserrRoleTsmi.Checked,
                     ShowName = UserNameTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };

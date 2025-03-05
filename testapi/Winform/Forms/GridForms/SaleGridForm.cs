@@ -21,13 +21,26 @@ namespace Winform.Forms
         double itemsPage = 10.0;
         private SaleService _saleService;
         private Form _father;
-        List<string> authRoles = new List<string>
-            {
-                "SaleAdmin",
-                "Admin"
-            };
+
         UserService _userService;
         public SaleGridForm()
+        {
+            Init();
+        }
+
+
+        public SaleGridForm(CreateSupplierInvoicesForm father)
+        {
+            _father = father;
+            Init();
+        }
+        public SaleGridForm(CreateCustomerInvoiceForm father)
+        {
+            _father = father;
+            Init();
+        }
+
+        private void Init()
         {
             _userService = new UserService();
             _saleService = new SaleService();
@@ -35,7 +48,6 @@ namespace Winform.Forms
             InitializeComponent();
             pages = (int)Math.Ceiling(_saleService.Count(new SaleFilter()) / itemsPage);
             StatusCB.SelectedIndex = 0;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -48,86 +60,11 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SaleDgv.ContextMenuStrip = RightClickDgv;
-            if (!Authorize(authRoles))
+            if (!UtilityFunctions.IsAuthorized(new[] { "SaleAdmin", "Admin" }))
             {
                 SaleCustomerIDTsmi.Visible = false;
                 SaleIDTsmi.Visible = false;
-
             }
-        }
-
-
-        public SaleGridForm(CreateSupplierInvoicesForm father)
-        {
-
-            _userService = new UserService();
-
-            _father = father;
-            _saleService = new SaleService();
-
-            InitializeComponent();
-            pages = (int)Math.Ceiling(_saleService.Count(new SaleFilter()) / itemsPage);
-
-            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
-            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
-            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
-            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
-
-            StatusCB.SelectedIndex = 0;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-
-            PaginationUserControl.Visible = false;
-            PaginationUserControl.SetMaxPage(pages.ToString());
-            PaginationUserControl.CurrentPage = 1;
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-
-            if (!Authorize(authRoles))
-            {
-                SaleCustomerIDTsmi.Visible = false;
-                SaleIDTsmi.Visible = false;
-
-            }
-        }
-        public SaleGridForm(CreateCustomerInvoiceForm father)
-        {
-            _userService = new UserService();
-
-            _father = father;
-            _saleService = new SaleService();
-
-            InitializeComponent();
-            pages = (int)Math.Ceiling(_saleService.Count(new SaleFilter()) / itemsPage);
-
-            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
-            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
-            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
-            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
-
-            StatusCB.SelectedIndex = 0;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-
-            PaginationUserControl.Visible = false;
-            PaginationUserControl.SetMaxPage(pages.ToString());
-            PaginationUserControl.CurrentPage = 1;
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-
-            if (!Authorize(authRoles))
-            {
-                SaleCustomerIDTsmi.Visible = false;
-                SaleIDTsmi.Visible = false;
-
-            }
-        }
-        private bool Authorize(List<string> allowedRoles)
-        {
-            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
-        }
-
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void MyControl_ButtonClicked(object sender, EventArgs e)
@@ -187,7 +124,7 @@ namespace Winform.Forms
             SaleCustomerCountryTsmi.Checked = cdgv.ShowCustomerCountry;
             SaleCustomerNameTsmi.Checked = cdgv.ShowCustomerName;
             SaleBoLNumberTsmi.Checked = cdgv.ShowBoL;
-            SaleCustomerIDTsmi.Checked= cdgv.ShowCustomerID;
+            SaleCustomerIDTsmi.Checked = cdgv.ShowCustomerID;
             SaleTotalRevenueTsmi.Checked = cdgv.ShowTotalRevenue;
             SaleStatusTsmi.Checked = cdgv.ShowStatus;
             SaleDateTsmi.Checked = cdgv.ShowDate;
@@ -335,15 +272,15 @@ namespace Winform.Forms
                 }
                 SaleDGV cdgv = new SaleDGV
                 {
-                    ShowID=SaleIDTsmi.Checked,
-                    ShowDate=SaleDateTsmi.Checked,
-                    ShowStatus=SaleStatusTsmi.Checked,
-                    ShowTotalRevenue=SaleTotalRevenueTsmi.Checked,
-                    ShowCustomerID=SaleCustomerIDTsmi.Checked,
-                    ShowBoL=SaleBoLNumberTsmi.Checked,
-                    ShowBKNumber=SaleBkNumberTsmi.Checked,
-                    ShowCustomerCountry=SaleCustomerCountryTsmi.Checked,
-                    ShowCustomerName=SaleCustomerNameTsmi.Checked,
+                    ShowID = SaleIDTsmi.Checked,
+                    ShowDate = SaleDateTsmi.Checked,
+                    ShowStatus = SaleStatusTsmi.Checked,
+                    ShowTotalRevenue = SaleTotalRevenueTsmi.Checked,
+                    ShowCustomerID = SaleCustomerIDTsmi.Checked,
+                    ShowBoL = SaleBoLNumberTsmi.Checked,
+                    ShowBKNumber = SaleBkNumberTsmi.Checked,
+                    ShowCustomerCountry = SaleCustomerCountryTsmi.Checked,
+                    ShowCustomerName = SaleCustomerNameTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 _userService.PostSaleDGV(cdgv);

@@ -18,44 +18,21 @@ namespace Winform.Forms
         int pages;
         double itemsPage = 10.0;
         Form _father;
-        List<string> authRoles = new List<string>
-            {
-                "CustomerAdmin",
-                "Admin"
-            };
-        private readonly UserService _userService;
+
+        private UserService _userService;
         public CustomerGridForm()
         {
-            _customerService = new CustomerService();
-            _userService = new UserService();
-            pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
-
-
-            InitializeComponent();
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-
-            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
-            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
-            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
-            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
-
-            comboBox1.SelectedIndex = 1;
-            PaginationUserControl.Visible = false;
-            PaginationUserControl.SetMaxPage(pages.ToString());
-            PaginationUserControl.CurrentPage = 1;
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-            CustomerDgv.ContextMenuStrip = RightClickDgv;
-            if (!Authorize(authRoles))
-            {
-                CustomerIDTsmi.Visible = false;
-                CustomerOriginalIDTsmi.Visible = false;
-            }
+            Init();
         }
-        
+
         public CustomerGridForm(CreateSaleForm father)
         {
             _father = father;
+            Init();
+        }
+
+        private void Init()
+        {
             _customerService = new CustomerService();
             _userService = new UserService();
             pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
@@ -63,7 +40,6 @@ namespace Winform.Forms
 
             InitializeComponent();
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
@@ -76,52 +52,51 @@ namespace Winform.Forms
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CustomerDgv.ContextMenuStrip = RightClickDgv;
-            if (!Authorize(authRoles))
+            if (!UtilityFunctions.IsAuthorized(new[] { "CustomerAdmin", "Admin" }))
             {
                 CustomerIDTsmi.Visible = false;
                 CustomerOriginalIDTsmi.Visible = false;
             }
         }
-        private bool Authorize(List<string> allowedRoles)
-        {
-            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
-        }
+
         private void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            CustomerFilter filter = new CustomerFilter
-            {
-                CustomerName = NameTxt.Text,
-                CustomerCountry = CountryTxt.Text,
-                CustomerDeprecated = comboBox1.SelectedIndex switch
-                {
-                    1 => false,
-                    2 => true,
-                    _ => null
-                },
-                CustomerCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                CustomerCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-                CustomerPage = PaginationUserControl.CurrentPage
-
-            };
-            CustomerFilter filterPage = new CustomerFilter
-            {
-                CustomerName = NameTxt.Text,
-                CustomerCountry = CountryTxt.Text,
-                CustomerDeprecated = comboBox1.SelectedIndex switch
-                {
-                    1 => false,
-                    2 => true,
-                    _ => null
-                },
-                CustomerCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                CustomerCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null
-            };
             name = NameTxt.Text;
             country = CountryTxt.Text;
             status = comboBox1.SelectedIndex;
             dateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
             dateTo = DateToClnd.Checked ? DateToClnd.Value : null;
+
+            CustomerFilter filter = new CustomerFilter
+            {
+                CustomerName = name,
+                CustomerCountry = country,
+                CustomerDeprecated = status switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                },
+                CustomerCreatedDateFrom = dateFrom,
+                CustomerCreatedDateTo = dateTo,
+                CustomerPage = PaginationUserControl.CurrentPage
+
+            };
+            CustomerFilter filterPage = new CustomerFilter
+            {
+                CustomerName = name,
+                CustomerCountry = country,
+                CustomerDeprecated = status switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                },
+                CustomerCreatedDateFrom = dateFrom,
+                CustomerCreatedDateTo = dateTo
+            };
+
 
             IEnumerable<Customer> query = _customerService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerService.Count(filterPage) / itemsPage)).ToString();
@@ -215,10 +190,6 @@ namespace Winform.Forms
         }
 
 
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
@@ -288,12 +259,12 @@ namespace Winform.Forms
                 CustomerDGV cdgv = new CustomerDGV
                 {
                     ShowDate = CustomerDateTsmi.Checked,
-                    ShowID=CustomerIDTsmi.Checked,
-                    ShowStatus=CustomerStatusTsmi.Checked,
-                    ShowOriginalID=CustomerOriginalIDTsmi.Checked,
-                    ShowCountry=CustomerCountryTsmi.Checked,
-                    ShowName=CustomerNameTsmi.Checked,
-                    UserID=UserAccessInfo.RefreshUserID
+                    ShowID = CustomerIDTsmi.Checked,
+                    ShowStatus = CustomerStatusTsmi.Checked,
+                    ShowOriginalID = CustomerOriginalIDTsmi.Checked,
+                    ShowCountry = CustomerCountryTsmi.Checked,
+                    ShowName = CustomerNameTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
                 };
                 _userService.PostCustomerDGV(cdgv);
 

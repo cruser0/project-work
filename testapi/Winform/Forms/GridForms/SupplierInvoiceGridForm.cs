@@ -18,7 +18,7 @@ namespace Winform.Forms
         string? Status;
         Form _father;
         UserService _userService;
-        readonly SupplierInvoiceService _supplierInvoiceService;
+        SupplierInvoiceService _supplierInvoiceService;
         int pages;
         double itemsPage = 10.0;
 
@@ -29,75 +29,42 @@ namespace Winform.Forms
             };
         public SupplierInvoiceGridForm()
         {
-            _userService=new UserService();
-            _supplierInvoiceService = new SupplierInvoiceService();
-            pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
-
-
-            InitializeComponent();
-            StatusCmb.SelectedIndex = 0;
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
-
-            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
-            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
-            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
-            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
-
-            PaginationUserControl.SetMaxPage(pages.ToString());
-            PaginationUserControl.CurrentPage = 1;
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-            SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
-            PaginationUserControl.Visible = false;
-            if (!Authorize(authRoles))
-            {
-                SupplierInvoiceIDTsmi.Visible = false;
-                SupplierInvoiceSupplierIDTsmi.Visible = false;
-            }
+            Init();
         }
         public SupplierInvoiceGridForm(Form father)
         {
-            _userService = new UserService();
-
-            _supplierInvoiceService = new SupplierInvoiceService();
-            pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
-
             _father = father;
-            InitializeComponent();
-            StatusCmb.SelectedIndex = 0;
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
 
-            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
-            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
-            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
-            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
-
-            PaginationUserControl.SetMaxPage(pages.ToString());
-            PaginationUserControl.CurrentPage = 1;
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-            SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
-            PaginationUserControl.Visible = false;
-            if (!Authorize(authRoles))
-            {
-                SupplierInvoiceIDTsmi.Visible = false;
-                SupplierInvoiceSupplierIDTsmi.Visible = false;
-            }
+            Init();
         }
         public SupplierInvoiceGridForm(string? id)
         {
-            _userService = new UserService();
-
-            _supplierInvoiceService = new SupplierInvoiceService();
-            InitializeComponent();
-            StatusCmb.SelectedIndex = 0;
-            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
+            Init();
             if (id != null)
             {
                 SupplierIDTxt.SetText(id);
                 MyControl_ButtonClicked(this, EventArgs.Empty);
             }
+        }
+
+        private void Init()
+        {
+            _userService = new UserService();
+            _supplierInvoiceService = new SupplierInvoiceService();
+            pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
+
+            InitializeComponent();
+            StatusCmb.SelectedIndex = 0;
+            RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
+
+            PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
+            PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
+            PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
+            PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+
+            PaginationUserControl.SetMaxPage(pages.ToString());
+            PaginationUserControl.CurrentPage = 1;
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierInvoiceDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
             if (!Authorize(authRoles))
@@ -106,14 +73,12 @@ namespace Winform.Forms
                 SupplierInvoiceSupplierIDTsmi.Visible = false;
             }
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
         public virtual void MyControl_OpenDetails_Clicked(object? sender, DataGridViewCellEventArgs e)
         {
@@ -335,9 +300,9 @@ namespace Winform.Forms
                     ShowInvoiceAmount = SupplierInvoiceInvoiceAmountTsmi.Checked,
                     ShowSaleID = SupplierInvoiceSaleIDTsmi.Checked,
                     ShowStatus = SupplierInvoiceStatusTsmi.Checked,
-                    ShowCountry=SupplierInvoiceCountryTsmi.Checked,
-                    ShowSupplierName=SupplierInvoiceSupplierNameTsmi.Checked,
-                    ShowSupplierID=SupplierInvoiceSupplierIDTsmi.Checked,
+                    ShowCountry = SupplierInvoiceCountryTsmi.Checked,
+                    ShowSupplierName = SupplierInvoiceSupplierNameTsmi.Checked,
+                    ShowSupplierID = SupplierInvoiceSupplierIDTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 _userService.PostSupplierInvoiceDGV(cdgv);

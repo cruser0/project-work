@@ -46,67 +46,62 @@ namespace Winform
         private void SetAuthorizations()
         {
             // Convertiamo UserAccessInfo.Role in un HashSet per ottimizzare Contains()
-            var userRoles = new HashSet<string>(UserAccessInfo.Role);
 
-            if (IsAuthorized(userRoles, ReadRoles) || IsAuthorized(userRoles, WriteRoles) || IsAuthorized(userRoles, AdminGroupRoles) || IsAuthorized(userRoles, AdminRoles))
+            if (UtilityFunctions.IsAuthorized(ReadRoles) || UtilityFunctions.IsAuthorized(WriteRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles) || UtilityFunctions.IsAuthorized(AdminRoles))
             {
                 tabControl.TabPages.Add(ShowTP);
             }
 
-            if (IsAuthorized(userRoles, WriteRoles) || IsAuthorized(userRoles, AdminGroupRoles))
+            if (UtilityFunctions.IsAuthorized(WriteRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles))
             {
                 tabControl.TabPages.Add(AddTP);
                 tabControl.TabPages.Add(EditTP);
             }
 
-            if (IsAuthorized(userRoles, new[] { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
-                IsAuthorized(userRoles, new[] { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
-                IsAuthorized(userRoles, AdminRoles))
+            if (UtilityFunctions.IsAuthorized(new[] { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                UtilityFunctions.IsAuthorized(new[] { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
+                UtilityFunctions.IsAuthorized(AdminRoles))
             {
                 tabControl.TabPages.Add(GroupTP);
             }
 
             // Impostazione visibilità ToolStripMenuItems
-            CustomerShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
-            CustomerCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerWrite", "CustomerAdmin" });
+            CustomerShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
+            CustomerCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "CustomerWrite", "CustomerAdmin" });
 
-            CustomerInvoiceShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
-            CustomerInvoiceCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
+            CustomerInvoiceShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
+            CustomerInvoiceCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
 
-            CustomerInvoiceCostShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
-            CustomerInvoiceCostCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
+            CustomerInvoiceCostShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
+            CustomerInvoiceCostCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
 
-            SupplierShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
-            SupplierCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierWrite", "SupplierAdmin" });
+            SupplierShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
+            SupplierCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SupplierWrite", "SupplierAdmin" });
 
-            SupplierInvoiceShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
-            SupplierInvoiceCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
+            SupplierInvoiceShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
+            SupplierInvoiceCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
 
-            SupplierInvoiceCostShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceCostRead", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
-            SupplierInvoiceCostCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
+            SupplierInvoiceCostShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SupplierInvoiceCostRead", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
+            SupplierInvoiceCostCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
 
-            SaleShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
-            SaleCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin", "SaleWrite", "SaleAdmin" });
+            SaleShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
+            SaleCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin", "SaleWrite", "SaleAdmin" });
 
-            UserShowTS.Visible = IsAuthorized(userRoles, new[] { "Admin" });
-            UserCreateTS.Visible = IsAuthorized(userRoles, new[] { "Admin" });
+            UserShowTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin" });
+            UserCreateTS.Visible = UtilityFunctions.IsAuthorized(new[] { "Admin" });
 
-            CustomerGroupTS.Visible = IsAuthorized(userRoles, ReadRoles, requireAll: true) ||
-                                      IsAuthorized(userRoles, WriteRoles, requireAll: true) ||
-                                      IsAuthorized(userRoles, AdminGroupRoles, requireAll: true) ||
-                                      IsAuthorized(userRoles, AdminRoles);
+            CustomerGroupTS.Visible = UtilityFunctions.IsAuthorized(ReadRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(WriteRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(AdminGroupRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(AdminRoles);
 
-            SupplierGroupTS.Visible = IsAuthorized(userRoles, AdminRoles) ||
-                                      IsAuthorized(userRoles, new[] { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
-                                      IsAuthorized(userRoles, new[] { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
-                                      IsAuthorized(userRoles, new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
+            SupplierGroupTS.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
+                                      UtilityFunctions.IsAuthorized(new[] { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new[] { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
         }
 
-        // Metodo per autorizzare gli utenti
-        private bool IsAuthorized(HashSet<string> userRoles, string[] requiredRoles, bool requireAll = false)
-        {
-            return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
-        }
+
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
         {
