@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.InvoiceAmountToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceAmountFromTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.SaleIDLbl = new System.Windows.Forms.Label();
             this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,8 +73,19 @@
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 374);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(128, 18);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Suplier Invoice Cost";
+            // 
             // InvoiceAmountToTxt
             // 
+            this.InvoiceAmountToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.InvoiceAmountToTxt.Location = new System.Drawing.Point(0, 330);
             this.InvoiceAmountToTxt.Name = "InvoiceAmountToTxt";
             this.InvoiceAmountToTxt.Size = new System.Drawing.Size(180, 23);
@@ -82,6 +93,7 @@
             // 
             // InvoiceAmountFromTxt
             // 
+            this.InvoiceAmountFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.InvoiceAmountFromTxt.Location = new System.Drawing.Point(0, 283);
             this.InvoiceAmountFromTxt.Name = "InvoiceAmountFromTxt";
             this.InvoiceAmountFromTxt.Size = new System.Drawing.Size(180, 23);
@@ -109,6 +121,7 @@
             // 
             // SupplierIDTxt
             // 
+            this.SupplierIDTxt.BackColor = System.Drawing.SystemColors.Window;
             this.SupplierIDTxt.Location = new System.Drawing.Point(0, 95);
             this.SupplierIDTxt.Name = "SupplierIDTxt";
             this.SupplierIDTxt.Size = new System.Drawing.Size(180, 23);
@@ -116,6 +129,7 @@
             // 
             // SaleIDTxt
             // 
+            this.SaleIDTxt.BackColor = System.Drawing.SystemColors.Window;
             this.SaleIDTxt.Location = new System.Drawing.Point(0, 48);
             this.SaleIDTxt.Name = "SaleIDTxt";
             this.SaleIDTxt.Size = new System.Drawing.Size(180, 23);
@@ -153,7 +167,7 @@
             // 
             // StatusCmb
             // 
-            this.StatusCmb.BackColor = System.Drawing.Color.Gainsboro;
+            this.StatusCmb.BackColor = System.Drawing.SystemColors.Window;
             this.StatusCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatusCmb.ForeColor = System.Drawing.Color.Black;
             this.StatusCmb.FormattingEnabled = true;
@@ -208,16 +222,6 @@
             this.DateFromClnd.ShowCheckBox = true;
             this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
             this.DateFromClnd.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 18);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Suplier Invoice Cost";
             // 
             // SearchSupplierInvoice
             // 

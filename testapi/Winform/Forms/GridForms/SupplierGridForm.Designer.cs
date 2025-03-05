@@ -150,7 +150,7 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.ForeColor = System.Drawing.Color.Black;
             this.comboBox1.FormattingEnabled = true;
@@ -165,7 +165,7 @@
             // 
             // NameSupplierTxt
             // 
-            this.NameSupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameSupplierTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameSupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameSupplierTxt.Location = new System.Drawing.Point(3, 26);
             this.NameSupplierTxt.MaxLength = 100;
@@ -195,7 +195,7 @@
             // 
             // CountrySupplierTxt
             // 
-            this.CountrySupplierTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.CountrySupplierTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CountrySupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CountrySupplierTxt.Location = new System.Drawing.Point(3, 73);
             this.CountrySupplierTxt.MaxLength = 50;

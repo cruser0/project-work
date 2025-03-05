@@ -112,7 +112,7 @@
             // 
             // NameTxt
             // 
-            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(4, 174);
             this.NameTxt.MaxLength = 100;
@@ -202,6 +202,7 @@
             // 
             // PaginationUserControl
             // 
+            this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PaginationUserControl.CurrentPage = 0;
             this.PaginationUserControl.Location = new System.Drawing.Point(142, 25);
             this.PaginationUserControl.Name = "PaginationUserControl";

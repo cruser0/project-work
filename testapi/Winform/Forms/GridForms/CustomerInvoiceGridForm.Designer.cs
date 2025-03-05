@@ -171,7 +171,7 @@
             // 
             // StatusCmb
             // 
-            this.StatusCmb.BackColor = System.Drawing.Color.Gainsboro;
+            this.StatusCmb.BackColor = System.Drawing.SystemColors.Window;
             this.StatusCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatusCmb.ForeColor = System.Drawing.Color.Black;
             this.StatusCmb.FormattingEnabled = true;
@@ -307,7 +307,7 @@
             this.CustomerInvoiceDateTsmi,
             this.CustomerInvoiceStatusTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(192, 136);
+            this.RightClickDgv.Size = new System.Drawing.Size(192, 114);
             // 
             // CustomerInvoiceIDTsmi
             // 

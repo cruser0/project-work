@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
@@ -39,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
             this.CountryTxt = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,16 @@
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 329);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 18);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Customer";
             // 
             // label2
             // 
@@ -120,7 +130,7 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.ForeColor = System.Drawing.Color.Black;
             this.comboBox1.FormattingEnabled = true;
@@ -135,7 +145,7 @@
             // 
             // NameTxt
             // 
-            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(3, 48);
             this.NameTxt.MaxLength = 100;
@@ -171,16 +181,6 @@
             this.CountryTxt.Name = "CountryTxt";
             this.CountryTxt.Size = new System.Drawing.Size(180, 23);
             this.CountryTxt.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 18);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Customer";
             // 
             // SearchCustomer
             // 

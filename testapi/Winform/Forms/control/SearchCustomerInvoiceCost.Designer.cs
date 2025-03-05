@@ -69,7 +69,7 @@
             // 
             // NameTxt
             // 
-            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(1, 145);
             this.NameTxt.MaxLength = 100;
@@ -89,6 +89,7 @@
             // 
             // CostToTxt
             // 
+            this.CostToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostToTxt.Location = new System.Drawing.Point(1, 93);
             this.CostToTxt.Name = "CostToTxt";
             this.CostToTxt.Size = new System.Drawing.Size(180, 23);
@@ -106,6 +107,7 @@
             // 
             // CostFromTxt
             // 
+            this.CostFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostFromTxt.Location = new System.Drawing.Point(0, 39);
             this.CostFromTxt.Name = "CostFromTxt";
             this.CostFromTxt.Size = new System.Drawing.Size(180, 23);

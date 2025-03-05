@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 567);
+            this.panel1.Size = new System.Drawing.Size(751, 567);
             this.panel1.TabIndex = 3;
             // 
             // CustomerInvoiceCostDgv
@@ -77,7 +77,7 @@
             this.CustomerInvoiceCostDgv.Name = "CustomerInvoiceCostDgv";
             this.CustomerInvoiceCostDgv.ReadOnly = true;
             this.CustomerInvoiceCostDgv.RowTemplate.Height = 25;
-            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(600, 567);
+            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(751, 567);
             this.CustomerInvoiceCostDgv.TabIndex = 0;
             this.CustomerInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.CustomerInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
@@ -87,7 +87,7 @@
             this.panel2.Controls.Add(this.TextBoxesRightPanel);
             this.panel2.Controls.Add(this.RightSideBar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(600, 0);
+            this.panel2.Location = new System.Drawing.Point(751, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 667);
             this.panel2.TabIndex = 4;
@@ -112,7 +112,7 @@
             // 
             // NameTxt
             // 
-            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(4, 174);
             this.NameTxt.MaxLength = 100;
@@ -197,13 +197,14 @@
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 567);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(600, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(751, 100);
             this.BottomPanel.TabIndex = 5;
             // 
             // PaginationUserControl
             // 
+            this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(142, 25);
+            this.PaginationUserControl.Location = new System.Drawing.Point(219, 25);
             this.PaginationUserControl.Name = "PaginationUserControl";
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
@@ -271,7 +272,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 667);
+            this.ClientSize = new System.Drawing.Size(951, 667);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.panel2);
