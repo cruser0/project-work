@@ -7,7 +7,6 @@
         public string LastName { get; set; }
         public string Email { get; set; }
         public List<string> Role { get; set; }
-        public Dictionary<string, string> Preferences { get; set; }
         public int RefreshTokenID { get; set; }
         public int RefreshUserID { get; set; }
         public string RefreshToken { get; set; }
