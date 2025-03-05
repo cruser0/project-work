@@ -216,7 +216,7 @@
             // 
             // StatusCB
             // 
-            this.StatusCB.BackColor = System.Drawing.Color.Gainsboro;
+            this.StatusCB.BackColor = System.Drawing.SystemColors.Window;
             this.StatusCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatusCB.ForeColor = System.Drawing.Color.Black;
             this.StatusCB.FormattingEnabled = true;
@@ -231,7 +231,7 @@
             // 
             // BNTextBox
             // 
-            this.BNTextBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.BNTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BNTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BNTextBox.Location = new System.Drawing.Point(3, 21);
             this.BNTextBox.MaxLength = 50;
@@ -261,7 +261,7 @@
             // 
             // BoLTextBox
             // 
-            this.BoLTextBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.BoLTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BoLTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BoLTextBox.Location = new System.Drawing.Point(3, 68);
             this.BoLTextBox.MaxLength = 50;

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.NameLbl = new System.Windows.Forms.Label();
             this.CostToTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
@@ -37,7 +38,6 @@
             this.InvoiceIDTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,9 +61,19 @@
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 246);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 18);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Suplier Invoice";
+            // 
             // NameTxt
             // 
-            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(3, 201);
             this.NameTxt.MaxLength = 100;
@@ -83,6 +93,7 @@
             // 
             // CostToTxt
             // 
+            this.CostToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostToTxt.Location = new System.Drawing.Point(3, 149);
             this.CostToTxt.Name = "CostToTxt";
             this.CostToTxt.Size = new System.Drawing.Size(180, 23);
@@ -100,6 +111,7 @@
             // 
             // CostFromTxt
             // 
+            this.CostFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostFromTxt.Location = new System.Drawing.Point(2, 95);
             this.CostFromTxt.Name = "CostFromTxt";
             this.CostFromTxt.Size = new System.Drawing.Size(180, 23);
@@ -107,6 +119,7 @@
             // 
             // InvoiceIDTxt
             // 
+            this.InvoiceIDTxt.BackColor = System.Drawing.SystemColors.Window;
             this.InvoiceIDTxt.Location = new System.Drawing.Point(2, 48);
             this.InvoiceIDTxt.Name = "InvoiceIDTxt";
             this.InvoiceIDTxt.Size = new System.Drawing.Size(180, 23);
@@ -131,16 +144,6 @@
             this.CostLbl.Size = new System.Drawing.Size(68, 18);
             this.CostLbl.TabIndex = 4;
             this.CostLbl.Text = "Cost From";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 18);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Suplier Invoice";
             // 
             // SearchSupplierInvoiceCost
             // 

@@ -69,7 +69,7 @@
             // 
             // NameTxt
             // 
-            this.NameTxt.BackColor = System.Drawing.Color.Gainsboro;
+            this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.Location = new System.Drawing.Point(3, 22);
             this.NameTxt.MaxLength = 100;
@@ -191,7 +191,7 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.ForeColor = System.Drawing.Color.Black;
             this.comboBox1.FormattingEnabled = true;
@@ -334,7 +334,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.PaginationUserControl);
-            this.panel5.Location = new System.Drawing.Point(313, 0);
+            this.panel5.Location = new System.Drawing.Point(213, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(365, 100);
             this.panel5.TabIndex = 2;

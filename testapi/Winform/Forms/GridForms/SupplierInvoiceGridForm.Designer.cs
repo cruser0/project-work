@@ -122,6 +122,7 @@
             // 
             // InvoiceAmountFromTxt
             // 
+            this.InvoiceAmountFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.InvoiceAmountFromTxt.Location = new System.Drawing.Point(3, 256);
             this.InvoiceAmountFromTxt.Name = "InvoiceAmountFromTxt";
             this.InvoiceAmountFromTxt.Size = new System.Drawing.Size(180, 23);
@@ -193,7 +194,7 @@
             // 
             // StatusCmb
             // 
-            this.StatusCmb.BackColor = System.Drawing.Color.Gainsboro;
+            this.StatusCmb.BackColor = System.Drawing.SystemColors.Window;
             this.StatusCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatusCmb.ForeColor = System.Drawing.Color.Black;
             this.StatusCmb.FormattingEnabled = true;
@@ -294,8 +295,9 @@
             // 
             // PaginationUserControl
             // 
+            this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(198, 24);
+            this.PaginationUserControl.Location = new System.Drawing.Point(153, 24);
             this.PaginationUserControl.Name = "PaginationUserControl";
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;

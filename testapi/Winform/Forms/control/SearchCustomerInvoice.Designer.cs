@@ -141,7 +141,7 @@
             // 
             // StatusCmb
             // 
-            this.StatusCmb.BackColor = System.Drawing.Color.Gainsboro;
+            this.StatusCmb.BackColor = System.Drawing.SystemColors.Window;
             this.StatusCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatusCmb.ForeColor = System.Drawing.Color.Black;
             this.StatusCmb.FormattingEnabled = true;
