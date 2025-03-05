@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.Preference;
 using Winform.Forms.AddForms;
 using Winform.Services;
 
@@ -22,9 +23,11 @@ namespace Winform.Forms
                 "CustomerAdmin",
                 "Admin"
             };
+        private readonly UserService _userService;
         public CustomerGridForm()
         {
             _customerService = new CustomerService();
+            _userService = new UserService();
             pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
 
 
@@ -54,6 +57,7 @@ namespace Winform.Forms
         {
             _father = father;
             _customerService = new CustomerService();
+            _userService = new UserService();
             pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
 
 
@@ -128,11 +132,26 @@ namespace Winform.Forms
 
             if (!PaginationUserControl.Visible)
             {
-                CustomerDgv.Columns["CustomerID"].Visible = false;
-                CustomerDgv.Columns["OriginalID"].Visible = false;
-                PaginationUserControl.Visible = true;
+                SetCheckBoxes();
             }
+        }
 
+        private void SetCheckBoxes()
+        {
+            CustomerDGV cdgv = _userService.GetCustomerDGV();
+            CustomerCountryTsmi.Checked = cdgv.ShowCountry;
+            CustomerDateTsmi.Checked = cdgv.ShowDate;
+            CustomerIDTsmi.Checked = cdgv.ShowID;
+            CustomerStatusTsmi.Checked = cdgv.ShowStatus;
+            CustomerOriginalIDTsmi.Checked = cdgv.ShowOriginalID;
+            CustomerNameTsmi.Checked = cdgv.ShowName;
+            PaginationUserControl.Visible = true;
+            CustomerDgv.Columns["CustomerName"].Visible = cdgv.ShowName;
+            CustomerDgv.Columns["Country"].Visible = cdgv.ShowCountry;
+            CustomerDgv.Columns["CreatedAt"].Visible = cdgv.ShowDate;
+            CustomerDgv.Columns["OriginalID"].Visible = cdgv.ShowOriginalID;
+            CustomerDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
+            CustomerDgv.Columns["CustomerID"].Visible = CustomerIDTsmi.Checked;
         }
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -266,6 +285,17 @@ namespace Winform.Forms
                     default:
                         break;
                 }
+                CustomerDGV cdgv = new CustomerDGV
+                {
+                    ShowDate = CustomerDateTsmi.Checked,
+                    ShowID=CustomerIDTsmi.Checked,
+                    ShowStatus=CustomerStatusTsmi.Checked,
+                    ShowOriginalID=CustomerOriginalIDTsmi.Checked,
+                    ShowCountry=CustomerCountryTsmi.Checked,
+                    ShowName=CustomerNameTsmi.Checked,
+                    UserID=UserAccessInfo.RefreshUserID
+                };
+                _userService.PostCustomerDGV(cdgv);
 
             }
         }

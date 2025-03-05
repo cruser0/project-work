@@ -317,7 +317,14 @@ namespace API.Models.Services
                 transaction.Rollback();
                 throw new Exception(ex.InnerException.Message);
             }
-
+            CreateUpdateCustomerDGV(new CustomerDGV { UserID=returnUser.UserID});
+            CreateUpdateCustomerInvoiceDGV(new CustomerInvoiceDGV { UserID=returnUser.UserID});
+            CreateUpdateCustomerInvoiceCostDGV(new CustomerInvoiceCostDGV { UserID=returnUser.UserID});
+            CreateUpdateSupplierDGV(new SupplierDGV { UserID=returnUser.UserID});
+            CreateUpdateSupplierInvoiceDGV(new SupplierInvoiceDGV { UserID=returnUser.UserID});
+            CreateUpdateSupplierInvoiceCostDGV(new SupplierInvoiceCostDGV { UserID=returnUser.UserID});
+            CreateUpdateSaleDGV(new SaleDGV { UserID=returnUser.UserID});
+            CreateUpdateUserDGV(new UserDGV { UserID=returnUser.UserID});
             return returnUser;
 
         }
@@ -331,7 +338,7 @@ namespace API.Models.Services
         public CustomerDGV CreateUpdateCustomerDGV(CustomerDGV cdgv)
         {
             CustomerDGV cdgvDb = _context.CustomerDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
-            if(cdgvDb == null)
+            if (cdgvDb == null)
             {
                 _context.CustomerDGV.Add(cdgv);
                 _context.SaveChanges();
@@ -339,12 +346,12 @@ namespace API.Models.Services
             }
             else
             {
-                cdgvDb.ShowOriginalID = cdgv.ShowOriginalID;
-                cdgvDb.ShowStatus=cdgv.ShowStatus;
-                cdgvDb.ShowID = cdgv.ShowID;
-                cdgvDb.ShowCountry = cdgv.ShowCountry;
-                cdgv.ShowDate=cdgv.ShowDate;
-                cdgv.ShowName = cdgv.ShowName;
+                cdgvDb.ShowOriginalID = cdgv.ShowOriginalID==null?false: cdgv.ShowOriginalID;
+                cdgvDb.ShowStatus = cdgv.ShowStatus == null ? true :cdgv.ShowStatus;
+                cdgvDb.ShowID = cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowCountry = cdgv.ShowCountry == null ? true : cdgv.ShowCountry;
+                cdgvDb.ShowDate = cdgv.ShowDate == null ? true : cdgv.ShowDate;
+                cdgvDb.ShowName = cdgv.ShowName == null ? true : cdgv.ShowName;
                 _context.CustomerDGV.Update(cdgvDb);
                 _context.SaveChanges();
                 return cdgvDb;
@@ -369,7 +376,11 @@ namespace API.Models.Services
             }
             else
             {
-                cdgvDb = cdgv;
+                cdgvDb.ShowDate = cdgv.ShowDate == null ? true : cdgv.ShowDate;
+                cdgvDb.ShowStatus = cdgv.ShowStatus == null ? true : cdgv.ShowStatus;
+                cdgvDb.ShowSaleID= cdgv.ShowSaleID == null ? false : cdgv.ShowSaleID;
+                cdgvDb.ShowID = cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowInvoiceAmount = cdgv.ShowInvoiceAmount == null ? true : cdgv.ShowInvoiceAmount;
                 _context.CustomerInvoiceDGV.Update(cdgvDb);
                 _context.SaveChanges();
                 return cdgvDb;
@@ -394,11 +405,195 @@ namespace API.Models.Services
             }
             else
             {
-                cdgvDb = cdgv;
+                cdgvDb.ShowID= cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowCost= cdgv.ShowCost == null ? true : cdgv.ShowCost;
+                cdgvDb.ShowQuantity= cdgv.ShowQuantity == null ? true : cdgv.ShowQuantity;
+                cdgvDb.ShowInvoiceID= cdgv.ShowInvoiceID == null ? false : cdgv.ShowInvoiceID;
+                cdgvDb.ShowName= cdgv.ShowName == null ? true : cdgv.ShowName;
                 _context.CustomerInvoiceCostDGV.Update(cdgvDb);
                 _context.SaveChanges();
                 return cdgvDb;
             }
+        }
+        public SupplierDGV GetSupplierDGV(int userId)
+        {
+            SupplierDGV cdgv = _context.SupplierDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Supplier DGV not found");
+            return cdgv;
+        }
+        public SupplierDGV CreateUpdateSupplierDGV(SupplierDGV cdgv)
+        {
+            SupplierDGV cdgvDb = _context.SupplierDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if (cdgvDb == null)
+            {
+                _context.SupplierDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb.ShowOriginalID = cdgv.ShowOriginalID == null ? false : cdgv.ShowOriginalID;
+                cdgvDb.ShowStatus = cdgv.ShowStatus == null ? true : cdgv.ShowStatus;
+                cdgvDb.ShowID = cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowCountry = cdgv.ShowCountry == true ? false : cdgv.ShowCountry;
+                cdgvDb.ShowDate = cdgv.ShowDate == null ? true : cdgv.ShowDate;
+                cdgvDb.ShowName = cdgv.ShowName == null ? true : cdgv.ShowName;
+                _context.SupplierDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
+        }
+
+        public SupplierInvoiceDGV GetSupplierInvoiceDGV(int userId)
+        {
+            SupplierInvoiceDGV cdgv = _context.SupplierInvoiceDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Supplier Invoice DGV not found");
+            return cdgv;
+        }
+        public SupplierInvoiceDGV CreateUpdateSupplierInvoiceDGV(SupplierInvoiceDGV cdgv)
+        {
+            SupplierInvoiceDGV cdgvDb = _context.SupplierInvoiceDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if (cdgvDb == null)
+            {
+                _context.SupplierInvoiceDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb.ShowInvoiceDate = cdgv.ShowInvoiceDate == null ? true : cdgv.ShowInvoiceDate;
+                cdgvDb.ShowStatus = cdgv.ShowStatus == null ? true : cdgv.ShowStatus;
+                cdgvDb.ShowSaleID = cdgv.ShowSaleID == null ? false : cdgv.ShowSaleID;
+                cdgvDb.ShowID = cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowInvoiceAmount = cdgv.ShowInvoiceAmount == null ? true : cdgv.ShowInvoiceAmount;
+                cdgvDb.ShowSupplierName = cdgv.ShowSupplierName == null ? true : cdgv.ShowSupplierName;
+                cdgvDb.ShowSupplierID = cdgv.ShowSupplierID == null ? false : cdgv.ShowSupplierID;
+                cdgvDb.ShowCountry= cdgv.ShowCountry == null ? true : cdgv.ShowCountry;
+
+                _context.SupplierInvoiceDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
+        }
+        public SupplierInvoiceCostDGV GetSupplierInvoiceCostDGV(int userId)
+        {
+            SupplierInvoiceCostDGV cdgv = _context.SupplierInvoiceCostDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Supplier Invoice DGV not found");
+            return cdgv;
+        }
+
+        public SupplierInvoiceCostDGV CreateUpdateSupplierInvoiceCostDGV(SupplierInvoiceCostDGV cdgv)
+        {
+            SupplierInvoiceCostDGV cdgvDb = _context.SupplierInvoiceCostDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if (cdgvDb == null)
+            {
+                _context.SupplierInvoiceCostDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb.ShowID = cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowCost = cdgv.ShowCost == null ? true : cdgv.ShowCost;
+                cdgvDb.ShowQuantity = cdgv.ShowQuantity == null ? true : cdgv.ShowQuantity;
+                cdgvDb.ShowSupplierInvoiceID = cdgv.ShowSupplierInvoiceID == null ? false : cdgv.ShowSupplierInvoiceID;
+                cdgvDb.ShowName = cdgv.ShowName == null ? true : cdgv.ShowName;
+                _context.SupplierInvoiceCostDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
+        }
+        public SaleDGV GetSaleDGV(int userId)
+        {
+            SaleDGV cdgv = _context.SaleDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Supplier Invoice DGV not found");
+            return cdgv;
+        }
+
+        public SaleDGV CreateUpdateSaleDGV(SaleDGV cdgv)
+        {
+            SaleDGV cdgvDb = _context.SaleDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if (cdgvDb == null)
+            {
+                _context.SaleDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb.ShowID = cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowStatus = cdgv.ShowStatus == null ? true : cdgv.ShowStatus;
+                cdgvDb.ShowBoL = cdgv.ShowBoL == null ? true : cdgv.ShowBoL;
+                cdgvDb.ShowBKNumber = cdgv.ShowBKNumber == null ? true : cdgv.ShowBKNumber;
+                cdgvDb.ShowCustomerName = cdgv.ShowCustomerName == null ? true : cdgv.ShowCustomerName;
+                cdgvDb.ShowCustomerID = cdgv.ShowCustomerID == null ? false : cdgv.ShowCustomerID;
+                cdgvDb.ShowCustomerCountry = cdgv.ShowCustomerCountry == null ? true : cdgv.ShowCustomerCountry;
+                cdgvDb.ShowDate = cdgv.ShowDate == null ? true : cdgv.ShowDate;
+                cdgvDb.ShowTotalRevenue = cdgv.ShowTotalRevenue == null ? true : cdgv.ShowTotalRevenue;
+                _context.SaleDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
+        }
+        public UserDGV GetUserDGV(int userId)
+        {
+            UserDGV cdgv = _context.UserDGV.Where(x => x.UserID == userId).FirstOrDefault();
+            if (cdgv == null)
+                throw new Exception("Supplier Invoice DGV not found");
+            return cdgv;
+        }
+
+        public UserDGV CreateUpdateUserDGV(UserDGV cdgv)
+        {
+            UserDGV cdgvDb = _context.UserDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefault();
+            if (cdgvDb == null)
+            {
+                _context.UserDGV.Add(cdgv);
+                _context.SaveChanges();
+                return cdgv;
+            }
+            else
+            {
+                cdgvDb.ShowID = cdgv.ShowID == null ? false : cdgv.ShowID;
+                cdgvDb.ShowRoles = cdgv.ShowRoles == null ? true : cdgv.ShowRoles;
+                cdgvDb.ShowLastName = cdgv.ShowLastName == null ? true : cdgv.ShowLastName;
+                cdgvDb.ShowEmail=  cdgv.ShowEmail == null ? true : cdgv.ShowEmail;
+                cdgvDb.ShowName = cdgv.ShowName == null ? true : cdgv.ShowName;
+                _context.UserDGV.Update(cdgvDb);
+                _context.SaveChanges();
+                return cdgvDb;
+            }
+        }
+        public FavouritePages GetFavouritePages(string name)
+        {
+            FavouritePages fp=_context.FavouritePages.Where(x => x.Name == name).FirstOrDefault();
+            if (fp == null)
+                throw new Exception("Page not Found");
+            return fp;
+        }
+
+        public void CreateFavouritePages(string name)
+        {
+            FavouritePages fp = _context.FavouritePages.Where(x => x.Name == name).FirstOrDefault();
+            if (fp != null)
+                throw new Exception("Page already exists");
+            _context.FavouritePages.Add(new FavouritePages { Name = name });
+            _context.SaveChanges();
+        }
+        public void AddFavouritePagesToUser(List<string> pageName,int userID)
+        {
+            FavouritePages fp;
+            User user=GetUserByID(userID);
+            foreach(string page in pageName)
+            {
+            fp = GetFavouritePages(page);
+            _context.UserFavouritePage.Add(new UserFavouritePage { FavouritePageID=fp.FavouritePageID,UserID=user.UserID });
+            }
+            _context.SaveChanges();
         }
     }
 }

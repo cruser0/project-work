@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities.DTO;
+using Winform.Entities.Preference;
 using Winform.Forms.AddForms;
 using Winform.Services;
 
@@ -25,8 +26,10 @@ namespace Winform.Forms
                 "SaleAdmin",
                 "Admin"
             };
+        UserService _userService;
         public SaleGridForm()
         {
+            _userService = new UserService();
             _saleService = new SaleService();
 
             InitializeComponent();
@@ -56,6 +59,9 @@ namespace Winform.Forms
 
         public SaleGridForm(CreateSupplierInvoicesForm father)
         {
+
+            _userService = new UserService();
+
             _father = father;
             _saleService = new SaleService();
 
@@ -85,6 +91,8 @@ namespace Winform.Forms
         }
         public SaleGridForm(CreateCustomerInvoiceForm father)
         {
+            _userService = new UserService();
+
             _father = father;
             _saleService = new SaleService();
 
@@ -166,10 +174,35 @@ namespace Winform.Forms
             SaleDgv.DataSource = query.ToList();
             if (!PaginationUserControl.Visible)
             {
-                SaleDgv.Columns["SaleId"].Visible = false;
-                SaleDgv.Columns["CustomerId"].Visible = false;
-                PaginationUserControl.Visible = true;
+                SetCheckBoxes();
             }
+        }
+
+        private void SetCheckBoxes()
+        {
+            SaleDGV cdgv = _userService.GetSaleDGV();
+
+            SaleIDTsmi.Checked = cdgv.ShowID;
+            SaleBkNumberTsmi.Checked = cdgv.ShowBKNumber;
+            SaleCustomerCountryTsmi.Checked = cdgv.ShowCustomerCountry;
+            SaleCustomerNameTsmi.Checked = cdgv.ShowCustomerName;
+            SaleBoLNumberTsmi.Checked = cdgv.ShowBoL;
+            SaleCustomerIDTsmi.Checked= cdgv.ShowCustomerID;
+            SaleTotalRevenueTsmi.Checked = cdgv.ShowTotalRevenue;
+            SaleStatusTsmi.Checked = cdgv.ShowStatus;
+            SaleDateTsmi.Checked = cdgv.ShowDate;
+
+            SaleDgv.Columns["SaleID"].Visible = cdgv.ShowID;
+            SaleDgv.Columns["BookingNumber"].Visible = cdgv.ShowBKNumber;
+            SaleDgv.Columns["Country"].Visible = cdgv.ShowCustomerCountry;
+            SaleDgv.Columns["CustomerName"].Visible = cdgv.ShowCustomerName;
+            SaleDgv.Columns["BoLNumber"].Visible = cdgv.ShowBoL;
+            SaleDgv.Columns["CustomerID"].Visible = cdgv.ShowCustomerID;
+            SaleDgv.Columns["TotalRevenue"].Visible = cdgv.ShowTotalRevenue;
+            SaleDgv.Columns["Status"].Visible = cdgv.ShowStatus;
+            SaleDgv.Columns["SaleDate"].Visible = cdgv.ShowDate;
+
+            PaginationUserControl.Visible = true;
         }
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -300,7 +333,20 @@ namespace Winform.Forms
                     default:
                         break;
                 }
-
+                SaleDGV cdgv = new SaleDGV
+                {
+                    ShowID=SaleIDTsmi.Checked,
+                    ShowDate=SaleDateTsmi.Checked,
+                    ShowStatus=SaleStatusTsmi.Checked,
+                    ShowTotalRevenue=SaleTotalRevenueTsmi.Checked,
+                    ShowCustomerID=SaleCustomerIDTsmi.Checked,
+                    ShowBoL=SaleBoLNumberTsmi.Checked,
+                    ShowBKNumber=SaleBkNumberTsmi.Checked,
+                    ShowCustomerCountry=SaleCustomerCountryTsmi.Checked,
+                    ShowCustomerName=SaleCustomerNameTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                _userService.PostSaleDGV(cdgv);
             }
         }
     }

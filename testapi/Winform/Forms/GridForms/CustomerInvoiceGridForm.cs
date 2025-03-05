@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities;
+using Winform.Entities.Preference;
 using Winform.Forms.AddForms;
 using Winform.Services;
 
@@ -22,9 +23,10 @@ namespace Winform.Forms.CreateWindow
                 "CustomerInvoiceAdmin",
                 "Admin"
             };
+        UserService _userService;
         public CustomerInvoiceGridForm()
         {
-
+            _userService = new UserService();
             _customerService = new CustomerInvoiceService();
             pages = (int)Math.Ceiling(_customerService.Count(new CustomerInvoiceFilter()) / itemsPage);
 
@@ -47,6 +49,8 @@ namespace Winform.Forms.CreateWindow
         }
         public CustomerInvoiceGridForm(CreateCustomerInvoiceCostForm father)
         {
+            _userService = new UserService();
+
             _father = father;
             _customerService = new CustomerInvoiceService();
             pages = (int)Math.Ceiling(_customerService.Count(new CustomerInvoiceFilter()) / itemsPage);
@@ -138,10 +142,26 @@ namespace Winform.Forms.CreateWindow
             CenterDgv.DataSource = query.ToList();
 
             if (!PaginationUserControl.Visible)
-            {
-                CenterDgv.Columns["CustomerInvoiceID"].Visible = false;
-                PaginationUserControl.Visible = true;
+            {  
+                SetCheckBoxes();
             }
+        }
+        private void SetCheckBoxes()
+        {
+            CustomerInvoiceDGV cdgv = _userService.GetCustomerInvoiceDGV();
+
+            CustomerInvoiceDateTsmi.Checked = cdgv.ShowDate;
+            CustomerInvoiceIDTsmi.Checked = cdgv.ShowID;
+            CustomerInvoiceInvoiceAmountTsmi.Checked = cdgv.ShowInvoiceAmount;
+            CustomerInvoiceSaleIDTsmi.Checked = cdgv.ShowSaleID;
+            CustomerInvoiceStatusTsmi.Checked = cdgv.ShowStatus;
+            CenterDgv.Columns["CustomerInvoiceID"].Visible = cdgv.ShowID;
+            CenterDgv.Columns["SaleID"].Visible = cdgv.ShowSaleID;
+            CenterDgv.Columns["InvoiceAmount"].Visible = cdgv.ShowInvoiceAmount;
+            CenterDgv.Columns["InvoiceDate"].Visible = cdgv.ShowDate;
+            CenterDgv.Columns["Status"].Visible = cdgv.ShowStatus;
+            PaginationUserControl.Visible = true;
+
         }
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -265,7 +285,16 @@ namespace Winform.Forms.CreateWindow
                     default:
                         break;
                 }
-
+                CustomerInvoiceDGV cdgv = new CustomerInvoiceDGV
+                {
+                    ShowDate=CustomerInvoiceDateTsmi.Checked,
+                    ShowID=CustomerInvoiceIDTsmi.Checked,
+                    ShowInvoiceAmount=CustomerInvoiceInvoiceAmountTsmi.Checked,
+                    ShowSaleID=CustomerInvoiceSaleIDTsmi.Checked,
+                    ShowStatus=CustomerInvoiceStatusTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                _userService.PostCustomerInvoiceDGV(cdgv);
             }
         }
     }

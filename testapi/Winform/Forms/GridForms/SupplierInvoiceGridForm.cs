@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using Winform.Entities.DTO;
+using Winform.Entities.Preference;
 using Winform.Forms.AddForms;
 using Winform.Services;
 
@@ -16,7 +17,7 @@ namespace Winform.Forms
         int? InvoiceAmountTo;
         string? Status;
         Form _father;
-
+        UserService _userService;
         readonly SupplierInvoiceService _supplierInvoiceService;
         int pages;
         double itemsPage = 10.0;
@@ -28,6 +29,7 @@ namespace Winform.Forms
             };
         public SupplierInvoiceGridForm()
         {
+            _userService=new UserService();
             _supplierInvoiceService = new SupplierInvoiceService();
             pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
 
@@ -55,6 +57,8 @@ namespace Winform.Forms
         }
         public SupplierInvoiceGridForm(Form father)
         {
+            _userService = new UserService();
+
             _supplierInvoiceService = new SupplierInvoiceService();
             pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
 
@@ -82,6 +86,8 @@ namespace Winform.Forms
         }
         public SupplierInvoiceGridForm(string? id)
         {
+            _userService = new UserService();
+
             _supplierInvoiceService = new SupplierInvoiceService();
             InitializeComponent();
             StatusCmb.SelectedIndex = 0;
@@ -111,18 +117,6 @@ namespace Winform.Forms
 
         public virtual void MyControl_OpenDetails_Clicked(object? sender, DataGridViewCellEventArgs e)
         {
-            /*if (sender is DataGridView dgv)
-            {
-                if (e.RowIndex == -1)
-                    return;
-                SupplierInvoiceDetailsForm sid = new SupplierInvoiceDetailsForm(int.Parse(dgv.CurrentRow.Cells["InvoiceId"].Value.ToString()));
-                sid.Show();
-            }
-            else
-            {
-                MessageBox.Show(sender.ToString());
-
-            }*/
             if (sender is DataGridView dgv)
             {
                 if (_father is CreateSupplierInvoiceCostForm sigf)
@@ -196,13 +190,36 @@ namespace Winform.Forms
             SupplierInvoiceDgv.DataSource = query.ToList();
             if (!PaginationUserControl.Visible)
             {
-                PaginationUserControl.Visible = true;
-                SupplierInvoiceDgv.Columns["InvoiceID"].Visible = false;
-                SupplierInvoiceDgv.Columns["SupplierID"].Visible = false;
+                SetCheckBoxes();
 
             }
         }
 
+        private void SetCheckBoxes()
+        {
+            SupplierInvoiceDGV cdgv = _userService.GetSupplierInvoiceDGV();
+
+            SupplierInvoiceIDTsmi.Checked = cdgv.ShowID;
+            SupplierInvoiceSaleIDTsmi.Checked = cdgv.ShowSaleID;
+            SupplierInvoiceInvoiceAmountTsmi.Checked = cdgv.ShowInvoiceAmount;
+            SupplierInvoiceDateTsmi.Checked = cdgv.ShowInvoiceDate;
+            SupplierInvoiceStatusTsmi.Checked = cdgv.ShowStatus;
+            SupplierInvoiceSupplierNameTsmi.Checked = cdgv.ShowSupplierName;
+            SupplierInvoiceCountryTsmi.Checked = cdgv.ShowCountry;
+            SupplierInvoiceSupplierIDTsmi.Checked = cdgv.ShowSupplierID;
+
+            SupplierInvoiceDgv.Columns["InvoiceID"].Visible = cdgv.ShowID;
+            SupplierInvoiceDgv.Columns["SaleID"].Visible = cdgv.ShowSaleID;
+            SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = cdgv.ShowInvoiceAmount;
+            SupplierInvoiceDgv.Columns["InvoiceDate"].Visible = cdgv.ShowInvoiceDate;
+            SupplierInvoiceDgv.Columns["Status"].Visible = cdgv.ShowStatus;
+            SupplierInvoiceDgv.Columns["SupplierName"].Visible = cdgv.ShowSupplierName;
+            SupplierInvoiceDgv.Columns["Country"].Visible = cdgv.ShowCountry;
+            SupplierInvoiceDgv.Columns["SupplierID"].Visible = cdgv.ShowSupplierID;
+
+            PaginationUserControl.Visible = true;
+
+        }
         private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             SupplierInvoiceFilter filter = new SupplierInvoiceFilter
@@ -311,7 +328,19 @@ namespace Winform.Forms
                     default:
                         break;
                 }
-
+                SupplierInvoiceDGV cdgv = new SupplierInvoiceDGV
+                {
+                    ShowInvoiceDate = SupplierInvoiceDateTsmi.Checked,
+                    ShowID = SupplierInvoiceIDTsmi.Checked,
+                    ShowInvoiceAmount = SupplierInvoiceInvoiceAmountTsmi.Checked,
+                    ShowSaleID = SupplierInvoiceSaleIDTsmi.Checked,
+                    ShowStatus = SupplierInvoiceStatusTsmi.Checked,
+                    ShowCountry=SupplierInvoiceCountryTsmi.Checked,
+                    ShowSupplierName=SupplierInvoiceSupplierNameTsmi.Checked,
+                    ShowSupplierID=SupplierInvoiceSupplierIDTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                _userService.PostSupplierInvoiceDGV(cdgv);
             }
         }
     }

@@ -75,8 +75,7 @@ namespace API.Controllers
                 }
                 UserRoleDTO userDTO = _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
                 string token = _authenticationService.CreateToken(userDTO);
-                RefreshToken newRefToken = _authenticationService.GenerateRefreshToken((int)userDTO.UserID);
-                return Ok(new UserAccessInfoDTO(userDTO, token, newRefToken));
+                return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
 
