@@ -64,20 +64,20 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(751, 567);
+            this.panel1.Size = new System.Drawing.Size(584, 361);
             this.panel1.TabIndex = 3;
             // 
             // CustomerInvoiceCostDgv
             // 
             this.CustomerInvoiceCostDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.CustomerInvoiceCostDgv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.CustomerInvoiceCostDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CustomerInvoiceCostDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CustomerInvoiceCostDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomerInvoiceCostDgv.Location = new System.Drawing.Point(0, 0);
             this.CustomerInvoiceCostDgv.Name = "CustomerInvoiceCostDgv";
             this.CustomerInvoiceCostDgv.ReadOnly = true;
             this.CustomerInvoiceCostDgv.RowTemplate.Height = 25;
-            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(751, 567);
+            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(584, 361);
             this.CustomerInvoiceCostDgv.TabIndex = 0;
             this.CustomerInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.CustomerInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
@@ -87,16 +87,16 @@
             this.panel2.Controls.Add(this.TextBoxesRightPanel);
             this.panel2.Controls.Add(this.RightSideBar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(751, 0);
+            this.panel2.Location = new System.Drawing.Point(584, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 667);
+            this.panel2.Size = new System.Drawing.Size(200, 461);
             this.panel2.TabIndex = 4;
             // 
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
-            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostToTxt);
@@ -107,13 +107,14 @@
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 564);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 358);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // NameTxt
             // 
             this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.NameTxt.Location = new System.Drawing.Point(4, 174);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
@@ -123,15 +124,17 @@
             // NameLbl
             // 
             this.NameLbl.AutoSize = true;
-            this.NameLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NameLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.NameLbl.Location = new System.Drawing.Point(4, 153);
             this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(118, 18);
+            this.NameLbl.Size = new System.Drawing.Size(119, 17);
             this.NameLbl.TabIndex = 16;
             this.NameLbl.Text = "Description Name";
             // 
             // CostToTxt
             // 
+            this.CostToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CostToTxt.Location = new System.Drawing.Point(4, 122);
             this.CostToTxt.Name = "CostToTxt";
             this.CostToTxt.Size = new System.Drawing.Size(180, 23);
@@ -140,15 +143,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(4, 101);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 18);
+            this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 13;
             this.label1.Text = "Cost To";
             // 
             // CostFromTxt
             // 
+            this.CostFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CostFromTxt.Location = new System.Drawing.Point(3, 68);
             this.CostFromTxt.Name = "CostFromTxt";
             this.CostFromTxt.Size = new System.Drawing.Size(180, 23);
@@ -156,6 +161,7 @@
             // 
             // InvoiceIDTxt
             // 
+            this.InvoiceIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.InvoiceIDTxt.Location = new System.Drawing.Point(3, 21);
             this.InvoiceIDTxt.Name = "InvoiceIDTxt";
             this.InvoiceIDTxt.Size = new System.Drawing.Size(180, 23);
@@ -164,47 +170,49 @@
             // InvoiceIDLbl
             // 
             this.InvoiceIDLbl.AutoSize = true;
-            this.InvoiceIDLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.InvoiceIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.InvoiceIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.InvoiceIDLbl.Location = new System.Drawing.Point(3, 0);
             this.InvoiceIDLbl.Name = "InvoiceIDLbl";
-            this.InvoiceIDLbl.Size = new System.Drawing.Size(71, 18);
+            this.InvoiceIDLbl.Size = new System.Drawing.Size(70, 17);
             this.InvoiceIDLbl.TabIndex = 3;
             this.InvoiceIDLbl.Text = "Invoice ID";
             // 
             // CostLbl
             // 
             this.CostLbl.AutoSize = true;
-            this.CostLbl.Font = new System.Drawing.Font("Book Antiqua", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CostLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.CostLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CostLbl.Location = new System.Drawing.Point(3, 47);
             this.CostLbl.Name = "CostLbl";
-            this.CostLbl.Size = new System.Drawing.Size(68, 18);
+            this.CostLbl.Size = new System.Drawing.Size(71, 17);
             this.CostLbl.TabIndex = 4;
             this.CostLbl.Text = "Cost From";
             // 
             // RightSideBar
             // 
-            this.RightSideBar.BackColor = System.Drawing.Color.DarkGray;
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 667);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // BottomPanel
             // 
-            this.BottomPanel.BackColor = System.Drawing.Color.DarkGray;
+            this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.BottomPanel.Controls.Add(this.PaginationUserControl);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 567);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 361);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(751, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 100);
             this.BottomPanel.TabIndex = 5;
             // 
             // PaginationUserControl
             // 
             this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(219, 25);
+            this.PaginationUserControl.Location = new System.Drawing.Point(136, 25);
             this.PaginationUserControl.Name = "PaginationUserControl";
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
@@ -272,10 +280,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 667);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.panel2);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerInvoiceCostGridForm";
             this.Text = "CustomerInvoiceCostGrid";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
