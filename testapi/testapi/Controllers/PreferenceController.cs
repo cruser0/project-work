@@ -239,6 +239,18 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
+        [HttpGet("user-favourite-pages/{id}")]
+        public IActionResult GetUserFavouritePages(int id)
+        {
+            try
+            {
+                var result = _userService.GetUserPreferredPages(id);
+                return Ok(result);
+
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
 
     }
 }

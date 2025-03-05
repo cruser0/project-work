@@ -575,7 +575,25 @@ namespace API.Models.Services
                 throw new Exception("Page not Found");
             return fp;
         }
-
+        public FavouritePages GetFavouritePagesByID(int id)
+        {
+            FavouritePages fp = _context.FavouritePages.Where(x => x.FavouritePageID == id).FirstOrDefault();
+            if (fp == null)
+                throw new Exception("Page not Found");
+            return fp;
+        }
+        public List<string> GetUserPreferredPages(int userID)
+        {
+            List<UserFavouritePage> ufp = _context.UserFavouritePage.Where(x => x.UserID == userID).ToList();
+            if (!ufp.Any())
+                return new List<string>();
+            List<string> returnlist = new List<string>();
+            foreach(var favPage in ufp)
+            {
+                returnlist.Add(GetFavouritePagesByID((int)favPage.FavouritePageID).Name);
+            }
+            return returnlist;
+        }
         public void CreateFavouritePages(string name)
         {
             FavouritePages fp = _context.FavouritePages.Where(x => x.Name == name).FirstOrDefault();

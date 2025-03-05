@@ -681,6 +681,24 @@ namespace Winform.Services
             throw new Exception($"Error during the registration of the User: {errorMessage}");
         }
 
+        public ICollection<string> GetAllPreferredPagesUser()
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
 
+            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"preference/user-favourite-pages/{UserAccessInfo.RefreshUserID}").Result;
+            if (response.IsSuccessStatusCode)
+            {
+
+                // Leggere il contenuto della risposta
+                string json = response.Content.ReadAsStringAsync().Result;
+
+                // Deserializzare la risposta JSON in una lista di oggetti SupplierDTOGet
+                var items = JsonSerializer.Deserialize<List<string>>(json,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return items;
+
+            }
+            return new List<string>();
+        }
     }
 }
