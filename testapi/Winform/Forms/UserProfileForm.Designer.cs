@@ -64,6 +64,7 @@
             // 
             // BottomPanel
             // 
+            this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 441);
             this.BottomPanel.Name = "BottomPanel";
@@ -72,6 +73,7 @@
             // 
             // TopPanel
             // 
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
@@ -93,7 +95,7 @@
             // FlowPanelRoles
             // 
             this.FlowPanelRoles.AutoScroll = true;
-            this.FlowPanelRoles.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.FlowPanelRoles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.FlowPanelRoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowPanelRoles.Location = new System.Drawing.Point(0, 111);
             this.FlowPanelRoles.Name = "FlowPanelRoles";
@@ -102,7 +104,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel3.Controls.Add(this.RoleLbl);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -132,6 +134,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 20);
             this.panel2.Name = "panel2";
@@ -140,6 +143,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(220, 20);
             this.panel1.Name = "panel1";
@@ -148,7 +152,7 @@
             // 
             // RightPanel
             // 
-            this.RightPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.RightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.RightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.RightPanel.Location = new System.Drawing.Point(564, 20);
@@ -158,7 +162,7 @@
             // 
             // CenterPanel
             // 
-            this.CenterPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.CenterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CenterPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CenterPanel.Controls.Add(this.button1);
             this.CenterPanel.Controls.Add(this.checkBox1);
@@ -184,13 +188,14 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(170, 319);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 23);
             this.button1.TabIndex = 54;
             this.button1.Text = "Save Changes";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.SaveEditCustomerBtn_Click);
             // 
             // checkBox1
@@ -343,6 +348,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel5.Location = new System.Drawing.Point(764, 20);
             this.panel5.Name = "panel5";
@@ -351,6 +357,7 @@
             // 
             // panel6
             // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(554, 20);
             this.panel6.Name = "panel6";
@@ -371,6 +378,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.BottomPanel);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "UserProfileForm";
             this.Text = "UserProfileForm";

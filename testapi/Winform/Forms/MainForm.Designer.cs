@@ -133,6 +133,7 @@
             // 
             this.Show.AutoSize = false;
             this.Show.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Show.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Show.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerShowTS,
             this.CustomerInvoiceShowTS,
@@ -159,7 +160,7 @@
             this.CustomerShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CustomerShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerShowTS.Name = "CustomerShowTS";
-            this.CustomerShowTS.Size = new System.Drawing.Size(100, 30);
+            this.CustomerShowTS.Size = new System.Drawing.Size(100, 27);
             this.CustomerShowTS.Text = "Customer";
             this.CustomerShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -171,7 +172,7 @@
             this.CustomerInvoiceShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CustomerInvoiceShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerInvoiceShowTS.Name = "CustomerInvoiceShowTS";
-            this.CustomerInvoiceShowTS.Size = new System.Drawing.Size(100, 30);
+            this.CustomerInvoiceShowTS.Size = new System.Drawing.Size(100, 27);
             this.CustomerInvoiceShowTS.Text = "Customer Invoice";
             this.CustomerInvoiceShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -183,7 +184,7 @@
             this.CustomerInvoiceCostShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CustomerInvoiceCostShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerInvoiceCostShowTS.Name = "CustomerInvoiceCostShowTS";
-            this.CustomerInvoiceCostShowTS.Size = new System.Drawing.Size(125, 30);
+            this.CustomerInvoiceCostShowTS.Size = new System.Drawing.Size(125, 27);
             this.CustomerInvoiceCostShowTS.Text = "Customer Invoice Cost";
             this.CustomerInvoiceCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -200,7 +201,7 @@
             this.SupplierShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SupplierShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierShowTS.Name = "SupplierShowTS";
-            this.SupplierShowTS.Size = new System.Drawing.Size(100, 30);
+            this.SupplierShowTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierShowTS.Text = "Supplier";
             this.SupplierShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -212,7 +213,7 @@
             this.SupplierInvoiceShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SupplierInvoiceShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierInvoiceShowTS.Name = "SupplierInvoiceShowTS";
-            this.SupplierInvoiceShowTS.Size = new System.Drawing.Size(100, 30);
+            this.SupplierInvoiceShowTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierInvoiceShowTS.Text = "Supplier Invoice";
             this.SupplierInvoiceShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -224,7 +225,7 @@
             this.SupplierInvoiceCostShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SupplierInvoiceCostShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierInvoiceCostShowTS.Name = "SupplierInvoiceCostShowTS";
-            this.SupplierInvoiceCostShowTS.Size = new System.Drawing.Size(125, 30);
+            this.SupplierInvoiceCostShowTS.Size = new System.Drawing.Size(125, 27);
             this.SupplierInvoiceCostShowTS.Text = "Supplier Invoice Cost";
             this.SupplierInvoiceCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -241,7 +242,7 @@
             this.SaleShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaleShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SaleShowTS.Name = "SaleShowTS";
-            this.SaleShowTS.Size = new System.Drawing.Size(100, 30);
+            this.SaleShowTS.Size = new System.Drawing.Size(100, 27);
             this.SaleShowTS.Text = "Sale";
             this.SaleShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -258,7 +259,7 @@
             this.UserShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UserShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.UserShowTS.Name = "UserShowTS";
-            this.UserShowTS.Size = new System.Drawing.Size(100, 30);
+            this.UserShowTS.Size = new System.Drawing.Size(100, 27);
             this.UserShowTS.Text = "User";
             this.UserShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -277,6 +278,7 @@
             // 
             this.toolStrip3.AutoSize = false;
             this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton12,
             this.toolStripButton13,
@@ -303,7 +305,7 @@
             this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton12.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton12.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton12.Text = "toolStripButton4";
             // 
             // toolStripButton13
@@ -314,7 +316,7 @@
             this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton13.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton13.Name = "toolStripButton13";
-            this.toolStripButton13.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton13.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton13.Text = "toolStripButton5";
             // 
             // toolStripButton14
@@ -325,7 +327,7 @@
             this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton14.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton14.Name = "toolStripButton14";
-            this.toolStripButton14.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton14.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton14.Text = "toolStripButton6";
             // 
             // toolStripSeparator4
@@ -341,7 +343,7 @@
             this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton15.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton15.Name = "toolStripButton15";
-            this.toolStripButton15.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton15.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton15.Text = "toolStripButton7";
             // 
             // toolStripButton16
@@ -352,7 +354,7 @@
             this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton16.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton16.Name = "toolStripButton16";
-            this.toolStripButton16.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton16.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton16.Text = "toolStripButton8";
             // 
             // toolStripButton17
@@ -363,7 +365,7 @@
             this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton17.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton17.Name = "toolStripButton17";
-            this.toolStripButton17.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton17.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton17.Text = "toolStripButton9";
             // 
             // toolStripSeparator5
@@ -379,7 +381,7 @@
             this.toolStripButton18.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton18.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton18.Name = "toolStripButton18";
-            this.toolStripButton18.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton18.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton18.Text = "toolStripButton10";
             // 
             // toolStripSeparator6
@@ -395,7 +397,7 @@
             this.toolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton19.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.toolStripButton19.Name = "toolStripButton19";
-            this.toolStripButton19.Size = new System.Drawing.Size(100, 30);
+            this.toolStripButton19.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton19.Text = "toolStripButton11";
             // 
             // AddTP
@@ -413,6 +415,7 @@
             // 
             this.Create.AutoSize = false;
             this.Create.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Create.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Create.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerCreateTS,
             this.CustomerInvoiceCreateTS,
@@ -439,7 +442,7 @@
             this.CustomerCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CustomerCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerCreateTS.Name = "CustomerCreateTS";
-            this.CustomerCreateTS.Size = new System.Drawing.Size(100, 30);
+            this.CustomerCreateTS.Size = new System.Drawing.Size(100, 27);
             this.CustomerCreateTS.Text = "Customer";
             this.CustomerCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -451,7 +454,7 @@
             this.CustomerInvoiceCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CustomerInvoiceCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerInvoiceCreateTS.Name = "CustomerInvoiceCreateTS";
-            this.CustomerInvoiceCreateTS.Size = new System.Drawing.Size(100, 30);
+            this.CustomerInvoiceCreateTS.Size = new System.Drawing.Size(100, 27);
             this.CustomerInvoiceCreateTS.Text = "Customer Invoice";
             this.CustomerInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -463,7 +466,7 @@
             this.CustomerInvoiceCostCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CustomerInvoiceCostCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerInvoiceCostCreateTS.Name = "CustomerInvoiceCostCreateTS";
-            this.CustomerInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 30);
+            this.CustomerInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 27);
             this.CustomerInvoiceCostCreateTS.Text = "Customer Invoice Cost";
             this.CustomerInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -480,7 +483,7 @@
             this.SupplierCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SupplierCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierCreateTS.Name = "SupplierCreateTS";
-            this.SupplierCreateTS.Size = new System.Drawing.Size(100, 30);
+            this.SupplierCreateTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierCreateTS.Text = "Supplier";
             this.SupplierCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -492,7 +495,7 @@
             this.SupplierInvoiceCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SupplierInvoiceCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierInvoiceCreateTS.Name = "SupplierInvoiceCreateTS";
-            this.SupplierInvoiceCreateTS.Size = new System.Drawing.Size(100, 30);
+            this.SupplierInvoiceCreateTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierInvoiceCreateTS.Text = "Supplier Invoice";
             this.SupplierInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -504,7 +507,7 @@
             this.SupplierInvoiceCostCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SupplierInvoiceCostCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierInvoiceCostCreateTS.Name = "SupplierInvoiceCostCreateTS";
-            this.SupplierInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 30);
+            this.SupplierInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 27);
             this.SupplierInvoiceCostCreateTS.Text = "Supplier Invoice Cost";
             this.SupplierInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -521,7 +524,7 @@
             this.SaleCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaleCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SaleCreateTS.Name = "SaleCreateTS";
-            this.SaleCreateTS.Size = new System.Drawing.Size(100, 30);
+            this.SaleCreateTS.Size = new System.Drawing.Size(100, 27);
             this.SaleCreateTS.Text = "Sale";
             this.SaleCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -538,7 +541,7 @@
             this.UserCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UserCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.UserCreateTS.Name = "UserCreateTS";
-            this.UserCreateTS.Size = new System.Drawing.Size(100, 30);
+            this.UserCreateTS.Size = new System.Drawing.Size(100, 27);
             this.UserCreateTS.Text = "User";
             this.UserCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -557,6 +560,7 @@
             // 
             this.Group.AutoSize = false;
             this.Group.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Group.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.Group.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerGroupTS,
             this.toolStripSeparator12,
@@ -575,7 +579,7 @@
             this.CustomerGroupTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CustomerGroupTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerGroupTS.Name = "CustomerGroupTS";
-            this.CustomerGroupTS.Size = new System.Drawing.Size(100, 30);
+            this.CustomerGroupTS.Size = new System.Drawing.Size(100, 27);
             this.CustomerGroupTS.Text = "Customer";
             this.CustomerGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -592,13 +596,14 @@
             this.SupplierGroupTS.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SupplierGroupTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierGroupTS.Name = "SupplierGroupTS";
-            this.SupplierGroupTS.Size = new System.Drawing.Size(100, 30);
+            this.SupplierGroupTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierGroupTS.Text = "Supplier";
             this.SupplierGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // TS
             // 
             this.TS.AutoSize = false;
+            this.TS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.TS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,

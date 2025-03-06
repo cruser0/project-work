@@ -1,14 +1,5 @@
 ﻿using API.Models.Filters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Winform.Entities;
 using Winform.Entities.DTO;
 using Winform.Services;
 
@@ -32,7 +23,7 @@ namespace Winform.Forms.FInalForms
         int maxPageCustomerInvoiceCost = 0;
         double itemsPage = 10.0;
         bool flag;
-        List<string> authRoles = new List<string> { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" };
+
         CustomerGroupDTO valueGroupDTOList = new CustomerGroupDTO();
         public CustomerFinalForm()
         {
@@ -52,8 +43,9 @@ namespace Winform.Forms.FInalForms
             CustomerInvoiceIDTsmi.Visible = false;
             CustomerInvoiceSaleIDTsmi.Visible = false;
             CustomerInvoiceCostIDTsmi.Visible = false;
-            CustomerInvoiceCostCustomerInvoiceIDTsmi.Visible=false;
-            if(AuthorizeGroup(authRoles)||Authorize(new List<string> {"Admin" }))
+            CustomerInvoiceCostCustomerInvoiceIDTsmi.Visible = false;
+            if (UtilityFunctions.IsAuthorized(new[] { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, true)
+                || UtilityFunctions.IsAuthorized(new[] { "Admin" }))
             {
                 CustomerIDTsmi.Visible = true;
                 CustomerOriginalIDTsmi.Visible = true;
@@ -65,25 +57,6 @@ namespace Winform.Forms.FInalForms
                 CustomerInvoiceCostCustomerInvoiceIDTsmi.Visible = true;
             }
 
-        }
-
-        private bool Authorize(List<string> allowedRoles)
-        {
-            return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
-        }
-        private bool AuthorizeGroup(List<string> allowedRoles)
-        {
-            foreach (string a in allowedRoles)
-            {
-                if (!UserAccessInfo.Role.Contains(a))
-                    return false;
-            }
-            return true;
-        }
-
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void SearchBtn_Click(object sender, EventArgs e)
@@ -159,15 +132,15 @@ namespace Winform.Forms.FInalForms
 
             if (!flag)
             {
-            dataGridView1.Columns["CustomerID"].Visible = false;
-            dataGridView1.Columns["OriginalID"].Visible = false;
-            dataGridView2.Columns["SaleId"].Visible =false;
-            dataGridView2.Columns["CustomerId"].Visible =false;
-            dataGridView3.Columns["CustomerInvoiceID"].Visible =false;
-            dataGridView3.Columns["SaleID"].Visible =false;
-            dataGridView4.Columns["CustomerInvoiceCostsID"].Visible =false;
-            dataGridView4.Columns["CustomerInvoiceID"].Visible =false;
-            flag = !flag;
+                dataGridView1.Columns["CustomerID"].Visible = false;
+                dataGridView1.Columns["OriginalID"].Visible = false;
+                dataGridView2.Columns["SaleId"].Visible = false;
+                dataGridView2.Columns["CustomerId"].Visible = false;
+                dataGridView3.Columns["CustomerInvoiceID"].Visible = false;
+                dataGridView3.Columns["SaleID"].Visible = false;
+                dataGridView4.Columns["CustomerInvoiceCostsID"].Visible = false;
+                dataGridView4.Columns["CustomerInvoiceID"].Visible = false;
+                flag = !flag;
             }
         }
         private void LoadCustomers()
@@ -232,7 +205,7 @@ namespace Winform.Forms.FInalForms
             if (saleId != null)
             {
                 dataGridView3.DataSource = valueGroupDTOList.invoices.Where(x => x.SaleId.ToString() == saleId.ToString()).Skip((customerInvoicePage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
-                
+
                 if (dataGridView3.RowCount > 0)
                 {
 

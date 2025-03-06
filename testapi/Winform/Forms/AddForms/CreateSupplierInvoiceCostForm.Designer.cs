@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.CreatePanel = new System.Windows.Forms.Panel();
-            this.NameSupplierLbl = new System.Windows.Forms.Label();
-            this.NameTxt = new System.Windows.Forms.TextBox();
-            this.QuantityIntegerTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.CostIntegerTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.SupplierInvoiceIDIntegerTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
-            this.OpenSupplierInvoice = new System.Windows.Forms.Button();
-            this.SaleIDLbl = new System.Windows.Forms.Label();
-            this.SupplierIDLbl = new System.Windows.Forms.Label();
-            this.Quantity = new System.Windows.Forms.Label();
-            this.SaveBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.SaleIDLbl = new System.Windows.Forms.Label();
+            this.NameSupplierLbl = new System.Windows.Forms.Label();
+            this.SaveBtn = new System.Windows.Forms.Button();
+            this.NameTxt = new System.Windows.Forms.TextBox();
+            this.Quantity = new System.Windows.Forms.Label();
+            this.QuantityIntegerTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.SupplierIDLbl = new System.Windows.Forms.Label();
+            this.CostIntegerTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
+            this.OpenSupplierInvoice = new System.Windows.Forms.Button();
+            this.SupplierInvoiceIDIntegerTxt = new Winform.Forms.control.IntegerTextBoxUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.CreatePanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -62,113 +62,9 @@
             this.CreatePanel.Size = new System.Drawing.Size(784, 461);
             this.CreatePanel.TabIndex = 30;
             // 
-            // NameSupplierLbl
-            // 
-            this.NameSupplierLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameSupplierLbl.AutoSize = true;
-            this.NameSupplierLbl.Location = new System.Drawing.Point(272, 235);
-            this.NameSupplierLbl.Name = "NameSupplierLbl";
-            this.NameSupplierLbl.Size = new System.Drawing.Size(102, 15);
-            this.NameSupplierLbl.TabIndex = 35;
-            this.NameSupplierLbl.Text = "Description Name";
-            // 
-            // NameTxt
-            // 
-            this.NameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameTxt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.NameTxt.Location = new System.Drawing.Point(272, 251);
-            this.NameTxt.MaxLength = 100;
-            this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(206, 23);
-            this.NameTxt.TabIndex = 34;
-            // 
-            // QuantityIntegerTxt
-            // 
-            this.QuantityIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.QuantityIntegerTxt.Location = new System.Drawing.Point(272, 206);
-            this.QuantityIntegerTxt.Name = "QuantityIntegerTxt";
-            this.QuantityIntegerTxt.Size = new System.Drawing.Size(206, 23);
-            this.QuantityIntegerTxt.TabIndex = 33;
-            // 
-            // CostIntegerTxt
-            // 
-            this.CostIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CostIntegerTxt.Location = new System.Drawing.Point(272, 152);
-            this.CostIntegerTxt.Name = "CostIntegerTxt";
-            this.CostIntegerTxt.Size = new System.Drawing.Size(206, 23);
-            this.CostIntegerTxt.TabIndex = 32;
-            // 
-            // SupplierInvoiceIDIntegerTxt
-            // 
-            this.SupplierInvoiceIDIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierInvoiceIDIntegerTxt.Location = new System.Drawing.Point(272, 108);
-            this.SupplierInvoiceIDIntegerTxt.Name = "SupplierInvoiceIDIntegerTxt";
-            this.SupplierInvoiceIDIntegerTxt.Size = new System.Drawing.Size(206, 23);
-            this.SupplierInvoiceIDIntegerTxt.TabIndex = 31;
-            // 
-            // OpenSupplierInvoice
-            // 
-            this.OpenSupplierInvoice.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.OpenSupplierInvoice.FlatAppearance.BorderSize = 0;
-            this.OpenSupplierInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpenSupplierInvoice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.OpenSupplierInvoice.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.OpenSupplierInvoice.Location = new System.Drawing.Point(484, 108);
-            this.OpenSupplierInvoice.Name = "OpenSupplierInvoice";
-            this.OpenSupplierInvoice.Size = new System.Drawing.Size(64, 23);
-            this.OpenSupplierInvoice.TabIndex = 29;
-            this.OpenSupplierInvoice.Text = "Open-->";
-            this.OpenSupplierInvoice.UseVisualStyleBackColor = true;
-            this.OpenSupplierInvoice.Click += new System.EventHandler(this.OpenSupplierInvoice_Click);
-            // 
-            // SaleIDLbl
-            // 
-            this.SaleIDLbl.AllowDrop = true;
-            this.SaleIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaleIDLbl.AutoSize = true;
-            this.SaleIDLbl.Location = new System.Drawing.Point(272, 90);
-            this.SaleIDLbl.Name = "SaleIDLbl";
-            this.SaleIDLbl.Size = new System.Drawing.Size(105, 15);
-            this.SaleIDLbl.TabIndex = 22;
-            this.SaleIDLbl.Text = "Supplier Invoice ID";
-            // 
-            // SupplierIDLbl
-            // 
-            this.SupplierIDLbl.AllowDrop = true;
-            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierIDLbl.AutoSize = true;
-            this.SupplierIDLbl.Location = new System.Drawing.Point(272, 134);
-            this.SupplierIDLbl.Name = "SupplierIDLbl";
-            this.SupplierIDLbl.Size = new System.Drawing.Size(31, 15);
-            this.SupplierIDLbl.TabIndex = 23;
-            this.SupplierIDLbl.Text = "Cost";
-            // 
-            // Quantity
-            // 
-            this.Quantity.AllowDrop = true;
-            this.Quantity.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Quantity.AutoSize = true;
-            this.Quantity.Location = new System.Drawing.Point(272, 188);
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Size = new System.Drawing.Size(53, 15);
-            this.Quantity.TabIndex = 27;
-            this.Quantity.Text = "Quantity";
-            // 
-            // SaveBtn
-            // 
-            this.SaveBtn.AllowDrop = true;
-            this.SaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveBtn.Location = new System.Drawing.Point(307, 280);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(171, 23);
-            this.SaveBtn.TabIndex = 25;
-            this.SaveBtn.Text = "Create Supplier Invoice Cost";
-            this.SaveBtn.UseVisualStyleBackColor = true;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
-            // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.SaleIDLbl);
             this.panel1.Controls.Add(this.NameSupplierLbl);
@@ -186,32 +82,150 @@
             this.panel1.Size = new System.Drawing.Size(744, 421);
             this.panel1.TabIndex = 36;
             // 
-            // panel2
+            // SaleIDLbl
             // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 20);
-            this.panel2.TabIndex = 37;
+            this.SaleIDLbl.AllowDrop = true;
+            this.SaleIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaleIDLbl.AutoSize = true;
+            this.SaleIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaleIDLbl.Location = new System.Drawing.Point(272, 90);
+            this.SaleIDLbl.Name = "SaleIDLbl";
+            this.SaleIDLbl.Size = new System.Drawing.Size(105, 15);
+            this.SaleIDLbl.TabIndex = 22;
+            this.SaleIDLbl.Text = "Supplier Invoice ID";
             // 
-            // panel3
+            // NameSupplierLbl
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 20);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 421);
-            this.panel3.TabIndex = 38;
+            this.NameSupplierLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameSupplierLbl.AutoSize = true;
+            this.NameSupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.NameSupplierLbl.Location = new System.Drawing.Point(272, 235);
+            this.NameSupplierLbl.Name = "NameSupplierLbl";
+            this.NameSupplierLbl.Size = new System.Drawing.Size(102, 15);
+            this.NameSupplierLbl.TabIndex = 35;
+            this.NameSupplierLbl.Text = "Description Name";
+            // 
+            // SaveBtn
+            // 
+            this.SaveBtn.AllowDrop = true;
+            this.SaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveBtn.Location = new System.Drawing.Point(307, 280);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(171, 23);
+            this.SaveBtn.TabIndex = 25;
+            this.SaveBtn.Text = "Create Supplier Invoice Cost";
+            this.SaveBtn.UseVisualStyleBackColor = false;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            // 
+            // NameTxt
+            // 
+            this.NameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameTxt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.NameTxt.Location = new System.Drawing.Point(272, 251);
+            this.NameTxt.MaxLength = 100;
+            this.NameTxt.Name = "NameTxt";
+            this.NameTxt.Size = new System.Drawing.Size(206, 23);
+            this.NameTxt.TabIndex = 34;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AllowDrop = true;
+            this.Quantity.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Quantity.AutoSize = true;
+            this.Quantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.Quantity.Location = new System.Drawing.Point(272, 188);
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Size = new System.Drawing.Size(53, 15);
+            this.Quantity.TabIndex = 27;
+            this.Quantity.Text = "Quantity";
+            // 
+            // QuantityIntegerTxt
+            // 
+            this.QuantityIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.QuantityIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.QuantityIntegerTxt.Location = new System.Drawing.Point(272, 206);
+            this.QuantityIntegerTxt.Name = "QuantityIntegerTxt";
+            this.QuantityIntegerTxt.Size = new System.Drawing.Size(206, 23);
+            this.QuantityIntegerTxt.TabIndex = 33;
+            // 
+            // SupplierIDLbl
+            // 
+            this.SupplierIDLbl.AllowDrop = true;
+            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierIDLbl.AutoSize = true;
+            this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierIDLbl.Location = new System.Drawing.Point(272, 134);
+            this.SupplierIDLbl.Name = "SupplierIDLbl";
+            this.SupplierIDLbl.Size = new System.Drawing.Size(31, 15);
+            this.SupplierIDLbl.TabIndex = 23;
+            this.SupplierIDLbl.Text = "Cost";
+            // 
+            // CostIntegerTxt
+            // 
+            this.CostIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CostIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CostIntegerTxt.Location = new System.Drawing.Point(272, 152);
+            this.CostIntegerTxt.Name = "CostIntegerTxt";
+            this.CostIntegerTxt.Size = new System.Drawing.Size(206, 23);
+            this.CostIntegerTxt.TabIndex = 32;
+            // 
+            // OpenSupplierInvoice
+            // 
+            this.OpenSupplierInvoice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.OpenSupplierInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.OpenSupplierInvoice.FlatAppearance.BorderSize = 0;
+            this.OpenSupplierInvoice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OpenSupplierInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.OpenSupplierInvoice.Location = new System.Drawing.Point(484, 108);
+            this.OpenSupplierInvoice.Name = "OpenSupplierInvoice";
+            this.OpenSupplierInvoice.Size = new System.Drawing.Size(64, 23);
+            this.OpenSupplierInvoice.TabIndex = 29;
+            this.OpenSupplierInvoice.Text = "Open";
+            this.OpenSupplierInvoice.UseVisualStyleBackColor = false;
+            this.OpenSupplierInvoice.Click += new System.EventHandler(this.OpenSupplierInvoice_Click);
+            // 
+            // SupplierInvoiceIDIntegerTxt
+            // 
+            this.SupplierInvoiceIDIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierInvoiceIDIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierInvoiceIDIntegerTxt.Location = new System.Drawing.Point(272, 108);
+            this.SupplierInvoiceIDIntegerTxt.Name = "SupplierInvoiceIDIntegerTxt";
+            this.SupplierInvoiceIDIntegerTxt.Size = new System.Drawing.Size(206, 23);
+            this.SupplierInvoiceIDIntegerTxt.TabIndex = 31;
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(764, 20);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(20, 421);
             this.panel4.TabIndex = 39;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 20);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(20, 421);
+            this.panel3.TabIndex = 38;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(784, 20);
+            this.panel2.TabIndex = 37;
+            // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 441);
             this.panel5.Name = "panel5";

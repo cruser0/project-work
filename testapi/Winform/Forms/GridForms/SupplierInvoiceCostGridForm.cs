@@ -30,7 +30,6 @@ namespace Winform.Forms.CreateWindow
 
             InitializeComponent();
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
-            RightSideBar.closeBtnEvent += RightSideBar_closeBtnEvent;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
@@ -42,17 +41,14 @@ namespace Winform.Forms.CreateWindow
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierInvoiceCostDgv.ContextMenuStrip = RightClickDgv;
             PaginationUserControl.Visible = false;
-            if(!Authorize(authRoles))
+            if (!Authorize(authRoles))
                 SupplierInvoiceCostIDTsmi.Visible = false;
         }
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
-        private void RightSideBar_closeBtnEvent(object? sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
 
 

@@ -182,6 +182,7 @@
             // 
             this.SupplierToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.SupplierToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SupplierToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.SupplierToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft,
             this.Left,
@@ -277,6 +278,7 @@
             // 
             this.InvoiceToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.InvoiceToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.InvoiceToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.InvoiceToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft2,
             this.Left2,
@@ -352,6 +354,7 @@
             // 
             this.CostToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(180)))), ((int)(((byte)(212)))));
             this.CostToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CostToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CostToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DoubleLeft3,
             this.Left3,
@@ -697,6 +700,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.LeftPane);
             this.MinimumSize = new System.Drawing.Size(800, 500);

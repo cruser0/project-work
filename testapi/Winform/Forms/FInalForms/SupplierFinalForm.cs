@@ -32,25 +32,15 @@ namespace Winform.Forms.FInalForms
         private int supplierInvoiceCostTotalPages;
         private List<SupplierInvoiceCost> allSupplierInvoiceCosts = new List<SupplierInvoiceCost>(); // Lista completa dei supplier inv cost
 
-        List<string> authRoles1 = new List<string>
-            { "Admin" };
-        List<string> authRoles2 = new List<string>
-            { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" };
-
         public SupplierFinalForm()
         {
             _valueService = new ValueService();
             InitializeComponent();
-            if (!IsAuthorized(authRoles1, requireAll: false) || !IsAuthorized(authRoles2, requireAll: true))
+            if (UtilityFunctions.IsAuthorized(new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, true)
+                || UtilityFunctions.IsAuthorized(new[] { "Admin" }))
             {
                 HideMenuItems();
             }
-        }
-
-        private bool IsAuthorized(List<string> requiredRoles, bool requireAll)
-        {
-            var userRoles = new HashSet<string>(UserAccessInfo.Role);
-            return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
         }
 
         private void HideMenuItems()

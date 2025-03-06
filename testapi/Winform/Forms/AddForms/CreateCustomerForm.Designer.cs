@@ -34,12 +34,12 @@
             this.CountryTxt = new System.Windows.Forms.TextBox();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.FavouriteBTN = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.FavouriteBTN = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +47,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(272, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 15);
@@ -57,6 +58,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label2.Location = new System.Drawing.Point(272, 217);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 15);
@@ -66,6 +68,7 @@
             // NameTxt
             // 
             this.NameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.NameTxt.Location = new System.Drawing.Point(272, 150);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
@@ -76,6 +79,7 @@
             // CountryTxt
             // 
             this.CountryTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.CountryTxt.Location = new System.Drawing.Point(272, 235);
             this.CountryTxt.MaxLength = 50;
             this.CountryTxt.Name = "CountryTxt";
@@ -86,8 +90,9 @@
             // SaveBtn
             // 
             this.SaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveBtn.BackColor = System.Drawing.Color.Gainsboro;
+            this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveBtn.Enabled = false;
+            this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SaveBtn.Location = new System.Drawing.Point(400, 264);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(72, 24);
@@ -98,7 +103,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.FavouriteBTN);
@@ -113,49 +118,15 @@
             this.panel1.Size = new System.Drawing.Size(744, 421);
             this.panel1.TabIndex = 5;
             // 
-            // panel2
+            // label3
             // 
-            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 441);
-            this.panel2.MaximumSize = new System.Drawing.Size(0, 20);
-            this.panel2.MinimumSize = new System.Drawing.Size(0, 20);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 20);
-            this.panel2.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.MaximumSize = new System.Drawing.Size(0, 20);
-            this.panel3.MinimumSize = new System.Drawing.Size(0, 20);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(784, 20);
-            this.panel3.TabIndex = 7;
-            // 
-            // panel4
-            // 
-            this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 20);
-            this.panel4.MaximumSize = new System.Drawing.Size(20, 0);
-            this.panel4.MinimumSize = new System.Drawing.Size(20, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(20, 421);
-            this.panel4.TabIndex = 8;
-            // 
-            // panel5
-            // 
-            this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(764, 20);
-            this.panel5.MaximumSize = new System.Drawing.Size(20, 0);
-            this.panel5.MinimumSize = new System.Drawing.Size(20, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(20, 421);
-            this.panel5.TabIndex = 9;
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(641, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Add To Favourite";
             // 
             // FavouriteBTN
             // 
@@ -169,15 +140,53 @@
             this.FavouriteBTN.UseVisualStyleBackColor = true;
             this.FavouriteBTN.Click += new System.EventHandler(this.Favourite_Click);
             // 
-            // label3
+            // panel2
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(641, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 15);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Add To Favourite";
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 441);
+            this.panel2.MaximumSize = new System.Drawing.Size(0, 20);
+            this.panel2.MinimumSize = new System.Drawing.Size(0, 20);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(784, 20);
+            this.panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.MaximumSize = new System.Drawing.Size(0, 20);
+            this.panel3.MinimumSize = new System.Drawing.Size(0, 20);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(784, 20);
+            this.panel3.TabIndex = 7;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 20);
+            this.panel4.MaximumSize = new System.Drawing.Size(20, 0);
+            this.panel4.MinimumSize = new System.Drawing.Size(20, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(20, 421);
+            this.panel4.TabIndex = 8;
+            // 
+            // panel5
+            // 
+            this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(764, 20);
+            this.panel5.MaximumSize = new System.Drawing.Size(20, 0);
+            this.panel5.MinimumSize = new System.Drawing.Size(20, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(20, 421);
+            this.panel5.TabIndex = 9;
             // 
             // CreateCustomerForm
             // 
