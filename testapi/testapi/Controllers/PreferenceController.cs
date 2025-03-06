@@ -17,65 +17,66 @@ namespace API.Controllers
         }
         // GET: api/<ValuesController1>
         [HttpGet("customerdgv/{id}")]
-        public IActionResult GetCustomerDGV(int id)
+        public async Task<IActionResult> GetCustomerDGV(int id)
         {
             try
             {
-                var result = _userService.GetCustomerDGV(id);
+                var result = await _userService.GetCustomerDGV(id);
                 return Ok(result);
-                
-            }catch (Exception ex) { return BadRequest(ex.Message); }
+
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("customerdgv")]
-        public ActionResult<CustomerDGV> PostCustomerDGV([FromBody] CustomerDGV value)
+        public async Task<ActionResult<CustomerDGV>> PostCustomerDGV([FromBody] CustomerDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateCustomerDGV(value);
+                var result = await _userService.CreateUpdateCustomerDGV(value);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpGet("customer-invoicedgv/{id}")]
-        public IActionResult GetCustomerInvoiceDGV(int id)
+        public async Task<IActionResult> GetCustomerInvoiceDGV(int id)
         {
             try
             {
-                var result = _userService.GetCustomerInvoiceDGV(id);
+                var result = await _userService.GetCustomerInvoiceDGV(id);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("customer-invoicedgv")]
-        public IActionResult PostCustomerInvoiceDGV([FromBody] CustomerInvoiceDGV value)
+        public async Task<IActionResult> PostCustomerInvoiceDGV([FromBody] CustomerInvoiceDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateCustomerInvoiceDGV(value);
+                var result = await _userService.CreateUpdateCustomerInvoiceDGV(value);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpGet("customer-invoice-costdgv/{id}")]
-        public IActionResult GetCustomerInvoiceCostDGV(int id)
+        public async Task<IActionResult> GetCustomerInvoiceCostDGV(int id)
         {
             try
             {
-                var result = _userService.GetCustomerInvoiceCostDGV(id);
+                var result = await _userService.GetCustomerInvoiceCostDGV(id);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("customer-invoice-costdgv")]
-        public IActionResult PostCustomerInvoiceCostDGV([FromBody] CustomerInvoiceCostDGV value)
+        public async Task<IActionResult> PostCustomerInvoiceCostDGV([FromBody] CustomerInvoiceCostDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateCustomerInvoiceCostDGV(value);
+                var result = await _userService.CreateUpdateCustomerInvoiceCostDGV(value);
                 return Ok(result);
 
             }
@@ -83,66 +84,66 @@ namespace API.Controllers
         }
 
         [HttpGet("supplierdgv/{id}")]
-        public IActionResult GetSupplierDGV(int id)
+        public async Task<IActionResult> GetSupplierDGV(int id)
         {
             try
             {
-                var result = _userService.GetSupplierDGV(id);
+                var result = await _userService.GetSupplierDGV(id);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("supplierdgv")]
-        public IActionResult PostSupplierDGV([FromBody] SupplierDGV value)
+        public async Task<IActionResult> PostSupplierDGV([FromBody] SupplierDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateSupplierDGV(value);
+                var result = await _userService.CreateUpdateSupplierDGV(value);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpGet("supplier-invoicedgv/{id}")]
-        public IActionResult GetSupplierInvoiceDGV(int id)
+        public async Task<IActionResult> GetSupplierInvoiceDGV(int id)
         {
             try
             {
-                var result = _userService.GetSupplierInvoiceDGV(id);
+                var result = await _userService.GetSupplierInvoiceDGV(id);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("supplier-invoicedgv")]
-        public IActionResult PostSupplierInvoiceDGV([FromBody] SupplierInvoiceDGV value)
+        public async Task<IActionResult> PostSupplierInvoiceDGV([FromBody] SupplierInvoiceDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateSupplierInvoiceDGV(value);
+                var result = await _userService.CreateUpdateSupplierInvoiceDGV(value);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpGet("supplier-invoice-costdgv/{id}")]
-        public IActionResult GetSupplierInvoiceCostDGV(int id)
+        public async Task<IActionResult> GetSupplierInvoiceCostDGV(int id)
         {
             try
             {
-                var result = _userService.GetSupplierInvoiceCostDGV(id);
+                var result = await _userService.GetSupplierInvoiceCostDGV(id);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("supplier-invoice-costdgv")]
-        public IActionResult PostSupplierInvoiceCostDGV([FromBody] SupplierInvoiceCostDGV value)
+        public async Task<IActionResult> PostSupplierInvoiceCostDGV([FromBody] SupplierInvoiceCostDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateSupplierInvoiceCostDGV(value);
+                var result = await _userService.CreateUpdateSupplierInvoiceCostDGV(value);
                 return Ok(result);
 
             }
@@ -150,22 +151,22 @@ namespace API.Controllers
         }
 
         [HttpGet("saledgv/{id}")]
-        public IActionResult GetSaleDGV(int id)
+        public async Task<IActionResult> GetSaleDGV(int id)
         {
             try
             {
-                var result = _userService.GetSaleDGV(id);
+                var result = await _userService.GetSaleDGV(id);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("saledgv")]
-        public IActionResult PostSaleDGV([FromBody] SaleDGV value)
+        public async Task<IActionResult> PostSaleDGV([FromBody] SaleDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateSaleDGV(value);
+                var result = await _userService.CreateUpdateSaleDGV(value);
                 return Ok(result);
 
             }
@@ -173,22 +174,22 @@ namespace API.Controllers
         }
 
         [HttpGet("userdgv/{id}")]
-        public IActionResult GetUserDGV(int id)
+        public async Task<IActionResult> GetUserDGV(int id)
         {
             try
             {
-                var result = _userService.GetUserDGV(id);
+                var result = await _userService.GetUserDGV(id);
                 return Ok(result);
 
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
         [HttpPost("userdgv")]
-        public IActionResult PostUserDGV([FromBody] UserDGV value)
+        public async Task<IActionResult> PostUserDGV([FromBody] UserDGV value)
         {
             try
             {
-                var result = _userService.CreateUpdateUserDGV(value);
+                var result = await _userService.CreateUpdateUserDGV(value);
                 return Ok(result);
 
             }
@@ -196,11 +197,11 @@ namespace API.Controllers
         }
 
         [HttpPost("create-favourite-page")]
-        public IActionResult CreateFavouritePage([FromBody] string value)
+        public async Task<IActionResult> CreateFavouritePage([FromBody] string value)
         {
             try
             {
-                _userService.CreateFavouritePages(value);
+                await _userService.CreateFavouritePages(value);
                 return Ok("Favourite Page Created Successfully");
 
             }
@@ -208,7 +209,7 @@ namespace API.Controllers
         }
 
         [HttpPost("add-user-favourite-page/{id}")]
-        public IActionResult AddUserFavouritePage([FromBody] List<string> value,int id)
+        public async Task<IActionResult> AddUserFavouritePage([FromBody] List<string> value, int id)
         {
             try
             {
@@ -216,7 +217,7 @@ namespace API.Controllers
                 {
                     return BadRequest("Page list was empty");
                 }
-                _userService.AddFavouritePagesToUser(value, id);
+                await _userService.AddFavouritePagesToUser(value, id);
                 return Ok("Favourite Page added to user Successfully");
 
             }
@@ -224,7 +225,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("remove-user-favourite-page/{id}")]
-        public IActionResult RemoveUserFavouritePage([FromBody] List<string> value,int id)
+        public async Task<IActionResult> RemoveUserFavouritePage([FromBody] List<string> value, int id)
         {
             try
             {
@@ -232,7 +233,7 @@ namespace API.Controllers
                 {
                     return BadRequest("Page list was empty");
                 }
-                _userService.RemoveFavouritePagesToUser(value, id);
+                await _userService.RemoveFavouritePagesToUser(value, id);
                 return Ok("Favourite Page Removed to user Successfully");
 
             }
@@ -240,11 +241,11 @@ namespace API.Controllers
         }
 
         [HttpGet("user-favourite-pages/{id}")]
-        public IActionResult GetUserFavouritePages(int id)
+        public async Task<IActionResult> GetUserFavouritePages(int id)
         {
             try
             {
-                var result = _userService.GetUserPreferredPages(id);
+                var result = await _userService.GetUserPreferredPages(id);
                 return Ok(result);
 
             }

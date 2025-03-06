@@ -21,11 +21,11 @@ namespace API.Controllers
         // GET: api/<CustomerInvoiceCostController>
         [Authorize(Roles = "Admin,CustomerInvoiceCostRead,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
         [HttpGet]
-        public async  Task<IActionResult> Get([FromQuery] CustomerInvoiceCostFilter filter)
+        public async Task<IActionResult> Get([FromQuery] CustomerInvoiceCostFilter filter)
         {
             try
             {
-                var data =await  _customerInvoiceCostService.GetAllCustomerInvoiceCosts(filter);
+                var data = await _customerInvoiceCostService.GetAllCustomerInvoiceCosts(filter);
                 if (data.Any())
                 {
                     return Ok(data);
@@ -40,7 +40,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetCount([FromQuery] CustomerInvoiceCostFilter filter)
         {
 
-            var data =await _customerInvoiceCostService.CountCustomerInvoiceCosts(filter);
+            var data = await _customerInvoiceCostService.CountCustomerInvoiceCosts(filter);
             return Ok(data);
 
         }
@@ -53,7 +53,7 @@ namespace API.Controllers
 
             try
             {
-                var data =await _customerInvoiceCostService.GetCustomerInvoiceCostById(id);
+                var data = await _customerInvoiceCostService.GetCustomerInvoiceCostById(id);
                 if (data == null)
                     throw new Exception("Customer Invoice Cost not found");
                 return Ok(data);
@@ -85,7 +85,7 @@ namespace API.Controllers
         {
             try
             {
-                var data =await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost));
+                var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost));
                 if (data == null)
                     throw new Exception("Customer Invoice Cost not found");
                 return Ok(data);
@@ -101,7 +101,7 @@ namespace API.Controllers
 
             try
             {
-                var data =await _customerInvoiceCostService.DeleteCustomerInvoiceCost(id);
+                var data = await _customerInvoiceCostService.DeleteCustomerInvoiceCost(id);
                 if (data == null)
                     throw new Exception("Customer Invoice Cost not found");
                 return Ok(data);

@@ -43,6 +43,7 @@
             this.CostLbl = new System.Windows.Forms.Label();
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.BottomPanel = new System.Windows.Forms.Panel();
+            this.PaginationPanel = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CustomerInvoiceCostIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +56,7 @@
             this.panel2.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.BottomPanel.SuspendLayout();
+            this.PaginationPanel.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -201,18 +203,27 @@
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.BottomPanel.Controls.Add(this.PaginationUserControl);
+            this.BottomPanel.Controls.Add(this.PaginationPanel);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 361);
             this.BottomPanel.Name = "BottomPanel";
             this.BottomPanel.Size = new System.Drawing.Size(584, 100);
             this.BottomPanel.TabIndex = 5;
             // 
+            // PaginationPanel
+            // 
+            this.PaginationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.PaginationPanel.Controls.Add(this.PaginationUserControl);
+            this.PaginationPanel.Location = new System.Drawing.Point(87, 0);
+            this.PaginationPanel.Name = "PaginationPanel";
+            this.PaginationPanel.Size = new System.Drawing.Size(407, 100);
+            this.PaginationPanel.TabIndex = 1;
+            // 
             // PaginationUserControl
             // 
             this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(136, 25);
+            this.PaginationUserControl.Location = new System.Drawing.Point(35, 28);
             this.PaginationUserControl.Name = "PaginationUserControl";
             this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
             this.PaginationUserControl.TabIndex = 0;
@@ -288,12 +299,14 @@
             this.Name = "CustomerInvoiceCostGridForm";
             this.Text = "CustomerInvoiceCostGrid";
             this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceCostDgv)).EndInit();
             this.panel2.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.BottomPanel.ResumeLayout(false);
+            this.PaginationPanel.ResumeLayout(false);
             this.RightClickDgv.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -322,5 +335,6 @@
         private ToolStripMenuItem CustomerInvoiceCostCostTsmi;
         private ToolStripMenuItem CustomerInvoiceCostQuantityTsmi;
         private ToolStripMenuItem CustomerInvoiceCostNameTsmi;
+        private Panel PaginationPanel;
     }
 }

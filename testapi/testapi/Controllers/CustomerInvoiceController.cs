@@ -21,11 +21,11 @@ namespace API.Controllers
         // GET: api/<CustomerInvoiceController>
         [Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
         [HttpGet]
-        public IActionResult Get([FromQuery] CustomerInvoiceFilter filter)
+        public async Task<IActionResult> Get([FromQuery] CustomerInvoiceFilter filter)
         {
             try
             {
-                var result = _customerInvoiceService.GetAllCustomerInvoices(filter);
+                var result = await _customerInvoiceService.GetAllCustomerInvoices(filter);
                 if (result.Any())
                 {
                     return Ok(result);
@@ -37,21 +37,21 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
         [HttpGet("count")]
-        public IActionResult GetCount([FromQuery] CustomerInvoiceFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] CustomerInvoiceFilter filter)
         {
-            var data = _customerInvoiceService.CountCustomerInvoices(filter);
+            var data = await _customerInvoiceService.CountCustomerInvoices(filter);
             return Ok(data);
         }
 
         // GET api/<CustomerInvoiceController>/5
         [Authorize(Roles = "Admin,CustomerInvoiceRead")]
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
 
             try
             {
-                var data = _customerInvoiceService.GetCustomerInvoiceById(id);
+                var data = await _customerInvoiceService.GetCustomerInvoiceById(id);
                 if (data == null)
                     throw new Exception("Customer Invoices not found");
             }
@@ -62,11 +62,11 @@ namespace API.Controllers
         // POST api/<CustomerInvoiceController>
         [Authorize(Roles = "Admin,CustomerInvoiceWrite,CustomerInvoiceAdmin")]
         [HttpPost]
-        public IActionResult Post(CustomerInvoiceDTO customerInvoice)
+        public async Task<IActionResult> Post(CustomerInvoiceDTO customerInvoice)
         {
             try
             {
-                var data = _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice));
+                var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice));
                 if (data == null)
                     throw new Exception("Customer Invoices not found!");
                 return Ok(data);
@@ -78,11 +78,11 @@ namespace API.Controllers
         // PUT api/<CustomerInvoiceController>/5
         [Authorize(Roles = "Admin,CustomerInvoiceWrite,CustomerInvoiceAdmin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
+        public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
         {
             try
             {
-                var data = _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice));
+                var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice));
                 if (data == null)
                     throw new Exception("Customer Invoices not found!");
                 return Ok(data);
@@ -94,12 +94,12 @@ namespace API.Controllers
         // DELETE api/<CustomerInvoiceController>/5
         [Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
 
             try
             {
-                var data = _customerInvoiceService.DeleteCustomerInvoice(id);
+                var data = await _customerInvoiceService.DeleteCustomerInvoice(id);
                 if (data == null)
                     throw new Exception("Customer Invoices not found!");
                 return Ok(data);

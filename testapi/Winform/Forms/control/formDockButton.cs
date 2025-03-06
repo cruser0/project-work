@@ -29,15 +29,16 @@
 
         public void buttonShowForm_Click(object sender, EventArgs e)
         {
-            int? countOpenForms = mainForm.MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
-            List<Form?> childrenOpen = mainForm.MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+            int? countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
+            List<Form?> childrenOpen = mainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
             if (countOpenForms >= 4)
                 mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
 
-            form.WindowState = FormWindowState.Normal;
 
             form.Show();
+            form.WindowState = FormWindowState.Normal;
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
             panel.Controls.Remove(this);
 

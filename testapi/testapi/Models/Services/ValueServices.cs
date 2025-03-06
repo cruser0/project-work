@@ -1,6 +1,7 @@
 ﻿using API.Models.DTO;
 using API.Models.Filters;
 using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -17,33 +18,28 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public TabelleCustomerDto GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
+        public async Task<TabelleCustomerDto> GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
                                                 CustomerInvoiceFilter? invoiceFilter,
                                                 SaleFilter? saleFilter,
                                                 CustomerFilter? customerFilter)
         {
-            var customerInvoiceCosts = ApplyFilter(costFilter).ToList();
-            var customerInvoices = ApplyFilter(invoiceFilter).ToList();
-            var customers = ApplyFilter(customerFilter).ToList();
-            var sales = ApplyFilter(saleFilter).ToList();
+            var customerInvoiceCosts = await ApplyFilter(costFilter).ToListAsync();
+            var customerInvoices = await ApplyFilter(invoiceFilter).ToListAsync();
+            var customers = await ApplyFilter(customerFilter).ToListAsync();
+            var sales = await ApplyFilter(saleFilter).ToListAsync();
 
 
             return new TabelleCustomerDto(customers, sales, customerInvoices, customerInvoiceCosts);
         }
 
-        //if (filter.SalePage != null)
-        //{
-        //    query = query.Skip(((int)filter.SalePage - 1) * itemsPerPage).Take(itemsPerPage);
-        //}
 
-
-        public TabelleSupplierDto GetSupplierInvoiceCosts(SupplierInvoiceCostFilter? costFilter,
+        public async Task<TabelleSupplierDto> GetSupplierInvoiceCosts(SupplierInvoiceCostFilter? costFilter,
                                                 SupplierInvoiceFilter? invoiceFilter,
                                                 SupplierFilter? supplierFilter)
         {
-            var supplierInvoiceCosts = ApplyFilter(costFilter).ToList();
-            var supplierInvoices = ApplyFilter(invoiceFilter).ToList();
-            var suppliers = ApplyFilter(supplierFilter).ToList();
+            var supplierInvoiceCosts = await ApplyFilter(costFilter).ToListAsync();
+            var supplierInvoices = await ApplyFilter(invoiceFilter).ToListAsync();
+            var suppliers = await ApplyFilter(supplierFilter).ToListAsync();
 
             return new TabelleSupplierDto(suppliers, supplierInvoices, supplierInvoiceCosts);
         }

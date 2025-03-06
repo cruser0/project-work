@@ -46,7 +46,7 @@ namespace Winform.Forms
             // CenterPanel
             // 
             this.CenterPanel.Location = new System.Drawing.Point(200, 0);
-            this.CenterPanel.Size = new System.Drawing.Size(387, 325);
+            this.CenterPanel.Size = new System.Drawing.Size(387, 361);
             // 
             // panel5
             // 
@@ -101,7 +101,7 @@ namespace Winform.Forms
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 325);
+            this.panel2.Size = new System.Drawing.Size(200, 461);
             this.panel2.TabIndex = 10;
             // 
             // button1
@@ -122,14 +122,14 @@ namespace Winform.Forms
             this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 325);
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 461);
             this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(787, 425);
+            this.ClientSize = new System.Drawing.Size(787, 461);
             this.Controls.Add(this.panel2);
             this.Name = "CustomerForm";
             this.Text = "CustomerForm";

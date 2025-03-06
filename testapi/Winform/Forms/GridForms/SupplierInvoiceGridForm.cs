@@ -236,8 +236,8 @@ namespace Winform.Forms
         }
         private void CustomerGridForm_Resize(object sender, EventArgs e)
         {
-            BottomPanel.Location = new Point((Width - BottomPanel.Width) / 2, 0);
-            PaginationUserControl.Location = new Point((BottomPanel.Width - PaginationUserControl.Width) / 2, (BottomPanel.Height - PaginationUserControl.Height) / 2);
+            panel2.Location = new Point((Width - panel2.Width) / 2, 0);
+            PaginationUserControl.Location = new Point((panel2.Width - PaginationUserControl.Width) / 2, (panel2.Height - PaginationUserControl.Height) / 2);
 
 
             int newHeight = (int)((Height - TextBoxesRightPanel.Top) * 0.9);

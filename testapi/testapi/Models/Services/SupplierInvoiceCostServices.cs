@@ -2,18 +2,19 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
     public interface ISupplierInvoiceCostService
     {
-        ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
-        SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id);
-        SupplierInvoiceCostDTOGet CreateSupplierInvoiceCost(SupplierInvoiceCost supplierInvoiceCost);
-        SupplierInvoiceCostDTOGet UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost);
-        SupplierInvoiceCostDTOGet DeleteSupplierInvoiceCost(int id);
+        Task<ICollection<SupplierInvoiceCostDTOGet>> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
+        Task<SupplierInvoiceCostDTOGet> GetSupplierInvoiceCostById(int id);
+        Task<SupplierInvoiceCostDTOGet> CreateSupplierInvoiceCost(SupplierInvoiceCost supplierInvoiceCost);
+        Task<SupplierInvoiceCostDTOGet> UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost);
+        Task<SupplierInvoiceCostDTOGet> DeleteSupplierInvoiceCost(int id);
 
-        int CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
+        Task<int> CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
 
 
 
@@ -26,17 +27,17 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public ICollection<SupplierInvoiceCostDTOGet> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
+        public async Task<ICollection<SupplierInvoiceCostDTOGet>> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
         {
-            return ApplyFilter(filter).ToList();
+            return await ApplyFilter(filter).ToListAsync();
         }
 
-        public int CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
+        public async Task<int> CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
         {
-            return ApplyFilter(filter).Count();
+            return await ApplyFilter(filter).CountAsync();
         }
 
-        public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
+        private IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
         {
             int itemsPage = 10;
             var query = _context.SupplierInvoiceCosts.AsQueryable();
@@ -80,9 +81,9 @@ namespace API.Models.Services
             return query.Select(x => SupplierInvoiceCostMapper.MapGet(x));
         }
 
-        public SupplierInvoiceCostDTOGet GetSupplierInvoiceCostById(int id)
+        public async Task<SupplierInvoiceCostDTOGet> GetSupplierInvoiceCostById(int id)
         {
-            var data = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
+            var data = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new ArgumentException("Supplier Invoice Cost not found!");
@@ -90,7 +91,7 @@ namespace API.Models.Services
             return SupplierInvoiceCostMapper.MapGet(data);
         }
 
-        public SupplierInvoiceCostDTOGet CreateSupplierInvoiceCost(SupplierInvoiceCost supplierInvoiceCost)
+        public async Task<SupplierInvoiceCostDTOGet> CreateSupplierInvoiceCost(SupplierInvoiceCost supplierInvoiceCost)
         {
             SupplierInvoice si;
             if (supplierInvoiceCost == null)
@@ -103,31 +104,31 @@ namespace API.Models.Services
                 throw new ArgumentException("Values can't be lesser than 1 or null");
             if (string.IsNullOrEmpty(supplierInvoiceCost.Name))
                 throw new ArgumentException("Name can't be empty");
-            si = _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).First();
+            si = await _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstAsync();
             if (si.Status.ToLower().Equals("approved"))
                 throw new ArgumentException("Supplier Invoice is already approved");
 
 
-            decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == supplierInvoiceCost.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
+            decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == supplierInvoiceCost.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);
 
             si.InvoiceAmount = total + supplierInvoiceCost.Cost * supplierInvoiceCost.Quantity;
             _context.SupplierInvoices.Update(si);
             _context.Add(supplierInvoiceCost);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return SupplierInvoiceCostMapper.MapGet(supplierInvoiceCost);
         }
 
-        public SupplierInvoiceCostDTOGet UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost)
+        public async Task<SupplierInvoiceCostDTOGet> UpdateSupplierInvoiceCost(int id, SupplierInvoiceCost supplierInvoiceCost)
         {
             SupplierInvoice? si;
-            var sicDB = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
-            SupplierInvoice? oldSi = _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefault();
+            var sicDB = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
+            SupplierInvoice? oldSi = await _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefaultAsync();
             oldSi.InvoiceAmount = oldSi.InvoiceAmount - (sicDB.Cost * sicDB.Quantity);
             if (sicDB != null && id >= 0)
             {
                 if (supplierInvoiceCost.SupplierInvoiceId != null)
                     sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
-                if (_context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefault().Status.ToLower().Equals("approved"))
+                if ((await _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefaultAsync()).Status.ToLower().Equals("approved"))
                     throw new ArgumentException("Supplier Invoice is already approved");
                 if (!_context.SupplierInvoices.Any(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
                     throw new ArgumentNullException("Supplier Invoice not Found");
@@ -137,34 +138,34 @@ namespace API.Models.Services
                     sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
                 sicDB.Name = supplierInvoiceCost.Name ?? sicDB.Name;
                 _context.SupplierInvoiceCosts.Update(sicDB);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 if (sicDB.Cost > 0 && sicDB.Quantity > 0)
                 {
-                    si = _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefault();
-                    decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
+                    si = await _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefaultAsync();
+                    decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);
                     si.InvoiceAmount = total;
                     _context.SupplierInvoices.Update(si);
                     _context.SupplierInvoices.Update(oldSi);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                 }
                 return SupplierInvoiceCostMapper.MapGet(sicDB);
             }
             throw new ArgumentNullException("Supplier Invoice Cost not found");
         }
 
-        public SupplierInvoiceCostDTOGet DeleteSupplierInvoiceCost(int id)
+        public async Task<SupplierInvoiceCostDTOGet> DeleteSupplierInvoiceCost(int id)
         {
-            var data = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefault();
+            var data = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null || id < 1)
             {
                 throw new ArgumentNullException("Supplier Invoice Cost not found!");
             }
-            SupplierInvoice si = _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).First();
-            decimal? total = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).Sum(x => x.Cost * x.Quantity);
+            SupplierInvoice si = await _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).FirstAsync();
+            decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);
             si.InvoiceAmount = total - data.Cost * data.Quantity;
             _context.SupplierInvoices.Update(si);
             _context.SupplierInvoiceCosts.Remove(data);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return SupplierInvoiceCostMapper.MapGet(data);
 
         }

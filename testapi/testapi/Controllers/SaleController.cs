@@ -21,11 +21,11 @@ namespace API.Controllers
         // GET: api/<SaleController>
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet]
-        public IActionResult Get([FromQuery] SaleFilter filter)
+        public async Task<IActionResult> Get([FromQuery] SaleFilter filter)
         {
             try
             {
-                var result = _saleService.GetAllSales(filter);
+                var result = await _saleService.GetAllSales(filter);
                 if (result.Any())
                 {
                     return Ok(result);
@@ -37,10 +37,10 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet("count")]
-        public IActionResult GetCount([FromQuery] SaleFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] SaleFilter filter)
         {
 
-            var result = _saleService.CountSales(filter);
+            var result = await _saleService.CountSales(filter);
             return Ok(result);
 
         }
@@ -48,11 +48,11 @@ namespace API.Controllers
         // GET api/<SaleController>/5
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var data = _saleService.GetSaleById(id);
+                var data = await _saleService.GetSaleById(id);
                 if (data == null)
                     throw new Exception("Couldn't create sale");
                 return Ok(data);
@@ -64,11 +64,11 @@ namespace API.Controllers
         // POST api/<SaleController>
         [Authorize(Roles = "Admin,SaleWrite,SaleAdmin")]
         [HttpPost]
-        public IActionResult Post(SaleDTO sale)
+        public async Task<IActionResult> Post(SaleDTO sale)
         {
             try
             {
-                var data = _saleService.CreateSale(SaleMapper.Map(sale));
+                var data = await _saleService.CreateSale(SaleMapper.Map(sale));
                 if (data == null)
                     throw new Exception("Couldn't create sale");
                 return Ok(data);
@@ -80,11 +80,11 @@ namespace API.Controllers
         // PUT api/<SaleController>/5
         [Authorize(Roles = "Admin,SaleWrite,SaleAdmin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] SaleDTO sale)
+        public async Task<IActionResult> Put(int id, [FromBody] SaleDTO sale)
         {
             try
             {
-                var data = _saleService.UpdateSale(id, SaleMapper.Map(sale));
+                var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale));
                 if (data == null)
                     throw new Exception("Couldn't update sale");
                 return Ok(data);
@@ -96,12 +96,12 @@ namespace API.Controllers
         // DELETE api/<SaleController>/5
         [Authorize(Roles = "Admin,SaleAdmin")]
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
 
             try
             {
-                var data = _saleService.DeleteSale(id);
+                var data = await _saleService.DeleteSale(id);
                 if (data == null)
                     throw new Exception("Couldn't create sale");
                 return Ok(data);

@@ -115,13 +115,14 @@ namespace Winform
                 formName = tabName + " " + menuItem.Name;
             else
                 formName = tabName + " " + menuItem.Text;
-            int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
-            List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+            int? countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
+            List<Form?> childrenOpen = MainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+
 
 
 
             // Check if the form is already open
-            Form? existingForm = MdiChildren.FirstOrDefault(f => f.Text == formName);
+            Form? existingForm = MainPanel.Controls.OfType<Form>().FirstOrDefault(f => f.Text == formName);
             if (existingForm != null)
             {
                 // Check if the form is already minimized and exists in the minimized panel
@@ -188,7 +189,7 @@ namespace Winform
 
             child.Resize += ChildForm_Resize;
             child.FormClosing += ChildForm_Close;
-
+            MainPanel.Controls.Add(child);
             child.Show();
             LayoutMdi(MdiLayout.ArrangeIcons);
 
@@ -205,7 +206,7 @@ namespace Winform
 
         private void UpdateMdiLayout()
         {
-            int countOpenForms = MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+            int countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
@@ -238,8 +239,8 @@ namespace Winform
             // Hide the minimized form in the MDI parent
             childForm.Hide();
 
-            int? countOpenForms = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).Count();
-            List<Form?> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+            int? countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
+            List<Form?> childrenOpen = MainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
             LayoutMdi(MdiLayout.ArrangeIcons);
 
         }

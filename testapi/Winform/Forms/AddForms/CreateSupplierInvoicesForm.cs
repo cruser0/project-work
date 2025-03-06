@@ -10,6 +10,7 @@ namespace Winform.Forms
         SaleService _saleService;
         SupplierService _supplierService;
         MainForm mainForm = Application.OpenForms.OfType<MainForm>().First();
+
         public CreateSupplierInvoicesForm()
         {
             _saleService = new SaleService();
@@ -87,6 +88,8 @@ namespace Winform.Forms
             cdf.Text = "Choose Supplier";
             cdf.Resize += ChildForm_Resize;
             cdf.FormClosing += ChildForm_Close;
+            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+            mainPanel.Controls.Add(cdf);
 
             cdf.Show();
 
@@ -123,6 +126,8 @@ namespace Winform.Forms
             cdf.Text = "Choose Sale";
             cdf.Resize += ChildForm_Resize;
             cdf.FormClosing += ChildForm_Close;
+            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+            mainPanel.Controls.Add(cdf);
 
             cdf.Show();
 
@@ -136,7 +141,8 @@ namespace Winform.Forms
 
         private void UpdateMdiLayout()
         {
-            int countOpenForms = mainForm.MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+            int countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
         }
 

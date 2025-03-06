@@ -2,18 +2,19 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
     public interface ISupplierService
     {
-        ICollection<SupplierDTOGet> GetAllSuppliers(SupplierFilter? filter);
-        SupplierDTOGet GetSupplierById(int id);
-        SupplierDTOGet CreateSupplier(Supplier supplier);
-        SupplierDTOGet UpdateSupplier(int id, Supplier supplier);
-        SupplierDTOGet DeleteSupplier(int id);
+        Task<ICollection<SupplierDTOGet>> GetAllSuppliers(SupplierFilter? filter);
+        Task<SupplierDTOGet> GetSupplierById(int id);
+        Task<SupplierDTOGet> CreateSupplier(Supplier supplier);
+        Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier);
+        Task<SupplierDTOGet> DeleteSupplier(int id);
 
-        int CountSuppliers(SupplierFilter filter);
+        Task<int> CountSuppliers(SupplierFilter filter);
 
 
     }
@@ -27,14 +28,14 @@ namespace API.Models.Services
             _supplierInvoiceService = supplierInvoiceService;
         }
 
-        public ICollection<SupplierDTOGet> GetAllSuppliers(SupplierFilter? filter)
+        public async Task<ICollection<SupplierDTOGet>> GetAllSuppliers(SupplierFilter? filter)
         {
-            return ApplyFilter(filter).ToList();
+            return await ApplyFilter(filter).ToListAsync();
         }
 
-        public int CountSuppliers(SupplierFilter filter)
+        public async Task<int> CountSuppliers(SupplierFilter filter)
         {
-            return ApplyFilter(filter).Count();
+            return await ApplyFilter(filter).CountAsync();
         }
 
         private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
@@ -81,9 +82,9 @@ namespace API.Models.Services
             return query.Select(x => SupplierMapper.MapGet(x));
         }
 
-        public SupplierDTOGet GetSupplierById(int id)
+        public async Task<SupplierDTOGet> GetSupplierById(int id)
         {
-            var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
+            var data = await _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new ArgumentException("Supplier not found!");
@@ -91,7 +92,7 @@ namespace API.Models.Services
             return SupplierMapper.MapGet(data);
         }
 
-        public SupplierDTOGet CreateSupplier(Supplier supplier)
+        public async Task<SupplierDTOGet> CreateSupplier(Supplier supplier)
         {
             if (supplier == null)
                 throw new ArgumentNullException("Couldn't create supplier");
@@ -122,10 +123,10 @@ namespace API.Models.Services
             try
             {
                 _context.Add(supplier);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 supplier.OriginalID = supplier.SupplierId;
                 _context.Update(supplier);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return SupplierMapper.MapGet(supplier);
             }
             catch (Exception)
@@ -134,9 +135,9 @@ namespace API.Models.Services
             }
         }
 
-        public SupplierDTOGet UpdateSupplier(int id, Supplier supplier)
+        public async Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier)
         {
-            var cDB = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
+            var cDB = await _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefaultAsync();
             if (cDB != null)
             {
                 if ((bool)cDB.Deprecated)
@@ -169,10 +170,10 @@ namespace API.Models.Services
                 try
                 {
                     _context.Suppliers.Update(cDB);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
                     _context.Suppliers.Add(newSupplier);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     return SupplierMapper.MapGet(newSupplier);
                 }
                 catch (Exception)
@@ -183,19 +184,19 @@ namespace API.Models.Services
             throw new ArgumentNullException("Supplier not found");
         }
 
-        public SupplierDTOGet DeleteSupplier(int id)
+        public async Task<SupplierDTOGet> DeleteSupplier(int id)
         {
             var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
             if (data == null)
                 throw new ArgumentNullException("Supplier not found!");
-            List<SupplierInvoice> si = _context.SupplierInvoices.Where(x => x.SupplierId == id).ToList();
+            List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
             if (si.Any())
             {
                 foreach (SupplierInvoice item in si)
-                    _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                    await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
             }
             _context.Suppliers.Remove(data);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return SupplierMapper.MapGet(data);
 
         }

@@ -21,11 +21,11 @@ namespace API.Controllers
         // GET: api/<SupplierInvoiceController>
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet]
-        public IActionResult Get([FromQuery] SupplierInvoiceFilter filter)
+        public async Task<IActionResult> Get([FromQuery] SupplierInvoiceFilter filter)
         {
             try
             {
-                var data = _supplierInvoiceService.GetAllSupplierInvoices(filter);
+                var data = await _supplierInvoiceService.GetAllSupplierInvoices(filter);
                 if (data.Any())
                 {
                     return Ok(data);
@@ -37,10 +37,10 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet("count")]
-        public IActionResult GetCount([FromQuery] SupplierInvoiceFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] SupplierInvoiceFilter filter)
         {
 
-            var data = _supplierInvoiceService.CountSupplierinvoices(filter);
+            var data = await _supplierInvoiceService.CountSupplierinvoices(filter);
             return Ok(data);
 
         }
@@ -48,11 +48,11 @@ namespace API.Controllers
         // GET api/<SupplierInvoiceController>/5
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin")]
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var data = _supplierInvoiceService.GetSupplierInvoiceById(id);
+                var data = await _supplierInvoiceService.GetSupplierInvoiceById(id);
                 if (data == null)
                     throw new Exception("Supplier Invoice not found!");
                 return Ok(data);
@@ -63,11 +63,11 @@ namespace API.Controllers
         // POST api/<SupplierInvoiceController>
         [Authorize(Roles = "Admin,SupplierInvoiceWrite,SupplierInvoiceAdmin")]
         [HttpPost]
-        public IActionResult Post(SupplierInvoiceDTO supplierInvoice)
+        public async Task<IActionResult> Post(SupplierInvoiceDTO supplierInvoice)
         {
             try
             {
-                var data = _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice));
+                var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice));
                 if (data == null)
                     throw new Exception("Couldn't create supplier invoice");
                 return Ok(data);
@@ -78,11 +78,11 @@ namespace API.Controllers
         // PUT api/<SupplierInvoiceController>/5
         [Authorize(Roles = "Admin,SupplierInvoiceWrite,SupplierInvoiceAdmin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] SupplierInvoiceDTO supplierInvoice)
+        public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceDTO supplierInvoice)
         {
             try
             {
-                var data = _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice));
+                var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice));
                 if (data == null)
                     throw new Exception("Couldn't update supplier invoice");
                 return Ok(data);
@@ -93,12 +93,12 @@ namespace API.Controllers
         // DELETE api/<SupplierInvoiceController>/5
         [Authorize(Roles = "Admin,SupplierInvoiceAdmin")]
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
 
             try
             {
-                var data = _supplierInvoiceService.DeleteSupplierInvoice(id);
+                var data = await _supplierInvoiceService.DeleteSupplierInvoice(id);
                 if (data == null)
                     throw new Exception("Couldn't delete supplier invoice");
                 return Ok(data);
