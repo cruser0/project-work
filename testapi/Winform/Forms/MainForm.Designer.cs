@@ -113,6 +113,7 @@
             this.tabControl.Controls.Add(this.AddTP);
             this.tabControl.Controls.Add(this.GroupTP);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.HotTrack = true;
             this.tabControl.Location = new System.Drawing.Point(0, 25);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -667,10 +668,11 @@
             // 
             // toolStripButton3
             // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(105, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(89, 22);
             this.toolStripButton3.Text = "Hide All Forms";
             this.toolStripButton3.ToolTipText = "Hide All";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
