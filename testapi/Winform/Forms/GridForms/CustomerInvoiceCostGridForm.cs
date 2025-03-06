@@ -90,9 +90,9 @@ namespace Winform.Forms.GridForms
             }
 
         }
-        private void SetCheckBoxes()
+        private async void SetCheckBoxes()
         {
-            CustomerInvoiceCostDGV cdgv = _userService.GetCustomerInvoiceCostDGV();
+            CustomerInvoiceCostDGV cdgv = await _userService.GetCustomerInvoiceCostDGV();
             CustomerInvoiceCostCostTsmi.Checked = cdgv.ShowCost;
             CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked = cdgv.ShowInvoiceID;
             CustomerInvoiceCostIDTsmi.Checked = cdgv.ShowID;
@@ -180,7 +180,7 @@ namespace Winform.Forms.GridForms
                 }
             }
         }
-        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem tsmi)
             {
@@ -214,7 +214,7 @@ namespace Winform.Forms.GridForms
                     ShowInvoiceID = CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
-                _userService.PostCustomerInvoiceCostDGV(cdgv);
+                await _userService.PostCustomerInvoiceCostDGV(cdgv);
 
             }
         }

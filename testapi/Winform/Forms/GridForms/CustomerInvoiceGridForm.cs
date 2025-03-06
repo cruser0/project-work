@@ -130,9 +130,9 @@ namespace Winform.Forms.CreateWindow
                 SetCheckBoxes();
             }
         }
-        private void SetCheckBoxes()
+        private async void SetCheckBoxes()
         {
-            CustomerInvoiceDGV cdgv = _userService.GetCustomerInvoiceDGV();
+            CustomerInvoiceDGV cdgv = await _userService.GetCustomerInvoiceDGV();
 
             CustomerInvoiceDateTsmi.Checked = cdgv.ShowDate;
             CustomerInvoiceIDTsmi.Checked = cdgv.ShowID;
@@ -231,7 +231,7 @@ namespace Winform.Forms.CreateWindow
                 }
             }
         }
-        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem tsmi)
             {
@@ -265,7 +265,7 @@ namespace Winform.Forms.CreateWindow
                     ShowStatus = CustomerInvoiceStatusTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
-                _userService.PostCustomerInvoiceDGV(cdgv);
+                await _userService.PostCustomerInvoiceDGV(cdgv);
             }
         }
     }

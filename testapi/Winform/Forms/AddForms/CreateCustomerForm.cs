@@ -10,17 +10,20 @@ namespace Winform.Forms
         ICollection<string> prefUserPages;
         public CreateCustomerForm()
         {
+            Init();
+        }
+
+        private async void Init()
+        {
             _userService = new UserService();
             _customerService = new CustomerService();
             InitializeComponent();
-            prefUserPages = _userService.GetAllPreferredPagesUser();
+            prefUserPages = await _userService.GetAllPreferredPagesUser();
             if (prefUserPages.Contains("Create Customer"))
             {
                 FavouriteBTN.Image = global::Winform.Properties.Resources.star_yellow25x25;
             }
         }
-
-
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
@@ -48,18 +51,18 @@ namespace Winform.Forms
             SaveBtn.Enabled = NameTxt.Text.Length > 0 && CountryTxt.Text.Length > 0;
         }
 
-        private void Favourite_Click(object sender, EventArgs e)
+        private async void Favourite_Click(object sender, EventArgs e)
         {
-            prefUserPages = _userService.GetAllPreferredPagesUser();
+            prefUserPages = await _userService.GetAllPreferredPagesUser();
             if (prefUserPages.Contains("Create Customer"))
             {
                 FavouriteBTN.Image = global::Winform.Properties.Resources.star_yellow25x25;
-                _userService.AddUserFavouritePage(new List<string> { "Create Customer" });
+                await _userService.AddUserFavouritePage(new List<string> { "Create Customer" });
             }
             else
             {
                 FavouriteBTN.Image = global::Winform.Properties.Resources.star25x25;
-                _userService.RemoveUserFavouritePage(new List<string> { "Create Customer" });
+                await _userService.RemoveUserFavouritePage(new List<string> { "Create Customer" });
             }
         }
     }

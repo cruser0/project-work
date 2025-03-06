@@ -124,9 +124,9 @@ namespace Winform.Forms.GridForms
                 SetCheckBoxes();
             }
         }
-        private void SetCheckBoxes()
+        private async void SetCheckBoxes()
         {
-            UserDGV cdgv = _userService.GetUserDGV();
+            UserDGV cdgv = await _userService.GetUserDGV();
             UserIDTsmi.Checked = cdgv.ShowID;
             UserNameTsmi.Checked = cdgv.ShowName;
             UserLastNameTsmi.Checked = cdgv.ShowLastName;
@@ -223,7 +223,7 @@ namespace Winform.Forms.GridForms
             }
         }
 
-        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem tsmi)
             {
@@ -257,7 +257,7 @@ namespace Winform.Forms.GridForms
                     ShowName = UserNameTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
-                _userService.PostUserDGV(cdgv);
+                await _userService.PostUserDGV(cdgv);
 
             }
         }

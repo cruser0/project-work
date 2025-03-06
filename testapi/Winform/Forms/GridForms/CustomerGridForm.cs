@@ -111,9 +111,9 @@ namespace Winform.Forms
             }
         }
 
-        private void SetCheckBoxes()
+        private async void SetCheckBoxes()
         {
-            CustomerDGV cdgv = _userService.GetCustomerDGV();
+            CustomerDGV cdgv = await _userService.GetCustomerDGV();
             CustomerCountryTsmi.Checked = cdgv.ShowCountry;
             CustomerDateTsmi.Checked = cdgv.ShowDate;
             CustomerIDTsmi.Checked = cdgv.ShowID;
@@ -228,7 +228,7 @@ namespace Winform.Forms
             }
         }
 
-        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem tsmi)
             {
@@ -266,7 +266,7 @@ namespace Winform.Forms
                     ShowName = CustomerNameTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
-                _userService.PostCustomerDGV(cdgv);
+                await _userService.PostCustomerDGV(cdgv);
 
             }
         }

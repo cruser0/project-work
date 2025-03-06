@@ -115,9 +115,9 @@ namespace Winform.Forms
             }
         }
 
-        private void SetCheckBoxes()
+        private async void SetCheckBoxes()
         {
-            SaleDGV cdgv = _userService.GetSaleDGV();
+            SaleDGV cdgv = await _userService.GetSaleDGV();
 
             SaleIDTsmi.Checked = cdgv.ShowID;
             SaleBkNumberTsmi.Checked = cdgv.ShowBKNumber;
@@ -233,7 +233,7 @@ namespace Winform.Forms
             if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
                 RightClickDgv.Show(SaleDgv, SaleDgv.PointToClient(Cursor.Position));
         }
-        private void ContextMenuStripCheckEvent(object sender, EventArgs e)
+        private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem tsmi)
             {
@@ -283,7 +283,7 @@ namespace Winform.Forms
                     ShowCustomerName = SaleCustomerNameTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
-                _userService.PostSaleDGV(cdgv);
+                await _userService.PostSaleDGV(cdgv);
             }
         }
     }
