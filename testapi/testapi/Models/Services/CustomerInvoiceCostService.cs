@@ -167,7 +167,7 @@ namespace API.Models.Services
             ci.InvoiceAmount = total - data.Cost * data.Quantity;
             _context.CustomerInvoices.Update(ci);
             _context.CustomerInvoiceCosts.Remove(data);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return CustomerInvoiceCostMapper.MapGet(data);
 
         }
