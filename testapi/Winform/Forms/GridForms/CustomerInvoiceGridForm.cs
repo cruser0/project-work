@@ -119,11 +119,15 @@ namespace Winform.Forms.CreateWindow
             };
 
 
-            IEnumerable<CustomerInvoice> query = await _customerService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _customerService.Count(filterPage) / itemsPage)).ToString();
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            var query = _customerService.GetAll(filter);
+            var count = _customerService.Count(filterPage);
 
-            CenterDgv.DataSource = query.ToList();
+
+            await Task.WhenAll(count,query);
+            IEnumerable<CustomerInvoice> query1 = await query;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CenterDgv.DataSource = query1.ToList();
 
             if (!PaginationUserControl.Visible)
             {

@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -93,7 +94,7 @@ namespace API.Models.Services
         {
             // Check if the customerInvoice parameter is null
             if (customerInvoice == null)
-                throw new ArgumentNullException("Couldn't create customer invoice");
+                throw new NullPropertyException("Couldn't create customer invoice,data is null");
 
             var nullFields = new List<string>();
 
@@ -104,16 +105,16 @@ namespace API.Models.Services
 
             // If any fields are null, throw an exception with the list of missing fields
             if (nullFields.Any())
-                throw new ArgumentException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
+                throw new ErrorInputPropertyException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
             // Check if the provided status is valid
             if (!statusList.Contains(customerInvoice.Status.ToLower()))
-                throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
+                throw new ErrorInputPropertyException("Incorrect status\nA customer invoice is Paid or Unpaid");
             // Check if a sale exists with the provided SaleId
             var sale = await _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).FirstOrDefaultAsync();
             if (sale == null)
-                throw new ArgumentException($"There is no sale with id {customerInvoice.SaleId}");
+                throw new NotFoundException($"There is no sale with id {customerInvoice.SaleId}");
             if (sale.Status.ToLower().Equals("closed"))
-                throw new ArgumentException($"The Sale is already closed");
+                throw new ErrorInputPropertyException($"The Sale is already closed");
 
             customerInvoice.InvoiceAmount = 0;
             // Add the customerInvoice to the database and save the changes
@@ -139,7 +140,7 @@ namespace API.Models.Services
 
             // Check if the customer invoice exists
             if (ciDB == null)
-                throw new ArgumentNullException("Customer invoice not found");
+                throw new NotFoundException("Customer invoice not found");
 
             // Store the old SaleId before updating (used to recalculate revenue later)
             int? oldSaleId = ciDB.SaleId;
@@ -147,22 +148,22 @@ namespace API.Models.Services
             // Update customer invoice fields only if a new one is provided
             ciDB.SaleId = customerInvoice.SaleId ?? ciDB.SaleId;
             if (!await _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).AnyAsync())
-                throw new ArgumentException("SaleId not found");
+                throw new NotFoundException("SaleId not found");
             if (!await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).AnyAsync())
-                throw new ArgumentException("Old SaleId not found");
+                throw new NotFoundException("Old SaleId not found");
             ciDB.InvoiceAmount = customerInvoice.InvoiceAmount ?? ciDB.InvoiceAmount;
             ciDB.InvoiceDate = customerInvoice.InvoiceDate ?? ciDB.InvoiceDate;
             ciDB.Status = customerInvoice.Status ?? ciDB.Status;
 
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(customerInvoice.Status) && !statusList.Contains(customerInvoice.Status.ToLower()))
-                throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
+                throw new ErrorInputPropertyException("Incorrect status\nA customer invoice is Paid or Unpaid");
             Sale sale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstAsync();
             if (sale.Status.ToLower().Equals("closed"))
-                throw new ArgumentException($"The current Sale is already closed");
+                throw new ErrorInputPropertyException($"The current Sale is already closed");
             // Validate that the invoice amount is greater than zero
             if (customerInvoice.InvoiceAmount <= 0)
-                throw new ArgumentException("The amount can't be less or equal than 0");
+                throw new ErrorInputPropertyException("The amount can't be less or equal than 0");
 
             // Update the invoice in the database
             _context.CustomerInvoices.Update(ciDB);
@@ -174,7 +175,7 @@ namespace API.Models.Services
                 // Recalculate revenue for the old sale
                 var newSale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefaultAsync();
                 if (newSale.Status.ToLower().Equals("closed"))
-                    throw new ArgumentException($"The current Sale is already closed");
+                    throw new ErrorInputPropertyException($"The current Sale is already closed");
                 var TotalOldSale = (await _context.RevenuePerSaleIDs
                     .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{oldSaleId.Value}\"")
                     .FirstOrDefaultAsync())?.TotalRevenue;
@@ -206,13 +207,13 @@ namespace API.Models.Services
             CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
             // Check if the customer invoice exists
             if (data == null)
-                throw new ArgumentNullException("Customer invoice not found!");
+                throw new NotFoundException("Customer invoice not found!");
             Sale? sale = await _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefaultAsync();
             if (sale == null)
-                throw new ArgumentNullException("Sale not found!");
+                throw new NotFoundException("Sale not found!");
 
             if (sale.Status.ToLower().Equals("closed"))
-                throw new ArgumentNullException("Sale is closed,can't delete!");
+                throw new ErrorInputPropertyException("Sale is closed,can't delete!");
             sale.TotalRevenue -= data.InvoiceAmount;
 
             // Remove the customer invoice from the database
@@ -232,7 +233,7 @@ namespace API.Models.Services
 
             // Check if the customer invoice exists
             if (data == null)
-                throw new ArgumentException("Customer invoice not found!");
+                throw new NotFoundException("Customer invoice not found!");
 
             // Map the customer invoice entity to a DTO and return the result
             return CustomerInvoiceMapper.MapGet(data);

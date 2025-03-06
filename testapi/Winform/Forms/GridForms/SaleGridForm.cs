@@ -105,10 +105,13 @@ namespace Winform.Forms
             status = StatusCB.Text == "All" ? null : StatusCB.Text;
 
 
-            IEnumerable<SaleCustomerDTO> query = await _saleService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _saleService.Count(filterPage) / itemsPage)).ToString();
+            var query = _saleService.GetAll(filter);
+            var count = _saleService.Count(filterPage);
+            await Task.WhenAll(query, count);
+            IEnumerable<SaleCustomerDTO> query1 = await query;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count/ itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-            SaleDgv.DataSource = query.ToList();
+            SaleDgv.DataSource = query1.ToList();
             if (!PaginationUserControl.Visible)
             {
                 SetCheckBoxes();

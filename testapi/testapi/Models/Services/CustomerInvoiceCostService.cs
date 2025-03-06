@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -54,7 +55,7 @@ namespace API.Models.Services
             {
                 if (filter.CustomerInvoiceCostCostFrom > filter.CustomerInvoiceCostCostTo)
                 {
-                    throw new ArgumentException("CostFrom cannot be more than CostTo.");
+                    throw new ErrorInputPropertyException("CostFrom cannot be more than CostTo.");
                 }
 
                 query = query.Where(s => s.Cost >= filter.CustomerInvoiceCostCostFrom && s.Cost <= filter.CustomerInvoiceCostCostTo);
@@ -85,7 +86,7 @@ namespace API.Models.Services
             var data =await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null)
             {
-                throw new ArgumentException("Customer Invoice Cost not found!");
+                throw new NotFoundException("Customer Invoice Cost not found!");
             }
             return CustomerInvoiceCostMapper.MapGet(data);
         }
@@ -94,19 +95,19 @@ namespace API.Models.Services
         {
             CustomerInvoice ci;
             if (customerInvoiceCost == null)
-                throw new ArgumentNullException("Couldn't create customer Invoice Cost");
+                throw new NullPropertyException("Couldn't create customer Invoice Cost,the input was null");
             if (customerInvoiceCost.CustomerInvoiceId == null)
-                throw new ArgumentException("Customer Invoice Id can't be null!");
+                throw new NullPropertyException("Customer Invoice Id can't be null!");
             if (!await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == customerInvoiceCost.CustomerInvoiceId).AnyAsync())
-                throw new ArgumentException("Customer Invoice Id not found!");
+                throw new ErrorInputPropertyException("Customer Invoice Id not found!");
             if (customerInvoiceCost.Cost < 0 || customerInvoiceCost.Quantity < 1 || customerInvoiceCost.Cost == null || customerInvoiceCost.Quantity == null)
-                throw new ArgumentException("Values can't be lesser than 1 or null");
+                throw new ErrorInputPropertyException("Values can't be lesser than 1 or null");
             if (string.IsNullOrEmpty(customerInvoiceCost.Name))
-                throw new ArgumentException("Name can't be empty");
+                throw new NullPropertyException("Name can't be empty");
 
             ci =await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == customerInvoiceCost.CustomerInvoiceId).FirstAsync();
             if (ci.Status.ToLower().Equals("paid"))
-                throw new ArgumentException("Cannot add cost to a paid invoice");
+                throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
             var total =(await _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{ci.CustomerInvoiceId}\"").ToListAsync()).FirstOrDefault()?.TotalSpent;
             if (total != null)
                 ci.InvoiceAmount = total + customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
@@ -131,14 +132,14 @@ namespace API.Models.Services
                 if (customerInvoiceCost.CustomerInvoiceId != null)
                     cicDB.CustomerInvoiceId = customerInvoiceCost.CustomerInvoiceId;
                 if (!await _context.CustomerInvoices.AnyAsync(x => x.CustomerInvoiceId == customerInvoiceCost.CustomerInvoiceId))
-                    throw new ArgumentNullException("Customer Invoice not Found");
+                    throw new NotFoundException("Customer Invoice not Found");
                 if (customerInvoiceCost.Quantity > 0)
                     cicDB.Quantity = customerInvoiceCost.Quantity ?? cicDB.Quantity;
                 if (customerInvoiceCost.Cost > 0)
                     cicDB.Cost = customerInvoiceCost.Cost ?? cicDB.Cost;
                 ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == cicDB.CustomerInvoiceId).FirstOrDefaultAsync();
                 if (ci.Status.ToLower().Equals("paid"))
-                    throw new ArgumentException("Cannot add cost to a paid invoice");
+                    throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
                 cicDB.Name = customerInvoiceCost.Name ?? cicDB.Name;
                 _context.CustomerInvoiceCosts.Update(cicDB);
                 await _context.SaveChangesAsync();
@@ -152,7 +153,7 @@ namespace API.Models.Services
                 }
                 return CustomerInvoiceCostMapper.MapGet(cicDB);
             }
-            throw new ArgumentNullException("Customer Invoice Cost not found");
+            throw new NotFoundException("Customer Invoice Cost not found");
         }
 
         public async Task<CustomerInvoiceCostDTOGet> DeleteCustomerInvoiceCost(int id)
@@ -160,7 +161,7 @@ namespace API.Models.Services
             var data = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null || id < 1)
             {
-                throw new ArgumentNullException("Customer Invoice Cost not found!");
+                throw new NotFoundException("Customer Invoice Cost not found!");
             }
             CustomerInvoice ci =await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == data.CustomerInvoiceId).FirstAsync();
             var total = (await _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{ci.CustomerInvoiceId}\"").ToListAsync()).FirstOrDefault()?.TotalSpent;

@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
@@ -30,9 +31,11 @@ namespace API.Controllers
                 {
                     return Ok(data);
                 }
-                else throw new Exception("Supplier Invoice Cost not found");
+                else throw new NotFoundException("Supplier Invoice Cost not found");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,SupplierInvoiceCostRead,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
@@ -55,11 +58,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceCostService.GetSupplierInvoiceCostById(id);
                 if (data == null)
-                    throw new Exception("Supplier Invoice Cost not found");
+                    throw new NotFoundException("Supplier Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // POST api/<SupplierInvoiceCostController>
@@ -72,10 +76,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
                 if (data == null)
-                    throw new Exception("Supplier Invoice Cost not found");
+                    throw new NotFoundException("Supplier Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // PUT api/<SupplierInvoiceCostController>/5
@@ -87,10 +93,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
                 if (data == null)
-                    throw new Exception("Supplier Invoice Cost not found");
+                    throw new NotFoundException("Supplier Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // DELETE api/<SupplierInvoiceCostController>/5
@@ -103,10 +111,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceCostService.DeleteSupplierInvoiceCost(id);
                 if (data == null)
-                    throw new Exception("Supplier Invoice Cost not found");
+                    throw new NotFoundException("Supplier Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
     }
 }

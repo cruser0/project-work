@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
@@ -33,9 +34,11 @@ namespace API.Controllers
                 {
                     return Ok(data);
                 }
-                else throw new Exception("Customer not found");
+                else throw new NotFoundException("Customer not found");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin,SaleWrite,SaleAdmin")]
@@ -56,10 +59,12 @@ namespace API.Controllers
             {
                 var data = await _customerService.GetCustomerById(id);
                 if (data == null)
-                    throw new Exception("Customer not found!");
+                    throw new NotFoundException("Customer not found!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
 
         }
 
@@ -73,10 +78,12 @@ namespace API.Controllers
             {
                 var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer));
                 if (data == null)
-                    throw new Exception("Data can't be null!");
+                    throw new NotFoundException("Data can't be null!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // PUT api/<CustomerController>/5
@@ -88,10 +95,12 @@ namespace API.Controllers
             {
                 var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer));
                 if (data == null)
-                    throw new Exception("Customer not found!");
+                    throw new NotFoundException("Customer not found!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
 
         }
 
@@ -105,10 +114,12 @@ namespace API.Controllers
             {
                 var data = await _customerService.DeleteCustomer(id);
                 if (data == null)
-                    throw new Exception("Customer not found!");
+                    throw new NotFoundException("Customer not found!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
     }
 }

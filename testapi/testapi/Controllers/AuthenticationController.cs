@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -26,10 +27,12 @@ namespace API.Controllers
             try
             {
                 user = await _authenticationService.CreateUser(request);
+                return Ok("User Registered Successfully ");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
-
-            return Ok("User Registered Successfully ");
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
 
 
@@ -42,9 +45,13 @@ namespace API.Controllers
             {
                 user = await _authenticationService.GetUserByEmail(request.Email);
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
+
             if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
-                return BadRequest("Wrong Password!");
+                return Unauthorized("Wrong Password!");
             List<string> roles = new List<string>();
             foreach (var role in user.UserRoles)
             {
@@ -77,7 +84,10 @@ namespace API.Controllers
                 string token = _authenticationService.CreateToken(userDTO);
                 return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
 
         }
 
@@ -90,9 +100,12 @@ namespace API.Controllers
             {
                 if (assignRole.UserID != null)
                     await _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
+                return Ok("User Role Updated");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
-            return Ok("User Role Updated");
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
 
 
@@ -104,9 +117,12 @@ namespace API.Controllers
             try
             {
                 await _authenticationService.DeleteUser(id);
+                return Ok("User Deleted Successfully");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
-            return Ok("User Deleted Successfully");
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
 
         //[Authorize(Roles = "Admin,UserAdmin,UserWrite")]
@@ -116,9 +132,12 @@ namespace API.Controllers
             try
             {
                 await _authenticationService.EditUser(id, updateUser);
+                return Ok("User Updated Successfully");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
-            return Ok("User Updated Successfully");
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
@@ -132,9 +151,12 @@ namespace API.Controllers
                 {
                     return Ok(result);
                 }
-                else throw new Exception("Users not found");
+                else throw new NotFoundException("Users not found");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
@@ -153,9 +175,12 @@ namespace API.Controllers
             {
                 data = await _authenticationService.GetUserRoleDTOByID(id);
                 if (data == null)
-                    throw new Exception("Customer Invoices not found");
+                    throw new NotFoundException("User not found");
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
             return Ok(data);
         }
     }

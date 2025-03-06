@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
@@ -30,7 +31,7 @@ namespace API.Controllers
                 {
                     return Ok(result);
                 }
-                else throw new Exception("Customer Invoices not found");
+                else throw new NotFoundException("Customer Invoices not found");
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
@@ -53,11 +54,13 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceService.GetCustomerInvoiceById(id);
                 if (data == null)
-                    throw new Exception("Customer Invoices not found");
+                    throw new NotFoundException("Customer Invoices not found");
 
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // POST api/<CustomerInvoiceController>
@@ -69,11 +72,12 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice));
                 if (data == null)
-                    throw new Exception("Customer Invoices not found!");
+                    throw new NotFoundException("Customer Invoices not found!");
                 return Ok(data);
             }
-            catch (Exception ane) { return BadRequest(ane.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // PUT api/<CustomerInvoiceController>/5
@@ -85,11 +89,12 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice));
                 if (data == null)
-                    throw new Exception("Customer Invoices not found!");
+                    throw new NotFoundException("Customer Invoices not found!");
                 return Ok(data);
             }
-            catch (Exception ane) { return BadRequest(ane.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // DELETE api/<CustomerInvoiceController>/5
@@ -102,11 +107,12 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceService.DeleteCustomerInvoice(id);
                 if (data == null)
-                    throw new Exception("Customer Invoices not found!");
+                    throw new NotFoundException("Customer Invoices not found!");
                 return Ok(data);
             }
-            catch (Exception ane) { return BadRequest(ane.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
     }
 }

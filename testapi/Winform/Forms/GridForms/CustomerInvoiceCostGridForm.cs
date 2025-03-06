@@ -85,7 +85,7 @@ namespace Winform.Forms.GridForms
 
             await Task.WhenAll(getAllTask, countTask);
 
-            var query = await getAllTask;
+            IEnumerable<CustomerInvoiceCost> query = await getAllTask;
             int totalCount = await countTask;
 
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)totalCount / itemsPage)).ToString();

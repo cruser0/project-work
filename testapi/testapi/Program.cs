@@ -1,5 +1,6 @@
 using API.Models;
 using API.Models.Config;
+using API.Models.Middleware;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ builder.Services.AddDbContext<Progetto_FormativoContext>(options =>
     options.UseSqlServer(connectionString));
 
 
-
+builder.Services.AddTransient<GlobalExceptionHandler>();
 builder.Services.AddScoped<ICustomerService, CustomerServices>();
 builder.Services.AddScoped<ICustomerInvoicesService, CustomerInvoicesServices>();
 builder.Services.AddScoped<ISalesService, SaleServices>();
@@ -94,10 +95,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseMiddleware<GlobalExceptionHandler>();
 app.MapControllers();
 
 app.Run();

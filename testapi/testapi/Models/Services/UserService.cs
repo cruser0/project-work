@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -67,7 +68,7 @@ namespace API.Models.Services
         {
             RefreshToken dbRefToken = await _context.RefreshTokens.Where(x => x.Token.Equals(refToken)).FirstOrDefaultAsync();
             if (dbRefToken == null)
-                throw new Exception("Token not Found");
+                throw new NotFoundTokenException("Token not Found");
             return dbRefToken;
         }
 
@@ -89,13 +90,13 @@ namespace API.Models.Services
         {
             User user = await _context.Users.Where(x => x.UserID == refTk.UserID).FirstOrDefaultAsync();
             if (user == null)
-                throw new Exception("User not found");
+                throw new NotFoundException("User not found");
             RefreshToken refreshToken = await _context.RefreshTokens
                 .Where(x => x.UserID == user.UserID)
                 .OrderByDescending(x => x.Created)
                 .FirstOrDefaultAsync();
             if (refreshToken == null)
-                throw new Exception("User has no refresh tokens");
+                throw new NotFoundTokenException("User has no refresh tokens");
             return refreshToken;
         }
 
@@ -103,15 +104,15 @@ namespace API.Models.Services
         {
             var data = await _context.UserRoles.Where(x => x.UserID == id).ToListAsync();
             if (!data.Any())
-                throw new Exception("User has no Roles");
+                throw new NotFoundException("User has no Roles");
             return data;
         }
         public async Task EditRoles(int? id, List<string> roles)
         {
             if (!roles.Any())
-                throw new Exception("Each user needs to have at least one Role");
+                throw new ErrorInputPropertyException("Each user needs to have at least one Role");
             if (!await _context.Users.AnyAsync(x => x.UserID == id))
-                throw new Exception("User not Found");
+                throw new NotFoundTokenException("User not Found");
             var rolesList = await GetAllRolesByUserID((int)id);
             _context.UserRoles.RemoveRange(rolesList);
             await _context.SaveChangesAsync();
@@ -164,12 +165,12 @@ namespace API.Models.Services
         {
             var rolesList = await GetAllRolesByUserID(id);
             if (!_context.Users.Any(x => x.UserID == id))
-                throw new Exception("User not Found");
+                throw new NotFoundException("User not Found");
             _context.UserRoles.RemoveRange(rolesList);
             await _context.SaveChangesAsync();
             var user = await _context.Users.Where(x => x.UserID == id).FirstOrDefaultAsync();
             if (user == null)
-                throw new Exception("User not found!");
+                throw new NotFoundException("User not found!");
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
@@ -182,7 +183,7 @@ namespace API.Models.Services
                 .ThenInclude(ur => ur.Role)
                 .FirstOrDefaultAsync();
             if (user == null)
-                throw new Exception("User not Found");
+                throw new NotFoundException("User not Found");
             return user;
         }
         public async Task<User> GetUserByID(int id)
@@ -193,7 +194,7 @@ namespace API.Models.Services
                 .ThenInclude(ur => ur.Role)
                 .FirstOrDefaultAsync();
             if (user == null)
-                throw new Exception("User not Found");
+                throw new NotFoundException("User not Found");
             return user;
         }
         public async Task<UserRoleDTO> GetUserRoleDTOByID(int id)
@@ -204,7 +205,7 @@ namespace API.Models.Services
                 .ThenInclude(ur => ur.Role).FirstOrDefaultAsync();
 
             if (user == null)
-                throw new Exception("User not Found");
+                throw new NotFoundException("User not Found");
             List<string> roleList = user.UserRoles.Select(x => x.Role.RoleName).ToList();
             return new UserRoleDTO(user, roleList);
         }
@@ -268,25 +269,25 @@ namespace API.Models.Services
          */
         public async Task<User> CreateUser(UserDTOCreate user)
         {
-            if (_context.Users.Any(x => x.Email.Equals(user.Email)))
-                throw new Exception("User is already registered");
+            if (await _context.Users.AnyAsync(x => x.Email.Equals(user.Email)))
+                throw new ErrorInputPropertyException("User is already registered");
             if (!user.Role.Any())
-                throw new Exception("Can't create a User with no Roles");
+                throw new ErrorInputPropertyException("Can't create a User with no Roles");
             User returnUser = new User();
             if (!string.IsNullOrEmpty(user.Name))
-                returnUser.Name = user.Name.Length <= 100 ? user.Name : throw new Exception("User Name needs to be shorter than 100 Character to be created");
+                returnUser.Name = user.Name.Length <= 100 ? user.Name : throw new ErrorInputPropertyException("User Name needs to be shorter than 100 Character to be created");
             else
-                throw new Exception("User Name can't be empty");
+                throw new NullPropertyException("User Name can't be empty");
             if (!string.IsNullOrEmpty(user.LastName))
-                returnUser.LastName = user.LastName.Length <= 100 ? user.LastName : throw new Exception("User Last Name needs to be shorter than 100 Character to be created");
+                returnUser.LastName = user.LastName.Length <= 100 ? user.LastName : throw new ErrorInputPropertyException("User Last Name needs to be shorter than 100 Character to be created");
             else
-                throw new Exception("User Last Name can't be empty");
+                throw new NullPropertyException("User Last Name can't be empty");
             if (!string.IsNullOrEmpty(user.Email))
-                returnUser.Email = user.Email.Length <= 100 ? user.Email : throw new Exception("User Email needs to be shorter than 100 Character to be created");
+                returnUser.Email = user.Email.Length <= 100 ? user.Email : throw new ErrorInputPropertyException("User Email needs to be shorter than 100 Character to be created");
             else
-                throw new Exception("User Email can't be empty");
+                throw new NullPropertyException("User Email can't be empty");
             if (string.IsNullOrEmpty(user.Password))
-                throw new Exception("Password can't be empty");
+                throw new NullPropertyException("Password can't be empty");
             CreatePasswordHash(user.Password, out byte[] hash, out byte[] salt);
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
@@ -316,14 +317,14 @@ namespace API.Models.Services
                 await transaction.RollbackAsync();
                 throw new Exception(ex.InnerException.Message);
             }
-            CreateUpdateCustomerDGV(new CustomerDGV { UserID = returnUser.UserID });
-            CreateUpdateCustomerInvoiceDGV(new CustomerInvoiceDGV { UserID = returnUser.UserID });
-            CreateUpdateCustomerInvoiceCostDGV(new CustomerInvoiceCostDGV { UserID = returnUser.UserID });
-            CreateUpdateSupplierDGV(new SupplierDGV { UserID = returnUser.UserID });
-            CreateUpdateSupplierInvoiceDGV(new SupplierInvoiceDGV { UserID = returnUser.UserID });
-            CreateUpdateSupplierInvoiceCostDGV(new SupplierInvoiceCostDGV { UserID = returnUser.UserID });
-            CreateUpdateSaleDGV(new SaleDGV { UserID = returnUser.UserID });
-            CreateUpdateUserDGV(new UserDGV { UserID = returnUser.UserID });
+            await CreateUpdateCustomerDGV(new CustomerDGV { UserID = returnUser.UserID });
+            await CreateUpdateCustomerInvoiceDGV(new CustomerInvoiceDGV { UserID = returnUser.UserID });
+            await CreateUpdateCustomerInvoiceCostDGV(new CustomerInvoiceCostDGV { UserID = returnUser.UserID });
+            await CreateUpdateSupplierDGV(new SupplierDGV { UserID = returnUser.UserID });
+            await CreateUpdateSupplierInvoiceDGV(new SupplierInvoiceDGV { UserID = returnUser.UserID });
+            await CreateUpdateSupplierInvoiceCostDGV(new SupplierInvoiceCostDGV { UserID = returnUser.UserID });
+            await CreateUpdateSaleDGV(new SaleDGV { UserID = returnUser.UserID });
+            await CreateUpdateUserDGV(new UserDGV { UserID = returnUser.UserID });
             return returnUser;
 
         }
@@ -331,12 +332,12 @@ namespace API.Models.Services
         {
             CustomerDGV? cdgv = await _context.CustomerDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Customer DGV not found");
+                throw new NotFoundException ("Customer DGV not found");
             return cdgv;
         }
         public async Task<CustomerDGV> CreateUpdateCustomerDGV(CustomerDGV cdgv)
         {
-            CustomerDGV cdgvDb = await _context.CustomerDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.CustomerDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.CustomerDGV.Add(cdgv);
@@ -359,14 +360,14 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoiceDGV> GetCustomerInvoiceDGV(int userId)
         {
-            CustomerInvoiceDGV cdgv = await _context.CustomerInvoiceDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+            var cdgv = await _context.CustomerInvoiceDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Customer Invoice DGV not found");
+                throw new NotFoundException("Customer Invoice DGV not found");
             return cdgv;
         }
         public async Task<CustomerInvoiceDGV> CreateUpdateCustomerInvoiceDGV(CustomerInvoiceDGV cdgv)
         {
-            CustomerInvoiceDGV cdgvDb = await _context.CustomerInvoiceDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.CustomerInvoiceDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.CustomerInvoiceDGV.Add(cdgv);
@@ -387,15 +388,15 @@ namespace API.Models.Services
         }
         public async Task<CustomerInvoiceCostDGV> GetCustomerInvoiceCostDGV(int userId)
         {
-            CustomerInvoiceCostDGV cdgv = await _context.CustomerInvoiceCostDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+            var cdgv = await _context.CustomerInvoiceCostDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Customer Invoice DGV not found");
+                throw new NotFoundException("Customer Invoice DGV not found");
             return cdgv;
         }
 
         public async Task<CustomerInvoiceCostDGV> CreateUpdateCustomerInvoiceCostDGV(CustomerInvoiceCostDGV cdgv)
         {
-            CustomerInvoiceCostDGV cdgvDb = await _context.CustomerInvoiceCostDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.CustomerInvoiceCostDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.CustomerInvoiceCostDGV.Add(cdgv);
@@ -416,14 +417,14 @@ namespace API.Models.Services
         }
         public async Task<SupplierDGV> GetSupplierDGV(int userId)
         {
-            SupplierDGV cdgv = await _context.SupplierDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+            var cdgv = await _context.SupplierDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Supplier DGV not found");
+                throw new NotFoundException("Supplier DGV not found");
             return cdgv;
         }
         public async Task<SupplierDGV> CreateUpdateSupplierDGV(SupplierDGV cdgv)
         {
-            SupplierDGV cdgvDb = await _context.SupplierDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.SupplierDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.SupplierDGV.Add(cdgv);
@@ -446,14 +447,14 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceDGV> GetSupplierInvoiceDGV(int userId)
         {
-            SupplierInvoiceDGV cdgv = await _context.SupplierInvoiceDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+            var cdgv = await _context.SupplierInvoiceDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Supplier Invoice DGV not found");
+                throw new NotFoundException("Supplier Invoice DGV not found");
             return cdgv;
         }
         public async Task<SupplierInvoiceDGV> CreateUpdateSupplierInvoiceDGV(SupplierInvoiceDGV cdgv)
         {
-            SupplierInvoiceDGV cdgvDb = await _context.SupplierInvoiceDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.SupplierInvoiceDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.SupplierInvoiceDGV.Add(cdgv);
@@ -478,15 +479,15 @@ namespace API.Models.Services
         }
         public async Task<SupplierInvoiceCostDGV> GetSupplierInvoiceCostDGV(int userId)
         {
-            SupplierInvoiceCostDGV cdgv = await _context.SupplierInvoiceCostDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+            var cdgv = await _context.SupplierInvoiceCostDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Supplier Invoice DGV not found");
+                throw new NotFoundException("Supplier Invoice DGV not found");
             return cdgv;
         }
 
         public async Task<SupplierInvoiceCostDGV> CreateUpdateSupplierInvoiceCostDGV(SupplierInvoiceCostDGV cdgv)
         {
-            SupplierInvoiceCostDGV cdgvDb = await _context.SupplierInvoiceCostDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.SupplierInvoiceCostDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.SupplierInvoiceCostDGV.Add(cdgv);
@@ -507,15 +508,15 @@ namespace API.Models.Services
         }
         public async Task<SaleDGV> GetSaleDGV(int userId)
         {
-            SaleDGV cdgv = await _context.SaleDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+            var cdgv = await _context.SaleDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Supplier Invoice DGV not found");
+                throw new NotFoundException("Supplier Invoice DGV not found");
             return cdgv;
         }
 
         public async Task<SaleDGV> CreateUpdateSaleDGV(SaleDGV cdgv)
         {
-            SaleDGV cdgvDb = await _context.SaleDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.SaleDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.SaleDGV.Add(cdgv);
@@ -540,15 +541,15 @@ namespace API.Models.Services
         }
         public async Task<UserDGV> GetUserDGV(int userId)
         {
-            UserDGV cdgv = await _context.UserDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
+            var cdgv = await _context.UserDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new Exception("Supplier Invoice DGV not found");
+                throw new NotFoundException("Supplier Invoice DGV not found");
             return cdgv;
         }
 
         public async Task<UserDGV> CreateUpdateUserDGV(UserDGV cdgv)
         {
-            UserDGV cdgvDb = await _context.UserDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
+            var cdgvDb = await _context.UserDGV.Where(x => x.UserID == cdgv.UserID).FirstOrDefaultAsync();
             if (cdgvDb == null)
             {
                 _context.UserDGV.Add(cdgv);
@@ -569,21 +570,21 @@ namespace API.Models.Services
         }
         public async Task<FavouritePages> GetFavouritePages(string name)
         {
-            FavouritePages fp = await _context.FavouritePages.Where(x => x.Name == name).FirstOrDefaultAsync();
+            var fp = await _context.FavouritePages.Where(x => x.Name == name).FirstOrDefaultAsync();
             if (fp == null)
-                throw new Exception("Page not Found");
+                throw new NotFoundException("Page not Found");
             return fp;
         }
         public async Task<FavouritePages> GetFavouritePagesByID(int id)
         {
-            FavouritePages fp = await _context.FavouritePages.Where(x => x.FavouritePageID == id).FirstOrDefaultAsync();
+            var fp = await _context.FavouritePages.Where(x => x.FavouritePageID == id).FirstOrDefaultAsync();
             if (fp == null)
-                throw new Exception("Page not Found");
+                throw new NotFoundException("Page not Found");
             return fp;
         }
         public async Task<List<string>> GetUserPreferredPages(int userID)
         {
-            List<UserFavouritePage> ufp = _context.UserFavouritePage.Where(x => x.UserID == userID).ToList();
+            var ufp = _context.UserFavouritePage.Where(x => x.UserID == userID).ToList();
             if (!ufp.Any())
                 return new List<string>();
             List<string> returnlist = new List<string>();
@@ -595,9 +596,9 @@ namespace API.Models.Services
         }
         public async Task CreateFavouritePages(string name)
         {
-            FavouritePages fp = await _context.FavouritePages.Where(x => x.Name == name).FirstOrDefaultAsync();
+            var fp = await _context.FavouritePages.Where(x => x.Name == name).FirstOrDefaultAsync();
             if (fp != null)
-                throw new Exception("Page already exists");
+                throw new ErrorInputPropertyException("Page already exists");
             _context.FavouritePages.Add(new FavouritePages { Name = name });
             await _context.SaveChangesAsync();
         }
@@ -619,7 +620,7 @@ namespace API.Models.Services
             foreach (string page in pageName)
             {
                 fp = await GetFavouritePages(page);
-                UserFavouritePage ufp = await _context.UserFavouritePage.Where(x => x.UserID == user.UserID).Where(x => x.FavouritePageID == fp.FavouritePageID).FirstOrDefaultAsync();
+                var ufp = await _context.UserFavouritePage.Where(x => x.UserID == user.UserID).Where(x => x.FavouritePageID == fp.FavouritePageID).FirstOrDefaultAsync();
                 if (ufp != null)
                     _context.UserFavouritePage.Remove(ufp);
             }
