@@ -76,6 +76,9 @@
     <Compile Update="Forms\control\SearchSupplierInvoiceCost.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Forms\control\StarUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Forms\CustomerInvoiceCostForm.cs">
       <SubType>Form</SubType>
     </Compile>
