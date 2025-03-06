@@ -41,55 +41,72 @@
             this.InvoiceAmountTxt = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DeleteBtn
             // 
-            this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.DeleteBtn.Location = new System.Drawing.Point(479, 329);
+            this.DeleteBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DeleteBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.DeleteBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.DeleteBtn.Location = new System.Drawing.Point(477, 324);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
             this.DeleteBtn.TabIndex = 19;
             this.DeleteBtn.Text = "Delete";
-            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.UseVisualStyleBackColor = false;
             this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click_1);
             // 
             // CustomerInvoiceIdTxt
             // 
-            this.CustomerInvoiceIdTxt.Location = new System.Drawing.Point(279, 79);
+            this.CustomerInvoiceIdTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CustomerInvoiceIdTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerInvoiceIdTxt.Location = new System.Drawing.Point(277, 74);
             this.CustomerInvoiceIdTxt.Name = "CustomerInvoiceIdTxt";
             this.CustomerInvoiceIdTxt.Size = new System.Drawing.Size(194, 23);
             this.CustomerInvoiceIdTxt.TabIndex = 20;
             // 
             // SaleIdTxt
             // 
-            this.SaleIdTxt.Location = new System.Drawing.Point(279, 145);
+            this.SaleIdTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaleIdTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaleIdTxt.Location = new System.Drawing.Point(277, 140);
             this.SaleIdTxt.Name = "SaleIdTxt";
             this.SaleIdTxt.Size = new System.Drawing.Size(194, 23);
             this.SaleIdTxt.TabIndex = 21;
             // 
             // InvoiceDateDTP
             // 
-            this.InvoiceDateDTP.Location = new System.Drawing.Point(279, 239);
+            this.InvoiceDateDTP.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.InvoiceDateDTP.Location = new System.Drawing.Point(277, 234);
             this.InvoiceDateDTP.Name = "InvoiceDateDTP";
             this.InvoiceDateDTP.Size = new System.Drawing.Size(194, 23);
             this.InvoiceDateDTP.TabIndex = 22;
             // 
             // StatusCB
             // 
+            this.StatusCB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusCB.FormattingEnabled = true;
             this.StatusCB.Items.AddRange(new object[] {
             "Paid",
             "Unpaid"});
-            this.StatusCB.Location = new System.Drawing.Point(279, 283);
+            this.StatusCB.Location = new System.Drawing.Point(277, 278);
             this.StatusCB.Name = "StatusCB";
             this.StatusCB.Size = new System.Drawing.Size(194, 23);
             this.StatusCB.TabIndex = 23;
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(279, 61);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(277, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 15);
             this.label1.TabIndex = 24;
@@ -97,8 +114,10 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(279, 127);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label2.Location = new System.Drawing.Point(277, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 15);
             this.label2.TabIndex = 25;
@@ -106,8 +125,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(279, 221);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label3.Location = new System.Drawing.Point(277, 216);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 15);
             this.label3.TabIndex = 26;
@@ -115,8 +136,10 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(279, 265);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label4.Location = new System.Drawing.Point(277, 260);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 15);
             this.label4.TabIndex = 27;
@@ -124,8 +147,10 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(279, 177);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label5.Location = new System.Drawing.Point(277, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 15);
             this.label5.TabIndex = 29;
@@ -133,15 +158,19 @@
             // 
             // InvoiceAmountTxt
             // 
-            this.InvoiceAmountTxt.Location = new System.Drawing.Point(279, 195);
+            this.InvoiceAmountTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.InvoiceAmountTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceAmountTxt.Location = new System.Drawing.Point(277, 190);
             this.InvoiceAmountTxt.Name = "InvoiceAmountTxt";
             this.InvoiceAmountTxt.Size = new System.Drawing.Size(194, 23);
             this.InvoiceAmountTxt.TabIndex = 28;
             // 
             // checkBox1
             // 
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(282, 333);
+            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.checkBox1.Location = new System.Drawing.Point(280, 328);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(46, 19);
             this.checkBox1.TabIndex = 30;
@@ -151,37 +180,93 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(380, 329);
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.button1.Location = new System.Drawing.Point(378, 324);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 23);
             this.button1.TabIndex = 31;
             this.button1.Text = "Save Changes";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.DeleteBtn);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.CustomerInvoiceIdTxt);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.SaleIdTxt);
+            this.panel1.Controls.Add(this.InvoiceAmountTxt);
+            this.panel1.Controls.Add(this.InvoiceDateDTP);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.StatusCB);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.panel1.Location = new System.Drawing.Point(20, 20);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(744, 421);
+            this.panel1.TabIndex = 32;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(20, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(744, 20);
+            this.panel2.TabIndex = 33;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(20, 441);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(744, 20);
+            this.panel3.TabIndex = 34;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(764, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(20, 461);
+            this.panel4.TabIndex = 35;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(20, 461);
+            this.panel5.TabIndex = 36;
             // 
             // CustomerInvoiceDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.InvoiceAmountTxt);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.StatusCB);
-            this.Controls.Add(this.InvoiceDateDTP);
-            this.Controls.Add(this.SaleIdTxt);
-            this.Controls.Add(this.CustomerInvoiceIdTxt);
-            this.Controls.Add(this.DeleteBtn);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerInvoiceDetailsForm";
             this.Text = "CustomerInvoiceDetailsForm";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -200,5 +285,10 @@
         private TextBox InvoiceAmountTxt;
         private CheckBox checkBox1;
         private Button button1;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private Panel panel5;
     }
 }
