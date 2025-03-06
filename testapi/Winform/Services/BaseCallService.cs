@@ -11,7 +11,7 @@ namespace Winform.Services
     internal class BaseCallService
     {
         //serializes an entity to be usable by the HTTPClient
-        private StringContent SerializeEntity<T>(T entity)
+        protected StringContent SerializeEntity<T>(T entity)
         {
             string jsonContent = JsonSerializer.Serialize(entity);
             var returnResult = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -33,7 +33,7 @@ namespace Winform.Services
         }
 
         //makes a post call to the api
-        private async Task<HttpResponseMessage> GetRepsponsePost<T>(ClientAPI client, string uri, T entity)
+        protected async Task<HttpResponseMessage> GetRepsponsePost<T>(ClientAPI client, string uri, T entity)
         {
             var returnResult = SerializeEntity(entity);
             HttpResponseMessage response = await client.GetClient().PostAsync(client.GetBaseUri() + uri, returnResult);
@@ -43,6 +43,20 @@ namespace Winform.Services
         {
             HttpResponseMessage response = await client.GetClient().PostAsync(client.GetBaseUri() + uri,null);
             return response;
+        }
+        protected async Task<string> StatusOKStringReturn(HttpResponseMessage response)
+        {
+            var json = response.Content.ReadAsStringAsync();
+            return await json;
+        }
+        protected async Task<List<string>> StatusOKListStringReturn(HttpResponseMessage response)
+        {
+            var json = await response.Content.ReadAsStreamAsync();
+
+            // Deserializzare la risposta JSON in una lista di oggetti SupplierDTOGet
+            var items = JsonSerializer.DeserializeAsync<List<string>>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return await items;
         }
 
 
@@ -241,6 +255,8 @@ namespace Winform.Services
             var errorMessage = response.Content.ReadAsStringAsync().Result;
             throw new Exception($"Error deleting {error}: {errorMessage}");
         }
+
+
 
 
 
