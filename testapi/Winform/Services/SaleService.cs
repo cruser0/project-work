@@ -1,12 +1,10 @@
 ﻿using API.Models.Filters;
-using System.Text;
-using System.Text.Json;
 using Winform.Entities;
 using Winform.Entities.DTO;
 
 namespace Winform.Services
 {
-    internal class SaleService : ICalls<Sale>
+    internal class SaleService : BaseCallService
     {
         private string BuildQueryParams(SaleFilter filter)
         {
@@ -24,144 +22,57 @@ namespace Winform.Services
                 { "SaleStatus", filter.SaleStatus?.ToLower() != "all" ? filter.SaleStatus : null },
                 { "SalePage", filter.SalePage }
             };
-
             foreach (var kvp in filters)
             {
                 if (kvp.Value != null)
                     queryParameters.Add($"{kvp.Key}={kvp.Value}");
             }
-
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
-
             return queryString;
         }
-        public ICollection<SaleCustomerDTO> GetAll(SaleFilter filter)
+
+        public async Task<ICollection<SaleCustomerDTO>> GetAll(SaleFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
-
-
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "sale" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SaleDTOGet
-                var items = JsonSerializer.Deserialize<List<SaleCustomerDTO>>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            return new List<SaleCustomerDTO>();
+            var returnResult = await GetList<SaleCustomerDTO>(client, "sale", queryString);
+            return returnResult;
         }
 
-        public SaleCustomerDTO GetById(int id)
+        public async Task<SaleCustomerDTO> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"sale/{id}").Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SaleDTOGet
-                var items = JsonSerializer.Deserialize<SaleCustomerDTO>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error getting sale: {errorMessage}");
+            var returnResult = await GetItem<SaleCustomerDTO>(client, $"sale/{id}", "Sale");
+            return returnResult;
         }
 
-        public int Count(SaleFilter filter)
+        public async Task<int> Count(SaleFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
-
-
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "sale/count" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                int count = JsonSerializer.Deserialize<int>(json);
-                return count;
-
-
-            }
-            return 0;
+            var reutnResult = await GetCount(client, "sale/count", queryString);
+            return reutnResult;
         }
 
-        public Sale Create(Sale entity)
+        public async Task<Sale> Create(Sale entity)
         {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnSale = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"sale", returnSale).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SaleDTOGet
-                var items = JsonSerializer.Deserialize<Sale>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error creating sale: {errorMessage}");
+            var returnRestult = await PostItem(client, $"sale", entity, "Sale");
+            return returnRestult;
         }
 
-        public Sale Update(int id, Sale entity)
+        public async Task<Sale> Update(int id, Sale entity)
         {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnSale = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"sale/{id}", returnSale).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SaleDTOGet
-                var items = JsonSerializer.Deserialize<Sale>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error updating sale: {errorMessage}");
+            var returnResult = await PutItem(client, $"sale/{id}", entity, "Sale");
+            return returnResult;
         }
 
-        public Sale Delete(int id)
+        public async Task<Sale> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().DeleteAsync(client.GetBaseUri() + $"sale/{id}").Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SaleDTOGet
-                var items = JsonSerializer.Deserialize<Sale>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting sale: {errorMessage}");
+            var returnResult = await DeleteItem<Sale>(client, $"sale/{id}", "Sale");
+            return returnResult;
         }
     }
 }

@@ -5,7 +5,7 @@ using Winform.Entities;
 
 namespace Winform.Services
 {
-    internal class SupplierInvoiceCostService : ICalls<SupplierInvoiceCost>
+    internal class SupplierInvoiceCostService : BaseCallService
     {
         private string BuildQueryParams(SupplierInvoiceCostFilter filter)
         {
@@ -31,131 +31,48 @@ namespace Winform.Services
 
             return queryString;
         }
-        public ICollection<SupplierInvoiceCost> GetAll(SupplierInvoiceCostFilter filter)
+        public async Task<ICollection<SupplierInvoiceCost>> GetAll(SupplierInvoiceCostFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
-
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice-cost" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<List<SupplierInvoiceCost>>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            return new List<SupplierInvoiceCost>();
+            var returnItems = GetList<SupplierInvoiceCost>(client, "supplier-invoice-cost", queryString);
+            return await returnItems;
         }
 
-        public SupplierInvoiceCost GetById(int id)
+        public async Task<SupplierInvoiceCost> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"supplier-invoice-cost/{id}").Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<SupplierInvoiceCost>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error getting supplier invoice-cost: {errorMessage}");
+            var returnItem = GetItem<SupplierInvoiceCost>(client, $"supplier-invoice-cost/{id}", "Supplier Invoice Cost");
+            return await returnItem;
         }
 
-        public int Count(SupplierInvoiceCostFilter filter)
+        public async Task<int> Count(SupplierInvoiceCostFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
-
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "supplier-invoice-cost/count" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                int count = JsonSerializer.Deserialize<int>(json);
-                return count;
-
-
-            }
-            return 0;
+            var returnResult = await GetCount(client, "supplier-invoice-cost/count", queryString);
+            return returnResult;
         }
 
-        public SupplierInvoiceCost Create(SupplierInvoiceCost entity)
+        public async Task<SupplierInvoiceCost> Create(SupplierInvoiceCost entity)
         {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnSupplierInvoiceCost = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"supplier-invoice-cost", returnSupplierInvoiceCost).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<SupplierInvoiceCost>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error creating supplier invoice cost: {errorMessage}");
+            var returnResult = PostItem(client, $"supplier-invoice-cost", entity, "Supplier Invoice Cost");
+            return await returnResult;
         }
 
-        public SupplierInvoiceCost Update(int id, SupplierInvoiceCost entity)
+        public async Task<SupplierInvoiceCost> Update(int id, SupplierInvoiceCost entity)
         {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnSupplierInvoiceCost = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"supplier-invoice-cost/{id}", returnSupplierInvoiceCost).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<SupplierInvoiceCost>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error updating supplier invoice cost: {errorMessage}");
+            var returnResult = PutItem(client, $"supplier-invoice-cost/{id}", entity, "Supplier Invoice Cost");
+            return await returnResult;
         }
 
-        public SupplierInvoiceCost Delete(int id)
+        public async Task<SupplierInvoiceCost> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().DeleteAsync(client.GetBaseUri() + $"supplier-invoice-cost/{id}").Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<SupplierInvoiceCost>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting supplier invoice-cost: {errorMessage}");
+            var returnResult = await DeleteItem<SupplierInvoiceCost>(client, $"supplier-invoice-cost/{id}", "Supplier Invoice Cost");
+            return returnResult;
         }
     }
 }

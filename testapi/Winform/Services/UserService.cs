@@ -7,169 +7,68 @@ using Winform.Entities.Preference;
 
 namespace Winform.Services
 {
-    internal class UserService
+    internal class UserService:BaseCallService
     {
-        public string Register(UserDTOCreate user)
+        public async Task<string> Register(UserDTOCreate user)
         {
-            string jsonContent = JsonSerializer.Serialize(user);
-            var returnUser = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"register", returnUser).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-                return json;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error during the registration of the User: {errorMessage}");
+            var reuturnResult = await PostRegister(client, $"register", user, "User");
+            return reuturnResult;
         }
 
 
 
-        public UserAccessTemp Login(UserDTO entity)
+        public async Task<UserAccessTemp> Login(UserDTO entity)
         {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnCustomerInvoiceCost = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = client.GetClient().PostAsync(client.GetBaseUri() + $"login", returnCustomerInvoiceCost).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<UserAccessTemp>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                UserAccessInfo.Email = items.Email;
-                UserAccessInfo.Name = items.Name;
-                UserAccessInfo.Token = items.Token;
-                UserAccessInfo.LastName = items.LastName;
-                UserAccessInfo.Role = items.Role;
-                UserAccessInfo.RefreshToken = items.RefreshToken;
-                UserAccessInfo.RefreshCreated = items.RefreshCreated;
-                UserAccessInfo.RefreshExpires = items.RefreshExpires;
-                UserAccessInfo.RefreshTokenID = items.RefreshTokenID;
-                UserAccessInfo.RefreshUserID = items.RefreshUserID;
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error during the login process: {errorMessage}");
+            var reuturnResult = await PostLogin(client, $"login", entity, "User");
+            return reuturnResult;
         }
 
         public async Task RefreshToken()
         {
             ClientAPI client = new ClientAPI();
             string token = Uri.EscapeDataString(UserAccessInfo.RefreshToken);
-            HttpResponseMessage response = await client.GetClient()
-                .PostAsync(client.GetBaseUri() + $"refresh-token?refToken={token}", null);
-            if (response.IsSuccessStatusCode)
-            {
+            await PostRefreshToken(client, $"refresh-token?refToken={token}", "Token");
 
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerInvoiceCostDTOGet
-                var items = JsonSerializer.Deserialize<UserAccessTemp>(json,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                UserAccessInfo.Email = items.Email;
-                UserAccessInfo.Name = items.Name;
-                UserAccessInfo.Token = items.Token;
-                UserAccessInfo.LastName = items.LastName;
-                UserAccessInfo.Role = items.Role;
-                return;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error during the login process: {errorMessage}");
         }
 
 
 
-        public string AssignRoles(AssignRoleDTO entity)
+        public async Task<string> AssignRoles(AssignRoleDTO entity)
         {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnRoles = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"/assign-roles", returnRoles).Result;
-            if (response.IsSuccessStatusCode)
-            {
+            var returnResult = await PutItemWithStringReturn(client, $"/assign-roles", entity, "Roles");
+            return returnResult;
+        }
 
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-                return json;
 
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error during the login process: {errorMessage}");
+        public async Task<string> Delete(int id)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await DeleteItemWithReturnString(client, $"user/delete-user/{id}", "User");
+            return returnResult;
         }
 
 
 
 
-        public string Delete(int id)
+        public async Task<string> EditUserRoles(AssignRoleDTO entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().DeleteAsync(client.GetBaseUri() + $"user/delete-user/{id}").Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-                return json;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting supplier: {errorMessage}");
-        }
-
-
-
-
-        public string EditUserRoles(AssignRoleDTO entity)
-        {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnRoles = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"user/assign-roles", returnRoles).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var items = response.Content.ReadAsStringAsync().Result;
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error during the login process: {errorMessage}");
+            var returnResult = await PutItemWithStringReturn(client, $"user/assign-roles", entity, "Roles");
+            return returnResult;
         }
 
 
 
 
 
-        public string Update(int id, UserDTOEdit entity)
+        public async Task<string> Update(int id, UserDTOEdit entity)
         {
-            string jsonContent = JsonSerializer.Serialize(entity);
-            var returnUser = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().PutAsync(client.GetBaseUri() + $"user/edit-user/{id}", returnUser).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                string json = response.Content.ReadAsStringAsync().Result;
-                return json;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error updating User: {errorMessage}");
+            var returnResult = await PutItemWithStringReturn(client, $"user/edit-user/{id}", entity, "Roles");
+            return returnResult;
         }
 
 
@@ -206,69 +105,32 @@ namespace Winform.Services
 
 
 
-        public ICollection<UserRoleDTO> GetAll(UserFilter filter)
+        public async Task<ICollection<UserRoleDTO>> GetAll(UserFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "user/get-all-users" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierDTOGet
-                var items = JsonSerializer.Deserialize<List<UserRoleDTO>>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            return new List<UserRoleDTO>();
+            var returnResult = await GetList<UserRoleDTO>(client, "user/get-all-users", queryString);
+            return returnResult;
         }
 
 
 
 
-        public UserRoleDTO GetById(int id)
+        public async Task<UserRoleDTO> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + $"user/{id}").Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti SupplierDTOGet
-                var items = JsonSerializer.Deserialize<UserRoleDTO>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error getting User: {errorMessage}");
+            var returnResult = await GetItem<UserRoleDTO>(client, $"user/{id}","User");
+            return returnResult;
         }
 
 
-        public int Count(UserFilter filter)
+        public async Task<int> Count(UserFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
-
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "user/count" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                int count = JsonSerializer.Deserialize<int>(json);
-                return count;
-
-
-            }
-            return 0;
+            var returnResult = await GetCount(client, "user/count", queryString);
+            return returnResult;
         }
 
 
