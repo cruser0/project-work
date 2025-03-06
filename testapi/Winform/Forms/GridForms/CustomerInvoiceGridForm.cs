@@ -34,13 +34,13 @@ namespace Winform.Forms.CreateWindow
             Init();
         }
 
-        private void Init()
+        private async void Init()
         {
             _userService = new UserService();
             _customerService = new CustomerInvoiceService();
-            pages = (int)Math.Ceiling(_customerService.Count(new CustomerInvoiceFilter()) / itemsPage);
-
             InitializeComponent();
+            pages = (int)Math.Ceiling(await _customerService.Count(new CustomerInvoiceFilter()) / itemsPage);
+
             PaginationUserControl.CurrentPage = 1;
             StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += RightSideBar_searchBtnEvent;
@@ -64,7 +64,7 @@ namespace Winform.Forms.CreateWindow
 
 
 
-        private void RightSideBar_searchBtnEvent(object? sender, EventArgs e)
+        private async void RightSideBar_searchBtnEvent(object? sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
             bool flagfrom = false;
@@ -119,8 +119,8 @@ namespace Winform.Forms.CreateWindow
             };
 
 
-            IEnumerable<CustomerInvoice> query = _customerService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerService.Count(filterPage) / itemsPage)).ToString();
+            IEnumerable<CustomerInvoice> query = await _customerService.GetAll(filter);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _customerService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             CenterDgv.DataSource = query.ToList();
@@ -147,7 +147,7 @@ namespace Winform.Forms.CreateWindow
             PaginationUserControl.Visible = true;
 
         }
-        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
 
             CustomerInvoiceFilter filter = new CustomerInvoiceFilter
@@ -161,7 +161,7 @@ namespace Winform.Forms.CreateWindow
                 CustomerInvoiceInvoiceAmountTo = invoiceAmountTo
             };
 
-            IEnumerable<CustomerInvoice> query = _customerService.GetAll(filter);
+            IEnumerable<CustomerInvoice> query = await _customerService.GetAll(filter);
             CenterDgv.DataSource = query.ToList();
         }
 

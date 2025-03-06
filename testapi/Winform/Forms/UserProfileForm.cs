@@ -12,7 +12,7 @@ namespace Winform.Forms
             InitializeComponent();
         }
 
-        private void UserProfileForm_Load(object sender, EventArgs e)
+        private async void UserProfileForm_Load(object sender, EventArgs e)
         {
             foreach (string role in UserAccessInfo.Role)
             {
@@ -22,7 +22,7 @@ namespace Winform.Forms
             }
 
 
-            UserRoleDTO user = userService.GetById(UserAccessInfo.RefreshUserID);
+            UserRoleDTO user = await userService.GetById(UserAccessInfo.RefreshUserID);
             UserIDTxt.Text = user.UserID.ToString();
             UserNameTxt.Text = user.Name;
             UserLastNameTxt.Text = user.LastName;
@@ -40,7 +40,7 @@ namespace Winform.Forms
             button1.Enabled = checkBox1.Checked;
         }
 
-        private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
             if (PasswordTxt.Text.Equals(ConfirmPasswordTxt.Text))
             {
@@ -54,7 +54,7 @@ namespace Winform.Forms
                 };
                 try
                 {
-                    userService.Update(int.Parse(UserIDTxt.Text), si);
+                    await userService.Update(int.Parse(UserIDTxt.Text), si);
                     MessageBox.Show("User updated successfully!");
 
                     this.Close();

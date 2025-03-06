@@ -13,14 +13,14 @@ namespace Winform.Forms
             CreateSupplierUserControl.createButton += CreateSupplierUserControl_createButton;
         }
 
-        private void CreateSupplierUserControl_createButton(object? sender, Entities.DTO.SupplierCustomerDTO e)
+        private async void CreateSupplierUserControl_createButton(object? sender, Entities.DTO.SupplierCustomerDTO e)
         {
             if (!string.IsNullOrEmpty(e.Name) || !string.IsNullOrEmpty(e.Country))
             {
                 Supplier supplier = new Supplier { SupplierName = e.Name, Country = e.Country };
                 try
                 {
-                    _supplierService.Create(supplier);
+                    await _supplierService.Create(supplier);
                     MessageBox.Show("Supplier created Successfully!");
                     this.Close();
                 }

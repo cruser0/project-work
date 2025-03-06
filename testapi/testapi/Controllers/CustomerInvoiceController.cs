@@ -54,9 +54,10 @@ namespace API.Controllers
                 var data = await _customerInvoiceService.GetCustomerInvoiceById(id);
                 if (data == null)
                     throw new Exception("Customer Invoices not found");
+
+                return Ok(data);
             }
             catch (Exception ae) { return BadRequest(ae.Message); }
-            return Ok(_customerInvoiceService.GetCustomerInvoiceById(id));
         }
 
         // POST api/<CustomerInvoiceController>

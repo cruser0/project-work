@@ -10,8 +10,8 @@ namespace Winform.Forms
         public CustomerForm()
         {
             InitializeComponent();
-
         }
+
 
         public override void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
@@ -50,20 +50,25 @@ namespace Winform.Forms
                 cdf.Text = "Customer Details";
                 cdf.Resize += ChildForm_Resize;
                 cdf.FormClosing += ChildForm_Close;
-
+                Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+                mainPanel.Controls.Add(cdf);
                 cdf.Show();
+                cdf.BringToFront();
+                cdf.Activate();
 
             }
         }
 
         public void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
+
             mainForm.BeginInvoke(new Action(UpdateMdiLayout));
         }
 
         private void UpdateMdiLayout()
         {
-            int countOpenForms = mainForm.MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+            int countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
         }
 

@@ -32,12 +32,12 @@ namespace Winform.Forms
             Init();
         }
 
-        private void Init()
+        private async void Init()
         {
             _supplierService = new SupplierService();
             _userService = new UserService();
             InitializeComponent();
-            pages = (int)Math.Ceiling(_supplierService.Count(new SupplierFilter()) / itemsPage);
+            pages = (int)Math.Ceiling(await _supplierService.Count(new SupplierFilter()) / itemsPage);
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
@@ -63,7 +63,7 @@ namespace Winform.Forms
 
 
 
-        private void MyControl_ButtonClicked(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
             SupplierFilter filter = new SupplierFilter
@@ -100,8 +100,8 @@ namespace Winform.Forms
             status = comboBox1.SelectedIndex;
             dateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
             dateTo = DateToClnd.Checked ? DateToClnd.Value : null;
-            IEnumerable<Supplier> query = _supplierService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(_supplierService.Count(filterPage) / itemsPage)).ToString();
+            IEnumerable<Supplier> query = await _supplierService.GetAll(filter);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _supplierService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             SupplierDgv.DataSource = query.ToList();
@@ -130,7 +130,7 @@ namespace Winform.Forms
             SupplierDgv.Columns["SupplierID"].Visible = SupplierIDTsmi.Checked;
             PaginationUserControl.Visible = true;
         }
-        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             SupplierFilter filter = new SupplierFilter
             {
@@ -147,7 +147,7 @@ namespace Winform.Forms
                 SupplierPage = PaginationUserControl.CurrentPage
             };
 
-            IEnumerable<Supplier> query = _supplierService.GetAll(filter);
+            IEnumerable<Supplier> query = await _supplierService.GetAll(filter);
             SupplierDgv.DataSource = query.ToList();
         }
 

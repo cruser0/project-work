@@ -52,7 +52,7 @@ namespace Winform.Forms.FInalForms
             showSupplierIDToolStripMenuItem.Visible = false;
         }
 
-        private void SupplierFinalForm_Load(object sender, EventArgs e)
+        private async void SupplierFinalForm_Load(object sender, EventArgs e)
         {
             int minSize = searchSupplier1.Width + 30;
             MainSplitContainer.Panel2MinSize = minSize;
@@ -66,7 +66,7 @@ namespace Winform.Forms.FInalForms
 
             supplierInvoiceCostFilter = searchSupplierInvoiceCost1.GetFilter();
 
-            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SuppliersSource.DataSource = data.suppliers;
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
@@ -287,7 +287,7 @@ namespace Winform.Forms.FInalForms
 
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private async void SearchButton_Click(object sender, EventArgs e)
         {
             supplierFilter = searchSupplier1.GetFilter();
 
@@ -295,7 +295,7 @@ namespace Winform.Forms.FInalForms
 
             supplierInvoiceCostFilter = searchSupplierInvoiceCost1.GetFilter();
 
-            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SuppliersSource.DataSource = data.suppliers;
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
@@ -327,12 +327,10 @@ namespace Winform.Forms.FInalForms
             LoadTableSupplierInvoicecost();
         }
 
-        private void SupplierDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void SupplierDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = (DataGridView)sender;
 
-
-            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
 
@@ -342,9 +340,9 @@ namespace Winform.Forms.FInalForms
             LoadTableSupplierInvoicecost();
         }
 
-        private void SupInvoiceDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void SupInvoiceDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            data = _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
             SupplierInvoiceSource.DataSource = data.invoices;
             SupplierInvoicecostSource.DataSource = data.invoiceCosts;
 

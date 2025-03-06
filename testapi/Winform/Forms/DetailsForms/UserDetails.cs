@@ -5,13 +5,18 @@ namespace Winform.Forms.DetailsForms
 {
     public partial class UserDetails : Form
     {
-        readonly UserService _userService;
+        UserService _userService;
         UserRoleDTO user;
         public UserDetails(int id)
         {
+            Init(id);
+        }
+
+        private async void Init(int id)
+        {
             _userService = new UserService();
             InitializeComponent();
-            user = _userService.GetById(id);
+            user = await _userService.GetById(id);
             UserIDTxt.Text = user.UserID.ToString();
             UserNameTxt.Text = user.Name;
             UserLastNameTxt.Text = user.LastName;
@@ -80,7 +85,7 @@ namespace Winform.Forms.DetailsForms
             }
             return true;
         }
-        private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
             var list = rolesListBox.CheckedItems;
             List<string> roles = new List<string>();
@@ -107,8 +112,8 @@ namespace Winform.Forms.DetailsForms
             };
             try
             {
-                _userService.Update(int.Parse(UserIDTxt.Text), si);
-                _userService.EditUserRoles(ar);
+                await _userService.Update(int.Parse(UserIDTxt.Text), si);
+                await _userService.EditUserRoles(ar);
                 MessageBox.Show("User updated successfully!");
 
                 this.Close();

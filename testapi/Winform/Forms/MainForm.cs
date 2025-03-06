@@ -111,7 +111,7 @@ namespace Winform
 
             string tabName = menuItem.GetCurrentParent().Name;
             string formName;
-            if (tabName.Equals("ToolStripTopMenu"))
+            if (tabName.Equals("TS"))
                 formName = tabName + " " + menuItem.Name;
             else
                 formName = tabName + " " + menuItem.Text;
@@ -142,6 +142,7 @@ namespace Winform
 
                 existingForm.WindowState = FormWindowState.Normal;
                 existingForm.Activate();
+                existingForm.BringToFront();
                 Cursor.Current = Cursors.Default;
                 return;
             }
@@ -183,7 +184,7 @@ namespace Winform
                 _ => new Form()
             };
 
-            child.Text = formName.Equals("ToolStripTopMenu UserBtnTS") ? "User Area" : formName;
+            child.Text = formName.Equals("TS UserProfile") ? "User Area" : formName;
             child.MdiParent = this;
             child.Size = new Size(800, 500);
 
@@ -191,6 +192,8 @@ namespace Winform
             child.FormClosing += ChildForm_Close;
             MainPanel.Controls.Add(child);
             child.Show();
+            child.BringToFront();
+            child.Activate();
             LayoutMdi(MdiLayout.ArrangeIcons);
 
 
@@ -260,10 +263,11 @@ namespace Winform
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            foreach (var form in MdiChildren)
+            foreach (var form in MainPanel.Controls.OfType<Form>())
             {
                 if (form.WindowState != FormWindowState.Minimized)
                 {
+                    //form.Deactivate();
                     form.WindowState = FormWindowState.Minimized;
                 }
             }

@@ -40,13 +40,13 @@ namespace Winform.Forms
             Init();
         }
 
-        private void Init()
+        private async void Init()
         {
             _userService = new UserService();
             _saleService = new SaleService();
 
             InitializeComponent();
-            pages = (int)Math.Ceiling(_saleService.Count(new SaleFilter()) / itemsPage);
+            pages = (int)Math.Ceiling(await _saleService.Count(new SaleFilter()) / itemsPage);
             StatusCB.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
@@ -67,7 +67,7 @@ namespace Winform.Forms
             }
         }
 
-        private void MyControl_ButtonClicked(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
             SaleFilter filter = new SaleFilter
@@ -105,8 +105,8 @@ namespace Winform.Forms
             status = StatusCB.Text == "All" ? null : StatusCB.Text;
 
 
-            IEnumerable<SaleCustomerDTO> query = _saleService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(_saleService.Count(filterPage) / itemsPage)).ToString();
+            IEnumerable<SaleCustomerDTO> query = await _saleService.GetAll(filter);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _saleService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SaleDgv.DataSource = query.ToList();
             if (!PaginationUserControl.Visible)
@@ -141,7 +141,7 @@ namespace Winform.Forms
 
             PaginationUserControl.Visible = true;
         }
-        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             int outVal;
             SaleFilter filter = new SaleFilter
@@ -158,7 +158,7 @@ namespace Winform.Forms
 
             };
 
-            IEnumerable<SaleCustomerDTO> query = _saleService.GetAll(filter);
+            IEnumerable<SaleCustomerDTO> query = await _saleService.GetAll(filter);
             SaleDgv.DataSource = query.ToList();
         }
         private void PaginationUserControl_SingleLeftArrowEvent(object? sender, EventArgs e)

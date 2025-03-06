@@ -8,9 +8,14 @@ namespace Winform.Forms
         CustomerService _customerService;
         public CustomerDetailsForm(int id)
         {
+            Init(id);
+        }
+
+        private async void Init(int id)
+        {
             InitializeComponent();
             _customerService = new CustomerService();
-            Customer customer = _customerService.GetById(id);
+            Customer customer = await _customerService.GetById(id);
             IdCustomerTxt.Text = customer.CustomerId.ToString();
             if (customer.Deprecated != null)
             {
@@ -42,9 +47,10 @@ namespace Winform.Forms
                 EditCustomerCbx.Visible = false;
                 SaveEditCustomerBtn.Visible = false;
             }
-            if(!Authorize(authRoles))
+            if (!Authorize(authRoles))
                 DeleteBtn.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -63,12 +69,12 @@ namespace Winform.Forms
             }
         }
 
-        private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCustomerTxt.Text };
             try
             {
-                _customerService.Update(int.Parse(IdCustomerTxt.Text), customer);
+                await _customerService.Update(int.Parse(IdCustomerTxt.Text), customer);
                 MessageBox.Show("Customer updated successfully!");
 
                 this.Close();
@@ -81,7 +87,7 @@ namespace Winform.Forms
 
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private async void DeleteBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
            "This action is permanent and it will delete all the history bound to this Customer!",
@@ -93,7 +99,7 @@ namespace Winform.Forms
             {
                 try
                 {
-                    _customerService.Delete(int.Parse(IdCustomerTxt.Text));
+                    await _customerService.Delete(int.Parse(IdCustomerTxt.Text));
                     MessageBox.Show("Customer has been deleted.");
                     this.Close();
                 }

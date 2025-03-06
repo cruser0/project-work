@@ -59,7 +59,7 @@ namespace Winform.Forms.FInalForms
 
         }
 
-        private void SearchBtn_Click(object sender, EventArgs e)
+        private async void SearchBtn_Click(object sender, EventArgs e)
         {
 
             CustomerFilter customerfilter = new CustomerFilter
@@ -105,7 +105,7 @@ namespace Winform.Forms.FInalForms
             CustomerGroupDTO result = new CustomerGroupDTO();
             try
             {
-                result = _valueService.GetTables(customerfilter, saleFilter, customerInvoiceFilter, customerInvoiceCostfilter);
+                result = await _valueService.GetTables(customerfilter, saleFilter, customerInvoiceFilter, customerInvoiceCostfilter);
             }
             catch (Exception ex) { MessageBox.Show(Text, ex.Message); }
 

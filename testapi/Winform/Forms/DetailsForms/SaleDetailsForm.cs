@@ -8,9 +8,14 @@ namespace Winform.Forms
         SaleService _saleService;
         public SaleDetailsForm(int id)
         {
+            Init(id);
+        }
+
+        private async void Init(int id)
+        {
             InitializeComponent();
             _saleService = new SaleService();
-            Sale sale = _saleService.GetById(id);
+            Sale sale = await _saleService.GetById(id);
             SaleIdtxt.Text = id.ToString();
             bntxt.Text = sale.BookingNumber;
             boltxt.Text = sale.BoLnumber;
@@ -46,6 +51,7 @@ namespace Winform.Forms
             if (!Authorize(authRoles))
                 DeleteBtn.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -61,7 +67,7 @@ namespace Winform.Forms
             saveBtn.Enabled = !saveBtn.Enabled;
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private async void saveBtn_Click(object sender, EventArgs e)
         {
             Sale sale = new Sale
             {
@@ -73,7 +79,7 @@ namespace Winform.Forms
             };
             try
             {
-                _saleService.Update(int.Parse(SaleIdtxt.Text), sale);
+                await _saleService.Update(int.Parse(SaleIdtxt.Text), sale);
                 MessageBox.Show("Sale updated successfully!");
 
                 this.Close();
@@ -81,7 +87,7 @@ namespace Winform.Forms
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private async void DeleteBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
           "This action is permanent and it will delete all the history bound to this Sale!",
@@ -93,7 +99,7 @@ namespace Winform.Forms
             {
                 try
                 {
-                    _saleService.Delete(int.Parse(SaleIdtxt.Text));
+                    await _saleService.Delete(int.Parse(SaleIdtxt.Text));
                     MessageBox.Show("Sale has been deleted.");
                     this.Close();
                 }

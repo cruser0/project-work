@@ -8,10 +8,15 @@ namespace Winform.Forms
         SupplierInvoiceCostService _supplierInvoiceCostService;
         public SupplierInvoiceCostDetailsForm(int id)
         {
+            Init(id);
+        }
+
+        private async void Init(int id)
+        {
             InitializeComponent();
 
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
-            SupplierInvoiceCost supplierInvoiceCost = _supplierInvoiceCostService.GetById(id);
+            SupplierInvoiceCost supplierInvoiceCost = await _supplierInvoiceCostService.GetById(id);
             SupplierInvoiceCostIDtxt.Text = id.ToString();
             QuantityTxt.SetText(supplierInvoiceCost.Quantity.ToString());
             CostTxt.SetText(supplierInvoiceCost.Cost.ToString());
@@ -43,6 +48,7 @@ namespace Winform.Forms
             if (!Authorize(authRoles))
                 DeleteBtn.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -56,7 +62,7 @@ namespace Winform.Forms
             button1.Enabled = !button1.Enabled;
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private async void saveBtn_Click(object sender, EventArgs e)
         {
             SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
             {
@@ -66,7 +72,7 @@ namespace Winform.Forms
             };
             try
             {
-                _supplierInvoiceCostService.Update(int.Parse(SupplierInvoiceCostIDtxt.Text), supplierInvoiceCost);
+                await _supplierInvoiceCostService.Update(int.Parse(SupplierInvoiceCostIDtxt.Text), supplierInvoiceCost);
                 MessageBox.Show("Supplier Invoice Cost updated successfully!");
 
                 this.Close();
@@ -74,7 +80,7 @@ namespace Winform.Forms
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private async void DeleteBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
           "This action is permanent and it will delete all the history bound to this SupplierInvoiceCost!",
@@ -86,7 +92,7 @@ namespace Winform.Forms
             {
                 try
                 {
-                    _supplierInvoiceCostService.Delete(int.Parse(SupplierInvoiceCostIDtxt.Text));
+                    await _supplierInvoiceCostService.Delete(int.Parse(SupplierInvoiceCostIDtxt.Text));
                     MessageBox.Show("Supplier Invoice Cost has been deleted.");
                     this.Close();
                 }

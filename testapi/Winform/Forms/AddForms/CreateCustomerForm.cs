@@ -10,19 +10,19 @@ namespace Winform.Forms
         ICollection<string> prefUserPages;
         public CreateCustomerForm()
         {
-            _userService= new UserService();
+            _userService = new UserService();
             _customerService = new CustomerService();
             InitializeComponent();
             prefUserPages = _userService.GetAllPreferredPagesUser();
             if (prefUserPages.Contains("Create Customer"))
             {
-                FavouriteBTN.Image= global::Winform.Properties.Resources.star_yellow25x25;
+                FavouriteBTN.Image = global::Winform.Properties.Resources.star_yellow25x25;
             }
         }
 
 
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private async void SaveBtn_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer()
             {
@@ -32,7 +32,7 @@ namespace Winform.Forms
 
             try
             {
-                _customerService.Create(customer);
+                await _customerService.Create(customer);
                 MessageBox.Show("Customer Created Succesfully");
                 Close();
 

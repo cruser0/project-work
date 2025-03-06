@@ -20,7 +20,7 @@ namespace Winform.Forms
 
         }
 
-        private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
 
             List<string> err = new List<string>();
@@ -39,7 +39,7 @@ namespace Winform.Forms
                 try
                 {
                     SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = int.Parse(SaleIDTxt1.GetText()), SupplierId = int.Parse(SupplierIDTxt1.GetText()), Status = StatusCmbx.Text };
-                    _service.Create(si);
+                    await _service.Create(si);
                     MessageBox.Show("Supplier Invoice created Successfully!");
 
                 }
