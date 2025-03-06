@@ -18,7 +18,7 @@ namespace Winform.Forms.AddForms
             QuantityTxt.ValueChanged += NameTxt_TextChanged;
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private async void SaveBtn_Click(object sender, EventArgs e)
         {
             CustomerInvoiceCost customerInvoiceCost = new CustomerInvoiceCost()
             {
@@ -31,7 +31,7 @@ namespace Winform.Forms.AddForms
 
             try
             {
-                _customerInvoiceCostService.Create(customerInvoiceCost);
+                await _customerInvoiceCostService.Create(customerInvoiceCost);
                 MessageBox.Show("Customer Invoice Cost Created Succesfully");
                 Close();
             }

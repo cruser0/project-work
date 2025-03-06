@@ -15,7 +15,7 @@ namespace Winform.Forms.AddForms
             InitializeComponent();
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private async void SaveBtn_Click(object sender, EventArgs e)
         {
             SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
             {
@@ -26,7 +26,7 @@ namespace Winform.Forms.AddForms
             };
             try
             {
-                _supplierInvoiceCostService.Create(supplierInvoiceCost);
+                await _supplierInvoiceCostService.Create(supplierInvoiceCost);
                 MessageBox.Show("Supplier Invoice Cost created successfully!");
 
                 this.Close();

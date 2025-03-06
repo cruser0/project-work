@@ -8,10 +8,14 @@ namespace Winform.Forms.DetailsForms
         CustomerInvoiceCostService _customerInvoiceCostService;
         public CustomerInvoiceCostDetailsForm(int id)
         {
+            Init(id);
+        }
+        private async void Init(int id)
+        {
             InitializeComponent();
 
             _customerInvoiceCostService = new CustomerInvoiceCostService();
-            CustomerInvoiceCost customerInvoiceCost = _customerInvoiceCostService.GetById(id);
+            CustomerInvoiceCost customerInvoiceCost = await _customerInvoiceCostService.GetById(id);
             CustomerInvoiceCostIDtxt.Text = id.ToString();
             QuantityTxt.SetText(customerInvoiceCost.Quantity.ToString());
             CostTxt.SetText(customerInvoiceCost.Cost.ToString());
@@ -42,6 +46,7 @@ namespace Winform.Forms.DetailsForms
             if (!Authorize(authRoles))
                 DeleteBtn.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -55,7 +60,7 @@ namespace Winform.Forms.DetailsForms
             saveBtn.Enabled = !saveBtn.Enabled;
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private async void saveBtn_Click(object sender, EventArgs e)
         {
             CustomerInvoiceCost customerInvoiceCost = new CustomerInvoiceCost
             {
@@ -65,7 +70,7 @@ namespace Winform.Forms.DetailsForms
             };
             try
             {
-                _customerInvoiceCostService.Update(int.Parse(CustomerInvoiceCostIDtxt.Text), customerInvoiceCost);
+                await _customerInvoiceCostService.Update(int.Parse(CustomerInvoiceCostIDtxt.Text), customerInvoiceCost);
                 MessageBox.Show("Customer Invoice Cost updated successfully!");
 
                 this.Close();
@@ -73,7 +78,7 @@ namespace Winform.Forms.DetailsForms
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private async void DeleteBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
           "This action is permanent and it will delete all the history bound to this CustomerInvoiceCost!",
@@ -85,7 +90,7 @@ namespace Winform.Forms.DetailsForms
             {
                 try
                 {
-                    _customerInvoiceCostService.Delete(int.Parse(CustomerInvoiceCostIDtxt.Text));
+                    await _customerInvoiceCostService.Delete(int.Parse(CustomerInvoiceCostIDtxt.Text));
                     MessageBox.Show("Customer Invoice Cost has been deleted.");
                     this.Close();
                 }

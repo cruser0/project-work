@@ -113,7 +113,7 @@
             // 
             // SupplierGetInvoiceBtn
             // 
-            this.SupplierGetInvoiceBtn.Location = new System.Drawing.Point(12, 415);
+            this.SupplierGetInvoiceBtn.Location = new System.Drawing.Point(343, 285);
             this.SupplierGetInvoiceBtn.Name = "SupplierGetInvoiceBtn";
             this.SupplierGetInvoiceBtn.Size = new System.Drawing.Size(99, 23);
             this.SupplierGetInvoiceBtn.TabIndex = 17;
@@ -124,7 +124,7 @@
             // DeleteBtn
             // 
             this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Location = new System.Drawing.Point(456, 256);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
             this.DeleteBtn.TabIndex = 18;
@@ -136,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.SupplierGetInvoiceBtn);
             this.Controls.Add(this.SaveEditSupplierBtn);
@@ -147,6 +147,7 @@
             this.Controls.Add(this.CountrySupplierTxt);
             this.Controls.Add(this.IdSupplierTxt);
             this.Controls.Add(this.NameSupplierTxt);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SupplierDetailsForm";
             this.Text = "SupplierDetailsForm";
             this.ResumeLayout(false);

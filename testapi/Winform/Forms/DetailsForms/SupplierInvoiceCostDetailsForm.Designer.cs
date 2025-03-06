@@ -44,7 +44,7 @@
             // DeleteBtn
             // 
             this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Location = new System.Drawing.Point(430, 390);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
             this.DeleteBtn.TabIndex = 19;
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label4);
@@ -153,6 +153,7 @@
             this.Controls.Add(this.CostTxt);
             this.Controls.Add(this.SupplierInvoiceCostIDtxt);
             this.Controls.Add(this.DeleteBtn);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SupplierInvoiceCostDetailsForm";
             this.Text = "SupplierInvoiceCostDetailsForm";
             this.ResumeLayout(false);

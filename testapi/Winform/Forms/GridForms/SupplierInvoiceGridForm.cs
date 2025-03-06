@@ -47,13 +47,13 @@ namespace Winform.Forms
             }
         }
 
-        private void Init()
+        private async void Init()
         {
             _userService = new UserService();
             _supplierInvoiceService = new SupplierInvoiceService();
-            pages = (int)Math.Ceiling(_supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
-
             InitializeComponent();
+            pages = (int)Math.Ceiling(await _supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
+
             StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
@@ -89,7 +89,7 @@ namespace Winform.Forms
             }
         }
 
-        private void MyControl_ButtonClicked(object? sender, EventArgs e)
+        private async void MyControl_ButtonClicked(object? sender, EventArgs e)
         {
             bool flagfrom = false;
             bool flagto = false;
@@ -148,8 +148,8 @@ namespace Winform.Forms
             };
 
 
-            IEnumerable<SupplierInvoiceSupplierDTO> query = _supplierInvoiceService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(_supplierInvoiceService.Count(filterPage) / itemsPage)).ToString();
+            IEnumerable<SupplierInvoiceSupplierDTO> query = await _supplierInvoiceService.GetAll(filter);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _supplierInvoiceService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             SupplierInvoiceDgv.DataSource = query.ToList();
@@ -185,7 +185,7 @@ namespace Winform.Forms
             PaginationUserControl.Visible = true;
 
         }
-        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             SupplierInvoiceFilter filter = new SupplierInvoiceFilter
             {
@@ -197,7 +197,7 @@ namespace Winform.Forms
                 SupplierInvoicePage = PaginationUserControl.CurrentPage
             };
 
-            IEnumerable<SupplierInvoiceSupplierDTO> query = _supplierInvoiceService.GetAll(filter);
+            IEnumerable<SupplierInvoiceSupplierDTO> query = await _supplierInvoiceService.GetAll(filter);
             SupplierInvoiceDgv.DataSource = query.ToList();
         }
 

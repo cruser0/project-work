@@ -1,6 +1,4 @@
 ﻿using API.Models.Filters;
-using System.Text;
-using System.Text.Json;
 using Winform.Entities;
 using Winform.Entities.DTO;
 
@@ -35,18 +33,18 @@ namespace Winform.Services
 
             return queryString;
         }
-        public async Task<ICollection<SupplierInvoice>> GetAll(SupplierInvoiceFilter filter)
+        public async Task<ICollection<SupplierInvoiceSupplierDTO>> GetAll(SupplierInvoiceFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
-            var returnResult = await GetList<SupplierInvoice>(client, "supplier-invoice", queryString);
+            var returnResult = await GetList<SupplierInvoiceSupplierDTO>(client, "supplier-invoice", queryString);
             return returnResult;
         }
 
-        public async Task<SupplierInvoice> GetById(int id)
+        public async Task<SupplierInvoiceSupplierDTO> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await GetItem<SupplierInvoice>(client, $"supplier-invoice/{id}", "Supplier Invoice");
+            var returnResult = await GetItem<SupplierInvoiceSupplierDTO>(client, $"supplier-invoice/{id}", "Supplier Invoice");
             return returnResult;
         }
 

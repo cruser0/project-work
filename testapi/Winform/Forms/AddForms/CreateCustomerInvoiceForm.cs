@@ -15,7 +15,7 @@ namespace Winform.Forms.AddForms
             integerTextBoxUserControl1.ValueChanged += NameTxt_TextChanged;
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private async void SaveBtn_Click(object sender, EventArgs e)
         {
             CustomerInvoice customerInvoice = new CustomerInvoice()
             {
@@ -25,7 +25,7 @@ namespace Winform.Forms.AddForms
             };
             try
             {
-                _customerInvoiceService.Create(customerInvoice);
+                await _customerInvoiceService.Create(customerInvoice);
                 MessageBox.Show("Customer Invoice Created Succesfully");
                 Close();
             }

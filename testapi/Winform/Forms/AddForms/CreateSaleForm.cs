@@ -15,7 +15,7 @@ namespace Winform.Forms.AddForms
             InitializeComponent();
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private async void SaveBtn_Click(object sender, EventArgs e)
         {
             Sale sale = new Sale
             {
@@ -27,7 +27,7 @@ namespace Winform.Forms.AddForms
             };
             try
             {
-                _saleService.Create(sale);
+                await _saleService.Create(sale);
                 MessageBox.Show("Sale Created successfully!");
 
                 this.Close();

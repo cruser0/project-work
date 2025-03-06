@@ -19,11 +19,16 @@ namespace Winform.Forms.GridForms
 
         public UserGridForm()
         {
+            Init();
+        }
+
+        private async void Init()
+        {
             _userService = new UserService();
-            pages = (int)Math.Ceiling(_userService.Count(new UserFilter()) / itemsPage);
-
-
             InitializeComponent();
+            pages = (int)Math.Ceiling((await _userService.Count(new UserFilter())) / itemsPage);
+
+
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             paginationControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -47,7 +52,7 @@ namespace Winform.Forms.GridForms
                 UserIDTsmi.Visible = false;
         }
 
-        private void MyControl_ButtonClicked(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             // Reset della paginazione
             paginationControl.CurrentPage = 1;
@@ -92,7 +97,7 @@ namespace Winform.Forms.GridForms
             };
 
             // Recupera i dati filtrati e aggiorna la DataGridView
-            IEnumerable<UserRoleDTO> query = _userService.GetAll(filter);
+            IEnumerable<UserRoleDTO> query = await _userService.GetAll(filter);
             userDgv.DataSource = query.ToList();
 
             // Aggiungi la colonna per i ruoli, se non presente
@@ -108,7 +113,7 @@ namespace Winform.Forms.GridForms
             }
 
             // Aggiorna il numero massimo di pagine per la paginazione
-            int totalRecords = _userService.Count(filterPage);
+            int totalRecords = await _userService.Count(filterPage);
             int maxPages = (int)Math.Ceiling((double)totalRecords / itemsPage);
             paginationControl.maxPage = maxPages.ToString();
             paginationControl.SetPageLbl($"{paginationControl.CurrentPage}/{maxPages}");
@@ -134,7 +139,7 @@ namespace Winform.Forms.GridForms
             userDgv.Columns["Email"].Visible = cdgv.ShowEmail;
             userDgv.Columns["Roles"].Visible = cdgv.ShowRoles;
         }
-        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
 
 
@@ -148,7 +153,7 @@ namespace Winform.Forms.GridForms
 
             };
 
-            IEnumerable<UserRoleDTO> query = _userService.GetAll(filter);
+            IEnumerable<UserRoleDTO> query = await _userService.GetAll(filter);
             userDgv.DataSource = query.ToList();
         }
 

@@ -8,9 +8,14 @@ namespace Winform.Forms
         SupplierService _supplierService;
         public SupplierDetailsForm(int id)
         {
+            Init(id);
+        }
+
+        private async void Init(int id)
+        {
             InitializeComponent();
             _supplierService = new SupplierService();
-            Supplier supplier = _supplierService.GetById(id);
+            Supplier supplier = await _supplierService.GetById(id);
             IdSupplierTxt.Text = supplier.SupplierId.ToString();
             NameSupplierTxt.Text = supplier.SupplierName;
             CountrySupplierTxt.Text = supplier.Country;
@@ -36,6 +41,7 @@ namespace Winform.Forms
             if (!Authorize(authRoles))
                 DeleteBtn.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -55,12 +61,12 @@ namespace Winform.Forms
             }
         }
 
-        private void SaveEditSupplierBtn_Click(object sender, EventArgs e)
+        private async void SaveEditSupplierBtn_Click(object sender, EventArgs e)
         {
             Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountrySupplierTxt.Text };
             try
             {
-                _supplierService.Update(int.Parse(IdSupplierTxt.Text), supplier);
+                await _supplierService.Update(int.Parse(IdSupplierTxt.Text), supplier);
                 MessageBox.Show("Supplier updated successfully!");
 
                 this.Close();
@@ -93,7 +99,7 @@ namespace Winform.Forms
             child.Show();*/
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private async void DeleteBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
            "This action is permanent and it will delete all the history bound to this Supplier!",
@@ -105,7 +111,7 @@ namespace Winform.Forms
             {
                 try
                 {
-                    _supplierService.Delete(int.Parse(IdSupplierTxt.Text));
+                    await _supplierService.Delete(int.Parse(IdSupplierTxt.Text));
                     MessageBox.Show("Supplier has been deleted.");
                     this.Close();
                 }

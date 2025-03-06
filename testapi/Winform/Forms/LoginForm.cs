@@ -14,7 +14,7 @@ namespace Winform.Forms
         }
 
 
-        private void EnterBtn_Click(object sender, EventArgs e)
+        private async void EnterBtn_Click(object sender, EventArgs e)
         {
             UserDTO user = new UserDTO()
             {
@@ -24,7 +24,7 @@ namespace Winform.Forms
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                var ret = _userService.Login(user);
+                var ret = await _userService.Login(user);
                 DialogResult = DialogResult.OK;
                 Close();
 
@@ -38,16 +38,16 @@ namespace Winform.Forms
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            var ret = _userService.Login(new UserDTO() { Email = "CustomerAdmin", Password = "string" });
+            var ret = await _userService.Login(new UserDTO() { Email = "CustomerAdmin", Password = "string" });
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
-            var ret = _userService.Login(new UserDTO() { Email = "Testalo2", Password = "string" });
+            var ret = await _userService.Login(new UserDTO() { Email = "Testalo2", Password = "string" });
             DialogResult = DialogResult.OK;
             Close();
         }

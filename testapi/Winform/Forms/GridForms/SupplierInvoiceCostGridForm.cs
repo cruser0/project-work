@@ -12,7 +12,7 @@ namespace Winform.Forms.CreateWindow
         int? costFrom;
         int? costTo;
         string? name;
-        readonly SupplierInvoiceCostService _supplierInvoiceCostService;
+        SupplierInvoiceCostService _supplierInvoiceCostService;
         int pages;
         double itemsPage = 10.0;
         List<string> authRoles = new List<string>
@@ -23,12 +23,17 @@ namespace Winform.Forms.CreateWindow
         UserService _userService;
         public SupplierInvoiceCostGridForm()
         {
+            Init();
+        }
+
+        private async void Init()
+        {
             _userService = new UserService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
-            pages = (int)Math.Ceiling(_supplierInvoiceCostService.Count(new SupplierInvoiceCostFilter()) / itemsPage);
-
-
             InitializeComponent();
+            pages = (int)Math.Ceiling(await _supplierInvoiceCostService.Count(new SupplierInvoiceCostFilter()) / itemsPage);
+
+
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -44,6 +49,7 @@ namespace Winform.Forms.CreateWindow
             if (!Authorize(authRoles))
                 SupplierInvoiceCostIDTsmi.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -57,7 +63,7 @@ namespace Winform.Forms.CreateWindow
 
         }
 
-        private void MyControl_ButtonClicked(object? sender, EventArgs e)
+        private async void MyControl_ButtonClicked(object? sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
             invoiceId = !string.IsNullOrEmpty(InvoiceIDTxt.GetText()) ? int.Parse(InvoiceIDTxt.GetText()) : null;
@@ -79,8 +85,8 @@ namespace Winform.Forms.CreateWindow
                 SupplierInvoiceCostCostTo = costTo,
                 SupplierInvoiceCostName = NameTxt.Text,
             };
-            IEnumerable<SupplierInvoiceCost> query = _supplierInvoiceCostService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(_supplierInvoiceCostService.Count(filterPage) / itemsPage)).ToString();
+            IEnumerable<SupplierInvoiceCost> query = await _supplierInvoiceCostService.GetAll(filter);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _supplierInvoiceCostService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             SupplierInvoiceCostDgv.DataSource = query.ToList();
@@ -107,7 +113,7 @@ namespace Winform.Forms.CreateWindow
 
         }
 
-        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             SupplierInvoiceCostFilter filter = new SupplierInvoiceCostFilter
             {
@@ -118,7 +124,7 @@ namespace Winform.Forms.CreateWindow
                 SupplierInvoiceCostName = NameTxt.Text,
             };
 
-            IEnumerable<SupplierInvoiceCost> query = _supplierInvoiceCostService.GetAll(filter);
+            IEnumerable<SupplierInvoiceCost> query = await _supplierInvoiceCostService.GetAll(filter);
             SupplierInvoiceCostDgv.DataSource = query.ToList();
         }
 

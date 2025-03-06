@@ -8,9 +8,14 @@ namespace Winform.Forms
         SupplierInvoiceService _supplierInvoiceService;
         public SupplierInvoiceDetailsForm(int id)
         {
+            Init(id);
+        }
+
+        private async void Init(int id)
+        {
             InitializeComponent();
             _supplierInvoiceService = new SupplierInvoiceService();
-            SupplierInvoice supplier = _supplierInvoiceService.GetById(id);
+            SupplierInvoice supplier = await _supplierInvoiceService.GetById(id);
 
             IdTxt.Text = supplier.InvoiceId.ToString();
             SaleIDTxt1.SetText(supplier.SaleId.ToString());
@@ -43,6 +48,7 @@ namespace Winform.Forms
             if (!Authorize(authRoles))
                 DeleteBtn.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -67,7 +73,7 @@ namespace Winform.Forms
             }
         }
 
-        private void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
             SupplierInvoice si = new SupplierInvoice
             {
@@ -79,7 +85,7 @@ namespace Winform.Forms
             };
             try
             {
-                _supplierInvoiceService.Update(int.Parse(IdTxt.Text), si);
+                await _supplierInvoiceService.Update(int.Parse(IdTxt.Text), si);
                 MessageBox.Show("Customer updated successfully!");
 
                 this.Close();
@@ -87,7 +93,7 @@ namespace Winform.Forms
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void DeleteBtn_Click(object sender, EventArgs e)
+        private async void DeleteBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
            "This action is permanent and it will delete all the history bound to this Supplier Invoice!",
@@ -99,7 +105,7 @@ namespace Winform.Forms
             {
                 try
                 {
-                    _supplierInvoiceService.Delete(int.Parse(IdTxt.Text));
+                    await _supplierInvoiceService.Delete(int.Parse(IdTxt.Text));
                     MessageBox.Show("Supplier Invoice has been deleted.");
                     this.Close();
                 }

@@ -40,7 +40,7 @@ namespace Winform.Forms.AddForms
                               newCheckedCount > 0;
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private async void SaveBtn_Click(object sender, EventArgs e)
         {
             List<string> roles = rolesListBox.CheckedItems.Cast<string>().ToList();
 
@@ -56,7 +56,7 @@ namespace Winform.Forms.AddForms
 
             try
             {
-                _userService.Register(user);
+                await _userService.Register(user);
                 MessageBox.Show("User Created Succesfully");
                 Close();
 

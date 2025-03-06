@@ -9,10 +9,15 @@ namespace Winform.Forms
         CustomerInvoiceService _customerInvoiceService;
         public CustomerInvoiceDetailsForm(int id)
         {
+            Init(id);
+
+        }
+        private async void Init(int id)
+        {
             InitializeComponent();
 
             _customerInvoiceService = new CustomerInvoiceService();
-            CustomerInvoice customer = _customerInvoiceService.GetById(id);
+            CustomerInvoice customer = await _customerInvoiceService.GetById(id);
 
             CustomerInvoiceIdTxt.Text = customer.CustomerInvoiceId.ToString();
             InvoiceAmountTxt.Text = customer.InvoiceAmount.ToString();
@@ -45,12 +50,13 @@ namespace Winform.Forms
             if (!Authorize(authRoles))
                 DeleteBtn.Visible = false;
         }
+
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             CustomerInvoice si = new CustomerInvoice
             {
@@ -61,7 +67,7 @@ namespace Winform.Forms
             };
             try
             {
-                _customerInvoiceService.Update(int.Parse(CustomerInvoiceIdTxt.Text), si);
+                await _customerInvoiceService.Update(int.Parse(CustomerInvoiceIdTxt.Text), si);
                 MessageBox.Show("Customer updated successfully!");
 
                 this.Close();
@@ -81,7 +87,7 @@ namespace Winform.Forms
 
 
 
-        private void DeleteBtn_Click_1(object sender, EventArgs e)
+        private async void DeleteBtn_Click_1(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
            "This action is permanent and it will delete all the history bound to this Customer Invoice!",
@@ -93,7 +99,7 @@ namespace Winform.Forms
             {
                 try
                 {
-                    _customerInvoiceService.Delete(int.Parse(CustomerInvoiceIdTxt.Text));
+                    await _customerInvoiceService.Delete(int.Parse(CustomerInvoiceIdTxt.Text));
                     MessageBox.Show("Customer Invoice has been deleted.");
                     this.Close();
                 }

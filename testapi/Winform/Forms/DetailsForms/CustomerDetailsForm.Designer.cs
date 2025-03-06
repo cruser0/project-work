@@ -130,7 +130,7 @@
             // DeleteBtn
             // 
             this.DeleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.DeleteBtn.Location = new System.Drawing.Point(713, 415);
+            this.DeleteBtn.Location = new System.Drawing.Point(437, 315);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(75, 23);
             this.DeleteBtn.TabIndex = 23;
@@ -142,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.IdCustomerTxt);
             this.Controls.Add(this.StatusLbl);
@@ -154,6 +154,7 @@
             this.Controls.Add(this.IdCustomerLbl);
             this.Controls.Add(this.CountryCustomerTxt);
             this.Controls.Add(this.NameCustomerTxt);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerDetailsForm";
             this.Text = "CustomerDetailsForm";
             this.ResumeLayout(false);

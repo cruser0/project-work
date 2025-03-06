@@ -31,14 +31,14 @@ namespace Winform.Forms
             Init();
         }
 
-        private void Init()
+        private async void Init()
         {
             _customerService = new CustomerService();
             _userService = new UserService();
-            pages = (int)Math.Ceiling(_customerService.Count(new CustomerFilter()) / itemsPage);
 
 
             InitializeComponent();
+            pages = (int)Math.Ceiling(await _customerService.Count(new CustomerFilter()) / itemsPage);
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -59,7 +59,7 @@ namespace Winform.Forms
             }
         }
 
-        private void MyControl_ButtonClicked(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
             name = NameTxt.Text;
@@ -98,8 +98,8 @@ namespace Winform.Forms
             };
 
 
-            IEnumerable<Customer> query = _customerService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(_customerService.Count(filterPage) / itemsPage)).ToString();
+            IEnumerable<Customer> query = await _customerService.GetAll(filter);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _customerService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             CustomerDgv.DataSource = query.ToList();
@@ -128,7 +128,7 @@ namespace Winform.Forms
             CustomerDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
             CustomerDgv.Columns["CustomerID"].Visible = CustomerIDTsmi.Checked;
         }
-        private void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
+        private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             if (dateFrom != null)
                 DateFromClnd.Checked = true;
@@ -151,7 +151,7 @@ namespace Winform.Forms
                 CustomerPage = PaginationUserControl.CurrentPage
             };
 
-            IEnumerable<Customer> query = _customerService.GetAll(filter);
+            IEnumerable<Customer> query = await _customerService.GetAll(filter);
             CustomerDgv.DataSource = query.ToList();
         }
 
