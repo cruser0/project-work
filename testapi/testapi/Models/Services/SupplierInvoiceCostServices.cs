@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -55,7 +56,7 @@ namespace API.Models.Services
             {
                 if (filter.SupplierInvoiceCostCostFrom > filter.SupplierInvoiceCostCostTo)
                 {
-                    throw new ArgumentException("CostFrom cannot be more than CostTo.");
+                    throw new ErrorInputPropertyException("CostFrom cannot be more than CostTo.");
                 }
 
                 query = query.Where(s => s.Cost >= filter.SupplierInvoiceCostCostFrom && s.Cost <= filter.SupplierInvoiceCostCostTo);
@@ -86,7 +87,7 @@ namespace API.Models.Services
             var data = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null)
             {
-                throw new ArgumentException("Supplier Invoice Cost not found!");
+                throw new NotFoundException("Supplier Invoice Cost not found!");
             }
             return SupplierInvoiceCostMapper.MapGet(data);
         }
@@ -95,18 +96,18 @@ namespace API.Models.Services
         {
             SupplierInvoice si;
             if (supplierInvoiceCost == null)
-                throw new ArgumentNullException("Couldn't create supplier Invoice Cost");
+                throw new NullPropertyException("Couldn't create supplier Invoice Cost,data is null");
             if (supplierInvoiceCost.SupplierInvoiceId == null)
-                throw new ArgumentException("Supplier Invoice Id can't be null!");
+                throw new NullPropertyException("Supplier Invoice Id can't be null!");
             if (!_context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).Any())
-                throw new ArgumentException("Supplier Invoice Id not found!");
+                throw new NotFoundException("Supplier Invoice Id not found!");
             if (supplierInvoiceCost.Cost < 0 || supplierInvoiceCost.Quantity < 1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
-                throw new ArgumentException("Values can't be lesser than 1 or null");
+                throw new ErrorInputPropertyException("Values can't be lesser than 1 or null");
             if (string.IsNullOrEmpty(supplierInvoiceCost.Name))
-                throw new ArgumentException("Name can't be empty");
+                throw new NullPropertyException("Name can't be empty");
             si = await _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstAsync();
             if (si.Status.ToLower().Equals("approved"))
-                throw new ArgumentException("Supplier Invoice is already approved");
+                throw new ErrorInputPropertyException("Supplier Invoice is already approved");
 
 
             decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == supplierInvoiceCost.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);
@@ -129,9 +130,9 @@ namespace API.Models.Services
                 if (supplierInvoiceCost.SupplierInvoiceId != null)
                     sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
                 if ((await _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefaultAsync()).Status.ToLower().Equals("approved"))
-                    throw new ArgumentException("Supplier Invoice is already approved");
+                    throw new ErrorInputPropertyException("Supplier Invoice is already approved");
                 if (!_context.SupplierInvoices.Any(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
-                    throw new ArgumentNullException("Supplier Invoice not Found");
+                    throw new NotFoundException("Supplier Invoice not Found");
                 if (supplierInvoiceCost.Quantity > 0)
                     sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
                 if (supplierInvoiceCost.Cost > 0)
@@ -150,7 +151,7 @@ namespace API.Models.Services
                 }
                 return SupplierInvoiceCostMapper.MapGet(sicDB);
             }
-            throw new ArgumentNullException("Supplier Invoice Cost not found");
+            throw new NotFoundException("Supplier Invoice Cost not found");
         }
 
         public async Task<SupplierInvoiceCostDTOGet> DeleteSupplierInvoiceCost(int id)
@@ -158,7 +159,7 @@ namespace API.Models.Services
             var data = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null || id < 1)
             {
-                throw new ArgumentNullException("Supplier Invoice Cost not found!");
+                throw new NotFoundException("Supplier Invoice Cost not found!");
             }
             SupplierInvoice si = await _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).FirstAsync();
             decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);

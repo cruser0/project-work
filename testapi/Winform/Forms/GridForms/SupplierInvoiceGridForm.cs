@@ -148,11 +148,14 @@ namespace Winform.Forms
             };
 
 
-            IEnumerable<SupplierInvoiceSupplierDTO> query = await _supplierInvoiceService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _supplierInvoiceService.Count(filterPage) / itemsPage)).ToString();
+            var query = _supplierInvoiceService.GetAll(filter);
+            var count = _supplierInvoiceService.Count(filterPage);
+            await Task.WhenAll(count,query);
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-            SupplierInvoiceDgv.DataSource = query.ToList();
+            IEnumerable<SupplierInvoiceSupplierDTO> query1 = await query;
+            SupplierInvoiceDgv.DataSource = query1.ToList();
             if (!PaginationUserControl.Visible)
             {
                 SetCheckBoxes();

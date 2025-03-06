@@ -1,4 +1,5 @@
-﻿using API.Models.Filters;
+﻿using API.Models.Exceptions;
+using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,12 +22,18 @@ namespace API.Controllers
                                                      [FromQuery] SaleFilter? saleFilter,
                                                      [FromQuery] CustomerFilter? customerFilter)
         {
+            try
+            {
             costFilter = CheckFilter(costFilter);
             invoiceFilter = CheckFilter(invoiceFilter);
             saleFilter = CheckFilter(saleFilter);
             customerFilter = CheckFilter(customerFilter);
             var results = await _valueServices.GetCustomerInvoiceCosts(costFilter, invoiceFilter, saleFilter, customerFilter);
             return Ok(results);
+            }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
 
         }
         [HttpGet("suppliers")]
@@ -34,11 +41,18 @@ namespace API.Controllers
                                                     [FromQuery] SupplierInvoiceFilter? invoiceFilter,
                                                     [FromQuery] SupplierFilter? supplierFilter)
         {
+            try
+            {
+
             costFilter = CheckFilter(costFilter);
             invoiceFilter = CheckFilter(invoiceFilter);
             supplierFilter = CheckFilter(supplierFilter);
             var results = await _valueServices.GetSupplierInvoiceCosts(costFilter, invoiceFilter, supplierFilter);
             return Ok(results);
+            }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         private T? CheckFilter<T>(T? filter) where T : class

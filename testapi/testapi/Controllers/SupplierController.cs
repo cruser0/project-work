@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
@@ -30,9 +31,11 @@ namespace API.Controllers
                 {
                     return Ok(data);
                 }
-                else throw new Exception("Supplier not found");
+                else throw new NotFoundException("Supplier not found");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
@@ -52,10 +55,12 @@ namespace API.Controllers
             {
                 var data = await _supplierService.GetSupplierById(id);
                 if (data == null)
-                    throw new Exception("Supplier not found!");
+                    throw new NotFoundException("Supplier not found!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // POST api/<SupplierController>
@@ -67,10 +72,12 @@ namespace API.Controllers
             {
                 var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier));
                 if (data == null)
-                    throw new Exception("Data can't be null!");
+                    throw new NotFoundException("Data can't be null!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // PUT api/<SupplierController>/5
@@ -82,11 +89,12 @@ namespace API.Controllers
             {
                 var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier));
                 if (data == null)
-                    throw new Exception("Supplier not found!");
+                    throw new NotFoundException("Supplier not found!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // DELETE api/<SupplierController>/5
@@ -99,11 +107,12 @@ namespace API.Controllers
             {
                 var data = await _supplierService.DeleteSupplier(id);
                 if (data == null)
-                    throw new Exception("Supplier not found!");
+                    throw new NotFoundException("Supplier not found!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
     }
 }

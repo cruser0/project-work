@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
@@ -30,9 +31,11 @@ namespace API.Controllers
                 {
                     return Ok(data);
                 }
-                else throw new Exception("Supplier Invoice not found");
+                else throw new NotFoundException("Supplier Invoice not found");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
@@ -54,10 +57,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceService.GetSupplierInvoiceById(id);
                 if (data == null)
-                    throw new Exception("Supplier Invoice not found!");
+                    throw new NotFoundException("Supplier Invoice not found!");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // POST api/<SupplierInvoiceController>
@@ -69,10 +74,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice));
                 if (data == null)
-                    throw new Exception("Couldn't create supplier invoice");
+                    throw new NotFoundException("Couldn't create supplier invoice");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // PUT api/<SupplierInvoiceController>/5
@@ -84,10 +91,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice));
                 if (data == null)
-                    throw new Exception("Couldn't update supplier invoice");
+                    throw new NotFoundException("Couldn't update supplier invoice");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // DELETE api/<SupplierInvoiceController>/5
@@ -100,10 +109,12 @@ namespace API.Controllers
             {
                 var data = await _supplierInvoiceService.DeleteSupplierInvoice(id);
                 if (data == null)
-                    throw new Exception("Couldn't delete supplier invoice");
+                    throw new NotFoundException("Couldn't delete supplier invoice");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
     }
 }

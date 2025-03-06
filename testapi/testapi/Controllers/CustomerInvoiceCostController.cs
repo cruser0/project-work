@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
@@ -30,9 +31,11 @@ namespace API.Controllers
                 {
                     return Ok(data);
                 }
-                else throw new Exception("Customer Invoice Cost not found");
+                else throw new NotFoundException("Customer Invoice Cost not found");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch(ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch(NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,CustomerInvoiceCostRead,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
@@ -55,10 +58,12 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceCostService.GetCustomerInvoiceCostById(id);
                 if (data == null)
-                    throw new Exception("Customer Invoice Cost not found");
+                    throw new NotFoundException("Customer Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
 
         }
 
@@ -72,10 +77,12 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost));
                 if (data == null)
-                    throw new Exception("Customer Invoice Cost not found");
+                    throw new NotFoundException("Customer Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // PUT api/<CustomerInvoiceCostController>/5
@@ -87,10 +94,12 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost));
                 if (data == null)
-                    throw new Exception("Customer Invoice Cost not found");
+                    throw new NotFoundException("Customer Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // DELETE api/<CustomerInvoiceCostController>/5
@@ -103,10 +112,12 @@ namespace API.Controllers
             {
                 var data = await _customerInvoiceCostService.DeleteCustomerInvoiceCost(id);
                 if (data == null)
-                    throw new Exception("Customer Invoice Cost not found");
+                    throw new NotFoundException("Customer Invoice Cost not found");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
     }
 }
