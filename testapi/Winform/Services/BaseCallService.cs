@@ -115,7 +115,7 @@ namespace Winform.Services
 
                 return await item;
             }
-            var errorMessage = response.Content.ReadAsStreamAsync().Result;
+            var errorMessage =await response.Content.ReadAsStreamAsync();
             throw new Exception($"Error getting {error}: {errorMessage}");
         }
 
