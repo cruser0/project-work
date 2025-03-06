@@ -7,7 +7,7 @@ using Winform.Entities.DTO;
 
 namespace Winform.Services
 {
-    internal class ValueService
+    internal class ValueService:BaseCallService
     {
         private string BuildQueryParamsCustomer(CustomerFilter filter)
         {
@@ -196,35 +196,22 @@ namespace Winform.Services
             return queryString;
         }
 
-        public CustomerGroupDTO GetTables(CustomerFilter cfilter, SaleFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
+        public async Task<CustomerGroupDTO> GetTables(CustomerFilter cfilter, SaleFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString1 = BuildQueryParamsCustomer(cfilter);
             string queryString2 = BuildQueryParamsSale(sfilter);
             string queryString3 = BuildQueryParamsCustomerInvoice(cifilter);
             string queryString4 = BuildQueryParamsCustomerInvoiceCost(cicfilter);
-
             string queryString = queryString1 + "&" + queryString2 + "&" + queryString3 + "&" + queryString4;
             if (queryString.Length > 0) queryString = "?" + queryString;
 
 
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "Values/customers" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerDTOGet
-                var items = JsonSerializer.Deserialize<CustomerGroupDTO>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            return new CustomerGroupDTO();
+            var returnResult = await GetItem<CustomerGroupDTO>(client, "Values/customers", "Customer Tables");
+            return returnResult;
         }
 
-        public supplierGroupDTO GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceFilter sifilter, SupplierInvoiceCostFilter sicfilter)
+        public async Task<supplierGroupDTO> GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceFilter sifilter, SupplierInvoiceCostFilter sicfilter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString1 = BuildQueryParamsSupplier(sfilter);
@@ -235,20 +222,8 @@ namespace Winform.Services
             string queryString = queryString1 + "&" + queryString2 + "&" + queryString3;
             if (queryString.Length > 0) queryString = "?" + queryString;
 
-            HttpResponseMessage response = client.GetClient().GetAsync(client.GetBaseUri() + "Values/suppliers" + queryString).Result;
-            if (response.IsSuccessStatusCode)
-            {
-
-                // Leggere il contenuto della risposta
-                string json = response.Content.ReadAsStringAsync().Result;
-
-                // Deserializzare la risposta JSON in una lista di oggetti CustomerDTOGet
-                var items = JsonSerializer.Deserialize<supplierGroupDTO>(json,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                return items;
-
-            }
-            return new supplierGroupDTO();
+            var returnResult = await GetItem<supplierGroupDTO>(client, "Values/suppliers", "Supplier Tables");
+            return returnResult;
         }
     }
 }
