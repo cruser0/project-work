@@ -2,6 +2,7 @@
 using Winform.Forms.AddForms;
 using Winform.Forms.control;
 using Winform.Forms.FInalForms;
+using Winform.Services;
 
 namespace Winform
 {
@@ -9,9 +10,11 @@ namespace Winform
     public partial class MainForm : Form
     {
         private TableLayoutPanel minimizedPanel; // Panel to hold minimized child forms
+        UserService _userService;
         public MainForm()
         {
             InitializeComponent();
+            _userService = new UserService();
             IsMdiContainer = true; // Set the MDI container
             WindowState = FormWindowState.Maximized;
 
@@ -115,6 +118,12 @@ namespace Winform
                 formName = tabName + " " + menuItem.Name;
             else
                 formName = tabName + " " + menuItem.Text;
+
+            if (tabControl.SelectedTab.Text.Equals("Favorite"))
+            {
+                formName = (string)menuItem.Tag;
+            }
+
             int? countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             List<Form?> childrenOpen = MainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
@@ -141,8 +150,11 @@ namespace Winform
 
 
                 existingForm.WindowState = FormWindowState.Normal;
-                existingForm.Activate();
                 existingForm.BringToFront();
+                existingForm.Activate();
+                existingForm.Focus(); // Aggiunto per assicurare il focus
+                existingForm.TopMost = true;
+                existingForm.TopMost = false; // Reset per evitare problemi di persistenza
                 Cursor.Current = Cursors.Default;
                 return;
             }
@@ -194,6 +206,10 @@ namespace Winform
             child.Show();
             child.BringToFront();
             child.Activate();
+            child.Focus(); // Aggiunto per garantire il focus
+            child.TopMost = true;
+            child.TopMost = false; // Reset per evitare problemi di persistenza
+
             LayoutMdi(MdiLayout.ArrangeIcons);
 
 
@@ -263,14 +279,167 @@ namespace Winform
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            foreach (var form in MainPanel.Controls.OfType<Form>())
+            MainPanel.Controls
+                .OfType<Form>()
+                .Where(form => form.WindowState != FormWindowState.Minimized)
+                .ToList()
+                .ForEach(form => form.WindowState = FormWindowState.Minimized);
+
+        }
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            await UpdateFavoriteTab();
+        }
+
+        private async void AddFavoriteButton_Click(object sender, EventArgs e)
+        {
+            var latestForm = MainPanel.Controls
+                .OfType<Form>()
+                .Where(form => form.WindowState != FormWindowState.Minimized)
+                .OrderByDescending(form => MainPanel.Controls.GetChildIndex(form))
+                .LastOrDefault();
+
+            if (latestForm != null)
             {
-                if (form.WindowState != FormWindowState.Minimized)
+                var favoriteList = await _userService.GetAllPreferredPagesUser();
+
+
+                string response;
+
+                if (favoriteList.Contains(latestForm.Text))
                 {
-                    //form.Deactivate();
-                    form.WindowState = FormWindowState.Minimized;
+                    DialogResult result = MessageBox.Show($"Remove \"{latestForm.Text}\" from favorites?", "Favorite Confirmation",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        response = await _userService.RemoveUserFavouritePage(new List<string>() { latestForm.Text });
+                        MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await UpdateFavoriteTab();  // Rimuovi o aggiorna la tab dopo la rimozione
+                    }
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show($"Add \"{latestForm.Text}\" to favorites?", "Favorite Confirmation",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        response = await _userService.AddUserFavouritePage(new List<string>() { latestForm.Text });
+                        MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await UpdateFavoriteTab();  // Aggiungi o aggiorna la tab dopo l'aggiunta
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("No open form");
+            }
+        }
+
+        private async Task UpdateFavoriteTab()
+        {
+            // Recupera la lista di preferiti
+            var favoriteList = await _userService.GetAllPreferredPagesUser();
+
+            // Se ci sono preferiti, aggiungi o aggiorna la TabPage
+            if (favoriteList.Count > 0)
+            {
+                ToolStrip toolstrip4;
+
+                // Aggiungi la TabPage se non esiste
+                if (!tabControl.TabPages.ContainsKey("Favorite"))
+                {
+                    TabPage FavoriteTB = new TabPage()
+                    {
+                        Name = "Favorite",
+                        BackColor = Color.FromArgb(232, 234, 237),
+                        Size = new Size(1151, 36),
+                        Text = "Favorite"
+                    };
+                    toolstrip4 = new ToolStrip()
+                    {
+                        GripStyle = ToolStripGripStyle.Hidden,
+                        BackColor = Color.Transparent,
+                        Location = toolStrip3.Location,
+                        Padding = toolStrip3.Padding,
+                        AutoSize = false
+                    };
+
+                    FavoriteTB.Controls.Add(toolstrip4);
+                    toolstrip4.Dock = DockStyle.Fill;
+
+                    tabControl.TabPages.Insert(0, FavoriteTB);
+                }
+
+                // Ottieni il ToolStrip associato alla tab dei preferiti
+                toolstrip4 = tabControl.TabPages["Favorite"].Controls.OfType<ToolStrip>().FirstOrDefault();
+
+                // Rimuovi tutti i bottoni esistenti
+                toolstrip4.Items.Clear();
+
+                Dictionary<string, ToolStripButton> buttonMap = new Dictionary<string, ToolStripButton>
+                {
+                    { "User Area", UserProfile },
+                    { "Show Customer", CustomerShowTS },
+                    { "Show Customer Invoice", CustomerInvoiceShowTS },
+                    { "Show Customer Invoice Cost", CustomerInvoiceCostShowTS },
+                    { "Show Supplier", SupplierShowTS },
+                    { "Show Supplier Invoice", SupplierInvoiceShowTS },
+                    { "Show Supplier Invoice Cost", SupplierInvoiceCostShowTS },
+                    { "Show Sale", SaleShowTS },
+                    { "Show User", UserShowTS },
+                    { "Create Customer", CustomerCreateTS },
+                    { "Create Customer Invoice", CustomerInvoiceCreateTS },
+                    { "Create Customer Invoice Cost", CustomerInvoiceCostCreateTS },
+                    { "Create Supplier", SupplierCreateTS },
+                    { "Create Supplier Invoice", SupplierInvoiceCreateTS },
+                    { "Create Supplier Invoice Cost", SupplierInvoiceCostCreateTS },
+                    { "Create Sale", SaleCreateTS },
+                    { "Create User", UserCreateTS },
+                    { "Group Supplier", SupplierGroupTS },
+                    { "Group Customer", CustomerGroupTS }
+                };
+
+                foreach (string favorite in favoriteList)
+                {
+                    if (buttonMap.ContainsKey(favorite))
+                    {
+                        ToolStripButton btn = buttonMap[favorite];
+
+                        // Crea una nuova istanza del bottone
+                        ToolStripButton clonedButton = new ToolStripButton
+                        {
+                            AutoSize = false,
+                            Margin = btn.Margin,
+                            BackColor = Color.Transparent,
+                            Text = $"{btn.GetCurrentParent().Parent.Text} {btn.Text}",
+                            Image = btn.Image,
+                            ToolTipText = btn.ToolTipText,
+                            Tag = favorite,
+                            DisplayStyle = btn.DisplayStyle,
+                            Size = btn.Size
+                        };
+
+                        clonedButton.Click += buttonOpenChild_Click;
+
+                        // Aggiungi il nuovo bottone alla ToolStrip
+                        toolstrip4.Items.Add(clonedButton);
+                    }
+                }
+            }
+            else
+            {
+                // Se non ci sono preferiti, rimuovi la TabPage
+                if (tabControl.TabPages.ContainsKey("Favorite"))
+                {
+                    tabControl.TabPages.RemoveByKey("Favorite");
                 }
             }
         }
+
     }
 }
+

@@ -7,7 +7,7 @@ using Winform.Entities.Preference;
 
 namespace Winform.Services
 {
-    internal class UserService:BaseCallService
+    internal class UserService : BaseCallService
     {
         public async Task<string> Register(UserDTOCreate user)
         {
@@ -120,7 +120,7 @@ namespace Winform.Services
         public async Task<UserRoleDTO> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await GetItem<UserRoleDTO>(client, $"user/{id}","User");
+            var returnResult = await GetItem<UserRoleDTO>(client, $"user/{id}", "User");
             return returnResult;
         }
 
@@ -193,14 +193,14 @@ namespace Winform.Services
             return returnResult;
         }
 
-        public async  Task<CustomerDGV> PostCustomerDGV(CustomerDGV entity)
+        public async Task<CustomerDGV> PostCustomerDGV(CustomerDGV entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await PostItem(client, $"preference/customerdgv", entity,"Customer DGV");
+            var returnResult = await PostItem(client, $"preference/customerdgv", entity, "Customer DGV");
             return returnResult;
         }
 
-        public async  Task<CustomerInvoiceDGV> PostCustomerInvoiceDGV(CustomerInvoiceDGV entity)
+        public async Task<CustomerInvoiceDGV> PostCustomerInvoiceDGV(CustomerInvoiceDGV entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await PostItem(client, $"preference/customer-invoicedgv", entity, "Customer Invoice DGV");
@@ -269,7 +269,7 @@ namespace Winform.Services
         public async Task<string> AddUserFavouritePage(List<string> value)
         {
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = await GetRepsponsePost(client, $"preference/add-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
+            HttpResponseMessage response = await GetResponsePost(client, $"preference/add-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
             if (response.IsSuccessStatusCode)
             {
                 return await StatusOKStringReturn(response);
@@ -280,7 +280,7 @@ namespace Winform.Services
         public async Task<string> RemoveUserFavouritePage(List<string> value)
         {
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = await GetRepsponsePost(client, $"preference/remove-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
+            HttpResponseMessage response = await GetResponseDelete(client, $"preference/remove-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
             if (response.IsSuccessStatusCode)
             {
                 return await StatusOKStringReturn(response);
@@ -293,7 +293,7 @@ namespace Winform.Services
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
 
-            HttpResponseMessage response =await client.GetClient().GetAsync(client.GetBaseUri() + $"preference/user-favourite-pages/{UserAccessInfo.RefreshUserID}");
+            HttpResponseMessage response = await client.GetClient().GetAsync(client.GetBaseUri() + $"preference/user-favourite-pages/{UserAccessInfo.RefreshUserID}");
             if (response.IsSuccessStatusCode)
             {
                 return await StatusOKListStringReturn(response);

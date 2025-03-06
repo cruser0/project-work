@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Winform.Entities;
 
 namespace Winform.Services
@@ -19,7 +15,7 @@ namespace Winform.Services
         }
 
         //makes a delete call to the api with query string used for getAll and Count
-        private async Task<HttpResponseMessage> GetRepsponseGetWithQueryString(ClientAPI client,string uri,string queryString)
+        private async Task<HttpResponseMessage> GetRepsponseGetWithQueryString(ClientAPI client, string uri, string queryString)
         {
             HttpResponseMessage response = await client.GetClient().GetAsync(client.GetBaseUri() + uri + queryString);
             return response;
@@ -33,7 +29,7 @@ namespace Winform.Services
         }
 
         //makes a post call to the api
-        protected async Task<HttpResponseMessage> GetRepsponsePost<T>(ClientAPI client, string uri, T entity)
+        protected async Task<HttpResponseMessage> GetResponsePost<T>(ClientAPI client, string uri, T entity)
         {
             var returnResult = SerializeEntity(entity);
             HttpResponseMessage response = await client.GetClient().PostAsync(client.GetBaseUri() + uri, returnResult);
@@ -41,7 +37,7 @@ namespace Winform.Services
         }
         private async Task<HttpResponseMessage> GetRepsponsePost(ClientAPI client, string uri)
         {
-            HttpResponseMessage response = await client.GetClient().PostAsync(client.GetBaseUri() + uri,null);
+            HttpResponseMessage response = await client.GetClient().PostAsync(client.GetBaseUri() + uri, null);
             return response;
         }
         protected async Task<string> StatusOKStringReturn(HttpResponseMessage response)
@@ -68,9 +64,24 @@ namespace Winform.Services
             return response;
         }
         //makes a delete call to the api
-        private async Task<HttpResponseMessage> GetRepsponseDelete(ClientAPI client, string uri)
+        private async Task<HttpResponseMessage> GetResponseDelete(ClientAPI client, string uri)
         {
             HttpResponseMessage response = await client.GetClient().DeleteAsync(client.GetBaseUri() + uri);
+            return response;
+        }
+
+        internal async Task<HttpResponseMessage> GetResponseDelete(ClientAPI client, string uri, List<string> entity)
+        {
+            var returnResult = SerializeEntity(entity);
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(client.GetBaseUri() + uri),
+                Content = returnResult
+            };
+
+            HttpResponseMessage response = await client.GetClient().SendAsync(request);
             return response;
         }
 
@@ -83,7 +94,7 @@ namespace Winform.Services
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStreamAsync();
-                var items =await JsonSerializer.DeserializeAsync<List<T>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var items = await JsonSerializer.DeserializeAsync<List<T>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
                 return items ?? new List<T>();
             }
@@ -93,7 +104,7 @@ namespace Winform.Services
 
 
         //Used for getting an item by ID
-        protected async Task<T?> GetItem<T>(ClientAPI client, string uri,string error)
+        protected async Task<T?> GetItem<T>(ClientAPI client, string uri, string error)
         {
             HttpResponseMessage response = await GetRepsponseGet(client, uri);
             if (response.IsSuccessStatusCode)
@@ -128,9 +139,9 @@ namespace Winform.Services
 
 
         //Post an item
-        protected async Task<T?> PostItem<T>(ClientAPI client, string uri,T entity, string error)
+        protected async Task<T?> PostItem<T>(ClientAPI client, string uri, T entity, string error)
         {
-            HttpResponseMessage response = await GetRepsponsePost(client,uri,entity);
+            HttpResponseMessage response = await GetResponsePost(client, uri, entity);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStreamAsync();
@@ -145,7 +156,7 @@ namespace Winform.Services
         //Post for Registering a User
         protected async Task<string> PostRegister<T>(ClientAPI client, string uri, T entity, string error)
         {
-            HttpResponseMessage response = await GetRepsponsePost(client, uri, entity);
+            HttpResponseMessage response = await GetResponsePost(client, uri, entity);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
@@ -157,12 +168,12 @@ namespace Winform.Services
         //Post for Logging a User
         protected async Task<UserAccessTemp> PostLogin<T>(ClientAPI client, string uri, T entity, string error)
         {
-            HttpResponseMessage response = await GetRepsponsePost(client, uri, entity);
+            HttpResponseMessage response = await GetResponsePost(client, uri, entity);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStreamAsync();
-               var items = await JsonSerializer.DeserializeAsync<UserAccessTemp>(json,
-               new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var items = await JsonSerializer.DeserializeAsync<UserAccessTemp>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 UserAccessInfo.Email = items.Email;
                 UserAccessInfo.Name = items.Name;
                 UserAccessInfo.Token = items.Token;
@@ -201,7 +212,7 @@ namespace Winform.Services
 
 
         //updates an item
-        protected async Task<T?> PutItem<T>(ClientAPI client, string uri, T entity,string error) where T :class
+        protected async Task<T?> PutItem<T>(ClientAPI client, string uri, T entity, string error) where T : class
         {
             HttpResponseMessage response = await GetRepsponsePut(client, uri, entity);
             if (response.IsSuccessStatusCode)
@@ -231,10 +242,10 @@ namespace Winform.Services
         //deletes an item by id
         protected async Task<T?> DeleteItem<T>(ClientAPI client, string uri, string error)
         {
-            HttpResponseMessage response = await GetRepsponseDelete(client, uri);
+            HttpResponseMessage response = await GetResponseDelete(client, uri);
             if (response.IsSuccessStatusCode)
             {
-                var json =await response.Content.ReadAsStreamAsync();
+                var json = await response.Content.ReadAsStreamAsync();
                 var items = JsonSerializer.DeserializeAsync<T>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return await items;
@@ -246,7 +257,7 @@ namespace Winform.Services
         //deletes an item by id with string return
         protected async Task<string> DeleteItemWithReturnString(ClientAPI client, string uri, string error)
         {
-            HttpResponseMessage response = await GetRepsponseDelete(client, uri);
+            HttpResponseMessage response = await GetResponseDelete(client, uri);
             if (response.IsSuccessStatusCode)
             {
                 var json = response.Content.ReadAsStringAsync().Result;
