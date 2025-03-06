@@ -21,11 +21,11 @@ namespace API.Controllers
         // GET: api/<SupplierController>
         [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
         [HttpGet]
-        public IActionResult Get([FromQuery] SupplierFilter filter)
+        public async Task<IActionResult> Get([FromQuery] SupplierFilter filter)
         {
             try
             {
-                var data = _supplierService.GetAllSuppliers(filter);
+                var data = await _supplierService.GetAllSuppliers(filter);
                 if (data.Any())
                 {
                     return Ok(data);
@@ -37,20 +37,20 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
         [HttpGet("count")]
-        public IActionResult GetCount([FromQuery] SupplierFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] SupplierFilter filter)
         {
-            var data = _supplierService.CountSuppliers(filter);
+            var data = await _supplierService.CountSuppliers(filter);
             return Ok(data);
         }
 
         // GET api/<SupplierController>/5
         [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var data = _supplierService.GetSupplierById(id);
+                var data = await _supplierService.GetSupplierById(id);
                 if (data == null)
                     throw new Exception("Supplier not found!");
                 return Ok(data);
@@ -61,11 +61,11 @@ namespace API.Controllers
         // POST api/<SupplierController>
         [Authorize(Roles = "Admin,SupplierWrite,SupplierAdmin")]
         [HttpPost]
-        public IActionResult Post(SupplierDTO supplier)
+        public async Task<IActionResult> Post(SupplierDTO supplier)
         {
             try
             {
-                var data = _supplierService.CreateSupplier(SupplierMapper.Map(supplier));
+                var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier));
                 if (data == null)
                     throw new Exception("Data can't be null!");
                 return Ok(data);
@@ -76,11 +76,11 @@ namespace API.Controllers
         // PUT api/<SupplierController>/5
         [Authorize(Roles = "Admin,SupplierWrite,SupplierAdmin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] SupplierDTO supplier)
+        public async Task<IActionResult> Put(int id, [FromBody] SupplierDTO supplier)
         {
             try
             {
-                var data = _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier));
+                var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier));
                 if (data == null)
                     throw new Exception("Supplier not found!");
                 return Ok(data);
@@ -92,12 +92,12 @@ namespace API.Controllers
         // DELETE api/<SupplierController>/5
         [Authorize(Roles = "Admin,SupplierAdmin")]
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
 
             try
             {
-                var data = _supplierService.DeleteSupplier(id);
+                var data = await _supplierService.DeleteSupplier(id);
                 if (data == null)
                     throw new Exception("Supplier not found!");
                 return Ok(data);

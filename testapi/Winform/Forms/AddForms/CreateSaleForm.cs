@@ -69,6 +69,8 @@ namespace Winform.Forms.AddForms
 
             cdf.Resize += ChildForm_Resize;
             cdf.FormClosing += ChildForm_Close;
+            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+            mainPanel.Controls.Add(cdf);
 
             cdf.Show();
 
@@ -82,7 +84,8 @@ namespace Winform.Forms.AddForms
 
         private void UpdateMdiLayout()
         {
-            int countOpenForms = mainForm.MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
+            int countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
         }
 

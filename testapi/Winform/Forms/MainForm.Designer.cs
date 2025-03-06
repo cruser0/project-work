@@ -81,6 +81,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.Logout = new System.Windows.Forms.ToolStripButton();
             this.UserProfile = new System.Windows.Forms.ToolStripButton();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -667,12 +668,22 @@
             this.UserProfile.Text = "toolStripButton4";
             this.UserProfile.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // MainPanel
+            // 
+            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 89);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(1159, 586);
+            this.MainPanel.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1159, 675);
+            this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.IsMdiContainer = true;
@@ -755,5 +766,6 @@
         private ToolStripButton UserProfile;
         private Panel panel2;
         private ToolStripButton Logout;
+        private Panel MainPanel;
     }
 }

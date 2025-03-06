@@ -2,17 +2,18 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
     public interface ICustomerService
     {
-        ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter filter);
-        CustomerDTOGet GetCustomerById(int id);
-        CustomerDTOGet CreateCustomer(Customer customer);
-        CustomerDTOGet UpdateCustomer(int id, Customer customer);
-        CustomerDTOGet DeleteCustomer(int id);
-        int CountCustomers(CustomerFilter filter);
+        Task<ICollection<CustomerDTOGet>> GetAllCustomers(CustomerFilter filter);
+        Task<CustomerDTOGet> GetCustomerById(int id);
+        Task<CustomerDTOGet> CreateCustomer(Customer customer);
+        Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer);
+        Task<CustomerDTOGet> DeleteCustomer(int id);
+        Task<int> CountCustomers(CustomerFilter filter);
 
 
     }
@@ -26,15 +27,15 @@ namespace API.Models.Services
             _sService = SaleService;
         }
 
-        public ICollection<CustomerDTOGet> GetAllCustomers(CustomerFilter filter)
+        public async Task<ICollection<CustomerDTOGet>> GetAllCustomers(CustomerFilter filter)
         {
             // Retrieve all customers from the database and map them to DTOs
-            return ApplyFilter(filter).ToList();
+            return await ApplyFilter(filter).ToListAsync();
         }
 
-        public int CountCustomers(CustomerFilter filter)
+        public async Task<int> CountCustomers(CustomerFilter filter)
         {
-            return ApplyFilter(filter).Count();
+            return await ApplyFilter(filter).CountAsync();
         }
 
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
@@ -88,10 +89,10 @@ namespace API.Models.Services
             return query.Select(x => CustomerMapper.MapGet(x));
         }
 
-        public CustomerDTOGet GetCustomerById(int id)
+        public async Task<CustomerDTOGet> GetCustomerById(int id)
         {
             // Retrieve the customer from the database based on the provided ID
-            var data = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
+            var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new Exception("Customer not found!");
@@ -100,7 +101,7 @@ namespace API.Models.Services
             return CustomerMapper.MapGet(data);
         }
 
-        public CustomerDTOGet CreateCustomer(Customer customer)
+        public async Task<CustomerDTOGet> CreateCustomer(Customer customer)
         {
             // Check if the provided customer object is null
             if (customer == null)
@@ -140,10 +141,10 @@ namespace API.Models.Services
             try
             {
                 _context.Customers.Add(customer);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 customer.OriginalID = customer.CustomerId;
                 _context.Customers.Update(customer);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return CustomerMapper.MapGet(customer);
             }
             catch (Exception ex)
@@ -154,10 +155,10 @@ namespace API.Models.Services
 
         }
 
-        public CustomerDTOGet UpdateCustomer(int id, Customer customer)
+        public async Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer)
         {
             // Retrieve the customer from the database based on the provided ID
-            var cDB = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
+            var cDB = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
 
             // If the customer does not exist, throw an exception
             if (cDB == null)
@@ -195,10 +196,10 @@ namespace API.Models.Services
             {
                 // Save the changes to the database
                 _context.Customers.Update(cDB);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 _context.Customers.Add(newCustomer);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 // Map and return the updated customer as a DTO
                 return CustomerMapper.MapGet(newCustomer);
@@ -209,26 +210,26 @@ namespace API.Models.Services
             }
         }
 
-        public CustomerDTOGet DeleteCustomer(int id)
+        public async Task<CustomerDTOGet> DeleteCustomer(int id)
         {
             // Retrieve the customer from the database based on the provided ID
-            var data = _context.Customers.Where(x => x.CustomerId == id).FirstOrDefault();
+            var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
 
             // If the customer does not exist, throw an exception
             if (data == null)
                 throw new Exception("Customer not found!");
 
             // Retrieve all sales associated with this customer
-            var sales = _context.Sales.Where(s => s.CustomerId == id).ToList();
+            var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
 
             // If there are any sales, delete them
             if (sales.Count > 0)
                 foreach (var sale in sales)
-                    _sService.DeleteSale(sale.SaleId);
+                    await _sService.DeleteSale(sale.SaleId);
 
             // Remove the customer from the database
             _context.Customers.Remove(data);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // Map the deleted customer to DTO and return it
             return CustomerMapper.MapGet(data);

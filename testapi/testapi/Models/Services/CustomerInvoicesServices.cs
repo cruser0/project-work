@@ -8,12 +8,12 @@ namespace API.Models.Services
 {
     public interface ICustomerInvoicesService
     {
-        ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices(CustomerInvoiceFilter filter);
-        CustomerInvoiceDTOGet GetCustomerInvoiceById(int id);
-        CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customer);
+        Task<ICollection<CustomerInvoiceDTOGet>> GetAllCustomerInvoices(CustomerInvoiceFilter filter);
+        Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id);
+        Task<CustomerInvoiceDTOGet> CreateCustomerInvoice(CustomerInvoice customer);
         Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customer);
-        CustomerInvoiceDTOGet DeleteCustomerInvoice(int id);
-        int CountCustomerInvoices(CustomerInvoiceFilter filter);
+        Task<CustomerInvoiceDTOGet> DeleteCustomerInvoice(int id);
+        Task<int> CountCustomerInvoices(CustomerInvoiceFilter filter);
 
 
     }
@@ -27,16 +27,16 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public ICollection<CustomerInvoiceDTOGet> GetAllCustomerInvoices(CustomerInvoiceFilter filter)
+        public async Task<ICollection<CustomerInvoiceDTOGet>> GetAllCustomerInvoices(CustomerInvoiceFilter filter)
         {
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
-            return ApplyFilter(filter).ToList();
+            return await ApplyFilter(filter).ToListAsync();
         }
 
-        public int CountCustomerInvoices(CustomerInvoiceFilter filter)
+        public async Task<int> CountCustomerInvoices(CustomerInvoiceFilter filter)
         {
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
-            return ApplyFilter(filter).Count();
+            return await ApplyFilter(filter).CountAsync();
         }
 
         public IQueryable<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter filter)
@@ -89,7 +89,7 @@ namespace API.Models.Services
             return query.Select(x => CustomerInvoiceMapper.MapGet(x));
         }
 
-        public CustomerInvoiceDTOGet CreateCustomerInvoice(CustomerInvoice customerInvoice)
+        public async Task<CustomerInvoiceDTOGet> CreateCustomerInvoice(CustomerInvoice customerInvoice)
         {
             // Check if the customerInvoice parameter is null
             if (customerInvoice == null)
@@ -109,7 +109,7 @@ namespace API.Models.Services
             if (!statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
             // Check if a sale exists with the provided SaleId
-            var sale = _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).FirstOrDefault();
+            var sale = await _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).FirstOrDefaultAsync();
             if (sale == null)
                 throw new ArgumentException($"There is no sale with id {customerInvoice.SaleId}");
             if (sale.Status.ToLower().Equals("closed"))
@@ -118,15 +118,15 @@ namespace API.Models.Services
             customerInvoice.InvoiceAmount = 0;
             // Add the customerInvoice to the database and save the changes
             _context.Add(customerInvoice);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // Calculate the total revenue for the sale using a stored procedure
-            var Total = _context.RevenuePerSaleIDs.FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{customerInvoice.SaleId}\"").ToList().FirstOrDefault()?.TotalRevenue;
+            var Total = (await _context.RevenuePerSaleIDs.FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{customerInvoice.SaleId}\"").ToListAsync()).FirstOrDefault()?.TotalRevenue;
 
             // Update the sale record with the new total revenue
             sale.TotalRevenue = Total;
             _context.Sales.Update(sale);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // Map the customerInvoice to a DTO and return the result
             return CustomerInvoiceMapper.MapGet(customerInvoice);
@@ -135,7 +135,7 @@ namespace API.Models.Services
         public async Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customerInvoice)
         {
             // Retrieve the existing customer invoice from the database
-            var ciDB =await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
+            var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
 
             // Check if the customer invoice exists
             if (ciDB == null)
@@ -157,7 +157,7 @@ namespace API.Models.Services
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(customerInvoice.Status) && !statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ArgumentException("Incorrect status\nA customer invoice is Paid or Unpaid");
-            Sale sale =await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstAsync();
+            Sale sale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstAsync();
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ArgumentException($"The current Sale is already closed");
             // Validate that the invoice amount is greater than zero
@@ -199,36 +199,36 @@ namespace API.Models.Services
             return CustomerInvoiceMapper.MapGet(ciDB);
         }
 
-        public CustomerInvoiceDTOGet DeleteCustomerInvoice(int id)
+        public async Task<CustomerInvoiceDTOGet> DeleteCustomerInvoice(int id)
         {
             // Retrieve the customer invoice from the database using the provided ID
 
-            CustomerInvoice? data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
+            CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
             // Check if the customer invoice exists
             if (data == null)
                 throw new ArgumentNullException("Customer invoice not found!");
-            Sale? sale = _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefault();
+            Sale? sale = await _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefaultAsync();
             if (sale == null)
                 throw new ArgumentNullException("Sale not found!");
 
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ArgumentNullException("Sale is closed,can't delete!");
-            sale.TotalRevenue = sale.TotalRevenue - data.InvoiceAmount;
+            sale.TotalRevenue -= data.InvoiceAmount;
 
             // Remove the customer invoice from the database
             _context.CustomerInvoices.Remove(data);
             _context.Sales.Update(sale);
             // Save the changes to commit the deletion
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // Map the deleted customer invoice to a DTO and return the result
             return CustomerInvoiceMapper.MapGet(data);
         }
 
-        public CustomerInvoiceDTOGet GetCustomerInvoiceById(int id)
+        public async Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id)
         {
             // Retrieve the customer invoice from the database using the provided ID
-            var data = _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefault();
+            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
 
             // Check if the customer invoice exists
             if (data == null)

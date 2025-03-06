@@ -24,11 +24,11 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin,SaleWrite,SaleAdmin")]
         [HttpGet]
-        public IActionResult Get([FromQuery] CustomerFilter filter)
+        public async Task<IActionResult> Get([FromQuery] CustomerFilter filter)
         {
             try
             {
-                var data = _customerService.GetAllCustomers(filter);
+                var data = await _customerService.GetAllCustomers(filter);
                 if (data.Any())
                 {
                     return Ok(data);
@@ -40,21 +40,21 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin,SaleWrite,SaleAdmin")]
         [HttpGet("count")]
-        public IActionResult GetCount([FromQuery] CustomerFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] CustomerFilter filter)
         {
-            var data = _customerService.CountCustomers(filter);
+            var data = await _customerService.CountCustomers(filter);
             return Ok(data);
         }
 
         // GET api/<CustomerController>/5
         [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin")]
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
 
             try
             {
-                var data = _customerService.GetCustomerById(id);
+                var data = await _customerService.GetCustomerById(id);
                 if (data == null)
                     throw new Exception("Customer not found!");
                 return Ok(data);
@@ -67,11 +67,11 @@ namespace API.Controllers
         // POST api/<CustomerController>
         [Authorize(Roles = "Admin,CustomerWrite,CustomerAdmin")]
         [HttpPost]
-        public IActionResult Post(CustomerDTO customer)
+        public async Task<IActionResult> Post(CustomerDTO customer)
         {
             try
             {
-                var data = _customerService.CreateCustomer(CustomerMapper.Map(customer));
+                var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer));
                 if (data == null)
                     throw new Exception("Data can't be null!");
                 return Ok(data);
@@ -82,11 +82,11 @@ namespace API.Controllers
         // PUT api/<CustomerController>/5
         [Authorize(Roles = "Admin,CustomerWrite,CustomerAdmin")]
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CustomerDTO customer)
+        public async Task<IActionResult> Put(int id, [FromBody] CustomerDTO customer)
         {
             try
             {
-                var data = _customerService.UpdateCustomer(id, CustomerMapper.Map(customer));
+                var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer));
                 if (data == null)
                     throw new Exception("Customer not found!");
                 return Ok(data);
@@ -98,12 +98,12 @@ namespace API.Controllers
         // DELETE api/<CustomerController>/5
         [Authorize(Roles = "Admin,CustomerAdmin")]
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
 
             try
             {
-                var data = _customerService.DeleteCustomer(id);
+                var data = await _customerService.DeleteCustomer(id);
                 if (data == null)
                     throw new Exception("Customer not found!");
                 return Ok(data);

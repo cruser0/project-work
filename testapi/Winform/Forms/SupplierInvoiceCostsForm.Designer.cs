@@ -41,7 +41,7 @@
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(200, 0);
-            this.panel1.Size = new System.Drawing.Size(288, 234);
+            this.panel1.Size = new System.Drawing.Size(384, 361);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -84,7 +84,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 234);
+            this.panel3.Size = new System.Drawing.Size(200, 461);
             this.panel3.TabIndex = 2;
             // 
             // leftSideBaruSerControl1
@@ -93,14 +93,14 @@
             this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 234);
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 461);
             this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // SupplierInvoiceCostsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 334);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel3);
             this.Name = "SupplierInvoiceCostsForm";
             this.Text = "SupplierInvoiceCostsForm";

@@ -2,17 +2,18 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
     public interface ISupplierInvoiceService
     {
-        ICollection<SupplierInvoiceSupplierDTO> GetAllSupplierInvoices(SupplierInvoiceFilter? filter);
-        SupplierInvoiceSupplierDTO GetSupplierInvoiceById(int id);
-        SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice);
-        SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
-        SupplierInvoiceDTOGet DeleteSupplierInvoice(int id);
-        int CountSupplierinvoices(SupplierInvoiceFilter filter);
+        Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceFilter? filter);
+        Task<SupplierInvoiceSupplierDTO> GetSupplierInvoiceById(int id);
+        Task<SupplierInvoiceDTOGet> CreateSupplierInvoice(SupplierInvoice supplierInvoice);
+        Task<SupplierInvoiceDTOGet> UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
+        Task<SupplierInvoiceDTOGet> DeleteSupplierInvoice(int id);
+        Task<int> CountSupplierinvoices(SupplierInvoiceFilter filter);
 
 
     }
@@ -26,15 +27,15 @@ namespace API.Models.Services
             _serviceCost = serviceCost;
         }
 
-        public ICollection<SupplierInvoiceSupplierDTO> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
+        public async Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
         {
             // Retrieve all customers from the database and map them to DTOs
-            return ApplyFilter(filter).ToList();
+            return await ApplyFilter(filter).ToListAsync();
         }
 
-        public int CountSupplierinvoices(SupplierInvoiceFilter filter)
+        public async Task<int> CountSupplierinvoices(SupplierInvoiceFilter filter)
         {
-            return ApplyFilter(filter).Count();
+            return await ApplyFilter(filter).CountAsync();
         }
 
         private IQueryable<SupplierInvoiceSupplierDTO> ApplyFilter(SupplierInvoiceFilter? filter)
@@ -91,10 +92,10 @@ namespace API.Models.Services
             return query.Select(x => new SupplierInvoiceSupplierDTO(x.SupplierInvoice, x.Supplier));
         }
 
-        public SupplierInvoiceSupplierDTO GetSupplierInvoiceById(int id)
+        public async Task<SupplierInvoiceSupplierDTO> GetSupplierInvoiceById(int id)
         {
-            var si = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
-            var supplier = _context.Suppliers.Where(x => x.SupplierId == si.SupplierId).FirstOrDefault();
+            var si = await _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefaultAsync();
+            var supplier = await _context.Suppliers.Where(x => x.SupplierId == si.SupplierId).FirstOrDefaultAsync();
             var result = new SupplierInvoiceSupplierDTO(si, supplier);
             if (si == null || supplier == null)
             {
@@ -103,19 +104,19 @@ namespace API.Models.Services
             return result;
         }
 
-        public SupplierInvoiceDTOGet CreateSupplierInvoice(SupplierInvoice supplierInvoice)
+        public async Task<SupplierInvoiceDTOGet> CreateSupplierInvoice(SupplierInvoice supplierInvoice)
         {
             if (supplierInvoice == null)
                 throw new ArgumentException("Couldn't create supplier Invoice");
 
-            var supplier = _context.Suppliers.Where(x => x.SupplierId == supplierInvoice.SupplierId).FirstOrDefault();
+            var supplier = await _context.Suppliers.Where(x => x.SupplierId == supplierInvoice.SupplierId).FirstOrDefaultAsync();
             if (supplier == null)
                 throw new ArgumentException("SupplierID not found");
             else if ((bool)supplier.Deprecated)
                 throw new ArgumentException($"The supplier {supplierInvoice.SupplierId} is deprecated");
 
 
-            if (!_context.Sales.Any(x => x.SaleId == supplierInvoice.SaleId))
+            if (!await _context.Sales.AnyAsync(x => x.SaleId == supplierInvoice.SaleId))
                 throw new ArgumentException("SaleID not found");
 
             if (!new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
@@ -125,13 +126,13 @@ namespace API.Models.Services
 
             supplierInvoice.InvoiceAmount = 0;
             _context.Add(supplierInvoice);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return SupplierInvoiceMapper.MapGet(supplierInvoice);
         }
 
-        public SupplierInvoiceDTOGet UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice)
+        public async Task<SupplierInvoiceDTOGet> UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice)
         {
-            var siDB = _context.SupplierInvoices.FirstOrDefault(x => x.InvoiceId == id);
+            var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.InvoiceId == id);
 
             if (siDB == null)
             {
@@ -140,7 +141,7 @@ namespace API.Models.Services
 
             if (supplierInvoice.SaleId != null)
             {
-                if (!_context.Sales.Any(x => x.SaleId == supplierInvoice.SaleId))
+                if (!await _context.Sales.AnyAsync(x => x.SaleId == supplierInvoice.SaleId))
                 {
                     throw new ArgumentException("SaleID not present");
                 }
@@ -149,7 +150,7 @@ namespace API.Models.Services
 
             if (supplierInvoice.SupplierId != null)
             {
-                var supplier = _context.Suppliers.FirstOrDefault(x => x.SupplierId == supplierInvoice.SupplierId);
+                var supplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierId == supplierInvoice.SupplierId);
                 if (supplier == null)
                 {
                     throw new ArgumentException("SupplierID not present");
@@ -186,28 +187,28 @@ namespace API.Models.Services
 
 
             _context.SupplierInvoices.Update(siDB);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return SupplierInvoiceMapper.MapGet(siDB);
         }
 
-        public SupplierInvoiceDTOGet DeleteSupplierInvoice(int id)
+        public async Task<SupplierInvoiceDTOGet> DeleteSupplierInvoice(int id)
         {
-            var data = _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefault();
+            var data = await _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefaultAsync();
             if (data == null || id < 1)
             {
                 throw new ArgumentNullException("Supplier Invoice not found!");
             }
-            List<SupplierInvoiceCost> listInvoiceCost = _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == id).ToList();
+            List<SupplierInvoiceCost> listInvoiceCost = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == id).ToListAsync();
             if (listInvoiceCost.Count > 0)
             {
                 foreach (SupplierInvoiceCost cost in listInvoiceCost)
                 {
-                    _serviceCost.DeleteSupplierInvoiceCost(cost.SupplierInvoiceCostsId);
+                    await _serviceCost.DeleteSupplierInvoiceCost(cost.SupplierInvoiceCostsId);
                 }
             }
             _context.SupplierInvoices.Remove(data);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return SupplierInvoiceMapper.MapGet(data);
 
         }

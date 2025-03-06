@@ -16,7 +16,7 @@ namespace API.Controllers
         }
 
         [HttpGet("customers")]
-        public IActionResult GetCustomerInvoiceCosts([FromQuery] CustomerInvoiceCostFilter? costFilter,
+        public async Task<IActionResult> GetCustomerInvoiceCosts([FromQuery] CustomerInvoiceCostFilter? costFilter,
                                                      [FromQuery] CustomerInvoiceFilter? invoiceFilter,
                                                      [FromQuery] SaleFilter? saleFilter,
                                                      [FromQuery] CustomerFilter? customerFilter)
@@ -25,19 +25,19 @@ namespace API.Controllers
             invoiceFilter = CheckFilter(invoiceFilter);
             saleFilter = CheckFilter(saleFilter);
             customerFilter = CheckFilter(customerFilter);
-            var results = _valueServices.GetCustomerInvoiceCosts(costFilter, invoiceFilter, saleFilter, customerFilter);
+            var results = await _valueServices.GetCustomerInvoiceCosts(costFilter, invoiceFilter, saleFilter, customerFilter);
             return Ok(results);
 
         }
         [HttpGet("suppliers")]
-        public IActionResult GetSupplierInvoiceCosts([FromQuery] SupplierInvoiceCostFilter? costFilter,
+        public async Task<IActionResult> GetSupplierInvoiceCosts([FromQuery] SupplierInvoiceCostFilter? costFilter,
                                                     [FromQuery] SupplierInvoiceFilter? invoiceFilter,
                                                     [FromQuery] SupplierFilter? supplierFilter)
         {
             costFilter = CheckFilter(costFilter);
             invoiceFilter = CheckFilter(invoiceFilter);
             supplierFilter = CheckFilter(supplierFilter);
-            var results = _valueServices.GetSupplierInvoiceCosts(costFilter, invoiceFilter, supplierFilter);
+            var results = await _valueServices.GetSupplierInvoiceCosts(costFilter, invoiceFilter, supplierFilter);
             return Ok(results);
         }
 

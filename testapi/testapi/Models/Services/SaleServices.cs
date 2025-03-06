@@ -2,18 +2,19 @@
 using API.Models.Entities;
 using API.Models.Filters;
 using API.Models.Mapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
     public interface ISalesService
     {
-        ICollection<SaleCustomerDTO> GetAllSales(SaleFilter filter);
-        SaleCustomerDTO GetSaleById(int id);
-        SaleDTOGet CreateSale(Sale sale);
-        SaleDTOGet UpdateSale(int id, Sale sale);
-        SaleDTOGet DeleteSale(int id);
+        Task<ICollection<SaleCustomerDTO>> GetAllSales(SaleFilter filter);
+        Task<SaleCustomerDTO> GetSaleById(int id);
+        Task<SaleDTOGet> CreateSale(Sale sale);
+        Task<SaleDTOGet> UpdateSale(int id, Sale sale);
+        Task<SaleDTOGet> DeleteSale(int id);
 
-        int CountSales(SaleFilter filter);
+        Task<int> CountSales(SaleFilter filter);
 
     }
     public class SaleServices : ISalesService
@@ -30,16 +31,16 @@ namespace API.Models.Services
             _siService = SIservice;
         }
 
-        public ICollection<SaleCustomerDTO> GetAllSales(SaleFilter filter)
+        public async Task<ICollection<SaleCustomerDTO>> GetAllSales(SaleFilter filter)
         {
             // Retrieve all sales from the database and map each one to a SaleDTOGet
-            return ApplyFilter(filter).ToList();
+            return await ApplyFilter(filter).ToListAsync();
         }
 
-        public int CountSales(SaleFilter filter)
+        public async Task<int> CountSales(SaleFilter filter)
         {
             // Retrieve all sales from the database and map each one to a SaleDTOGet
-            return ApplyFilter(filter).Count();
+            return await ApplyFilter(filter).CountAsync();
         }
 
         private IQueryable<SaleCustomerDTO> ApplyFilter(SaleFilter filter)
@@ -112,11 +113,11 @@ namespace API.Models.Services
             return query.Select(x => new SaleCustomerDTO(x.Sale, x.Customer));
         }
 
-        public SaleCustomerDTO GetSaleById(int id)
+        public async Task<SaleCustomerDTO> GetSaleById(int id)
         {
             // Retrieve the sale from the database using the provided ID
-            var sale = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
-            var customer = _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefault();
+            var sale = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
+            var customer = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
             var result = new SaleCustomerDTO(sale, customer);
 
             // Check if the sale exists
@@ -127,7 +128,7 @@ namespace API.Models.Services
             return result;
         }
 
-        public SaleDTOGet CreateSale(Sale sale)
+        public async Task<SaleDTOGet> CreateSale(Sale sale)
         {
             // Check if the sale parameter is null
             if (sale == null)
@@ -157,7 +158,7 @@ namespace API.Models.Services
                 throw new ArgumentException("Incorrect status\nA sale is Active or Closed");
 
             // Check if a customer exists with the provided CustomerId
-            var customers = _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefault();
+            var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
             if (customers == null)
                 throw new ArgumentException($"There is no customer with ID {sale.CustomerId}");
             else if ((bool)customers.Deprecated)
@@ -168,16 +169,16 @@ namespace API.Models.Services
 
             // Add the sale to the database and save the changes
             _context.Add(sale);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // Map the sale to a DTO and return the result
             return SaleMapper.MapGet(sale);
         }
 
-        public SaleDTOGet UpdateSale(int id, Sale sale)
+        public async Task<SaleDTOGet> UpdateSale(int id, Sale sale)
         {
             // Retrieve the existing sale from the database
-            var sDB = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
+            var sDB = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
 
             // Check if the sale exists
             if (sDB == null)
@@ -205,7 +206,7 @@ namespace API.Models.Services
             // If a new CustomerId is provided, check if the customer exists
             if (sale.CustomerId != null)
             {
-                var customers = _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefault();
+                var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
                 if (customers == null)
                     throw new ArgumentException($"There is no customer with ID {sale.CustomerId}");
                 else if ((bool)customers.Deprecated)
@@ -214,16 +215,16 @@ namespace API.Models.Services
 
             // Update the sale in the database
             _context.Sales.Update(sDB);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // Return the updated sale mapped to DTO
             return SaleMapper.MapGet(sDB);
         }
 
-        public SaleDTOGet DeleteSale(int id)
+        public async Task<SaleDTOGet> DeleteSale(int id)
         {
             // Retrieve the sale from the database using the provided ID
-            var data = _context.Sales.Where(x => x.SaleId == id).FirstOrDefault();
+            var data = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
 
             // Check if the sale exists
             if (data == null)
@@ -231,26 +232,26 @@ namespace API.Models.Services
 
 
             // Retrieve all customer invoices associated with the sale
-            var customerInvoices = _context.CustomerInvoices.Where(x => x.SaleId == id).ToList();
+            var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleId == id).ToListAsync();
 
             // If there are any customer invoices, delete them
             if (customerInvoices.Count > 0)
                 foreach (var invoice in customerInvoices)
-                    _ciService.DeleteCustomerInvoice(invoice.CustomerInvoiceId);
+                    await _ciService.DeleteCustomerInvoice(invoice.CustomerInvoiceId);
 
             // Retrieve all supplier invoices associated with the sale
-            var supplierInvoices = _context.SupplierInvoices.Where(x => x.SaleId == id).ToList();
+            var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
 
             // If there are any supplier invoices, delete them
             if (supplierInvoices.Count > 0)
                 foreach (var invoice in supplierInvoices)
-                    _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+                    await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
 
             // Remove the sale from the database
             _context.Sales.Remove(data);
 
             // Save the changes to commit the deletion
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             // Map the deleted sale to a DTO and return the result
             return SaleMapper.MapGet(data);

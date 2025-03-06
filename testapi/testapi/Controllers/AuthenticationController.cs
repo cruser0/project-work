@@ -25,7 +25,7 @@ namespace API.Controllers
             User user;
             try
             {
-                user = _authenticationService.CreateUser(request);
+                user = await _authenticationService.CreateUser(request);
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
 
@@ -40,7 +40,7 @@ namespace API.Controllers
             User user;
             try
             {
-                user = _authenticationService.GetUserByEmail(request.Email);
+                user = await _authenticationService.GetUserByEmail(request.Email);
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
             if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
@@ -54,7 +54,7 @@ namespace API.Controllers
             UserRoleDTO userDTO = new UserRoleDTO(user, roles);
             string token = _authenticationService.CreateToken(userDTO);
 
-            var refreshToken = _authenticationService.GenerateRefreshToken(user.UserID);
+            var refreshToken = await _authenticationService.GenerateRefreshToken(user.UserID);
 
 
             return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
@@ -65,15 +65,15 @@ namespace API.Controllers
         {
             try
             {
-                RefreshTokenDTO dbRefToken = new RefreshTokenDTO(_authenticationService.GetRefreshTokenByrefTokenString(refToken));
-                RefreshToken refreshToken = _authenticationService.GetNewerRefreshToken(dbRefToken);
+                RefreshTokenDTO dbRefToken = new RefreshTokenDTO(await _authenticationService.GetRefreshTokenByrefTokenString(refToken));
+                RefreshToken refreshToken = await _authenticationService.GetNewerRefreshToken(dbRefToken);
                 if (!refreshToken.Token.Equals(refToken))
                     return Unauthorized("Invalid Refresh Token");
                 else if (refreshToken.Expires < DateTime.Now)
                 {
                     return Unauthorized("Outdated Refresh Token");
                 }
-                UserRoleDTO userDTO = _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
+                UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
                 string token = _authenticationService.CreateToken(userDTO);
                 return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
             }
@@ -89,13 +89,13 @@ namespace API.Controllers
             try
             {
                 if (assignRole.UserID != null)
-                    _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
+                    await _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Role Updated");
         }
 
-        
+
 
         [Authorize(Roles = "Admin,UserAdmin")]
         [HttpDelete("user/delete-user/{id}")]
@@ -103,7 +103,7 @@ namespace API.Controllers
         {
             try
             {
-                _authenticationService.DeleteUser(id);
+                await _authenticationService.DeleteUser(id);
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Deleted Successfully");
@@ -115,7 +115,7 @@ namespace API.Controllers
         {
             try
             {
-                _authenticationService.EditUser(id, updateUser);
+                await _authenticationService.EditUser(id, updateUser);
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
             return Ok("User Updated Successfully");
@@ -123,11 +123,11 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/get-all-users")]
-        public IActionResult Get([FromQuery] UserFilter filter)
+        public async Task<IActionResult> Get([FromQuery] UserFilter filter)
         {
             try
             {
-                var result = _authenticationService.GetAllUsers(filter);
+                var result = await _authenticationService.GetAllUsers(filter);
                 if (result.Any())
                 {
                     return Ok(result);
@@ -139,19 +139,19 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/count")]
-        public IActionResult GetCount([FromQuery] UserFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] UserFilter filter)
         {
-            var data = _authenticationService.CountUsers(filter);
+            var data = await _authenticationService.CountUsers(filter);
             return Ok(data);
         }
         // [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             UserRoleDTO data;
             try
             {
-                data = _authenticationService.GetUserRoleDTOByID(id);
+                data = await _authenticationService.GetUserRoleDTOByID(id);
                 if (data == null)
                     throw new Exception("Customer Invoices not found");
             }

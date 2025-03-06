@@ -41,7 +41,7 @@
             // panel3
             // 
             this.panel3.Location = new System.Drawing.Point(200, 0);
-            this.panel3.Size = new System.Drawing.Size(400, 350);
+            this.panel3.Size = new System.Drawing.Size(400, 361);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -84,7 +84,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 350);
+            this.panel6.Size = new System.Drawing.Size(200, 461);
             this.panel6.TabIndex = 3;
             // 
             // leftSideBaruSerControl1
@@ -93,14 +93,14 @@
             this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 350);
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 461);
             this.leftSideBaruSerControl1.TabIndex = 0;
             // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.panel6);
             this.Name = "UserForm";
             this.Text = "UserForm";
