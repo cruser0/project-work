@@ -1,4 +1,7 @@
 ﻿using ClosedXML.Excel;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
 using System.Data;
 using Winform.Forms.control;
 
@@ -108,54 +111,107 @@ namespace Winform.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog
-            {
-                Filter = "Excel Files|*.xlsx",
-                Title = "Save Excel File"
-            };
+            //SaveFileDialog saveFileDialog = new SaveFileDialog
+            //{
+            //    Filter = "PDF Files|*.pdf",
+            //    Title = "Save PDF File"
+            //};
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    using (XLWorkbook xLWorkbook = new XLWorkbook())
-                    {
-                        DataTable dt = new DataTable();
+            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+                //try
+                //{
+                //    string outputFile = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Sample.pdf");
 
-                        // Create columns from DataGridView
-                        foreach (DataGridViewColumn col in CustomerDgv.Columns)
-                        {
-                            dt.Columns.Add(col.HeaderText);
-                        }
+                //    //Create a standard .Net FileStream for the file, setting various flags
+                //    using (FileStream fs = new FileStream(outputFile, FileMode.Create, FileAccess.Write, FileShare.None))
+                //    {
+                //        //Create a new PDF document setting the size to A4
+                //        using (Document doc = new Document(new PdfDocument(new PdfReader()),PageSize.A4))
+                //        {
+                //            //Bind the PDF document to the FileStream using an iTextSharp PdfWriter
+                //            using (PdfWriter w = PdfWriter.GetInstance(doc, fs))
+                //            {
+                //                //Open the document for writing
+                //                doc.Open();
 
-                        // Add rows from DataGridView
-                        foreach (DataGridViewRow row in CustomerDgv.Rows)
-                        {
-                            if (!row.IsNewRow) // Skip the empty new row
-                            {
-                                DataRow dRow = dt.NewRow();
-                                for (int i = 0; i < CustomerDgv.Columns.Count; i++)
-                                {
-                                    dRow[i] = row.Cells[i].Value ?? "";
-                                }
-                                dt.Rows.Add(dRow);
-                            }
-                        }
+                //                //Create a table with two columns
+                //                PdfPTable t = new PdfPTable(2);
 
-                        // Add DataTable to the Excel file
-                        xLWorkbook.Worksheets.Add(dt, "Sheet1");
+                //                //Borders are drawn by the individual cells, not the table itself.
+                //                //Tell the default cell that we do not want a border drawn
+                //                t.DefaultCell.Border = 0;
 
-                        // Save the file
-                        xLWorkbook.SaveAs(saveFileDialog.FileName);
+                //                //Add four cells. Cells are added starting at the top left of the table working left to right first, then down
+                //                t.AddCell("R1C1");
+                //                t.AddCell("R1C2");
+                //                t.AddCell("R2C1");
+                //                t.AddCell("R2C2");
 
-                        MessageBox.Show("Excel file saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+                //                //Add the table to our document
+                //                doc.Add(t);
+
+                //                //Close our document
+                //                doc.Close();
+                //            }
+                //        }
+                //    }
+
+                //    this.Close();
+                //}
+                //} https://stackoverflow.com/questions/7601145/c-winform-creating-pdf
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+                //    SaveFileDialog saveFileDialog = new SaveFileDialog
+                //    {
+                //        Filter = "Excel Files|*.xlsx",
+                //        Title = "Save Excel File"
+                //    };
+
+                //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                //    {
+                //        try
+                //        {
+                //            using (XLWorkbook xLWorkbook = new XLWorkbook())
+                //            {
+                //                DataTable dt = new DataTable();
+
+                //                // Create columns from DataGridView
+                //                foreach (DataGridViewColumn col in CustomerDgv.Columns)
+                //                {
+                //                    dt.Columns.Add(col.HeaderText);
+                //                }
+
+                //                // Add rows from DataGridView
+                //                foreach (DataGridViewRow row in CustomerDgv.Rows)
+                //                {
+                //                    if (!row.IsNewRow) // Skip the empty new row
+                //                    {
+                //                        DataRow dRow = dt.NewRow();
+                //                        for (int i = 0; i < CustomerDgv.Columns.Count; i++)
+                //                        {
+                //                            dRow[i] = row.Cells[i].Value ?? "";
+                //                        }
+                //                        dt.Rows.Add(dRow);
+                //                    }
+                //                }
+
+                //                // Add DataTable to the Excel file
+                //                xLWorkbook.Worksheets.Add(dt, "Sheet1");
+
+                //                // Save the file
+                //                xLWorkbook.SaveAs(saveFileDialog.FileName);
+
+                //                MessageBox.Show("Excel file saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            }
+                //        }
+                //        catch (Exception ex)
+                //        {
+                //            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //        }
+                //    }
         }
     }
 }
