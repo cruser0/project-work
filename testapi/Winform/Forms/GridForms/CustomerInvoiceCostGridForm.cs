@@ -79,11 +79,20 @@ namespace Winform.Forms.GridForms
                 CustomerInvoiceCostCostTo = costTo,
                 CustomerInvoiceCostName = NameTxt.Text,
             };
-            IEnumerable<CustomerInvoiceCost> query = await _customerInvoiceCostService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _customerInvoiceCostService.Count(filterPage) / itemsPage)).ToString();
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+
+            var getAllTask = _customerInvoiceCostService.GetAll(filter);
+            var countTask = _customerInvoiceCostService.Count(filterPage);
+
+            await Task.WhenAll(getAllTask, countTask);
+
+            var query = await getAllTask;
+            int totalCount = await countTask;
+
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)totalCount / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl($"{PaginationUserControl.CurrentPage}/{PaginationUserControl.GetmaxPage()}");
 
             CustomerInvoiceCostDgv.DataSource = query.ToList();
+
             if (!PaginationUserControl.Visible)
             {
                 SetCheckBoxes();
@@ -93,6 +102,7 @@ namespace Winform.Forms.GridForms
         private async void SetCheckBoxes()
         {
             CustomerInvoiceCostDGV cdgv = await _userService.GetCustomerInvoiceCostDGV();
+
             CustomerInvoiceCostCostTsmi.Checked = cdgv.ShowCost;
             CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked = cdgv.ShowInvoiceID;
             CustomerInvoiceCostIDTsmi.Checked = cdgv.ShowID;

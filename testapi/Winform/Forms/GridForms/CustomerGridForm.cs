@@ -98,11 +98,11 @@ namespace Winform.Forms
             };
 
 
-            IEnumerable<Customer> query = await _customerService.GetAll(filter);
+            Task<ICollection<Customer>> query = _customerService.GetAll(filter);
             PaginationUserControl.maxPage = ((int)Math.Ceiling(await _customerService.Count(filterPage) / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-            CustomerDgv.DataSource = query.ToList();
+            CustomerDgv.DataSource = await query;
 
 
             if (!PaginationUserControl.Visible)
