@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
@@ -30,9 +31,11 @@ namespace API.Controllers
                 {
                     return Ok(result);
                 }
-                else throw new Exception("Sale not found");
+                else throw new NotFoundException("Sale not found");
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
@@ -54,11 +57,12 @@ namespace API.Controllers
             {
                 var data = await _saleService.GetSaleById(id);
                 if (data == null)
-                    throw new Exception("Couldn't create sale");
+                    throw new NotFoundException("Couldn't create sale");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // POST api/<SaleController>
@@ -70,11 +74,12 @@ namespace API.Controllers
             {
                 var data = await _saleService.CreateSale(SaleMapper.Map(sale));
                 if (data == null)
-                    throw new Exception("Couldn't create sale");
+                    throw new NotFoundException("Couldn't create sale");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // PUT api/<SaleController>/5
@@ -86,11 +91,12 @@ namespace API.Controllers
             {
                 var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale));
                 if (data == null)
-                    throw new Exception("Couldn't update sale");
+                    throw new NotFoundException("Couldn't update sale");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         // DELETE api/<SaleController>/5
@@ -103,11 +109,12 @@ namespace API.Controllers
             {
                 var data = await _saleService.DeleteSale(id);
                 if (data == null)
-                    throw new Exception("Couldn't create sale");
+                    throw new NotFoundException("Couldn't create sale");
                 return Ok(data);
             }
-            catch (Exception ae) { return BadRequest(ae.Message); }
-
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
     }
 }

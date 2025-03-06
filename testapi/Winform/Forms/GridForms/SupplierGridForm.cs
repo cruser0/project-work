@@ -100,11 +100,18 @@ namespace Winform.Forms
             status = comboBox1.SelectedIndex;
             dateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
             dateTo = DateToClnd.Checked ? DateToClnd.Value : null;
-            IEnumerable<Supplier> query = await _supplierService.GetAll(filter);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling(await _supplierService.Count(filterPage) / itemsPage)).ToString();
+
+
+
+            var query = _supplierService.GetAll(filter);
+            var count = _supplierService.Count(filterPage);
+
+            await Task.WhenAll(query,count);
+            IEnumerable<Supplier> query1 = await query;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-            SupplierDgv.DataSource = query.ToList();
+            SupplierDgv.DataSource = query1.ToList();
 
 
             if (!PaginationUserControl.Visible)

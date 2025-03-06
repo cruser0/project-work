@@ -1,4 +1,5 @@
 ﻿using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("customerdgv")]
         public async Task<ActionResult<CustomerDGV>> PostCustomerDGV([FromBody] CustomerDGV value)
@@ -36,7 +39,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpGet("customer-invoicedgv/{id}")]
         public async Task<IActionResult> GetCustomerInvoiceDGV(int id)
@@ -47,7 +52,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("customer-invoicedgv")]
         public async Task<IActionResult> PostCustomerInvoiceDGV([FromBody] CustomerInvoiceDGV value)
@@ -58,7 +65,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpGet("customer-invoice-costdgv/{id}")]
         public async Task<IActionResult> GetCustomerInvoiceCostDGV(int id)
@@ -69,7 +78,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("customer-invoice-costdgv")]
         public async Task<IActionResult> PostCustomerInvoiceCostDGV([FromBody] CustomerInvoiceCostDGV value)
@@ -80,7 +91,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [HttpGet("supplierdgv/{id}")]
@@ -92,7 +105,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("supplierdgv")]
         public async Task<IActionResult> PostSupplierDGV([FromBody] SupplierDGV value)
@@ -103,7 +118,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpGet("supplier-invoicedgv/{id}")]
         public async Task<IActionResult> GetSupplierInvoiceDGV(int id)
@@ -114,7 +131,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("supplier-invoicedgv")]
         public async Task<IActionResult> PostSupplierInvoiceDGV([FromBody] SupplierInvoiceDGV value)
@@ -125,7 +144,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpGet("supplier-invoice-costdgv/{id}")]
         public async Task<IActionResult> GetSupplierInvoiceCostDGV(int id)
@@ -136,7 +157,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("supplier-invoice-costdgv")]
         public async Task<IActionResult> PostSupplierInvoiceCostDGV([FromBody] SupplierInvoiceCostDGV value)
@@ -147,7 +170,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [HttpGet("saledgv/{id}")]
@@ -159,7 +184,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("saledgv")]
         public async Task<IActionResult> PostSaleDGV([FromBody] SaleDGV value)
@@ -170,7 +197,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [HttpGet("userdgv/{id}")]
@@ -182,7 +211,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
         [HttpPost("userdgv")]
         public async Task<IActionResult> PostUserDGV([FromBody] UserDGV value)
@@ -193,7 +224,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [HttpPost("create-favourite-page")]
@@ -205,7 +238,9 @@ namespace API.Controllers
                 return Ok("Favourite Page Created Successfully");
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [HttpPost("add-user-favourite-page/{id}")]
@@ -215,13 +250,15 @@ namespace API.Controllers
             {
                 if (!value.Any())
                 {
-                    return BadRequest("Page list was empty");
+                    return UnprocessableEntity("Page list was empty");
                 }
                 await _userService.AddFavouritePagesToUser(value, id);
                 return Ok("Favourite Page added to user Successfully");
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [HttpDelete("remove-user-favourite-page/{id}")]
@@ -231,13 +268,15 @@ namespace API.Controllers
             {
                 if (!value.Any())
                 {
-                    return BadRequest("Page list was empty");
+                    return UnprocessableEntity("Page list was empty");
                 }
                 await _userService.RemoveFavouritePagesToUser(value, id);
                 return Ok("Favourite Page Removed to user Successfully");
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
         [HttpGet("user-favourite-pages/{id}")]
@@ -249,7 +288,9 @@ namespace API.Controllers
                 return Ok(result);
 
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
 

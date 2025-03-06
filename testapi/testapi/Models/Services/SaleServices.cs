@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -65,7 +66,7 @@ namespace API.Models.Services
             {
                 if (filter.SaleDateFrom > filter.SaleDateTo)
                 {
-                    throw new ArgumentException("SaleDateFrom cannot be later than SaleDateTo.");
+                    throw new ErrorInputPropertyException("SaleDateFrom cannot be later than SaleDateTo.");
                 }
 
                 query = query.Where(s => s.Sale.SaleDate >= filter.SaleDateFrom && s.Sale.SaleDate <= filter.SaleDateTo);
@@ -83,7 +84,7 @@ namespace API.Models.Services
             {
                 if (filter.SaleRevenueFrom > filter.SaleRevenueTo)
                 {
-                    throw new ArgumentException("RevenueFrom cannot be later than RevenueTo.");
+                    throw new ErrorInputPropertyException("RevenueFrom cannot be later than RevenueTo.");
                 }
 
                 query = query.Where(s => s.Sale.TotalRevenue >= filter.SaleRevenueFrom && s.Sale.TotalRevenue <= filter.SaleRevenueTo);
@@ -122,7 +123,7 @@ namespace API.Models.Services
 
             // Check if the sale exists
             if (result == null || sale == null)
-                throw new ArgumentException("Sale not found!");
+                throw new NotFoundException("Sale not found!");
 
             // Map the sale entity to a DTO and return the result
             return result;
@@ -132,7 +133,7 @@ namespace API.Models.Services
         {
             // Check if the sale parameter is null
             if (sale == null)
-                throw new ArgumentException("Couldn't create sale");
+                throw new NullPropertyException("Couldn't create sale");
 
             var nullFields = new List<string>();
 
@@ -145,24 +146,24 @@ namespace API.Models.Services
 
             // If any fields are null, throw an exception with the list of missing fields
             if (nullFields.Any())
-                throw new ArgumentException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
+                throw new NullPropertyException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
 
             if (sale.BookingNumber.Length > 50)
-                throw new ArgumentException("Booking Number is too long");
+                throw new ErrorInputPropertyException("Booking Number is too long");
 
             if (sale.BoLnumber.Length > 50)
-                throw new ArgumentException("BoL Number is too long");
+                throw new ErrorInputPropertyException("BoL Number is too long");
 
             // Check if the provided status is valid
             if (!statusList.Contains(sale.Status.ToLower()))
-                throw new ArgumentException("Incorrect status\nA sale is Active or Closed");
+                throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
             // Check if a customer exists with the provided CustomerId
             var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
             if (customers == null)
-                throw new ArgumentException($"There is no customer with ID {sale.CustomerId}");
+                throw new NotFoundException($"There is no customer with ID {sale.CustomerId}");
             else if ((bool)customers.Deprecated)
-                throw new ArgumentException($"The customer {sale.CustomerId} is deprecated");
+                throw new ErrorInputPropertyException($"The customer {sale.CustomerId} is deprecated");
 
             // Set the initial TotalRevenue to 0
             sale.TotalRevenue = 0;
@@ -182,7 +183,7 @@ namespace API.Models.Services
 
             // Check if the sale exists
             if (sDB == null)
-                throw new ArgumentException($"There is no sale with id {id}");
+                throw new NotFoundException($"There is no sale with id {id}");
 
             // Update sale fields only if new values are provided
             sDB.BoLnumber = sale.BoLnumber ?? sDB.BoLnumber;
@@ -193,24 +194,24 @@ namespace API.Models.Services
 
             if (sale.BookingNumber != null)
                 if (sale.BookingNumber.Length > 50)
-                    throw new ArgumentException("Booking Number is too long");
+                    throw new ErrorInputPropertyException("Booking Number is too long");
 
             if (sale.BoLnumber != null)
                 if (sale.BoLnumber.Length > 50)
-                    throw new ArgumentException("BoL Number is too long");
+                    throw new ErrorInputPropertyException("BoL Number is too long");
 
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(sale.Status) && !statusList.Contains(sale.Status.ToLower()))
-                throw new ArgumentException("Incorrect status\nA sale is Active or Closed");
+                throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
             // If a new CustomerId is provided, check if the customer exists
             if (sale.CustomerId != null)
             {
                 var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
                 if (customers == null)
-                    throw new ArgumentException($"There is no customer with ID {sale.CustomerId}");
+                    throw new NotFoundException($"There is no customer with ID {sale.CustomerId}");
                 else if ((bool)customers.Deprecated)
-                    throw new ArgumentException($"The customer {sale.CustomerId} is deprecated");
+                    throw new ErrorInputPropertyException($"The customer {sale.CustomerId} is deprecated");
             }
 
             // Update the sale in the database
@@ -228,7 +229,7 @@ namespace API.Models.Services
 
             // Check if the sale exists
             if (data == null)
-                throw new ArgumentException("Sale not found!");
+                throw new NotFoundException("Sale not found!");
 
 
             // Retrieve all customer invoices associated with the sale

@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ namespace API.Models.Services
     public class ValueServices
     {
         private readonly Progetto_FormativoContext _context;
-        private int itemsPerPage;
+        private readonly int itemsPerPage;
 
         public ValueServices(Progetto_FormativoContext ctx)
         {
@@ -63,7 +64,7 @@ namespace API.Models.Services
                 {
                     if (filter.CustomerInvoiceCostCostFrom > filter.CustomerInvoiceCostCostTo)
                     {
-                        throw new ArgumentException("CostFrom cannot be more than CostTo.");
+                        throw new ErrorInputPropertyException("CostFrom cannot be more than CostTo.");
                     }
 
                     query = query.Where(s => s.Cost >= filter.CustomerInvoiceCostCostFrom && s.Cost <= filter.CustomerInvoiceCostCostTo);
@@ -153,7 +154,7 @@ namespace API.Models.Services
                 {
                     if (filter.SaleDateFrom > filter.SaleDateTo)
                     {
-                        throw new ArgumentException("SaleDateFrom cannot be later than SaleDateTo.");
+                        throw new ErrorInputPropertyException("SaleDateFrom cannot be later than SaleDateTo.");
                     }
 
                     query = query.Where(s => s.SaleDate >= filter.SaleDateFrom && s.SaleDate <= filter.SaleDateTo);
@@ -171,7 +172,7 @@ namespace API.Models.Services
                 {
                     if (filter.SaleRevenueFrom > filter.SaleRevenueTo)
                     {
-                        throw new ArgumentException("RevenueFrom cannot be later than RevenueTo.");
+                        throw new ErrorInputPropertyException("RevenueFrom cannot be later than RevenueTo.");
                     }
 
                     query = query.Where(s => s.TotalRevenue >= filter.SaleRevenueFrom && s.TotalRevenue <= filter.SaleRevenueTo);
@@ -373,7 +374,7 @@ namespace API.Models.Services
                 {
                     if (filter.SupplierInvoiceCostCostFrom > filter.SupplierInvoiceCostCostTo)
                     {
-                        throw new ArgumentException("CostFrom cannot be more than CostTo.");
+                        throw new ErrorInputPropertyException("CostFrom cannot be more than CostTo.");
                     }
 
                     query = query.Where(s => s.Cost >= filter.SupplierInvoiceCostCostFrom && s.Cost <= filter.SupplierInvoiceCostCostTo);

@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -95,15 +96,15 @@ namespace API.Models.Services
         public async Task<SupplierDTOGet> CreateSupplier(Supplier supplier)
         {
             if (supplier == null)
-                throw new ArgumentNullException("Couldn't create supplier");
+                throw new NullPropertyException("Couldn't create supplier,data is null");
             if (string.IsNullOrEmpty(supplier.Country))
-                throw new ArgumentNullException("Country can't be null");
+                throw new NullPropertyException("Country can't be null");
             if (string.IsNullOrEmpty(supplier.SupplierName))
-                throw new ArgumentNullException("Supplier name can't be null");
+                throw new NullPropertyException("Supplier name can't be null");
 
             if (supplier.Deprecated != null)
                 if ((bool)supplier.Deprecated)
-                    throw new ArgumentException("Can't create an already deprecated supplier");
+                    throw new ErrorInputPropertyException("Can't create an already deprecated supplier");
                 else
                     supplier.Deprecated = false;
             else
@@ -112,27 +113,20 @@ namespace API.Models.Services
             supplier.CreatedAt = DateTime.Now;
 
             if (supplier.SupplierName.Length > 100)
-                throw new ArgumentException("Supplier name is too long");
+                throw new ErrorInputPropertyException("Supplier name is too long");
 
             if (supplier.Country.Length > 50)
-                throw new ArgumentException("Country is too long");
+                throw new ErrorInputPropertyException("Country is too long");
 
             if (!supplier.Country.All(char.IsLetter))
-                throw new ArgumentException("Country can't have special characters");
+                throw new ErrorInputPropertyException("Country can't have special characters");
 
-            try
-            {
                 _context.Add(supplier);
                 await _context.SaveChangesAsync();
                 supplier.OriginalID = supplier.SupplierId;
                 _context.Update(supplier);
                 await _context.SaveChangesAsync();
                 return SupplierMapper.MapGet(supplier);
-            }
-            catch (Exception)
-            {
-                throw new ArgumentException("This supplier already exists");
-            }
         }
 
         public async Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier)
@@ -141,19 +135,19 @@ namespace API.Models.Services
             if (cDB != null)
             {
                 if ((bool)cDB.Deprecated)
-                    throw new ArgumentException("Can't update deprecated supplier");
+                    throw new ErrorInputPropertyException("Can't update deprecated supplier");
 
                 if (supplier.SupplierName != null)
                     if (supplier.SupplierName.Length > 100)
-                        throw new ArgumentException("Supplier name is too long");
+                        throw new ErrorInputPropertyException("Supplier name is too long");
 
                 if (supplier.Country != null)
                 {
                     if (supplier.Country.Length > 50)
-                        throw new ArgumentException("Country is too long");
+                        throw new ErrorInputPropertyException("Country is too long");
 
                     if (!supplier.Country.All(char.IsLetter))
-                        throw new ArgumentException("Country can't have special characters");
+                        throw new ErrorInputPropertyException("Country can't have special characters");
                 }
 
                 Supplier newSupplier = new Supplier
@@ -166,29 +160,21 @@ namespace API.Models.Services
                 };
 
                 cDB.Deprecated = true;
-
-                try
-                {
                     _context.Suppliers.Update(cDB);
                     await _context.SaveChangesAsync();
 
                     _context.Suppliers.Add(newSupplier);
                     await _context.SaveChangesAsync();
                     return SupplierMapper.MapGet(newSupplier);
-                }
-                catch (Exception)
-                {
-                    throw new ArgumentException("This supplier already exists");
-                }
             }
-            throw new ArgumentNullException("Supplier not found");
+            throw new NotFoundException("Supplier not found");
         }
 
         public async Task<SupplierDTOGet> DeleteSupplier(int id)
         {
             var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
             if (data == null)
-                throw new ArgumentNullException("Supplier not found!");
+                throw new NotFoundException("Supplier not found!");
             List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
             if (si.Any())
             {

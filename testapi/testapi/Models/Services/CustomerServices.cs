@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
@@ -95,7 +96,7 @@ namespace API.Models.Services
             var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
             if (data == null)
             {
-                throw new Exception("Customer not found!");
+                throw new NotFoundException("Customer not found!");
             }
             // Map and return the customer as a DTO
             return CustomerMapper.MapGet(data);
@@ -105,7 +106,7 @@ namespace API.Models.Services
         {
             // Check if the provided customer object is null
             if (customer == null)
-                throw new Exception("Couldn't create customer");
+                throw new NullPropertyException("Couldn't create customer");
 
             // List to track missing required fields
             var nullFields = new List<string>();
@@ -116,11 +117,11 @@ namespace API.Models.Services
 
             // If any required field is missing, throw an exception with details
             if (nullFields.Any())
-                throw new ArgumentException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
+                throw new NullPropertyException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
 
             if (customer.Deprecated != null)
                 if ((bool)customer.Deprecated)
-                    throw new ArgumentException("Can't create an already deprecated customer");
+                    throw new ErrorInputPropertyException("Can't create an already deprecated customer");
                 else
                     customer.Deprecated = false;
             else
@@ -129,28 +130,19 @@ namespace API.Models.Services
             customer.CreatedAt = DateTime.Now;
 
             if (customer.CustomerName.Length > 100)
-                throw new ArgumentException("Customer name is too long");
+                throw new ErrorInputPropertyException("Customer name is too long");
 
             if (customer.Country.Length > 50)
-                throw new ArgumentException("Country is too long");
+                throw new ErrorInputPropertyException("Country is too long");
 
             if (!customer.Country.All(char.IsLetter))
-                throw new ArgumentException("Country can't have special characters");
-
-            // Add the new customer to the database
-            try
-            {
+                throw new ErrorInputPropertyException("Country can't have special characters");
                 _context.Customers.Add(customer);
                 await _context.SaveChangesAsync();
                 customer.OriginalID = customer.CustomerId;
                 _context.Customers.Update(customer);
                 await _context.SaveChangesAsync();
                 return CustomerMapper.MapGet(customer);
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException(ex.InnerException.Message);
-            }
 
 
         }
@@ -162,21 +154,21 @@ namespace API.Models.Services
 
             // If the customer does not exist, throw an exception
             if (cDB == null)
-                throw new Exception("Customer not found");
+                throw new NotFoundException("Customer not found");
 
             if ((bool)cDB.Deprecated)
-                throw new ArgumentException("Can't update deprecated customer");
+                throw new ErrorInputPropertyException("Can't update deprecated customer");
 
             if (customer.CustomerName != null)
                 if (customer.CustomerName.Length > 100)
-                    throw new ArgumentException("Customer name is too long");
+                    throw new ErrorInputPropertyException("Customer name is too long");
             if (customer.Country != null)
             {
                 if (customer.Country.Length > 50)
-                    throw new ArgumentException("Country is too long");
+                    throw new ErrorInputPropertyException("Country is too long");
 
                 if (!customer.Country.All(char.IsLetter))
-                    throw new ArgumentException("Country can't have special characters");
+                    throw new ErrorInputPropertyException("Country can't have special characters");
             }
 
 
@@ -191,9 +183,6 @@ namespace API.Models.Services
             };
 
             cDB.Deprecated = true;
-
-            try
-            {
                 // Save the changes to the database
                 _context.Customers.Update(cDB);
                 await _context.SaveChangesAsync();
@@ -203,11 +192,6 @@ namespace API.Models.Services
 
                 // Map and return the updated customer as a DTO
                 return CustomerMapper.MapGet(newCustomer);
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException("Couldn't update customer: " + ex.InnerException.Message);
-            }
         }
 
         public async Task<CustomerDTOGet> DeleteCustomer(int id)
@@ -217,7 +201,7 @@ namespace API.Models.Services
 
             // If the customer does not exist, throw an exception
             if (data == null)
-                throw new Exception("Customer not found!");
+                throw new NotFoundException("Customer not found!");
 
             // Retrieve all sales associated with this customer
             var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
