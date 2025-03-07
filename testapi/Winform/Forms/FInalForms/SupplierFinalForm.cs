@@ -15,6 +15,10 @@ namespace Winform.Forms.FInalForms
 
         supplierGroupDTO data;
 
+        // Dictionary for quicker lookup of related data
+        private Dictionary<int, List<SupplierInvoice>> supplierInvoicesMap;
+        private Dictionary<int, List<SupplierInvoiceCost>> invoiceCostsMap;
+
         private int pageSize = 10; // Numero di righe per pagina
 
         private int supplierCurrentPage = 1;
@@ -37,7 +41,7 @@ namespace Winform.Forms.FInalForms
             _valueService = new ValueService();
             InitializeComponent();
             if (UtilityFunctions.IsAuthorized(new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, true)
-                || UtilityFunctions.IsAuthorized(new[] { "Admin" }))
+                || UtilityFunctions.IsAuthorized(new[] { "Admin" }, true))
             {
                 HideMenuItems();
             }
@@ -59,54 +63,107 @@ namespace Winform.Forms.FInalForms
             MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
             panel1.Width = flowLayoutPanel1.Width;
 
-
             supplierFilter = searchSupplier1.GetFilter();
-
             supplierInvoiceFilter = searchSupplierInvoice1.GetFilter();
-
             supplierInvoiceCostFilter = searchSupplierInvoiceCost1.GetFilter();
 
-            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
-            SuppliersSource.DataSource = data.suppliers;
-            SupplierInvoiceSource.DataSource = data.invoices;
-            SupplierInvoicecostSource.DataSource = data.invoiceCosts;
+            await LoadData();
+        }
 
-            allSuppliers = (List<Supplier>)SuppliersSource.DataSource;
-
-            if (allSuppliers.Any())
+        private async System.Threading.Tasks.Task LoadData()
+        {
+            try
             {
-                allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
-                    .Where(x => x.SupplierId == allSuppliers.First().SupplierId)
-                    .ToList();
+                Cursor = Cursors.WaitCursor;
+
+                data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
+
+                // Preprocess data for faster lookups
+                PreprocessData();
+
+                SuppliersSource.DataSource = data.suppliers;
+                SupplierInvoiceSource.DataSource = data.invoices;
+                SupplierInvoicecostSource.DataSource = data.invoiceCosts;
+
+                allSuppliers = data.suppliers.ToList();
+                supplierTotalRecords = allSuppliers.Count;
+
+                // Initialize related data
+                if (allSuppliers.Any())
+                {
+                    int firstSupplierId = allSuppliers.First().SupplierId;
+                    allSupplierInvoices = supplierInvoicesMap.ContainsKey(firstSupplierId)
+                        ? supplierInvoicesMap[firstSupplierId]
+                        : new List<SupplierInvoice>();
+                }
+                else
+                {
+                    allSupplierInvoices = new List<SupplierInvoice>();
+                }
+                supplierInvoiceTotalRecords = allSupplierInvoices.Count;
+
+                // Initialize invoice costs
+                if (allSupplierInvoices.Any())
+                {
+                    int firstInvoiceId = allSupplierInvoices.First().InvoiceId;
+                    allSupplierInvoiceCosts = invoiceCostsMap.ContainsKey(firstInvoiceId)
+                        ? invoiceCostsMap[firstInvoiceId]
+                        : new List<SupplierInvoiceCost>();
+                }
+                else
+                {
+                    allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                }
+                supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
+
+                LoadTableSupplier();
+                LoadTableSupplierInvoice();
+                LoadTableSupplierInvoicecost();
             }
-            else
+            finally
             {
-                allSupplierInvoices = new List<SupplierInvoice>();
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void PreprocessData()
+        {
+            // Create lookup dictionaries for faster access
+            supplierInvoicesMap = new Dictionary<int, List<SupplierInvoice>>();
+            invoiceCostsMap = new Dictionary<int, List<SupplierInvoiceCost>>();
+
+            // Group invoices by supplier ID
+            foreach (var invoice in data.invoices)
+            {
+                if (invoice.SupplierId.HasValue)
+                {
+                    int supplierId = invoice.SupplierId.Value;
+                    if (!supplierInvoicesMap.ContainsKey(supplierId))
+                    {
+                        supplierInvoicesMap[supplierId] = new List<SupplierInvoice>();
+                    }
+                    supplierInvoicesMap[supplierId].Add(invoice);
+                }
             }
 
-            if (allSupplierInvoices.Any())
+            // Group invoice costs by invoice ID
+            foreach (var cost in data.invoiceCosts)
             {
-                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
-                    .Where(x => x.SupplierInvoiceId == allSupplierInvoices.First().InvoiceId)
-                    .ToList();
+                if (!invoiceCostsMap.ContainsKey((int)cost.SupplierInvoiceId))
+                {
+                    invoiceCostsMap[(int)cost.SupplierInvoiceId] = new List<SupplierInvoiceCost>();
+                }
+                invoiceCostsMap[(int)cost.SupplierInvoiceId].Add(cost);
             }
-            else
-            {
-                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
-            }
-
-
-            supplierTotalRecords = allSuppliers.Count;
-            supplierInvoiceTotalRecords = allSupplierInvoices.Count;
-            supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
-            LoadTableSupplier();
-            LoadTableSupplierInvoice();
-            LoadTableSupplierInvoicecost();
         }
 
         private void LoadTableSupplier()
         {
-            var supplierPagedData = allSuppliers.Skip((supplierCurrentPage - 1) * pageSize).Take(pageSize).ToList();
+            var supplierPagedData = allSuppliers
+                .Skip((supplierCurrentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
             SupplierDgv.DataSource = supplierPagedData;
 
             SupplierDgv.Columns["SupplierID"].Visible = showIDToolStripMenuItem.Checked;
@@ -125,7 +182,11 @@ namespace Winform.Forms.FInalForms
 
         private void LoadTableSupplierInvoice()
         {
-            var supplierInvoicePagedData = allSupplierInvoices.Skip((supplierInvoiceCurrentPage - 1) * pageSize).Take(pageSize).ToList();
+            var supplierInvoicePagedData = allSupplierInvoices
+                .Skip((supplierInvoiceCurrentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
             SupInvoiceDgv.DataSource = supplierInvoicePagedData;
 
             SupInvoiceDgv.Columns["InvoiceID"].Visible = showIDToolStripMenuItem2.Checked;
@@ -144,7 +205,11 @@ namespace Winform.Forms.FInalForms
 
         private void LoadTableSupplierInvoicecost()
         {
-            var supplierInvoiceCostPagedData = allSupplierInvoiceCosts.Skip((supplierInvoiceCostCurrentPage - 1) * pageSize).Take(pageSize).ToList();
+            var supplierInvoiceCostPagedData = allSupplierInvoiceCosts
+                .Skip((supplierInvoiceCostCurrentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
             SupInvoiceCostDgv.DataSource = supplierInvoiceCostPagedData;
 
             SupInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = showIDToolStripMenuItem1.Checked;
@@ -152,7 +217,6 @@ namespace Winform.Forms.FInalForms
             SupInvoiceCostDgv.Columns["Cost"].Visible = showCostToolStripMenuItem.Checked;
             SupInvoiceCostDgv.Columns["Quantity"].Visible = showQuantityToolStripMenuItem.Checked;
             SupInvoiceCostDgv.Columns["Name"].Visible = showDescriptionNameToolStripMenuItem.Checked;
-
 
             supplierInvoiceCostTotalPages = (int)Math.Ceiling((double)supplierInvoiceCostTotalRecords / pageSize);
             if (supplierInvoiceCostTotalPages > 0)
@@ -172,10 +236,6 @@ namespace Winform.Forms.FInalForms
                     {
                         supplierCurrentPage++;
                         LoadTableSupplier();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "Right2":
@@ -183,8 +243,6 @@ namespace Winform.Forms.FInalForms
                     {
                         supplierInvoiceCurrentPage++;
                         LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "Right3":
@@ -195,16 +253,11 @@ namespace Winform.Forms.FInalForms
                     }
                     break;
 
-
                 case "DoubleRight":
                     if (supplierCurrentPage < supplierTotalPages)
                     {
                         supplierCurrentPage = supplierTotalPages;
                         LoadTableSupplier();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "DoubleRight2":
@@ -212,8 +265,6 @@ namespace Winform.Forms.FInalForms
                     {
                         supplierInvoiceCurrentPage = supplierInvoiceTotalPages;
                         LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "DoubleRight3":
@@ -224,16 +275,11 @@ namespace Winform.Forms.FInalForms
                     }
                     break;
 
-
                 case "Left":
                     if (supplierCurrentPage > 1)
                     {
                         supplierCurrentPage--;
                         LoadTableSupplier();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "Left2":
@@ -241,8 +287,6 @@ namespace Winform.Forms.FInalForms
                     {
                         supplierInvoiceCurrentPage--;
                         LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "Left3":
@@ -258,10 +302,6 @@ namespace Winform.Forms.FInalForms
                     {
                         supplierCurrentPage = 1;
                         LoadTableSupplier();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "DoubleLeft2":
@@ -269,8 +309,6 @@ namespace Winform.Forms.FInalForms
                     {
                         supplierInvoiceCurrentPage = 1;
                         LoadTableSupplierInvoice();
-                        ChangedSupplierInvoiceDgv();
-                        LoadTableSupplierInvoicecost();
                     }
                     break;
                 case "DoubleLeft3":
@@ -284,107 +322,124 @@ namespace Winform.Forms.FInalForms
                 default:
                     break;
             }
-
         }
 
         private async void SearchButton_Click(object sender, EventArgs e)
         {
-            supplierFilter = searchSupplier1.GetFilter();
+            try
+            {
+                Cursor = Cursors.WaitCursor;
 
-            supplierInvoiceFilter = searchSupplierInvoice1.GetFilter();
+                supplierFilter = searchSupplier1.GetFilter();
+                supplierInvoiceFilter = searchSupplierInvoice1.GetFilter();
+                supplierInvoiceCostFilter = searchSupplierInvoiceCost1.GetFilter();
 
-            supplierInvoiceCostFilter = searchSupplierInvoiceCost1.GetFilter();
+                supplierCurrentPage = 1;
+                supplierInvoiceCurrentPage = 1;
+                supplierInvoiceCostCurrentPage = 1;
 
-            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
-            SuppliersSource.DataSource = data.suppliers;
-            SupplierInvoiceSource.DataSource = data.invoices;
-            SupplierInvoicecostSource.DataSource = data.invoiceCosts;
-
-            allSuppliers = (List<Supplier>)SuppliersSource.DataSource;
-
-            if (allSuppliers.Count > 0)
-                allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
-                    .Where(x => x.SupplierId == data.suppliers.First().SupplierId).ToList();
-            else
-                allSupplierInvoices = new List<SupplierInvoice>();
-
-            if (allSupplierInvoices.Count > 0)
-                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
-                .Where(x => x.SupplierInvoiceId == data.invoices.First().InvoiceId).ToList();
-            else
-                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
-
-            supplierTotalRecords = allSuppliers.Count;
-            supplierInvoiceTotalRecords = allSupplierInvoices.Count;
-            supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
-
-            supplierCurrentPage = 1;
-            supplierInvoiceCurrentPage = 1;
-            supplierInvoiceCostCurrentPage = 1;
-
-            LoadTableSupplier();
-            LoadTableSupplierInvoice();
-            LoadTableSupplierInvoicecost();
+                await LoadData();
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
-        private async void SupplierDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void SupplierDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return; // Skip if header row is clicked
 
-            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
-            SupplierInvoiceSource.DataSource = data.invoices;
-            SupplierInvoicecostSource.DataSource = data.invoiceCosts;
+            try
+            {
+                Cursor = Cursors.WaitCursor;
 
-            ChangedSupplierDgv();
+                // Get selected supplier ID safely
+                if (SupplierDgv.Rows.Count <= e.RowIndex ||
+                    SupplierDgv.Rows[e.RowIndex].Cells["SupplierID"].Value == null)
+                    return;
 
-            LoadTableSupplierInvoice();
-            LoadTableSupplierInvoicecost();
+                int supplierId = (int)SupplierDgv.Rows[e.RowIndex].Cells["SupplierID"].Value;
+
+                // Get invoices for this supplier from our lookup dictionary
+                if (supplierInvoicesMap.ContainsKey(supplierId))
+                {
+                    allSupplierInvoices = supplierInvoicesMap[supplierId];
+                }
+                else
+                {
+                    allSupplierInvoices = new List<SupplierInvoice>();
+                }
+
+                supplierInvoiceTotalRecords = allSupplierInvoices.Count;
+                supplierInvoiceCurrentPage = 1;
+
+                // Reset and update invoice costs based on first invoice if available
+                if (allSupplierInvoices.Any())
+                {
+                    int firstInvoiceId = allSupplierInvoices.First().InvoiceId;
+                    if (invoiceCostsMap.ContainsKey(firstInvoiceId))
+                    {
+                        allSupplierInvoiceCosts = invoiceCostsMap[firstInvoiceId];
+                    }
+                    else
+                    {
+                        allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                    }
+                }
+                else
+                {
+                    allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                }
+
+                supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
+                supplierInvoiceCostCurrentPage = 1;
+
+                // Update UI
+                LoadTableSupplierInvoice();
+                LoadTableSupplierInvoicecost();
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
-        private async void SupInvoiceDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void SupInvoiceDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            data = await _valueService.GetSupplierTables(supplierFilter, supplierInvoiceFilter, supplierInvoiceCostFilter);
-            SupplierInvoiceSource.DataSource = data.invoices;
-            SupplierInvoicecostSource.DataSource = data.invoiceCosts;
+            if (e.RowIndex < 0) return; // Skip if header row is clicked
 
-            ChangedSupplierInvoiceDgv();
+            try
+            {
+                Cursor = Cursors.WaitCursor;
 
-            LoadTableSupplierInvoicecost();
-        }
+                // Get selected invoice ID safely
+                if (SupInvoiceDgv.Rows.Count <= e.RowIndex ||
+                    SupInvoiceDgv.Rows[e.RowIndex].Cells["InvoiceID"].Value == null)
+                    return;
 
-        private void ChangedSupplierDgv()
-        {
-            allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
-                .Where(x => x.SupplierId == (int?)SupplierDgv.CurrentRow.Cells["SupplierID"].Value).ToList();
+                int invoiceId = (int)SupInvoiceDgv.Rows[e.RowIndex].Cells["InvoiceID"].Value;
 
-            if (allSupplierInvoices.Count > 0)
-                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
-                    .Where(x => x.SupplierInvoiceId == data.invoices.Where(x => x.SupplierId == (int?)SupplierDgv.CurrentRow.Cells["SupplierID"].Value).ToList().First().InvoiceId).ToList();
-            else
-                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                // Get costs for this invoice from our lookup dictionary
+                if (invoiceCostsMap.ContainsKey(invoiceId))
+                {
+                    allSupplierInvoiceCosts = invoiceCostsMap[invoiceId];
+                }
+                else
+                {
+                    allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                }
 
-            supplierInvoiceTotalRecords = allSupplierInvoices.Count;
-            supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
+                supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
+                supplierInvoiceCostCurrentPage = 1;
 
-            supplierInvoiceCurrentPage = 1;
-            supplierInvoiceCostCurrentPage = 1;
-        }
-
-        private void ChangedSupplierInvoiceDgv()
-        {
-            allSupplierInvoices = ((List<SupplierInvoice>)SupplierInvoiceSource.DataSource)
-                .Where(x => x.SupplierId == (int?)SupplierDgv.CurrentRow.Cells["SupplierID"].Value).ToList();
-
-            if (allSupplierInvoices.Count > 0)
-                allSupplierInvoiceCosts = ((List<SupplierInvoiceCost>)SupplierInvoicecostSource.DataSource)
-                .Where(x => x.SupplierInvoiceId == allSupplierInvoices.First().InvoiceId).ToList();
-            else
-                allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
-
-            supplierInvoiceTotalRecords = allSupplierInvoices.Count;
-            supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
-
-            supplierInvoiceCurrentPage = 1;
-            supplierInvoiceCostCurrentPage = 1;
+                // Update UI
+                LoadTableSupplierInvoicecost();
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -490,7 +545,6 @@ namespace Winform.Forms.FInalForms
                 default:
                     break;
             }
-
         }
 
         private void SupInvoiceCtxItem_CheckedChanged(object sender, EventArgs e)
@@ -545,7 +599,6 @@ namespace Winform.Forms.FInalForms
                 case "Show Description Name":
                     SupInvoiceCostDgv.Columns["Name"].Visible = menuItem.Checked;
                     break;
-
                 default:
                     break;
             }

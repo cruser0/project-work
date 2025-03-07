@@ -97,13 +97,15 @@ namespace Winform.Forms.GridForms
             };
 
             // Recupera i dati filtrati e aggiorna la DataGridView
-            var query = _userService.GetAll(filter);
-            var totalRecords = _userService.Count(filterPage);
-            await Task.WhenAll(totalRecords, query);
+            var queryTask = _userService.GetAll(filter);
+            var countTask = _userService.Count(filterPage);
 
-            IEnumerable<UserRoleDTO> query1 = await query;
-            userDgv.DataSource = query1.ToList();
-            int maxPages = (int)Math.Ceiling((double)await totalRecords / itemsPage);
+            await Task.WhenAll(queryTask, countTask);
+
+            IEnumerable<UserRoleDTO> query = await queryTask;
+            int totalRecords = await countTask;
+
+            userDgv.DataSource = query.ToList();
 
             // Aggiungi la colonna per i ruoli, se non presente
             if (!userDgv.Columns.Contains("Roles"))
@@ -118,16 +120,17 @@ namespace Winform.Forms.GridForms
             }
 
             // Aggiorna il numero massimo di pagine per la paginazione
+            int maxPages = (int)Math.Ceiling(totalRecords / itemsPage);
             paginationControl.maxPage = maxPages.ToString();
             paginationControl.SetPageLbl($"{paginationControl.CurrentPage}/{maxPages}");
 
             // Imposta la visibilità e le colonne della DataGridView
             if (!paginationControl.Visible)
             {
-                SetCheckBoxes();
+                await SetCheckBoxes();
             }
         }
-        private async void SetCheckBoxes()
+        private async Task SetCheckBoxes()
         {
             UserDGV cdgv = await _userService.GetUserDGV();
             UserIDTsmi.Checked = cdgv.ShowID;

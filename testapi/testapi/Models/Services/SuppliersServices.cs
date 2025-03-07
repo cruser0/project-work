@@ -64,9 +64,6 @@ namespace API.Models.Services
                 if (filter.SupplierCreatedDateTo <= DateTime.Now && filter.SupplierCreatedDateTo >= filter.SupplierCreatedDateTo)
                     query = query.Where(x => x.CreatedAt <= filter.SupplierCreatedDateTo);
             }
-
-
-
             if (!string.IsNullOrEmpty(filter.SupplierCountry))
             {
                 query = query.Where(x => x.Country.Contains(filter.SupplierCountry));
@@ -121,12 +118,12 @@ namespace API.Models.Services
             if (!supplier.Country.All(char.IsLetter))
                 throw new ErrorInputPropertyException("Country can't have special characters");
 
-                _context.Add(supplier);
-                await _context.SaveChangesAsync();
-                supplier.OriginalID = supplier.SupplierId;
-                _context.Update(supplier);
-                await _context.SaveChangesAsync();
-                return SupplierMapper.MapGet(supplier);
+            _context.Add(supplier);
+            await _context.SaveChangesAsync();
+            supplier.OriginalID = supplier.SupplierId;
+            _context.Update(supplier);
+            await _context.SaveChangesAsync();
+            return SupplierMapper.MapGet(supplier);
         }
 
         public async Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier)
@@ -160,12 +157,12 @@ namespace API.Models.Services
                 };
 
                 cDB.Deprecated = true;
-                    _context.Suppliers.Update(cDB);
-                    await _context.SaveChangesAsync();
+                _context.Suppliers.Update(cDB);
+                await _context.SaveChangesAsync();
 
-                    _context.Suppliers.Add(newSupplier);
-                    await _context.SaveChangesAsync();
-                    return SupplierMapper.MapGet(newSupplier);
+                _context.Suppliers.Add(newSupplier);
+                await _context.SaveChangesAsync();
+                return SupplierMapper.MapGet(newSupplier);
             }
             throw new NotFoundException("Supplier not found");
         }

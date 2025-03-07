@@ -8,6 +8,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace API_Test.ServiceTest
@@ -33,7 +34,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierInvoiceService_ReturnCorrect_GetAllSupplierInvoices()
+        public async Task supplierInvoiceService_ReturnCorrect_GetAllSupplierInvoices()
         {
             var supplierInvoice = new SupplierInvoice()
             {
@@ -47,24 +48,35 @@ namespace API_Test.ServiceTest
             _context.SaveChanges();
 
             var filter = new SupplierInvoiceFilter();
-            var result = _supplierInvoiceService.GetAllSupplierInvoices(filter);
+            var result = await _supplierInvoiceService.GetAllSupplierInvoices(filter);
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Count);
         }
 
         [Fact]
-        public void saleService_ReturnCorrect_GetAllSupplierInvoices_NoInvoices()
+        public async Task saleService_ReturnCorrect_GetAllSupplierInvoices_NoInvoices()
         {
             var filter = new SupplierInvoiceFilter();
-            var result = _supplierInvoiceService.GetAllSupplierInvoices(filter);
+            var result = await _supplierInvoiceService.GetAllSupplierInvoices(filter);
+
+            Assert.Equal(0, result.Count);
+
+        }
+
+        [Theory]
+        [InlineData()]
+        public async Task saleService_ReturnCorrect_GetAllSupplierInvoices_Filtered()
+        {
+            var filter = new SupplierInvoiceFilter();
+            var result = await _supplierInvoiceService.GetAllSupplierInvoices(filter);
 
             Assert.Equal(0, result.Count);
 
         }
 
         [Fact]
-        public void supplierInvoiceService_ReturnCorrect_GetSupplierInvoiceById()
+        public async Task supplierInvoiceService_ReturnCorrect_GetSupplierInvoiceById()
         {
             var supplierInvoice = new SupplierInvoice()
             {
@@ -77,7 +89,7 @@ namespace API_Test.ServiceTest
             _context.SupplierInvoices.Add(supplierInvoice);
             _context.SaveChanges();
 
-            var result = _supplierInvoiceService.GetSupplierInvoiceById(1);
+            var result = await _supplierInvoiceService.GetSupplierInvoiceById(1);
 
             Assert.NotNull(result);
             Assert.IsType<SupplierInvoiceDTOGet>(result);
@@ -85,16 +97,16 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierService_ThrowException_GetSupplierInvoiceById()
+        public async Task supplierService_ThrowException_GetSupplierInvoiceById()
         {
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.GetSupplierInvoiceById(1));
             Assert.Equal("Supplier Invoice not found!", exception.Message);
         }
 
         [Fact]
-        public void supplierInvoiceService_ReturnCorrect_CreateSupplierInvoice()
+        public async Task supplierInvoiceService_ReturnCorrect_CreateSupplierInvoice()
         {
             var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
@@ -112,7 +124,7 @@ namespace API_Test.ServiceTest
                 InvoiceDate = new DateTime(2025, 1, 1, 0, 0, 0),
                 Status = "Approved"
             };
-            var createdSI = _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice);
+            var createdSI = await _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice);
 
             Assert.NotNull(createdSI);
             Assert.IsType<SupplierInvoiceDTOGet>(createdSI);
@@ -121,16 +133,16 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierService_ThrowException_CreateSupplierInvoice_NullSupplInvoice()
+        public async Task supplierService_ThrowException_CreateSupplierInvoice_NullSupplInvoice()
         {
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.CreateSupplierInvoice((SupplierInvoice)null));
             Assert.Equal("Couldn't create supplier Invoice", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ThrowException_CreateSupplierInvoice_WrongSupplierId()
+        public async Task supplierService_ThrowException_CreateSupplierInvoice_WrongSupplierId()
         {
             var supplierInvoice = new SupplierInvoice()
             {
@@ -140,13 +152,13 @@ namespace API_Test.ServiceTest
                 Status = "Approved"
             };
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice));
             Assert.Equal("SupplierID not found", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ThrowException_CreateSupplierInvoice_WrongSaleId()
+        public async Task supplierService_ThrowException_CreateSupplierInvoice_WrongSaleId()
         {
             var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
@@ -160,13 +172,13 @@ namespace API_Test.ServiceTest
                 Status = "Approved"
             };
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice));
             Assert.Equal("SaleID not found", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ThrowException_CreateSupplierInvoice_WrongStatus()
+        public async Task supplierService_ThrowException_CreateSupplierInvoice_WrongStatus()
         {
             var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
@@ -185,13 +197,13 @@ namespace API_Test.ServiceTest
             };
 
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice));
             Assert.Equal("Status is not valid", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ThrowException_CreateSupplierInvoice_InvalidDate()
+        public async Task supplierService_ThrowException_CreateSupplierInvoice_InvalidDate()
         {
             var supplier = new Supplier() { SupplierId = 1, SupplierName = "ciao", Country = "ciao", Deprecated = false };
             _context.Suppliers.Add(supplier);
@@ -209,13 +221,13 @@ namespace API_Test.ServiceTest
                 Status = "Approved"
             };
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice));
             Assert.Equal("Date is not valid", exception.Message);
         }
 
         [Fact]
-        public void supplierInvoiceService_ReturnCorrect_UpdateSupplierInvoice()
+        public async Task supplierInvoiceService_ReturnCorrect_UpdateSupplierInvoice()
         {
             var suppliers = new List<Supplier>()
             {
@@ -243,7 +255,7 @@ namespace API_Test.ServiceTest
                 InvoiceDate = new DateTime(2025, 1, 1, 0, 0, 0),
                 Status = "Unapproved"
             };
-            var createdSI = _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice);
+            var createdSI = await _supplierInvoiceService.CreateSupplierInvoice(supplierInvoice);
 
             var updatedSupplierInvoice = new SupplierInvoice()
             {
@@ -253,7 +265,7 @@ namespace API_Test.ServiceTest
                 Status = "Approved"
             };
 
-            var updatedSI = _supplierInvoiceService.UpdateSupplierInvoice(1, supplierInvoice);
+            var updatedSI = await _supplierInvoiceService.UpdateSupplierInvoice(1, supplierInvoice);
 
             Assert.NotNull(updatedSI);
             Assert.IsType<SupplierInvoiceDTOGet>(updatedSI);
@@ -262,7 +274,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierService_ThrowException_UpdateSupplierInvoice_NullSupplInvoice()
+        public async Task supplierService_ThrowException_UpdateSupplierInvoice_NullSupplInvoice()
         {
             var updatedSupplierInvoice = new SupplierInvoice()
             {
@@ -272,13 +284,13 @@ namespace API_Test.ServiceTest
                 Status = "Approved"
             };
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.UpdateSupplierInvoice(1, updatedSupplierInvoice));
             Assert.Equal("Supplier Invoice not found", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ThrowException_UpdateSupplierInvoice_WrongSaleId()
+        public async Task supplierService_ThrowException_UpdateSupplierInvoice_WrongSaleId()
         {
             var supplierInvoice = new SupplierInvoice()
             {
@@ -298,13 +310,13 @@ namespace API_Test.ServiceTest
                 Status = "Approved"
             };
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.UpdateSupplierInvoice(1, updatedSupplierInvoice));
             Assert.Equal("SaleID not present", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ThrowException_UpdateSupplierInvoice_WrongSupplierId()
+        public async Task supplierService_ThrowException_UpdateSupplierInvoice_WrongSupplierId()
         {
             var sales = new List<Sale>()
             {
@@ -333,13 +345,13 @@ namespace API_Test.ServiceTest
                 Status = "Approved"
             };
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.UpdateSupplierInvoice(1, updatedSupplierInvoice));
             Assert.Equal("SupplierID not present", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ThrowException_UpdateSupplierInvoice_WrongStatus()
+        public async Task supplierService_ThrowException_UpdateSupplierInvoice_WrongStatus()
         {
             var suppliers = new List<Supplier>()
             {
@@ -378,13 +390,13 @@ namespace API_Test.ServiceTest
                 Status = "Status"
             };
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = await Assert.ThrowsAsync<ArgumentException>(
                 () => _supplierInvoiceService.UpdateSupplierInvoice(1, updatedSupplierInvoice));
             Assert.Equal("Status not correct", exception.Message);
         }
 
         [Fact]
-        public void supplierService_ReturnCorrect_DeleteSupplierinvoice_NoCascade()
+        public async Task supplierService_ReturnCorrect_DeleteSupplierinvoice_NoCascade()
         {
             var supplierInvoice = new SupplierInvoice()
             {
@@ -396,7 +408,7 @@ namespace API_Test.ServiceTest
             _context.SupplierInvoices.Add(supplierInvoice);
             _context.SaveChanges();
 
-            var supplierInvoiceDeleted = _supplierInvoiceService.DeleteSupplierInvoice(1);
+            var supplierInvoiceDeleted = await _supplierInvoiceService.DeleteSupplierInvoice(1);
 
             Assert.NotNull(supplierInvoiceDeleted);
             Assert.IsType<SupplierInvoiceDTOGet>(supplierInvoiceDeleted);
@@ -404,7 +416,7 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierService_ReturnCorrect_DeleteSupplierinvoice_Cascade()
+        public async Task supplierService_ReturnCorrect_DeleteSupplierinvoice_Cascade()
         {
             var supplierInvoice = new SupplierInvoice()
             {
@@ -425,7 +437,7 @@ namespace API_Test.ServiceTest
             _context.SupplierInvoiceCosts.AddRange(supplierInvoiceCosts);
             _context.SaveChanges();
 
-            var supplierInvoiceDeleted = _supplierInvoiceService.DeleteSupplierInvoice(1);
+            var supplierInvoiceDeleted = await _supplierInvoiceService.DeleteSupplierInvoice(1);
 
             Assert.NotNull(supplierInvoiceDeleted);
             Assert.IsType<SupplierInvoiceDTOGet>(supplierInvoiceDeleted);
@@ -434,10 +446,10 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
-        public void supplierService_ThrowException_DeleteSupplierinvoice()
+        public async Task supplierService_ThrowException_DeleteSupplierinvoice()
         {
 
-            var exception = Assert.Throws<ArgumentNullException>(
+            var exception = await Assert.ThrowsAsync<ArgumentNullException>(
                 () => _supplierInvoiceService.DeleteSupplierInvoice(1));
             Assert.Equal("Supplier Invoice not found!", exception.ParamName);
 

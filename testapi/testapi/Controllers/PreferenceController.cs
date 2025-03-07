@@ -2,6 +2,7 @@
 using API.Models.Exceptions;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,7 +43,9 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
+
         [HttpGet("customer-invoicedgv/{id}")]
         public async Task<IActionResult> GetCustomerInvoiceDGV(int id)
         {
@@ -68,6 +71,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
         [HttpGet("customer-invoice-costdgv/{id}")]
         public async Task<IActionResult> GetCustomerInvoiceCostDGV(int id)
@@ -94,6 +98,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         [HttpGet("supplierdgv/{id}")]
@@ -121,6 +126,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
         [HttpGet("supplier-invoicedgv/{id}")]
         public async Task<IActionResult> GetSupplierInvoiceDGV(int id)
@@ -147,6 +153,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
         [HttpGet("supplier-invoice-costdgv/{id}")]
         public async Task<IActionResult> GetSupplierInvoiceCostDGV(int id)
@@ -173,6 +180,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         [HttpGet("saledgv/{id}")]
@@ -200,6 +208,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         [HttpGet("userdgv/{id}")]
@@ -227,6 +236,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         [HttpPost("create-favourite-page")]
@@ -241,6 +251,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         [HttpPost("add-user-favourite-page/{id}")]
@@ -259,6 +270,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         [HttpDelete("remove-user-favourite-page/{id}")]
