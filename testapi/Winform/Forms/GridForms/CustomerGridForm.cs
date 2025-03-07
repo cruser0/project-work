@@ -3,6 +3,12 @@ using Winform.Entities;
 using Winform.Entities.Preference;
 using Winform.Forms.AddForms;
 using Winform.Services;
+using ClosedXML.Excel;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using System.Data;
 
 namespace Winform.Forms
 {
@@ -210,8 +216,8 @@ namespace Winform.Forms
         public void CustomerGridForm_Resize(object sender, EventArgs e)
         {
 
-            panel5.Location = new Point((Width - panel5.Width) / 2, 0);
-            PaginationUserControl.Location = new Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
+            panel5.Location = new System.Drawing.Point((Width - panel5.Width) / 2, 0);
+            PaginationUserControl.Location = new System.Drawing.Point((panel5.Width - PaginationUserControl.Width) / 2, (panel5.Height - PaginationUserControl.Height) / 2);
             int newHeight = (int)((Height - TextBoxesRightPanel.Top) * 0.9);
             if (TextBoxesRightPanel.Height != newHeight)
             {
@@ -281,6 +287,153 @@ namespace Winform.Forms
             countNotFiltered = _customerService.Count(new CustomerFilter());
             getFav = _userService.GetCustomerDGV();
             await SetCheckBoxes();
+        }
+
+        private void Pdf_ClickBtn(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "PDF Files|*.pdf",
+                Title = "Save PDF File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Cursor = Cursors.WaitCursor;
+                    Application.DoEvents(); // Forza l'aggiornamento dell'interfaccia utente
+
+                    using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        using (PdfWriter writer = new PdfWriter(fs))
+                        {
+                            using (PdfDocument pdf = new PdfDocument(writer))
+                            {
+                                Document doc = new Document(pdf, PageSize.A4);
+
+                                string title = Text[5..] + " Data Report";  // Customize your title here
+                                Paragraph titleParagraph = new Paragraph(title)
+                                    .SetFontSize(18)
+                                    .SimulateBold()
+                                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                                    .SetMarginBottom(20);
+                                doc.Add(titleParagraph);
+
+                                int visibleColumnCount = CustomerDgv.Columns.Cast<DataGridViewColumn>().Count(c => c.Visible);
+                                Table table = new Table(visibleColumnCount);
+
+                                // Aggiungi le intestazioni delle colonne visibili
+                                foreach (DataGridViewColumn column in CustomerDgv.Columns)
+                                {
+                                    if (column.Visible)
+                                    {
+                                        table.AddCell(column.HeaderText);
+                                    }
+                                }
+
+                                // Aggiungi le righe della DataGridView
+                                foreach (DataGridViewRow row in CustomerDgv.Rows)
+                                {
+                                    if (!row.IsNewRow)
+                                    {
+                                        foreach (DataGridViewColumn column in CustomerDgv.Columns)
+                                        {
+                                            if (column.Visible)
+                                            {
+                                                DataGridViewCell cell = row.Cells[column.Index];
+                                                table.AddCell(cell.Value?.ToString() ?? "");
+                                            }
+                                        }
+                                    }
+                                }
+
+                                doc.Add(table);
+                                doc.Close();
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("PDF salvato con successo!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Errore: " + ex.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
+            }
+        }
+
+
+        private void Excel_ClickBtn(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files|*.xlsx",
+                Title = "Save Excel File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Cursor = Cursors.WaitCursor;
+                    Application.DoEvents(); // Forza l'aggiornamento dell'interfaccia utente
+
+                    using (XLWorkbook xLWorkbook = new XLWorkbook())
+                    {
+                        DataTable dt = new DataTable() { TableName = Text[5..] + " Data Report" };
+
+                        // Create columns from DataGridView
+
+                        foreach (DataGridViewColumn col in CustomerDgv.Columns)
+                        {
+                            if (col.Visible)
+                            {
+                                dt.Columns.Add(col.HeaderText);
+                            }
+                        }
+
+                        // Add rows from DataGridView
+                        foreach (DataGridViewRow row in CustomerDgv.Rows)
+                        {
+                            if (!row.IsNewRow) // Skip the empty new row
+                            {
+                                DataRow dRow = dt.NewRow();
+                                int index = 0;
+                                foreach (DataGridViewColumn column in CustomerDgv.Columns)
+                                {
+                                    if (column.Visible)
+                                    {
+                                        dRow[index] = row.Cells[column.Name].Value ?? "";
+                                        index++;
+                                    }
+                                }
+                                dt.Rows.Add(dRow);
+                            }
+                        }
+
+                        // Add DataTable to the Excel file
+                        xLWorkbook.Worksheets.Add(dt, "Sheet1");
+
+                        // Save the file
+                        xLWorkbook.SaveAs(saveFileDialog.FileName);
+
+                        MessageBox.Show("Excel file saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
+            }
         }
     }
 }

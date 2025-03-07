@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleGridForm));
             this.DateFromDTP = new System.Windows.Forms.DateTimePicker();
             this.DateToDTP = new System.Windows.Forms.DateTimePicker();
             this.RigtPanel = new System.Windows.Forms.Panel();
@@ -65,6 +66,11 @@
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.MassSaveTSB = new System.Windows.Forms.ToolStripButton();
+            this.PdfTSB = new System.Windows.Forms.ToolStripButton();
+            this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
+            this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,6 +78,7 @@
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DateFromDTP
@@ -288,6 +295,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.SaleDgv);
+            this.panel1.Controls.Add(this.toolStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -300,12 +308,12 @@
             this.SaleDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SaleDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SaleDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SaleDgv.Location = new System.Drawing.Point(0, 0);
+            this.SaleDgv.Location = new System.Drawing.Point(0, 25);
             this.SaleDgv.Name = "SaleDgv";
             this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
             this.SaleDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.SaleDgv.Size = new System.Drawing.Size(584, 361);
+            this.SaleDgv.Size = new System.Drawing.Size(584, 336);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SaleDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -457,6 +465,56 @@
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MassSaveTSB,
+            this.PdfTSB,
+            this.ExcelTSB,
+            this.MassDeleteTSB});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
+            this.toolStrip1.TabIndex = 12;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // MassSaveTSB
+            // 
+            this.MassSaveTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.MassSaveTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassSaveTSB.Image")));
+            this.MassSaveTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MassSaveTSB.Name = "MassSaveTSB";
+            this.MassSaveTSB.Size = new System.Drawing.Size(23, 22);
+            this.MassSaveTSB.Text = "toolStripButton1";
+            // 
+            // PdfTSB
+            // 
+            this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PdfTSB.Image = ((System.Drawing.Image)(resources.GetObject("PdfTSB.Image")));
+            this.PdfTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PdfTSB.Name = "PdfTSB";
+            this.PdfTSB.Size = new System.Drawing.Size(32, 22);
+            this.PdfTSB.Text = "PDF";
+            // 
+            // ExcelTSB
+            // 
+            this.ExcelTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ExcelTSB.Image = ((System.Drawing.Image)(resources.GetObject("ExcelTSB.Image")));
+            this.ExcelTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExcelTSB.Name = "ExcelTSB";
+            this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
+            this.ExcelTSB.Text = "Excel";
+            // 
+            // MassDeleteTSB
+            // 
+            this.MassDeleteTSB.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.MassDeleteTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassDeleteTSB.Image")));
+            this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MassDeleteTSB.Name = "MassDeleteTSB";
+            this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
+            this.MassDeleteTSB.Text = "toolStripButton4";
+            // 
             // SaleGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -474,11 +532,14 @@
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).EndInit();
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.RightClickDgv.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -520,5 +581,10 @@
         private control.IntegerTextBoxUserControl RevenueToTxt;
         private Label label1;
         private DataGridView SaleDgv;
+        public ToolStrip toolStrip1;
+        private ToolStripButton MassSaveTSB;
+        private ToolStripButton PdfTSB;
+        private ToolStripButton ExcelTSB;
+        private ToolStripButton MassDeleteTSB;
     }
 }

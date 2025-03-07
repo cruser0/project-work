@@ -29,8 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerInvoiceCostGridForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.CustomerInvoiceCostDgv = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.MassSaveTSB = new System.Windows.Forms.ToolStripButton();
+            this.PdfTSB = new System.Windows.Forms.ToolStripButton();
+            this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
+            this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.NameTxt = new System.Windows.Forms.TextBox();
@@ -53,6 +59,7 @@
             this.CustomerInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceCostDgv)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.BottomPanel.SuspendLayout();
@@ -63,6 +70,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.CustomerInvoiceCostDgv);
+            this.panel1.Controls.Add(this.toolStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -75,14 +83,64 @@
             this.CustomerInvoiceCostDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CustomerInvoiceCostDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CustomerInvoiceCostDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CustomerInvoiceCostDgv.Location = new System.Drawing.Point(0, 0);
+            this.CustomerInvoiceCostDgv.Location = new System.Drawing.Point(0, 25);
             this.CustomerInvoiceCostDgv.Name = "CustomerInvoiceCostDgv";
             this.CustomerInvoiceCostDgv.ReadOnly = true;
             this.CustomerInvoiceCostDgv.RowTemplate.Height = 25;
-            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(584, 361);
+            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(584, 336);
             this.CustomerInvoiceCostDgv.TabIndex = 0;
             this.CustomerInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.CustomerInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MassSaveTSB,
+            this.PdfTSB,
+            this.ExcelTSB,
+            this.MassDeleteTSB});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
+            this.toolStrip1.TabIndex = 11;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // MassSaveTSB
+            // 
+            this.MassSaveTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.MassSaveTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassSaveTSB.Image")));
+            this.MassSaveTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MassSaveTSB.Name = "MassSaveTSB";
+            this.MassSaveTSB.Size = new System.Drawing.Size(23, 22);
+            this.MassSaveTSB.Text = "toolStripButton1";
+            // 
+            // PdfTSB
+            // 
+            this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PdfTSB.Image = ((System.Drawing.Image)(resources.GetObject("PdfTSB.Image")));
+            this.PdfTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PdfTSB.Name = "PdfTSB";
+            this.PdfTSB.Size = new System.Drawing.Size(32, 22);
+            this.PdfTSB.Text = "PDF";
+            // 
+            // ExcelTSB
+            // 
+            this.ExcelTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ExcelTSB.Image = ((System.Drawing.Image)(resources.GetObject("ExcelTSB.Image")));
+            this.ExcelTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExcelTSB.Name = "ExcelTSB";
+            this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
+            this.ExcelTSB.Text = "Excel";
+            // 
+            // MassDeleteTSB
+            // 
+            this.MassDeleteTSB.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.MassDeleteTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassDeleteTSB.Image")));
+            this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MassDeleteTSB.Name = "MassDeleteTSB";
+            this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
+            this.MassDeleteTSB.Text = "toolStripButton4";
             // 
             // panel2
             // 
@@ -301,7 +359,10 @@
             this.Load += new System.EventHandler(this.CustomerInvoiceCostGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceCostDgv)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
@@ -336,5 +397,10 @@
         private ToolStripMenuItem CustomerInvoiceCostQuantityTsmi;
         private ToolStripMenuItem CustomerInvoiceCostNameTsmi;
         private Panel PaginationPanel;
+        public ToolStrip toolStrip1;
+        private ToolStripButton MassSaveTSB;
+        private ToolStripButton PdfTSB;
+        private ToolStripButton ExcelTSB;
+        private ToolStripButton MassDeleteTSB;
     }
 }
