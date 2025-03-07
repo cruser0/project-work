@@ -382,7 +382,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerGridForm";
             this.Text = "testForm";
-            this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Load += new System.EventHandler(this.CustomerGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);

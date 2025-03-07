@@ -16,6 +16,9 @@ namespace Winform.Forms
         double itemsPage = 10.0;
         private SupplierService _supplierService;
         private CreateSupplierInvoicesForm _father;
+        Task<ICollection<Supplier>> getAllNotFiltered;
+        Task<int> countNotFiltered;
+        Task<SupplierDGV> getFav;
         List<string> authRoles = new List<string>
             {
                 "SupplierAdmin",
@@ -104,25 +107,24 @@ namespace Winform.Forms
 
             var query = _supplierService.GetAll(filter);
             var count = _supplierService.Count(filterPage);
-                await Task.WhenAll(query, count);
+
+
+            await Task.WhenAll(query, count);
 
             IEnumerable<Supplier> query1 = await query;
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-
             SupplierDgv.DataSource = query1.ToList();
-
-
-            if (!PaginationUserControl.Visible)
-            {
-                await SetCheckBoxes();
-            }
-
         }
 
         private async Task SetCheckBoxes()
         {
-            SupplierDGV cdgv = await _userService.GetSupplierDGV();
+            await Task.WhenAll(getFav, countNotFiltered,getAllNotFiltered);
+            IEnumerable<Supplier> query = await getAllNotFiltered;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            SupplierDgv.DataSource = query.ToList();
+            SupplierDGV cdgv = await getFav;
             SupplierCountryTsmi.Checked = cdgv.ShowCountry;
             SupplierDateTsmi.Checked = cdgv.ShowDate;
             SupplierIDTsmi.Checked = cdgv.ShowID;
@@ -262,6 +264,15 @@ namespace Winform.Forms
                 await _userService.PostSupplierDGV(cdgv);
 
             }
+        }
+
+        private async void SupplierGridForm_Load(object sender, EventArgs e)
+        {
+            getAllNotFiltered = _supplierService.GetAll(new SupplierFilter());
+            countNotFiltered=_supplierService.Count(new SupplierFilter());
+            getFav=_userService.GetSupplierDGV();
+            await SetCheckBoxes();
+
         }
     }
 }

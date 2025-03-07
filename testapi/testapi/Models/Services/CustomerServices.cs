@@ -137,12 +137,13 @@ namespace API.Models.Services
 
             if (!customer.Country.All(char.IsLetter))
                 throw new ErrorInputPropertyException("Country can't have special characters");
-                _context.Customers.Add(customer);
-                await _context.SaveChangesAsync();
-                customer.OriginalID = customer.CustomerId;
-                _context.Customers.Update(customer);
-                await _context.SaveChangesAsync();
-                return CustomerMapper.MapGet(customer);
+                
+            _context.Customers.Add(customer);
+            await _context.SaveChangesAsync();
+            customer.OriginalID = customer.CustomerId;
+            _context.Customers.Update(customer);
+            await _context.SaveChangesAsync();
+            return CustomerMapper.MapGet(customer);
 
 
         }

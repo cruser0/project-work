@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Services;
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +42,7 @@ namespace API_Test.ServiceTest
             var customer1 = new Customer { CustomerName = "Luca", Country = "Italy" };
             _context.Customers.Add(customer);
             _context.Customers.Add(customer1);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             //Act
             var result = _customerService.GetAllCustomers(new CustomerFilter());
@@ -72,7 +73,7 @@ namespace API_Test.ServiceTest
             var customer1 = new Customer { CustomerName = "Luca", Country = "Italy" };
             _context.Customers.Add(customer);
             _context.Customers.Add(customer1);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             //Act
             var result = _customerService.GetCustomerById(id);
@@ -96,10 +97,10 @@ namespace API_Test.ServiceTest
             _context.SaveChanges();
 
             //Act Assert
-            var exception = Assert.Throws<Exception>(() => _customerService.GetCustomerById(id));
+            var exception = Assert.ThrowsAsync<NotFoundException>(async () => await _customerService.GetCustomerById(id));
 
-            var action = Assert.IsType<Exception>(exception);
-            var actionResult = Assert.IsType<string>(exception.Message);
+            var action = Assert.IsType<NotFoundException>(exception);
+            var actionResult = Assert.IsType<string>(action.Message);
 
             Assert.Equal("Customer not found!", actionResult);
         }
@@ -108,15 +109,15 @@ namespace API_Test.ServiceTest
         public async Task Create_Customer()//correct customer
         {
             //Arrange
-            var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy" };
+            var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy",CreatedAt=DateTime.Now };
 
             //Act
-            var result = _customerService.CreateCustomer(customer);
+            var result =await _customerService.CreateCustomer(customer);
 
             //Assert
             Assert.NotNull(result);
             var actionResult = Assert.IsType<CustomerDTOGet>(result);
-            Assert.True(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
+            Assert.True(await _context.Customers.AnyAsync(c => c.CustomerId == customer.CustomerId));
             Assert.Equal(customer.CustomerName, actionResult.CustomerName);
         }
 
@@ -124,35 +125,48 @@ namespace API_Test.ServiceTest
         public async Task Create_Customer_null()//customer null
         {
             //Act Arrange
-            var exception = Assert.Throws<Exception>(() => _customerService.CreateCustomer(null));
+            var exception = Assert.ThrowsAsync<NullPropertyException>(async () => await _customerService.CreateCustomer(null));
 
             //Assert
 
-            var actionResult = Assert.IsType<Exception>(exception);
+            var actionResult = Assert.IsType<NullPropertyException>(exception);
             Assert.Equal("Couldn't create customer", actionResult.Message);
         }
 
         [Theory]
-        [InlineData(1, "Marco", null)]
-        [InlineData(1, null, null)]
-        [InlineData(1, null, "Italy")]
-        public async Task Create_Customer_null_parameters(int id, string name, string country)//customer null
+        [InlineData(1, "Marco", null, false)]
+        [InlineData(1, null, "Italy",false)]
+        [InlineData(1, "Marco", "Italy",true)]
+        public async Task Create_Customer_null_parameters(int id, string name, string country,bool deprecated)//customer null
         {
             //Arrange
             var customer = new Customer { CustomerId = id, CustomerName = name, Country = country };
             //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+            var exception = Assert.ThrowsAsync<NullPropertyException>(async () => await _customerService.CreateCustomer(customer));
 
             //Assert
-            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
-            var actionResult = Assert.IsType<ArgumentException>(exception);
+            Assert.False(await _context.Customers.AnyAsync(c => c.CustomerId == customer.CustomerId));
+            
             if (string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(country))
+            {
+                var actionResult= Assert.IsType<NullPropertyException>(exception);
                 Assert.Equal("CustomerName is null", actionResult.Message);
+            }
             if (string.IsNullOrEmpty(country) && !string.IsNullOrEmpty(name))
+            {
+                var actionResult = Assert.IsType<NullPropertyException>(exception);
                 Assert.Equal("Country is null", actionResult.Message);
+            }
             if (string.IsNullOrEmpty(country) && string.IsNullOrEmpty(name))
+            {
+                var actionResult = Assert.IsType<NullPropertyException>(exception);
                 Assert.Equal("CustomerName, Country are null", actionResult.Message);
-
+            }
+            if (deprecated)
+            {
+                var actionResult = Assert.IsType<ErrorInputPropertyException>(exception);
+                Assert.Equal("Can't create an already deprecated customer", actionResult.Message);
+            }
         }
 
         [Fact]
@@ -162,9 +176,9 @@ namespace API_Test.ServiceTest
             var customer = new Customer { CustomerId = 1, CustomerName = "Marco".PadRight(101, 'X'), Country = "Italy" };
 
             //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+            var exception = Assert.ThrowsAsync<ErrorInputPropertyException>(async () => await _customerService.CreateCustomer(customer));
             //Assert
-            var action = Assert.IsType<ArgumentException>(exception);
+            var action = Assert.IsType<ErrorInputPropertyException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Customer name is too long", actionResult);
         }
@@ -175,9 +189,9 @@ namespace API_Test.ServiceTest
             //Arrange
             var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "Italy".PadRight(51, 'X') };
 
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+            var exception = Assert.ThrowsAsync<ErrorInputPropertyException>(async () => await _customerService.CreateCustomer(customer));
             //Assert
-            var action = Assert.IsType<ArgumentException>(exception);
+            var action = Assert.IsType<ErrorInputPropertyException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Country is too long", actionResult);
         }
@@ -188,9 +202,9 @@ namespace API_Test.ServiceTest
             //Arrange
             var customer = new Customer { CustomerId = 1, CustomerName = "Marco", Country = "1" };
 
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.CreateCustomer(customer));
+            var exception = Assert.ThrowsAsync<ErrorInputPropertyException>(async () => await _customerService.CreateCustomer(customer));
             //Assert
-            var action = Assert.IsType<ArgumentException>(exception);
+            var action = Assert.IsType<ErrorInputPropertyException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Country can't have special characters", actionResult);
         }
@@ -202,9 +216,10 @@ namespace API_Test.ServiceTest
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
-            var exception = Assert.Throws<ArgumentException>(
+            var exception = Assert.ThrowsAsync<DbUpdateException>(
                 () => _customerService.CreateCustomer(customer));
-            Assert.Equal("This customer already exists", exception.Message);
+            var result=Assert.IsType<DbUpdateException>(exception);
+            Assert.Contains("The statement has been terminated", result.InnerException.Message);
         }
 
         [Fact]
@@ -212,14 +227,20 @@ namespace API_Test.ServiceTest
         {
             //Arrange
 
-            var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
+            var customer = new Customer { CustomerName = "Marco", Country = "Italy",CreatedAt=DateTime.Now,Deprecated=false };
             var customerUpdate = new Customer { CustomerName = "Luca", Country = "France" };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //Act
             var result = _customerService.UpdateCustomer(1, customerUpdate);
             //Assert
             var actionResult = Assert.IsType<CustomerDTOGet>(result);
+            Customer oldc = await _context.Customers.Where(x => x.CustomerId == 1).FirstOrDefaultAsync();
+            Customer newc = await _context.Customers.Where(x => x.CustomerId == 2).FirstOrDefaultAsync();
+
+            Assert.Equal(customerUpdate.CustomerName, actionResult.CustomerName);
+            Assert.Equal(true,oldc.Deprecated);
+            Assert.Equal(false,newc.Deprecated);
             Assert.Equal(customerUpdate.CustomerName, actionResult.CustomerName);
             Assert.Equal(customerUpdate.Country, actionResult.Country);
         }
@@ -235,7 +256,7 @@ namespace API_Test.ServiceTest
             var customerUpdate = new Customer { CustomerName = name, Country = country, Deprecated = false };
             var customer = new Customer { CustomerId = 1, CustomerName = "Luca", Country = "France", Deprecated = false };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //Act
             var result = _customerService.UpdateCustomer(1, customerUpdate);
             //Assert
@@ -257,11 +278,11 @@ namespace API_Test.ServiceTest
             var customerUpdate = new Customer { CustomerName = "Marco", Country = "Italy" };
             var customer = new Customer { CustomerName = "Luca", Country = "France" };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //Act
-            var exception = Assert.Throws<Exception>(() => _customerService.UpdateCustomer(id, customerUpdate));
+            var exception = Assert.ThrowsAsync<NotFoundException>(async () => await _customerService.UpdateCustomer(id, customerUpdate));
             //Assert
-            var action = Assert.IsType<Exception>(exception);
+            var action = Assert.IsType<NotFoundException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Customer not found", actionResult);
 
@@ -275,11 +296,11 @@ namespace API_Test.ServiceTest
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
             var customerUpdate = new Customer { CustomerName = "Luca".PadRight(101, 'X'), Country = "France" };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.UpdateCustomer(1, customerUpdate));
+            var exception = Assert.ThrowsAsync<ErrorInputPropertyException>(async () =>await  _customerService.UpdateCustomer(1, customerUpdate));
             //Assert
-            var action = Assert.IsType<ArgumentException>(exception);
+            var action = Assert.IsType<ErrorInputPropertyException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Customer name is too long", actionResult);
         }
@@ -292,11 +313,11 @@ namespace API_Test.ServiceTest
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
             var customerUpdate = new Customer { CustomerName = "Luca", Country = "France".PadRight(51, 'X') };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.UpdateCustomer(1, customerUpdate));
+            var exception = Assert.ThrowsAsync<ErrorInputPropertyException>(async () =>await  _customerService.UpdateCustomer(1, customerUpdate));
             //Assert
-            var action = Assert.IsType<ArgumentException>(exception);
+            var action = Assert.IsType<ErrorInputPropertyException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Country is too long", actionResult);
         }
@@ -309,11 +330,11 @@ namespace API_Test.ServiceTest
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
             var customerUpdate = new Customer { CustomerName = "Luca", Country = "@" };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             //Act
-            var exception = Assert.Throws<ArgumentException>(() => _customerService.UpdateCustomer(1, customerUpdate));
+            var exception = Assert.ThrowsAsync<ErrorInputPropertyException>(async () =>await _customerService.UpdateCustomer(1, customerUpdate));
             //Assert
-            var action = Assert.IsType<ArgumentException>(exception);
+            var action = Assert.IsType<ErrorInputPropertyException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Country can't have special characters", actionResult);
         }
@@ -325,19 +346,19 @@ namespace API_Test.ServiceTest
             //Arrange
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             var sales = new Sale { BoLnumber = "1", BookingNumber = "2", CustomerId = 1, SaleDate = DateTime.Now, SaleId = 1, Status = "paid", TotalRevenue = 1000 };
             _context.Sales.Add(sales);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             //Act
-            var result = _customerService.DeleteCustomer(1);
+            var result = await _customerService.DeleteCustomer(1);
 
             //Assert
             _mockSalesService.Verify(s => s.DeleteSale(sales.SaleId), Times.Once);
             Assert.NotNull(result);
             Assert.Equal(customer.CustomerId, result.CustomerId);
-            Assert.False(_context.Customers.Any(c => c.CustomerId == customer.CustomerId));
+            Assert.False(await _context.Customers.AnyAsync(c => c.CustomerId == customer.CustomerId));
         }
 
         [Fact]
@@ -346,10 +367,10 @@ namespace API_Test.ServiceTest
             //Arrange
             var customer = new Customer { CustomerName = "Marco", Country = "Italy" };
             _context.Customers.Add(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             //Act
-            var result = _customerService.DeleteCustomer(1);
+            var result =await _customerService.DeleteCustomer(1);
 
             //Assert
             Assert.NotNull(result);
@@ -360,9 +381,9 @@ namespace API_Test.ServiceTest
         [Fact]
         public async Task Delete_No_Customer()
         {
-            var exception = Assert.Throws<Exception>(() => _customerService.DeleteCustomer(1));
+            var exception = Assert.ThrowsAsync<NotFoundException>(async () =>await  _customerService.DeleteCustomer(1));
             //Assert
-            var action = Assert.IsType<Exception>(exception);
+            var action = Assert.IsType<NotFoundException>(exception);
             var actionResult = Assert.IsType<string>(action.Message);
             Assert.Equal("Customer not found!", actionResult);
         }

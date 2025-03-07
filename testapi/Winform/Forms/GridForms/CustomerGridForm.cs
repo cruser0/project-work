@@ -18,7 +18,9 @@ namespace Winform.Forms
         int pages;
         double itemsPage = 10.0;
         Form _father;
-
+        Task<ICollection<Customer>> getAllNotFiltered;
+        Task<int> countNotFiltered;
+        Task<CustomerDGV> getFav;
         private UserService _userService;
         public CustomerGridForm()
         {
@@ -106,18 +108,16 @@ namespace Winform.Forms
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await totalCount / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-
-
-            if (!PaginationUserControl.Visible)
-            {
-                await SetCheckBoxes();
-            }
-
         }
 
         private async Task SetCheckBoxes()
         {
-            CustomerDGV cdgv = await _userService.GetCustomerDGV();
+            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            IEnumerable<Customer> query = await getAllNotFiltered;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CustomerDgv.DataSource = query.ToList();
+            CustomerDGV cdgv = await getFav;
             CustomerCountryTsmi.Checked = cdgv.ShowCountry;
             CustomerDateTsmi.Checked = cdgv.ShowDate;
             CustomerIDTsmi.Checked = cdgv.ShowID;
@@ -273,6 +273,14 @@ namespace Winform.Forms
                 await _userService.PostCustomerDGV(cdgv);
 
             }
+        }
+
+        private async void CustomerGridForm_Load(object sender, EventArgs e)
+        {
+            getAllNotFiltered = _customerService.GetAll(new CustomerFilter());
+            countNotFiltered = _customerService.Count(new CustomerFilter());
+            getFav = _userService.GetCustomerDGV();
+            await SetCheckBoxes();
         }
     }
 }

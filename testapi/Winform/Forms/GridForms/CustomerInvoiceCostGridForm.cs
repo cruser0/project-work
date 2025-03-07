@@ -15,6 +15,9 @@ namespace Winform.Forms.GridForms
         int pages;
         double itemsPage = 10.0;
         UserService _userService;
+        Task<ICollection<CustomerInvoiceCost>> getAllNotFiltered;
+        Task<int> countNotFiltered;
+        Task<CustomerInvoiceCostDGV> getFav;
         public CustomerInvoiceCostGridForm()
         {
             Init();
@@ -87,15 +90,15 @@ namespace Winform.Forms.GridForms
 
             CustomerInvoiceCostDgv.DataSource = query.ToList();
 
-            if (!PaginationUserControl.Visible)
-            {
-                await SetCheckBoxes();
-            }
-
         }
         private async Task SetCheckBoxes()
         {
-            CustomerInvoiceCostDGV cdgv = await _userService.GetCustomerInvoiceCostDGV();
+            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            IEnumerable<CustomerInvoiceCost> query = await getAllNotFiltered;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CustomerInvoiceCostDgv.DataSource = query.ToList();
+            CustomerInvoiceCostDGV cdgv = await getFav;
 
             CustomerInvoiceCostCostTsmi.Checked = cdgv.ShowCost;
             CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked = cdgv.ShowInvoiceID;
@@ -221,6 +224,14 @@ namespace Winform.Forms.GridForms
                 await _userService.PostCustomerInvoiceCostDGV(cdgv);
 
             }
+        }
+
+        private async void CustomerInvoiceCostGridForm_Load(object sender, EventArgs e)
+        {
+            getAllNotFiltered = _customerInvoiceCostService.GetAll(new CustomerInvoiceCostFilter());
+            countNotFiltered = _customerInvoiceCostService.Count(new CustomerInvoiceCostFilter());
+            getFav = _userService.GetCustomerInvoiceCostDGV();
+            await SetCheckBoxes();
         }
     }
 }
