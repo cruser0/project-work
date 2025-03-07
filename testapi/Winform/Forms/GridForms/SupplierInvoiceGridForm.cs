@@ -153,6 +153,7 @@ namespace Winform.Forms
 
             var query = _supplierInvoiceService.GetAll(filter);
             var count = _supplierInvoiceService.Count(filterPage);
+                await Task.WhenAll(count, query);
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
@@ -160,12 +161,7 @@ namespace Winform.Forms
             SupplierInvoiceDgv.DataSource = query1.ToList();
             if (!PaginationUserControl.Visible)
             {
-                var check = SetCheckBoxes();
-                await Task.WhenAll(count, query, check);
-            }
-            else
-            {
-                await Task.WhenAll(count, query);
+                await SetCheckBoxes();
             }
         }
 

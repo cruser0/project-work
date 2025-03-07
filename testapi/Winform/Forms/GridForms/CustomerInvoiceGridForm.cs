@@ -121,6 +121,7 @@ namespace Winform.Forms.CreateWindow
 
             var query = _customerService.GetAll(filter);
             var count = _customerService.Count(filterPage);
+                await Task.WhenAll(count, query);
 
 
             IEnumerable<CustomerInvoice> query1 = await query;
@@ -130,13 +131,9 @@ namespace Winform.Forms.CreateWindow
 
             if (!PaginationUserControl.Visible)
             {
-                var check = SetCheckBoxes();
-                await Task.WhenAll(count, query, check);
+               await SetCheckBoxes();
             }
-            else
-            {
-                await Task.WhenAll(count, query);
-            }
+  
         }
         private async Task SetCheckBoxes()
         {
