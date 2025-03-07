@@ -1,5 +1,4 @@
 ﻿using API.Models.Filters;
-using System.Text.Json;
 using Winform.Entities.DTO;
 
 
@@ -7,7 +6,7 @@ using Winform.Entities.DTO;
 
 namespace Winform.Services
 {
-    internal class ValueService:BaseCallService
+    internal class ValueService : BaseCallService
     {
         private string BuildQueryParamsCustomer(CustomerFilter filter)
         {
@@ -207,7 +206,7 @@ namespace Winform.Services
             if (queryString.Length > 0) queryString = "?" + queryString;
 
 
-            var returnResult = await GetItem<CustomerGroupDTO>(client, "Values/customers", "Customer Tables");
+            var returnResult = await GetItem<CustomerGroupDTO>(client, "Values/customers" + queryString, "Customer Tables");
             return returnResult;
         }
 
@@ -222,7 +221,7 @@ namespace Winform.Services
             string queryString = queryString1 + "&" + queryString2 + "&" + queryString3;
             if (queryString.Length > 0) queryString = "?" + queryString;
 
-            var returnResult = await GetItem<supplierGroupDTO>(client, "Values/suppliers", "Supplier Tables");
+            var returnResult = await GetItem<supplierGroupDTO>(client, "Values/suppliers" + queryString, "Supplier Tables");
             return returnResult;
         }
     }

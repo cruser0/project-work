@@ -78,6 +78,36 @@ namespace API_Test.ServiceTest
         }
 
         [Fact]
+        public async Task supplierServicesTest_ReturnCorrect_GetAllSuppliersPage()
+        {
+
+            var suppliers = new List<Supplier>() { new Supplier() { SupplierName = "aaa", Country = "aaa"},
+                                                   new Supplier() { SupplierName = "bbb", Country = "bbb"},
+                                                   new Supplier() { SupplierName = "ccc", Country = "ccc"},
+                                                   new Supplier() { SupplierName = "ddd", Country = "ddd"},
+                                                   new Supplier() { SupplierName = "eee", Country = "eee"},
+                                                   new Supplier() { SupplierName = "fff", Country = "fff"},
+                                                   new Supplier() { SupplierName = "ggg", Country = "ggg"},
+                                                   new Supplier() { SupplierName = "hhh", Country = "hhh"},
+                                                   new Supplier() { SupplierName = "iii", Country = "iii"},
+                                                   new Supplier() { SupplierName = "jjj", Country = "jjj"},
+                                                   new Supplier() { SupplierName = "kkk", Country = "kkk"},
+                                                   new Supplier() { SupplierName = "lll", Country = "lll"},
+                                                   new Supplier() { SupplierName = "mmm", Country = "mmm"},
+                                                   new Supplier() { SupplierName = "nnn", Country = "nnn"},
+                                                   new Supplier() { SupplierName = "ooo", Country = "ooo"}
+            };
+
+            _context.Suppliers.AddRange(suppliers);
+            _context.SaveChanges();
+
+            var result = await _supplierService.GetAllSuppliers(new SupplierFilter() { SupplierPage = 1 });
+
+            Assert.NotNull(result);
+            Assert.Equal(10, result.Count);
+        }
+
+        [Fact]
         public async Task supplierServicesTest_ReturnCorrect_GetAllSuppliers_NoSuppliers()
         {
 
