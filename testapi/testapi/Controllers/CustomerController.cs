@@ -5,6 +5,7 @@ using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -84,6 +85,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         // PUT api/<CustomerController>/5
@@ -101,6 +103,7 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
 
         }
 
