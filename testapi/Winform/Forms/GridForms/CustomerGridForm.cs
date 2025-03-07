@@ -100,6 +100,7 @@ namespace Winform.Forms
 
             var query = _customerService.GetAll(filter);
             var totalCount = _customerService.Count(filterPage);
+            await Task.WhenAll(query, totalCount);
             IEnumerable<Customer> query1 = await query;
             CustomerDgv.DataSource = query1.ToList();
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await totalCount / itemsPage)).ToString();
@@ -109,12 +110,7 @@ namespace Winform.Forms
 
             if (!PaginationUserControl.Visible)
             {
-                var check = SetCheckBoxes();
-                await Task.WhenAll(query, totalCount, check);
-            }
-            else
-            {
-                await Task.WhenAll(query, totalCount);
+                await SetCheckBoxes();
             }
 
         }

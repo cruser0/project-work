@@ -75,6 +75,7 @@ namespace Winform.Forms.GridForms
             var getAllTask = _customerInvoiceCostService.GetAll(filter);
             var countTask = _customerInvoiceCostService.Count(filterPage);
 
+            await Task.WhenAll(getAllTask, countTask);
 
 
 
@@ -88,12 +89,7 @@ namespace Winform.Forms.GridForms
 
             if (!PaginationUserControl.Visible)
             {
-                var check = SetCheckBoxes();
-                await Task.WhenAll(getAllTask, countTask, check);
-            }
-            else
-            {
-                await Task.WhenAll(getAllTask, countTask);
+                await SetCheckBoxes();
             }
 
         }

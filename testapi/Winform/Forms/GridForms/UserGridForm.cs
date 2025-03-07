@@ -97,8 +97,13 @@ namespace Winform.Forms.GridForms
             };
 
             // Recupera i dati filtrati e aggiorna la DataGridView
-            IEnumerable<UserRoleDTO> query = await _userService.GetAll(filter);
-            userDgv.DataSource = query.ToList();
+            var query = _userService.GetAll(filter);
+            var totalRecords = _userService.Count(filterPage);
+            await Task.WhenAll(totalRecords, query);
+
+            IEnumerable<UserRoleDTO> query1 = await query;
+            userDgv.DataSource = query1.ToList();
+            int maxPages = (int)Math.Ceiling((double)await totalRecords / itemsPage);
 
             // Aggiungi la colonna per i ruoli, se non presente
             if (!userDgv.Columns.Contains("Roles"))
@@ -113,8 +118,6 @@ namespace Winform.Forms.GridForms
             }
 
             // Aggiorna il numero massimo di pagine per la paginazione
-            int totalRecords = await _userService.Count(filterPage);
-            int maxPages = (int)Math.Ceiling((double)totalRecords / itemsPage);
             paginationControl.maxPage = maxPages.ToString();
             paginationControl.SetPageLbl($"{paginationControl.CurrentPage}/{maxPages}");
 

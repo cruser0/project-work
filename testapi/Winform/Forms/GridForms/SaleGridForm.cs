@@ -109,19 +109,15 @@ namespace Winform.Forms
 
             var query = _saleService.GetAll(filter);
             var count = _saleService.Count(filterPage);
-            IEnumerable<SaleCustomerDTO> query1 = await query;
+            await Task.WhenAll(query, count);
+
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            IEnumerable<SaleCustomerDTO> query1 = await query;
             SaleDgv.DataSource = query1.ToList();
             if (!PaginationUserControl.Visible)
             {
-                var check = SetCheckBoxes();
-                await Task.WhenAll(query, count, check);
-            }
-            else
-            {
-                await Task.WhenAll(query, count);
-
+                await SetCheckBoxes();
             }
         }
 
