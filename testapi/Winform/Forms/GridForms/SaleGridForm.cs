@@ -21,7 +21,9 @@ namespace Winform.Forms
         double itemsPage = 10.0;
         private SaleService _saleService;
         private Form _father;
-
+        Task<ICollection<SaleCustomerDTO>> getAllNotFiltered;
+        Task<int> countNotFiltered;
+        Task<SaleDGV> getFav;
         UserService _userService;
         public SaleGridForm()
         {
@@ -115,15 +117,16 @@ namespace Winform.Forms
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             IEnumerable<SaleCustomerDTO> query1 = await query;
             SaleDgv.DataSource = query1.ToList();
-            if (!PaginationUserControl.Visible)
-            {
-                await SetCheckBoxes();
-            }
         }
 
         private async Task SetCheckBoxes()
         {
-            SaleDGV cdgv = await _userService.GetSaleDGV();
+            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            IEnumerable<SaleCustomerDTO> query = await getAllNotFiltered;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            SaleDgv.DataSource = query.ToList();
+            SaleDGV cdgv = await getFav;
 
             SaleIDTsmi.Checked = cdgv.ShowID;
             SaleBkNumberTsmi.Checked = cdgv.ShowBKNumber;
@@ -291,6 +294,14 @@ namespace Winform.Forms
                 };
                 await _userService.PostSaleDGV(cdgv);
             }
+        }
+
+        private async void SaleGridForm_Load(object sender, EventArgs e)
+        {
+            getAllNotFiltered = _saleService.GetAll(new SaleFilter());
+            countNotFiltered = _saleService.Count(new SaleFilter());
+            getFav = _userService.GetSaleDGV();
+            await SetCheckBoxes();
         }
     }
 }

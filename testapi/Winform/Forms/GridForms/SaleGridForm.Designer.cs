@@ -468,7 +468,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SaleGridForm";
             this.Text = "SaleForm";
-            this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Load += new System.EventHandler(this.SaleGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.RigtPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);

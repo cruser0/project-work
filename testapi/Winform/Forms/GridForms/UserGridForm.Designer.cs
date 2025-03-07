@@ -325,7 +325,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "UserGridForm";
             this.Text = "UserGridForm";
-            this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Load += new System.EventHandler(this.UserGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
             this.FilterPanel.ResumeLayout(false);

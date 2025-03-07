@@ -424,7 +424,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SupplierInvoiceGridForm";
             this.Text = "SupplierInvoiceForm";
-            this.Load += new System.EventHandler(this.MyControl_ButtonClicked);
+            this.Load += new System.EventHandler(this.SupplierInvoiceGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.panel1.ResumeLayout(false);
             this.RigtPanel.ResumeLayout(false);
