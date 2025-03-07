@@ -50,7 +50,7 @@
             this.UserNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserLastNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserEmailTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.UserrRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -262,15 +262,15 @@
             this.UserNameTsmi,
             this.UserLastNameTsmi,
             this.UserEmailTsmi,
-            this.UserrRoleTsmi});
+            this.UserRoleTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(163, 114);
+            this.RightClickDgv.Size = new System.Drawing.Size(181, 136);
             // 
             // UserIDTsmi
             // 
             this.UserIDTsmi.CheckOnClick = true;
             this.UserIDTsmi.Name = "UserIDTsmi";
-            this.UserIDTsmi.Size = new System.Drawing.Size(162, 22);
+            this.UserIDTsmi.Size = new System.Drawing.Size(180, 22);
             this.UserIDTsmi.Text = "Show ID";
             this.UserIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -280,7 +280,7 @@
             this.UserNameTsmi.CheckOnClick = true;
             this.UserNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UserNameTsmi.Name = "UserNameTsmi";
-            this.UserNameTsmi.Size = new System.Drawing.Size(162, 22);
+            this.UserNameTsmi.Size = new System.Drawing.Size(180, 22);
             this.UserNameTsmi.Text = "Show Name";
             this.UserNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -290,7 +290,7 @@
             this.UserLastNameTsmi.CheckOnClick = true;
             this.UserLastNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UserLastNameTsmi.Name = "UserLastNameTsmi";
-            this.UserLastNameTsmi.Size = new System.Drawing.Size(162, 22);
+            this.UserLastNameTsmi.Size = new System.Drawing.Size(180, 22);
             this.UserLastNameTsmi.Text = "Show Last Name";
             this.UserLastNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -300,19 +300,19 @@
             this.UserEmailTsmi.CheckOnClick = true;
             this.UserEmailTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.UserEmailTsmi.Name = "UserEmailTsmi";
-            this.UserEmailTsmi.Size = new System.Drawing.Size(162, 22);
+            this.UserEmailTsmi.Size = new System.Drawing.Size(180, 22);
             this.UserEmailTsmi.Text = "Show Email";
             this.UserEmailTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // UserrRoleTsmi
+            // UserRoleTsmi
             // 
-            this.UserrRoleTsmi.Checked = true;
-            this.UserrRoleTsmi.CheckOnClick = true;
-            this.UserrRoleTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.UserrRoleTsmi.Name = "UserrRoleTsmi";
-            this.UserrRoleTsmi.Size = new System.Drawing.Size(162, 22);
-            this.UserrRoleTsmi.Text = "Show Roles";
-            this.UserrRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.UserRoleTsmi.Checked = true;
+            this.UserRoleTsmi.CheckOnClick = true;
+            this.UserRoleTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UserRoleTsmi.Name = "UserRoleTsmi";
+            this.UserRoleTsmi.Size = new System.Drawing.Size(180, 22);
+            this.UserRoleTsmi.Text = "Show Roles";
+            this.UserRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // UserGridForm
             // 
@@ -361,7 +361,7 @@
         private ToolStripMenuItem UserNameTsmi;
         private ToolStripMenuItem UserLastNameTsmi;
         private ToolStripMenuItem UserEmailTsmi;
-        private ToolStripMenuItem UserrRoleTsmi;
+        private ToolStripMenuItem UserRoleTsmi;
         public Panel panel3;
     }
 }

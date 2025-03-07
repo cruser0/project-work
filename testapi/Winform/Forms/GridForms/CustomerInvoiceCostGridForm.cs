@@ -228,7 +228,7 @@ namespace Winform.Forms.GridForms
 
         private async void CustomerInvoiceCostGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _customerInvoiceCostService.GetAll(new CustomerInvoiceCostFilter());
+            getAllNotFiltered = _customerInvoiceCostService.GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostPage = 1 });
             countNotFiltered = _customerInvoiceCostService.Count(new CustomerInvoiceCostFilter());
             getFav = _userService.GetCustomerInvoiceCostDGV();
             await SetCheckBoxes();

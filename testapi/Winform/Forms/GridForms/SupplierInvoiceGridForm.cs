@@ -319,7 +319,7 @@ namespace Winform.Forms
 
         private async void SupplierInvoiceGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _supplierInvoiceService.GetAll(new SupplierInvoiceFilter());
+            getAllNotFiltered = _supplierInvoiceService.GetAll(new SupplierInvoiceFilter() { SupplierInvoicePage = 1 });
             countNotFiltered = _supplierInvoiceService.Count(new SupplierInvoiceFilter());
             getFav = _userService.GetSupplierInvoiceDGV();
             await SetCheckBoxes();

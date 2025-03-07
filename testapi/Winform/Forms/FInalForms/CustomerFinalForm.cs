@@ -1,5 +1,6 @@
 ﻿using API.Models.Filters;
 using System.Data;
+using Winform.Entities;
 using Winform.Entities.DTO;
 using Winform.Services;
 
@@ -136,8 +137,8 @@ namespace Winform.Forms.FInalForms
                 dataGridView1.Columns["OriginalID"].Visible = false;
                 dataGridView2.Columns["SaleId"].Visible = false;
                 dataGridView2.Columns["CustomerId"].Visible = false;
-                dataGridView3.Columns["CustomerInvoiceID"].Visible = false;
                 dataGridView3.Columns["SaleID"].Visible = false;
+                dataGridView3.Columns["CustomerInvoiceID"].Visible = false;
                 dataGridView4.Columns["CustomerInvoiceCostsID"].Visible = false;
                 dataGridView4.Columns["CustomerInvoiceID"].Visible = false;
                 flag = !flag;
@@ -180,9 +181,9 @@ namespace Winform.Forms.FInalForms
                 }
                 else
                 {
-                    dataGridView2.DataSource = new SaleFilter();
-                    dataGridView3.DataSource = new CustomerInvoiceFilter();
-                    dataGridView4.DataSource = new CustomerInvoiceCostFilter();
+                    dataGridView2.DataSource = new List<Sale>();
+                    dataGridView3.DataSource = new List<CustomerInvoice>();
+                    dataGridView4.DataSource = new List<CustomerInvoiceCost>();
                     TSLbl3.Text = "N/A";
                     TSLbl4.Text = "N/A";
                     TSLbl2.Text = "N/A";
@@ -190,9 +191,9 @@ namespace Winform.Forms.FInalForms
             }
             else
             {
-                dataGridView2.DataSource = new SaleFilter();
-                dataGridView3.DataSource = new CustomerInvoiceFilter();
-                dataGridView4.DataSource = new CustomerInvoiceCostFilter();
+                dataGridView2.DataSource = new List<Sale>();
+                dataGridView3.DataSource = new List<CustomerInvoice>();
+                dataGridView4.DataSource = new List<CustomerInvoiceCost>();
                 TSLbl3.Text = "N/A";
                 TSLbl4.Text = "N/A";
                 TSLbl2.Text = "N/A";
@@ -216,16 +217,16 @@ namespace Winform.Forms.FInalForms
                 }
                 else
                 {
-                    dataGridView3.DataSource = new CustomerInvoiceFilter();
-                    dataGridView4.DataSource = new CustomerInvoiceCostFilter();
+                    dataGridView3.DataSource = new List<CustomerInvoice>();
+                    dataGridView4.DataSource = new List<CustomerInvoiceCost>();
                     TSLbl3.Text = "N/A";
                     TSLbl4.Text = "N/A";
                 }
             }
             else
             {
-                dataGridView3.DataSource = new CustomerInvoiceFilter();
-                dataGridView4.DataSource = new CustomerInvoiceCostFilter();
+                dataGridView3.DataSource = new List<CustomerInvoice>();
+                dataGridView4.DataSource = new List<CustomerInvoiceCost>();
                 TSLbl4.Text = "N/A";
                 TSLbl3.Text = "N/A";
             }
@@ -244,7 +245,7 @@ namespace Winform.Forms.FInalForms
             }
             else
             {
-                dataGridView4.DataSource = new CustomerInvoiceCostFilter();
+                dataGridView4.DataSource = new List<CustomerInvoiceCost>();
                 TSLbl4.Text = "N/A";
             }
         }
@@ -442,6 +443,9 @@ namespace Winform.Forms.FInalForms
 
         private void SupplierFinalForm_ResizeEnd(object sender, EventArgs e)
         {
+            if (WindowState == FormWindowState.Minimized)
+                return;
+
             if (DockButton.Text == ">")
             {
                 int minSize = searchCustomer1.Width + 30;

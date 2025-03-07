@@ -298,7 +298,7 @@ namespace Winform.Forms
 
         private async void SaleGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _saleService.GetAll(new SaleFilter());
+            getAllNotFiltered = _saleService.GetAll(new SaleFilter() { SalePage = 1 });
             countNotFiltered = _saleService.Count(new SaleFilter());
             getFav = _userService.GetSaleDGV();
             await SetCheckBoxes();

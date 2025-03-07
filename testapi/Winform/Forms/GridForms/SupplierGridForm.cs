@@ -119,7 +119,7 @@ namespace Winform.Forms
 
         private async Task SetCheckBoxes()
         {
-            await Task.WhenAll(getFav, countNotFiltered,getAllNotFiltered);
+            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<Supplier> query = await getAllNotFiltered;
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
@@ -268,9 +268,9 @@ namespace Winform.Forms
 
         private async void SupplierGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _supplierService.GetAll(new SupplierFilter());
-            countNotFiltered=_supplierService.Count(new SupplierFilter());
-            getFav=_userService.GetSupplierDGV();
+            getAllNotFiltered = _supplierService.GetAll(new SupplierFilter() { SupplierPage = 1 });
+            countNotFiltered = _supplierService.Count(new SupplierFilter());
+            getFav = _userService.GetSupplierDGV();
             await SetCheckBoxes();
 
         }
