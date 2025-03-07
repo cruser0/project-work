@@ -40,11 +40,12 @@ namespace Winform.Forms.FInalForms
         {
             _valueService = new ValueService();
             InitializeComponent();
-            if (UtilityFunctions.IsAuthorized(new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, true)
-                || UtilityFunctions.IsAuthorized(new[] { "Admin" }, true))
+            if (!UtilityFunctions.IsAuthorized(new[] { "Admin" }) && (!UtilityFunctions.IsAuthorized(new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, true)))
             {
                 HideMenuItems();
             }
+
+
         }
 
         private void HideMenuItems()
@@ -475,6 +476,9 @@ namespace Winform.Forms.FInalForms
 
         private void SupplierFinalForm_ResizeEnd(object sender, EventArgs e)
         {
+            if (WindowState == FormWindowState.Minimized)
+                return;
+
             if (DockButton.Text == ">")
             {
                 int minSize = searchSupplier1.Width + 30;

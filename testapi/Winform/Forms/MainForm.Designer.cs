@@ -696,7 +696,6 @@
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
-            this.IsMdiContainer = true;
             this.MdiChildrenMinimizedAnchorBottom = false;
             this.Name = "MainForm";
             this.Text = "MainForm";

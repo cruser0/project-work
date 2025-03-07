@@ -284,7 +284,7 @@ namespace Winform.Forms.CreateWindow
 
         private async void CustomerInvoiceGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _customerService.GetAll(new CustomerInvoiceFilter());
+            getAllNotFiltered = _customerService.GetAll(new CustomerInvoiceFilter() { CustomerInvoicePage = 1 });
             countNotFiltered = _customerService.Count(new CustomerInvoiceFilter());
             getFav = _userService.GetCustomerInvoiceDGV();
             await SetCheckBoxes();

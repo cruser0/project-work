@@ -126,9 +126,6 @@ namespace Winform
             int? countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             List<Form?> childrenOpen = MainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
-
-
-
             // Check if the form is already open
             Form? existingForm = MainPanel.Controls.OfType<Form>().FirstOrDefault(f => f.Text == formName);
             if (existingForm != null)
@@ -441,6 +438,16 @@ namespace Winform
             Form form = (Form)e.Control;
 
             form.ShowIcon = false;
+            if (form.Text.Contains("Show") || form.Text.Contains("Group"))
+            {
+                toolStripButton3.PerformClick();
+                form.WindowState = FormWindowState.Maximized;
+            }
+            else if (form.Text.Contains("Create") || form.Text.Contains("Details"))
+            {
+                form.MaximizeBox = false;
+                form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            }
         }
     }
 }

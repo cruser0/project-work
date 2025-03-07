@@ -283,7 +283,7 @@ namespace Winform.Forms
 
         private async void CustomerGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _customerService.GetAll(new CustomerFilter());
+            getAllNotFiltered = _customerService.GetAll(new CustomerFilter() { CustomerPage = 1 });
             countNotFiltered = _customerService.Count(new CustomerFilter());
             getFav = _userService.GetCustomerDGV();
             await SetCheckBoxes();

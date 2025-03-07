@@ -26,7 +26,7 @@
         public string? Name { get; set; }
         public string? LastName { get; set; }
         public List<string>? Role { get; set; }
-        public string RolesAsString
+        public string Roles
         {
             get
             {

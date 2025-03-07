@@ -109,18 +109,6 @@ namespace Winform.Forms.GridForms
 
             userDgv.DataSource = query.ToList();
 
-            // Aggiungi la colonna per i ruoli, se non presente
-            if (!userDgv.Columns.Contains("Roles"))
-            {
-                DataGridViewTextBoxColumn rolesColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "Roles",
-                    HeaderText = "Roles",
-                    DataPropertyName = "RolesAsString" // Bind to the computed property
-                };
-                userDgv.Columns.Add(rolesColumn);
-            }
-
             // Aggiorna il numero massimo di pagine per la paginazione
             int maxPages = (int)Math.Ceiling(totalRecords / itemsPage);
             paginationControl.maxPage = maxPages.ToString();
@@ -129,18 +117,20 @@ namespace Winform.Forms.GridForms
         }
         private async Task SetCheckBoxes()
         {
+
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<UserRoleDTO> query = await getAllNotFiltered;
             paginationControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
             paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
             userDgv.DataSource = query.ToList();
+
             UserDGV cdgv = await getFav;
 
             UserIDTsmi.Checked = cdgv.ShowID;
             UserNameTsmi.Checked = cdgv.ShowName;
             UserLastNameTsmi.Checked = cdgv.ShowLastName;
             UserEmailTsmi.Checked = cdgv.ShowEmail;
-            UserrRoleTsmi.Checked = cdgv.ShowRoles;
+            UserRoleTsmi.Checked = cdgv.ShowRoles;
             paginationControl.Visible = true;
             userDgv.Columns["UserID"].Visible = cdgv.ShowID;
             userDgv.Columns["Name"].Visible = cdgv.ShowName;
@@ -252,7 +242,7 @@ namespace Winform.Forms.GridForms
                         userDgv.Columns["Email"].Visible = tsmi.Checked;
                         break;
                     case "UserRoleTsmi":
-                        userDgv.Columns["RoleAsString"].Visible = tsmi.Checked;
+                        userDgv.Columns["Roles"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;
@@ -262,7 +252,7 @@ namespace Winform.Forms.GridForms
                     ShowID = UserIDTsmi.Checked,
                     ShowLastName = UserLastNameTsmi.Checked,
                     ShowEmail = UserEmailTsmi.Checked,
-                    ShowRoles = UserrRoleTsmi.Checked,
+                    ShowRoles = UserRoleTsmi.Checked,
                     ShowName = UserNameTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
@@ -317,7 +307,9 @@ namespace Winform.Forms.GridForms
 
         private async void UserGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _userService.GetAll(new UserFilter());
+
+
+            getAllNotFiltered = _userService.GetAll(new UserFilter() { UserPage = 1 });
             countNotFiltered = _userService.Count(new UserFilter());
             getFav = _userService.GetUserDGV();
             await SetCheckBoxes();
