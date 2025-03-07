@@ -123,7 +123,6 @@ namespace Winform.Forms.CreateWindow
             var count = _customerService.Count(filterPage);
 
 
-            await Task.WhenAll(count,query);
             IEnumerable<CustomerInvoice> query1 = await query;
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
@@ -131,10 +130,15 @@ namespace Winform.Forms.CreateWindow
 
             if (!PaginationUserControl.Visible)
             {
-                SetCheckBoxes();
+                var check = SetCheckBoxes();
+                await Task.WhenAll(count, query, check);
+            }
+            else
+            {
+                await Task.WhenAll(count, query);
             }
         }
-        private async void SetCheckBoxes()
+        private async Task SetCheckBoxes()
         {
             CustomerInvoiceDGV cdgv = await _userService.GetCustomerInvoiceDGV();
 
@@ -175,7 +179,7 @@ namespace Winform.Forms.CreateWindow
             if (sender is DataGridView dgv)
             {
                 if (_father is CreateCustomerInvoiceCostForm csif)
-                    csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
+                    csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["CustomerInvoiceId"].Value.ToString());
             }
 
         }

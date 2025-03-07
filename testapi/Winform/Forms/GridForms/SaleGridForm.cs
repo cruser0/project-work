@@ -70,31 +70,8 @@ namespace Winform.Forms
         private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            SaleFilter filter = new SaleFilter
-            {
-                SaleBookingNumber = BNTextBox.Text,
-                SaleBoLnumber = BoLTextBox.Text,
-                SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
-                SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
-                SaleRevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
-                SaleRevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
-                SaleCustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
-                SaleStatus = StatusCB.Text == "All" ? null : StatusCB.Text,
-                SalePage = PaginationUserControl.CurrentPage
 
-            };
-            SaleFilter filterPage = new SaleFilter
-            {
-                SaleBookingNumber = BNTextBox.Text,
-                SaleBoLnumber = BoLTextBox.Text,
-                SaleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null,
-                SaleDateTo = DateToDTP.Checked ? DateToDTP.Value : null,
-                SaleRevenueFrom = string.IsNullOrEmpty(RevenueFromTxt.GetText()) ? null : int.Parse(RevenueFromTxt.GetText()),
-                SaleRevenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText()),
-                SaleCustomerId = string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()) ? null : int.Parse(CustomerIDTextBoxUserControl.GetText()),
-                SaleStatus = StatusCB.Text == "All" ? null : StatusCB.Text
-            };
-
+            int outVal;
             bkNumber = BNTextBox.Text;
             blNumber = BoLTextBox.Text;
             saleDateFrom = DateFromDTP.Checked ? DateFromDTP.Value : null;
@@ -104,21 +81,51 @@ namespace Winform.Forms
             revenueTo = string.IsNullOrEmpty(RevenueToTxt.GetText()) ? null : int.Parse(RevenueToTxt.GetText());
             status = StatusCB.Text == "All" ? null : StatusCB.Text;
 
+            SaleFilter filter = new SaleFilter
+            {
+                SaleBookingNumber = bkNumber,
+                SaleBoLnumber = blNumber,
+                SaleDateFrom = saleDateFrom,
+                SaleDateTo = saleDateTo,
+                SaleCustomerId = int.TryParse(customerID, out outVal) ? outVal : null,
+                SaleRevenueFrom = revenueFrom,
+                SaleRevenueTo = revenueTo,
+                SaleStatus = status,
+                SalePage = PaginationUserControl.CurrentPage
+
+            };
+            SaleFilter filterPage = new SaleFilter
+            {
+                SaleBookingNumber = bkNumber,
+                SaleBoLnumber = blNumber,
+                SaleDateFrom = saleDateFrom,
+                SaleDateTo = saleDateTo,
+                SaleCustomerId = int.TryParse(customerID, out outVal) ? outVal : null,
+                SaleRevenueFrom = revenueFrom,
+                SaleRevenueTo = revenueTo,
+                SaleStatus = status,
+            };
+
 
             var query = _saleService.GetAll(filter);
             var count = _saleService.Count(filterPage);
-            await Task.WhenAll(query, count);
             IEnumerable<SaleCustomerDTO> query1 = await query;
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count/ itemsPage)).ToString();
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SaleDgv.DataSource = query1.ToList();
             if (!PaginationUserControl.Visible)
             {
-                SetCheckBoxes();
+                var check = SetCheckBoxes();
+                await Task.WhenAll(query, count, check);
+            }
+            else
+            {
+                await Task.WhenAll(query, count);
+
             }
         }
 
-        private async void SetCheckBoxes()
+        private async Task SetCheckBoxes()
         {
             SaleDGV cdgv = await _userService.GetSaleDGV();
 

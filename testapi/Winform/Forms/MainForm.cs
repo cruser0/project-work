@@ -11,6 +11,12 @@ namespace Winform
     {
         private TableLayoutPanel minimizedPanel; // Panel to hold minimized child forms
         UserService _userService;
+
+        private static readonly string[] AdminRoles = { "Admin" };
+        private static readonly string[] WriteRoles = { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
+        private static readonly string[] ReadRoles = { "Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "UserRead" };
+        private static readonly string[] AdminGroupRoles = { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
+
         public MainForm()
         {
             InitializeComponent();
@@ -40,11 +46,6 @@ namespace Winform
             };
             this.Controls.Add(minimizedPanel);
         }
-
-        private static readonly string[] AdminRoles = { "Admin" };
-        private static readonly string[] WriteRoles = { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
-        private static readonly string[] ReadRoles = { "Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "UserRead" };
-        private static readonly string[] AdminGroupRoles = { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
 
         private void SetAuthorizations()
         {
@@ -103,8 +104,6 @@ namespace Winform
                                       UtilityFunctions.IsAuthorized(new[] { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
         }
-
-
 
         private void buttonOpenChild_Click(object sender, EventArgs e)
         {
@@ -220,7 +219,7 @@ namespace Winform
 
         public void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
-            this.BeginInvoke(new Action(UpdateMdiLayout));
+            BeginInvoke(new Action(UpdateMdiLayout));
         }
 
         private void UpdateMdiLayout()
@@ -264,12 +263,10 @@ namespace Winform
 
         }
 
-
         private void Logout_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to log out?", "Logout Confirmation",
                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (result == DialogResult.Yes)
             {
                 this.DialogResult = DialogResult.Abort;  // Signal logout
@@ -284,7 +281,6 @@ namespace Winform
                 .Where(form => form.WindowState != FormWindowState.Minimized)
                 .ToList()
                 .ForEach(form => form.WindowState = FormWindowState.Minimized);
-
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -440,6 +436,12 @@ namespace Winform
             }
         }
 
+        private void MainPanel_ControlAdded(object sender, ControlEventArgs e)
+        {
+            Form form = (Form)e.Control;
+
+            form.ShowIcon = false;
+        }
     }
 }
 

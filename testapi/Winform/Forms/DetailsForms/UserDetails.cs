@@ -3,11 +3,11 @@ using Winform.Services;
 
 namespace Winform.Forms.DetailsForms
 {
-    public partial class UserDetails : Form
+    public partial class UserDetailsForm : Form
     {
         UserService _userService;
         UserRoleDTO user;
-        public UserDetails(int id)
+        public UserDetailsForm(int id)
         {
             Init(id);
         }

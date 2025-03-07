@@ -38,8 +38,15 @@ namespace Winform.Forms
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Pdf_Button = new System.Windows.Forms.Button();
             this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Excel_Button = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,25 +103,26 @@ namespace Winform.Forms
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.Excel_Button);
+            this.panel2.Controls.Add(this.Pdf_Button);
             this.panel2.Controls.Add(this.leftSideBaruSerControl1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 461);
+            this.panel2.Size = new System.Drawing.Size(200, 361);
             this.panel2.TabIndex = 10;
             // 
-            // button1
+            // Pdf_Button
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Pdf_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.Pdf_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.Pdf_Button.Location = new System.Drawing.Point(12, 12);
+            this.Pdf_Button.Name = "Pdf_Button";
+            this.Pdf_Button.Size = new System.Drawing.Size(75, 23);
+            this.Pdf_Button.TabIndex = 11;
+            this.Pdf_Button.Text = "Pdf";
+            this.Pdf_Button.UseVisualStyleBackColor = false;
+            this.Pdf_Button.Click += new System.EventHandler(this.button1_Click);
             // 
             // leftSideBaruSerControl1
             // 
@@ -122,8 +130,62 @@ namespace Winform.Forms
             this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 461);
+            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 361);
             this.leftSideBaruSerControl1.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "CustomerId";
+            this.dataGridViewTextBoxColumn7.HeaderText = "CustomerId";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "CustomerName";
+            this.dataGridViewTextBoxColumn8.HeaderText = "CustomerName";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "Country";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Country";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Deprecated";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Deprecated";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "CreatedAt";
+            this.dataGridViewTextBoxColumn11.HeaderText = "CreatedAt";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "OriginalID";
+            this.dataGridViewTextBoxColumn12.HeaderText = "OriginalID";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            // 
+            // Excel_Button
+            // 
+            this.Excel_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.Excel_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.Excel_Button.Location = new System.Drawing.Point(12, 41);
+            this.Excel_Button.Name = "Excel_Button";
+            this.Excel_Button.Size = new System.Drawing.Size(75, 23);
+            this.Excel_Button.TabIndex = 12;
+            this.Excel_Button.Text = "Excel";
+            this.Excel_Button.UseVisualStyleBackColor = false;
+            this.Excel_Button.Click += new System.EventHandler(this.button2_Click);
             // 
             // CustomerForm
             // 
@@ -151,6 +213,13 @@ namespace Winform.Forms
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private Button button1;
+        private Button Pdf_Button;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private Button Excel_Button;
     }
 }

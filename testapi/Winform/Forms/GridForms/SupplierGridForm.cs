@@ -66,47 +66,45 @@ namespace Winform.Forms
         private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            SupplierFilter filter = new SupplierFilter
-            {
-                SupplierName = NameSupplierTxt.Text,
-                SupplierCountry = CountrySupplierTxt.Text,
-                SupplierDeprecated = comboBox1.SelectedIndex switch
-                {
-                    1 => false,
-                    2 => true,
-                    _ => null
-                },
-                SupplierCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                SupplierCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-                SupplierPage = PaginationUserControl.CurrentPage
-
-            };
-            SupplierFilter filterPage = new SupplierFilter
-            {
-                SupplierName = NameSupplierTxt.Text,
-                SupplierCountry = CountrySupplierTxt.Text,
-                SupplierDeprecated = comboBox1.SelectedIndex switch
-                {
-                    1 => false,
-                    2 => true,
-                    _ => null
-                },
-                SupplierCreatedDateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null,
-                SupplierCreatedDateTo = DateToClnd.Checked ? DateToClnd.Value : null,
-
-            };
             name = NameSupplierTxt.Text;
             country = CountrySupplierTxt.Text;
             status = comboBox1.SelectedIndex;
             dateFrom = DateFromClnd.Checked ? DateFromClnd.Value : null;
             dateTo = DateToClnd.Checked ? DateToClnd.Value : null;
 
+            SupplierFilter filter = new SupplierFilter
+            {
+                SupplierName = name,
+                SupplierCountry = country,
+                SupplierDeprecated = status switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                },
+                SupplierCreatedDateFrom = dateFrom,
+                SupplierCreatedDateTo = dateTo,
+                SupplierPage = PaginationUserControl.CurrentPage
+            };
+            SupplierFilter filterPage = new SupplierFilter
+            {
+                SupplierName = name,
+                SupplierCountry = country,
+                SupplierDeprecated = status switch
+                {
+                    1 => false,
+                    2 => true,
+                    _ => null
+                },
+                SupplierCreatedDateFrom = dateFrom,
+                SupplierCreatedDateTo = dateTo
+            };
+
 
 
             var query = _supplierService.GetAll(filter);
             var count = _supplierService.Count(filterPage);
 
-            await Task.WhenAll(query,count);
             IEnumerable<Supplier> query1 = await query;
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
@@ -116,11 +114,16 @@ namespace Winform.Forms
 
             if (!PaginationUserControl.Visible)
             {
-                SetCheckBoxes();
+                var check = SetCheckBoxes();
+                await Task.WhenAll(query, count, check);
+            }
+            else
+            {
+                await Task.WhenAll(query, count);
             }
         }
 
-        private async void SetCheckBoxes()
+        private async Task SetCheckBoxes()
         {
             SupplierDGV cdgv = await _userService.GetSupplierDGV();
             SupplierCountryTsmi.Checked = cdgv.ShowCountry;

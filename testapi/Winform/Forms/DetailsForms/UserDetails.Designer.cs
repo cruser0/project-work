@@ -1,6 +1,6 @@
 ﻿namespace Winform.Forms.DetailsForms
 {
-    partial class UserDetails
+    partial class UserDetailsForm
     {
         /// <summary>
         /// Required designer variable.

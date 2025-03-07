@@ -120,6 +120,9 @@ namespace Winform.Forms
                 }
 
             }
+
+
+
             PaginationUserControl.CurrentPage = 1;
             SaleID = !string.IsNullOrEmpty(SaleIDTxt.GetText()) ? int.Parse(SaleIDTxt.GetText()) : null;
             SupplierID = !string.IsNullOrEmpty(SupplierIDTxt.GetText()) ? int.Parse(SupplierIDTxt.GetText()) : null;
@@ -150,7 +153,6 @@ namespace Winform.Forms
 
             var query = _supplierInvoiceService.GetAll(filter);
             var count = _supplierInvoiceService.Count(filterPage);
-            await Task.WhenAll(count,query);
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
@@ -158,12 +160,16 @@ namespace Winform.Forms
             SupplierInvoiceDgv.DataSource = query1.ToList();
             if (!PaginationUserControl.Visible)
             {
-                SetCheckBoxes();
-
+                var check = SetCheckBoxes();
+                await Task.WhenAll(count, query, check);
+            }
+            else
+            {
+                await Task.WhenAll(count, query);
             }
         }
 
-        private async void SetCheckBoxes()
+        private async Task SetCheckBoxes()
         {
             SupplierInvoiceDGV cdgv = await _userService.GetSupplierInvoiceDGV();
 

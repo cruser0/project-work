@@ -685,6 +685,7 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1159, 586);
             this.MainPanel.TabIndex = 10;
+            this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
             // 
             // MainForm
             // 

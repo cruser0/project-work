@@ -100,22 +100,26 @@ namespace Winform.Forms
 
             var query = _customerService.GetAll(filter);
             var totalCount = _customerService.Count(filterPage);
-
-            await Task.WhenAll(query, totalCount);
+            IEnumerable<Customer> query1 = await query;
+            CustomerDgv.DataSource = query1.ToList();
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await totalCount / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-            IEnumerable<Customer> query1 = await query;
-            CustomerDgv.DataSource = query1.ToList();
 
 
             if (!PaginationUserControl.Visible)
             {
-                SetCheckBoxes();
+                var check = SetCheckBoxes();
+                await Task.WhenAll(query, totalCount, check);
             }
+            else
+            {
+                await Task.WhenAll(query, totalCount);
+            }
+
         }
 
-        private async void SetCheckBoxes()
+        private async Task SetCheckBoxes()
         {
             CustomerDGV cdgv = await _userService.GetCustomerDGV();
             CustomerCountryTsmi.Checked = cdgv.ShowCountry;
