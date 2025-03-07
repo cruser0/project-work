@@ -378,7 +378,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerInvoiceGridForm";
             this.Text = "CustomerInvoiceGridForm";
-            this.Load += new System.EventHandler(this.RightSideBar_searchBtnEvent);
+            this.Load += new System.EventHandler(this.CustomerInvoiceGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.RightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);

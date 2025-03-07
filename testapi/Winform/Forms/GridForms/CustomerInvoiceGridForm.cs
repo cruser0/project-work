@@ -18,6 +18,9 @@ namespace Winform.Forms.CreateWindow
         int pages;
         CustomerInvoiceService _customerService;
         Form _father;
+        Task<ICollection<CustomerInvoice>> getAllNotFiltered;
+        Task<int> countNotFiltered;
+        Task<CustomerInvoiceDGV> getFav;
         List<string> authRoles = new List<string>
             {
                 "CustomerInvoiceAdmin",
@@ -121,7 +124,7 @@ namespace Winform.Forms.CreateWindow
 
             var query = _customerService.GetAll(filter);
             var count = _customerService.Count(filterPage);
-                await Task.WhenAll(count, query);
+            await Task.WhenAll(count, query);
 
 
             IEnumerable<CustomerInvoice> query1 = await query;
@@ -131,13 +134,18 @@ namespace Winform.Forms.CreateWindow
 
             if (!PaginationUserControl.Visible)
             {
-               await SetCheckBoxes();
+                await SetCheckBoxes();
             }
-  
+
         }
         private async Task SetCheckBoxes()
         {
-            CustomerInvoiceDGV cdgv = await _userService.GetCustomerInvoiceDGV();
+            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            IEnumerable<CustomerInvoice> query = await getAllNotFiltered;
+            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            CenterDgv.DataSource = query.ToList();
+            CustomerInvoiceDGV cdgv = await getFav;
 
             CustomerInvoiceDateTsmi.Checked = cdgv.ShowDate;
             CustomerInvoiceIDTsmi.Checked = cdgv.ShowID;
@@ -272,6 +280,14 @@ namespace Winform.Forms.CreateWindow
                 };
                 await _userService.PostCustomerInvoiceDGV(cdgv);
             }
+        }
+
+        private async void CustomerInvoiceGridForm_Load(object sender, EventArgs e)
+        {
+            getAllNotFiltered = _customerService.GetAll(new CustomerInvoiceFilter());
+            countNotFiltered = _customerService.Count(new CustomerInvoiceFilter());
+            getFav = _userService.GetCustomerInvoiceDGV();
+            await SetCheckBoxes();
         }
     }
 }

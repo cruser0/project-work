@@ -16,7 +16,9 @@ namespace Winform.Forms.GridForms
 
         int pages;
         double itemsPage = 10.0;
-
+        Task<ICollection<UserRoleDTO>> getAllNotFiltered;
+        Task<int> countNotFiltered;
+        Task<UserDGV> getFav;
         public UserGridForm()
         {
             Init();
@@ -124,15 +126,16 @@ namespace Winform.Forms.GridForms
             paginationControl.maxPage = maxPages.ToString();
             paginationControl.SetPageLbl($"{paginationControl.CurrentPage}/{maxPages}");
 
-            // Imposta la visibilità e le colonne della DataGridView
-            if (!paginationControl.Visible)
-            {
-                await SetCheckBoxes();
-            }
         }
         private async Task SetCheckBoxes()
         {
-            UserDGV cdgv = await _userService.GetUserDGV();
+            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            IEnumerable<UserRoleDTO> query = await getAllNotFiltered;
+            paginationControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
+            userDgv.DataSource = query.ToList();
+            UserDGV cdgv = await getFav;
+
             UserIDTsmi.Checked = cdgv.ShowID;
             UserNameTsmi.Checked = cdgv.ShowName;
             UserLastNameTsmi.Checked = cdgv.ShowLastName;
@@ -312,5 +315,12 @@ namespace Winform.Forms.GridForms
             }
         }
 
+        private async void UserGridForm_Load(object sender, EventArgs e)
+        {
+            getAllNotFiltered = _userService.GetAll(new UserFilter());
+            countNotFiltered = _userService.Count(new UserFilter());
+            getFav = _userService.GetUserDGV();
+            await SetCheckBoxes();
+        }
     }
 }
