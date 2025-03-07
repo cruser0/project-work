@@ -146,7 +146,10 @@ namespace Winform
             if (formName.Contains("Details"))
             {
                 // Capitalizes each word
-                return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(formName.ToLower());
+                string formattedName = Regex.Replace(formName, "(?<=.)([A-Z])", " $1");
+                formattedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(formattedName.ToLower());
+
+                return formattedName;
             }
             else
             {
