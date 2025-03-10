@@ -16,6 +16,7 @@ namespace API.Models.Services
         Task<SupplierDTOGet> DeleteSupplier(int id);
 
         Task<int> CountSuppliers(SupplierFilter filter);
+        Task<string> MassDeleteSupplier(List<int> supplierId);
 
 
     }
@@ -181,6 +182,28 @@ namespace API.Models.Services
             _context.Suppliers.Remove(data);
             await _context.SaveChangesAsync();
             return SupplierMapper.MapGet(data);
+
+        }
+
+        public async Task<string> MassDeleteSupplier(List<int> supplierId)
+        {
+            int count = 0;
+            foreach(int id in supplierId)
+            {
+                var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
+                if (data == null)
+                    continue;
+                List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
+                if (si.Any())
+                {
+                    foreach (SupplierInvoice item in si)
+                        await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                }
+                _context.Suppliers.Remove(data);
+                await _context.SaveChangesAsync();
+                count++;
+            }
+            return $"{count} Suppliers were deleted out of {supplierId.Count}";
 
         }
 

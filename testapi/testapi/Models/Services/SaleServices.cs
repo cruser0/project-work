@@ -16,6 +16,7 @@ namespace API.Models.Services
         Task<SaleDTOGet> DeleteSale(int id);
 
         Task<int> CountSales(SaleFilter filter);
+        Task<string> MassDeleteSale(List<int> saleId);
 
     }
     public class SaleServices : ISalesService
@@ -256,6 +257,48 @@ namespace API.Models.Services
 
             // Map the deleted sale to a DTO and return the result
             return SaleMapper.MapGet(data);
+        }
+
+
+        public async Task<string> MassDeleteSale(List<int> saleId)
+        {
+            int count = 0;
+            foreach(int id in saleId)
+            {
+
+                // Retrieve the sale from the database using the provided ID
+                var data = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
+
+                // Check if the sale exists
+                if (data == null)
+                    continue;
+
+
+                // Retrieve all customer invoices associated with the sale
+                var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleId == id).ToListAsync();
+
+                // If there are any customer invoices, delete them
+                if (customerInvoices.Count > 0)
+                    foreach (var invoice in customerInvoices)
+                        await _ciService.DeleteCustomerInvoice(invoice.CustomerInvoiceId);
+
+                // Retrieve all supplier invoices associated with the sale
+                var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
+
+                // If there are any supplier invoices, delete them
+                if (supplierInvoices.Count > 0)
+                    foreach (var invoice in supplierInvoices)
+                        await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+
+                // Remove the sale from the database
+                _context.Sales.Remove(data);
+
+                // Save the changes to commit the deletion
+                await _context.SaveChangesAsync();
+                count++;
+            }
+            // Map the deleted sale to a DTO and return the result
+            return $"{count} Sales were deleted out of {saleId.Count} ";
         }
 
     }

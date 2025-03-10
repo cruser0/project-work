@@ -76,5 +76,11 @@ namespace Winform.Services
             var returnResult = await DeleteItem<Supplier>(client, $"supplier/{id}", "Supplier");
             return returnResult;
         }
+        public async Task<string> MassDelete(List<int> id)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await MassDeleteWithStringResult(client, $"supplier/mass-delete", id);
+            return returnResult;
+        }
     }
 }

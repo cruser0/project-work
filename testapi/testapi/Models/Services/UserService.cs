@@ -175,6 +175,26 @@ namespace API.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        internal async Task<string> MassDeleteUser(List<int> userId)
+        {
+            int count = 0;
+            foreach(int id in userId)
+            {
+                var rolesList = await GetAllRolesByUserID(id);
+                if (!await _context.Users.AnyAsync(x => x.UserID == id))
+                    continue; ;
+                _context.UserRoles.RemoveRange(rolesList);
+                await _context.SaveChangesAsync();
+                var user = await _context.Users.Where(x => x.UserID == id).FirstOrDefaultAsync();
+                if (user == null)
+                    throw new NotFoundException("User not found!");
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+                count++;
+            }
+            return $"{count} Users were deleted out of {userId.Count}";
+        }
+
         public async Task<User> GetUserByEmail(string email)
         {
             var user = await _context.Users

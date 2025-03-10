@@ -69,6 +69,17 @@ namespace Winform.Services
             HttpResponseMessage response = await client.GetClient().DeleteAsync(client.GetBaseUri() + uri);
             return response;
         }
+        private async Task<HttpResponseMessage> GetResponseMassDelete(ClientAPI client, string uri,List<int>id)
+        {
+            var queryParameters = new List<string>();
+            foreach (var i in id)
+            {
+                queryParameters.Add($"id={i}");
+            }
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+            HttpResponseMessage response = await client.GetClient().DeleteAsync(client.GetBaseUri() + uri+queryString);
+            return response;
+        }
 
         internal async Task<HttpResponseMessage> GetResponseDelete(ClientAPI client, string uri, List<string> entity)
         {
@@ -266,6 +277,19 @@ namespace Winform.Services
             var errorMessage = response.Content.ReadAsStringAsync().Result;
             throw new Exception($"Error deleting {error}: {errorMessage}");
         }
+
+        protected async Task<string> MassDeleteWithStringResult(ClientAPI client, string uri,List<int>id)
+        {
+            HttpResponseMessage response = await GetResponseMassDelete(client,uri,id);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = response.Content.ReadAsStringAsync().Result;
+                return json;
+            }
+            var errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"{errorMessage}");
+        }
+
 
 
 

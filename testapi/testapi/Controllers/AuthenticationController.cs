@@ -125,6 +125,21 @@ namespace API.Controllers
             catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
 
+        [Authorize(Roles = "Admin,UserAdmin")]
+        [HttpDelete("user/mass-delete")]
+        public async Task<ActionResult<string>> MassDeleteUser([FromQuery]List<int> id)
+        {
+            try
+            {
+                await _authenticationService.MassDeleteUser(id);
+                return Ok("User Deleted Successfully");
+            }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
+        }
+
         //[Authorize(Roles = "Admin,UserAdmin,UserWrite")]
         [HttpPut("user/edit-user/{id}")]
         public async Task<ActionResult<string>> EditUser(int id, [FromBody] UserDTOEdit updateUser)

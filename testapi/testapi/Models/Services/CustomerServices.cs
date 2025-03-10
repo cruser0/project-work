@@ -15,6 +15,7 @@ namespace API.Models.Services
         Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer);
         Task<CustomerDTOGet> DeleteCustomer(int id);
         Task<int> CountCustomers(CustomerFilter filter);
+        Task<string> MassDeleteCustomer(List<int> customerId);
 
 
     }
@@ -218,6 +219,36 @@ namespace API.Models.Services
 
             // Map the deleted customer to DTO and return it
             return CustomerMapper.MapGet(data);
+        }
+
+        public async Task<string> MassDeleteCustomer(List<int> customerId)
+        {
+            int count = 0;
+            // Retrieve the customer from the database based on the provided ID
+            foreach (var id in customerId)
+            {
+                var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+
+                // If the customer does not exist, continues with the loop
+                if (data == null)
+                    continue;
+
+                // Retrieve all sales associated with this customer
+                var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
+
+                // If there are any sales, delete them
+                if (sales.Count > 0)
+                    foreach (var sale in sales)
+                        await _sService.DeleteSale(sale.SaleId);
+
+                // Remove the customer from the database
+                _context.Customers.Remove(data);
+                await _context.SaveChangesAsync();
+                count++;
+            }
+
+            // Map the deleted customer to DTO and return it
+            return $"{count} Customers were deleted out of {customerId.Count}";
         }
 
 
