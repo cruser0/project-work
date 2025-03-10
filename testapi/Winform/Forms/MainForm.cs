@@ -316,6 +316,7 @@ namespace Winform
                         response = await _userService.RemoveUserFavouritePage(new List<string>() { latestForm.Text });
                         MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await UpdateFavoriteTab();  // Rimuovi o aggiorna la tab dopo la rimozione
+                        AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
                     }
                 }
                 else
@@ -328,6 +329,7 @@ namespace Winform
                         response = await _userService.AddUserFavouritePage(new List<string>() { latestForm.Text });
                         MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await UpdateFavoriteTab();  // Aggiungi o aggiorna la tab dopo l'aggiunta
+                        AddFavoriteButton.Image = Properties.Resources.star;
                     }
                 }
 
