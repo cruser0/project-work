@@ -15,6 +15,7 @@ namespace API.Models.Services
         Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customer);
         Task<CustomerInvoiceDTOGet> DeleteCustomerInvoice(int id);
         Task<int> CountCustomerInvoices(CustomerInvoiceFilter filter);
+        Task<string> MassDeleteCustomerInvoice(List<int> customerInvoiceId);
 
 
     }
@@ -215,6 +216,11 @@ namespace API.Models.Services
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ErrorInputPropertyException("Sale is closed,can't delete!");
             sale.TotalRevenue -= data.InvoiceAmount;
+            List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == id).ToListAsync();
+            if (listInvoiceCost.Count > 0)
+            {
+                _context.CustomerInvoiceCosts.RemoveRange(listInvoiceCost);
+            }
 
             // Remove the customer invoice from the database
             _context.CustomerInvoices.Remove(data);
@@ -226,6 +232,55 @@ namespace API.Models.Services
             return CustomerInvoiceMapper.MapGet(data);
         }
 
+        public async Task<string> MassDeleteCustomerInvoice(List<int> customerInvoiceId)
+        {
+            int count = 0;
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+
+                // Retrieve the customer invoice from the database using the provided ID
+                foreach (int id in customerInvoiceId)
+            {
+                    CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
+                    // Check if the customer invoice exists
+                    if (data == null)
+                        throw new NotFoundException("Customer invoice not found!");
+                    Sale? sale = await _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefaultAsync();
+                    if (sale == null)
+                        throw new NotFoundException("Sale not found!");
+
+                    if (sale.Status.ToLower().Equals("closed"))
+                        throw new ErrorInputPropertyException("Sale is closed,can't delete!");
+                    sale.TotalRevenue -= data.InvoiceAmount;
+                    List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == id).ToListAsync();
+                    if (listInvoiceCost.Count > 0)
+                    {
+                        _context.CustomerInvoiceCosts.RemoveRange(listInvoiceCost);
+                    }
+
+                    // Remove the customer invoice from the database
+                    _context.CustomerInvoices.Remove(data);
+                    _context.Sales.Update(sale);
+                    // Save the changes to commit the deletion
+                    await _context.SaveChangesAsync();
+
+                    count++;
+            }
+                await transaction.CommitAsync();
+            }
+            catch(NotFoundException nex)
+            {
+                await transaction.RollbackAsync();
+                return "Process stopped "+nex.Message;
+            }catch(ErrorInputPropertyException eipe)
+            {
+                await transaction.RollbackAsync();
+                return "Process stopped " + eipe.Message;
+            }
+            // Map the deleted customer invoice to a DTO and return the result
+            return $"{count} Customer Invoices deleted out of {customerInvoiceId.Count}";
+        }
         public async Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id)
         {
             // Retrieve the customer invoice from the database using the provided ID

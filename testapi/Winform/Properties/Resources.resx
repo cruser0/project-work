@@ -124,8 +124,8 @@
   <data name="star_yellow-removebg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\star_yellow-removebg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Sale_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Sale_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fav_no_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\fav_no_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="star_yellow25x25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\star_yellow25x25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -138,6 +138,9 @@
   </data>
   <data name="User_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\User_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="star25x251" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\star25x25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Invoice_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Invoice_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,8 +169,8 @@
   <data name="single_right_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\single_right_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="star25x251" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\star25x25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Sale_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Sale_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="single_left_resize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\single_left_resize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,7 +178,10 @@
   <data name="fav_color_no_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\fav_color_no_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fav_no_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\fav_no_bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="trash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\trash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

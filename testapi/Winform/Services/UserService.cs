@@ -50,7 +50,12 @@ namespace Winform.Services
             return returnResult;
         }
 
-
+        public async Task<string> MassDelete(List<int> id)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await MassDeleteWithStringResult(client, $"user/mass-delete", id);
+            return returnResult;
+        }
 
 
         public async Task<string> EditUserRoles(AssignRoleDTO entity)

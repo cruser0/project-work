@@ -16,6 +16,7 @@ namespace API.Models.Services
         Task<CustomerInvoiceCostDTOGet> DeleteCustomerInvoiceCost(int id);
 
         Task<int> CountCustomerInvoiceCosts(CustomerInvoiceCostFilter filter);
+        Task<string> MassDeleteCustomerInvoiceCost(List<int> customerInvoiceCostId);
     }
     public class CustomerInvoiceCostService : ICustomerInvoiceCostService
     {
@@ -172,5 +173,26 @@ namespace API.Models.Services
             return CustomerInvoiceCostMapper.MapGet(data);
 
         }
+        public async Task<string> MassDeleteCustomerInvoiceCost(List<int> customerInvoiceCostId)
+        {
+            int count = 0;
+            foreach(var id in customerInvoiceCostId)
+            {
+                var data = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceCostsId == id).FirstOrDefaultAsync();
+                    if (data == null || id < 1)
+                        continue;
+                CustomerInvoice ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == data.CustomerInvoiceId).FirstAsync();
+                var total = (await _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{ci.CustomerInvoiceId}\"").ToListAsync()).FirstOrDefault()?.TotalSpent;
+                ci.InvoiceAmount = total - data.Cost * data.Quantity;
+                _context.CustomerInvoices.Update(ci);
+                _context.CustomerInvoiceCosts.Remove(data);
+                await _context.SaveChangesAsync();
+                count++;
+            }
+            return $"{count} Customer Invoice Cost were delete out of {customerInvoiceCostId.Count}";
+
+        }
+
+
     }
 }

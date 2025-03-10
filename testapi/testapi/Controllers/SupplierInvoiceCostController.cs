@@ -121,5 +121,20 @@ namespace API.Controllers
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
+
+        [Authorize(Roles = "Admin,SupplierInvoiceCostAdmin")]
+        [HttpDelete("mass-delete")]
+        public async Task<IActionResult> MassDelete([FromQuery]List<int> id)
+        {
+
+            try
+            {
+                var data = await _supplierInvoiceCostService.MassDeleteSupplierInvoiceCost(id);
+                return Ok(data);
+            }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+        }
     }
 }

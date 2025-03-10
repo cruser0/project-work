@@ -54,7 +54,8 @@
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CustomerDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.MassSaveTSB = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
@@ -336,7 +337,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MassSaveTSB,
+            this.toolStripButton2,
+            this.toolStripSeparator1,
             this.PdfTSB,
             this.ExcelTSB,
             this.MassDeleteTSB});
@@ -346,14 +348,19 @@
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // MassSaveTSB
+            // toolStripButton2
             // 
-            this.MassSaveTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.MassSaveTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassSaveTSB.Image")));
-            this.MassSaveTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MassSaveTSB.Name = "MassSaveTSB";
-            this.MassSaveTSB.Size = new System.Drawing.Size(23, 22);
-            this.MassSaveTSB.Text = "toolStripButton1";
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::Winform.Properties.Resources.save;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "toolStripButton1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // PdfTSB
             // 
@@ -379,11 +386,12 @@
             // 
             this.MassDeleteTSB.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.MassDeleteTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassDeleteTSB.Image")));
+            this.MassDeleteTSB.Image = global::Winform.Properties.Resources.trash;
             this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MassDeleteTSB.Name = "MassDeleteTSB";
             this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
             this.MassDeleteTSB.Text = "toolStripButton4";
+            this.MassDeleteTSB.Click += new System.EventHandler(this.MassDeleteTSB_Click);
             // 
             // BottomPanel
             // 
@@ -490,10 +498,11 @@
         private Label DateFromLbl;
         private DateTimePicker DateToClnd;
         private DateTimePicker DateFromClnd;
-        private ToolStripButton MassSaveTSB;
         private ToolStripButton PdfTSB;
         private ToolStripButton ExcelTSB;
-        private ToolStripButton MassDeleteTSB;
         public ToolStrip toolStrip1;
+        private ToolStripButton toolStripButton2;
+        private ToolStripButton MassDeleteTSB;
+        private ToolStripSeparator toolStripSeparator1;
     }
 }

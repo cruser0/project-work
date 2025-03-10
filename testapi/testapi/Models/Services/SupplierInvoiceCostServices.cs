@@ -16,6 +16,7 @@ namespace API.Models.Services
         Task<SupplierInvoiceCostDTOGet> DeleteSupplierInvoiceCost(int id);
 
         Task<int> CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
+        Task<string> MassDeleteSupplierInvoiceCost(List<int> supplierInvoiceCostId);
 
 
 
@@ -168,6 +169,25 @@ namespace API.Models.Services
             _context.SupplierInvoiceCosts.Remove(data);
             await _context.SaveChangesAsync();
             return SupplierInvoiceCostMapper.MapGet(data);
+
+        }
+        public async Task<string> MassDeleteSupplierInvoiceCost(List<int> supplierInvoiceCostId)
+        {
+            int count = 0;
+            foreach(int id in supplierInvoiceCostId)
+            {
+                var data = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
+                if (data == null || id < 1)
+                    continue;
+                SupplierInvoice si = await _context.SupplierInvoices.Where(x => x.InvoiceId == data.SupplierInvoiceId).FirstAsync();
+                decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == data.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);
+                si.InvoiceAmount = total - data.Cost * data.Quantity;
+                _context.SupplierInvoices.Update(si);
+                _context.SupplierInvoiceCosts.Remove(data);
+                await _context.SaveChangesAsync();
+                count++;
+            }
+            return $"{count} Supplier invoice cost were deleted out of {supplierInvoiceCostId.Count}";
 
         }
     }

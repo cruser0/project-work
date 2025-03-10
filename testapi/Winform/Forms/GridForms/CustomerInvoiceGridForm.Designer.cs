@@ -47,6 +47,12 @@
             this.RightSideBar = new Winform.Forms.control.RightSideBarUserControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CenterDgv = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.PdfTSB = new System.Windows.Forms.ToolStripButton();
+            this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new Winform.Forms.control.PaginationUserControl();
@@ -58,19 +64,14 @@
             this.CustomerInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.MassSaveTSB = new System.Windows.Forms.ToolStripButton();
-            this.PdfTSB = new System.Windows.Forms.ToolStripButton();
-            this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
-            this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // RightPanel
@@ -270,6 +271,63 @@
             this.CenterDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CenterDgv_CellDoubleClick);
             this.CenterDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDhvEvent);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton2,
+            this.toolStripSeparator1,
+            this.PdfTSB,
+            this.ExcelTSB,
+            this.toolStripButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
+            this.toolStrip1.TabIndex = 12;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::Winform.Properties.Resources.save;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "toolStripButton1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // PdfTSB
+            // 
+            this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PdfTSB.Image = ((System.Drawing.Image)(resources.GetObject("PdfTSB.Image")));
+            this.PdfTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PdfTSB.Name = "PdfTSB";
+            this.PdfTSB.Size = new System.Drawing.Size(32, 22);
+            this.PdfTSB.Text = "PDF";
+            // 
+            // ExcelTSB
+            // 
+            this.ExcelTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ExcelTSB.Image = ((System.Drawing.Image)(resources.GetObject("ExcelTSB.Image")));
+            this.ExcelTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExcelTSB.Name = "ExcelTSB";
+            this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
+            this.ExcelTSB.Text = "Excel";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::Winform.Properties.Resources.trash;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton4";
+            this.toolStripButton1.Click += new System.EventHandler(this.MassDeleteTSB_Click);
+            // 
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
@@ -375,56 +433,6 @@
             this.CustomerInvoiceStatusTsmi.Text = "Show Status";
             this.CustomerInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MassSaveTSB,
-            this.PdfTSB,
-            this.ExcelTSB,
-            this.MassDeleteTSB});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
-            this.toolStrip1.TabIndex = 12;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // MassSaveTSB
-            // 
-            this.MassSaveTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.MassSaveTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassSaveTSB.Image")));
-            this.MassSaveTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MassSaveTSB.Name = "MassSaveTSB";
-            this.MassSaveTSB.Size = new System.Drawing.Size(23, 22);
-            this.MassSaveTSB.Text = "toolStripButton1";
-            // 
-            // PdfTSB
-            // 
-            this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PdfTSB.Image = ((System.Drawing.Image)(resources.GetObject("PdfTSB.Image")));
-            this.PdfTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PdfTSB.Name = "PdfTSB";
-            this.PdfTSB.Size = new System.Drawing.Size(32, 22);
-            this.PdfTSB.Text = "PDF";
-            // 
-            // ExcelTSB
-            // 
-            this.ExcelTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ExcelTSB.Image = ((System.Drawing.Image)(resources.GetObject("ExcelTSB.Image")));
-            this.ExcelTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ExcelTSB.Name = "ExcelTSB";
-            this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
-            this.ExcelTSB.Text = "Excel";
-            // 
-            // MassDeleteTSB
-            // 
-            this.MassDeleteTSB.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.MassDeleteTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassDeleteTSB.Image")));
-            this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MassDeleteTSB.Name = "MassDeleteTSB";
-            this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
-            this.MassDeleteTSB.Text = "toolStripButton4";
-            // 
             // CustomerInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -444,12 +452,12 @@
             this.CenterPanel.ResumeLayout(false);
             this.CenterPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.RightClickDgv.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -485,9 +493,10 @@
         private control.IntegerTextBoxUserControl AmountToTxt;
         private control.IntegerTextBoxUserControl AmountFromTxt;
         public ToolStrip toolStrip1;
-        private ToolStripButton MassSaveTSB;
         private ToolStripButton PdfTSB;
         private ToolStripButton ExcelTSB;
-        private ToolStripButton MassDeleteTSB;
+        private ToolStripButton toolStripButton2;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton toolStripButton1;
     }
 }

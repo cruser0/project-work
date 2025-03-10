@@ -15,6 +15,7 @@ namespace API.Models.Services
         Task<SupplierInvoiceDTOGet> UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
         Task<SupplierInvoiceDTOGet> DeleteSupplierInvoice(int id);
         Task<int> CountSupplierinvoices(SupplierInvoiceFilter filter);
+        Task<string> MassDeleteSupplierInvoice(List<int> supplierInvoiceId);
 
 
     }
@@ -211,6 +212,30 @@ namespace API.Models.Services
             _context.SupplierInvoices.Remove(data);
             await _context.SaveChangesAsync();
             return SupplierInvoiceMapper.MapGet(data);
+
+        }
+
+        public async Task<string> MassDeleteSupplierInvoice(List<int> supplierInvoiceId)
+        {
+            int count = 0;
+            foreach(int id in supplierInvoiceId)
+            {
+                var data = await _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefaultAsync();
+                if (data == null || id < 1)
+                    continue;
+                List<SupplierInvoiceCost> listInvoiceCost = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == id).ToListAsync();
+                if (listInvoiceCost.Count > 0)
+                {
+                    foreach (SupplierInvoiceCost cost in listInvoiceCost)
+                    {
+                        await _serviceCost.DeleteSupplierInvoiceCost(cost.SupplierInvoiceCostsId);
+                    }
+                }
+                _context.SupplierInvoices.Remove(data);
+                await _context.SaveChangesAsync();
+                count++;
+            }
+                return $"{count} Supplier Invoices were deleted out of {supplierInvoiceId.Count}";
 
         }
 

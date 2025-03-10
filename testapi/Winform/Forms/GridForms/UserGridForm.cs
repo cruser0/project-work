@@ -314,5 +314,49 @@ namespace Winform.Forms.GridForms
             getFav = _userService.GetUserDGV();
             await SetCheckBoxes();
         }
+        private async void MassDeleteTSB_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+          "This action is permanent and it will delete all the history bound to this Users!",
+          "Confirm Deletion?",
+          MessageBoxButtons.YesNo,
+          MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    List<int> id = new List<int>();
+
+
+                    HashSet<int> ids = new HashSet<int>();
+                    foreach (DataGridViewCell cell in userDgv.SelectedCells)
+                    {
+                        ids.Add(cell.RowIndex);
+                    }
+                    foreach (var rowid in ids)
+                    {
+                        if (userDgv.Rows[rowid].DataBoundItem is UserRoleDTO customer)
+                            id.Add(customer.UserID);
+                    }
+
+                    if (id.Count > 0)
+                    {
+                        string message = await _userService.MassDelete(id);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Row was selected");
+                    }
+                    MyControl_ButtonClicked(sender, e);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
+        }
     }
 }

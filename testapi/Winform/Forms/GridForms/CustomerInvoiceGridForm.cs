@@ -289,5 +289,49 @@ namespace Winform.Forms.CreateWindow
             getFav = _userService.GetCustomerInvoiceDGV();
             await SetCheckBoxes();
         }
+        private async void MassDeleteTSB_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+          "This action is permanent and it will delete all the history bound to this Customer Invoice!",
+          "Confirm Deletion?",
+          MessageBoxButtons.YesNo,
+          MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    List<int> id = new List<int>();
+
+
+                    HashSet<int> ids = new HashSet<int>();
+                    foreach (DataGridViewCell cell in CenterDgv.SelectedCells)
+                    {
+                        ids.Add(cell.RowIndex);
+                    }
+                    foreach (var rowid in ids)
+                    {
+                        if (CenterDgv.Rows[rowid].DataBoundItem is CustomerInvoice customer)
+                            id.Add(customer.CustomerInvoiceId);
+                    }
+
+                    if (id.Count > 0)
+                    {
+                        string message = await _customerService.MassDelete(id);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Row was selected");
+                    }
+                    RightSideBar_searchBtnEvent(sender, e);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
+        }
     }
 }
