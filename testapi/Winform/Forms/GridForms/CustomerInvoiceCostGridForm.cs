@@ -2,7 +2,12 @@
 using Winform.Entities;
 using Winform.Entities.Preference;
 using Winform.Services;
-
+using ClosedXML.Excel;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using System.Data;
 namespace Winform.Forms.GridForms
 {
     public partial class CustomerInvoiceCostGridForm : Form
@@ -166,8 +171,8 @@ namespace Winform.Forms.GridForms
         private void CustomerGridForm_Resize(object sender, EventArgs e)
         {
 
-            PaginationPanel.Location = new Point((Width - PaginationPanel.Width) / 2, 0);
-            PaginationUserControl.Location = new Point((PaginationPanel.Width - PaginationUserControl.Width) / 2, (PaginationPanel.Height - PaginationUserControl.Height) / 2);
+            PaginationPanel.Location = new System.Drawing.Point((Width - PaginationPanel.Width) / 2, 0);
+            PaginationUserControl.Location = new System.Drawing.Point((PaginationPanel.Width - PaginationUserControl.Width) / 2, (PaginationPanel.Height - PaginationUserControl.Height) / 2);
 
             int newHeight = (int)((Height - TextBoxesRightPanel.Top) * 0.9);
             if (TextBoxesRightPanel.Height != newHeight)
@@ -276,6 +281,16 @@ namespace Winform.Forms.GridForms
             {
                 MessageBox.Show("Action canceled.");
             }
+        }
+        private void Pdf_ClickBtn(object sender, EventArgs e)
+        {
+            UtilityFunctions.Pdf_ClickBtn(CustomerInvoiceCostDgv, this);
+        }
+
+
+        private void Excel_ClickBtn(object sender, EventArgs e)
+        {
+            UtilityFunctions.Excel_ClickBtn(CustomerInvoiceCostDgv, this);
         }
     }
 }
