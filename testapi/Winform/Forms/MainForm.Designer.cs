@@ -726,7 +726,6 @@
 
         private Panel panel1;
         private ToolStrip TS;
-        private ToolStripButton AddFavoriteButton;
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
         private Panel panel2;
@@ -778,5 +777,6 @@
         public ToolStrip Group;
         public ToolStripButton CustomerGroupTS;
         public ToolStripButton SupplierGroupTS;
+        public ToolStripButton AddFavoriteButton;
     }
 }

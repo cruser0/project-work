@@ -44,12 +44,11 @@ namespace Winform.Forms.control
 
         public void buttonShowForm_Click(object sender, EventArgs e)
         {
-            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
-            int? countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
-            List<Form?> childrenOpen = mainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
-            if (countOpenForms >= 4)
-                mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
+            if (mainForm.favoriteList.Contains(buttonShowForm.Text))
+                mainForm.AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
+            else
+                mainForm.AddFavoriteButton.Image = Properties.Resources.star;
 
 
             form.Activate();
