@@ -35,7 +35,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.MassSaveTSB = new System.Windows.Forms.ToolStripButton();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -100,7 +99,6 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
             this.toolStripSeparator1,
-            this.MassSaveTSB,
             this.PdfTSB,
             this.ExcelTSB,
             this.toolStripButton1});
@@ -124,15 +122,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // MassSaveTSB
-            // 
-            this.MassSaveTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.MassSaveTSB.Image = ((System.Drawing.Image)(resources.GetObject("MassSaveTSB.Image")));
-            this.MassSaveTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MassSaveTSB.Name = "MassSaveTSB";
-            this.MassSaveTSB.Size = new System.Drawing.Size(23, 22);
-            this.MassSaveTSB.Text = "toolStripButton1";
-            // 
             // PdfTSB
             // 
             this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -141,6 +130,7 @@
             this.PdfTSB.Name = "PdfTSB";
             this.PdfTSB.Size = new System.Drawing.Size(32, 22);
             this.PdfTSB.Text = "PDF";
+            this.PdfTSB.Click += new System.EventHandler(this.Pdf_ClickBtn);
             // 
             // ExcelTSB
             // 
@@ -150,6 +140,7 @@
             this.ExcelTSB.Name = "ExcelTSB";
             this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
             this.ExcelTSB.Text = "Excel";
+            this.ExcelTSB.Click += new System.EventHandler(this.Excel_ClickBtn);
             // 
             // toolStripButton1
             // 
@@ -417,7 +408,6 @@
         private ToolStripMenuItem SupplierInvoiceCostNameTsmi;
         private Panel PaginationPanel;
         public ToolStrip toolStrip1;
-        private ToolStripButton MassSaveTSB;
         private ToolStripButton PdfTSB;
         private ToolStripButton ExcelTSB;
         private ToolStripButton toolStripButton2;

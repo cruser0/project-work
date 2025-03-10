@@ -356,6 +356,7 @@
             this.PdfTSB.Name = "PdfTSB";
             this.PdfTSB.Size = new System.Drawing.Size(32, 22);
             this.PdfTSB.Text = "PDF";
+            this.PdfTSB.Click += new System.EventHandler(this.Pdf_ClickBtn);
             // 
             // ExcelTSB
             // 
@@ -365,6 +366,7 @@
             this.ExcelTSB.Name = "ExcelTSB";
             this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
             this.ExcelTSB.Text = "Excel";
+            this.ExcelTSB.Click += new System.EventHandler(this.Excel_ClickBtn);
             // 
             // MassDeleteTSB
             // 

@@ -358,5 +358,15 @@ namespace Winform.Forms.GridForms
                 MessageBox.Show("Action canceled.");
             }
         }
+        private void Pdf_ClickBtn(object sender, EventArgs e)
+        {
+            UtilityFunctions.Pdf_ClickBtn(userDgv, this);
+        }
+
+
+        private void Excel_ClickBtn(object sender, EventArgs e)
+        {
+            UtilityFunctions.Excel_ClickBtn(userDgv, this);
+        }
     }
 }

@@ -38,8 +38,6 @@ namespace Winform.Forms
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.Excel_Button = new System.Windows.Forms.Button();
-            this.Pdf_Button = new System.Windows.Forms.Button();
             this.leftSideBaruSerControl1 = new Winform.Forms.control.LeftSideBarUSerControl();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,38 +101,12 @@ namespace Winform.Forms
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.Excel_Button);
-            this.panel2.Controls.Add(this.Pdf_Button);
             this.panel2.Controls.Add(this.leftSideBaruSerControl1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 361);
             this.panel2.TabIndex = 10;
-            // 
-            // Excel_Button
-            // 
-            this.Excel_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.Excel_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.Excel_Button.Location = new System.Drawing.Point(12, 41);
-            this.Excel_Button.Name = "Excel_Button";
-            this.Excel_Button.Size = new System.Drawing.Size(75, 23);
-            this.Excel_Button.TabIndex = 12;
-            this.Excel_Button.Text = "Excel";
-            this.Excel_Button.UseVisualStyleBackColor = false;
-            this.Excel_Button.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // Pdf_Button
-            // 
-            this.Pdf_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.Pdf_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.Pdf_Button.Location = new System.Drawing.Point(12, 12);
-            this.Pdf_Button.Name = "Pdf_Button";
-            this.Pdf_Button.Size = new System.Drawing.Size(75, 23);
-            this.Pdf_Button.TabIndex = 11;
-            this.Pdf_Button.Text = "Pdf";
-            this.Pdf_Button.UseVisualStyleBackColor = false;
-            this.Pdf_Button.Click += new System.EventHandler(this.button1_Click);
             // 
             // leftSideBaruSerControl1
             // 
@@ -199,7 +171,6 @@ namespace Winform.Forms
             this.Controls.SetChildIndex(this.CenterPanel, 0);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -214,13 +185,11 @@ namespace Winform.Forms
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private Button Pdf_Button;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private Button Excel_Button;
     }
 }
