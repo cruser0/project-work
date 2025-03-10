@@ -65,9 +65,10 @@
             this.AddFavoriteButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
             this.AddFavoriteButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AddFavoriteButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.AddFavoriteButton.Image = global::Winform.Properties.Resources.star;
+            this.AddFavoriteButton.Image = global::Winform.Properties.Resources.star_yellow25x25;
             this.AddFavoriteButton.Location = new System.Drawing.Point(145, 5);
             this.AddFavoriteButton.Name = "AddFavoriteButton";
+            this.AddFavoriteButton.Padding = new System.Windows.Forms.Padding(1, 1, 0, 0);
             this.AddFavoriteButton.Size = new System.Drawing.Size(25, 25);
             this.AddFavoriteButton.TabIndex = 2;
             this.AddFavoriteButton.UseVisualStyleBackColor = false;

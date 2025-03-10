@@ -653,7 +653,7 @@
             this.AddFavoriteButton.Image = global::Winform.Properties.Resources.star_yellow_removebg;
             this.AddFavoriteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddFavoriteButton.Name = "AddFavoriteButton";
-            this.AddFavoriteButton.Size = new System.Drawing.Size(25, 25);
+            this.AddFavoriteButton.Size = new System.Drawing.Size(22, 22);
             this.AddFavoriteButton.Text = "toolStripButton1";
             this.AddFavoriteButton.ToolTipText = "Add to Favorites";
             this.AddFavoriteButton.Click += new System.EventHandler(this.AddFavoriteButton_Click);
@@ -726,7 +726,6 @@
 
         private Panel panel1;
         private ToolStrip TS;
-        private ToolStripButton AddFavoriteButton;
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
         private Panel panel2;
@@ -778,5 +777,6 @@
         public ToolStrip Group;
         public ToolStripButton CustomerGroupTS;
         public ToolStripButton SupplierGroupTS;
+        public ToolStripButton AddFavoriteButton;
     }
 }

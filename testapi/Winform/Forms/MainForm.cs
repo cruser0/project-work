@@ -456,6 +456,7 @@ namespace Winform
                 AddFavoriteButton.Visible = true;
 
             form.ShowIcon = false;
+            form.Resize += Form_Resize;
 
             if (form.Text.Contains("Show") || form.Text.Contains("Group"))
             {
@@ -467,6 +468,39 @@ namespace Winform
                 form.MaximizeBox = false;
                 form.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
+        }
+
+        private void Form_Resize(object? sender, EventArgs e)
+        {
+            Form form = (Form)sender;
+
+            if (form.WindowState == FormWindowState.Minimized)
+            {
+                var latestForm = MainPanel.Controls
+                .OfType<Form>()
+                .Where(form => form.WindowState != FormWindowState.Minimized)
+                .OrderByDescending(form => MainPanel.Controls.GetChildIndex(form))
+                .LastOrDefault();
+
+                if (latestForm == null)
+                {
+                    AddFavoriteButton.Visible = false;
+                }
+                else
+                {
+                    if (favoriteList.Contains(latestForm.Text))
+                        AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
+                    else
+                        AddFavoriteButton.Image = Properties.Resources.star;
+                }
+
+            }
+            else
+            {
+                if (!AddFavoriteButton.Visible)
+                    AddFavoriteButton.Visible = true;
+            }
+
         }
 
         private void AttachMouseDownToControls(Control parent)
@@ -506,6 +540,7 @@ namespace Winform
                 }
             }
         }
+
 
 
 
