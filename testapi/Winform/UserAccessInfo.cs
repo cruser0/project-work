@@ -13,5 +13,7 @@
         public static DateTime RefreshCreated { get; set; }
         public static DateTime RefreshExpires { get; set; }
 
+        public static ICollection<string> Favorites { get; set; }
+
     }
 }

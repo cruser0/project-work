@@ -33,9 +33,6 @@ namespace Winform.Forms
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-
         }
 
         private async void button1_Click(object sender, EventArgs e)

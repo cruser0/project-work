@@ -11,6 +11,9 @@ namespace Winform
     {
         private TableLayoutPanel minimizedPanel; // Panel to hold minimized child forms
         UserService _userService;
+        public ICollection<string> favoriteList;
+
+        Form activeForm;
 
         private static readonly string[] AdminRoles = { "Admin" };
         private static readonly string[] WriteRoles = { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
@@ -19,8 +22,10 @@ namespace Winform
 
         public MainForm()
         {
-            InitializeComponent();
             _userService = new UserService();
+
+            InitializeComponent();
+            AddFavoriteButton.Visible = false;
             IsMdiContainer = true; // Set the MDI container
             WindowState = FormWindowState.Maximized;
 
@@ -105,7 +110,7 @@ namespace Winform
                                       UtilityFunctions.IsAuthorized(new[] { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
         }
 
-        private void buttonOpenChild_Click(object sender, EventArgs e)
+        public void buttonOpenChild_Click(object sender, EventArgs e)
         {
             var menuItem = sender as ToolStripButton;
 
@@ -207,11 +212,7 @@ namespace Winform
             child.TopMost = false; // Reset per evitare problemi di persistenza
 
             LayoutMdi(MdiLayout.ArrangeIcons);
-
-
-
             Cursor.Current = Cursors.Default;
-
         }
 
         public void ChildForm_Close(object sender, FormClosingEventArgs e)
@@ -280,9 +281,16 @@ namespace Winform
                 .ForEach(form => form.WindowState = FormWindowState.Minimized);
         }
 
+        public async Task GetPreferred()
+        {
+            favoriteList = await _userService.GetAllPreferredPagesUser();
+        }
+
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            await UpdateFavoriteTab();
+            var preferredTask = GetPreferred();
+            var updateTask = UpdateFavoriteTab();
+            await Task.WhenAll(preferredTask, updateTask);
         }
 
         private async void AddFavoriteButton_Click(object sender, EventArgs e)
@@ -295,8 +303,6 @@ namespace Winform
 
             if (latestForm != null)
             {
-                var favoriteList = await _userService.GetAllPreferredPagesUser();
-
 
                 string response;
 
@@ -335,7 +341,7 @@ namespace Winform
         private async Task UpdateFavoriteTab()
         {
             // Recupera la lista di preferiti
-            var favoriteList = await _userService.GetAllPreferredPagesUser();
+            await GetPreferred();
 
             // Se ci sono preferiti, aggiungi o aggiorna la TabPage
             if (favoriteList.Count > 0)
@@ -356,8 +362,8 @@ namespace Winform
                     {
                         GripStyle = ToolStripGripStyle.Hidden,
                         BackColor = Color.Transparent,
-                        Location = toolStrip3.Location,
-                        Padding = toolStrip3.Padding,
+                        Location = Show.Location,
+                        Padding = Show.Padding,
                         AutoSize = false
                     };
 
@@ -433,11 +439,24 @@ namespace Winform
             }
         }
 
+
         private void MainPanel_ControlAdded(object sender, ControlEventArgs e)
         {
             Form form = (Form)e.Control;
 
+            // Recursively add the MouseDown event to all controls within the form, including nested containers
+            AttachMouseDownToControls(form);
+
+            if (favoriteList.Contains(form.Text))
+                AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
+            else
+                AddFavoriteButton.Image = Properties.Resources.star;
+
+            if (!AddFavoriteButton.Visible)
+                AddFavoriteButton.Visible = true;
+
             form.ShowIcon = false;
+
             if (form.Text.Contains("Show") || form.Text.Contains("Group"))
             {
                 toolStripButton3.PerformClick();
@@ -449,6 +468,47 @@ namespace Winform
                 form.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
         }
+
+        private void AttachMouseDownToControls(Control parent)
+        {
+            HashSet<Control> controlsWithEvent = new HashSet<Control>();
+            // Only attach the event if it hasn't already been attached to this control
+            if (!controlsWithEvent.Contains(parent))
+            {
+                parent.MouseDown += FormControl_MouseDown;
+                controlsWithEvent.Add(parent);  // Track that the event is attached
+            }
+
+            // Recursively attach the event to all child controls
+            foreach (Control child in parent.Controls)
+            {
+                AttachMouseDownToControls(child); // Recursive call for nested controls
+            }
+        }
+
+        private void FormControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (sender is Control control)
+            {
+                // Traverse up the control tree to find the parent Form
+                Form form = control.FindForm();
+
+                // Now you have the correct Form object, regardless of the control's nesting
+                if (form != null)
+                {
+                    form.BringToFront();
+                    form.Focus();
+
+                    if (favoriteList.Contains(form.Text))
+                        AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
+                    else
+                        AddFavoriteButton.Image = Properties.Resources.star;
+                }
+            }
+        }
+
+
+
     }
 }
 
