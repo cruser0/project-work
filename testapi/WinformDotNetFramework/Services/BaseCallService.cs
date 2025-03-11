@@ -295,10 +295,5 @@ namespace WinformDotNetFramework.Services
             throw new Exception($"{errorMessage}");
         }
 
-
-
-
-
-
     }
 }
