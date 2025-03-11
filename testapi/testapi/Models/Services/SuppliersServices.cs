@@ -17,6 +17,7 @@ namespace API.Models.Services
 
         Task<int> CountSuppliers(SupplierFilter filter);
         Task<string> MassDeleteSupplier(List<int> supplierId);
+        Task<string> MassUpdateSupplier(List<SupplierDTOGet> newSuppliers);
 
 
     }
@@ -188,7 +189,7 @@ namespace API.Models.Services
         public async Task<string> MassDeleteSupplier(List<int> supplierId)
         {
             int count = 0;
-            foreach(int id in supplierId)
+            foreach (int id in supplierId)
             {
                 var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
                 if (data == null)
@@ -205,6 +206,73 @@ namespace API.Models.Services
             }
             return $"{count} Suppliers were deleted out of {supplierId.Count}";
 
+        }
+
+        public async Task<string> MassUpdateSupplier(List<SupplierDTOGet> newSuppliers)
+        {
+            int count = 0;
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                foreach (SupplierDTOGet supplier in newSuppliers)
+                {
+                    var c = await _context.Suppliers.Where(x => x.SupplierId == supplier.SupplierId).FirstOrDefaultAsync();
+
+                    if (c == null)
+                        throw new NotFoundException("Supplier not found");
+
+                    if ((bool)c.Deprecated)
+                        throw new ErrorInputPropertyException("Can't update deprecated supplier");
+
+                    if (supplier.SupplierName != null)
+                    {
+                        if (supplier.SupplierName.Length > 100)
+                            throw new ErrorInputPropertyException("Supplier name is too long");
+                    }
+
+                    if (supplier.Country != null)
+                    {
+                        if (supplier.Country.Length > 50)
+                            throw new ErrorInputPropertyException("Country is too long");
+
+                        if (!supplier.Country.All(char.IsLetter))
+                            throw new ErrorInputPropertyException("Country can't have special characters");
+                    }
+
+                    Supplier newSupplier = new Supplier
+                    {
+                        SupplierName = supplier.SupplierName ?? c.SupplierName,
+                        Country = supplier.Country ?? c.Country,
+                        Deprecated = false,
+                        OriginalID = c.OriginalID,
+                        CreatedAt = DateTime.Now,
+                    };
+
+                    c.Deprecated = true;
+                    _context.Suppliers.Update(c);
+                    _context.Suppliers.Add(newSupplier);
+                    count++;
+                }
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return $"{count} Suppliers were updated out of {newSuppliers.Count}";
+            }
+            catch (NotFoundException)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+            catch (ErrorInputPropertyException)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+            catch (DbUpdateException ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception("Database update error occurred", ex);
+            }
         }
 
 

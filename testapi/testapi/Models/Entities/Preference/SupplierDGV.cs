@@ -1,4 +1,4 @@
-﻿namespace API.Models.Entities
+﻿namespace API.Models.Entities.Preference
 {
     public class SupplierDGV
     {
@@ -10,6 +10,6 @@
         public bool? ShowDate { get; set; }
         public bool? ShowOriginalID { get; set; }
         public bool? ShowStatus { get; set; }
-       // public virtual User? User { get; set; }
+        // public virtual User? User { get; set; }
     }
 }

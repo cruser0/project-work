@@ -1,4 +1,5 @@
 ﻿using API.Models.Entities;
+using API.Models.Entities.Preference;
 using API.Models.Procedures;
 using Microsoft.EntityFrameworkCore;
 
