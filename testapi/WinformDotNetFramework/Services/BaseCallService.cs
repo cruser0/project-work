@@ -86,6 +86,13 @@ namespace WinformDotNetFramework.Services
             return response;
         }
 
+        private async Task<HttpResponseMessage> GetResponseMassUpdate<T>(ClientAPI client, string uri, List<T> newEntity)
+        {
+            var returnResult = SerializeEntity(newEntity);
+            HttpResponseMessage response = await client.GetClient().PutAsync(client.GetBaseUri() + uri, returnResult);
+            return response;
+        }
+
         internal async Task<HttpResponseMessage> GetResponseDelete(ClientAPI client, string uri, List<string> entity)
         {
             var returnResult = SerializeEntity(entity);
@@ -295,7 +302,17 @@ namespace WinformDotNetFramework.Services
             throw new Exception($"{errorMessage}");
         }
 
-
+        protected async Task<string> MassUpdateWithStringResult<T>(ClientAPI client, string uri, List<T> newEntities)
+        {
+            HttpResponseMessage response = await GetResponseMassUpdate<T>(client, uri, newEntities);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = response.Content.ReadAsStringAsync().Result;
+                return json;
+            }
+            var errorMessage = response.Content.ReadAsStringAsync().Result;
+            throw new Exception($"{errorMessage}");
+        }
 
 
 
