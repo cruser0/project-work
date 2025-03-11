@@ -42,6 +42,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.searchCustomerInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceCost();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.PaginationPanel = new System.Windows.Forms.Panel();
@@ -52,7 +53,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceCostCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchCustomerInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceCost();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceCostDgv)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -96,6 +97,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1,
             this.PdfTSB,
             this.ExcelTSB,
+            this.toolStripSeparator2,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -139,7 +141,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = global::WinformDotNetFramework.Properties.Resources.trash;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -168,6 +169,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // searchCustomerInvoiceCost1
+            // 
+            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(0, 0);
+            this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
+            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(171, 168);
+            this.searchCustomerInvoiceCost1.TabIndex = 0;
             // 
             // RightSideBar
             // 
@@ -265,12 +273,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceCostNameTsmi.Text = "Show Description Name";
             this.CustomerInvoiceCostNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // searchCustomerInvoiceCost1
+            // toolStripSeparator2
             // 
-            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(0, 0);
-            this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
-            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(171, 168);
-            this.searchCustomerInvoiceCost1.TabIndex = 0;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // CustomerInvoiceCostGridForm
             // 
@@ -322,5 +328,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
         private control.SearchCustomerInvoiceCost searchCustomerInvoiceCost1;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

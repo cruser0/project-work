@@ -428,7 +428,7 @@ namespace WinformDotNetFramework.Forms
                         GripStyle = ToolStripGripStyle.Hidden,
                         BackColor = Color.Transparent,
                         Location = Show.Location,
-                        Padding = Show.Padding,
+                        Padding = new Padding(0, 2, 0, 2),
                         AutoSize = false
                     };
 
@@ -476,7 +476,7 @@ namespace WinformDotNetFramework.Forms
                         // Crea una nuova istanza del bottone
                         ToolStripButton clonedButton = new ToolStripButton
                         {
-                            AutoSize = false,
+                            AutoSize = true,
                             Margin = btn.Margin,
                             BackColor = Color.Transparent,
                             Text = $"{btn.GetCurrentParent().Parent.Text} {btn.Text}",

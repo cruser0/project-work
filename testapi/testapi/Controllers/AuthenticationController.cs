@@ -95,7 +95,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,UserAdmin")]
         [HttpPut("user/mass-update")]
-        public async Task<ActionResult<string>> MassUpdateUser([FromQuery] List<UserDTOEdit> newUsers)
+        public async Task<ActionResult<string>> MassUpdateUser([FromQuery] List<UserDTOGet> newUsers)
         {
             var data = await _authenticationService.MassUpdateUser(newUsers);
             return Ok(data);

@@ -55,6 +55,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
@@ -137,6 +138,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1,
             this.PdfTSB,
             this.ExcelTSB,
+            this.toolStripSeparator2,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -180,7 +182,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = global::WinformDotNetFramework.Properties.Resources.trash;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -294,6 +295,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceStatusTsmi.Text = "Show Status";
             this.CustomerInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // CustomerInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,5 +353,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
         private control.SearchCustomerInvoice searchCustomerInvoice1;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }
