@@ -21,7 +21,7 @@ namespace API.Controllers
             _customerInvoiceService = customerInvoiceService;
         }
         // GET: api/<CustomerInvoiceController>
-        //[Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
+        [Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] CustomerInvoiceFilter filter)
         {
@@ -37,7 +37,7 @@ namespace API.Controllers
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
-        //[Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
+        [Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
         [HttpGet("count")]
         public async Task<IActionResult> GetCount([FromQuery] CustomerInvoiceFilter filter)
         {
@@ -65,7 +65,7 @@ namespace API.Controllers
         }
 
         // POST api/<CustomerInvoiceController>
-        //[Authorize(Roles = "Admin,CustomerInvoiceWrite,CustomerInvoiceAdmin")]
+        [Authorize(Roles = "Admin,CustomerInvoiceWrite,CustomerInvoiceAdmin")]
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceDTO customerInvoice)
         {
@@ -83,7 +83,7 @@ namespace API.Controllers
         }
 
         // PUT api/<CustomerInvoiceController>/5
-        //[Authorize(Roles = "Admin,CustomerInvoiceWrite,CustomerInvoiceAdmin")]
+        [Authorize(Roles = "Admin,CustomerInvoiceWrite,CustomerInvoiceAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
         {
@@ -101,7 +101,7 @@ namespace API.Controllers
         }
 
         // DELETE api/<CustomerInvoiceController>/5
-        //[Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
+        [Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -118,7 +118,7 @@ namespace API.Controllers
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
-        //[Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
+        [Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
         [HttpDelete("mass-delete")]
         public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
@@ -133,7 +133,7 @@ namespace API.Controllers
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
 
-        //[Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
+        [Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
         [HttpPut("mass-update")]
         public async Task<IActionResult> MassUpdate([FromBody] List<CustomerInvoiceDTOGet> newCustomerInvoices)
         {

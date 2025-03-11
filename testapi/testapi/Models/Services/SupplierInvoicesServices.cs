@@ -16,6 +16,7 @@ namespace API.Models.Services
         Task<SupplierInvoiceDTOGet> DeleteSupplierInvoice(int id);
         Task<int> CountSupplierinvoices(SupplierInvoiceFilter filter);
         Task<string> MassDeleteSupplierInvoice(List<int> supplierInvoiceId);
+        Task<string> MassUpdateSupplierInvoice(List<SupplierInvoiceDTOGet> newSupplierInvoices);
 
 
     }
@@ -31,7 +32,7 @@ namespace API.Models.Services
 
         public async Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
         {
-            // Retrieve all customers from the database and map them to DTOs
+            // Retrieve all suppliers from the database and map them to DTOs
             return await ApplyFilter(filter).ToListAsync();
         }
 
@@ -218,7 +219,7 @@ namespace API.Models.Services
         public async Task<string> MassDeleteSupplierInvoice(List<int> supplierInvoiceId)
         {
             int count = 0;
-            foreach(int id in supplierInvoiceId)
+            foreach (int id in supplierInvoiceId)
             {
                 var data = await _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefaultAsync();
                 if (data == null || id < 1)
@@ -235,8 +236,99 @@ namespace API.Models.Services
                 await _context.SaveChangesAsync();
                 count++;
             }
-                return $"{count} Supplier Invoices were deleted out of {supplierInvoiceId.Count}";
+            return $"{count} Supplier Invoices were deleted out of {supplierInvoiceId.Count}";
 
+        }
+
+        public async Task<string> MassUpdateSupplierInvoice(List<SupplierInvoiceDTOGet> newSupplierInvoices)
+        {
+            int count = 0;
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                foreach (SupplierInvoiceDTOGet supplierInvoice in newSupplierInvoices)
+                {
+                    var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.InvoiceId == id);
+
+                    if (siDB == null)
+                    {
+                        throw new NotFoundException("Supplier Invoice not found");
+                    }
+
+                    if (supplierInvoice.SaleId != null)
+                    {
+                        if (!await _context.Sales.AnyAsync(x => x.SaleId == supplierInvoice.SaleId))
+                        {
+                            throw new NotFoundException("SaleID not present");
+                        }
+                        siDB.SaleId = supplierInvoice.SaleId;
+                    }
+
+                    if (supplierInvoice.SupplierId != null)
+                    {
+                        var supplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierId == supplierInvoice.SupplierId);
+                        if (supplier == null)
+                        {
+                            throw new NotFoundException("SupplierID not present");
+                        }
+
+                        if ((bool)supplier.Deprecated)
+                        {
+                            throw new ErrorInputPropertyException($"The supplier {supplierInvoice.SupplierId} is deprecated");
+                        }
+
+                        siDB.SupplierId = supplierInvoice.SupplierId;
+                    }
+
+                    if (supplierInvoice.InvoiceDate > DateTime.Now)
+                    {
+                        throw new ErrorInputPropertyException("Date cannot be greater than today");
+                    }
+
+                    siDB.InvoiceAmount = supplierInvoice.InvoiceAmount ?? siDB.InvoiceAmount;
+                    siDB.InvoiceDate = supplierInvoice.InvoiceDate ?? siDB.InvoiceDate;
+
+
+                    if (supplierInvoice.Status != null)
+                    {
+                        if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.ToLower()))
+                        {
+                            siDB.Status = supplierInvoice.Status ?? siDB.Status;
+                        }
+                        else
+                        {
+                            throw new ErrorInputPropertyException("Status not correct");
+                        }
+                    }
+
+
+                    _context.SupplierInvoices.Update(siDB);
+                    await _context.SaveChangesAsync();
+
+                    return SupplierInvoiceMapper.MapGet(siDB);
+
+
+                    count++;
+                }
+
+                await transaction.CommitAsync();
+                return $"{count} Supplier Invoices were updated out of {newSupplierInvoices.Count}";
+            }
+            catch (NotFoundException)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+            catch (ErrorInputPropertyException)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+            catch (DbUpdateException ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception("Database update error occurred", ex);
+            }
         }
 
     }

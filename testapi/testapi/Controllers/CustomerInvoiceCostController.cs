@@ -122,6 +122,7 @@ namespace API.Controllers
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
         }
+
         [Authorize(Roles = "Admin,CustomerInvoiceCostAdmin")]
         [HttpDelete("mass-delete")]
         public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
@@ -135,6 +136,22 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+        }
+
+        [Authorize(Roles = "Admin,CustomerInvoiceCostAdmin")]
+        [HttpPut("mass-update")]
+        public async Task<IActionResult> MassUpdate([FromBody] List<CustomerInvoiceCostDTOGet> newCustomerInvoiceCosts)
+        {
+
+            try
+            {
+                var data = await _customerInvoiceCostService.MassUpdateCustomerInvoiceCost(newCustomerInvoiceCosts);
+                return Ok(data);
+            }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
     }
 }

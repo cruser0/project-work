@@ -143,11 +143,12 @@ namespace API.Models.Services
                 await _context.SaveChangesAsync();
                 if (sicDB.Cost > 0 && sicDB.Quantity > 0)
                 {
+                    _context.SupplierInvoices.Update(oldSi);
+
                     si = await _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefaultAsync();
                     decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);
                     si.InvoiceAmount = total;
                     _context.SupplierInvoices.Update(si);
-                    _context.SupplierInvoices.Update(oldSi);
                     await _context.SaveChangesAsync();
                 }
                 return SupplierInvoiceCostMapper.MapGet(sicDB);
@@ -174,7 +175,7 @@ namespace API.Models.Services
         public async Task<string> MassDeleteSupplierInvoiceCost(List<int> supplierInvoiceCostId)
         {
             int count = 0;
-            foreach(int id in supplierInvoiceCostId)
+            foreach (int id in supplierInvoiceCostId)
             {
                 var data = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
                 if (data == null || id < 1)

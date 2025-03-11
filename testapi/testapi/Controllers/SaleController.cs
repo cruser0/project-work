@@ -122,7 +122,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,SaleAdmin")]
         [HttpDelete("mass-delete")]
-        public async Task<IActionResult> MassDelete([FromQuery]List<int> id)
+        public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
 
             try
