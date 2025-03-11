@@ -105,7 +105,7 @@ namespace WinformDotNetFramework.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(993, 77);
+            this.panel1.Size = new System.Drawing.Size(993, 87);
             this.panel1.TabIndex = 8;
             // 
             // tabControl
@@ -119,7 +119,7 @@ namespace WinformDotNetFramework.Forms
             this.tabControl.Location = new System.Drawing.Point(0, 22);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(993, 55);
+            this.tabControl.Size = new System.Drawing.Size(993, 65);
             this.tabControl.TabIndex = 0;
             // 
             // ShowTP
@@ -129,7 +129,7 @@ namespace WinformDotNetFramework.Forms
             this.ShowTP.Location = new System.Drawing.Point(4, 22);
             this.ShowTP.Name = "ShowTP";
             this.ShowTP.Padding = new System.Windows.Forms.Padding(3);
-            this.ShowTP.Size = new System.Drawing.Size(985, 29);
+            this.ShowTP.Size = new System.Drawing.Size(985, 39);
             this.ShowTP.TabIndex = 0;
             this.ShowTP.Text = "Show";
             // 
@@ -153,7 +153,7 @@ namespace WinformDotNetFramework.Forms
             this.UserShowTS});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
-            this.Show.Size = new System.Drawing.Size(979, 23);
+            this.Show.Size = new System.Drawing.Size(979, 33);
             this.Show.TabIndex = 0;
             this.Show.Text = "Show";
             // 
@@ -196,7 +196,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // SupplierShowTS
             // 
@@ -237,7 +237,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // SaleShowTS
             // 
@@ -254,7 +254,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
             // 
             // UserShowTS
             // 
@@ -275,7 +275,7 @@ namespace WinformDotNetFramework.Forms
             this.EditTP.Location = new System.Drawing.Point(4, 22);
             this.EditTP.Name = "EditTP";
             this.EditTP.Padding = new System.Windows.Forms.Padding(3);
-            this.EditTP.Size = new System.Drawing.Size(985, 29);
+            this.EditTP.Size = new System.Drawing.Size(985, 39);
             this.EditTP.TabIndex = 1;
             this.EditTP.Text = "Edit";
             // 
@@ -299,7 +299,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton19});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(979, 23);
+            this.toolStrip3.Size = new System.Drawing.Size(979, 33);
             this.toolStrip3.TabIndex = 1;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -339,7 +339,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripButton15
             // 
@@ -377,7 +377,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripButton18
             // 
@@ -393,7 +393,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripButton19
             // 
@@ -413,7 +413,7 @@ namespace WinformDotNetFramework.Forms
             this.AddTP.Location = new System.Drawing.Point(4, 22);
             this.AddTP.Name = "AddTP";
             this.AddTP.Padding = new System.Windows.Forms.Padding(3);
-            this.AddTP.Size = new System.Drawing.Size(985, 29);
+            this.AddTP.Size = new System.Drawing.Size(985, 39);
             this.AddTP.TabIndex = 2;
             this.AddTP.Text = "Create";
             // 
@@ -437,7 +437,7 @@ namespace WinformDotNetFramework.Forms
             this.UserCreateTS});
             this.Create.Location = new System.Drawing.Point(3, 3);
             this.Create.Name = "Create";
-            this.Create.Size = new System.Drawing.Size(979, 23);
+            this.Create.Size = new System.Drawing.Size(979, 33);
             this.Create.TabIndex = 1;
             this.Create.Text = "Show";
             // 
@@ -480,7 +480,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 33);
             // 
             // SupplierCreateTS
             // 
@@ -521,7 +521,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 33);
             // 
             // SaleCreateTS
             // 
@@ -538,7 +538,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 33);
             // 
             // UserCreateTS
             // 
@@ -559,7 +559,7 @@ namespace WinformDotNetFramework.Forms
             this.GroupTP.Location = new System.Drawing.Point(4, 22);
             this.GroupTP.Name = "GroupTP";
             this.GroupTP.Padding = new System.Windows.Forms.Padding(3);
-            this.GroupTP.Size = new System.Drawing.Size(985, 29);
+            this.GroupTP.Size = new System.Drawing.Size(985, 39);
             this.GroupTP.TabIndex = 3;
             this.GroupTP.Text = "Group";
             // 
@@ -575,7 +575,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierGroupTS});
             this.Group.Location = new System.Drawing.Point(3, 3);
             this.Group.Name = "Group";
-            this.Group.Size = new System.Drawing.Size(979, 23);
+            this.Group.Size = new System.Drawing.Size(979, 33);
             this.Group.TabIndex = 1;
             this.Group.Text = "Customer";
             // 
@@ -594,7 +594,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 23);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 33);
             // 
             // SupplierGroupTS
             // 
@@ -683,9 +683,9 @@ namespace WinformDotNetFramework.Forms
             // 
             this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(0, 77);
+            this.MainPanel.Location = new System.Drawing.Point(0, 87);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(993, 508);
+            this.MainPanel.Size = new System.Drawing.Size(993, 498);
             this.MainPanel.TabIndex = 10;
             this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
             // 
