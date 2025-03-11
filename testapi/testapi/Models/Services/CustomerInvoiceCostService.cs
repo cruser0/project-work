@@ -109,7 +109,7 @@ namespace API.Models.Services
             ci =await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == customerInvoiceCost.CustomerInvoiceId).FirstAsync();
             if (ci.Status.ToLower().Equals("paid"))
                 throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
-            var total =(await _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{ci.CustomerInvoiceId}\"").ToListAsync()).FirstOrDefault()?.TotalSpent;
+            var total = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == ci.CustomerInvoiceId).SumAsync(x => x.Cost);
             if (total != null)
                 ci.InvoiceAmount = total + customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
             else
@@ -146,7 +146,7 @@ namespace API.Models.Services
                 await _context.SaveChangesAsync();
                 if (cicDB.Cost > 0 && cicDB.Quantity > 0)
                 {
-                    var total = (await _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{customerInvoiceCost.CustomerInvoiceId}\"").ToListAsync()).FirstOrDefault()?.TotalSpent;
+                    var total = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == customerInvoiceCost.CustomerInvoiceId).SumAsync(x => x.Cost);
                     ci.InvoiceAmount = total;
                     await _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceId, ci);
                     _context.CustomerInvoices.Update(oldCi);
@@ -165,7 +165,7 @@ namespace API.Models.Services
                 throw new NotFoundException("Customer Invoice Cost not found!");
             }
             CustomerInvoice ci =await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == data.CustomerInvoiceId).FirstAsync();
-            var total = (await _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{ci.CustomerInvoiceId}\"").ToListAsync()).FirstOrDefault()?.TotalSpent;
+            var total =await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == ci.CustomerInvoiceId).SumAsync(x => x.Cost);
             ci.InvoiceAmount = total - data.Cost * data.Quantity;
             _context.CustomerInvoices.Update(ci);
             _context.CustomerInvoiceCosts.Remove(data);
@@ -182,7 +182,7 @@ namespace API.Models.Services
                     if (data == null || id < 1)
                         continue;
                 CustomerInvoice ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == data.CustomerInvoiceId).FirstAsync();
-                var total = (await _context.TotalSpentPerCustomerInvoiceIDs.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @customerInvoiceID=\"{ci.CustomerInvoiceId}\"").ToListAsync()).FirstOrDefault()?.TotalSpent;
+                var total = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == ci.CustomerInvoiceId).SumAsync(x => x.Cost);
                 ci.InvoiceAmount = total - data.Cost * data.Quantity;
                 _context.CustomerInvoices.Update(ci);
                 _context.CustomerInvoiceCosts.Remove(data);

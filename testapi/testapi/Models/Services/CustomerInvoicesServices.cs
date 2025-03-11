@@ -124,7 +124,7 @@ namespace API.Models.Services
             await _context.SaveChangesAsync();
 
             // Calculate the total revenue for the sale using a stored procedure
-            var Total = (await _context.RevenuePerSaleIDs.FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{customerInvoice.SaleId}\"").ToListAsync()).FirstOrDefault()?.TotalRevenue;
+            var Total = await _context.CustomerInvoices.Where(x=>x.SaleId==customerInvoice.SaleId).SumAsync(x=>x.InvoiceAmount);
 
             // Update the sale record with the new total revenue
             sale.TotalRevenue = Total;
@@ -178,18 +178,15 @@ namespace API.Models.Services
                 var newSale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefaultAsync();
                 if (newSale.Status.ToLower().Equals("closed"))
                     throw new ErrorInputPropertyException($"The current Sale is already closed");
-                var TotalOldSale = (await _context.RevenuePerSaleIDs
-                    .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID={0}", oldSaleId.Value).ToListAsync())
-                    .FirstOrDefault()?.TotalRevenue;
+                var TotalOldSale = await _context.CustomerInvoices.Where(x => x.SaleId == oldSaleId.Value).SumAsync(x => x.InvoiceAmount);
+
 
                 var oldSale = await _context.Sales.Where(x => x.SaleId == oldSaleId.Value).FirstOrDefaultAsync();
                 oldSale.TotalRevenue = TotalOldSale;
 
                 // Recalculate revenue for the new sale
-                var TotalNewSale = (await _context.RevenuePerSaleIDs
-                    .FromSqlRaw("EXEC pf_findTotalRevenuePerSale @saleID={0}", ciDB.SaleId)
-                    .ToListAsync())
-                    .FirstOrDefault()?.TotalRevenue;
+                var TotalNewSale = await _context.CustomerInvoices.Where(x => x.SaleId == ciDB.SaleId).SumAsync(x => x.InvoiceAmount);
+
 
 
 
@@ -348,21 +345,14 @@ namespace API.Models.Services
                         if (newSale.Status.ToLower().Equals("closed"))
                             throw new ErrorInputPropertyException($"The current Sale is already closed");
 
-                        var OldSale = _context.RevenuePerSaleIDs
-                            .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{oldSaleId.Value}\"")
-                            .AsEnumerable()
-                            .FirstOrDefault();
-
-                        var TotalOldSale = OldSale.TotalRevenue;
+                        var TotalOldSale = await _context.CustomerInvoices.Where(x => x.SaleId == oldSaleId.Value).SumAsync(x => x.InvoiceAmount);
 
                         var oldSale = await _context.Sales.Where(x => x.SaleId == oldSaleId.Value).FirstOrDefaultAsync();
                         oldSale.TotalRevenue = TotalOldSale;
 
                         // Recalculate revenue for the new sale
-                        var TotalNewSale = _context.RevenuePerSaleIDs
-                            .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{ciDB.SaleId}\"")
-                            .AsEnumerable()
-                            .FirstOrDefault()?.TotalRevenue;
+                        var TotalNewSale = await _context.CustomerInvoices.Where(x => x.SaleId == ciDB.SaleId).SumAsync(x => x.InvoiceAmount);
+
 
                         newSale.TotalRevenue = TotalNewSale;
 

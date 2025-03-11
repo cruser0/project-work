@@ -47,18 +47,12 @@ namespace API.Models
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<UserRole> UserRoles { get; set; } = null!;
-        public virtual DbSet<ProfitClassification> ProfitClassifications { get; set; } = null!;
-        public virtual DbSet<CustomerInvoiceStatus> CustomerInvoiceStatuses { get; set; } = null!;
-        public virtual DbSet<ProfitSaleID> ProfitSaleIDs { get; set; } = null!;
-        public virtual DbSet<SaleByBOL> SalesByBOLs { get; set; } = null!;
-        public virtual DbSet<SaleByBooking> SalesBybookings { get; set; } = null!;
-        public virtual DbSet<SaleByCustomerID> SalesByCustomerIDs { get; set; } = null!;
-        public virtual DbSet<SaleByStatus> SalesByStatuses { get; set; } = null!;
-        public virtual DbSet<SupplierInvoiceByStatus> SupplierInvoiceByStatuses { get; set; } = null!;
-        public virtual DbSet<RevenuePerSaleID> RevenuePerSaleIDs { get; set; } = null!;
-        public virtual DbSet<AmountSpentSaleID> AmountSpentSaleIDs { get; set; } = null!;
-        public virtual DbSet<TotalSpentPerSupplier> TotalSpentPerSuppliers { get; set; } = null!;
-        public virtual DbSet<TotalSpentPerCustomerInvoiceID> TotalSpentPerCustomerInvoiceIDs { get; set; } = null!;
+
+
+        public virtual DbSet<TotalAmountSpentPerSupplierInvoice> TotalAmountSpentPerSupplierInvoice { get; set; } = null!;
+        public virtual DbSet<ClassifySalesByProfit> ClassifySalesByProfit { get; set; } = null!;
+        public virtual DbSet<TotalAmountSpentPerSuppliers> TotalAmountSpentPerSuppliers { get; set; } = null!;
+        public virtual DbSet<TotalAmountGainedPerCustomerInvoice> TotalAmountGainedPerCustomerInvoice { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -704,18 +698,10 @@ namespace API.Models
                     .HasConstraintName("FK_CustomerInvoiceCosts_CustomerInvoices");
             });
 
-            modelBuilder.Entity<ProfitClassification>().HasNoKey().ToView(null);
-            modelBuilder.Entity<CustomerInvoiceStatus>().HasNoKey().ToView(null);
-            modelBuilder.Entity<ProfitSaleID>().HasNoKey().ToView(null);
-            modelBuilder.Entity<SaleByBOL>().HasNoKey().ToView(null);
-            modelBuilder.Entity<SaleByBooking>().HasNoKey().ToView(null);
-            modelBuilder.Entity<SaleByCustomerID>().HasNoKey().ToView(null);
-            modelBuilder.Entity<SaleByStatus>().HasNoKey().ToView(null);
-            modelBuilder.Entity<SupplierInvoiceByStatus>().HasNoKey().ToView(null);
-            modelBuilder.Entity<RevenuePerSaleID>().HasNoKey().ToView(null);
-            modelBuilder.Entity<AmountSpentSaleID>().HasNoKey().ToView(null);
-            modelBuilder.Entity<TotalSpentPerSupplier>().HasNoKey().ToView(null);
-            modelBuilder.Entity<TotalSpentPerCustomerInvoiceID>().HasNoKey().ToView(null);
+            modelBuilder.Entity<ClassifySalesByProfit>().HasNoKey().ToView(null);
+            modelBuilder.Entity<TotalAmountSpentPerSupplierInvoice>().HasNoKey().ToView(null);
+            modelBuilder.Entity<TotalAmountSpentPerSuppliers>().HasNoKey().ToView(null);
+            modelBuilder.Entity<TotalAmountGainedPerCustomerInvoice>().HasNoKey().ToView(null);
 
             OnModelCreatingPartial(modelBuilder);
         }
