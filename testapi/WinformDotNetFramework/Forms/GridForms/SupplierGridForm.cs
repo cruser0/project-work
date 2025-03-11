@@ -37,6 +37,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             _father = father;
             Init();
+            toolStrip1.Visible = false;
         }
 
         private async void Init()
@@ -292,6 +293,50 @@ namespace WinformDotNetFramework.Forms.GridForms
         private void Excel_ClickBtn(object sender, EventArgs e)
         {
             UtilityFunctions.Excel_ClickBtn(SupplierDgv, this);
+        }
+
+        private async void MassUpdateTSB_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+         "This action is permanent and it will update all the history bound to this entity!",
+         "Confirm Update?",
+         MessageBoxButtons.YesNo,
+         MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    List<Supplier> newEntities = new List<Supplier>();
+                    HashSet<int> ids = new HashSet<int>();
+
+                    foreach (DataGridViewCell cell in SupplierDgv.SelectedCells)
+                    {
+                        ids.Add(cell.RowIndex);
+                    }
+
+                    foreach (var rowId in ids)
+                    {
+                        if (SupplierDgv.Rows[rowId].DataBoundItem is Supplier entity)
+                            newEntities.Add(entity);
+                    }
+                    if (newEntities.Count > 0)
+                    {
+                        string message = await _supplierService.MassUpdate(newEntities);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Row was selected");
+                    }
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
         }
     }
 }

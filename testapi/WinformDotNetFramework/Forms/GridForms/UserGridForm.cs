@@ -374,5 +374,49 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             UtilityFunctions.Excel_ClickBtn(userDgv, this);
         }
+
+        private async void MassUpdateTSB_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+         "This action is permanent and it will update all the history bound to this entity!",
+         "Confirm Update?",
+         MessageBoxButtons.YesNo,
+         MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    List<UserDtoID> newEntities = new List<UserDtoID>();
+                    HashSet<int> ids = new HashSet<int>();
+
+                    foreach (DataGridViewCell cell in userDgv.SelectedCells)
+                    {
+                        ids.Add(cell.RowIndex);
+                    }
+
+                    foreach (var rowId in ids)
+                    {
+                        if (userDgv.Rows[rowId].DataBoundItem is UserRoleDTO entity)
+                            newEntities.Add((UserDtoID)(object)entity);
+                    }
+                    if (newEntities.Count > 0)
+                    {
+                        string message = await _userService.MassUpdate(newEntities);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Row was selected");
+                    }
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
+        }
     }
 }

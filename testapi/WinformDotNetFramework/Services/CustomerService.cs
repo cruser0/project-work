@@ -85,7 +85,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<CustomerInvoice> newEntity)
+        public async Task<string> MassUpdate(List<Customer> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"customer/mass-update", newEntity);

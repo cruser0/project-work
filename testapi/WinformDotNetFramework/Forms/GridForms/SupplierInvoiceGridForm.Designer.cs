@@ -44,6 +44,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,7 +58,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceSupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceSupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
@@ -165,6 +165,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton1";
+            this.toolStripButton2.Click += new System.EventHandler(this.MassUpdateTSB_Click);
             // 
             // toolStripSeparator1
             // 
@@ -190,6 +191,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
             this.ExcelTSB.Text = "Excel";
             this.ExcelTSB.Click += new System.EventHandler(this.Excel_ClickBtn);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton1
             // 
@@ -317,11 +323,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceCountryTsmi.Size = new System.Drawing.Size(195, 22);
             this.SupplierInvoiceCountryTsmi.Text = "Show Supplier Country";
             this.SupplierInvoiceCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // SupplierInvoiceGridForm
             // 

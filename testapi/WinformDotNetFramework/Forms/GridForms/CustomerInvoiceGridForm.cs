@@ -18,7 +18,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         double itemsPage = 10.0;
         int pages;
-        CustomerInvoiceService _customerService;
+        CustomerInvoiceService _customerInvoiceService;
         Form _father;
         Task<ICollection<CustomerInvoice>> getAllNotFiltered;
         Task<int> countNotFiltered;
@@ -37,14 +37,15 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             _father = father;
             Init();
+            toolStrip1.Visible = false;
         }
 
         private async void Init()
         {
             _userService = new UserService();
-            _customerService = new CustomerInvoiceService();
+            _customerInvoiceService = new CustomerInvoiceService();
             InitializeComponent();
-            pages = (int)Math.Ceiling(await _customerService.Count(new CustomerInvoiceFilter()) / itemsPage);
+            pages = (int)Math.Ceiling(await _customerInvoiceService.Count(new CustomerInvoiceFilter()) / itemsPage);
 
             PaginationUserControl.CurrentPage = 1;
             RightSideBar.searchBtnEvent += RightSideBar_searchBtnEvent;
@@ -76,8 +77,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             filter.CustomerInvoicePage = PaginationUserControl.CurrentPage;
             CustomerInvoiceFilter filterPage = searchCustomerInvoice1.GetFilter();
 
-            var query = _customerService.GetAll(filter);
-            var count = _customerService.Count(filterPage);
+            var query = _customerInvoiceService.GetAll(filter);
+            var count = _customerInvoiceService.Count(filterPage);
             await Task.WhenAll(count, query);
 
 
@@ -120,7 +121,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             filter.CustomerInvoicePage = PaginationUserControl.CurrentPage;
 
 
-            IEnumerable<CustomerInvoice> query = await _customerService.GetAll(filter);
+            IEnumerable<CustomerInvoice> query = await _customerInvoiceService.GetAll(filter);
             CenterDgv.DataSource = query.ToList();
         }
 
@@ -230,8 +231,8 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void CustomerInvoiceGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _customerService.GetAll(new CustomerInvoiceFilter() { CustomerInvoicePage = 1 });
-            countNotFiltered = _customerService.Count(new CustomerInvoiceFilter());
+            getAllNotFiltered = _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoicePage = 1 });
+            countNotFiltered = _customerInvoiceService.Count(new CustomerInvoiceFilter());
             getFav = _userService.GetCustomerInvoiceDGV();
             await SetCheckBoxes();
         }
@@ -263,7 +264,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
                     if (id.Count > 0)
                     {
-                        string message = await _customerService.MassDelete(id);
+                        string message = await _customerInvoiceService.MassDelete(id);
                         MessageBox.Show(message);
                     }
                     else
@@ -288,6 +289,50 @@ namespace WinformDotNetFramework.Forms.GridForms
         private void Excel_ClickBtn(object sender, EventArgs e)
         {
             UtilityFunctions.Excel_ClickBtn(CenterDgv, this);
+        }
+
+        private async void MassUpdateTSB_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+         "This action is permanent and it will update all the history bound to this entity!",
+         "Confirm Update?",
+         MessageBoxButtons.YesNo,
+         MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    List<CustomerInvoice> newEntities = new List<CustomerInvoice>();
+                    HashSet<int> ids = new HashSet<int>();
+
+                    foreach (DataGridViewCell cell in CenterDgv.SelectedCells)
+                    {
+                        ids.Add(cell.RowIndex);
+                    }
+
+                    foreach (var rowId in ids)
+                    {
+                        if (CenterDgv.Rows[rowId].DataBoundItem is CustomerInvoice entity)
+                            newEntities.Add(entity);
+                    }
+                    if (newEntities.Count > 0)
+                    {
+                        string message = await _customerInvoiceService.MassUpdate(newEntities);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Row was selected");
+                    }
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
         }
     }
 }
