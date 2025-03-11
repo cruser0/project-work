@@ -13,11 +13,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 {
     public partial class CustomerGridForm : Form
     {
-        string name;
-        string country;
-        int status;
-        DateTime? dateFrom;
-        DateTime? dateTo;
+        CustomerFilter filter = new CustomerFilter() { CustomerPage = 1, CustomerDeprecated = false };
 
         private CustomerService _customerService;
         int pages;
@@ -53,7 +49,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
 
-            comboBox1.SelectedIndex = 1;
+            searchCustomer1.comboBox1.SelectedIndex = 1;
             PaginationUserControl.Visible = false;
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
@@ -69,57 +65,10 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            name = NameTxt.Text;
-            country = CountryTxt.Text;
-            status = comboBox1.SelectedIndex;
-            if (DateFromClnd.Checked)
-            {
-                dateFrom = DateFromClnd.Value;
-            }
-            else
-            {
-                dateFrom = null;
-            }
 
-            if (DateToClnd.Checked)
-            {
-                dateTo = DateToClnd.Value;
-            }
-            else
-            {
-                dateTo = null;
-            }
-
-            bool? customerDeprecated = null;
-            if (status == 1)
-            {
-                customerDeprecated = false;
-            }
-            else if (status == 2)
-            {
-                customerDeprecated = true;
-            }
-
-            CustomerFilter filter = new CustomerFilter
-            {
-                CustomerName = name,
-                CustomerCountry = country,
-                CustomerDeprecated = customerDeprecated,
-                CustomerCreatedDateFrom = dateFrom,
-                CustomerCreatedDateTo = dateTo,
-                CustomerPage = PaginationUserControl.CurrentPage
-            };
-
-            CustomerFilter filterPage = new CustomerFilter
-            {
-                CustomerName = name,
-                CustomerCountry = country,
-                CustomerDeprecated = customerDeprecated,
-                CustomerCreatedDateFrom = dateFrom,
-                CustomerCreatedDateTo = dateTo
-            };
-
-
+            filter = searchCustomer1.GetFilter();
+            filter.CustomerPage = PaginationUserControl.CurrentPage;
+            CustomerFilter filterPage = searchCustomer1.GetFilter();
 
             var query = _customerService.GetAll(filter);
             var totalCount = _customerService.Count(filterPage);
@@ -155,32 +104,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
-            bool? customerDeprecated = null;
-            if (status == 1)
-            {
-                customerDeprecated = false;
-            }
-            else if (status == 2)
-            {
-                customerDeprecated = true;
-            }
-
-            if (dateFrom != null)
-                DateFromClnd.Checked = true;
-            if (dateTo != null)
-                DateToClnd.Checked = true;
-
-
-            CustomerFilter filter = new CustomerFilter
-            {
-                CustomerName = name,
-                CustomerCountry = country,
-                CustomerDeprecated = customerDeprecated,
-                CustomerCreatedDateFrom = dateFrom,
-                CustomerCreatedDateTo = dateTo,
-                CustomerPage = PaginationUserControl.CurrentPage
-            };
-
+            filter.CustomerPage = PaginationUserControl.CurrentPage;
             IEnumerable<Customer> query = await _customerService.GetAll(filter);
             CustomerDgv.DataSource = query.ToList();
         }

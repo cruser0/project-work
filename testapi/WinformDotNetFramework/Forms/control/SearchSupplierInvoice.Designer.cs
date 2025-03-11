@@ -72,44 +72,44 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 374);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 327);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 17);
+            this.label4.Size = new System.Drawing.Size(107, 17);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Suplier Invoice Cost";
+            this.label4.Text = "Supplier Invoice";
             // 
             // InvoiceAmountToTxt
             // 
             this.InvoiceAmountToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.InvoiceAmountToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceAmountToTxt.Location = new System.Drawing.Point(3, 330);
+            this.InvoiceAmountToTxt.Location = new System.Drawing.Point(3, 286);
             this.InvoiceAmountToTxt.Name = "InvoiceAmountToTxt";
-            this.InvoiceAmountToTxt.Size = new System.Drawing.Size(180, 23);
+            this.InvoiceAmountToTxt.Size = new System.Drawing.Size(154, 20);
             this.InvoiceAmountToTxt.TabIndex = 16;
             // 
             // InvoiceAmountFromTxt
             // 
             this.InvoiceAmountFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.InvoiceAmountFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceAmountFromTxt.Location = new System.Drawing.Point(3, 283);
+            this.InvoiceAmountFromTxt.Location = new System.Drawing.Point(3, 245);
             this.InvoiceAmountFromTxt.Name = "InvoiceAmountFromTxt";
-            this.InvoiceAmountFromTxt.Size = new System.Drawing.Size(180, 23);
+            this.InvoiceAmountFromTxt.Size = new System.Drawing.Size(154, 20);
             this.InvoiceAmountFromTxt.TabIndex = 15;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(3, 262);
+            this.label2.Location = new System.Drawing.Point(3, 227);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 17);
             this.label2.TabIndex = 13;
@@ -118,9 +118,9 @@ namespace WinformDotNetFramework.Forms.control
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(3, 309);
+            this.label3.Location = new System.Drawing.Point(3, 268);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 17);
             this.label3.TabIndex = 14;
@@ -130,26 +130,26 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.SupplierIDTxt.BackColor = System.Drawing.SystemColors.Window;
             this.SupplierIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierIDTxt.Location = new System.Drawing.Point(3, 95);
+            this.SupplierIDTxt.Location = new System.Drawing.Point(3, 82);
             this.SupplierIDTxt.Name = "SupplierIDTxt";
-            this.SupplierIDTxt.Size = new System.Drawing.Size(180, 23);
+            this.SupplierIDTxt.Size = new System.Drawing.Size(154, 20);
             this.SupplierIDTxt.TabIndex = 12;
             // 
             // SaleIDTxt
             // 
             this.SaleIDTxt.BackColor = System.Drawing.SystemColors.Window;
             this.SaleIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIDTxt.Location = new System.Drawing.Point(3, 48);
+            this.SaleIDTxt.Location = new System.Drawing.Point(3, 42);
             this.SaleIDTxt.Name = "SaleIDTxt";
-            this.SaleIDTxt.Size = new System.Drawing.Size(180, 23);
+            this.SaleIDTxt.Size = new System.Drawing.Size(154, 20);
             this.SaleIDTxt.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(3, 168);
+            this.label1.Location = new System.Drawing.Point(3, 146);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 10;
@@ -158,9 +158,9 @@ namespace WinformDotNetFramework.Forms.control
             // DateFromLbl
             // 
             this.DateFromLbl.AutoSize = true;
-            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.DateFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateFromLbl.Location = new System.Drawing.Point(3, 121);
+            this.DateFromLbl.Location = new System.Drawing.Point(3, 105);
             this.DateFromLbl.Name = "DateFromLbl";
             this.DateFromLbl.Size = new System.Drawing.Size(73, 17);
             this.DateFromLbl.TabIndex = 9;
@@ -169,9 +169,9 @@ namespace WinformDotNetFramework.Forms.control
             // DateToLbl
             // 
             this.DateToLbl.AutoSize = true;
-            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.DateToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateToLbl.Location = new System.Drawing.Point(3, 215);
+            this.DateToLbl.Location = new System.Drawing.Point(3, 186);
             this.DateToLbl.Name = "DateToLbl";
             this.DateToLbl.Size = new System.Drawing.Size(46, 17);
             this.DateToLbl.TabIndex = 6;
@@ -186,9 +186,9 @@ namespace WinformDotNetFramework.Forms.control
             "All",
             "Approved",
             "Unapproved"});
-            this.StatusCmb.Location = new System.Drawing.Point(3, 236);
+            this.StatusCmb.Location = new System.Drawing.Point(3, 205);
             this.StatusCmb.Name = "StatusCmb";
-            this.StatusCmb.Size = new System.Drawing.Size(180, 23);
+            this.StatusCmb.Size = new System.Drawing.Size(155, 21);
             this.StatusCmb.TabIndex = 5;
             // 
             // DateToClnd
@@ -196,18 +196,18 @@ namespace WinformDotNetFramework.Forms.control
             this.DateToClnd.Checked = false;
             this.DateToClnd.CustomFormat = "ddMMMMyyyy";
             this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToClnd.Location = new System.Drawing.Point(3, 189);
+            this.DateToClnd.Location = new System.Drawing.Point(3, 164);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
-            this.DateToClnd.Size = new System.Drawing.Size(180, 23);
+            this.DateToClnd.Size = new System.Drawing.Size(155, 20);
             this.DateToClnd.TabIndex = 6;
             // 
             // SaleIDLbl
             // 
             this.SaleIDLbl.AutoSize = true;
-            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.SaleIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIDLbl.Location = new System.Drawing.Point(3, 27);
+            this.SaleIDLbl.Location = new System.Drawing.Point(3, 23);
             this.SaleIDLbl.Name = "SaleIDLbl";
             this.SaleIDLbl.Size = new System.Drawing.Size(51, 17);
             this.SaleIDLbl.TabIndex = 3;
@@ -216,9 +216,9 @@ namespace WinformDotNetFramework.Forms.control
             // SupplierIDLbl
             // 
             this.SupplierIDLbl.AutoSize = true;
-            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierIDLbl.Location = new System.Drawing.Point(3, 74);
+            this.SupplierIDLbl.Location = new System.Drawing.Point(3, 64);
             this.SupplierIDLbl.Name = "SupplierIDLbl";
             this.SupplierIDLbl.Size = new System.Drawing.Size(77, 17);
             this.SupplierIDLbl.TabIndex = 4;
@@ -230,19 +230,19 @@ namespace WinformDotNetFramework.Forms.control
             this.DateFromClnd.Checked = false;
             this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
             this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromClnd.Location = new System.Drawing.Point(3, 142);
+            this.DateFromClnd.Location = new System.Drawing.Point(3, 123);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
-            this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
+            this.DateFromClnd.Size = new System.Drawing.Size(155, 20);
             this.DateFromClnd.TabIndex = 5;
             // 
             // SearchSupplierInvoice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplierInvoice";
-            this.Size = new System.Drawing.Size(200, 374);
+            this.Size = new System.Drawing.Size(171, 327);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -256,7 +256,6 @@ namespace WinformDotNetFramework.Forms.control
         private IntegerTextBoxUserControl InvoiceAmountFromTxt;
         private Label label2;
         private Label label3;
-        private IntegerTextBoxUserControl SupplierIDTxt;
         private IntegerTextBoxUserControl SaleIDTxt;
         private Label label1;
         private Label DateFromLbl;
@@ -267,5 +266,6 @@ namespace WinformDotNetFramework.Forms.control
         private Label SupplierIDLbl;
         private DateTimePicker DateFromClnd;
         private Label label4;
+        public IntegerTextBoxUserControl SupplierIDTxt;
     }
 }

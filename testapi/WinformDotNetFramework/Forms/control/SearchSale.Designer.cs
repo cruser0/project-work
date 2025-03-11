@@ -52,7 +52,6 @@ namespace WinformDotNetFramework.Forms.control
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.AutoScroll = true;
-            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.RevenueFromTxt);
@@ -72,13 +71,13 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 370);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 325);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
@@ -90,17 +89,17 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.RevenueFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.RevenueFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 280);
+            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 243);
             this.RevenueFromTxt.Name = "RevenueFromTxt";
-            this.RevenueFromTxt.Size = new System.Drawing.Size(180, 23);
+            this.RevenueFromTxt.Size = new System.Drawing.Size(154, 20);
             this.RevenueFromTxt.TabIndex = 15;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(3, 259);
+            this.label2.Location = new System.Drawing.Point(3, 224);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 17);
             this.label2.TabIndex = 14;
@@ -110,17 +109,17 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.RevenueToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.RevenueToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RevenueToTxt.Location = new System.Drawing.Point(3, 327);
+            this.RevenueToTxt.Location = new System.Drawing.Point(3, 283);
             this.RevenueToTxt.Name = "RevenueToTxt";
-            this.RevenueToTxt.Size = new System.Drawing.Size(180, 23);
+            this.RevenueToTxt.Size = new System.Drawing.Size(154, 20);
             this.RevenueToTxt.TabIndex = 13;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(3, 306);
+            this.label1.Location = new System.Drawing.Point(3, 265);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 17);
             this.label1.TabIndex = 12;
@@ -129,9 +128,9 @@ namespace WinformDotNetFramework.Forms.control
             // DateToLbl
             // 
             this.DateToLbl.AutoSize = true;
-            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.DateToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateToLbl.Location = new System.Drawing.Point(3, 165);
+            this.DateToLbl.Location = new System.Drawing.Point(3, 143);
             this.DateToLbl.Name = "DateToLbl";
             this.DateToLbl.Size = new System.Drawing.Size(56, 17);
             this.DateToLbl.TabIndex = 10;
@@ -140,9 +139,9 @@ namespace WinformDotNetFramework.Forms.control
             // DateFromLbl
             // 
             this.DateFromLbl.AutoSize = true;
-            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.DateFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateFromLbl.Location = new System.Drawing.Point(3, 118);
+            this.DateFromLbl.Location = new System.Drawing.Point(3, 102);
             this.DateFromLbl.Name = "DateFromLbl";
             this.DateFromLbl.Size = new System.Drawing.Size(73, 17);
             this.DateFromLbl.TabIndex = 9;
@@ -151,9 +150,9 @@ namespace WinformDotNetFramework.Forms.control
             // StatusLbl
             // 
             this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(3, 212);
+            this.StatusLbl.Location = new System.Drawing.Point(3, 184);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(46, 17);
             this.StatusLbl.TabIndex = 6;
@@ -168,9 +167,9 @@ namespace WinformDotNetFramework.Forms.control
             "All",
             "Active",
             "Closed"});
-            this.StatusCB.Location = new System.Drawing.Point(3, 233);
+            this.StatusCB.Location = new System.Drawing.Point(3, 202);
             this.StatusCB.Name = "StatusCB";
-            this.StatusCB.Size = new System.Drawing.Size(180, 23);
+            this.StatusCB.Size = new System.Drawing.Size(155, 21);
             this.StatusCB.TabIndex = 5;
             // 
             // BNTextBox
@@ -178,10 +177,10 @@ namespace WinformDotNetFramework.Forms.control
             this.BNTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BNTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BNTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.BNTextBox.Location = new System.Drawing.Point(3, 45);
+            this.BNTextBox.Location = new System.Drawing.Point(3, 39);
             this.BNTextBox.MaxLength = 50;
             this.BNTextBox.Name = "BNTextBox";
-            this.BNTextBox.Size = new System.Drawing.Size(180, 23);
+            this.BNTextBox.Size = new System.Drawing.Size(155, 20);
             this.BNTextBox.TabIndex = 1;
             // 
             // DateToDTP
@@ -189,18 +188,18 @@ namespace WinformDotNetFramework.Forms.control
             this.DateToDTP.Checked = false;
             this.DateToDTP.CustomFormat = "ddMMMMyyyy";
             this.DateToDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToDTP.Location = new System.Drawing.Point(3, 186);
+            this.DateToDTP.Location = new System.Drawing.Point(3, 161);
             this.DateToDTP.Name = "DateToDTP";
             this.DateToDTP.ShowCheckBox = true;
-            this.DateToDTP.Size = new System.Drawing.Size(180, 23);
+            this.DateToDTP.Size = new System.Drawing.Size(155, 20);
             this.DateToDTP.TabIndex = 6;
             // 
             // BookingNumberLbl
             // 
             this.BookingNumberLbl.AutoSize = true;
-            this.BookingNumberLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BookingNumberLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.BookingNumberLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.BookingNumberLbl.Location = new System.Drawing.Point(3, 24);
+            this.BookingNumberLbl.Location = new System.Drawing.Point(3, 21);
             this.BookingNumberLbl.Name = "BookingNumberLbl";
             this.BookingNumberLbl.Size = new System.Drawing.Size(113, 17);
             this.BookingNumberLbl.TabIndex = 3;
@@ -209,9 +208,9 @@ namespace WinformDotNetFramework.Forms.control
             // BillofLadingLbl
             // 
             this.BillofLadingLbl.AutoSize = true;
-            this.BillofLadingLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BillofLadingLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.BillofLadingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.BillofLadingLbl.Location = new System.Drawing.Point(3, 71);
+            this.BillofLadingLbl.Location = new System.Drawing.Point(3, 62);
             this.BillofLadingLbl.Name = "BillofLadingLbl";
             this.BillofLadingLbl.Size = new System.Drawing.Size(91, 17);
             this.BillofLadingLbl.TabIndex = 4;
@@ -223,10 +222,10 @@ namespace WinformDotNetFramework.Forms.control
             this.DateFromDTP.Checked = false;
             this.DateFromDTP.CustomFormat = "ddMMMMyyyy";
             this.DateFromDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromDTP.Location = new System.Drawing.Point(3, 139);
+            this.DateFromDTP.Location = new System.Drawing.Point(3, 120);
             this.DateFromDTP.Name = "DateFromDTP";
             this.DateFromDTP.ShowCheckBox = true;
-            this.DateFromDTP.Size = new System.Drawing.Size(180, 23);
+            this.DateFromDTP.Size = new System.Drawing.Size(155, 20);
             this.DateFromDTP.TabIndex = 5;
             // 
             // BoLTextBox
@@ -234,19 +233,19 @@ namespace WinformDotNetFramework.Forms.control
             this.BoLTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BoLTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BoLTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.BoLTextBox.Location = new System.Drawing.Point(3, 92);
+            this.BoLTextBox.Location = new System.Drawing.Point(3, 80);
             this.BoLTextBox.MaxLength = 50;
             this.BoLTextBox.Name = "BoLTextBox";
-            this.BoLTextBox.Size = new System.Drawing.Size(180, 23);
+            this.BoLTextBox.Size = new System.Drawing.Size(155, 20);
             this.BoLTextBox.TabIndex = 2;
             // 
             // SearchSale
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSale";
-            this.Size = new System.Drawing.Size(200, 370);
+            this.Size = new System.Drawing.Size(171, 325);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

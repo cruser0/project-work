@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
 {
@@ -7,6 +8,66 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSale()
         {
             InitializeComponent();
+            StatusCB.SelectedIndex = 0;
+        }
+
+        public SaleFilter GetFilter()
+        {
+            SaleFilter saleFilter = new SaleFilter
+            {
+                SaleBookingNumber = BNTextBox.Text,
+                SaleBoLnumber = BoLTextBox.Text
+            };
+
+            // For SaleRevenueFrom and SaleRevenueTo, check if text is empty or null before parsing
+            if (string.IsNullOrEmpty(RevenueFromTxt.GetText()))
+            {
+                saleFilter.SaleRevenueFrom = null;
+            }
+            else
+            {
+                saleFilter.SaleRevenueFrom = int.Parse(RevenueFromTxt.GetText());
+            }
+
+            if (string.IsNullOrEmpty(RevenueToTxt.GetText()))
+            {
+                saleFilter.SaleRevenueTo = null;
+            }
+            else
+            {
+                saleFilter.SaleRevenueTo = int.Parse(RevenueToTxt.GetText());
+            }
+
+            saleFilter.SaleCustomerId = null;
+
+            if (StatusCB.Text == "All")
+            {
+                saleFilter.SaleStatus = null;
+            }
+            else
+            {
+                saleFilter.SaleStatus = StatusCB.Text;
+            }
+
+            if (DateFromDTP.Checked)
+            {
+                saleFilter.SaleDateFrom = DateFromDTP.Value;
+            }
+            else
+            {
+                saleFilter.SaleDateFrom = null;
+            }
+
+            if (DateToDTP.Checked)
+            {
+                saleFilter.SaleDateTo = DateToDTP.Value;
+            }
+            else
+            {
+                saleFilter.SaleDateTo = null;
+            }
+
+            return saleFilter;
         }
     }
 }

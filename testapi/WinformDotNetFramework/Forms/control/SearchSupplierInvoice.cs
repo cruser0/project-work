@@ -8,6 +8,7 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplierInvoice()
         {
             InitializeComponent();
+            StatusCmb.SelectedIndex = 0;
         }
 
         public SupplierInvoiceFilter GetFilter()

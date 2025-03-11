@@ -8,6 +8,7 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplier()
         {
             InitializeComponent();
+            comboBox1.SelectedIndex = 0;
         }
 
         public SupplierFilter GetFilter()

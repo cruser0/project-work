@@ -42,14 +42,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.NameTxt = new System.Windows.Forms.TextBox();
-            this.NameLbl = new System.Windows.Forms.Label();
-            this.CostToTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CostFromTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.InvoiceIDTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.InvoiceIDLbl = new System.Windows.Forms.Label();
-            this.CostLbl = new System.Windows.Forms.Label();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.PaginationPanel = new System.Windows.Forms.Panel();
@@ -60,6 +52,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceCostCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchCustomerInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceCost();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceCostDgv)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -77,7 +70,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(584, 361);
+            this.panel1.Size = new System.Drawing.Size(501, 313);
             this.panel1.TabIndex = 3;
             // 
             // CustomerInvoiceCostDgv
@@ -90,7 +83,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceCostDgv.Name = "CustomerInvoiceCostDgv";
             this.CustomerInvoiceCostDgv.ReadOnly = true;
             this.CustomerInvoiceCostDgv.RowTemplate.Height = 25;
-            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(584, 336);
+            this.CustomerInvoiceCostDgv.Size = new System.Drawing.Size(501, 288);
             this.CustomerInvoiceCostDgv.TabIndex = 0;
             this.CustomerInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.CustomerInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
@@ -106,7 +99,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(501, 25);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -160,9 +153,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel2.Controls.Add(this.TextBoxesRightPanel);
             this.panel2.Controls.Add(this.RightSideBar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(584, 0);
+            this.panel2.Location = new System.Drawing.Point(501, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 461);
+            this.panel2.Size = new System.Drawing.Size(171, 400);
             this.panel2.TabIndex = 4;
             // 
             // TextBoxesRightPanel
@@ -170,97 +163,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.CostToTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.label1);
-            this.TextBoxesRightPanel.Controls.Add(this.CostFromTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
+            this.TextBoxesRightPanel.Controls.Add(this.searchCustomerInvoiceCost1);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 358);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
             this.TextBoxesRightPanel.TabIndex = 8;
-            // 
-            // NameTxt
-            // 
-            this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameTxt.Location = new System.Drawing.Point(4, 174);
-            this.NameTxt.MaxLength = 100;
-            this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(180, 23);
-            this.NameTxt.TabIndex = 15;
-            // 
-            // NameLbl
-            // 
-            this.NameLbl.AutoSize = true;
-            this.NameLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameLbl.Location = new System.Drawing.Point(4, 153);
-            this.NameLbl.Name = "NameLbl";
-            this.NameLbl.Size = new System.Drawing.Size(119, 17);
-            this.NameLbl.TabIndex = 16;
-            this.NameLbl.Text = "Description Name";
-            // 
-            // CostToTxt
-            // 
-            this.CostToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostToTxt.Location = new System.Drawing.Point(4, 122);
-            this.CostToTxt.Name = "CostToTxt";
-            this.CostToTxt.Size = new System.Drawing.Size(180, 23);
-            this.CostToTxt.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(4, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 17);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Cost To";
-            // 
-            // CostFromTxt
-            // 
-            this.CostFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostFromTxt.Location = new System.Drawing.Point(3, 68);
-            this.CostFromTxt.Name = "CostFromTxt";
-            this.CostFromTxt.Size = new System.Drawing.Size(180, 23);
-            this.CostFromTxt.TabIndex = 12;
-            // 
-            // InvoiceIDTxt
-            // 
-            this.InvoiceIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceIDTxt.Location = new System.Drawing.Point(3, 21);
-            this.InvoiceIDTxt.Name = "InvoiceIDTxt";
-            this.InvoiceIDTxt.Size = new System.Drawing.Size(180, 23);
-            this.InvoiceIDTxt.TabIndex = 11;
-            // 
-            // InvoiceIDLbl
-            // 
-            this.InvoiceIDLbl.AutoSize = true;
-            this.InvoiceIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.InvoiceIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceIDLbl.Location = new System.Drawing.Point(3, 0);
-            this.InvoiceIDLbl.Name = "InvoiceIDLbl";
-            this.InvoiceIDLbl.Size = new System.Drawing.Size(70, 17);
-            this.InvoiceIDLbl.TabIndex = 3;
-            this.InvoiceIDLbl.Text = "Invoice ID";
-            // 
-            // CostLbl
-            // 
-            this.CostLbl.AutoSize = true;
-            this.CostLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CostLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostLbl.Location = new System.Drawing.Point(3, 47);
-            this.CostLbl.Name = "CostLbl";
-            this.CostLbl.Size = new System.Drawing.Size(71, 17);
-            this.CostLbl.TabIndex = 4;
-            this.CostLbl.Text = "Cost From";
             // 
             // RightSideBar
             // 
@@ -268,7 +175,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
+            this.RightSideBar.Size = new System.Drawing.Size(171, 400);
             this.RightSideBar.TabIndex = 0;
             // 
             // BottomPanel
@@ -276,27 +183,27 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.BottomPanel.Controls.Add(this.PaginationPanel);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 361);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 313);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(584, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(501, 87);
             this.BottomPanel.TabIndex = 5;
             // 
             // PaginationPanel
             // 
             this.PaginationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.PaginationPanel.Controls.Add(this.PaginationUserControl);
-            this.PaginationPanel.Location = new System.Drawing.Point(87, 0);
+            this.PaginationPanel.Location = new System.Drawing.Point(75, 0);
             this.PaginationPanel.Name = "PaginationPanel";
-            this.PaginationPanel.Size = new System.Drawing.Size(407, 100);
+            this.PaginationPanel.Size = new System.Drawing.Size(349, 87);
             this.PaginationPanel.TabIndex = 1;
             // 
             // PaginationUserControl
             // 
             this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(35, 28);
+            this.PaginationUserControl.Location = new System.Drawing.Point(30, 24);
             this.PaginationUserControl.Name = "PaginationUserControl";
-            this.PaginationUserControl.Size = new System.Drawing.Size(313, 50);
+            this.PaginationUserControl.Size = new System.Drawing.Size(268, 43);
             this.PaginationUserControl.TabIndex = 0;
             // 
             // RightClickDgv
@@ -358,15 +265,22 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceCostNameTsmi.Text = "Show Description Name";
             this.CustomerInvoiceCostNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // searchCustomerInvoiceCost1
+            // 
+            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(0, 0);
+            this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
+            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(171, 168);
+            this.searchCustomerInvoiceCost1.TabIndex = 0;
+            // 
             // CustomerInvoiceCostGridForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(672, 400);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.panel2);
-            this.MinimumSize = new System.Drawing.Size(800, 500);
+            this.MinimumSize = new System.Drawing.Size(688, 439);
             this.Name = "CustomerInvoiceCostGridForm";
             this.Text = "CustomerInvoiceCostGrid";
             this.Load += new System.EventHandler(this.CustomerInvoiceCostGridForm_Load);
@@ -378,7 +292,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
-            this.TextBoxesRightPanel.PerformLayout();
             this.BottomPanel.ResumeLayout(false);
             this.PaginationPanel.ResumeLayout(false);
             this.RightClickDgv.ResumeLayout(false);
@@ -392,14 +305,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private DataGridView CustomerInvoiceCostDgv;
         private Panel panel2;
         private Panel TextBoxesRightPanel;
-        private TextBox NameTxt;
-        private Label NameLbl;
-        private control.IntegerTextBoxUserControl CostToTxt;
-        private Label label1;
-        private control.IntegerTextBoxUserControl CostFromTxt;
-        private control.IntegerTextBoxUserControl InvoiceIDTxt;
-        private Label InvoiceIDLbl;
-        private Label CostLbl;
         private control.RightSideBarUserControl RightSideBar;
         private Panel BottomPanel;
         private control.PaginationUserControl PaginationUserControl;
@@ -416,5 +321,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
+        private control.SearchCustomerInvoiceCost searchCustomerInvoiceCost1;
     }
 }

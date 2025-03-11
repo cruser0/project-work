@@ -12,10 +12,8 @@ namespace WinformDotNetFramework.Forms.GridForms
 {
     public partial class CustomerInvoiceCostGridForm : Form
     {
-        int? invoiceId;
-        int? costFrom;
-        int? costTo;
-        string name;
+        CustomerInvoiceCostFilter filter = new CustomerInvoiceCostFilter() { CustomerInvoiceCostPage = 1 };
+
         CustomerInvoiceCostService _customerInvoiceCostService;
         int pages;
         double itemsPage = 10.0;
@@ -60,49 +58,12 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            if (!string.IsNullOrEmpty(InvoiceIDTxt.GetText()))
-            {
-                invoiceId = int.Parse(InvoiceIDTxt.GetText());
-            }
-            else
-            {
-                invoiceId = null;
-            }
 
-            if (!string.IsNullOrEmpty(CostFromTxt.GetText()))
-            {
-                costFrom = int.Parse(CostFromTxt.GetText());
-            }
-            else
-            {
-                costFrom = null;
-            }
 
-            if (!string.IsNullOrEmpty(CostToTxt.GetText()))
-            {
-                costTo = int.Parse(CostToTxt.GetText());
-            }
-            else
-            {
-                costTo = null;
-            }
+            filter = searchCustomerInvoiceCost1.GetFilter();
+            filter.CustomerInvoiceCostPage = PaginationUserControl.CurrentPage;
 
-            name = !string.IsNullOrEmpty(NameTxt.Text) ? NameTxt.Text : null;
-            CustomerInvoiceCostFilter filter = new CustomerInvoiceCostFilter
-            {
-                CustomerInvoiceCostCustomerInvoiceId = invoiceId,
-                CustomerInvoiceCostCostFrom = costFrom,
-                CustomerInvoiceCostCostTo = costTo,
-                CustomerInvoiceCostPage = PaginationUserControl.CurrentPage,
-                CustomerInvoiceCostName = NameTxt.Text,
-            };
-            CustomerInvoiceCostFilter filterPage = new CustomerInvoiceCostFilter
-            {
-                CustomerInvoiceCostCustomerInvoiceId = invoiceId,
-                CustomerInvoiceCostCostFrom = costFrom,
-                CustomerInvoiceCostCostTo = costTo,
-                CustomerInvoiceCostName = NameTxt.Text,
-            };
+            CustomerInvoiceCostFilter filterPage = searchCustomerInvoiceCost1.GetFilter();
 
             var getAllTask = _customerInvoiceCostService.GetAll(filter);
             var countTask = _customerInvoiceCostService.Count(filterPage);
@@ -145,14 +106,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
-            CustomerInvoiceCostFilter filter = new CustomerInvoiceCostFilter
-            {
-                CustomerInvoiceCostCustomerInvoiceId = invoiceId,
-                CustomerInvoiceCostCostFrom = costFrom,
-                CustomerInvoiceCostCostTo = costTo,
-                CustomerInvoiceCostPage = PaginationUserControl.CurrentPage,
-                CustomerInvoiceCostName = NameTxt.Text,
-            };
+            filter.CustomerInvoiceCostPage = PaginationUserControl.CurrentPage;
 
             IEnumerable<CustomerInvoiceCost> query = await _customerInvoiceCostService.GetAll(filter);
             CustomerInvoiceCostDgv.DataSource = query.ToList();

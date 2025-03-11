@@ -14,12 +14,8 @@ namespace WinformDotNetFramework.Forms.GridForms
 {
     public partial class CustomerInvoiceGridForm : Form
     {
-        int? saleID;
-        DateTime? invoiceDateFrom;
-        DateTime? invoiceDateTo;
-        int? invoiceAmountFrom;
-        int? invoiceAmountTo;
-        string status;
+        CustomerInvoiceFilter filter = new CustomerInvoiceFilter() { CustomerInvoicePage = 1 };
+
         double itemsPage = 10.0;
         int pages;
         CustomerInvoiceService _customerService;
@@ -51,7 +47,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             pages = (int)Math.Ceiling(await _customerService.Count(new CustomerInvoiceFilter()) / itemsPage);
 
             PaginationUserControl.CurrentPage = 1;
-            StatusCmb.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += RightSideBar_searchBtnEvent;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -76,95 +71,10 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void RightSideBar_searchBtnEvent(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            bool flagfrom = false;
-            bool flagto = false;
-            if (DateFromClnd.Checked)
-            {
-                if (!(DateFromClnd.Value <= DateTime.Now) || !(DateFromClnd.Value > new DateTime(1975, 1, 1)))
-                    flagfrom = true;
-            }
-            if (DateToClnd.Checked)
-            {
-                if (!(DateToClnd.Value <= DateTime.Now) || !(DateToClnd.Value >= DateFromClnd.Value))
-                    flagto = true;
-            }
-            if (flagfrom && flagto)
-                MessageBox.Show("Incorrect Input Date From and Date To");
-            else
-            {
-                if (flagfrom)
-                    MessageBox.Show("Incorrect Input Date From");
-                if (flagto)
-                    MessageBox.Show("Incorrect Input Date To");
-            }
-            int idNum;
-            int? saleID = null;
-            if (int.TryParse(SaleIDTxt.GetText(), out idNum))
-            {
-                saleID = idNum;
-            }
 
-            if (DateFromClnd.Checked)
-            {
-                invoiceDateFrom = DateFromClnd.Value;
-            }
-            else
-            {
-                invoiceDateFrom = null;
-            }
-
-            if (DateToClnd.Checked)
-            {
-                invoiceDateTo = DateToClnd.Value;
-            }
-            else
-            {
-                invoiceDateTo = null;
-            }
-
-            status = StatusCmb.Text;
-
-            if (!string.IsNullOrEmpty(AmountFromTxt.GetText()))
-            {
-                invoiceAmountFrom = int.Parse(AmountFromTxt.GetText());
-            }
-            else
-            {
-                invoiceAmountFrom = null;
-            }
-
-            if (!string.IsNullOrEmpty(AmountToTxt.GetText()))
-            {
-                invoiceAmountTo = int.Parse(AmountToTxt.GetText());
-            }
-            else
-            {
-                invoiceAmountTo = null;
-            }
-
-
-
-            CustomerInvoiceFilter filter = new CustomerInvoiceFilter
-            {
-                CustomerInvoiceSaleId = saleID,
-                CustomerInvoiceInvoiceDateFrom = invoiceDateFrom,
-                CustomerInvoiceInvoiceDateTo = invoiceDateTo,
-                CustomerInvoiceStatus = status,
-                CustomerInvoicePage = PaginationUserControl.CurrentPage,
-                CustomerInvoiceInvoiceAmountFrom = invoiceAmountFrom,
-                CustomerInvoiceInvoiceAmountTo = invoiceAmountTo
-
-            };
-            CustomerInvoiceFilter filterPage = new CustomerInvoiceFilter
-            {
-                CustomerInvoiceSaleId = saleID,
-                CustomerInvoiceInvoiceDateFrom = invoiceDateFrom,
-                CustomerInvoiceInvoiceDateTo = invoiceDateTo,
-                CustomerInvoiceStatus = status,
-                CustomerInvoiceInvoiceAmountFrom = invoiceAmountFrom,
-                CustomerInvoiceInvoiceAmountTo = invoiceAmountTo
-            };
-
+            filter = searchCustomerInvoice1.GetFilter();
+            filter.CustomerInvoicePage = PaginationUserControl.CurrentPage;
+            CustomerInvoiceFilter filterPage = searchCustomerInvoice1.GetFilter();
 
             var query = _customerService.GetAll(filter);
             var count = _customerService.Count(filterPage);
@@ -207,16 +117,8 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
 
-            CustomerInvoiceFilter filter = new CustomerInvoiceFilter
-            {
-                CustomerInvoiceSaleId = saleID,
-                CustomerInvoiceInvoiceDateFrom = invoiceDateFrom,
-                CustomerInvoiceInvoiceDateTo = invoiceDateTo,
-                CustomerInvoiceStatus = status,
-                CustomerInvoicePage = PaginationUserControl.CurrentPage,
-                CustomerInvoiceInvoiceAmountFrom = invoiceAmountFrom,
-                CustomerInvoiceInvoiceAmountTo = invoiceAmountTo
-            };
+            filter.CustomerInvoicePage = PaginationUserControl.CurrentPage;
+
 
             IEnumerable<CustomerInvoice> query = await _customerService.GetAll(filter);
             CenterDgv.DataSource = query.ToList();

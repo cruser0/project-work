@@ -357,16 +357,16 @@
     <Compile Include="Forms\DetailsForms\UserDetails.Designer.cs">
       <DependentUpon>UserDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FInalForms\CustomerFinalForm.cs">
+    <Compile Include="Forms\FinalForms\CustomerFinalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FInalForms\CustomerFinalForm.Designer.cs">
+    <Compile Include="Forms\FinalForms\CustomerFinalForm.Designer.cs">
       <DependentUpon>CustomerFinalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FInalForms\SupplierFinalForm.cs">
+    <Compile Include="Forms\FinalForms\SupplierFinalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FInalForms\SupplierFinalForm.Designer.cs">
+    <Compile Include="Forms\FinalForms\SupplierFinalForm.Designer.cs">
       <DependentUpon>SupplierFinalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GridForms\CustomerGridForm.cs">
@@ -609,10 +609,10 @@
     <EmbeddedResource Include="Forms\DetailsForms\UserDetails.resx">
       <DependentUpon>UserDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FInalForms\CustomerFinalForm.resx">
+    <EmbeddedResource Include="Forms\FinalForms\CustomerFinalForm.resx">
       <DependentUpon>CustomerFinalForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FInalForms\SupplierFinalForm.resx">
+    <EmbeddedResource Include="Forms\FinalForms\SupplierFinalForm.resx">
       <DependentUpon>SupplierFinalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridForms\CustomerGridForm.resx">

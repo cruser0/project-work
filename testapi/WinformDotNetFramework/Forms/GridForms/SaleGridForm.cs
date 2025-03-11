@@ -15,14 +15,8 @@ namespace WinformDotNetFramework.Forms.GridForms
     public partial class SaleGridForm : Form
     {
 
-        string bkNumber;
-        string blNumber;
-        DateTime? saleDateFrom;
-        DateTime? saleDateTo;
-        int? revenueFrom;
-        int? revenueTo;
-        string customerID;
-        string status;
+        SaleFilter filter = new SaleFilter() { SalePage = 1 };
+
         int pages;
         double itemsPage = 10.0;
         private SaleService _saleService;
@@ -55,7 +49,6 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             InitializeComponent();
             pages = (int)Math.Ceiling(await _saleService.Count(new SaleFilter()) / itemsPage);
-            StatusCB.SelectedIndex = 0;
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -78,98 +71,11 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            bkNumber = BNTextBox.Text;
-            blNumber = BoLTextBox.Text;
-            if (DateFromDTP.Checked)
-            {
-                saleDateFrom = DateFromDTP.Value;
-            }
-            else
-            {
-                saleDateFrom = null;
-            }
 
-            if (DateToDTP.Checked)
-            {
-                saleDateTo = DateToDTP.Value;
-            }
-            else
-            {
-                saleDateTo = null;
-            }
+            filter = searchSale1.GetFilter();
+            filter.SalePage = PaginationUserControl.CurrentPage;
 
-            if (string.IsNullOrEmpty(CustomerIDTextBoxUserControl.GetText()))
-            {
-                customerID = null;
-            }
-            else
-            {
-                customerID = CustomerIDTextBoxUserControl.GetText();
-            }
-
-            if (string.IsNullOrEmpty(RevenueFromTxt.GetText()))
-            {
-                revenueFrom = null;
-            }
-            else
-            {
-                revenueFrom = int.Parse(RevenueFromTxt.GetText());
-            }
-
-            if (string.IsNullOrEmpty(RevenueToTxt.GetText()))
-            {
-                revenueTo = null;
-            }
-            else
-            {
-                revenueTo = int.Parse(RevenueToTxt.GetText());
-            }
-
-            if (StatusCB.Text == "All")
-            {
-                status = null;
-            }
-            else
-            {
-                status = StatusCB.Text;
-            }
-
-            int? saleCustomerId = null;
-            if (!string.IsNullOrEmpty(customerID))
-            {
-                int tempVal;
-                if (int.TryParse(customerID, out tempVal))
-                {
-                    saleCustomerId = tempVal;
-                }
-            }
-
-            SaleFilter filter = new SaleFilter
-            {
-                SaleBookingNumber = bkNumber,
-                SaleBoLnumber = blNumber,
-                SaleDateFrom = saleDateFrom,
-                SaleDateTo = saleDateTo,
-                SaleCustomerId = saleCustomerId,
-                SaleRevenueFrom = revenueFrom,
-                SaleRevenueTo = revenueTo,
-                SaleStatus = status,
-                SalePage = PaginationUserControl.CurrentPage
-            };
-
-            SaleFilter filterPage = new SaleFilter
-            {
-                SaleBookingNumber = bkNumber,
-                SaleBoLnumber = blNumber,
-                SaleDateFrom = saleDateFrom,
-                SaleDateTo = saleDateTo,
-                SaleCustomerId = saleCustomerId,
-                SaleRevenueFrom = revenueFrom,
-                SaleRevenueTo = revenueTo,
-                SaleStatus = status,
-            };
-
-
+            SaleFilter filterPage = searchSale1.GetFilter();
 
             var query = _saleService.GetAll(filter);
             var count = _saleService.Count(filterPage);
@@ -214,28 +120,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
-            int? saleCustomerId = null;
-            if (!string.IsNullOrEmpty(customerID))
-            {
-                int tempVal;
-                if (int.TryParse(customerID, out tempVal))
-                {
-                    saleCustomerId = tempVal;
-                }
-            }
-            SaleFilter filter = new SaleFilter
-            {
-                SaleBookingNumber = bkNumber,
-                SaleBoLnumber = blNumber,
-                SaleDateFrom = saleDateFrom,
-                SaleDateTo = saleDateTo,
-                SaleCustomerId = saleCustomerId,
-                SaleRevenueFrom = revenueFrom,
-                SaleRevenueTo = revenueTo,
-                SaleStatus = status,
-                SalePage = PaginationUserControl.CurrentPage
-
-            };
+            filter.SalePage = PaginationUserControl.CurrentPage;
 
             IEnumerable<SaleCustomerDTO> query = await _saleService.GetAll(filter);
             SaleDgv.DataSource = query.ToList();

@@ -14,12 +14,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 {
     public partial class SupplierGridForm : Form
     {
-        string name;
-        string country;
-        int status;
+        SupplierFilter filter = new SupplierFilter() { SupplierPage = 1, SupplierDeprecated = false };
+
         int pages;
-        DateTime? dateFrom;
-        DateTime? dateTo;
         double itemsPage = 10.0;
         private SupplierService _supplierService;
         private CreateSupplierInvoicesForm _father;
@@ -55,7 +52,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
-            comboBox1.SelectedIndex = 1;
+
+            searchSupplier1.comboBox1.SelectedIndex = 1;
 
             PaginationUserControl.Visible = false;
             PaginationUserControl.SetMaxPage(pages.ToString());
@@ -76,55 +74,11 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
-            name = NameSupplierTxt.Text;
-            country = CountrySupplierTxt.Text;
-            status = comboBox1.SelectedIndex;
-            if (DateFromClnd.Checked)
-            {
-                dateFrom = DateFromClnd.Value;
-            }
-            else
-            {
-                dateFrom = null;
-            }
 
-            if (DateToClnd.Checked)
-            {
-                dateTo = DateToClnd.Value;
-            }
-            else
-            {
-                dateTo = null;
-            }
+            filter = searchSupplier1.GetFilter();
+            filter.SupplierPage = PaginationUserControl.CurrentPage;
 
-            bool? supplierDeprecated = null;
-            if (status == 1)
-            {
-                supplierDeprecated = false;
-            }
-            else if (status == 2)
-            {
-                supplierDeprecated = true;
-            }
-
-            SupplierFilter filter = new SupplierFilter
-            {
-                SupplierName = name,
-                SupplierCountry = country,
-                SupplierDeprecated = supplierDeprecated,
-                SupplierCreatedDateFrom = dateFrom,
-                SupplierCreatedDateTo = dateTo,
-                SupplierPage = PaginationUserControl.CurrentPage
-            };
-
-            SupplierFilter filterPage = new SupplierFilter
-            {
-                SupplierName = name,
-                SupplierCountry = country,
-                SupplierDeprecated = supplierDeprecated,
-                SupplierCreatedDateFrom = dateFrom,
-                SupplierCreatedDateTo = dateTo
-            };
+            SupplierFilter filterPage = searchSupplier1.GetFilter();
 
 
 
@@ -165,25 +119,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
-            bool? supplierDeprecated = null;
-            if (status == 1)
-            {
-                supplierDeprecated = false;
-            }
-            else if (status == 2)
-            {
-                supplierDeprecated = true;
-            }
-
-            SupplierFilter filter = new SupplierFilter
-            {
-                SupplierName = name,
-                SupplierCountry = country,
-                SupplierDeprecated = supplierDeprecated,
-                SupplierCreatedDateFrom = dateFrom,
-                SupplierCreatedDateTo = dateTo,
-                SupplierPage = PaginationUserControl.CurrentPage
-            };
+            filter.SupplierPage = PaginationUserControl.CurrentPage;
 
             IEnumerable<Supplier> query = await _supplierService.GetAll(filter);
             SupplierDgv.DataSource = query.ToList();

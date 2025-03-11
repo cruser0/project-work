@@ -34,18 +34,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerInvoiceGridForm));
             this.RightPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.AmountToTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.AmountFromTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.SaleIDTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.DateFromLbl = new System.Windows.Forms.Label();
-            this.DateToLbl = new System.Windows.Forms.Label();
-            this.StatusCmb = new System.Windows.Forms.ComboBox();
-            this.DateToClnd = new System.Windows.Forms.DateTimePicker();
-            this.SaleIDLbl = new System.Windows.Forms.Label();
-            this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CenterDgv = new System.Windows.Forms.DataGridView();
@@ -66,6 +54,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchCustomerInvoice1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoice();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
@@ -81,9 +70,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightPanel.Controls.Add(this.TextBoxesRightPanel);
             this.RightPanel.Controls.Add(this.RightSideBar);
             this.RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightPanel.Location = new System.Drawing.Point(584, 0);
+            this.RightPanel.Location = new System.Drawing.Point(501, 0);
             this.RightPanel.Name = "RightPanel";
-            this.RightPanel.Size = new System.Drawing.Size(200, 461);
+            this.RightPanel.Size = new System.Drawing.Size(171, 400);
             this.RightPanel.TabIndex = 0;
             // 
             // TextBoxesRightPanel
@@ -91,151 +80,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.TextBoxesRightPanel.Controls.Add(this.label3);
-            this.TextBoxesRightPanel.Controls.Add(this.label2);
-            this.TextBoxesRightPanel.Controls.Add(this.AmountToTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.AmountFromTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.SaleIDTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.label1);
-            this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.DateToLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.StatusCmb);
-            this.TextBoxesRightPanel.Controls.Add(this.DateToClnd);
-            this.TextBoxesRightPanel.Controls.Add(this.SaleIDLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 103);
+            this.TextBoxesRightPanel.Controls.Add(this.searchCustomerInvoice1);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 358);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
             this.TextBoxesRightPanel.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(3, 239);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 17);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Invoice Amount To";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(4, 192);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 17);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Invoice Amount From";
-            // 
-            // AmountToTxt
-            // 
-            this.AmountToTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.AmountToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.AmountToTxt.Location = new System.Drawing.Point(4, 260);
-            this.AmountToTxt.Name = "AmountToTxt";
-            this.AmountToTxt.Size = new System.Drawing.Size(180, 23);
-            this.AmountToTxt.TabIndex = 13;
-            // 
-            // AmountFromTxt
-            // 
-            this.AmountFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.AmountFromTxt.Location = new System.Drawing.Point(4, 213);
-            this.AmountFromTxt.Name = "AmountFromTxt";
-            this.AmountFromTxt.Size = new System.Drawing.Size(180, 23);
-            this.AmountFromTxt.TabIndex = 12;
-            // 
-            // SaleIDTxt
-            // 
-            this.SaleIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIDTxt.Location = new System.Drawing.Point(3, 21);
-            this.SaleIDTxt.Name = "SaleIDTxt";
-            this.SaleIDTxt.Size = new System.Drawing.Size(180, 23);
-            this.SaleIDTxt.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(3, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 17);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Date To";
-            // 
-            // DateFromLbl
-            // 
-            this.DateFromLbl.AutoSize = true;
-            this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateFromLbl.Location = new System.Drawing.Point(3, 47);
-            this.DateFromLbl.Name = "DateFromLbl";
-            this.DateFromLbl.Size = new System.Drawing.Size(73, 17);
-            this.DateFromLbl.TabIndex = 9;
-            this.DateFromLbl.Text = "Date From";
-            // 
-            // DateToLbl
-            // 
-            this.DateToLbl.AutoSize = true;
-            this.DateToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.DateToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateToLbl.Location = new System.Drawing.Point(3, 141);
-            this.DateToLbl.Name = "DateToLbl";
-            this.DateToLbl.Size = new System.Drawing.Size(46, 17);
-            this.DateToLbl.TabIndex = 6;
-            this.DateToLbl.Text = "Status";
-            // 
-            // StatusCmb
-            // 
-            this.StatusCmb.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StatusCmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusCmb.FormattingEnabled = true;
-            this.StatusCmb.Items.AddRange(new object[] {
-            "All",
-            "Paid",
-            "Unpaid"});
-            this.StatusCmb.Location = new System.Drawing.Point(3, 162);
-            this.StatusCmb.Name = "StatusCmb";
-            this.StatusCmb.Size = new System.Drawing.Size(180, 23);
-            this.StatusCmb.TabIndex = 5;
-            // 
-            // DateToClnd
-            // 
-            this.DateToClnd.Checked = false;
-            this.DateToClnd.CustomFormat = "ddMMMMyyyy";
-            this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToClnd.Location = new System.Drawing.Point(3, 115);
-            this.DateToClnd.Name = "DateToClnd";
-            this.DateToClnd.ShowCheckBox = true;
-            this.DateToClnd.Size = new System.Drawing.Size(180, 23);
-            this.DateToClnd.TabIndex = 6;
-            // 
-            // SaleIDLbl
-            // 
-            this.SaleIDLbl.AutoSize = true;
-            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SaleIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIDLbl.Location = new System.Drawing.Point(0, 0);
-            this.SaleIDLbl.Name = "SaleIDLbl";
-            this.SaleIDLbl.Size = new System.Drawing.Size(51, 17);
-            this.SaleIDLbl.TabIndex = 3;
-            this.SaleIDLbl.Text = "Sale ID";
-            // 
-            // DateFromClnd
-            // 
-            this.DateFromClnd.CalendarMonthBackground = System.Drawing.Color.Gainsboro;
-            this.DateFromClnd.Checked = false;
-            this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
-            this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromClnd.Location = new System.Drawing.Point(3, 68);
-            this.DateFromClnd.Name = "DateFromClnd";
-            this.DateFromClnd.ShowCheckBox = true;
-            this.DateFromClnd.Size = new System.Drawing.Size(180, 23);
-            this.DateFromClnd.TabIndex = 5;
             // 
             // RightSideBar
             // 
@@ -243,7 +92,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
+            this.RightSideBar.Size = new System.Drawing.Size(171, 400);
             this.RightSideBar.TabIndex = 0;
             // 
             // CenterPanel
@@ -253,7 +102,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(584, 361);
+            this.CenterPanel.Size = new System.Drawing.Size(501, 313);
             this.CenterPanel.TabIndex = 1;
             // 
             // CenterDgv
@@ -268,7 +117,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterDgv.Name = "CenterDgv";
             this.CenterDgv.ReadOnly = true;
             this.CenterDgv.RowTemplate.Height = 25;
-            this.CenterDgv.Size = new System.Drawing.Size(584, 336);
+            this.CenterDgv.Size = new System.Drawing.Size(501, 288);
             this.CenterDgv.TabIndex = 0;
             this.CenterDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CenterDgv_CellDoubleClick);
             this.CenterDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDhvEvent);
@@ -284,7 +133,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(501, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -340,34 +189,34 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.Controls.Add(this.panel4);
             this.BottomPanel.Controls.Add(this.panel3);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 361);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 313);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(584, 100);
+            this.BottomPanel.Size = new System.Drawing.Size(501, 87);
             this.BottomPanel.TabIndex = 8;
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.PaginationUserControl);
-            this.panel5.Location = new System.Drawing.Point(218, 0);
+            this.panel5.Location = new System.Drawing.Point(187, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(365, 100);
+            this.panel5.Size = new System.Drawing.Size(313, 87);
             this.panel5.TabIndex = 2;
             // 
             // PaginationUserControl
             // 
             this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(17, 26);
+            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
             this.PaginationUserControl.Name = "PaginationUserControl";
-            this.PaginationUserControl.Size = new System.Drawing.Size(309, 44);
+            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
             this.PaginationUserControl.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(584, 0);
+            this.panel4.Location = new System.Drawing.Point(501, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(0, 100);
+            this.panel4.Size = new System.Drawing.Size(0, 87);
             this.panel4.TabIndex = 1;
             // 
             // panel3
@@ -376,7 +225,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(0, 100);
+            this.panel3.Size = new System.Drawing.Size(0, 87);
             this.panel3.TabIndex = 0;
             // 
             // RightClickDgv
@@ -438,22 +287,28 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceStatusTsmi.Text = "Show Status";
             this.CustomerInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // searchCustomerInvoice1
+            // 
+            this.searchCustomerInvoice1.Location = new System.Drawing.Point(0, 0);
+            this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(171, 243);
+            this.searchCustomerInvoice1.TabIndex = 0;
+            // 
             // CustomerInvoiceGridForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(672, 400);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.RightPanel);
-            this.MinimumSize = new System.Drawing.Size(800, 500);
+            this.MinimumSize = new System.Drawing.Size(688, 439);
             this.Name = "CustomerInvoiceGridForm";
             this.Text = "CustomerInvoiceGridForm";
             this.Load += new System.EventHandler(this.CustomerInvoiceGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.RightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
-            this.TextBoxesRightPanel.PerformLayout();
             this.CenterPanel.ResumeLayout(false);
             this.CenterPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).EndInit();
@@ -472,14 +327,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private Panel RightPanel;
         private control.RightSideBarUserControl RightSideBar;
         private Panel TextBoxesRightPanel;
-        private control.IntegerTextBoxUserControl SaleIDTxt;
-        private Label label1;
-        private Label DateFromLbl;
-        private Label DateToLbl;
-        private ComboBox StatusCmb;
-        private DateTimePicker DateToClnd;
-        private Label SaleIDLbl;
-        private DateTimePicker DateFromClnd;
         public Panel CenterPanel;
         private DataGridView CenterDgv;
         private Panel BottomPanel;
@@ -493,15 +340,12 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripMenuItem CustomerInvoiceInvoiceAmountTsmi;
         private ToolStripMenuItem CustomerInvoiceDateTsmi;
         private ToolStripMenuItem CustomerInvoiceStatusTsmi;
-        private Label label3;
-        private Label label2;
-        private control.IntegerTextBoxUserControl AmountToTxt;
-        private control.IntegerTextBoxUserControl AmountFromTxt;
         public ToolStrip toolStrip1;
         private ToolStripButton PdfTSB;
         private ToolStripButton ExcelTSB;
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
+        private control.SearchCustomerInvoice searchCustomerInvoice1;
     }
 }
