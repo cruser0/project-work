@@ -1,4 +1,5 @@
 ﻿using API.Models;
+using API.Models.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,9 +19,23 @@ namespace API.Controllers
 
         // classify by profit the records
         [HttpGet("classify-by-profit")]
-        public async Task<IActionResult> GetClassifySalesByProfit()
+        public async Task<IActionResult> GetClassifySalesByProfit([FromQuery] ClassifySalesByProfitFilter filter)
         {
-            var profit = await _context.ClassifySalesByProfit.FromSqlRaw("EXEC pf_ClassifySalesByProfit").ToListAsync();
+            var profit = await _context.ClassifySalesByProfit.FromSqlRaw($"EXEC pf_ClassifySalesByProfit " +
+                $"@SaleID={filter.SaleID}," +
+                $"@TotalSpentFrom={filter.TotalSpentFrom}," +
+                $"@TotalSpentTo={filter.TotalSpentTo}," +
+                $"@ProfitFrom={filter.ProfitFrom}," +
+                $"@ProfitTo={filter.ProfitTo}," +
+                $"@BKNumber={filter.BKNumber.ToUpper()}," +
+                $"@BoLNumber={filter.BoLNumber.ToUpper()}," +
+                $"@CustomerID={filter.CustomerID}," +
+                $"@CustomerCountry={filter.CustomerCountry}," +
+                $"@CustomerName={filter.CustomerName}," +
+                $"@Status={filter.Status}," +
+                $"@TotalSpentFrom={filter.TotalSpentFrom}," +
+                $"@TotalSpentTo={filter.TotalSpentTo}," +
+                $"@FilterMargin={filter.FilterMargin.ToLower()}").ToListAsync();
                 if (profit.Any())
                 {
                     return Ok(profit);
@@ -33,11 +48,17 @@ namespace API.Controllers
 
         //Get customers by status
         [HttpGet("total-amount-gained-per-customer-invoice")]
-        public async Task<IActionResult> GetTotalAmountGainedPerCustomerInvoice([FromQuery] string status)
+        public async Task<IActionResult> GetTotalAmountGainedPerCustomerInvoice([FromQuery] TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
-            status = status.ToLower();
-            status = char.ToUpper(status[0]) + status[1..];
-            var invoices = await _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @status={status}").ToListAsync();
+            var invoices = await _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice " +
+                $"@TotalGainedFrom={filter.TotalGainedFrom}," +
+                $"@TotalGainedTo={filter.TotalGainedTo}," +
+                $"@DateFrom={filter.DateFrom}," +
+                $"@DateTo={filter.DateTo}," +
+                $"@CustomerName={filter.CustomerName}," +
+                $"@CustomerCountry={filter.CustomerCountry}," +
+                $"@Status={filter.Status}," +
+                $"@customerInvoiceID={filter.customerInvoiceID}").ToListAsync();
                 if (invoices.Any())
                 {
                     return Ok(invoices);
@@ -49,12 +70,18 @@ namespace API.Controllers
 
         //Get customers by status
         [HttpGet("total-amount-spent-per-supplier-invoice")]
-        public async Task<IActionResult> GetTotalAmountSpentPerSupplierInvoice([FromQuery] string status)
+        public async Task<IActionResult> GetTotalAmountSpentPerSupplierInvoice([FromQuery] TotalAmountSpentPerSupplierInvoice filter)
         {
-            status = status.ToLower();
-            status = char.ToUpper(status[0]) + status[1..];
-            var invoices = await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSupplierInvoice @status={status}").ToListAsync();
-                if (invoices.Any())
+            var invoices = await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
+                $"@TotalSpentFrom={filter.TotalSpentFrom}," +
+                $"@TotalSpentTo={filter.TotalSpentTo}," +
+                $"@DateFrom={filter.DateFrom}," +
+                $"@DateTo={filter.DateTo}," +
+                $"@SupplierName={filter.SupplierName}," +
+                $"@SupplierCountry={filter.SupplierCountry}," +
+                $"@Status={filter.Status}," +
+                $"@SupplierInvoiceID={filter.SupplierInvoiceID}").ToListAsync();
+            if (invoices.Any())
                 {
                     return Ok(invoices);
                 }
@@ -64,10 +91,8 @@ namespace API.Controllers
 
         //Get customers by status
         [HttpGet("total-amount-spent-per-suppliers")]
-        public async Task<IActionResult> GetTotalAmountSpentPerSuppliers([FromQuery] string status)
+        public async Task<IActionResult> GetTotalAmountSpentPerSuppliers()
         {
-            status = status.ToLower();
-             status = char.ToUpper(status[0]) + status[1..];
             var invoices = await _context.TotalAmountSpentPerSuppliers.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSuppliers").ToListAsync();
                 if (invoices.Any())
                 {

@@ -369,6 +369,12 @@
     <Compile Include="Forms\FinalForms\SupplierFinalForm.Designer.cs">
       <DependentUpon>SupplierFinalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GraphTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GraphTestForm.Designer.cs">
+      <DependentUpon>GraphTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GridForms\CustomerGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
