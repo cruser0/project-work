@@ -677,7 +677,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3.Size = new System.Drawing.Size(89, 19);
             this.toolStripButton3.Text = "Hide All Forms";
             this.toolStripButton3.ToolTipText = "Hide All";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.toolStripButton3.Click += new System.EventHandler(this.MinimizeAll_Click);
             // 
             // MainPanel
             // 
