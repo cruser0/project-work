@@ -59,6 +59,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -139,6 +140,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1,
             this.PdfTSB,
             this.ExcelTSB,
+            this.toolStripSeparator2,
             this.MassDeleteTSB});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -182,7 +184,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // MassDeleteTSB
             // 
-            this.MassDeleteTSB.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.MassDeleteTSB.Image = global::WinformDotNetFramework.Properties.Resources.trash;
             this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -338,6 +339,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // SaleGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,5 +400,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton MassDeleteTSB;
         private ToolStripSeparator toolStripSeparator1;
         private control.SearchSale searchSale1;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

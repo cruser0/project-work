@@ -57,6 +57,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
@@ -220,6 +221,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1,
             this.PdfTSB,
             this.ExcelTSB,
+            this.toolStripSeparator2,
             this.MassDeleteTSB});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -263,7 +265,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // MassDeleteTSB
             // 
-            this.MassDeleteTSB.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.MassDeleteTSB.Image = global::WinformDotNetFramework.Properties.Resources.trash;
             this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -317,6 +318,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(0, 87);
             this.panel3.TabIndex = 0;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // CustomerGridForm
             // 
@@ -373,5 +379,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton MassDeleteTSB;
         private ToolStripSeparator toolStripSeparator1;
         private control.SearchCustomer searchCustomer1;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

@@ -62,6 +62,12 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
+        public async Task<string> MassUpdate(List<UserDtoID> newEntity)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await MassUpdateWithStringResult(client, $"user/mass-update", newEntity);
+            return returnResult;
+        }
 
         public async Task<string> EditUserRoles(AssignRoleDTO entity)
         {

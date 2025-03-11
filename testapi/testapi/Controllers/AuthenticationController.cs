@@ -25,7 +25,7 @@ namespace API.Controllers
         {
             User user = await _authenticationService.CreateUser(request);
             return Ok("User Registered Successfully ");
-            
+
         }
 
 
@@ -79,28 +79,34 @@ namespace API.Controllers
         [HttpDelete("user/delete-user/{id}")]
         public async Task<ActionResult<string>> DeleteUser(int id)
         {
-                await _authenticationService.DeleteUser(id);
-                return Ok("User Deleted Successfully");
+            await _authenticationService.DeleteUser(id);
+            return Ok("User Deleted Successfully");
         }
 
 
 
         [Authorize(Roles = "Admin,UserAdmin")]
         [HttpDelete("user/mass-delete")]
-        public async Task<ActionResult<string>> MassDeleteUser([FromQuery]List<int> id)
+        public async Task<ActionResult<string>> MassDeleteUser([FromQuery] List<int> id)
         {
-                await _authenticationService.MassDeleteUser(id);
-                return Ok("User Deleted Successfully");
+            var data = await _authenticationService.MassDeleteUser(id);
+            return Ok(data);
         }
 
-
+        [Authorize(Roles = "Admin,UserAdmin")]
+        [HttpPut("user/mass-update")]
+        public async Task<ActionResult<string>> MassUpdateUser([FromQuery] List<UserDTOGet> newUsers)
+        {
+            var data = await _authenticationService.MassUpdateUser(newUsers);
+            return Ok(data);
+        }
 
         //[Authorize(Roles = "Admin,UserAdmin,UserWrite")]
         [HttpPut("user/edit-user/{id}")]
         public async Task<ActionResult<string>> EditUser(int id, [FromBody] UserDTOEdit updateUser)
         {
-                await _authenticationService.EditUser(id, updateUser);
-                return Ok("User Updated Successfully");
+            await _authenticationService.EditUser(id, updateUser);
+            return Ok("User Updated Successfully");
         }
 
 
@@ -109,12 +115,12 @@ namespace API.Controllers
         [HttpGet("user/get-all-users")]
         public async Task<IActionResult> Get([FromQuery] UserFilter filter)
         {
-                var result = await _authenticationService.GetAllUsers(filter);
-                if (result.Any())
-                {
-                    return Ok(result);
-                }
-                else throw new NotFoundException("Users not found");
+            var result = await _authenticationService.GetAllUsers(filter);
+            if (result.Any())
+            {
+                return Ok(result);
+            }
+            else throw new NotFoundException("Users not found");
         }
 
 
@@ -134,8 +140,8 @@ namespace API.Controllers
         public async Task<IActionResult> Get(int id)
         {
             UserRoleDTO data = await _authenticationService.GetUserRoleDTOByID(id);
-                if (data == null)
-                    throw new NotFoundException("User not found");
+            if (data == null)
+                throw new NotFoundException("User not found");
             return Ok(data);
         }
     }

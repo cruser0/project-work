@@ -83,5 +83,12 @@ namespace WinformDotNetFramework.Services
             var returnResult = await MassDeleteWithStringResult(client, $"customer-invoice-cost/mass-delete", id);
             return returnResult;
         }
+
+        public async Task<string> MassUpdate(List<CustomerInvoiceCost> newEntity)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await MassUpdateWithStringResult(client, $"customer-invoice-cost/mass-update", newEntity);
+            return returnResult;
+        }
     }
 }

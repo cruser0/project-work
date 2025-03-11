@@ -53,6 +53,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceCostCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceCostDgv)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -96,6 +97,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1,
             this.PdfTSB,
             this.ExcelTSB,
+            this.toolStripSeparator2,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -139,7 +141,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = global::WinformDotNetFramework.Properties.Resources.trash;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -272,6 +273,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceCostNameTsmi.Text = "Show Description Name";
             this.SupplierInvoiceCostNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // SupplierInvoiceCostGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,5 +327,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
         private control.SearchSupplierInvoiceCost searchSupplierInvoiceCost1;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

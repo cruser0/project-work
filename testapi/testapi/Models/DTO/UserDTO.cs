@@ -20,12 +20,18 @@ namespace API.Models.DTO
         public Dictionary<string, string> Preferences { get; set; } = new Dictionary<string, string>();
         public List<string>? Role { get; set; } = new List<string>();
     }
-    public class UserRoleDTO
+
+    public class UserDTOGet
     {
         public int? UserID { get; set; }
         public string? Email { get; set; }
         public string? Name { get; set; }
         public string? LastName { get; set; }
+    }
+
+    public class UserRoleDTO : UserDTOGet
+    {
+
         public List<string>? Role { get; set; }
         public Dictionary<string, string> Preferences { get; set; }
 

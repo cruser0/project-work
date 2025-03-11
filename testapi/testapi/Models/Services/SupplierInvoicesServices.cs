@@ -248,7 +248,7 @@ namespace API.Models.Services
             {
                 foreach (SupplierInvoiceDTOGet supplierInvoice in newSupplierInvoices)
                 {
-                    var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.InvoiceId == id);
+                    var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.InvoiceId == supplierInvoice.InvoiceId);
 
                     if (siDB == null)
                     {
@@ -304,9 +304,6 @@ namespace API.Models.Services
 
                     _context.SupplierInvoices.Update(siDB);
                     await _context.SaveChangesAsync();
-
-                    return SupplierInvoiceMapper.MapGet(siDB);
-
 
                     count++;
                 }

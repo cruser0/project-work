@@ -317,7 +317,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = global::WinformDotNetFramework.Properties.Resources.trash;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
