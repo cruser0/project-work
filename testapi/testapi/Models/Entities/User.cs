@@ -1,4 +1,6 @@
-﻿namespace API.Models.Entities
+﻿using API.Models.Entities.Preference;
+
+namespace API.Models.Entities
 {
     public class User
     {

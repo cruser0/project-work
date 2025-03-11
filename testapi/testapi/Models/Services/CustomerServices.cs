@@ -16,6 +16,7 @@ namespace API.Models.Services
         Task<CustomerDTOGet> DeleteCustomer(int id);
         Task<int> CountCustomers(CustomerFilter filter);
         Task<string> MassDeleteCustomer(List<int> customerId);
+        Task<string> MassUpdateCustomer(List<CustomerDTOGet> newCustomers);
 
 
     }
@@ -138,7 +139,7 @@ namespace API.Models.Services
 
             if (!customer.Country.All(char.IsLetter))
                 throw new ErrorInputPropertyException("Country can't have special characters");
-                
+
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
             customer.OriginalID = customer.CustomerId;
@@ -185,15 +186,15 @@ namespace API.Models.Services
             };
 
             cDB.Deprecated = true;
-                // Save the changes to the database
-                _context.Customers.Update(cDB);
-                await _context.SaveChangesAsync();
+            // Save the changes to the database
+            _context.Customers.Update(cDB);
+            await _context.SaveChangesAsync();
 
-                _context.Customers.Add(newCustomer);
-                await _context.SaveChangesAsync();
+            _context.Customers.Add(newCustomer);
+            await _context.SaveChangesAsync();
 
-                // Map and return the updated customer as a DTO
-                return CustomerMapper.MapGet(newCustomer);
+            // Map and return the updated customer as a DTO
+            return CustomerMapper.MapGet(newCustomer);
         }
 
         public async Task<CustomerDTOGet> DeleteCustomer(int id)
@@ -251,6 +252,71 @@ namespace API.Models.Services
             return $"{count} Customers were deleted out of {customerId.Count}";
         }
 
+        public async Task<string> MassUpdateCustomer(List<CustomerDTOGet> newCustomers)
+        {
+            int count = 0;
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                foreach (CustomerDTOGet customer in newCustomers)
+                {
+                    var c = await _context.Customers.Where(x => x.CustomerId == customer.CustomerId).FirstOrDefaultAsync();
 
+                    if (c == null)
+                        throw new NotFoundException("Customer not found");
+
+                    if ((bool)c.Deprecated)
+                        throw new ErrorInputPropertyException("Can't update deprecated customer");
+
+                    if (customer.CustomerName != null)
+                    {
+                        if (customer.CustomerName.Length > 100)
+                            throw new ErrorInputPropertyException("Customer name is too long");
+                    }
+
+                    if (customer.Country != null)
+                    {
+                        if (customer.Country.Length > 50)
+                            throw new ErrorInputPropertyException("Country is too long");
+
+                        if (!customer.Country.All(char.IsLetter))
+                            throw new ErrorInputPropertyException("Country can't have special characters");
+                    }
+
+                    Customer newCustomer = new Customer
+                    {
+                        CustomerName = customer.CustomerName ?? c.CustomerName,
+                        Country = customer.Country ?? c.Country,
+                        Deprecated = false,
+                        OriginalID = c.OriginalID,
+                        CreatedAt = DateTime.Now,
+                    };
+
+                    c.Deprecated = true;
+                    _context.Customers.Update(c);
+                    _context.Customers.Add(newCustomer);
+                    count++;
+                }
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return $"{count} Customers were updated out of {newCustomers.Count}";
+            }
+            catch (NotFoundException)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+            catch (ErrorInputPropertyException)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+            catch (DbUpdateException ex)
+            {
+                await transaction.RollbackAsync();
+                throw new Exception("Database update error occurred", ex);
+            }
+        }
     }
 }

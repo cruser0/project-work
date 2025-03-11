@@ -1,4 +1,4 @@
-﻿namespace API.Models.Entities
+﻿namespace API.Models.Entities.Preference
 {
     public class SaleDGV
     {
@@ -9,7 +9,7 @@
         public bool? ShowBoL { get; set; }
         public bool? ShowDate { get; set; }
         public bool? ShowCustomerID { get; set; }
-        public bool? ShowStatus{ get; set; }
+        public bool? ShowStatus { get; set; }
         public bool? ShowCustomerName { get; set; }
         public bool? ShowCustomerCountry { get; set; }
         public bool? ShowTotalRevenue { get; set; }

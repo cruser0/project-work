@@ -1,5 +1,6 @@
 ﻿using API.Models.DTO;
 using API.Models.Entities;
+using API.Models.Entities.Preference;
 using API.Models.Exceptions;
 using API.Models.Filters;
 using Microsoft.EntityFrameworkCore;
@@ -178,7 +179,7 @@ namespace API.Models.Services
         internal async Task<string> MassDeleteUser(List<int> userId)
         {
             int count = 0;
-            foreach(int id in userId)
+            foreach (int id in userId)
             {
                 var rolesList = await GetAllRolesByUserID(id);
                 if (!await _context.Users.AnyAsync(x => x.UserID == id))
@@ -352,7 +353,7 @@ namespace API.Models.Services
         {
             CustomerDGV? cdgv = await _context.CustomerDGV.Where(x => x.UserID == userId).FirstOrDefaultAsync();
             if (cdgv == null)
-                throw new NotFoundException ("Customer DGV not found");
+                throw new NotFoundException("Customer DGV not found");
             return cdgv;
         }
         public async Task<CustomerDGV> CreateUpdateCustomerDGV(CustomerDGV cdgv)

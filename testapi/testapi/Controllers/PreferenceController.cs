@@ -1,4 +1,4 @@
-﻿using API.Models.Entities;
+﻿using API.Models.Entities.Preference;
 using API.Models.Exceptions;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;

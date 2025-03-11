@@ -316,6 +316,7 @@ namespace Winform
                         response = await _userService.RemoveUserFavouritePage(new List<string>() { latestForm.Text });
                         MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await UpdateFavoriteTab();  // Rimuovi o aggiorna la tab dopo la rimozione
+                        AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
                     }
                 }
                 else
@@ -328,6 +329,7 @@ namespace Winform
                         response = await _userService.AddUserFavouritePage(new List<string>() { latestForm.Text });
                         MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await UpdateFavoriteTab();  // Aggiungi o aggiorna la tab dopo l'aggiunta
+                        AddFavoriteButton.Image = Properties.Resources.star;
                     }
                 }
 
@@ -443,9 +445,9 @@ namespace Winform
         private void MainPanel_ControlAdded(object sender, ControlEventArgs e)
         {
             Form form = (Form)e.Control;
-
+            HashSet<Control> set = new HashSet<Control>();
             // Recursively add the MouseDown event to all controls within the form, including nested containers
-            AttachMouseDownToControls(form);
+            AttachMouseDownToControls(form, set);
 
             if (favoriteList.Contains(form.Text))
                 AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
@@ -503,20 +505,19 @@ namespace Winform
 
         }
 
-        private void AttachMouseDownToControls(Control parent)
+        private void AttachMouseDownToControls(Control parent, HashSet<Control> controlsWithEvent)
         {
-            HashSet<Control> controlsWithEvent = new HashSet<Control>();
             // Only attach the event if it hasn't already been attached to this control
             if (!controlsWithEvent.Contains(parent))
             {
-                parent.MouseDown += FormControl_MouseDown;
+                parent.MouseClick += FormControl_MouseDown;
                 controlsWithEvent.Add(parent);  // Track that the event is attached
             }
 
             // Recursively attach the event to all child controls
             foreach (Control child in parent.Controls)
             {
-                AttachMouseDownToControls(child); // Recursive call for nested controls
+                AttachMouseDownToControls(child, controlsWithEvent); // Recursive call for nested controls
             }
         }
 

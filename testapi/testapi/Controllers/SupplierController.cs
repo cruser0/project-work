@@ -120,7 +120,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,SupplierAdmin")]
         [HttpDelete("mass-delete")]
-        public async Task<IActionResult> MassDelete([FromQuery]List<int> id)
+        public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
 
             try
@@ -131,6 +131,22 @@ namespace API.Controllers
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
             catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+        }
+
+        [Authorize(Roles = "Admin,SupplierAdmin")]
+        [HttpPut("mass-update")]
+        public async Task<IActionResult> MassUpdate([FromBody] List<SupplierDTOGet> newSuppliers)
+        {
+
+            try
+            {
+                var data = await _supplierService.MassUpdateSupplier(newSuppliers);
+                return Ok(data);
+            }
+            catch (NotFoundException ex) { return NotFound(ex.Message); }
+            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
     }
 }
