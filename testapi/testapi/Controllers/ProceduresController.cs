@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -21,29 +22,35 @@ namespace API.Controllers
         [HttpGet("classify-by-profit")]
         public async Task<IActionResult> GetClassifySalesByProfit([FromQuery] ClassifySalesByProfitFilter filter)
         {
-            var profit = await _context.ClassifySalesByProfit.FromSqlRaw($"EXEC pf_ClassifySalesByProfit " +
-                $"@SaleID={filter.SaleID}," +
-                $"@TotalSpentFrom={filter.TotalSpentFrom}," +
-                $"@TotalSpentTo={filter.TotalSpentTo}," +
-                $"@ProfitFrom={filter.ProfitFrom}," +
-                $"@ProfitTo={filter.ProfitTo}," +
-                $"@BKNumber={filter.BKNumber.ToUpper()}," +
-                $"@BoLNumber={filter.BoLNumber.ToUpper()}," +
-                $"@CustomerID={filter.CustomerID}," +
-                $"@CustomerCountry={filter.CustomerCountry}," +
-                $"@CustomerName={filter.CustomerName}," +
-                $"@Status={filter.Status}," +
-                $"@TotalSpentFrom={filter.TotalSpentFrom}," +
-                $"@TotalSpentTo={filter.TotalSpentTo}," +
-                $"@FilterMargin={filter.FilterMargin.ToLower()}").ToListAsync();
-                if (profit.Any())
-                {
-                    return Ok(profit);
-                }
-                else
-                    throw new Exception("Procedure error");
+            var profit = await _context.ClassifySalesByProfit.FromSqlRaw(
+                "EXEC pf_ClassifySalesByProfit @SaleID, @TotalSpentFrom, @TotalSpentTo, @ProfitFrom, @ProfitTo, " +
+                "@BKNumber, @BoLNumber, @CustomerID, @CustomerCountry, @CustomerName, @Status, " +
+                "@TotalRevenueFrom, @TotalRevenueTo, @FilterMargin",
+                new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
+                new SqlParameter("@ProfitFrom", filter.ProfitFrom ?? (object)DBNull.Value),
+                new SqlParameter("@ProfitTo", filter.ProfitTo ?? (object)DBNull.Value),
+                new SqlParameter("@BKNumber", filter.BKNumber ?? (object)DBNull.Value),
+                new SqlParameter("@BoLNumber", filter.BoLNumber ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerID", filter.CustomerID ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@TotalRevenueFrom", filter.TotalRevenueFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalRevenueTo", filter.TotalRevenueTo ?? (object)DBNull.Value),
+                new SqlParameter("@FilterMargin", filter.FilterMargin ?? (object)DBNull.Value)).ToListAsync();
 
+            if (profit.Any())
+            {
+                return Ok(profit);
+            }
+            else
+            {
+                throw new Exception("Procedure error");
+            }
         }
+
 
 
         //Get customers by status
