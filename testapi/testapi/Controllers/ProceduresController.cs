@@ -21,16 +21,12 @@ namespace API.Controllers
         public async Task<IActionResult> GetClassifySalesByProfit()
         {
             var profit = await _context.ClassifySalesByProfit.FromSqlRaw("EXEC pf_ClassifySalesByProfit").ToListAsync();
-            try
-            {
                 if (profit.Any())
                 {
                     return Ok(profit);
                 }
                 else
                     throw new Exception("Procedure error");
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
 
         }
 
@@ -42,16 +38,12 @@ namespace API.Controllers
             status = status.ToLower();
             status = char.ToUpper(status[0]) + status[1..];
             var invoices = await _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw($"EXEC pf_TotalAmountGainedPerCustomerInvoice @status={status}").ToListAsync();
-            try
-            {
                 if (invoices.Any())
                 {
                     return Ok(invoices);
                 }
                 else
                     throw new Exception("Input error");
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
 
@@ -62,16 +54,12 @@ namespace API.Controllers
             status = status.ToLower();
             status = char.ToUpper(status[0]) + status[1..];
             var invoices = await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSupplierInvoice @status={status}").ToListAsync();
-            try
-            {
                 if (invoices.Any())
                 {
                     return Ok(invoices);
                 }
                 else
                     throw new Exception("Input error");
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
         //Get customers by status
@@ -81,16 +69,12 @@ namespace API.Controllers
             status = status.ToLower();
              status = char.ToUpper(status[0]) + status[1..];
             var invoices = await _context.TotalAmountSpentPerSuppliers.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSuppliers").ToListAsync();
-            try
-            {
                 if (invoices.Any())
                 {
                     return Ok(invoices);
                 }
                 else
                     throw new Exception("Input error");
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
 

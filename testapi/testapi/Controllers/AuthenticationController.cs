@@ -23,16 +23,9 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserDTOCreate request)
         {
-            User user;
-            try
-            {
-                user = await _authenticationService.CreateUser(request);
-                return Ok("User Registered Successfully ");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
+            User user = await _authenticationService.CreateUser(request);
+            return Ok("User Registered Successfully ");
+            
         }
 
 
@@ -40,16 +33,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserAccessInfoDTO>> Login(UserDTO request)
         {
-            User user;
-            try
-            {
-                user = await _authenticationService.GetUserByEmail(request.Email);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
-
+            User user = await _authenticationService.GetUserByEmail(request.Email);
             if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
                 return Unauthorized("Wrong Password!");
             List<string> roles = new List<string>();
@@ -57,38 +41,26 @@ namespace API.Controllers
             {
                 roles.Add(role.Role.RoleName);
             }
-
             UserRoleDTO userDTO = new UserRoleDTO(user, roles);
             string token = _authenticationService.CreateToken(userDTO);
-
             var refreshToken = await _authenticationService.GenerateRefreshToken(user.UserID);
-
-
             return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
         }
 
         [HttpPost("refresh-token")]
         public async Task<ActionResult<UserAccessInfoDTO>> RefreshToken(string refToken)
         {
-            try
+            RefreshTokenDTO dbRefToken = new RefreshTokenDTO(await _authenticationService.GetRefreshTokenByrefTokenString(refToken));
+            RefreshToken refreshToken = await _authenticationService.GetNewerRefreshToken(dbRefToken);
+            if (!refreshToken.Token.Equals(refToken))
+                return Unauthorized("Invalid Refresh Token");
+            else if (refreshToken.Expires < DateTime.Now)
             {
-                RefreshTokenDTO dbRefToken = new RefreshTokenDTO(await _authenticationService.GetRefreshTokenByrefTokenString(refToken));
-                RefreshToken refreshToken = await _authenticationService.GetNewerRefreshToken(dbRefToken);
-                if (!refreshToken.Token.Equals(refToken))
-                    return Unauthorized("Invalid Refresh Token");
-                else if (refreshToken.Expires < DateTime.Now)
-                {
-                    return Unauthorized("Outdated Refresh Token");
-                }
-                UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
-                string token = _authenticationService.CreateToken(userDTO);
-                return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
+                return Unauthorized("Outdated Refresh Token");
             }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
-
+            UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
+            string token = _authenticationService.CreateToken(userDTO);
+            return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
         }
 
 
@@ -96,16 +68,9 @@ namespace API.Controllers
         [HttpPut("user/assign-roles")]
         public async Task<ActionResult<string>> AssignRoles(AssignRoleDTO assignRole)
         {
-            try
-            {
-                if (assignRole.UserID != null)
-                    await _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
-                return Ok("User Role Updated");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
+            if (assignRole.UserID != null)
+                await _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
+            return Ok("User Role Updated");
         }
 
 
@@ -114,65 +79,45 @@ namespace API.Controllers
         [HttpDelete("user/delete-user/{id}")]
         public async Task<ActionResult<string>> DeleteUser(int id)
         {
-            try
-            {
                 await _authenticationService.DeleteUser(id);
                 return Ok("User Deleted Successfully");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
+
+
 
         [Authorize(Roles = "Admin,UserAdmin")]
         [HttpDelete("user/mass-delete")]
         public async Task<ActionResult<string>> MassDeleteUser([FromQuery]List<int> id)
         {
-            try
-            {
                 await _authenticationService.MassDeleteUser(id);
                 return Ok("User Deleted Successfully");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
+
+
 
         //[Authorize(Roles = "Admin,UserAdmin,UserWrite")]
         [HttpPut("user/edit-user/{id}")]
         public async Task<ActionResult<string>> EditUser(int id, [FromBody] UserDTOEdit updateUser)
         {
-            try
-            {
                 await _authenticationService.EditUser(id, updateUser);
                 return Ok("User Updated Successfully");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
+
+
 
         [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/get-all-users")]
         public async Task<IActionResult> Get([FromQuery] UserFilter filter)
         {
-            try
-            {
                 var result = await _authenticationService.GetAllUsers(filter);
                 if (result.Any())
                 {
                     return Ok(result);
                 }
                 else throw new NotFoundException("Users not found");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
         }
+
+
 
         [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/count")]
@@ -181,21 +126,16 @@ namespace API.Controllers
             var data = await _authenticationService.CountUsers(filter);
             return Ok(data);
         }
+
+
+
         // [Authorize(Roles = "Admin,UserAdmin,UserRead,UserWrite")]
         [HttpGet("user/{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            UserRoleDTO data;
-            try
-            {
-                data = await _authenticationService.GetUserRoleDTOByID(id);
+            UserRoleDTO data = await _authenticationService.GetUserRoleDTOByID(id);
                 if (data == null)
                     throw new NotFoundException("User not found");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NotFoundTokenException ex) { return Unauthorized(ex.Message); }
             return Ok(data);
         }
     }

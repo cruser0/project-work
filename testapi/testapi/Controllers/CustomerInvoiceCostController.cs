@@ -20,23 +20,22 @@ namespace API.Controllers
         {
             _customerInvoiceCostService = customerInvoiceCostService;
         }
+
+
+
+
+
         // GET: api/<CustomerInvoiceCostController>
         [Authorize(Roles = "Admin,CustomerInvoiceCostRead,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] CustomerInvoiceCostFilter filter)
         {
-            try
+            var data = await _customerInvoiceCostService.GetAllCustomerInvoiceCosts(filter);
+            if (data.Any())
             {
-                var data = await _customerInvoiceCostService.GetAllCustomerInvoiceCosts(filter);
-                if (data.Any())
-                {
-                    return Ok(data);
-                }
-                else throw new NotFoundException("Customer Invoice Cost not found");
+                return Ok(data);
             }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            else throw new NotFoundException("Customer Invoice Cost not found");
         }
 
         [Authorize(Roles = "Admin,CustomerInvoiceCostRead,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
@@ -54,18 +53,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-
-            try
-            {
-                var data = await _customerInvoiceCostService.GetCustomerInvoiceCostById(id);
-                if (data == null)
-                    throw new NotFoundException("Customer Invoice Cost not found");
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-
+            var data = await _customerInvoiceCostService.GetCustomerInvoiceCostById(id);
+            if (data == null)
+                throw new NotFoundException("Customer Invoice Cost not found");
+            return Ok(data);
         }
 
         // POST api/<CustomerInvoiceCostController>
@@ -73,18 +64,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceCostDTO customerInvoiceCost)
         {
-
-            try
-            {
-                var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost));
-                if (data == null)
-                    throw new NotFoundException("Customer Invoice Cost not found");
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
+            var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost));
+            if (data == null)
+                throw new NotFoundException("Customer Invoice Cost not found");
+            return Ok(data);
         }
 
         // PUT api/<CustomerInvoiceCostController>/5
@@ -92,17 +75,10 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceCostDTO customerInvoiceCost)
         {
-            try
-            {
                 var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost));
                 if (data == null)
                     throw new NotFoundException("Customer Invoice Cost not found");
                 return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         // DELETE api/<CustomerInvoiceCostController>/5
@@ -110,48 +86,26 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-
-            try
-            {
-                var data = await _customerInvoiceCostService.DeleteCustomerInvoiceCost(id);
-                if (data == null)
-                    throw new NotFoundException("Customer Invoice Cost not found");
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            var data = await _customerInvoiceCostService.DeleteCustomerInvoiceCost(id);
+            if (data == null)
+                throw new NotFoundException("Customer Invoice Cost not found");
+            return Ok(data);
         }
 
         [Authorize(Roles = "Admin,CustomerInvoiceCostAdmin")]
         [HttpDelete("mass-delete")]
         public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
-
-            try
-            {
-                var data = await _customerInvoiceCostService.MassDeleteCustomerInvoiceCost(id);
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            var data = await _customerInvoiceCostService.MassDeleteCustomerInvoiceCost(id);
+            return Ok(data);
         }
 
         [Authorize(Roles = "Admin,CustomerInvoiceCostAdmin")]
         [HttpPut("mass-update")]
         public async Task<IActionResult> MassUpdate([FromBody] List<CustomerInvoiceCostDTOGet> newCustomerInvoiceCosts)
         {
-
-            try
-            {
-                var data = await _customerInvoiceCostService.MassUpdateCustomerInvoiceCost(newCustomerInvoiceCosts);
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
+            var data = await _customerInvoiceCostService.MassUpdateCustomerInvoiceCost(newCustomerInvoiceCosts);
+            return Ok(data);
         }
     }
 }
