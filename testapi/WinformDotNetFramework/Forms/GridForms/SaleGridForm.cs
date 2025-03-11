@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Entities.Preference;
@@ -35,11 +36,13 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             _father = father;
             Init();
+            toolStrip1.Visible = false;
         }
         public SaleGridForm(CreateCustomerInvoiceForm father)
         {
             _father = father;
             Init();
+            toolStrip1.Visible = false;
         }
 
         private async void Init()
@@ -311,6 +314,50 @@ namespace WinformDotNetFramework.Forms.GridForms
         private void Excel_ClickBtn(object sender, EventArgs e)
         {
             UtilityFunctions.Excel_ClickBtn(SaleDgv, this);
+        }
+
+        private async void MassUpdateTSB_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+         "This action is permanent and it will update all the history bound to this entity!",
+         "Confirm Update?",
+         MessageBoxButtons.YesNo,
+         MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    List<Sale> newEntities = new List<Sale>();
+                    HashSet<int> ids = new HashSet<int>();
+
+                    foreach (DataGridViewCell cell in SaleDgv.SelectedCells)
+                    {
+                        ids.Add(cell.RowIndex);
+                    }
+
+                    foreach (var rowId in ids)
+                    {
+                        if (SaleDgv.Rows[rowId].DataBoundItem is SaleCustomerDTO entity)
+                            newEntities.Add((Sale)(object)entity);
+                    }
+                    if (newEntities.Count > 0)
+                    {
+                        string message = await _saleService.MassUpdate(newEntities);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Row was selected");
+                    }
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
         }
     }
 }

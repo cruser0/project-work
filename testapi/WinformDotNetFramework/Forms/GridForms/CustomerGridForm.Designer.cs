@@ -51,13 +51,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
@@ -206,7 +206,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomerDgv.Location = new System.Drawing.Point(0, 25);
             this.CustomerDgv.Name = "CustomerDgv";
-            this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
             this.CustomerDgv.Size = new System.Drawing.Size(613, 349);
             this.CustomerDgv.TabIndex = 7;
@@ -237,6 +236,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton1";
+            this.toolStripButton2.Click += new System.EventHandler(this.MassUpdateTSB_Click);
             // 
             // toolStripSeparator1
             // 
@@ -262,6 +262,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
             this.ExcelTSB.Text = "Excel";
             this.ExcelTSB.Click += new System.EventHandler(this.Excel_ClickBtn);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // MassDeleteTSB
             // 
@@ -318,11 +323,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(0, 87);
             this.panel3.TabIndex = 0;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // CustomerGridForm
             // 

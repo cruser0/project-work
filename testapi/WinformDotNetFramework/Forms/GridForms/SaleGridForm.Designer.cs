@@ -43,6 +43,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -59,7 +60,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -156,6 +156,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.MassSaveTSB.Name = "MassSaveTSB";
             this.MassSaveTSB.Size = new System.Drawing.Size(23, 22);
             this.MassSaveTSB.Text = "toolStripButton1";
+            this.MassSaveTSB.Click += new System.EventHandler(this.MassUpdateTSB_Click);
             // 
             // toolStripSeparator1
             // 
@@ -181,6 +182,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
             this.ExcelTSB.Text = "Excel";
             this.ExcelTSB.Click += new System.EventHandler(this.Excel_ClickBtn);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // MassDeleteTSB
             // 
@@ -338,11 +344,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleTotalRevenueTsmi.Size = new System.Drawing.Size(204, 22);
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // SaleGridForm
             // 

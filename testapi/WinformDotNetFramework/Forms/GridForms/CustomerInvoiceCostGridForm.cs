@@ -270,5 +270,49 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             UtilityFunctions.Excel_ClickBtn(CustomerInvoiceCostDgv, this);
         }
+
+        private async void MassUpdateTSB_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+         "This action is permanent and it will update all the history bound to this entity!",
+         "Confirm Update?",
+         MessageBoxButtons.YesNo,
+         MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    List<CustomerInvoiceCost> newEntities = new List<CustomerInvoiceCost>();
+                    HashSet<int> ids = new HashSet<int>();
+
+                    foreach (DataGridViewCell cell in CustomerInvoiceCostDgv.SelectedCells)
+                    {
+                        ids.Add(cell.RowIndex);
+                    }
+
+                    foreach (var rowId in ids)
+                    {
+                        if (CustomerInvoiceCostDgv.Rows[rowId].DataBoundItem is CustomerInvoiceCost entity)
+                            newEntities.Add(entity);
+                    }
+                    if (newEntities.Count > 0)
+                    {
+                        string message = await _customerInvoiceCostService.MassUpdate(newEntities);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Row was selected");
+                    }
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                MessageBox.Show("Action canceled.");
+            }
+        }
     }
 }

@@ -289,6 +289,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton1";
+            this.toolStripButton2.Click += new System.EventHandler(this.MassUpdateTSB_Click);
             // 
             // toolStripSeparator1
             // 
