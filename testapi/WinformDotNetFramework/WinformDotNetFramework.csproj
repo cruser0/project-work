@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C7599BDE-4562-4E19-948F-EF170B7CDC00}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WinformDotNetFramework</RootNamespace>
+    <AssemblyName>WinformDotNetFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.2\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.9.0.2\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.9.0.2\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=9.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.9.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientAPI.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerInvoice.cs" />
+    <Compile Include="Entities\CustomerInvoiceCost.cs" />
+    <Compile Include="Entities\DTO\CustomerGroupDTO.cs" />
+    <Compile Include="Entities\DTO\SaleCustomerDTO.cs" />
+    <Compile Include="Entities\DTO\SupplierCustomerDTO.cs" />
+    <Compile Include="Entities\DTO\supplierGroupDTO.cs" />
+    <Compile Include="Entities\DTO\SupplierInvoiceSupplierDTO.cs" />
+    <Compile Include="Entities\DTO\UserDTO.cs" />
+    <Compile Include="Entities\Filters\CustomerFilter.cs" />
+    <Compile Include="Entities\Filters\CustomerInvoiceCostFilter.cs" />
+    <Compile Include="Entities\Filters\CustomerInvoiceFilter.cs" />
+    <Compile Include="Entities\Filters\SaleFilter.cs" />
+    <Compile Include="Entities\Filters\SupplierFilter.cs" />
+    <Compile Include="Entities\Filters\SupplierInvoiceCostFilter.cs" />
+    <Compile Include="Entities\Filters\SupplierInvoiceFilter.cs" />
+    <Compile Include="Entities\Filters\UserFilter.cs" />
+    <Compile Include="Entities\Preference\CustomerDGV.cs" />
+    <Compile Include="Entities\Preference\CustomerGroupSplit.cs" />
+    <Compile Include="Entities\Preference\CustomerInvoiceCostDGV.cs" />
+    <Compile Include="Entities\Preference\CustomerInvoiceDGV.cs" />
+    <Compile Include="Entities\Preference\FavouritePages.cs" />
+    <Compile Include="Entities\Preference\SaleDGV.cs" />
+    <Compile Include="Entities\Preference\SupplierDGV.cs" />
+    <Compile Include="Entities\Preference\SupplierGroupSplit.cs" />
+    <Compile Include="Entities\Preference\SupplierInvoiceCostDGV.cs" />
+    <Compile Include="Entities\Preference\SupplierInvoiceDGV.cs" />
+    <Compile Include="Entities\Preference\UserDGV.cs" />
+    <Compile Include="Entities\Preference\UserFavouritePage.cs" />
+    <Compile Include="Entities\RefreshToken.cs" />
+    <Compile Include="Entities\Sale.cs" />
+    <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="Entities\SupplierInvoice.cs" />
+    <Compile Include="Entities\SupplierInvoiceCost.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserAccessTemp.cs" />
+    <Compile Include="Forms\AddForms\CreateCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateCustomerForm.Designer.cs">
+      <DependentUpon>CreateCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateCustomerInvoiceCostForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateCustomerInvoiceCostForm.Designer.cs">
+      <DependentUpon>CreateCustomerInvoiceCostForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateCustomerInvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateCustomerInvoiceForm.Designer.cs">
+      <DependentUpon>CreateCustomerInvoiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSaleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSaleForm.Designer.cs">
+      <DependentUpon>CreateSaleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSupplierForm.Designer.cs">
+      <DependentUpon>CreateSupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSupplierInvoiceCostForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSupplierInvoiceCostForm.Designer.cs">
+      <DependentUpon>CreateSupplierInvoiceCostForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSupplierInvoicesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateSupplierInvoicesForm.Designer.cs">
+      <DependentUpon>CreateSupplierInvoicesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddForms\CreateUserForm.Designer.cs">
+      <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\BaseGridUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\BaseGridUserControl.Designer.cs">
+      <DependentUpon>BaseGridUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\CreateCustomerSupplierUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\CreateCustomerSupplierUserControl.Designer.cs">
+      <DependentUpon>CreateCustomerSupplierUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\CustomerSupplierFilterUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\CustomerSupplierFilterUserControl.Designer.cs">
+      <DependentUpon>CustomerSupplierFilterUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\DecimalTextBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\DecimalTextBoxUserControl.Designer.cs">
+      <DependentUpon>DecimalTextBoxUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\formDockButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\formDockButton.Designer.cs">
+      <DependentUpon>formDockButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\IntegerTextBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\IntegerTextBoxUserControl.Designer.cs">
+      <DependentUpon>IntegerTextBoxUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\LeftSideBarUSerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\LeftSideBarUSerControl.Designer.cs">
+      <DependentUpon>LeftSideBarUSerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\PaginationUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\PaginationUserControl.Designer.cs">
+      <DependentUpon>PaginationUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\PasswordTxtUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\PasswordTxtUserControl.Designer.cs">
+      <DependentUpon>PasswordTxtUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\RightSideBarUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\RightSideBarUserControl.Designer.cs">
+      <DependentUpon>RightSideBarUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\RoleUserProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\RoleUserProfile.Designer.cs">
+      <DependentUpon>RoleUserProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchCustomer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchCustomer.Designer.cs">
+      <DependentUpon>SearchCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchCustomerInvoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchCustomerInvoice.Designer.cs">
+      <DependentUpon>SearchCustomerInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchCustomerInvoiceCost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchCustomerInvoiceCost.Designer.cs">
+      <DependentUpon>SearchCustomerInvoiceCost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchSale.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchSale.Designer.cs">
+      <DependentUpon>SearchSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchSupplier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchSupplier.Designer.cs">
+      <DependentUpon>SearchSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchSupplierInvoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchSupplierInvoice.Designer.cs">
+      <DependentUpon>SearchSupplierInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchSupplierInvoiceCost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchSupplierInvoiceCost.Designer.cs">
+      <DependentUpon>SearchSupplierInvoiceCost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\StarUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\StarUserControl.Designer.cs">
+      <DependentUpon>StarUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomerForm.Designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomerInvoiceCostForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomerInvoiceCostForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceCostForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomerInvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomerInvoiceForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\CustomerDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\CustomerDetailsForm.Designer.cs">
+      <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\CustomerInvoiceCostDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\CustomerInvoiceCostDetailsForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceCostDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\CustomerInvoiceDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\CustomerInvoiceDetailsForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SaleDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SaleDetailsForm.Designer.cs">
+      <DependentUpon>SaleDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SupplierDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SupplierDetailsForm.Designer.cs">
+      <DependentUpon>SupplierDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SupplierInvoiceCostDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SupplierInvoiceCostDetailsForm.Designer.cs">
+      <DependentUpon>SupplierInvoiceCostDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SupplierInvoiceDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\SupplierInvoiceDetailsForm.Designer.cs">
+      <DependentUpon>SupplierInvoiceDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\UserDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetailsForms\UserDetails.Designer.cs">
+      <DependentUpon>UserDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FInalForms\CustomerFinalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FInalForms\CustomerFinalForm.Designer.cs">
+      <DependentUpon>CustomerFinalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FInalForms\SupplierFinalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FInalForms\SupplierFinalForm.Designer.cs">
+      <DependentUpon>SupplierFinalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\CustomerGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\CustomerGridForm.Designer.cs">
+      <DependentUpon>CustomerGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\CustomerInvoiceCostGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\CustomerInvoiceCostGridForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceCostGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\CustomerInvoiceGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\CustomerInvoiceGridForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\SaleGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\SaleGridForm.Designer.cs">
+      <DependentUpon>SaleGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\SupplierGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\SupplierGridForm.Designer.cs">
+      <DependentUpon>SupplierGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\SupplierInvoiceCostGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\SupplierInvoiceCostGridForm.Designer.cs">
+      <DependentUpon>SupplierInvoiceCostGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\SupplierInvoiceGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\SupplierInvoiceGridForm.Designer.cs">
+      <DependentUpon>SupplierInvoiceGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridForms\UserGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\UserGridForm.Designer.cs">
+      <DependentUpon>UserGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SaleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SaleForm.Designer.cs">
+      <DependentUpon>SaleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SupplierForm.Designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SupplierInvoiceCostsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SupplierInvoiceCostsForm.Designer.cs">
+      <DependentUpon>SupplierInvoiceCostsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SupplierInvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SupplierInvoiceForm.Designer.cs">
+      <DependentUpon>SupplierInvoiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserProfileForm.Designer.cs">
+      <DependentUpon>UserProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Procedures\AmountSpentSaleID.cs" />
+    <Compile Include="Procedures\CustomerInvoiceStatus.cs" />
+    <Compile Include="Procedures\ProfitClassification.cs" />
+    <Compile Include="Procedures\ProfitSaleID.cs" />
+    <Compile Include="Procedures\RevenuePerSaleID.cs" />
+    <Compile Include="Procedures\SaleByBOL.cs" />
+    <Compile Include="Procedures\SaleByBooking.cs" />
+    <Compile Include="Procedures\SaleByCustomerID.cs" />
+    <Compile Include="Procedures\SaleByStatus.cs" />
+    <Compile Include="Procedures\SupplierInvoiceByStatus.cs" />
+    <Compile Include="Procedures\TotalSpentPerSupplier.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\BaseCallService.cs" />
+    <Compile Include="Services\CustomerInvoiceCostService.cs" />
+    <Compile Include="Services\CustomerInvoiceService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\SaleService.cs" />
+    <Compile Include="Services\SupplierInvoiceCostService.cs" />
+    <Compile Include="Services\SupplierInvoiceService.cs" />
+    <Compile Include="Services\SupplierService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\ValueService.cs" />
+    <Compile Include="UserAccessInfo.cs" />
+    <Compile Include="UtilityFunctions.cs" />
+    <EmbeddedResource Include="Forms\AddForms\CreateCustomerForm.resx">
+      <DependentUpon>CreateCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddForms\CreateCustomerInvoiceCostForm.resx">
+      <DependentUpon>CreateCustomerInvoiceCostForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddForms\CreateCustomerInvoiceForm.resx">
+      <DependentUpon>CreateCustomerInvoiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddForms\CreateSaleForm.resx">
+      <DependentUpon>CreateSaleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddForms\CreateSupplierForm.resx">
+      <DependentUpon>CreateSupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddForms\CreateSupplierInvoiceCostForm.resx">
+      <DependentUpon>CreateSupplierInvoiceCostForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddForms\CreateSupplierInvoicesForm.resx">
+      <DependentUpon>CreateSupplierInvoicesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddForms\CreateUserForm.resx">
+      <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\BaseGridUserControl.resx">
+      <DependentUpon>BaseGridUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\CreateCustomerSupplierUserControl.resx">
+      <DependentUpon>CreateCustomerSupplierUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\CustomerSupplierFilterUserControl.resx">
+      <DependentUpon>CustomerSupplierFilterUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\DecimalTextBoxUserControl.resx">
+      <DependentUpon>DecimalTextBoxUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\formDockButton.resx">
+      <DependentUpon>formDockButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\IntegerTextBoxUserControl.resx">
+      <DependentUpon>IntegerTextBoxUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\LeftSideBarUSerControl.resx">
+      <DependentUpon>LeftSideBarUSerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\PaginationUserControl.resx">
+      <DependentUpon>PaginationUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\PasswordTxtUserControl.resx">
+      <DependentUpon>PasswordTxtUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\RightSideBarUserControl.resx">
+      <DependentUpon>RightSideBarUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\RoleUserProfile.resx">
+      <DependentUpon>RoleUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchCustomer.resx">
+      <DependentUpon>SearchCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchCustomerInvoice.resx">
+      <DependentUpon>SearchCustomerInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchCustomerInvoiceCost.resx">
+      <DependentUpon>SearchCustomerInvoiceCost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchSale.resx">
+      <DependentUpon>SearchSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchSupplier.resx">
+      <DependentUpon>SearchSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchSupplierInvoice.resx">
+      <DependentUpon>SearchSupplierInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchSupplierInvoiceCost.resx">
+      <DependentUpon>SearchSupplierInvoiceCost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\StarUserControl.resx">
+      <DependentUpon>StarUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomerInvoiceCostForm.resx">
+      <DependentUpon>CustomerInvoiceCostForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomerInvoiceForm.resx">
+      <DependentUpon>CustomerInvoiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\CustomerDetailsForm.resx">
+      <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\CustomerInvoiceCostDetailsForm.resx">
+      <DependentUpon>CustomerInvoiceCostDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\CustomerInvoiceDetailsForm.resx">
+      <DependentUpon>CustomerInvoiceDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\SaleDetailsForm.resx">
+      <DependentUpon>SaleDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\SupplierDetailsForm.resx">
+      <DependentUpon>SupplierDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\SupplierInvoiceCostDetailsForm.resx">
+      <DependentUpon>SupplierInvoiceCostDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\SupplierInvoiceDetailsForm.resx">
+      <DependentUpon>SupplierInvoiceDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\UserDetails.resx">
+      <DependentUpon>UserDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FInalForms\CustomerFinalForm.resx">
+      <DependentUpon>CustomerFinalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FInalForms\SupplierFinalForm.resx">
+      <DependentUpon>SupplierFinalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\CustomerGridForm.resx">
+      <DependentUpon>CustomerGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\CustomerInvoiceCostGridForm.resx">
+      <DependentUpon>CustomerInvoiceCostGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\CustomerInvoiceGridForm.resx">
+      <DependentUpon>CustomerInvoiceGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\SaleGridForm.resx">
+      <DependentUpon>SaleGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\SupplierGridForm.resx">
+      <DependentUpon>SupplierGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\SupplierInvoiceCostGridForm.resx">
+      <DependentUpon>SupplierInvoiceCostGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\SupplierInvoiceGridForm.resx">
+      <DependentUpon>SupplierInvoiceGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\UserGridForm.resx">
+      <DependentUpon>UserGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SaleForm.resx">
+      <DependentUpon>SaleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SupplierInvoiceCostsForm.resx">
+      <DependentUpon>SupplierInvoiceCostsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SupplierInvoiceForm.resx">
+      <DependentUpon>SupplierInvoiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserProfileForm.resx">
+      <DependentUpon>UserProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Resources\cropped-logo-removebg-preview_50x50.png" />
+    <Content Include="Properties\Resources\double_left_resize.png" />
+    <Content Include="Properties\Resources\double_right_resize.png" />
+    <Content Include="Properties\Resources\eye_r.png" />
+    <Content Include="Properties\Resources\eye_ri.png" />
+    <Content Include="Properties\Resources\fav_color_no_bg.png" />
+    <Content Include="Properties\Resources\fav_no_bg.png" />
+    <Content Include="Properties\Resources\Invoice_Icon.png" />
+    <Content Include="Properties\Resources\Sale_Icon.png" />
+    <Content Include="Properties\Resources\save.png" />
+    <None Include="Properties\Resources\single_left.png" />
+    <Content Include="Properties\Resources\single_left_resize.png" />
+    <Content Include="Properties\Resources\single_right_resize.png" />
+    <Content Include="Properties\Resources\star.png" />
+    <Content Include="Properties\Resources\star1.png" />
+    <None Include="Properties\Resources\star2.png" />
+    <Content Include="Properties\Resources\star25x25.png" />
+    <Content Include="Properties\Resources\star25x251.png" />
+    <Content Include="Properties\Resources\star_yellow-removebg.png" />
+    <Content Include="Properties\Resources\star_yellow-removebga.png" />
+    <Content Include="Properties\Resources\star_yellow25x25.png" />
+    <Content Include="Properties\Resources\star_yellow25x25a.png" />
+    <Content Include="Properties\Resources\Supplier_Icon.png" />
+    <Content Include="Properties\Resources\trash.png" />
+    <Content Include="Properties\Resources\User_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
