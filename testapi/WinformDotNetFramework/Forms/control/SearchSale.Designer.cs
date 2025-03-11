@@ -71,7 +71,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 325);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 325);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // label4
@@ -245,7 +245,7 @@ namespace WinformDotNetFramework.Forms.control
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSale";
-            this.Size = new System.Drawing.Size(171, 325);
+            this.Size = new System.Drawing.Size(180, 325);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

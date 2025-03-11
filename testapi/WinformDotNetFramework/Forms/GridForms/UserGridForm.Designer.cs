@@ -75,9 +75,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1.Controls.Add(this.FilterPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(584, 0);
+            this.panel1.Location = new System.Drawing.Point(613, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 461);
+            this.panel1.Size = new System.Drawing.Size(171, 461);
             this.panel1.TabIndex = 0;
             // 
             // FilterPanel
@@ -93,17 +93,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.FilterPanel.Controls.Add(this.Emailtxt);
             this.FilterPanel.Controls.Add(this.lastNameTxt);
             this.FilterPanel.Controls.Add(this.nameTxt);
-            this.FilterPanel.Location = new System.Drawing.Point(0, 103);
+            this.FilterPanel.Location = new System.Drawing.Point(0, 89);
             this.FilterPanel.Name = "FilterPanel";
-            this.FilterPanel.Size = new System.Drawing.Size(200, 358);
+            this.FilterPanel.Size = new System.Drawing.Size(171, 310);
             this.FilterPanel.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label4.Location = new System.Drawing.Point(0, 171);
+            this.label4.Location = new System.Drawing.Point(0, 148);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 17);
             this.label4.TabIndex = 8;
@@ -112,9 +112,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(0, 113);
+            this.label3.Location = new System.Drawing.Point(0, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 7;
@@ -123,9 +123,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(0, 65);
+            this.label2.Location = new System.Drawing.Point(0, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 6;
@@ -134,9 +134,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(0, 10);
+            this.label1.Location = new System.Drawing.Point(0, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 17);
             this.label1.TabIndex = 5;
@@ -171,10 +171,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             "SaleRead",
             "SaleWrite",
             "SaleAdmin"});
-            this.rolesListBox.Location = new System.Drawing.Point(3, 189);
-            this.rolesListBox.MinimumSize = new System.Drawing.Size(0, 436);
+            this.rolesListBox.Location = new System.Drawing.Point(3, 164);
+            this.rolesListBox.MinimumSize = new System.Drawing.Size(4, 378);
             this.rolesListBox.Name = "rolesListBox";
-            this.rolesListBox.Size = new System.Drawing.Size(180, 436);
+            this.rolesListBox.Size = new System.Drawing.Size(155, 364);
             this.rolesListBox.TabIndex = 4;
             this.rolesListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.rolesListBox_ItemCheck);
             this.rolesListBox.Click += new System.EventHandler(this.rolesListBox_Click);
@@ -182,25 +182,25 @@ namespace WinformDotNetFramework.Forms.GridForms
             // Emailtxt
             // 
             this.Emailtxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.Emailtxt.Location = new System.Drawing.Point(3, 131);
+            this.Emailtxt.Location = new System.Drawing.Point(3, 114);
             this.Emailtxt.Name = "Emailtxt";
-            this.Emailtxt.Size = new System.Drawing.Size(180, 23);
+            this.Emailtxt.Size = new System.Drawing.Size(155, 20);
             this.Emailtxt.TabIndex = 2;
             // 
             // lastNameTxt
             // 
             this.lastNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.lastNameTxt.Location = new System.Drawing.Point(3, 83);
+            this.lastNameTxt.Location = new System.Drawing.Point(3, 72);
             this.lastNameTxt.Name = "lastNameTxt";
-            this.lastNameTxt.Size = new System.Drawing.Size(180, 23);
+            this.lastNameTxt.Size = new System.Drawing.Size(155, 20);
             this.lastNameTxt.TabIndex = 1;
             // 
             // nameTxt
             // 
             this.nameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.nameTxt.Location = new System.Drawing.Point(3, 28);
+            this.nameTxt.Location = new System.Drawing.Point(3, 24);
             this.nameTxt.Name = "nameTxt";
-            this.nameTxt.Size = new System.Drawing.Size(180, 23);
+            this.nameTxt.Size = new System.Drawing.Size(155, 20);
             this.nameTxt.TabIndex = 0;
             // 
             // RightSideBar
@@ -209,7 +209,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
+            this.RightSideBar.Size = new System.Drawing.Size(171, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // panel2
@@ -217,26 +217,26 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel2.Controls.Add(this.PaginationPanel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 361);
+            this.panel2.Location = new System.Drawing.Point(0, 374);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(584, 100);
+            this.panel2.Size = new System.Drawing.Size(613, 87);
             this.panel2.TabIndex = 1;
             // 
             // PaginationPanel
             // 
             this.PaginationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.PaginationPanel.Controls.Add(this.paginationControl);
-            this.PaginationPanel.Location = new System.Drawing.Point(96, 0);
+            this.PaginationPanel.Location = new System.Drawing.Point(82, 0);
             this.PaginationPanel.Name = "PaginationPanel";
-            this.PaginationPanel.Size = new System.Drawing.Size(407, 100);
+            this.PaginationPanel.Size = new System.Drawing.Size(349, 87);
             this.PaginationPanel.TabIndex = 0;
             // 
             // paginationControl
             // 
             this.paginationControl.CurrentPage = 0;
-            this.paginationControl.Location = new System.Drawing.Point(45, 23);
+            this.paginationControl.Location = new System.Drawing.Point(39, 20);
             this.paginationControl.Name = "paginationControl";
-            this.paginationControl.Size = new System.Drawing.Size(316, 50);
+            this.paginationControl.Size = new System.Drawing.Size(271, 43);
             this.paginationControl.TabIndex = 0;
             // 
             // panel3
@@ -246,7 +246,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(584, 361);
+            this.panel3.Size = new System.Drawing.Size(613, 374);
             this.panel3.TabIndex = 2;
             // 
             // userDgv
@@ -261,7 +261,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.userDgv.Name = "userDgv";
             this.userDgv.ReadOnly = true;
             this.userDgv.RowTemplate.Height = 25;
-            this.userDgv.Size = new System.Drawing.Size(584, 336);
+            this.userDgv.Size = new System.Drawing.Size(613, 349);
             this.userDgv.TabIndex = 0;
             this.userDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.userDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDgv_RightClick);
@@ -277,7 +277,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(613, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -387,7 +387,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // UserGridForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel3);

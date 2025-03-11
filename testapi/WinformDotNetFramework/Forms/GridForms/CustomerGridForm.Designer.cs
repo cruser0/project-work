@@ -34,6 +34,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerGridForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -56,7 +57,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
@@ -73,9 +73,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1.Controls.Add(this.TextBoxesRightPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(501, 0);
+            this.panel1.Location = new System.Drawing.Point(613, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(171, 400);
+            this.panel1.Size = new System.Drawing.Size(171, 461);
             this.panel1.TabIndex = 5;
             // 
             // TextBoxesRightPanel
@@ -89,13 +89,20 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
             this.TextBoxesRightPanel.TabIndex = 6;
             // 
+            // searchCustomer1
+            // 
+            this.searchCustomer1.Location = new System.Drawing.Point(0, 0);
+            this.searchCustomer1.Name = "searchCustomer1";
+            this.searchCustomer1.Size = new System.Drawing.Size(171, 254);
+            this.searchCustomer1.TabIndex = 15;
+            // 
             // RightSideBar
             // 
             this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(171, 400);
+            this.RightSideBar.Size = new System.Drawing.Size(171, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // CustomerGdv
@@ -107,7 +114,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerGdv.Location = new System.Drawing.Point(0, 0);
             this.CustomerGdv.Name = "CustomerGdv";
             this.CustomerGdv.RowTemplate.Height = 25;
-            this.CustomerGdv.Size = new System.Drawing.Size(501, 313);
+            this.CustomerGdv.Size = new System.Drawing.Size(613, 374);
             this.CustomerGdv.TabIndex = 6;
             this.CustomerGdv.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             // 
@@ -187,7 +194,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(501, 313);
+            this.CenterPanel.Size = new System.Drawing.Size(613, 374);
             this.CenterPanel.TabIndex = 9;
             // 
             // CustomerDgv
@@ -200,7 +207,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerDgv.Name = "CustomerDgv";
             this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
-            this.CustomerDgv.Size = new System.Drawing.Size(501, 288);
+            this.CustomerDgv.Size = new System.Drawing.Size(613, 349);
             this.CustomerDgv.TabIndex = 7;
             this.CustomerDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.CustomerDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerDgv_RightClick);
@@ -216,7 +223,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.MassDeleteTSB});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(501, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(613, 25);
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -272,9 +279,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.Controls.Add(this.panel4);
             this.BottomPanel.Controls.Add(this.panel3);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 313);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 374);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(501, 87);
+            this.BottomPanel.Size = new System.Drawing.Size(613, 87);
             this.BottomPanel.TabIndex = 7;
             // 
             // panel5
@@ -297,7 +304,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(501, 0);
+            this.panel4.Location = new System.Drawing.Point(613, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 87);
             this.panel4.TabIndex = 1;
@@ -311,22 +318,15 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Size = new System.Drawing.Size(0, 87);
             this.panel3.TabIndex = 0;
             // 
-            // searchCustomer1
-            // 
-            this.searchCustomer1.Location = new System.Drawing.Point(0, 0);
-            this.searchCustomer1.Name = "searchCustomer1";
-            this.searchCustomer1.Size = new System.Drawing.Size(171, 254);
-            this.searchCustomer1.TabIndex = 15;
-            // 
             // CustomerGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 400);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.panel1);
-            this.MinimumSize = new System.Drawing.Size(688, 439);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerGridForm";
             this.Text = "testForm";
             this.Load += new System.EventHandler(this.CustomerGridForm_Load);

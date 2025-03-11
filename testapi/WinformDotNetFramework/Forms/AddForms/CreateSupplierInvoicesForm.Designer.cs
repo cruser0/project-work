@@ -55,14 +55,15 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.StatusCmbx.AllowDrop = true;
             this.StatusCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusCmbx.FormattingEnabled = true;
             this.StatusCmbx.Items.AddRange(new object[] {
             "Approved",
             "Unapproved"});
-            this.StatusCmbx.Location = new System.Drawing.Point(271, 203);
+            this.StatusCmbx.Location = new System.Drawing.Point(288, 207);
             this.StatusCmbx.Name = "StatusCmbx";
-            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
+            this.StatusCmbx.Size = new System.Drawing.Size(172, 23);
             this.StatusCmbx.TabIndex = 26;
             // 
             // StatusLbl
@@ -70,8 +71,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.StatusLbl.AllowDrop = true;
             this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(271, 185);
+            this.StatusLbl.Location = new System.Drawing.Point(288, 191);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
             this.StatusLbl.TabIndex = 27;
@@ -82,8 +84,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaleIDLbl.AllowDrop = true;
             this.SaleIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaleIDLbl.AutoSize = true;
+            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaleIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIDLbl.Location = new System.Drawing.Point(271, 76);
+            this.SaleIDLbl.Location = new System.Drawing.Point(288, 97);
             this.SaleIDLbl.Name = "SaleIDLbl";
             this.SaleIDLbl.Size = new System.Drawing.Size(39, 15);
             this.SaleIDLbl.TabIndex = 22;
@@ -94,8 +97,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SupplierIDLbl.AllowDrop = true;
             this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SupplierIDLbl.AutoSize = true;
+            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierIDLbl.Location = new System.Drawing.Point(271, 131);
+            this.SupplierIDLbl.Location = new System.Drawing.Point(288, 145);
             this.SupplierIDLbl.Name = "SupplierIDLbl";
             this.SupplierIDLbl.Size = new System.Drawing.Size(61, 15);
             this.SupplierIDLbl.TabIndex = 23;
@@ -107,9 +111,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.DateClnd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DateClnd.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateClnd.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateClnd.Location = new System.Drawing.Point(271, 258);
+            this.DateClnd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateClnd.Location = new System.Drawing.Point(288, 255);
             this.DateClnd.Name = "DateClnd";
-            this.DateClnd.Size = new System.Drawing.Size(200, 23);
+            this.DateClnd.Size = new System.Drawing.Size(172, 23);
             this.DateClnd.TabIndex = 28;
             // 
             // SaveEditCustomerBtn
@@ -118,9 +123,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaveEditCustomerBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveEditCustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditCustomerBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(314, 287);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(325, 280);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
-            this.SaveEditCustomerBtn.Size = new System.Drawing.Size(157, 23);
+            this.SaveEditCustomerBtn.Size = new System.Drawing.Size(135, 20);
             this.SaveEditCustomerBtn.TabIndex = 25;
             this.SaveEditCustomerBtn.Text = "Create Supplier Invoice";
             this.SaveEditCustomerBtn.UseVisualStyleBackColor = false;
@@ -156,9 +161,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1.Controls.Add(this.StatusLbl);
             this.panel1.Controls.Add(this.SupplierIDLbl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(20, 20);
+            this.panel1.Location = new System.Drawing.Point(17, 17);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(744, 421);
+            this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 33;
             // 
             // label1
@@ -166,8 +171,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label1.AllowDrop = true;
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(271, 240);
+            this.label1.Location = new System.Drawing.Point(288, 239);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 33;
@@ -176,19 +182,23 @@ namespace WinformDotNetFramework.Forms.AddForms
             // SupplierIDTxt1
             // 
             this.SupplierIDTxt1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierIDTxt1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SupplierIDTxt1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierIDTxt1.Location = new System.Drawing.Point(271, 149);
+            this.SupplierIDTxt1.Location = new System.Drawing.Point(288, 160);
+            this.SupplierIDTxt1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.SupplierIDTxt1.Name = "SupplierIDTxt1";
-            this.SupplierIDTxt1.Size = new System.Drawing.Size(200, 23);
+            this.SupplierIDTxt1.Size = new System.Drawing.Size(171, 20);
             this.SupplierIDTxt1.TabIndex = 32;
             // 
             // SaleIDTxt1
             // 
             this.SaleIDTxt1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaleIDTxt1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaleIDTxt1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIDTxt1.Location = new System.Drawing.Point(271, 94);
+            this.SaleIDTxt1.Location = new System.Drawing.Point(288, 112);
+            this.SaleIDTxt1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.SaleIDTxt1.Name = "SaleIDTxt1";
-            this.SaleIDTxt1.Size = new System.Drawing.Size(200, 23);
+            this.SaleIDTxt1.Size = new System.Drawing.Size(171, 20);
             this.SaleIDTxt1.TabIndex = 31;
             // 
             // OpenSupplier
@@ -196,11 +206,11 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.OpenSupplier.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OpenSupplier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
             this.OpenSupplier.FlatAppearance.BorderSize = 0;
-            this.OpenSupplier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OpenSupplier.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSupplier.Location = new System.Drawing.Point(477, 149);
+            this.OpenSupplier.Location = new System.Drawing.Point(465, 160);
             this.OpenSupplier.Name = "OpenSupplier";
-            this.OpenSupplier.Size = new System.Drawing.Size(64, 23);
+            this.OpenSupplier.Size = new System.Drawing.Size(55, 20);
             this.OpenSupplier.TabIndex = 30;
             this.OpenSupplier.Text = "Open";
             this.OpenSupplier.UseVisualStyleBackColor = false;
@@ -211,11 +221,11 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.OpenSale.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
             this.OpenSale.FlatAppearance.BorderSize = 0;
-            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSale.Location = new System.Drawing.Point(477, 94);
+            this.OpenSale.Location = new System.Drawing.Point(465, 112);
             this.OpenSale.Name = "OpenSale";
-            this.OpenSale.Size = new System.Drawing.Size(64, 23);
+            this.OpenSale.Size = new System.Drawing.Size(55, 20);
             this.OpenSale.TabIndex = 29;
             this.OpenSale.Text = "Open";
             this.OpenSale.UseVisualStyleBackColor = false;
@@ -225,18 +235,18 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(764, 20);
+            this.panel5.Location = new System.Drawing.Point(767, 17);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(20, 421);
+            this.panel5.Size = new System.Drawing.Size(17, 427);
             this.panel5.TabIndex = 37;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 20);
+            this.panel3.Location = new System.Drawing.Point(0, 17);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 421);
+            this.panel3.Size = new System.Drawing.Size(17, 427);
             this.panel3.TabIndex = 35;
             // 
             // panel2
@@ -245,21 +255,21 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 20);
+            this.panel2.Size = new System.Drawing.Size(784, 17);
             this.panel2.TabIndex = 34;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 441);
+            this.panel4.Location = new System.Drawing.Point(0, 444);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(784, 20);
+            this.panel4.Size = new System.Drawing.Size(784, 17);
             this.panel4.TabIndex = 36;
             // 
             // CreateSupplierInvoicesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.CreatePanel);

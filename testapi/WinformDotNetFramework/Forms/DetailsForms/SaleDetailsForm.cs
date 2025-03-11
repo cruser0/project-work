@@ -52,8 +52,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 saveBtn.Visible = false;
                 EditCB.Visible = false;
             }
-            if (!Authorize(authRoles))
-                DeleteBtn.Visible = false;
+            //if (!Authorize(authRoles))
+            //    DeleteBtn.Visible = false;
         }
 
         private bool Authorize(List<string> allowedRoles)

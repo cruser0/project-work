@@ -47,10 +47,11 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.CreateSaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CreateSaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.CreateSaveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateSaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CreateSaveBtn.Location = new System.Drawing.Point(365, 253);
+            this.CreateSaveBtn.Location = new System.Drawing.Point(313, 187);
             this.CreateSaveBtn.Name = "CreateSaveBtn";
-            this.CreateSaveBtn.Size = new System.Drawing.Size(107, 23);
+            this.CreateSaveBtn.Size = new System.Drawing.Size(92, 25);
             this.CreateSaveBtn.TabIndex = 22;
             this.CreateSaveBtn.Text = "Save changes";
             this.CreateSaveBtn.UseVisualStyleBackColor = false;
@@ -60,8 +61,9 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.CreateCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CreateCountryLbl.AutoSize = true;
+            this.CreateCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CreateCountryLbl.Location = new System.Drawing.Point(272, 179);
+            this.CreateCountryLbl.Location = new System.Drawing.Point(233, 140);
             this.CreateCountryLbl.Name = "CreateCountryLbl";
             this.CreateCountryLbl.Size = new System.Drawing.Size(58, 15);
             this.CreateCountryLbl.TabIndex = 20;
@@ -72,8 +74,9 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.CreateNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CreateNameLbl.AutoSize = true;
+            this.CreateNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CreateNameLbl.Location = new System.Drawing.Point(272, 114);
+            this.CreateNameLbl.Location = new System.Drawing.Point(233, 96);
             this.CreateNameLbl.Name = "CreateNameLbl";
             this.CreateNameLbl.Size = new System.Drawing.Size(47, 15);
             this.CreateNameLbl.TabIndex = 19;
@@ -83,22 +86,24 @@ namespace WinformDotNetFramework.Forms.control
             // CreateCountryTxt
             // 
             this.CreateCountryTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CreateCountryTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateCountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CreateCountryTxt.Location = new System.Drawing.Point(272, 197);
+            this.CreateCountryTxt.Location = new System.Drawing.Point(233, 158);
             this.CreateCountryTxt.MaxLength = 50;
             this.CreateCountryTxt.Name = "CreateCountryTxt";
-            this.CreateCountryTxt.Size = new System.Drawing.Size(200, 23);
+            this.CreateCountryTxt.Size = new System.Drawing.Size(172, 23);
             this.CreateCountryTxt.TabIndex = 18;
             this.CreateCountryTxt.TextChanged += new System.EventHandler(this.CreateCountryTxt_TextChanged);
             // 
             // CreateNameTxt
             // 
             this.CreateNameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CreateNameTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CreateNameTxt.Location = new System.Drawing.Point(272, 130);
+            this.CreateNameTxt.Location = new System.Drawing.Point(233, 114);
             this.CreateNameTxt.MaxLength = 100;
             this.CreateNameTxt.Name = "CreateNameTxt";
-            this.CreateNameTxt.Size = new System.Drawing.Size(200, 23);
+            this.CreateNameTxt.Size = new System.Drawing.Size(172, 23);
             this.CreateNameTxt.TabIndex = 17;
             this.CreateNameTxt.TextChanged += new System.EventHandler(this.CreateNameTxt_TextChanged);
             // 
@@ -108,16 +113,16 @@ namespace WinformDotNetFramework.Forms.control
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(784, 20);
+            this.panel1.Size = new System.Drawing.Size(672, 17);
             this.panel1.TabIndex = 23;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 441);
+            this.panel2.Location = new System.Drawing.Point(0, 383);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 20);
+            this.panel2.Size = new System.Drawing.Size(672, 17);
             this.panel2.TabIndex = 24;
             // 
             // panel3
@@ -130,32 +135,32 @@ namespace WinformDotNetFramework.Forms.control
             this.panel3.Controls.Add(this.CreateCountryLbl);
             this.panel3.Controls.Add(this.CreateSaveBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(20, 20);
+            this.panel3.Location = new System.Drawing.Point(17, 17);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(744, 421);
+            this.panel3.Size = new System.Drawing.Size(638, 366);
             this.panel3.TabIndex = 25;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 20);
+            this.panel4.Location = new System.Drawing.Point(0, 17);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(20, 421);
+            this.panel4.Size = new System.Drawing.Size(17, 366);
             this.panel4.TabIndex = 26;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(764, 20);
+            this.panel5.Location = new System.Drawing.Point(655, 17);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(20, 421);
+            this.panel5.Size = new System.Drawing.Size(17, 366);
             this.panel5.TabIndex = 27;
             // 
             // CreateCustomerSupplierUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel5);
@@ -163,7 +168,7 @@ namespace WinformDotNetFramework.Forms.control
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "CreateCustomerSupplierUserControl";
-            this.Size = new System.Drawing.Size(784, 461);
+            this.Size = new System.Drawing.Size(672, 400);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
