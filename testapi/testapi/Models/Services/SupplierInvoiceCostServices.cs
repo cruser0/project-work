@@ -17,6 +17,7 @@ namespace API.Models.Services
 
         Task<int> CountSupplierInvoiceCosts(SupplierInvoiceCostFilter filter);
         Task<string> MassDeleteSupplierInvoiceCost(List<int> supplierInvoiceCostId);
+        Task<string> MassUpdateSupplierInvoiceCost(List<SupplierInvoiceCostDTOGet> newSupplierInvoiceCosts);
 
 
 
@@ -132,7 +133,7 @@ namespace API.Models.Services
                     sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
                 if ((await _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefaultAsync()).Status.ToLower().Equals("approved"))
                     throw new ErrorInputPropertyException("Supplier Invoice is already approved");
-                if (!_context.SupplierInvoices.Any(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
+                if (!await _context.SupplierInvoices.AnyAsync(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
                     throw new NotFoundException("Supplier Invoice not Found");
                 if (supplierInvoiceCost.Quantity > 0)
                     sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
@@ -190,6 +191,48 @@ namespace API.Models.Services
             }
             return $"{count} Supplier invoice cost were deleted out of {supplierInvoiceCostId.Count}";
 
+        }
+
+        public async Task<string> MassUpdateSupplierInvoiceCost(List<SupplierInvoiceCostDTOGet> newSupplierInvoiceCosts)
+        {
+            int count = 0;
+            foreach (SupplierInvoiceCostDTOGet supplierInvoiceCost in newSupplierInvoiceCosts)
+            {
+
+                SupplierInvoice? si;
+                var sicDB = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == supplierInvoiceCost.SupplierInvoiceCostsId).FirstOrDefaultAsync();
+                SupplierInvoice? oldSi = await _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefaultAsync();
+                oldSi.InvoiceAmount = oldSi.InvoiceAmount - (sicDB.Cost * sicDB.Quantity);
+                if (sicDB != null)
+                {
+                    if (supplierInvoiceCost.SupplierInvoiceId != null)
+                        sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
+                    if ((await _context.SupplierInvoices.Where(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefaultAsync()).Status.ToLower().Equals("approved"))
+                        throw new ErrorInputPropertyException("Supplier Invoice is already approved");
+                    if (!await _context.SupplierInvoices.AnyAsync(x => x.InvoiceId == supplierInvoiceCost.SupplierInvoiceId))
+                        throw new NotFoundException("Supplier Invoice not Found");
+                    if (supplierInvoiceCost.Quantity > 0)
+                        sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
+                    if (supplierInvoiceCost.Cost > 0)
+                        sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
+                    sicDB.Name = supplierInvoiceCost.Name ?? sicDB.Name;
+                    _context.SupplierInvoiceCosts.Update(sicDB);
+                    await _context.SaveChangesAsync();
+                    if (sicDB.Cost > 0 && sicDB.Quantity > 0)
+                    {
+                        _context.SupplierInvoices.Update(oldSi);
+
+                        si = await _context.SupplierInvoices.Where(x => x.InvoiceId == sicDB.SupplierInvoiceId).FirstOrDefaultAsync();
+                        decimal? total = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == sicDB.SupplierInvoiceId).SumAsync(x => x.Cost * x.Quantity);
+                        si.InvoiceAmount = total;
+                        _context.SupplierInvoices.Update(si);
+                        await _context.SaveChangesAsync();
+                    }
+
+                }
+                count++;
+            }
+            return $"{count} Supplier invoice cost were updated out of {newSupplierInvoiceCosts.Count}";
         }
     }
 }

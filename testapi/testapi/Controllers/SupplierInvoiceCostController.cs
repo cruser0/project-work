@@ -5,7 +5,6 @@ using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,18 +24,12 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] SupplierInvoiceCostFilter filter)
         {
-            try
+            var data = await _supplierInvoiceCostService.GetAllSupplierInvoiceCosts(filter);
+            if (data.Any())
             {
-                var data = await _supplierInvoiceCostService.GetAllSupplierInvoiceCosts(filter);
-                if (data.Any())
-                {
-                    return Ok(data);
-                }
-                else throw new NotFoundException("Supplier Invoice Cost not found");
+                return Ok(data);
             }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            else throw new NotFoundException("Supplier Invoice Cost not found");
         }
 
         [Authorize(Roles = "Admin,SupplierInvoiceCostRead,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
@@ -55,16 +48,11 @@ namespace API.Controllers
         public async Task<IActionResult> Get(int id)
         {
 
-            try
-            {
-                var data = await _supplierInvoiceCostService.GetSupplierInvoiceCostById(id);
-                if (data == null)
-                    throw new NotFoundException("Supplier Invoice Cost not found");
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            var data = await _supplierInvoiceCostService.GetSupplierInvoiceCostById(id);
+            if (data == null)
+                throw new NotFoundException("Supplier Invoice Cost not found");
+            return Ok(data);
+
         }
 
         // POST api/<SupplierInvoiceCostController>
@@ -73,17 +61,14 @@ namespace API.Controllers
         public async Task<IActionResult> Post(SupplierInvoiceCostDTO supplierInvoiceCost)
         {
 
-            try
-            {
-                var data = await _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
-                if (data == null)
-                    throw new NotFoundException("Supplier Invoice Cost not found");
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
+
+
+            var data = await _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
+            if (data == null)
+                throw new NotFoundException("Supplier Invoice Cost not found");
+            return Ok(data);
+
+
         }
 
         // PUT api/<SupplierInvoiceCostController>/5
@@ -91,17 +76,12 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceCostDTO supplierInvoiceCost)
         {
-            try
-            {
-                var data = await _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
-                if (data == null)
-                    throw new NotFoundException("Supplier Invoice Cost not found");
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
+
+            var data = await _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost));
+            if (data == null)
+                throw new NotFoundException("Supplier Invoice Cost not found");
+            return Ok(data);
+
         }
 
         // DELETE api/<SupplierInvoiceCostController>/5
@@ -109,32 +89,28 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-
-            try
-            {
-                var data = await _supplierInvoiceCostService.DeleteSupplierInvoiceCost(id);
-                if (data == null)
-                    throw new NotFoundException("Supplier Invoice Cost not found");
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            var data = await _supplierInvoiceCostService.DeleteSupplierInvoiceCost(id);
+            if (data == null)
+                throw new NotFoundException("Supplier Invoice Cost not found");
+            return Ok(data);
         }
 
         [Authorize(Roles = "Admin,SupplierInvoiceCostAdmin")]
         [HttpDelete("mass-delete")]
-        public async Task<IActionResult> MassDelete([FromQuery]List<int> id)
+        public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
 
-            try
-            {
-                var data = await _supplierInvoiceCostService.MassDeleteSupplierInvoiceCost(id);
-                return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+            var data = await _supplierInvoiceCostService.MassDeleteSupplierInvoiceCost(id);
+            return Ok(data);
+
+        }
+
+        [Authorize(Roles = "Admin,SupplierInvoiceCostAdmin")]
+        [HttpPut("mass-update")]
+        public async Task<IActionResult> MassUpdate([FromBody] List<SupplierInvoiceCostDTOGet> newSupplierInvoiceCosts)
+        {
+            var data = await _supplierInvoiceCostService.MassUpdateSupplierInvoiceCost(newSupplierInvoiceCosts);
+            return Ok(data);
         }
     }
 }

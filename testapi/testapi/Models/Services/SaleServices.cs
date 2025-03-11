@@ -17,6 +17,7 @@ namespace API.Models.Services
 
         Task<int> CountSales(SaleFilter filter);
         Task<string> MassDeleteSale(List<int> saleId);
+        Task<string> MassUpdateSale(List<SaleDTOGet> newSales);
 
     }
     public class SaleServices : ISalesService
@@ -263,7 +264,7 @@ namespace API.Models.Services
         public async Task<string> MassDeleteSale(List<int> saleId)
         {
             int count = 0;
-            foreach(int id in saleId)
+            foreach (int id in saleId)
             {
 
                 // Retrieve the sale from the database using the provided ID
@@ -301,5 +302,55 @@ namespace API.Models.Services
             return $"{count} Sales were deleted out of {saleId.Count} ";
         }
 
+        public async Task<string> MassUpdateSale(List<SaleDTOGet> newSales)
+        {
+            int count = 0;
+
+            foreach (SaleDTOGet sale in newSales)
+            {
+                var sDB = await _context.Sales.Where(x => x.SaleId == sale.SaleId).FirstOrDefaultAsync();
+
+                // Check if the sale exists
+                if (sDB == null)
+                    throw new NotFoundException($"There is no sale with id {sale.SaleId}");
+
+                // Update sale fields only if new values are provided
+                sDB.BoLnumber = sale.BoLnumber ?? sDB.BoLnumber;
+                sDB.Status = sale.Status ?? sDB.Status;
+                sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
+                sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
+                sDB.CustomerId = sale.CustomerId ?? sDB.CustomerId;
+
+                if (sale.BookingNumber != null)
+                    if (sale.BookingNumber.Length > 50)
+                        throw new ErrorInputPropertyException("Booking Number is too long");
+
+                if (sale.BoLnumber != null)
+                    if (sale.BoLnumber.Length > 50)
+                        throw new ErrorInputPropertyException("BoL Number is too long");
+
+                // Check if the provided status is valid
+                if (!string.IsNullOrEmpty(sale.Status) && !statusList.Contains(sale.Status.ToLower()))
+                    throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
+
+                // If a new CustomerId is provided, check if the customer exists
+                if (sale.CustomerId != null)
+                {
+                    var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
+                    if (customers == null)
+                        throw new NotFoundException($"There is no customer with ID {sale.CustomerId}");
+                    else if ((bool)customers.Deprecated)
+                        throw new ErrorInputPropertyException($"The customer {sale.CustomerId} is deprecated");
+                }
+
+                // Update the sale in the database
+                _context.Sales.Update(sDB);
+                await _context.SaveChangesAsync();
+
+                count++;
+            }
+
+            return $"{count} Sales were updated out of {newSales.Count} ";
+        }
     }
 }
