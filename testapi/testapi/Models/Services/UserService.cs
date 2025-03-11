@@ -196,6 +196,24 @@ namespace API.Models.Services
             return $"{count} Users were deleted out of {userId.Count}";
         }
 
+        internal async Task<string> MassUpdateUser(List<UserDTOGet> newUsers)
+        {
+            int count = 0;
+            foreach (UserDTOGet updateUser in newUsers)
+            {
+                User user = await GetUserByID((int)updateUser.UserID);
+                user.Name = !string.IsNullOrEmpty(updateUser.Name) && updateUser.Name.Length <= 100 ? updateUser.Name : user.Name;
+                user.LastName = !string.IsNullOrEmpty(updateUser.LastName) && updateUser.LastName.Length <= 100 ? updateUser.LastName : user.LastName;
+                user.Email = !string.IsNullOrEmpty(updateUser.Email) && updateUser.Email.Length <= 100 ? updateUser.Email : user.Email;
+
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+
+                count++;
+            }
+            return $"{count} Users were updated out of {newUsers.Count}";
+        }
+
         public async Task<User> GetUserByEmail(string email)
         {
             var user = await _context.Users

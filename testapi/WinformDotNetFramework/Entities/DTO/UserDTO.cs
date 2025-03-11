@@ -21,13 +21,19 @@ namespace WinformDotNetFramework.Entities.DTO
         public int? UserID { get; set; }
         public List<string> Roles { get; set; } = new List<string>();
     }
-    public class UserRoleDTO
+
+    public class UserDtoID
     {
         public int UserID { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+    }
+
+    public class UserRoleDTO : UserDtoID
+    {
         public List<string> Role { get; set; }
+
         public string Roles
         {
             get
