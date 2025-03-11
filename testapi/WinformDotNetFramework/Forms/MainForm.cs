@@ -39,6 +39,13 @@ namespace WinformDotNetFramework.Forms
             tabControl.TabPages.Remove(GroupTP);
             UserProfile.Text = "Hello " + UserAccessInfo.Name;
         }
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            SetAuthorizations();
+            var preferredTask = GetPreferred();
+            var updateTask = UpdateFavoriteTab();
+            await Task.WhenAll(preferredTask, updateTask);
+        }
 
         private void CreateDockPanel()
         {
@@ -325,7 +332,7 @@ namespace WinformDotNetFramework.Forms
             }
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void MinimizeAll_Click(object sender, EventArgs e)
         {
             MainPanel.Controls
                 .OfType<Form>()
@@ -337,14 +344,6 @@ namespace WinformDotNetFramework.Forms
         public async Task GetPreferred()
         {
             favoriteList = await _userService.GetAllPreferredPagesUser();
-        }
-
-        private async void MainForm_Load(object sender, EventArgs e)
-        {
-            SetAuthorizations();
-            var preferredTask = GetPreferred();
-            var updateTask = UpdateFavoriteTab();
-            await Task.WhenAll(preferredTask, updateTask);
         }
 
         private async void AddFavoriteButton_Click(object sender, EventArgs e)
@@ -504,7 +503,6 @@ namespace WinformDotNetFramework.Forms
                 }
             }
         }
-
 
         private void MainPanel_ControlAdded(object sender, ControlEventArgs e)
         {
