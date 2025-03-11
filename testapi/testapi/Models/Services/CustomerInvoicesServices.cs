@@ -178,16 +178,19 @@ namespace API.Models.Services
                 if (newSale.Status.ToLower().Equals("closed"))
                     throw new ErrorInputPropertyException($"The current Sale is already closed");
                 var TotalOldSale = (await _context.RevenuePerSaleIDs
-                    .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{oldSaleId.Value}\"")
-                    .FirstOrDefaultAsync())?.TotalRevenue;
+                    .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID={0}", oldSaleId.Value).ToListAsync())
+                    .FirstOrDefault()?.TotalRevenue;
 
                 var oldSale = await _context.Sales.Where(x => x.SaleId == oldSaleId.Value).FirstOrDefaultAsync();
                 oldSale.TotalRevenue = TotalOldSale;
 
                 // Recalculate revenue for the new sale
                 var TotalNewSale = (await _context.RevenuePerSaleIDs
-                    .FromSqlRaw($"EXEC pf_findTotalRevenuePerSale @saleID=\"{ciDB.SaleId}\"")
-                    .FirstOrDefaultAsync())?.TotalRevenue;
+                    .FromSqlRaw("EXEC pf_findTotalRevenuePerSale @saleID={0}", ciDB.SaleId)
+                    .ToListAsync())
+                    .FirstOrDefault()?.TotalRevenue;
+
+
 
                 newSale.TotalRevenue = TotalNewSale;
 
