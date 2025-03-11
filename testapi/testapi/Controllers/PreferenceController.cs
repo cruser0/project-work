@@ -1,8 +1,6 @@
 ﻿using API.Models.Entities.Preference;
-using API.Models.Exceptions;
 using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,8 +20,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetCustomerDGV(int id)
         {
 
-                var result = await _userService.GetCustomerDGV(id);
-                return Ok(result);
+            var result = await _userService.GetCustomerDGV(id);
+            return Ok(result);
 
 
         }
@@ -31,8 +29,8 @@ namespace API.Controllers
         public async Task<ActionResult<CustomerDGV>> PostCustomerDGV([FromBody] CustomerDGV value)
         {
 
-                var result = await _userService.CreateUpdateCustomerDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateCustomerDGV(value);
+            return Ok(result);
 
 
         }
@@ -41,8 +39,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetCustomerInvoiceDGV(int id)
         {
 
-                var result = await _userService.GetCustomerInvoiceDGV(id);
-                return Ok(result);
+            var result = await _userService.GetCustomerInvoiceDGV(id);
+            return Ok(result);
 
 
         }
@@ -50,8 +48,8 @@ namespace API.Controllers
         public async Task<IActionResult> PostCustomerInvoiceDGV([FromBody] CustomerInvoiceDGV value)
         {
 
-                var result = await _userService.CreateUpdateCustomerInvoiceDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateCustomerInvoiceDGV(value);
+            return Ok(result);
 
 
         }
@@ -59,8 +57,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetCustomerInvoiceCostDGV(int id)
         {
 
-                var result = await _userService.GetCustomerInvoiceCostDGV(id);
-                return Ok(result);
+            var result = await _userService.GetCustomerInvoiceCostDGV(id);
+            return Ok(result);
 
 
         }
@@ -68,8 +66,8 @@ namespace API.Controllers
         public async Task<IActionResult> PostCustomerInvoiceCostDGV([FromBody] CustomerInvoiceCostDGV value)
         {
 
-                var result = await _userService.CreateUpdateCustomerInvoiceCostDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateCustomerInvoiceCostDGV(value);
+            return Ok(result);
 
 
         }
@@ -78,8 +76,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetSupplierDGV(int id)
         {
 
-                var result = await _userService.GetSupplierDGV(id);
-                return Ok(result);
+            var result = await _userService.GetSupplierDGV(id);
+            return Ok(result);
 
 
         }
@@ -87,8 +85,8 @@ namespace API.Controllers
         public async Task<IActionResult> PostSupplierDGV([FromBody] SupplierDGV value)
         {
 
-                var result = await _userService.CreateUpdateSupplierDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateSupplierDGV(value);
+            return Ok(result);
 
 
         }
@@ -96,8 +94,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetSupplierInvoiceDGV(int id)
         {
 
-                var result = await _userService.GetSupplierInvoiceDGV(id);
-                return Ok(result);
+            var result = await _userService.GetSupplierInvoiceDGV(id);
+            return Ok(result);
 
 
         }
@@ -105,8 +103,8 @@ namespace API.Controllers
         public async Task<IActionResult> PostSupplierInvoiceDGV([FromBody] SupplierInvoiceDGV value)
         {
 
-                var result = await _userService.CreateUpdateSupplierInvoiceDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateSupplierInvoiceDGV(value);
+            return Ok(result);
 
 
         }
@@ -114,8 +112,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetSupplierInvoiceCostDGV(int id)
         {
 
-                var result = await _userService.GetSupplierInvoiceCostDGV(id);
-                return Ok(result);
+            var result = await _userService.GetSupplierInvoiceCostDGV(id);
+            return Ok(result);
 
 
         }
@@ -123,8 +121,8 @@ namespace API.Controllers
         public async Task<IActionResult> PostSupplierInvoiceCostDGV([FromBody] SupplierInvoiceCostDGV value)
         {
 
-                var result = await _userService.CreateUpdateSupplierInvoiceCostDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateSupplierInvoiceCostDGV(value);
+            return Ok(result);
 
 
         }
@@ -133,8 +131,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetSaleDGV(int id)
         {
 
-                var result = await _userService.GetSaleDGV(id);
-                return Ok(result);
+            var result = await _userService.GetSaleDGV(id);
+            return Ok(result);
 
 
         }
@@ -142,8 +140,8 @@ namespace API.Controllers
         public async Task<IActionResult> PostSaleDGV([FromBody] SaleDGV value)
         {
 
-                var result = await _userService.CreateUpdateSaleDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateSaleDGV(value);
+            return Ok(result);
 
 
         }
@@ -152,8 +150,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetUserDGV(int id)
         {
 
-                var result = await _userService.GetUserDGV(id);
-                return Ok(result);
+            var result = await _userService.GetUserDGV(id);
+            return Ok(result);
 
 
         }
@@ -161,8 +159,8 @@ namespace API.Controllers
         public async Task<IActionResult> PostUserDGV([FromBody] UserDGV value)
         {
 
-                var result = await _userService.CreateUpdateUserDGV(value);
-                return Ok(result);
+            var result = await _userService.CreateUpdateUserDGV(value);
+            return Ok(result);
 
 
         }
@@ -171,8 +169,8 @@ namespace API.Controllers
         public async Task<IActionResult> CreateFavouritePage([FromBody] string value)
         {
 
-                await _userService.CreateFavouritePages(value);
-                return Ok("Favourite Page Created Successfully");
+            await _userService.CreateFavouritePages(value);
+            return Ok("Favourite Page Created Successfully");
 
 
         }
@@ -181,12 +179,12 @@ namespace API.Controllers
         public async Task<IActionResult> AddUserFavouritePage([FromBody] List<string> value, int id)
         {
 
-                if (!value.Any())
-                {
-                    return UnprocessableEntity("Page list was empty");
-                }
-                await _userService.AddFavouritePagesToUser(value, id);
-                return Ok("Favourite Page added to user Successfully");
+            if (!value.Any())
+            {
+                return UnprocessableEntity("Page list was empty");
+            }
+            await _userService.AddFavouritePagesToUser(value, id);
+            return Ok("Favourite Page added to user Successfully");
 
 
         }
@@ -195,12 +193,12 @@ namespace API.Controllers
         public async Task<IActionResult> RemoveUserFavouritePage([FromBody] List<string> value, int id)
         {
 
-                if (!value.Any())
-                {
-                    return UnprocessableEntity("Page list was empty");
-                }
-                await _userService.RemoveFavouritePagesToUser(value, id);
-                return Ok("Favourite Page Removed to user Successfully");
+            if (!value.Any())
+            {
+                return UnprocessableEntity("Page list was empty");
+            }
+            await _userService.RemoveFavouritePagesToUser(value, id);
+            return Ok("Favourite Page Removed to user Successfully");
 
 
         }
@@ -209,8 +207,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetUserFavouritePages(int id)
         {
 
-                var result = await _userService.GetUserPreferredPages(id);
-                return Ok(result);
+            var result = await _userService.GetUserPreferredPages(id);
+            return Ok(result);
 
 
         }
