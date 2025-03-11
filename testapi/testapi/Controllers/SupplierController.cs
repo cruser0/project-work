@@ -25,18 +25,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] SupplierFilter filter)
         {
-            try
-            {
+
                 var data = await _supplierService.GetAllSuppliers(filter);
                 if (data.Any())
                 {
                     return Ok(data);
                 }
                 else throw new NotFoundException("Supplier not found");
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+
         }
 
         [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
@@ -52,16 +48,12 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            try
-            {
+
                 var data = await _supplierService.GetSupplierById(id);
                 if (data == null)
                     throw new NotFoundException("Supplier not found!");
                 return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+
         }
 
         // POST api/<SupplierController>
@@ -69,17 +61,11 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SupplierDTO supplier)
         {
-            try
-            {
+
                 var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier));
                 if (data == null)
                     throw new NotFoundException("Data can't be null!");
                 return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
         }
 
         // PUT api/<SupplierController>/5
@@ -87,17 +73,12 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SupplierDTO supplier)
         {
-            try
-            {
+
                 var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier));
                 if (data == null)
                     throw new NotFoundException("Supplier not found!");
                 return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
+
         }
 
         // DELETE api/<SupplierController>/5
@@ -106,16 +87,12 @@ namespace API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
 
-            try
-            {
+
                 var data = await _supplierService.DeleteSupplier(id);
                 if (data == null)
                     throw new NotFoundException("Supplier not found!");
                 return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+
         }
 
         [Authorize(Roles = "Admin,SupplierAdmin")]
@@ -123,14 +100,10 @@ namespace API.Controllers
         public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
 
-            try
-            {
+
                 var data = await _supplierService.MassDeleteSupplier(id);
                 return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
+
         }
 
         [Authorize(Roles = "Admin,SupplierAdmin")]
@@ -138,15 +111,10 @@ namespace API.Controllers
         public async Task<IActionResult> MassUpdate([FromBody] List<SupplierDTOGet> newSuppliers)
         {
 
-            try
-            {
+
                 var data = await _supplierService.MassUpdateSupplier(newSuppliers);
                 return Ok(data);
-            }
-            catch (NotFoundException ex) { return NotFound(ex.Message); }
-            catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (NullPropertyException ex) { return UnprocessableEntity(ex.Message); }
-            catch (DbUpdateException ex) { return BadRequest(ex.InnerException.Message); }
+
         }
     }
 }
