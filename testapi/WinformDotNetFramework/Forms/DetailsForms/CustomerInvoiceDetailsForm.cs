@@ -51,8 +51,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 checkBox1.Visible = false;
                 button1.Visible = false;
             }
-            if (!Authorize(authRoles))
-                DeleteBtn.Visible = false;
+            //if (!Authorize(authRoles))
+            //    DeleteBtn.Visible = false;
         }
 
         private bool Authorize(List<string> allowedRoles)

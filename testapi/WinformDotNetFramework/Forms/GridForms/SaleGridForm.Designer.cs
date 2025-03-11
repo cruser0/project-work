@@ -34,6 +34,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleGridForm));
             this.RigtPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.searchSale1 = new WinformDotNetFramework.Forms.control.SearchSale();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
@@ -58,7 +59,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchSale1 = new WinformDotNetFramework.Forms.control.SearchSale();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -74,9 +74,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RigtPanel.Controls.Add(this.TextBoxesRightPanel);
             this.RigtPanel.Controls.Add(this.RightSideBar);
             this.RigtPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RigtPanel.Location = new System.Drawing.Point(501, 0);
+            this.RigtPanel.Location = new System.Drawing.Point(584, 0);
             this.RigtPanel.Name = "RigtPanel";
-            this.RigtPanel.Size = new System.Drawing.Size(171, 400);
+            this.RigtPanel.Size = new System.Drawing.Size(200, 461);
             this.RigtPanel.TabIndex = 15;
             // 
             // TextBoxesRightPanel
@@ -86,8 +86,15 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Controls.Add(this.searchSale1);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // searchSale1
+            // 
+            this.searchSale1.Location = new System.Drawing.Point(14, 0);
+            this.searchSale1.Name = "searchSale1";
+            this.searchSale1.Size = new System.Drawing.Size(154, 325);
+            this.searchSale1.TabIndex = 0;
             // 
             // RightSideBar
             // 
@@ -95,7 +102,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(171, 400);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 1;
             // 
             // panel1
@@ -105,7 +112,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(501, 313);
+            this.panel1.Size = new System.Drawing.Size(584, 374);
             this.panel1.TabIndex = 17;
             // 
             // SaleDgv
@@ -119,7 +126,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleDgv.ReadOnly = true;
             this.SaleDgv.RowTemplate.Height = 25;
             this.SaleDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.SaleDgv.Size = new System.Drawing.Size(501, 288);
+            this.SaleDgv.Size = new System.Drawing.Size(584, 349);
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SaleDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -135,7 +142,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.MassDeleteTSB});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(501, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -191,9 +198,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.Controls.Add(this.panel4);
             this.BottomPanel.Controls.Add(this.panel3);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 313);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 374);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(501, 87);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 87);
             this.BottomPanel.TabIndex = 18;
             // 
             // panel5
@@ -216,7 +223,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(501, 0);
+            this.panel4.Location = new System.Drawing.Point(584, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 87);
             this.panel4.TabIndex = 1;
@@ -331,22 +338,15 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // searchSale1
-            // 
-            this.searchSale1.Location = new System.Drawing.Point(0, 0);
-            this.searchSale1.Name = "searchSale1";
-            this.searchSale1.Size = new System.Drawing.Size(171, 325);
-            this.searchSale1.TabIndex = 0;
-            // 
             // SaleGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 400);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.RigtPanel);
-            this.MinimumSize = new System.Drawing.Size(688, 439);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SaleGridForm";
             this.Text = "SaleForm";
             this.Load += new System.EventHandler(this.SaleGridForm_Load);

@@ -52,31 +52,39 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             // CustomerIdtxt
             // 
+            this.CustomerIdtxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CustomerIdtxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerIdtxt.Location = new System.Drawing.Point(428, 101);
+            this.CustomerIdtxt.Location = new System.Drawing.Point(428, 102);
+            this.CustomerIdtxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CustomerIdtxt.Name = "CustomerIdtxt";
             this.CustomerIdtxt.Size = new System.Drawing.Size(200, 23);
             this.CustomerIdtxt.TabIndex = 23;
             // 
             // saleDateDtp
             // 
-            this.saleDateDtp.Location = new System.Drawing.Point(116, 202);
+            this.saleDateDtp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleDateDtp.Location = new System.Drawing.Point(115, 192);
+            this.saleDateDtp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saleDateDtp.Name = "saleDateDtp";
             this.saleDateDtp.Size = new System.Drawing.Size(200, 23);
             this.saleDateDtp.TabIndex = 22;
             // 
             // boltxt
             // 
+            this.boltxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boltxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.boltxt.Location = new System.Drawing.Point(116, 148);
+            this.boltxt.Location = new System.Drawing.Point(115, 148);
+            this.boltxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.boltxt.Name = "boltxt";
             this.boltxt.Size = new System.Drawing.Size(200, 23);
             this.boltxt.TabIndex = 21;
             // 
             // bntxt
             // 
+            this.bntxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.bntxt.Location = new System.Drawing.Point(116, 101);
+            this.bntxt.Location = new System.Drawing.Point(115, 102);
+            this.bntxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bntxt.Name = "bntxt";
             this.bntxt.Size = new System.Drawing.Size(200, 23);
             this.bntxt.TabIndex = 20;
@@ -84,8 +92,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label5.Location = new System.Drawing.Point(428, 83);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 15);
             this.label5.TabIndex = 17;
@@ -94,8 +104,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label4.Location = new System.Drawing.Point(116, 184);
+            this.label4.Location = new System.Drawing.Point(115, 174);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
             this.label4.TabIndex = 16;
@@ -104,8 +116,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(116, 130);
+            this.label3.Location = new System.Drawing.Point(115, 130);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 15);
             this.label3.TabIndex = 15;
@@ -114,8 +128,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(116, 83);
+            this.label2.Location = new System.Drawing.Point(115, 83);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
             this.label2.TabIndex = 14;
@@ -125,8 +141,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.StatusLbl.AllowDrop = true;
             this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(428, 142);
+            this.StatusLbl.Location = new System.Drawing.Point(428, 130);
+            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
             this.StatusLbl.TabIndex = 29;
@@ -135,12 +153,14 @@ namespace WinformDotNetFramework.Forms.AddForms
             // StatusCmbx
             // 
             this.StatusCmbx.AllowDrop = true;
+            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusCmbx.FormattingEnabled = true;
             this.StatusCmbx.Items.AddRange(new object[] {
             "Active",
             "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(428, 160);
+            this.StatusCmbx.Location = new System.Drawing.Point(428, 148);
+            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.StatusCmbx.Name = "StatusCmbx";
             this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
             this.StatusCmbx.TabIndex = 28;
@@ -148,8 +168,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // SaveBtn
             // 
             this.SaveBtn.AllowDrop = true;
+            this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveBtn.Location = new System.Drawing.Point(428, 290);
+            this.SaveBtn.Location = new System.Drawing.Point(428, 238);
+            this.SaveBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(200, 23);
             this.SaveBtn.TabIndex = 30;
@@ -161,9 +183,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
             this.OpenSale.FlatAppearance.BorderSize = 0;
-            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSale.Location = new System.Drawing.Point(634, 101);
+            this.OpenSale.Location = new System.Drawing.Point(634, 102);
+            this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.OpenSale.Name = "OpenSale";
             this.OpenSale.Size = new System.Drawing.Size(64, 23);
             this.OpenSale.TabIndex = 31;
@@ -176,6 +199,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(784, 20);
             this.panel1.TabIndex = 32;
@@ -198,15 +222,17 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel2.Controls.Add(this.saleDateDtp);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(20, 20);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(744, 421);
+            this.panel2.Size = new System.Drawing.Size(744, 422);
             this.panel2.TabIndex = 33;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 441);
+            this.panel3.Location = new System.Drawing.Point(0, 442);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(784, 20);
             this.panel3.TabIndex = 34;
@@ -216,8 +242,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 20);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(20, 421);
+            this.panel4.Size = new System.Drawing.Size(20, 422);
             this.panel4.TabIndex = 35;
             // 
             // panel5
@@ -225,20 +252,23 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel5.Location = new System.Drawing.Point(764, 20);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(20, 421);
+            this.panel5.Size = new System.Drawing.Size(20, 422);
             this.panel5.TabIndex = 36;
             // 
             // CreateSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(784, 462);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CreateSaleForm";
             this.Text = "CreateSaleForm";
