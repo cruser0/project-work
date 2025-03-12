@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinformDotNetFramework.Entities.Charts;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Procedures;
 
@@ -41,11 +42,11 @@ namespace WinformDotNetFramework.Services
 
             return queryString;
         }
-        public async Task<List<ClassifySalesByProfit>> GetClassifySalesByProfit(ClassifySalesByProfitFilter filter)
+        public async Task<SaleListChartDTO> GetClassifySalesByProfit(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetList<ClassifySalesByProfit>(client, "procedure/classify-by-profit", queryString);
+            var returnResult = await GetItem<SaleListChartDTO>(client, "procedure/classify-by-profit", queryString);
             return returnResult;
         }
     }

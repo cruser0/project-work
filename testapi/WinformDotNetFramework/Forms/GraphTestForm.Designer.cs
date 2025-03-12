@@ -94,7 +94,7 @@
             this.chart2.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(257, 241);
+            this.chart2.Location = new System.Drawing.Point(12, 251);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -128,14 +128,14 @@
             this.chart4.ChartAreas.Add(chartArea4);
             legend4.Name = "Legend1";
             this.chart4.Legends.Add(legend4);
-            this.chart4.Location = new System.Drawing.Point(57, 438);
+            this.chart4.Location = new System.Drawing.Point(12, 449);
             this.chart4.Name = "chart4";
             series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
             series4.Legend = "Legend1";
-            series4.Name = "Customer Spent";
+            series4.Name = "Total Revenue Per Country";
             this.chart4.Series.Add(series4);
-            this.chart4.Size = new System.Drawing.Size(232, 168);
+            this.chart4.Size = new System.Drawing.Size(561, 168);
             this.chart4.TabIndex = 5;
             this.chart4.Text = "chart4";
             // 
@@ -145,14 +145,14 @@
             this.chart5.ChartAreas.Add(chartArea5);
             legend5.Name = "Legend1";
             this.chart5.Legends.Add(legend5);
-            this.chart5.Location = new System.Drawing.Point(443, 449);
+            this.chart5.Location = new System.Drawing.Point(612, 449);
             this.chart5.Name = "chart5";
             series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
             series5.Legend = "Legend1";
-            series5.Name = "Customer Spent";
+            series5.Name = "Total Profit Per Country";
             this.chart5.Series.Add(series5);
-            this.chart5.Size = new System.Drawing.Size(232, 168);
+            this.chart5.Size = new System.Drawing.Size(513, 168);
             this.chart5.TabIndex = 6;
             this.chart5.Text = "chart5";
             // 
@@ -162,14 +162,14 @@
             this.chart6.ChartAreas.Add(chartArea6);
             legend6.Name = "Legend1";
             this.chart6.Legends.Add(legend6);
-            this.chart6.Location = new System.Drawing.Point(754, 449);
+            this.chart6.Location = new System.Drawing.Point(612, 251);
             this.chart6.Name = "chart6";
             series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
             series6.Legend = "Legend1";
-            series6.Name = "Customer Spent";
+            series6.Name = "Total Spent Per Country";
             this.chart6.Series.Add(series6);
-            this.chart6.Size = new System.Drawing.Size(232, 168);
+            this.chart6.Size = new System.Drawing.Size(513, 168);
             this.chart6.TabIndex = 7;
             this.chart6.Text = "chart6";
             // 
