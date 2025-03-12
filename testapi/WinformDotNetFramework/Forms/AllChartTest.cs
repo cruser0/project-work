@@ -105,5 +105,11 @@ namespace WinformDotNetFramework.Forms
                     values.Add((DateTime)item.SaleDate, (decimal)item.TotalRevenue);
             }
         }
+
+        private void AllChartTest_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+        }
     }
 }

@@ -16,10 +16,65 @@ namespace API.Controllers
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ProcedureService _procedureService;
-        public ProcedureController(Progetto_FormativoContext ctx,ProcedureService ps)
+        public ProcedureController(Progetto_FormativoContext ctx, ProcedureService ps)
         {
             _procedureService = ps;
             _context = ctx;
+        }
+
+        [HttpGet("sale-status-chart")]
+        public IActionResult SalePieChart([FromQuery] string statusName)
+        {
+            var sales = _context.Sales.ToList();
+
+            Dictionary<string, int> returnValue = _procedureService.PieChart(sales, statusName);
+            return Ok(returnValue);
+        }
+
+        [HttpGet("customer-invoice-status-chart")]
+        public IActionResult CustomerInvoicePieChart([FromQuery] string statusName)
+        {
+            var customerInvoices = _context.CustomerInvoices.ToList();
+
+            Dictionary<string, int> returnValue = _procedureService.PieChart(customerInvoices, statusName);
+            return Ok(returnValue);
+        }
+
+        [HttpGet("supplier-invoice-status-chart")]
+        public IActionResult SupplierInvoicePieChart([FromQuery] string statusName)
+        {
+            var supplierInvoices = _context.SupplierInvoices.ToList();
+
+            Dictionary<string, int> returnValue = _procedureService.PieChart(supplierInvoices, statusName);
+            return Ok(returnValue);
+        }
+
+
+        [HttpGet("sale-temporal")]
+        public IActionResult SaleTemporal([FromQuery] string dateName, [FromQuery] string totalName)
+        {
+            var sales = _context.Sales.ToList();
+
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(sales, dateName, totalName);
+            return Ok(returnValue);
+        }
+
+        [HttpGet("customer-invoice-temporal")]
+        public IActionResult CustomerInvoiceTemporal([FromQuery] string dateName, [FromQuery] string totalName)
+        {
+            var customerInvoices = _context.CustomerInvoices.ToList();
+
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(customerInvoices, dateName, totalName);
+            return Ok(returnValue);
+        }
+
+        [HttpGet("supplier-invoice-temporal")]
+        public IActionResult SupplierInvoiceTemporal([FromQuery] string dateName, [FromQuery] string totalName)
+        {
+            var supplierInvoices = _context.SupplierInvoices.ToList();
+
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(supplierInvoices, dateName, totalName);
+            return Ok(returnValue);
         }
 
 
@@ -83,16 +138,16 @@ namespace API.Controllers
                 new SqlParameter("@TotalGainedFrom", filter.TotalGainedFrom ?? (object)DBNull.Value),
                 new SqlParameter("@TotalGainedTo", filter.TotalGainedTo ?? (object)DBNull.Value),
                 new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
-                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo:(object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value)).ToListAsync();
             if (invoices.Any())
-                {
-                    return Ok(invoices);
-                }
-                else
-                     return Ok(new List<TotalAmountGainedPerCustomerInvoice>());
+            {
+                return Ok(invoices);
+            }
+            else
+                return Ok(new List<TotalAmountGainedPerCustomerInvoice>());
         }
 
 
@@ -101,7 +156,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetTotalAmountSpentPerSupplierInvoice([FromQuery] TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
             var invoices = await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
-                $"@SupplierInvoiceID,"+
+                $"@SupplierInvoiceID," +
                 $"@TotalSpentFrom," +
                 $"@TotalSpentTo," +
                 $"@DateFrom," +
@@ -118,10 +173,10 @@ namespace API.Controllers
                 new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerCountry", filter.SupplierCountry ?? (object)DBNull.Value)).ToListAsync();
             if (invoices.Any())
-                {
-                    return Ok(invoices);
-                }
-                else
+            {
+                return Ok(invoices);
+            }
+            else
                 return Ok(new List<TotalAmountSpentPerSupplierInvoice>());
         }
 
@@ -130,11 +185,11 @@ namespace API.Controllers
         public async Task<IActionResult> GetTotalAmountSpentPerSuppliers()
         {
             var invoices = await _context.TotalAmountSpentPerSuppliers.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSuppliers").ToListAsync();
-                if (invoices.Any())
-                {
-                    return Ok(invoices);
-                }
-                else
+            if (invoices.Any())
+            {
+                return Ok(invoices);
+            }
+            else
                 return Ok(new List<TotalAmountSpentPerSuppliers>());
         }
 
