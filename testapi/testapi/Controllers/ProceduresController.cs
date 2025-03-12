@@ -23,57 +23,181 @@ namespace API.Controllers
         }
 
         [HttpGet("sale-status-chart")]
-        public IActionResult SalePieChart([FromQuery] string statusName)
+        public async Task<IActionResult> SalePieChart([FromQuery] ClassifySalesByProfitFilter filter)
         {
-            var sales = _context.Sales.ToList();
+            var sales = await _context.ClassifySalesByProfit.FromSqlRaw(
+                "EXEC pf_ClassifySalesByProfit " +
+                "@TotalSpentFrom," +
+                "@TotalSpentTo," +
+                "@TotalRevenueFrom," +
+                "@TotalRevenueTo" +
+                ",@FilterMargin," +
+                "@ProfitFrom," +
+                "@ProfitTo," +
+                "@BoLNumber," +
+                "@BKNumber," +
+                "@CustomerID," +
+                "@Status," +
+                "@CustomerName," +
+                "@CustomerCountry," +
+                "@SaleID",
+                new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
+                new SqlParameter("@TotalRevenueFrom", filter.TotalRevenueFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalRevenueTo", filter.TotalRevenueTo ?? (object)DBNull.Value),
+                new SqlParameter("@FilterMargin", filter.FilterMargin ?? (object)DBNull.Value),
+                new SqlParameter("@ProfitFrom", filter.ProfitFrom ?? (object)DBNull.Value),
+                new SqlParameter("@ProfitTo", filter.ProfitTo ?? (object)DBNull.Value),
+                new SqlParameter("@BoLNumber", filter.BoLNumber ?? (object)DBNull.Value),
+                new SqlParameter("@BKNumber", filter.BKNumber ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerID", filter.CustomerID ?? (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
+                new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value)).ToListAsync();
 
-            Dictionary<string, int> returnValue = _procedureService.PieChart(sales, statusName);
+            Dictionary<string, int> returnValue = _procedureService.PieChart(sales, "status");
             return Ok(returnValue);
         }
 
         [HttpGet("customer-invoice-status-chart")]
-        public IActionResult CustomerInvoicePieChart([FromQuery] string statusName)
+        public async Task<IActionResult> CustomerInvoicePieChart([FromQuery] TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
-            var customerInvoices = _context.CustomerInvoices.ToList();
+            var customerInvoices = await _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw(
+                $"EXEC pf_TotalAmountGainedPerCustomerInvoice " +
+                $"@customerInvoiceID," +
+                $"@TotalGainedFrom," +
+                $"@TotalGainedTo," +
+                $"@DateFrom," +
+                $"@DateTo," +
+                $"@Status," +
+                $"@CustomerName," +
+                $"@CustomerCountry",
+                new SqlParameter("@customerInvoiceID", filter.customerInvoiceID ?? (object)DBNull.Value),
+                new SqlParameter("@TotalGainedFrom", filter.TotalGainedFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalGainedTo", filter.TotalGainedTo ?? (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value)).ToListAsync();
 
-            Dictionary<string, int> returnValue = _procedureService.PieChart(customerInvoices, statusName);
+            Dictionary<string, int> returnValue = _procedureService.PieChart(customerInvoices, "status");
             return Ok(returnValue);
         }
 
         [HttpGet("supplier-invoice-status-chart")]
-        public IActionResult SupplierInvoicePieChart([FromQuery] string statusName)
+        public async Task<IActionResult> SupplierInvoicePieChart([FromQuery] TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
-            var supplierInvoices = _context.SupplierInvoices.ToList();
+            var supplierInvoices = await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
+                $"@SupplierInvoiceID," +
+                $"@TotalSpentFrom," +
+                $"@TotalSpentTo," +
+                $"@DateFrom," +
+                $"@DateTo," +
+                $"@Status," +
+                $"@SupplierName," +
+                $"@SupplierCountry",
+                new SqlParameter("@SupplierInvoiceID", filter.SupplierInvoiceID ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.SupplierCountry ?? (object)DBNull.Value)).ToListAsync();
 
-            Dictionary<string, int> returnValue = _procedureService.PieChart(supplierInvoices, statusName);
+            Dictionary<string, int> returnValue = _procedureService.PieChart(supplierInvoices, "status");
             return Ok(returnValue);
         }
 
 
         [HttpGet("sale-temporal")]
-        public IActionResult SaleTemporal([FromQuery] string dateName, [FromQuery] string totalName)
+        public async Task<IActionResult> SaleTemporal([FromQuery] ClassifySalesByProfitFilter filter)
         {
-            var sales = _context.Sales.ToList();
+            var sales = await _context.ClassifySalesByProfit.FromSqlRaw(
+                "EXEC pf_ClassifySalesByProfit " +
+                "@TotalSpentFrom," +
+                "@TotalSpentTo," +
+                "@TotalRevenueFrom," +
+                "@TotalRevenueTo" +
+                ",@FilterMargin," +
+                "@ProfitFrom," +
+                "@ProfitTo," +
+                "@BoLNumber," +
+                "@BKNumber," +
+                "@CustomerID," +
+                "@Status," +
+                "@CustomerName," +
+                "@CustomerCountry," +
+                "@SaleID",
+                new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
+                new SqlParameter("@TotalRevenueFrom", filter.TotalRevenueFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalRevenueTo", filter.TotalRevenueTo ?? (object)DBNull.Value),
+                new SqlParameter("@FilterMargin", filter.FilterMargin ?? (object)DBNull.Value),
+                new SqlParameter("@ProfitFrom", filter.ProfitFrom ?? (object)DBNull.Value),
+                new SqlParameter("@ProfitTo", filter.ProfitTo ?? (object)DBNull.Value),
+                new SqlParameter("@BoLNumber", filter.BoLNumber ?? (object)DBNull.Value),
+                new SqlParameter("@BKNumber", filter.BKNumber ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerID", filter.CustomerID ?? (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
+                new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value)).ToListAsync();
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(sales, dateName, totalName);
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(sales, "SaleDate", "TotalRevenue");
             return Ok(returnValue);
         }
 
         [HttpGet("customer-invoice-temporal")]
-        public IActionResult CustomerInvoiceTemporal([FromQuery] string dateName, [FromQuery] string totalName)
+        public async Task<IActionResult> CustomerInvoiceTemporal([FromQuery] TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
-            var customerInvoices = _context.CustomerInvoices.ToList();
+            var customerInvoices = await _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw(
+                $"EXEC pf_TotalAmountGainedPerCustomerInvoice " +
+                $"@customerInvoiceID," +
+                $"@TotalGainedFrom," +
+                $"@TotalGainedTo," +
+                $"@DateFrom," +
+                $"@DateTo," +
+                $"@Status," +
+                $"@CustomerName," +
+                $"@CustomerCountry",
+                new SqlParameter("@customerInvoiceID", filter.customerInvoiceID ?? (object)DBNull.Value),
+                new SqlParameter("@TotalGainedFrom", filter.TotalGainedFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalGainedTo", filter.TotalGainedTo ?? (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value)).ToListAsync();
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(customerInvoices, dateName, totalName);
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(customerInvoices, "InvoiceDate", "InvoiceAmount");
             return Ok(returnValue);
         }
 
         [HttpGet("supplier-invoice-temporal")]
-        public IActionResult SupplierInvoiceTemporal([FromQuery] string dateName, [FromQuery] string totalName)
+        public async Task<IActionResult> SupplierInvoiceTemporal([FromQuery] TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
-            var supplierInvoices = _context.SupplierInvoices.ToList();
+            var supplierInvoices = await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
+                $"@SupplierInvoiceID," +
+                $"@TotalSpentFrom," +
+                $"@TotalSpentTo," +
+                $"@DateFrom," +
+                $"@DateTo," +
+                $"@Status," +
+                $"@SupplierName," +
+                $"@SupplierCountry",
+                new SqlParameter("@SupplierInvoiceID", filter.SupplierInvoiceID ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.SupplierCountry ?? (object)DBNull.Value)).ToListAsync();
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(supplierInvoices, dateName, totalName);
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(supplierInvoices, "InvoiceDate", "InvoiceAmount");
             return Ok(returnValue);
         }
 
