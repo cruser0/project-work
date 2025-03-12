@@ -1,4 +1,5 @@
 ﻿using API.Models;
+using API.Models.Entities.Charts;
 using API.Models.Filters;
 using API.Models.Procedures;
 using API.Models.Services;
@@ -57,16 +58,9 @@ namespace API.Controllers
                 new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
                 new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value)).ToListAsync();
 
-            var returnCharts = _procedureService.GetCharths(profit);
+            SaleListChartDTO returnCharts = _procedureService.GetCharths(profit);
+            return Ok(returnCharts);
 
-            if (profit.Any())
-            {
-                return Ok(profit);
-            }
-            else
-            {
-                return Ok(new List<ClassifySalesByProfit>());
-            }
         }
 
 

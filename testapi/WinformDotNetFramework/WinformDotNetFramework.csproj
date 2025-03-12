@@ -118,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientAPI.cs" />
+    <Compile Include="Entities\Charts\SaleCountryTotalDTO.cs" />
+    <Compile Include="Entities\Charts\SaleDateTotalDTO.cs" />
+    <Compile Include="Entities\Charts\SaleListChartDTO.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerInvoice.cs" />
     <Compile Include="Entities\CustomerInvoiceCost.cs" />
@@ -505,7 +508,6 @@
     <Compile Include="Forms\UserProfileForm.Designer.cs">
       <DependentUpon>UserProfileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Procedures\Class1.cs" />
     <Compile Include="Procedures\ClassifySalesByProfit.cs" />
     <Compile Include="Procedures\TotalAmountGainedPerCustomerInvoice.cs" />
     <Compile Include="Procedures\TotalAmountSpentPerSupplierInvoice.cs" />
