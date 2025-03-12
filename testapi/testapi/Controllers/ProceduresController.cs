@@ -1,6 +1,7 @@
 ﻿using API.Models;
 using API.Models.Filters;
 using API.Models.Procedures;
+using API.Models.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -8,13 +9,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [Route("api/procedure")]
+    [Route("api/procedure/")]
     [ApiController]
     public class ProcedureController : ControllerBase
     {
         private readonly Progetto_FormativoContext _context;
-        public ProcedureController(Progetto_FormativoContext ctx)
+        private readonly ProcedureService _procedureService;
+        public ProcedureController(Progetto_FormativoContext ctx,ProcedureService ps)
         {
+            _procedureService = ps;
             _context = ctx;
         }
 
@@ -53,6 +56,8 @@ namespace API.Controllers
                 new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
                 new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value)).ToListAsync();
+
+            var returnCharts = _procedureService.GetCharths(profit);
 
             if (profit.Any())
             {
