@@ -16,5 +16,12 @@ namespace WinformDotNetFramework.Forms
         {
             InitializeComponent();
         }
+
+        private void GraphTestForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'progetto_FormativoDataSet1.Sales' table. You can move, or remove it, as needed.
+            this.salesTableAdapter.Fill(this.progetto_FormativoDataSet1.Sales);
+
+        }
     }
 }

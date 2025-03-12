@@ -81,6 +81,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,6 +103,7 @@
     <Compile Include="Entities\DTO\supplierGroupDTO.cs" />
     <Compile Include="Entities\DTO\SupplierInvoiceSupplierDTO.cs" />
     <Compile Include="Entities\DTO\UserDTO.cs" />
+    <Compile Include="Entities\Filters\ClassifySalesByProfitFilter.cs" />
     <Compile Include="Entities\Filters\CustomerFilter.cs" />
     <Compile Include="Entities\Filters\CustomerInvoiceCostFilter.cs" />
     <Compile Include="Entities\Filters\CustomerInvoiceFilter.cs" />
@@ -109,6 +111,8 @@
     <Compile Include="Entities\Filters\SupplierFilter.cs" />
     <Compile Include="Entities\Filters\SupplierInvoiceCostFilter.cs" />
     <Compile Include="Entities\Filters\SupplierInvoiceFilter.cs" />
+    <Compile Include="Entities\Filters\TotalAmountGainedPerCustomerInvoiceFilter.cs" />
+    <Compile Include="Entities\Filters\TotalAmountSpentPerSupplierInvoiceFilter.cs" />
     <Compile Include="Entities\Filters\UserFilter.cs" />
     <Compile Include="Entities\Preference\CustomerDGV.cs" />
     <Compile Include="Entities\Preference\CustomerGroupSplit.cs" />
@@ -471,17 +475,21 @@
     <Compile Include="Forms\UserProfileForm.Designer.cs">
       <DependentUpon>UserProfileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Procedures\AmountSpentSaleID.cs" />
-    <Compile Include="Procedures\CustomerInvoiceStatus.cs" />
-    <Compile Include="Procedures\ProfitClassification.cs" />
-    <Compile Include="Procedures\ProfitSaleID.cs" />
-    <Compile Include="Procedures\RevenuePerSaleID.cs" />
-    <Compile Include="Procedures\SaleByBOL.cs" />
-    <Compile Include="Procedures\SaleByBooking.cs" />
-    <Compile Include="Procedures\SaleByCustomerID.cs" />
-    <Compile Include="Procedures\SaleByStatus.cs" />
-    <Compile Include="Procedures\SupplierInvoiceByStatus.cs" />
-    <Compile Include="Procedures\TotalSpentPerSupplier.cs" />
+    <Compile Include="Procedures\Class1.cs" />
+    <Compile Include="Procedures\ClassifySalesByProfit.cs" />
+    <Compile Include="Procedures\TotalAmountGainedPerCustomerInvoice.cs" />
+    <Compile Include="Procedures\TotalAmountSpentPerSupplierInvoice.cs" />
+    <Compile Include="Procedures\TotalAmountSpentPerSuppliers.cs" />
+    <Compile Include="Progetto_FormativoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Progetto_FormativoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Progetto_FormativoDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Progetto_FormativoDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -493,6 +501,7 @@
     <Compile Include="Services\CustomerInvoiceCostService.cs" />
     <Compile Include="Services\CustomerInvoiceService.cs" />
     <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\ProceduresService.cs" />
     <Compile Include="Services\SaleService.cs" />
     <Compile Include="Services\SupplierInvoiceCostService.cs" />
     <Compile Include="Services\SupplierInvoiceService.cs" />
@@ -621,6 +630,9 @@
     <EmbeddedResource Include="Forms\FinalForms\SupplierFinalForm.resx">
       <DependentUpon>SupplierFinalForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GraphTestForm.resx">
+      <DependentUpon>GraphTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridForms\CustomerGridForm.resx">
       <DependentUpon>CustomerGridForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -675,6 +687,28 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Progetto_FormativoDataSet.xsc">
+      <DependentUpon>Progetto_FormativoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Progetto_FormativoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Progetto_FormativoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Progetto_FormativoDataSet.xss">
+      <DependentUpon>Progetto_FormativoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Progetto_FormativoDataSet1.xsc">
+      <DependentUpon>Progetto_FormativoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Progetto_FormativoDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Progetto_FormativoDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Progetto_FormativoDataSet1.xss">
+      <DependentUpon>Progetto_FormativoDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

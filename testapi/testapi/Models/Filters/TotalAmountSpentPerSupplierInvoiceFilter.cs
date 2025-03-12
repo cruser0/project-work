@@ -1,6 +1,6 @@
 ﻿namespace API.Models.Filters
 {
-    public class TotalAmountSpentPerSupplierInvoice
+    public class TotalAmountSpentPerSupplierInvoiceFilter
     {
         public int? SupplierInvoiceID { get; set; }
         public int? TotalSpentFrom { get; set; }
