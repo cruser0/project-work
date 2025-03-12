@@ -46,6 +46,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
@@ -145,6 +146,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToggleEditButton,
             this.toolStripButton2,
             this.toolStripSeparator1,
             this.PdfTSB,
@@ -206,6 +208,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton4";
             this.toolStripButton1.Click += new System.EventHandler(this.MassDeleteTSB_Click);
+            // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // BottomPanel
             // 
@@ -380,5 +392,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton1;
         private control.SearchSupplierInvoice searchSupplierInvoice1;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton ToggleEditButton;
     }
 }

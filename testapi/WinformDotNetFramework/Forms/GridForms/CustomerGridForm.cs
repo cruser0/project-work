@@ -23,9 +23,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         Task<int> countNotFiltered;
         Task<CustomerDGV> getFav;
 
-        object oldDataSource;
-        bool changed = false;
-
         private UserService _userService;
         public CustomerGridForm()
         {
@@ -46,7 +43,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
 
             InitializeComponent();
-            pages = (int)Math.Ceiling(await _customerService.Count(new CustomerFilter()) / itemsPage);
+            CustomerDgv.ReadOnly = true;
+
+            pages = (int)Math.Ceiling(await _customerService.Count(new CustomerFilter() { CustomerDeprecated = false }) / itemsPage);
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -79,7 +78,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             var totalCount = _customerService.Count(filterPage);
             await Task.WhenAll(query, totalCount);
             IEnumerable<Customer> query1 = await query;
+
             CustomerDgv.DataSource = query1.ToList();
+
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await totalCount / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
@@ -91,7 +92,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             IEnumerable<Customer> query = await getAllNotFiltered;
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+
             CustomerDgv.DataSource = query.ToList();
+
             CustomerDGV cdgv = await getFav;
             CustomerCountryTsmi.Checked = cdgv.ShowCountry;
             CustomerDateTsmi.Checked = cdgv.ShowDate;
@@ -232,8 +235,8 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void CustomerGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _customerService.GetAll(new CustomerFilter() { CustomerPage = 1 });
-            countNotFiltered = _customerService.Count(new CustomerFilter());
+            getAllNotFiltered = _customerService.GetAll(filter);
+            countNotFiltered = _customerService.Count(new CustomerFilter() { CustomerDeprecated = false });
             getFav = _userService.GetCustomerDGV();
             await SetCheckBoxes();
         }
@@ -295,47 +298,102 @@ namespace WinformDotNetFramework.Forms.GridForms
             }
         }
 
+
+        private HashSet<int> modifiedRows = new HashSet<int>();
+
+        private void CustomerDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                modifiedRows.Add(e.RowIndex);
+            }
+        }
+
         private async void MassUpdateTSB_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
-         "This action is permanent and it will update all the history bound to this entity!",
-         "Confirm Update?",
-         MessageBoxButtons.YesNo,
-         MessageBoxIcon.Warning);
+                "This action is permanent and it will update all the history bound to this entity!",
+                "Confirm Update?",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    List<Customer> newEntities = new List<Customer>();
-                    HashSet<int> ids = new HashSet<int>();
-
-                    foreach (DataGridViewCell cell in CustomerDgv.SelectedCells)
-                    {
-                        ids.Add(cell.RowIndex);
-                    }
-
-                    foreach (var rowId in ids)
-                    {
-                        if (CustomerDgv.Rows[rowId].DataBoundItem is Customer entity)
-                            newEntities.Add(entity);
-                    }
-                    if (newEntities.Count > 0)
-                    {
-                        string message = await _customerService.MassUpdate(newEntities);
-                        MessageBox.Show(message);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Row was selected");
-                    }
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
+            if (result != DialogResult.Yes)
             {
                 MessageBox.Show("Action canceled.");
+                return;
+            }
+
+            try
+            {
+                List<Customer> modifiedEntities = new List<Customer>();
+
+                // Itera solo sulle righe che sono state modificate
+                foreach (int rowIndex in modifiedRows)
+                {
+                    if (CustomerDgv.Rows[rowIndex].DataBoundItem is Customer entity)
+                    {
+                        modifiedEntities.Add(entity);
+                    }
+                }
+
+                if (modifiedEntities.Count > 0)
+                {
+                    string message = await _customerService.MassUpdate(modifiedEntities);
+                    MessageBox.Show(message);
+
+                    // Resetta le righe modificate dopo l'update
+                    modifiedRows.Clear();
+                    ToggleEditButton.PerformClick();
+                }
+                else
+                {
+                    MessageBox.Show("No modified rows to update.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+
+        private void ToggleEditButton_Click(object sender, EventArgs e)
+        {
+            // Inverti lo stato ReadOnly
+            CustomerDgv.ReadOnly = !CustomerDgv.ReadOnly;
+
+            if (CustomerDgv.ReadOnly) // Modalità visualizzazione
+            {
+                if (modifiedRows.Count > 0)
+                {
+                    DialogResult result = MessageBox.Show(
+                        "You haven't saved your changes, and all edits will be lost!\nDo you want to continue?",
+                        "Warning",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.No)
+                    {
+                        // Se l'utente sceglie "No", torna in modalità modifica
+                        CustomerDgv.ReadOnly = false;
+                        return;
+                    }
+
+                    // Reset modifiche solo se l'utente conferma
+                    MyControl_ButtonClicked_Pagination(this, EventArgs.Empty);
+                    modifiedRows.Clear();
+                }
+
+                // Ripristina modalità visualizzazione
+                CustomerDgv.Cursor = Cursors.Default;
+                CustomerDgv.CellDoubleClick += MyControl_OpenDetails_Clicked;
+                CustomerDgv.CellValueChanged -= CustomerDgv_CellValueChanged;
+            }
+            else // Modalità modifica attivata
+            {
+                CustomerDgv.Cursor = Cursors.IBeam; // Migliore per l'editing di testo
+                CustomerDgv.CellDoubleClick -= MyControl_OpenDetails_Clicked;
+                CustomerDgv.CellValueChanged += CustomerDgv_CellValueChanged;
             }
         }
 

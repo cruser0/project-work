@@ -34,8 +34,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerGridForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
-            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CustomerIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,9 +53,12 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
+            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
+            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
+            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
@@ -89,22 +90,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
             this.TextBoxesRightPanel.TabIndex = 6;
-            // 
-            // searchCustomer1
-            // 
-            this.searchCustomer1.Location = new System.Drawing.Point(0, 0);
-            this.searchCustomer1.Name = "searchCustomer1";
-            this.searchCustomer1.Size = new System.Drawing.Size(171, 254);
-            this.searchCustomer1.TabIndex = 15;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(171, 461);
-            this.RightSideBar.TabIndex = 0;
             // 
             // CustomerGdv
             // 
@@ -216,6 +201,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToggleEditButton,
             this.toolStripButton2,
             this.toolStripSeparator1,
             this.PdfTSB,
@@ -298,14 +284,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel5.Size = new System.Drawing.Size(313, 87);
             this.panel5.TabIndex = 2;
             // 
-            // PaginationUserControl
-            // 
-            this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
-            this.PaginationUserControl.Name = "PaginationUserControl";
-            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
-            this.PaginationUserControl.TabIndex = 0;
-            // 
             // panel4
             // 
             this.panel4.AutoSize = true;
@@ -323,6 +301,40 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(0, 87);
             this.panel3.TabIndex = 0;
+            // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
+            this.PaginationUserControl.TabIndex = 0;
+            // 
+            // searchCustomer1
+            // 
+            this.searchCustomer1.Location = new System.Drawing.Point(0, 0);
+            this.searchCustomer1.Name = "searchCustomer1";
+            this.searchCustomer1.Size = new System.Drawing.Size(171, 254);
+            this.searchCustomer1.TabIndex = 15;
+            // 
+            // RightSideBar
+            // 
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(171, 461);
+            this.RightSideBar.TabIndex = 0;
             // 
             // CustomerGridForm
             // 
@@ -380,5 +392,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripSeparator toolStripSeparator1;
         private control.SearchCustomer searchCustomer1;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton ToggleEditButton;
     }
 }

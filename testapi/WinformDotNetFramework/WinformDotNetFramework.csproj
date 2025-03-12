@@ -517,6 +517,12 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ValueService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="testChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="testChart.Designer.cs">
+      <DependentUpon>testChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserAccessInfo.cs" />
     <Compile Include="UtilityFunctions.cs" />
     <EmbeddedResource Include="Forms\AddForms\CreateCustomerForm.resx">
@@ -694,6 +700,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="testChart.resx">
+      <DependentUpon>testChart.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

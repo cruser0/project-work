@@ -43,7 +43,6 @@ namespace WinformDotNetFramework.Forms.control
             // 
             // TextBoxesRightPanel
             // 
-            this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.label4);
@@ -75,10 +74,10 @@ namespace WinformDotNetFramework.Forms.control
             this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameTxt.Location = new System.Drawing.Point(3, 126);
+            this.NameTxt.Location = new System.Drawing.Point(0, 127);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(155, 20);
+            this.NameTxt.Size = new System.Drawing.Size(180, 20);
             this.NameTxt.TabIndex = 15;
             // 
             // NameLbl
@@ -96,9 +95,9 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.CostToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostToTxt.Location = new System.Drawing.Point(3, 81);
+            this.CostToTxt.Location = new System.Drawing.Point(0, 81);
             this.CostToTxt.Name = "CostToTxt";
-            this.CostToTxt.Size = new System.Drawing.Size(154, 20);
+            this.CostToTxt.Size = new System.Drawing.Size(180, 20);
             this.CostToTxt.TabIndex = 14;
             // 
             // label1
@@ -116,9 +115,9 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.CostFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostFromTxt.Location = new System.Drawing.Point(3, 34);
+            this.CostFromTxt.Location = new System.Drawing.Point(0, 34);
             this.CostFromTxt.Name = "CostFromTxt";
-            this.CostFromTxt.Size = new System.Drawing.Size(154, 20);
+            this.CostFromTxt.Size = new System.Drawing.Size(180, 20);
             this.CostFromTxt.TabIndex = 12;
             // 
             // CostLbl

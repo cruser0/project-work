@@ -60,6 +60,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserLastNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserEmailTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -270,6 +271,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToggleEditButton,
             this.toolStripButton2,
             this.toolStripSeparator1,
             this.PdfTSB,
@@ -385,6 +387,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserRoleTsmi.Text = "Show Roles";
             this.UserRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
+            // 
             // UserGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,5 +455,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
+        private ToolStripButton ToggleEditButton;
     }
 }

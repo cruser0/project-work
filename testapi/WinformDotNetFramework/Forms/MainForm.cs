@@ -179,6 +179,10 @@ namespace WinformDotNetFramework.Forms
                     child = new UserProfileForm();
                     break;
 
+                case "Show Chart":
+                    child = new testChart();
+                    break;
+
                 case "Show Customer":
                     child = new CustomerForm();
                     break;
@@ -455,6 +459,7 @@ namespace WinformDotNetFramework.Forms
                     { "Show Supplier Invoice Cost", SupplierInvoiceCostShowTS },
                     { "Show Sale", SaleShowTS },
                     { "Show User", UserShowTS },
+                    {"Show Chart", ShowChartbutton},
                     { "Create Customer", CustomerCreateTS },
                     { "Create Customer Invoice", CustomerInvoiceCreateTS },
                     { "Create Customer Invoice Cost", CustomerInvoiceCostCreateTS },

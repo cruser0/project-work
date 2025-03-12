@@ -45,6 +45,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
@@ -71,9 +72,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightPanel.Controls.Add(this.TextBoxesRightPanel);
             this.RightPanel.Controls.Add(this.RightSideBar);
             this.RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RightPanel.Location = new System.Drawing.Point(613, 0);
+            this.RightPanel.Location = new System.Drawing.Point(584, 0);
             this.RightPanel.Name = "RightPanel";
-            this.RightPanel.Size = new System.Drawing.Size(171, 461);
+            this.RightPanel.Size = new System.Drawing.Size(200, 461);
             this.RightPanel.TabIndex = 0;
             // 
             // TextBoxesRightPanel
@@ -84,14 +85,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Controls.Add(this.searchCustomerInvoice1);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 310);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // searchCustomerInvoice1
             // 
             this.searchCustomerInvoice1.Location = new System.Drawing.Point(0, 0);
             this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
-            this.searchCustomerInvoice1.Size = new System.Drawing.Size(171, 243);
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(200, 243);
             this.searchCustomerInvoice1.TabIndex = 0;
             // 
             // RightSideBar
@@ -100,7 +101,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(171, 461);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // CenterPanel
@@ -110,7 +111,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(613, 374);
+            this.CenterPanel.Size = new System.Drawing.Size(584, 374);
             this.CenterPanel.TabIndex = 1;
             // 
             // CenterDgv
@@ -125,7 +126,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterDgv.Name = "CenterDgv";
             this.CenterDgv.ReadOnly = true;
             this.CenterDgv.RowTemplate.Height = 25;
-            this.CenterDgv.Size = new System.Drawing.Size(613, 349);
+            this.CenterDgv.Size = new System.Drawing.Size(584, 349);
             this.CenterDgv.TabIndex = 0;
             this.CenterDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CenterDgv_CellDoubleClick);
             this.CenterDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDhvEvent);
@@ -134,6 +135,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToggleEditButton,
             this.toolStripButton2,
             this.toolStripSeparator1,
             this.PdfTSB,
@@ -142,7 +144,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(613, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -196,6 +198,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1.Text = "toolStripButton4";
             this.toolStripButton1.Click += new System.EventHandler(this.MassDeleteTSB_Click);
             // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
+            // 
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
@@ -205,7 +217,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 374);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(613, 87);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 87);
             this.BottomPanel.TabIndex = 8;
             // 
             // panel5
@@ -228,7 +240,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(613, 0);
+            this.panel4.Location = new System.Drawing.Point(584, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 87);
             this.panel4.TabIndex = 1;
@@ -355,5 +367,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton1;
         private control.SearchCustomerInvoice searchCustomerInvoice1;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton ToggleEditButton;
     }
 }
