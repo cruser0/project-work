@@ -11,5 +11,42 @@ namespace WinformDotNetFramework.Services
     internal class ProceduresService:BaseCallService
     {
 
+        private string BuildQueryParamsClassifySalesByProfit(ClassifySalesByProfitFilter filter)
+        {
+            var queryParameters = new List<string>();
+
+            var filters = new Dictionary<string, object>
+            {
+                { "TotalSpentFrom", filter.TotalSpentFrom ?? null },
+                { "TotalSpentTo", filter.TotalSpentTo ?? null },
+                { "TotalRevenueFrom", filter.TotalRevenueFrom ?? null },
+                { "TotalRevenueTo", filter.TotalRevenueTo ?? null },
+                { "FilterMargin", filter.FilterMargin ?? null},
+                { "ProfitFrom", filter.ProfitFrom ?? null},
+                { "ProfitTo", filter.ProfitTo ?? null},
+                { "BoLNumber", filter.BoLNumber ?? null},
+                { "BKNumber", filter.BKNumber ?? null},
+                { "CustomerID", filter.CustomerID ?? null},
+                { "Status", filter.Status ?? null},
+                { "CustomerName", filter.CustomerName ?? null},
+                { "CustomerCountry", filter.CustomerCountry ?? null},
+                { "SaleID", filter.SaleID ?? null},
+
+            };
+            foreach (var kvp in filters)
+            {
+                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+        public async Task<List<ClassifySalesByProfit>> GetClassifySalesByProfit(ClassifySalesByProfitFilter filter)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
+            var returnResult = await GetList<ClassifySalesByProfit>(client, "procedure/classify-by-profit", queryString);
+            return returnResult;
+        }
     }
 }

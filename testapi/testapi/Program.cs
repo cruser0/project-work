@@ -30,6 +30,7 @@ builder.Services.AddScoped<ISupplierInvoiceService, SupplierInvoiceService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<ValueServices>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ProcedureService>();
 builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("JwtConfig"));
 builder.Services.AddAuthentication(options =>
 {
