@@ -181,6 +181,8 @@ namespace WinformDotNetFramework.Forms
 
                 case "Show Chart":
                     child = new AllChartTest();
+                    //child = new testChart();
+                    //child = new GraphTestForm();
                     break;
 
                 case "Show Customer":
