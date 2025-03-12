@@ -180,7 +180,7 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Show Chart":
-                    child = new testChart();
+                    child = new AllChartTest();
                     break;
 
                 case "Show Customer":

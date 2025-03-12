@@ -205,6 +205,12 @@
     <Compile Include="Forms\AddForms\CreateUserForm.Designer.cs">
       <DependentUpon>CreateUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AllChartTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AllChartTest.Designer.cs">
+      <DependentUpon>AllChartTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\BaseGridUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -554,6 +560,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddForms\CreateUserForm.resx">
       <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AllChartTest.resx">
+      <DependentUpon>AllChartTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\BaseGridUserControl.resx">
       <DependentUpon>BaseGridUserControl.cs</DependentUpon>
