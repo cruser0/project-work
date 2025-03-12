@@ -26,14 +26,15 @@ namespace WinformDotNetFramework.Forms
 
         }
 
-
-
         private async void button1_Click(object sender, EventArgs e)
         {
             int output;
 
             if (int.TryParse(integerTextBoxUserControl1.GetText(), out output))
                 customerInvoiceFilter.CustomerInvoiceSaleId = output;
+            else
+                customerInvoiceFilter.CustomerInvoiceSaleId = null;
+
             var query = await _customerInvoiceService.GetAll(customerInvoiceFilter);
             IEnumerable<CustomerInvoice> invoices = query;
 
@@ -73,7 +74,7 @@ namespace WinformDotNetFramework.Forms
 
             // Aggiungi un titolo al grafico
             chart1.Titles.Clear();
-            chart1.Titles.Add(new Title($"Riepilogo Costi per Fattura {integerTextBoxUserControl1.GetText()}", Docking.Top, new Font("Arial", 14, FontStyle.Bold), Color.Black));
+            chart1.Titles.Add(new Title($"Riepilogo Costi per Sale {integerTextBoxUserControl1.GetText()}", Docking.Top, new Font("Arial", 14, FontStyle.Bold), Color.Black));
 
             // Aggiungi un'area di grafico
             ChartArea chartArea = new ChartArea("MainArea");

@@ -105,10 +105,10 @@ namespace WinformDotNetFramework.Forms.control
             this.DateToClnd.Checked = false;
             this.DateToClnd.CustomFormat = "ddMMMMyyyy";
             this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToClnd.Location = new System.Drawing.Point(3, 214);
+            this.DateToClnd.Location = new System.Drawing.Point(0, 214);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
-            this.DateToClnd.Size = new System.Drawing.Size(155, 20);
+            this.DateToClnd.Size = new System.Drawing.Size(180, 20);
             this.DateToClnd.TabIndex = 16;
             // 
             // DateFromClnd
@@ -117,10 +117,10 @@ namespace WinformDotNetFramework.Forms.control
             this.DateFromClnd.Checked = false;
             this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
             this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromClnd.Location = new System.Drawing.Point(3, 173);
+            this.DateFromClnd.Location = new System.Drawing.Point(0, 173);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
-            this.DateFromClnd.Size = new System.Drawing.Size(155, 20);
+            this.DateFromClnd.Size = new System.Drawing.Size(180, 20);
             this.DateFromClnd.TabIndex = 15;
             // 
             // StatusLbl
@@ -143,9 +143,9 @@ namespace WinformDotNetFramework.Forms.control
             "All",
             "Active",
             "Deprecated"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 130);
+            this.comboBox1.Location = new System.Drawing.Point(0, 130);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(155, 21);
+            this.comboBox1.Size = new System.Drawing.Size(180, 21);
             this.comboBox1.TabIndex = 5;
             // 
             // NameSupplierTxt
@@ -153,10 +153,10 @@ namespace WinformDotNetFramework.Forms.control
             this.NameSupplierTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameSupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameSupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierTxt.Location = new System.Drawing.Point(3, 44);
+            this.NameSupplierTxt.Location = new System.Drawing.Point(0, 44);
             this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
-            this.NameSupplierTxt.Size = new System.Drawing.Size(155, 20);
+            this.NameSupplierTxt.Size = new System.Drawing.Size(180, 20);
             this.NameSupplierTxt.TabIndex = 1;
             // 
             // label1
@@ -186,10 +186,10 @@ namespace WinformDotNetFramework.Forms.control
             this.CountrySupplierTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CountrySupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CountrySupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountrySupplierTxt.Location = new System.Drawing.Point(3, 85);
+            this.CountrySupplierTxt.Location = new System.Drawing.Point(0, 85);
             this.CountrySupplierTxt.MaxLength = 50;
             this.CountrySupplierTxt.Name = "CountrySupplierTxt";
-            this.CountrySupplierTxt.Size = new System.Drawing.Size(155, 20);
+            this.CountrySupplierTxt.Size = new System.Drawing.Size(180, 20);
             this.CountrySupplierTxt.TabIndex = 2;
             // 
             // SearchSupplier

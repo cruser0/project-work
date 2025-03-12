@@ -35,56 +35,57 @@ namespace WinformDotNetFramework.Forms
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ShowTP = new System.Windows.Forms.TabPage();
             this.Show = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.EditTP = new System.Windows.Forms.TabPage();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.AddTP = new System.Windows.Forms.TabPage();
-            this.Create = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.GroupTP = new System.Windows.Forms.TabPage();
-            this.Group = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.TS = new System.Windows.Forms.ToolStrip();
-            this.Logout = new System.Windows.Forms.ToolStripButton();
-            this.MainPanel = new System.Windows.Forms.Panel();
             this.CustomerShowTS = new System.Windows.Forms.ToolStripButton();
             this.CustomerInvoiceShowTS = new System.Windows.Forms.ToolStripButton();
             this.CustomerInvoiceCostShowTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierShowTS = new System.Windows.Forms.ToolStripButton();
             this.SupplierInvoiceShowTS = new System.Windows.Forms.ToolStripButton();
             this.SupplierInvoiceCostShowTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SaleShowTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.UserShowTS = new System.Windows.Forms.ToolStripButton();
+            this.ShowChartbutton = new System.Windows.Forms.ToolStripButton();
+            this.EditTP = new System.Windows.Forms.TabPage();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton17 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton18 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
+            this.AddTP = new System.Windows.Forms.TabPage();
+            this.Create = new System.Windows.Forms.ToolStrip();
             this.CustomerCreateTS = new System.Windows.Forms.ToolStripButton();
             this.CustomerInvoiceCreateTS = new System.Windows.Forms.ToolStripButton();
             this.CustomerInvoiceCostCreateTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierCreateTS = new System.Windows.Forms.ToolStripButton();
             this.SupplierInvoiceCreateTS = new System.Windows.Forms.ToolStripButton();
             this.SupplierInvoiceCostCreateTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.SaleCreateTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.UserCreateTS = new System.Windows.Forms.ToolStripButton();
+            this.GroupTP = new System.Windows.Forms.TabPage();
+            this.Group = new System.Windows.Forms.ToolStrip();
             this.CustomerGroupTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierGroupTS = new System.Windows.Forms.ToolStripButton();
+            this.TS = new System.Windows.Forms.ToolStrip();
+            this.Logout = new System.Windows.Forms.ToolStripButton();
             this.UserProfile = new System.Windows.Forms.ToolStripButton();
             this.AddFavoriteButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.ShowChartbutton = new System.Windows.Forms.ToolStripButton();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -153,197 +154,13 @@ namespace WinformDotNetFramework.Forms
             this.SaleShowTS,
             this.toolStripSeparator3,
             this.UserShowTS,
+            this.toolStripSeparator10,
             this.ShowChartbutton});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
             this.Show.Size = new System.Drawing.Size(1063, 31);
             this.Show.TabIndex = 0;
             this.Show.Text = "Show";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
-            // 
-            // EditTP
-            // 
-            this.EditTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(214)))), ((int)(((byte)(222)))));
-            this.EditTP.Controls.Add(this.toolStrip3);
-            this.EditTP.Location = new System.Drawing.Point(4, 24);
-            this.EditTP.Name = "EditTP";
-            this.EditTP.Padding = new System.Windows.Forms.Padding(3);
-            this.EditTP.Size = new System.Drawing.Size(985, 37);
-            this.EditTP.TabIndex = 1;
-            this.EditTP.Text = "Edit";
-            // 
-            // toolStrip3
-            // 
-            this.toolStrip3.AutoSize = false;
-            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton12,
-            this.toolStripButton13,
-            this.toolStripButton14,
-            this.toolStripSeparator4,
-            this.toolStripButton15,
-            this.toolStripButton16,
-            this.toolStripButton17,
-            this.toolStripSeparator5,
-            this.toolStripButton18,
-            this.toolStripSeparator6,
-            this.toolStripButton19});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(979, 31);
-            this.toolStrip3.TabIndex = 1;
-            this.toolStrip3.Text = "toolStrip3";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
-            // 
-            // AddTP
-            // 
-            this.AddTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(204)))), ((int)(((byte)(214)))));
-            this.AddTP.Controls.Add(this.Create);
-            this.AddTP.Location = new System.Drawing.Point(4, 24);
-            this.AddTP.Name = "AddTP";
-            this.AddTP.Padding = new System.Windows.Forms.Padding(3);
-            this.AddTP.Size = new System.Drawing.Size(985, 37);
-            this.AddTP.TabIndex = 2;
-            this.AddTP.Text = "Create";
-            // 
-            // Create
-            // 
-            this.Create.AutoSize = false;
-            this.Create.BackColor = System.Drawing.Color.Transparent;
-            this.Create.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Create.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Create.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CustomerCreateTS,
-            this.CustomerInvoiceCreateTS,
-            this.CustomerInvoiceCostCreateTS,
-            this.toolStripSeparator7,
-            this.SupplierCreateTS,
-            this.SupplierInvoiceCreateTS,
-            this.SupplierInvoiceCostCreateTS,
-            this.toolStripSeparator8,
-            this.SaleCreateTS,
-            this.toolStripSeparator9,
-            this.UserCreateTS});
-            this.Create.Location = new System.Drawing.Point(3, 3);
-            this.Create.Name = "Create";
-            this.Create.Size = new System.Drawing.Size(979, 31);
-            this.Create.TabIndex = 1;
-            this.Create.Text = "Show";
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 31);
-            // 
-            // GroupTP
-            // 
-            this.GroupTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(194)))), ((int)(((byte)(204)))));
-            this.GroupTP.Controls.Add(this.Group);
-            this.GroupTP.Location = new System.Drawing.Point(4, 24);
-            this.GroupTP.Name = "GroupTP";
-            this.GroupTP.Padding = new System.Windows.Forms.Padding(3);
-            this.GroupTP.Size = new System.Drawing.Size(985, 37);
-            this.GroupTP.TabIndex = 3;
-            this.GroupTP.Text = "Group";
-            // 
-            // Group
-            // 
-            this.Group.AutoSize = false;
-            this.Group.BackColor = System.Drawing.Color.Transparent;
-            this.Group.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Group.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Group.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CustomerGroupTS,
-            this.toolStripSeparator12,
-            this.SupplierGroupTS});
-            this.Group.Location = new System.Drawing.Point(3, 3);
-            this.Group.Name = "Group";
-            this.Group.Size = new System.Drawing.Size(979, 31);
-            this.Group.TabIndex = 1;
-            this.Group.Text = "Customer";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 31);
-            // 
-            // TS
-            // 
-            this.TS.AutoSize = false;
-            this.TS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.TS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Logout,
-            this.UserProfile,
-            this.AddFavoriteButton,
-            this.toolStripButton2,
-            this.toolStripButton3});
-            this.TS.Location = new System.Drawing.Point(0, 0);
-            this.TS.Name = "TS";
-            this.TS.Size = new System.Drawing.Size(1077, 22);
-            this.TS.TabIndex = 0;
-            this.TS.Text = "toolStrip1";
-            // 
-            // Logout
-            // 
-            this.Logout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.Logout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.Logout.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Logout.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
-            this.Logout.Name = "Logout";
-            this.Logout.Size = new System.Drawing.Size(49, 19);
-            this.Logout.Text = "Logout";
-            this.Logout.Click += new System.EventHandler(this.Logout_Click);
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.MainPanel.Location = new System.Drawing.Point(0, 87);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1077, 498);
-            this.MainPanel.TabIndex = 10;
-            this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
             // 
             // CustomerShowTS
             // 
@@ -381,6 +198,11 @@ namespace WinformDotNetFramework.Forms
             this.CustomerInvoiceCostShowTS.Text = "Customer Invoice Cost";
             this.CustomerInvoiceCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            // 
             // SupplierShowTS
             // 
             this.SupplierShowTS.AutoSize = false;
@@ -417,6 +239,11 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCostShowTS.Text = "Supplier Invoice Cost";
             this.SupplierInvoiceCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
             // SaleShowTS
             // 
             this.SaleShowTS.AutoSize = false;
@@ -429,6 +256,11 @@ namespace WinformDotNetFramework.Forms
             this.SaleShowTS.Text = "Sale";
             this.SaleShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            // 
             // UserShowTS
             // 
             this.UserShowTS.AutoSize = false;
@@ -440,6 +272,52 @@ namespace WinformDotNetFramework.Forms
             this.UserShowTS.Size = new System.Drawing.Size(100, 27);
             this.UserShowTS.Text = "User";
             this.UserShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // ShowChartbutton
+            // 
+            this.ShowChartbutton.AutoSize = false;
+            this.ShowChartbutton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ShowChartbutton.Image = ((System.Drawing.Image)(resources.GetObject("ShowChartbutton.Image")));
+            this.ShowChartbutton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ShowChartbutton.Name = "ShowChartbutton";
+            this.ShowChartbutton.Size = new System.Drawing.Size(100, 28);
+            this.ShowChartbutton.Text = "Chart";
+            this.ShowChartbutton.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // EditTP
+            // 
+            this.EditTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(214)))), ((int)(((byte)(222)))));
+            this.EditTP.Controls.Add(this.toolStrip3);
+            this.EditTP.Location = new System.Drawing.Point(4, 24);
+            this.EditTP.Name = "EditTP";
+            this.EditTP.Padding = new System.Windows.Forms.Padding(3);
+            this.EditTP.Size = new System.Drawing.Size(1069, 37);
+            this.EditTP.TabIndex = 1;
+            this.EditTP.Text = "Edit";
+            // 
+            // toolStrip3
+            // 
+            this.toolStrip3.AutoSize = false;
+            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton12,
+            this.toolStripButton13,
+            this.toolStripButton14,
+            this.toolStripSeparator4,
+            this.toolStripButton15,
+            this.toolStripButton16,
+            this.toolStripButton17,
+            this.toolStripSeparator5,
+            this.toolStripButton18,
+            this.toolStripSeparator6,
+            this.toolStripButton19});
+            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(1063, 31);
+            this.toolStrip3.TabIndex = 1;
+            this.toolStrip3.Text = "toolStrip3";
             // 
             // toolStripButton12
             // 
@@ -474,6 +352,11 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton14.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton14.Text = "toolStripButton6";
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            // 
             // toolStripButton15
             // 
             this.toolStripButton15.AutoSize = false;
@@ -507,6 +390,11 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton17.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton17.Text = "toolStripButton9";
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
+            // 
             // toolStripButton18
             // 
             this.toolStripButton18.AutoSize = false;
@@ -518,6 +406,11 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton18.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton18.Text = "toolStripButton10";
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
+            // 
             // toolStripButton19
             // 
             this.toolStripButton19.AutoSize = false;
@@ -528,6 +421,41 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton19.Name = "toolStripButton19";
             this.toolStripButton19.Size = new System.Drawing.Size(100, 27);
             this.toolStripButton19.Text = "toolStripButton11";
+            // 
+            // AddTP
+            // 
+            this.AddTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(204)))), ((int)(((byte)(214)))));
+            this.AddTP.Controls.Add(this.Create);
+            this.AddTP.Location = new System.Drawing.Point(4, 24);
+            this.AddTP.Name = "AddTP";
+            this.AddTP.Padding = new System.Windows.Forms.Padding(3);
+            this.AddTP.Size = new System.Drawing.Size(1069, 37);
+            this.AddTP.TabIndex = 2;
+            this.AddTP.Text = "Create";
+            // 
+            // Create
+            // 
+            this.Create.AutoSize = false;
+            this.Create.BackColor = System.Drawing.Color.Transparent;
+            this.Create.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Create.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.Create.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CustomerCreateTS,
+            this.CustomerInvoiceCreateTS,
+            this.CustomerInvoiceCostCreateTS,
+            this.toolStripSeparator7,
+            this.SupplierCreateTS,
+            this.SupplierInvoiceCreateTS,
+            this.SupplierInvoiceCostCreateTS,
+            this.toolStripSeparator8,
+            this.SaleCreateTS,
+            this.toolStripSeparator9,
+            this.UserCreateTS});
+            this.Create.Location = new System.Drawing.Point(3, 3);
+            this.Create.Name = "Create";
+            this.Create.Size = new System.Drawing.Size(1063, 31);
+            this.Create.TabIndex = 1;
+            this.Create.Text = "Show";
             // 
             // CustomerCreateTS
             // 
@@ -565,6 +493,11 @@ namespace WinformDotNetFramework.Forms
             this.CustomerInvoiceCostCreateTS.Text = "Customer Invoice Cost";
             this.CustomerInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 31);
+            // 
             // SupplierCreateTS
             // 
             this.SupplierCreateTS.AutoSize = false;
@@ -601,6 +534,11 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCostCreateTS.Text = "Supplier Invoice Cost";
             this.SupplierInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 31);
+            // 
             // SaleCreateTS
             // 
             this.SaleCreateTS.AutoSize = false;
@@ -612,6 +550,11 @@ namespace WinformDotNetFramework.Forms
             this.SaleCreateTS.Size = new System.Drawing.Size(100, 27);
             this.SaleCreateTS.Text = "Sale";
             this.SaleCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 31);
             // 
             // UserCreateTS
             // 
@@ -625,6 +568,33 @@ namespace WinformDotNetFramework.Forms
             this.UserCreateTS.Text = "User";
             this.UserCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // GroupTP
+            // 
+            this.GroupTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(194)))), ((int)(((byte)(204)))));
+            this.GroupTP.Controls.Add(this.Group);
+            this.GroupTP.Location = new System.Drawing.Point(4, 24);
+            this.GroupTP.Name = "GroupTP";
+            this.GroupTP.Padding = new System.Windows.Forms.Padding(3);
+            this.GroupTP.Size = new System.Drawing.Size(1069, 37);
+            this.GroupTP.TabIndex = 3;
+            this.GroupTP.Text = "Group";
+            // 
+            // Group
+            // 
+            this.Group.AutoSize = false;
+            this.Group.BackColor = System.Drawing.Color.Transparent;
+            this.Group.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Group.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.Group.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CustomerGroupTS,
+            this.toolStripSeparator12,
+            this.SupplierGroupTS});
+            this.Group.Location = new System.Drawing.Point(3, 3);
+            this.Group.Name = "Group";
+            this.Group.Size = new System.Drawing.Size(1063, 31);
+            this.Group.TabIndex = 1;
+            this.Group.Text = "Customer";
+            // 
             // CustomerGroupTS
             // 
             this.CustomerGroupTS.AutoSize = false;
@@ -637,6 +607,11 @@ namespace WinformDotNetFramework.Forms
             this.CustomerGroupTS.Text = "Customer";
             this.CustomerGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 31);
+            // 
             // SupplierGroupTS
             // 
             this.SupplierGroupTS.AutoSize = false;
@@ -648,6 +623,33 @@ namespace WinformDotNetFramework.Forms
             this.SupplierGroupTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierGroupTS.Text = "Supplier";
             this.SupplierGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // TS
+            // 
+            this.TS.AutoSize = false;
+            this.TS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.TS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Logout,
+            this.UserProfile,
+            this.AddFavoriteButton,
+            this.toolStripButton2,
+            this.toolStripButton3});
+            this.TS.Location = new System.Drawing.Point(0, 0);
+            this.TS.Name = "TS";
+            this.TS.Size = new System.Drawing.Size(1077, 22);
+            this.TS.TabIndex = 0;
+            this.TS.Text = "toolStrip1";
+            // 
+            // Logout
+            // 
+            this.Logout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.Logout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Logout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Logout.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.Logout.Name = "Logout";
+            this.Logout.Size = new System.Drawing.Size(49, 19);
+            this.Logout.Text = "Logout";
+            this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
             // UserProfile
             // 
@@ -693,15 +695,21 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3.ToolTipText = "Hide All";
             this.toolStripButton3.Click += new System.EventHandler(this.MinimizeAll_Click);
             // 
-            // ShowChartbutton
+            // MainPanel
             // 
-            this.ShowChartbutton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ShowChartbutton.Image = ((System.Drawing.Image)(resources.GetObject("ShowChartbutton.Image")));
-            this.ShowChartbutton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ShowChartbutton.Name = "ShowChartbutton";
-            this.ShowChartbutton.Size = new System.Drawing.Size(40, 28);
-            this.ShowChartbutton.Text = "Chart";
-            this.ShowChartbutton.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.MainPanel.Location = new System.Drawing.Point(0, 87);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(1077, 498);
+            this.MainPanel.TabIndex = 10;
+            this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 31);
             // 
             // MainForm
             // 
@@ -793,5 +801,6 @@ namespace WinformDotNetFramework.Forms
         public ToolStripButton SupplierGroupTS;
         public ToolStripButton AddFavoriteButton;
         private ToolStripButton ShowChartbutton;
+        private ToolStripSeparator toolStripSeparator10;
     }
 }

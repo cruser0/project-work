@@ -39,13 +39,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.MassSaveTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
-            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
@@ -93,9 +93,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // searchSale1
             // 
-            this.searchSale1.Location = new System.Drawing.Point(14, 0);
+            this.searchSale1.Location = new System.Drawing.Point(3, 0);
             this.searchSale1.Name = "searchSale1";
-            this.searchSale1.Size = new System.Drawing.Size(154, 325);
+            this.searchSale1.Size = new System.Drawing.Size(197, 325);
             this.searchSale1.TabIndex = 0;
             // 
             // RightSideBar
@@ -150,6 +150,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
+            // 
             // MassSaveTSB
             // 
             this.MassSaveTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -199,16 +209,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
             this.MassDeleteTSB.Text = "toolStripButton4";
             this.MassDeleteTSB.Click += new System.EventHandler(this.MassDeleteTSB_Click);
-            // 
-            // ToggleEditButton
-            // 
-            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
-            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToggleEditButton.Name = "ToggleEditButton";
-            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
-            this.ToggleEditButton.Text = "Toggle Edit";
-            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // BottomPanel
             // 

@@ -39,13 +39,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CenterDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
@@ -85,14 +85,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Controls.Add(this.searchCustomerInvoice1);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 310);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // searchCustomerInvoice1
             // 
-            this.searchCustomerInvoice1.Location = new System.Drawing.Point(0, 0);
+            this.searchCustomerInvoice1.Location = new System.Drawing.Point(3, 0);
             this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
-            this.searchCustomerInvoice1.Size = new System.Drawing.Size(200, 243);
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(197, 243);
             this.searchCustomerInvoice1.TabIndex = 0;
             // 
             // RightSideBar
@@ -148,6 +148,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -197,16 +207,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton4";
             this.toolStripButton1.Click += new System.EventHandler(this.MassDeleteTSB_Click);
-            // 
-            // ToggleEditButton
-            // 
-            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
-            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToggleEditButton.Name = "ToggleEditButton";
-            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
-            this.ToggleEditButton.Text = "Toggle Edit";
-            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // BottomPanel
             // 

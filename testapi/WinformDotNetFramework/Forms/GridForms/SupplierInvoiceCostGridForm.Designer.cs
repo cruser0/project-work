@@ -35,13 +35,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1 = new System.Windows.Forms.Panel();
             this.SupplierInvoiceCostDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
             this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.searchSupplierInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchSupplierInvoiceCost();
@@ -72,7 +72,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(613, 374);
+            this.panel1.Size = new System.Drawing.Size(584, 374);
             this.panel1.TabIndex = 0;
             // 
             // SupplierInvoiceCostDgv
@@ -85,7 +85,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceCostDgv.Name = "SupplierInvoiceCostDgv";
             this.SupplierInvoiceCostDgv.ReadOnly = true;
             this.SupplierInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(613, 349);
+            this.SupplierInvoiceCostDgv.Size = new System.Drawing.Size(584, 349);
             this.SupplierInvoiceCostDgv.TabIndex = 0;
             this.SupplierInvoiceCostDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SupplierInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -103,9 +103,19 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(613, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // toolStripButton2
             // 
@@ -157,24 +167,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1.Text = "toolStripButton4";
             this.toolStripButton1.Click += new System.EventHandler(this.MassDeleteTSB_Click);
             // 
-            // ToggleEditButton
-            // 
-            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
-            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToggleEditButton.Name = "ToggleEditButton";
-            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
-            this.ToggleEditButton.Text = "Toggle Edit";
-            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.TextBoxesRightPanel);
             this.panel2.Controls.Add(this.RightSideBar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(613, 0);
+            this.panel2.Location = new System.Drawing.Point(584, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(171, 461);
+            this.panel2.Size = new System.Drawing.Size(200, 461);
             this.panel2.TabIndex = 1;
             // 
             // TextBoxesRightPanel
@@ -185,14 +185,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Controls.Add(this.searchSupplierInvoiceCost1);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(171, 310);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // searchSupplierInvoiceCost1
             // 
-            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(0, 0);
+            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(3, 0);
             this.searchSupplierInvoiceCost1.Name = "searchSupplierInvoiceCost1";
-            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(171, 215);
+            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(197, 216);
             this.searchSupplierInvoiceCost1.TabIndex = 0;
             // 
             // RightSideBar
@@ -201,7 +201,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(171, 461);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // BottomPanel
@@ -211,7 +211,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 374);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(613, 87);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 87);
             this.BottomPanel.TabIndex = 2;
             // 
             // PaginationPanel

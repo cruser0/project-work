@@ -6,13 +6,13 @@ namespace API.Models.Services
     {
         internal object GetCharths(List<ClassifySalesByProfit> profit)
         {
-            int activeSale = profit.Where(x=>x.Status.ToLower().Equals("active")).Count();
+            int activeSale = profit.Where(x => x.Status.ToLower().Equals("active")).Count();
             int closedSale = profit.Where(x => x.Status.ToLower().Equals("closed")).Count();
             Dictionary<string, int> ActiveClosedStatusChart = new Dictionary<string, int>();
             ActiveClosedStatusChart.Add("active", activeSale);
-            ActiveClosedStatusChart.Add("closed",closedSale);
+            ActiveClosedStatusChart.Add("closed", closedSale);
 
-
+            return ActiveClosedStatusChart;
         }
     }
 }
