@@ -49,5 +49,12 @@ namespace WinformDotNetFramework.Services
             var returnResult = await GetItem<SaleListChartDTO>(client, "procedure/classify-by-profit", queryString);
             return returnResult;
         }
+        public async Task<Dictionary<string, int>> SalePieChartStatus(ClassifySalesByProfitFilter filter)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
+            var returnResult = await GetItem<Dictionary<string, int>>(client, "procedure/sale-status-chart", queryString);
+            return returnResult;
+        }
     }
 }

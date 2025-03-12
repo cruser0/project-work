@@ -46,7 +46,7 @@ namespace WinformDotNetFramework.Forms
             }
 
             foreach (var item in list.TotalPerDatePerSale)
-                chart2.Series[0].Points.AddXY(item.Date, item.TotalProfit);
+                chart2.Series[0].Points.AddXY(item.Date.Value.ToString("dd/MM/yyyy"), item.TotalProfit);
         }
 
     }
