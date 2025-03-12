@@ -319,47 +319,100 @@ namespace WinformDotNetFramework.Forms.GridForms
             UtilityFunctions.Excel_ClickBtn(SupplierInvoiceDgv, this);
         }
 
+
+        private HashSet<int> modifiedRows = new HashSet<int>();
+        private void SupplierInvoiceDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                modifiedRows.Add(e.RowIndex);
+            }
+        }
+
         private async void MassUpdateTSB_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
-         "This action is permanent and it will update all the history bound to this entity!",
-         "Confirm Update?",
-         MessageBoxButtons.YesNo,
-         MessageBoxIcon.Warning);
+                "This action is permanent and it will update all the history bound to this entity!",
+                "Confirm Update?",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    List<SupplierInvoice> newEntities = new List<SupplierInvoice>();
-                    HashSet<int> ids = new HashSet<int>();
-
-                    foreach (DataGridViewCell cell in SupplierInvoiceDgv.SelectedCells)
-                    {
-                        ids.Add(cell.RowIndex);
-                    }
-
-                    foreach (var rowId in ids)
-                    {
-                        if (SupplierInvoiceDgv.Rows[rowId].DataBoundItem is SupplierInvoiceSupplierDTO entity)
-                            newEntities.Add((SupplierInvoice)(object)entity);
-                    }
-                    if (newEntities.Count > 0)
-                    {
-                        string message = await _supplierInvoiceService.MassUpdate(newEntities);
-                        MessageBox.Show(message);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Row was selected");
-                    }
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
+            if (result != DialogResult.Yes)
             {
                 MessageBox.Show("Action canceled.");
+                return;
+            }
+
+            try
+            {
+                List<SupplierInvoice> modifiedEntities = new List<SupplierInvoice>();
+
+                // Itera solo sulle righe che sono state modificate
+                foreach (int rowIndex in modifiedRows)
+                {
+                    if (SupplierInvoiceDgv.Rows[rowIndex].DataBoundItem is SupplierInvoiceSupplierDTO entity)
+                    {
+                        modifiedEntities.Add((SupplierInvoice)(object)entity);
+                    }
+                }
+
+                if (modifiedEntities.Count > 0)
+                {
+                    string message = await _supplierInvoiceService.MassUpdate(modifiedEntities);
+                    MessageBox.Show(message);
+
+                    // Resetta le righe modificate dopo l'update
+                    modifiedRows.Clear();
+                    ToggleEditButton.PerformClick();
+                }
+                else
+                {
+                    MessageBox.Show("No modified rows to update.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private void ToggleEditButton_Click(object sender, EventArgs e)
+        {
+            // Inverti lo stato ReadOnly
+            SupplierInvoiceDgv.ReadOnly = !SupplierInvoiceDgv.ReadOnly;
+
+            if (SupplierInvoiceDgv.ReadOnly) // Modalità visualizzazione
+            {
+                if (modifiedRows.Count > 0)
+                {
+                    DialogResult result = MessageBox.Show(
+                        "You haven't saved your changes, and all edits will be lost!\nDo you want to continue?",
+                        "Warning",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.No)
+                    {
+                        // Se l'utente sceglie "No", torna in modalità modifica
+                        SupplierInvoiceDgv.ReadOnly = false;
+                        return;
+                    }
+
+                    // Reset modifiche solo se l'utente conferma
+                    MyControl_ButtonClicked_Pagination(this, EventArgs.Empty);
+                    modifiedRows.Clear();
+                }
+
+                // Ripristina modalità visualizzazione
+                SupplierInvoiceDgv.Cursor = Cursors.Default;
+                SupplierInvoiceDgv.CellDoubleClick += MyControl_OpenDetails_Clicked;
+                SupplierInvoiceDgv.CellValueChanged -= SupplierInvoiceDgv_CellValueChanged;
+            }
+            else // Modalità modifica attivata
+            {
+                SupplierInvoiceDgv.Cursor = Cursors.IBeam; // Migliore per l'editing di testo
+                SupplierInvoiceDgv.CellDoubleClick -= MyControl_OpenDetails_Clicked;
+                SupplierInvoiceDgv.CellValueChanged += SupplierInvoiceDgv_CellValueChanged;
             }
         }
     }

@@ -46,6 +46,7 @@ namespace WinformDotNetFramework.Forms
             this.SaleShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.UserShowTS = new System.Windows.Forms.ToolStripButton();
+            this.ShowChartbutton = new System.Windows.Forms.ToolStripButton();
             this.EditTP = new System.Windows.Forms.TabPage();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
@@ -84,6 +85,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -105,7 +107,7 @@ namespace WinformDotNetFramework.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(993, 87);
+            this.panel1.Size = new System.Drawing.Size(1077, 87);
             this.panel1.TabIndex = 8;
             // 
             // tabControl
@@ -120,7 +122,7 @@ namespace WinformDotNetFramework.Forms
             this.tabControl.Location = new System.Drawing.Point(0, 22);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(993, 65);
+            this.tabControl.Size = new System.Drawing.Size(1077, 65);
             this.tabControl.TabIndex = 0;
             // 
             // ShowTP
@@ -130,7 +132,7 @@ namespace WinformDotNetFramework.Forms
             this.ShowTP.Location = new System.Drawing.Point(4, 24);
             this.ShowTP.Name = "ShowTP";
             this.ShowTP.Padding = new System.Windows.Forms.Padding(3);
-            this.ShowTP.Size = new System.Drawing.Size(985, 37);
+            this.ShowTP.Size = new System.Drawing.Size(1069, 37);
             this.ShowTP.TabIndex = 0;
             this.ShowTP.Text = "Show";
             // 
@@ -151,10 +153,12 @@ namespace WinformDotNetFramework.Forms
             this.toolStripSeparator2,
             this.SaleShowTS,
             this.toolStripSeparator3,
-            this.UserShowTS});
+            this.UserShowTS,
+            this.toolStripSeparator10,
+            this.ShowChartbutton});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
-            this.Show.Size = new System.Drawing.Size(979, 31);
+            this.Show.Size = new System.Drawing.Size(1063, 31);
             this.Show.TabIndex = 0;
             this.Show.Text = "Show";
             // 
@@ -269,6 +273,17 @@ namespace WinformDotNetFramework.Forms
             this.UserShowTS.Text = "User";
             this.UserShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // ShowChartbutton
+            // 
+            this.ShowChartbutton.AutoSize = false;
+            this.ShowChartbutton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ShowChartbutton.Image = ((System.Drawing.Image)(resources.GetObject("ShowChartbutton.Image")));
+            this.ShowChartbutton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ShowChartbutton.Name = "ShowChartbutton";
+            this.ShowChartbutton.Size = new System.Drawing.Size(100, 28);
+            this.ShowChartbutton.Text = "Chart";
+            this.ShowChartbutton.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // EditTP
             // 
             this.EditTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(214)))), ((int)(((byte)(222)))));
@@ -276,7 +291,7 @@ namespace WinformDotNetFramework.Forms
             this.EditTP.Location = new System.Drawing.Point(4, 24);
             this.EditTP.Name = "EditTP";
             this.EditTP.Padding = new System.Windows.Forms.Padding(3);
-            this.EditTP.Size = new System.Drawing.Size(985, 37);
+            this.EditTP.Size = new System.Drawing.Size(1069, 37);
             this.EditTP.TabIndex = 1;
             this.EditTP.Text = "Edit";
             // 
@@ -300,7 +315,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton19});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(979, 31);
+            this.toolStrip3.Size = new System.Drawing.Size(1063, 31);
             this.toolStrip3.TabIndex = 1;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -414,7 +429,7 @@ namespace WinformDotNetFramework.Forms
             this.AddTP.Location = new System.Drawing.Point(4, 24);
             this.AddTP.Name = "AddTP";
             this.AddTP.Padding = new System.Windows.Forms.Padding(3);
-            this.AddTP.Size = new System.Drawing.Size(985, 37);
+            this.AddTP.Size = new System.Drawing.Size(1069, 37);
             this.AddTP.TabIndex = 2;
             this.AddTP.Text = "Create";
             // 
@@ -438,7 +453,7 @@ namespace WinformDotNetFramework.Forms
             this.UserCreateTS});
             this.Create.Location = new System.Drawing.Point(3, 3);
             this.Create.Name = "Create";
-            this.Create.Size = new System.Drawing.Size(979, 31);
+            this.Create.Size = new System.Drawing.Size(1063, 31);
             this.Create.TabIndex = 1;
             this.Create.Text = "Show";
             // 
@@ -560,7 +575,7 @@ namespace WinformDotNetFramework.Forms
             this.GroupTP.Location = new System.Drawing.Point(4, 24);
             this.GroupTP.Name = "GroupTP";
             this.GroupTP.Padding = new System.Windows.Forms.Padding(3);
-            this.GroupTP.Size = new System.Drawing.Size(985, 37);
+            this.GroupTP.Size = new System.Drawing.Size(1069, 37);
             this.GroupTP.TabIndex = 3;
             this.GroupTP.Text = "Group";
             // 
@@ -576,7 +591,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierGroupTS});
             this.Group.Location = new System.Drawing.Point(3, 3);
             this.Group.Name = "Group";
-            this.Group.Size = new System.Drawing.Size(979, 31);
+            this.Group.Size = new System.Drawing.Size(1063, 31);
             this.Group.TabIndex = 1;
             this.Group.Text = "Customer";
             // 
@@ -621,7 +636,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3});
             this.TS.Location = new System.Drawing.Point(0, 0);
             this.TS.Name = "TS";
-            this.TS.Size = new System.Drawing.Size(993, 22);
+            this.TS.Size = new System.Drawing.Size(1077, 22);
             this.TS.TabIndex = 0;
             this.TS.Text = "toolStrip1";
             // 
@@ -687,16 +702,21 @@ namespace WinformDotNetFramework.Forms
             this.MainPanel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.MainPanel.Location = new System.Drawing.Point(0, 87);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(993, 498);
+            this.MainPanel.Size = new System.Drawing.Size(1077, 498);
             this.MainPanel.TabIndex = 10;
             this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 31);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(993, 585);
+            this.ClientSize = new System.Drawing.Size(1077, 585);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
@@ -780,5 +800,7 @@ namespace WinformDotNetFramework.Forms
         public ToolStripButton CustomerGroupTS;
         public ToolStripButton SupplierGroupTS;
         public ToolStripButton AddFavoriteButton;
+        private ToolStripButton ShowChartbutton;
+        private ToolStripSeparator toolStripSeparator10;
     }
 }

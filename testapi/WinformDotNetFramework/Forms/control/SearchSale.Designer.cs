@@ -89,9 +89,9 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.RevenueFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.RevenueFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RevenueFromTxt.Location = new System.Drawing.Point(3, 243);
+            this.RevenueFromTxt.Location = new System.Drawing.Point(0, 243);
             this.RevenueFromTxt.Name = "RevenueFromTxt";
-            this.RevenueFromTxt.Size = new System.Drawing.Size(154, 20);
+            this.RevenueFromTxt.Size = new System.Drawing.Size(179, 20);
             this.RevenueFromTxt.TabIndex = 15;
             // 
             // label2
@@ -109,9 +109,9 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.RevenueToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.RevenueToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RevenueToTxt.Location = new System.Drawing.Point(3, 283);
+            this.RevenueToTxt.Location = new System.Drawing.Point(0, 283);
             this.RevenueToTxt.Name = "RevenueToTxt";
-            this.RevenueToTxt.Size = new System.Drawing.Size(154, 20);
+            this.RevenueToTxt.Size = new System.Drawing.Size(179, 20);
             this.RevenueToTxt.TabIndex = 13;
             // 
             // label1
@@ -167,9 +167,9 @@ namespace WinformDotNetFramework.Forms.control
             "All",
             "Active",
             "Closed"});
-            this.StatusCB.Location = new System.Drawing.Point(3, 202);
+            this.StatusCB.Location = new System.Drawing.Point(0, 202);
             this.StatusCB.Name = "StatusCB";
-            this.StatusCB.Size = new System.Drawing.Size(155, 21);
+            this.StatusCB.Size = new System.Drawing.Size(180, 21);
             this.StatusCB.TabIndex = 5;
             // 
             // BNTextBox
@@ -177,10 +177,10 @@ namespace WinformDotNetFramework.Forms.control
             this.BNTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BNTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BNTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.BNTextBox.Location = new System.Drawing.Point(3, 39);
+            this.BNTextBox.Location = new System.Drawing.Point(0, 39);
             this.BNTextBox.MaxLength = 50;
             this.BNTextBox.Name = "BNTextBox";
-            this.BNTextBox.Size = new System.Drawing.Size(155, 20);
+            this.BNTextBox.Size = new System.Drawing.Size(180, 20);
             this.BNTextBox.TabIndex = 1;
             // 
             // DateToDTP
@@ -188,10 +188,10 @@ namespace WinformDotNetFramework.Forms.control
             this.DateToDTP.Checked = false;
             this.DateToDTP.CustomFormat = "ddMMMMyyyy";
             this.DateToDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToDTP.Location = new System.Drawing.Point(3, 161);
+            this.DateToDTP.Location = new System.Drawing.Point(0, 161);
             this.DateToDTP.Name = "DateToDTP";
             this.DateToDTP.ShowCheckBox = true;
-            this.DateToDTP.Size = new System.Drawing.Size(155, 20);
+            this.DateToDTP.Size = new System.Drawing.Size(180, 20);
             this.DateToDTP.TabIndex = 6;
             // 
             // BookingNumberLbl
@@ -222,10 +222,10 @@ namespace WinformDotNetFramework.Forms.control
             this.DateFromDTP.Checked = false;
             this.DateFromDTP.CustomFormat = "ddMMMMyyyy";
             this.DateFromDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromDTP.Location = new System.Drawing.Point(3, 120);
+            this.DateFromDTP.Location = new System.Drawing.Point(0, 120);
             this.DateFromDTP.Name = "DateFromDTP";
             this.DateFromDTP.ShowCheckBox = true;
-            this.DateFromDTP.Size = new System.Drawing.Size(155, 20);
+            this.DateFromDTP.Size = new System.Drawing.Size(180, 20);
             this.DateFromDTP.TabIndex = 5;
             // 
             // BoLTextBox
@@ -233,10 +233,10 @@ namespace WinformDotNetFramework.Forms.control
             this.BoLTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.BoLTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BoLTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.BoLTextBox.Location = new System.Drawing.Point(3, 80);
+            this.BoLTextBox.Location = new System.Drawing.Point(0, 80);
             this.BoLTextBox.MaxLength = 50;
             this.BoLTextBox.Name = "BoLTextBox";
-            this.BoLTextBox.Size = new System.Drawing.Size(155, 20);
+            this.BoLTextBox.Size = new System.Drawing.Size(180, 20);
             this.BoLTextBox.TabIndex = 2;
             // 
             // SearchSale

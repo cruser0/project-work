@@ -375,6 +375,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             UtilityFunctions.Excel_ClickBtn(userDgv, this);
         }
 
+        private HashSet<int> modifiedRows = new HashSet<int>();
+
+        private void userDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                modifiedRows.Add(e.RowIndex);
+            }
+        }
+
         private async void MassUpdateTSB_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
@@ -383,40 +393,50 @@ namespace WinformDotNetFramework.Forms.GridForms
          MessageBoxButtons.YesNo,
          MessageBoxIcon.Warning);
 
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    List<UserDtoID> newEntities = new List<UserDtoID>();
-                    HashSet<int> ids = new HashSet<int>();
 
-                    foreach (DataGridViewCell cell in userDgv.SelectedCells)
-                    {
-                        ids.Add(cell.RowIndex);
-                    }
-
-                    foreach (var rowId in ids)
-                    {
-                        if (userDgv.Rows[rowId].DataBoundItem is UserRoleDTO entity)
-                            newEntities.Add((UserDtoID)(object)entity);
-                    }
-                    if (newEntities.Count > 0)
-                    {
-                        string message = await _userService.MassUpdate(newEntities);
-                        MessageBox.Show(message);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No Row was selected");
-                    }
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
+            if (result != DialogResult.Yes)
             {
                 MessageBox.Show("Action canceled.");
+                return;
+            }
+
+            try
+            {
+                List<UserDtoID> modifiedEntities = new List<UserDtoID>();
+
+                // Itera solo sulle righe che sono state modificate
+                foreach (int rowIndex in modifiedRows)
+                {
+                    if (userDgv.Rows[rowIndex].DataBoundItem is UserRoleDTO entity)
+                    {
+                        modifiedEntities.Add((UserDtoID)(object)entity);
+                    }
+                }
+
+                if (modifiedEntities.Count > 0)
+                {
+                    string message = await _userService.MassUpdate(modifiedEntities);
+                    MessageBox.Show(message);
+
+                    // Resetta le righe modificate dopo l'update
+                    modifiedRows.Clear();
+                    ToggleEditButton.PerformClick();
+                }
+                else
+                {
+                    MessageBox.Show("No modified rows to update.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
+
+        private void ToggleEditButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

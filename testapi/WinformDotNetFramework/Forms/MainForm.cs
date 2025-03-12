@@ -179,6 +179,10 @@ namespace WinformDotNetFramework.Forms
                     child = new UserProfileForm();
                     break;
 
+                case "Show Chart":
+                    child = new testChart();
+                    break;
+
                 case "Show Customer":
                     child = new CustomerForm();
                     break;
@@ -455,6 +459,7 @@ namespace WinformDotNetFramework.Forms
                     { "Show Supplier Invoice Cost", SupplierInvoiceCostShowTS },
                     { "Show Sale", SaleShowTS },
                     { "Show User", UserShowTS },
+                    {"Show Chart", ShowChartbutton},
                     { "Create Customer", CustomerCreateTS },
                     { "Create Customer Invoice", CustomerInvoiceCreateTS },
                     { "Create Customer Invoice Cost", CustomerInvoiceCostCreateTS },
@@ -569,17 +574,49 @@ namespace WinformDotNetFramework.Forms
 
         private void AttachMouseDownToControls(Control parent, HashSet<Control> controlsWithEvent)
         {
+            // Skip ComboBox controls
+
             // Only attach the event if it hasn't already been attached to this control
             if (!controlsWithEvent.Contains(parent))
             {
-                parent.MouseClick += FormControl_MouseDown;
+                if (!(parent is ComboBox cb))
+                {
+                    parent.MouseClick += FormControl_MouseDown;
+                }
+                else
+                {
+                    cb.DropDown += FormControl_DropDown;
+                }
                 controlsWithEvent.Add(parent);  // Track that the event is attached
             }
+
+
 
             // Recursively attach the event to all child controls
             foreach (Control child in parent.Controls)
             {
                 AttachMouseDownToControls(child, controlsWithEvent); // Recursive call for nested controls
+            }
+        }
+
+        private void FormControl_DropDown(object sender, EventArgs e)
+        {
+            if (sender is Control control)
+            {
+                // Traverse up the control tree to find the parent Form
+                Form form = control.FindForm();
+
+                // Now you have the correct Form object, regardless of the control's nesting
+                if (form != null)
+                {
+                    form.BringToFront();
+                    form.Focus();
+
+                    if (favoriteList.Contains(form.Text))
+                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
+                    else
+                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
+                }
             }
         }
 

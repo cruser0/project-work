@@ -49,6 +49,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.userDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.PdfTSB = new System.Windows.Forms.ToolStripButton();
@@ -60,6 +61,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserLastNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserEmailTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -75,9 +77,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1.Controls.Add(this.FilterPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(613, 0);
+            this.panel1.Location = new System.Drawing.Point(584, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(171, 461);
+            this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 0;
             // 
             // FilterPanel
@@ -95,7 +97,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.FilterPanel.Controls.Add(this.nameTxt);
             this.FilterPanel.Location = new System.Drawing.Point(0, 89);
             this.FilterPanel.Name = "FilterPanel";
-            this.FilterPanel.Size = new System.Drawing.Size(171, 310);
+            this.FilterPanel.Size = new System.Drawing.Size(200, 369);
             this.FilterPanel.TabIndex = 1;
             // 
             // label4
@@ -174,7 +176,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.rolesListBox.Location = new System.Drawing.Point(3, 164);
             this.rolesListBox.MinimumSize = new System.Drawing.Size(4, 378);
             this.rolesListBox.Name = "rolesListBox";
-            this.rolesListBox.Size = new System.Drawing.Size(155, 364);
+            this.rolesListBox.Size = new System.Drawing.Size(177, 364);
             this.rolesListBox.TabIndex = 4;
             this.rolesListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.rolesListBox_ItemCheck);
             this.rolesListBox.Click += new System.EventHandler(this.rolesListBox_Click);
@@ -184,7 +186,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.Emailtxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.Emailtxt.Location = new System.Drawing.Point(3, 114);
             this.Emailtxt.Name = "Emailtxt";
-            this.Emailtxt.Size = new System.Drawing.Size(155, 20);
+            this.Emailtxt.Size = new System.Drawing.Size(177, 20);
             this.Emailtxt.TabIndex = 2;
             // 
             // lastNameTxt
@@ -192,7 +194,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.lastNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.lastNameTxt.Location = new System.Drawing.Point(3, 72);
             this.lastNameTxt.Name = "lastNameTxt";
-            this.lastNameTxt.Size = new System.Drawing.Size(155, 20);
+            this.lastNameTxt.Size = new System.Drawing.Size(177, 20);
             this.lastNameTxt.TabIndex = 1;
             // 
             // nameTxt
@@ -200,7 +202,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.nameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.nameTxt.Location = new System.Drawing.Point(3, 24);
             this.nameTxt.Name = "nameTxt";
-            this.nameTxt.Size = new System.Drawing.Size(155, 20);
+            this.nameTxt.Size = new System.Drawing.Size(177, 20);
             this.nameTxt.TabIndex = 0;
             // 
             // RightSideBar
@@ -209,7 +211,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(171, 461);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // panel2
@@ -219,7 +221,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 374);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(613, 87);
+            this.panel2.Size = new System.Drawing.Size(584, 87);
             this.panel2.TabIndex = 1;
             // 
             // PaginationPanel
@@ -246,7 +248,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(613, 374);
+            this.panel3.Size = new System.Drawing.Size(584, 374);
             this.panel3.TabIndex = 2;
             // 
             // userDgv
@@ -261,7 +263,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.userDgv.Name = "userDgv";
             this.userDgv.ReadOnly = true;
             this.userDgv.RowTemplate.Height = 25;
-            this.userDgv.Size = new System.Drawing.Size(613, 349);
+            this.userDgv.Size = new System.Drawing.Size(584, 349);
             this.userDgv.TabIndex = 0;
             this.userDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.userDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDgv_RightClick);
@@ -270,16 +272,28 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToggleEditButton,
             this.toolStripButton2,
             this.toolStripSeparator1,
             this.PdfTSB,
             this.ExcelTSB,
+            this.toolStripSeparator2,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(613, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(584, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // toolStripButton2
             // 
@@ -385,6 +399,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserRoleTsmi.Text = "Show Roles";
             this.UserRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // UserGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,5 +462,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
+        private ToolStripButton ToggleEditButton;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

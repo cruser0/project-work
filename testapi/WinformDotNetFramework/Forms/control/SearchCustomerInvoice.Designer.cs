@@ -103,17 +103,17 @@ namespace WinformDotNetFramework.Forms.control
             // AmountToTxt
             // 
             this.AmountToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.AmountToTxt.Location = new System.Drawing.Point(3, 202);
+            this.AmountToTxt.Location = new System.Drawing.Point(0, 202);
             this.AmountToTxt.Name = "AmountToTxt";
-            this.AmountToTxt.Size = new System.Drawing.Size(154, 20);
+            this.AmountToTxt.Size = new System.Drawing.Size(179, 20);
             this.AmountToTxt.TabIndex = 13;
             // 
             // AmountFromTxt
             // 
             this.AmountFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.AmountFromTxt.Location = new System.Drawing.Point(3, 161);
+            this.AmountFromTxt.Location = new System.Drawing.Point(0, 161);
             this.AmountFromTxt.Name = "AmountFromTxt";
-            this.AmountFromTxt.Size = new System.Drawing.Size(154, 20);
+            this.AmountFromTxt.Size = new System.Drawing.Size(179, 20);
             this.AmountFromTxt.TabIndex = 12;
             // 
             // label1
@@ -158,9 +158,9 @@ namespace WinformDotNetFramework.Forms.control
             "All",
             "Paid",
             "Unpaid"});
-            this.StatusCmb.Location = new System.Drawing.Point(3, 117);
+            this.StatusCmb.Location = new System.Drawing.Point(0, 117);
             this.StatusCmb.Name = "StatusCmb";
-            this.StatusCmb.Size = new System.Drawing.Size(155, 21);
+            this.StatusCmb.Size = new System.Drawing.Size(180, 21);
             this.StatusCmb.TabIndex = 5;
             // 
             // DateToClnd
@@ -168,10 +168,10 @@ namespace WinformDotNetFramework.Forms.control
             this.DateToClnd.Checked = false;
             this.DateToClnd.CustomFormat = "ddMMMMyyyy";
             this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToClnd.Location = new System.Drawing.Point(3, 76);
+            this.DateToClnd.Location = new System.Drawing.Point(0, 76);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
-            this.DateToClnd.Size = new System.Drawing.Size(155, 20);
+            this.DateToClnd.Size = new System.Drawing.Size(180, 20);
             this.DateToClnd.TabIndex = 6;
             // 
             // DateFromClnd
@@ -179,10 +179,10 @@ namespace WinformDotNetFramework.Forms.control
             this.DateFromClnd.Checked = false;
             this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
             this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromClnd.Location = new System.Drawing.Point(3, 36);
+            this.DateFromClnd.Location = new System.Drawing.Point(0, 36);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
-            this.DateFromClnd.Size = new System.Drawing.Size(155, 20);
+            this.DateFromClnd.Size = new System.Drawing.Size(180, 20);
             this.DateFromClnd.TabIndex = 5;
             // 
             // SearchCustomerInvoice
