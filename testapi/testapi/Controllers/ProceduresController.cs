@@ -194,7 +194,8 @@ namespace API.Controllers
 
         private async Task<List<TotalAmountSpentPerSupplierInvoice>> FilterSupplierInvoicesByAmountSpent(TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
-            return await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw($"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
+            return await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw(
+                $"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
                 $"@SupplierInvoiceID," +
                 $"@TotalSpentFrom," +
                 $"@TotalSpentTo," +
@@ -210,7 +211,7 @@ namespace API.Controllers
                 new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
-                new SqlParameter("@CustomerCountry", filter.SupplierCountry ?? (object)DBNull.Value)).ToListAsync();
+                new SqlParameter("@SupplierCountry", filter.SupplierCountry ?? (object)DBNull.Value)).ToListAsync();
         }
 
 
