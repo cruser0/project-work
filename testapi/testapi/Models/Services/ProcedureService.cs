@@ -61,7 +61,7 @@ namespace API.Models.Services
             };
         }
 
-        public Dictionary<DateTime, decimal> TemporalSeries<T>(List<T> lista, string dateName, string totalName)
+        public Dictionary<DateTime, decimal> DateTimeDecimalChart<T>(List<T> lista, string dateName, string totalName)
         {
             if (lista == null || lista.Count == 0)
                 throw new ArgumentException("The list cannot be null or empty.");
@@ -89,8 +89,36 @@ namespace API.Models.Services
             }
             return dict;
         }
+        public Dictionary<string, decimal> StringAndDecimalChart<T>(List<T> lista, string stringName, string decimalName)
+        {
+            if (lista == null || lista.Count == 0)
+                throw new ArgumentException("The list cannot be null or empty.");
 
-        public Dictionary<string, int> PieChart<T>(List<T> lista, string statusName)
+            Dictionary<string, decimal> dict = new Dictionary<string, decimal>();
+
+            foreach (T entity in lista)
+            {
+                var properties = entity.GetType().GetProperties();
+                string? X = null;
+                decimal? Y = null;
+
+                foreach (var property in properties)
+                {
+                    if (property.Name.ToLower() == stringName.ToLower())
+                        X = property.GetValue(entity) as string;
+                    else if (property.Name.ToLower() == decimalName.ToLower())
+                        Y = property.GetValue(entity) as decimal?;
+                }
+
+                if (dict.ContainsKey((string)X))
+                    dict[X] += (decimal)Y;
+                else
+                    dict[X] = (decimal)Y;
+            }
+            return dict;
+        }
+
+        public Dictionary<string, int> StringIntChart<T>(List<T> lista, string statusName)
         {
             if (lista == null || lista.Count == 0)
                 throw new ArgumentException("The list cannot be null or empty.");

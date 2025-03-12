@@ -25,20 +25,21 @@ namespace API.Controllers
 
 
         [HttpGet("sale-status-chart")]
-        public async Task<IActionResult> SalePieChart([FromQuery] ClassifySalesByProfitFilter filter)
+        public async Task<IActionResult> SaleStatusChart([FromQuery] ClassifySalesByProfitFilter filter)
         {
             var sales = await FilterSalesByProfit(filter);
 
-            Dictionary<string, int> returnValue = _procedureService.PieChart(sales, "status");
+            Dictionary<string, int> returnValue = _procedureService.StringIntChart(sales, "status");
             return Ok(returnValue);
         }
+
 
         [HttpGet("customer-invoice-status-chart")]
         public async Task<IActionResult> CustomerInvoicePieChart([FromQuery] TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
             var customerInvoices = await FilterCustomerInvoicesByAmountGained(filter);
 
-            Dictionary<string, int> returnValue = _procedureService.PieChart(customerInvoices, "status");
+            Dictionary<string, int> returnValue = _procedureService.StringIntChart(customerInvoices, "status");
             return Ok(returnValue);
         }
 
@@ -47,7 +48,7 @@ namespace API.Controllers
         {
             var supplierInvoices = await FilterSupplierInvoicesByAmountSpent(filter);
 
-            Dictionary<string, int> returnValue = _procedureService.PieChart(supplierInvoices, "status");
+            Dictionary<string, int> returnValue = _procedureService.StringIntChart(supplierInvoices, "status");
             return Ok(returnValue);
         }
 
