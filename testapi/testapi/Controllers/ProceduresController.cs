@@ -57,7 +57,7 @@ namespace API.Controllers
         {
             var sales = await FilterSalesByProfit(filter);
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(sales, "SaleDate", "TotalRevenue");
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(sales, "SaleDate", "Profit");
             return Ok(returnValue);
         }
 
@@ -66,7 +66,7 @@ namespace API.Controllers
         {
             var customerInvoices = await FilterCustomerInvoicesByAmountGained(filter);
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(customerInvoices, "InvoiceDate", "InvoiceAmount");
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(customerInvoices, "InvoiceDate", "TotalGained");
             return Ok(returnValue);
         }
 
@@ -75,7 +75,7 @@ namespace API.Controllers
         {
             var supplierInvoices = await FilterSupplierInvoicesByAmountSpent(filter);
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(supplierInvoices, "InvoiceDate", "InvoiceAmount");
+            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(supplierInvoices, "InvoiceDate", "TotalSpent");
             return Ok(returnValue);
         }
 
