@@ -8,7 +8,7 @@ using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
 
-namespace WinformDotNetFramework
+namespace WinformDotNetFramework.Forms
 {
     public partial class testChart : Form
     {

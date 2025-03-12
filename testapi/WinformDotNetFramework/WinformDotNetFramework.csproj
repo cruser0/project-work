@@ -517,10 +517,10 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ValueService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="testChart.cs">
+    <Compile Include="Forms\testChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="testChart.Designer.cs">
+    <Compile Include="Forms\testChart.Designer.cs">
       <DependentUpon>testChart.cs</DependentUpon>
     </Compile>
     <Compile Include="UserAccessInfo.cs" />
@@ -701,7 +701,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="testChart.resx">
+    <EmbeddedResource Include="Forms\testChart.resx">
       <DependentUpon>testChart.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

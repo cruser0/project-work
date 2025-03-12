@@ -31,7 +31,7 @@ namespace WinformDotNetFramework
                 }
 
                 // If login is successful, start the main form
-                using (GraphTestForm mainForm = new GraphTestForm())
+                using (MainForm mainForm = new MainForm())
                 {
                     if (mainForm.ShowDialog() == DialogResult.Abort)
                     {
