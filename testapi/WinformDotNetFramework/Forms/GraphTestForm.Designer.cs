@@ -65,20 +65,24 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(804, 90);
+            this.chart1.Location = new System.Drawing.Point(791, 90);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(10)))), ((int)(((byte)(14))))),
-        System.Drawing.Color.OrangeRed,
-        System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(69)))), ((int)(((byte)(235))))),
-        System.Drawing.Color.Yellow};
+        System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(28)))), ((int)(((byte)(28))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(141)))), ((int)(((byte)(141))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(232)))), ((int)(((byte)(76)))), ((int)(((byte)(76))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(194)))), ((int)(((byte)(50)))), ((int)(((byte)(50))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(139)))), ((int)(((byte)(242)))), ((int)(((byte)(242))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(79)))), ((int)(((byte)(150)))), ((int)(((byte)(150))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(179)))), ((int)(((byte)(161)))), ((int)(((byte)(161))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))))};
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
+            this.chart1.Size = new System.Drawing.Size(313, 300);
             this.chart1.TabIndex = 9;
             this.chart1.Text = "chart1";
             // 

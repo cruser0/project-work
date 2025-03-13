@@ -244,6 +244,12 @@
     <Compile Include="Forms\control\formDockButton.Designer.cs">
       <DependentUpon>formDockButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\control\GraphDropDownMenuUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\GraphDropDownMenuUserControl.Designer.cs">
+      <DependentUpon>GraphDropDownMenuUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\IntegerTextBoxUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -303,6 +309,12 @@
     </Compile>
     <Compile Include="Forms\control\SearchSale.Designer.cs">
       <DependentUpon>SearchSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\control\SearchSaleReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchSaleReport.Designer.cs">
+      <DependentUpon>SearchSaleReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\control\SearchSupplier.cs">
       <SubType>UserControl</SubType>
@@ -478,6 +490,12 @@
     <Compile Include="Forms\SaleForm.Designer.cs">
       <DependentUpon>SaleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SaleReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SaleReportForm.Designer.cs">
+      <DependentUpon>SaleReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -581,6 +599,9 @@
     <EmbeddedResource Include="Forms\control\formDockButton.resx">
       <DependentUpon>formDockButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\GraphDropDownMenuUserControl.resx">
+      <DependentUpon>GraphDropDownMenuUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\IntegerTextBoxUserControl.resx">
       <DependentUpon>IntegerTextBoxUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -610,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\SearchSale.resx">
       <DependentUpon>SearchSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchSaleReport.resx">
+      <DependentUpon>SearchSaleReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\SearchSupplier.resx">
       <DependentUpon>SearchSupplier.cs</DependentUpon>
@@ -698,6 +722,9 @@
     <EmbeddedResource Include="Forms\SaleForm.resx">
       <DependentUpon>SaleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SaleReportForm.resx">
+      <DependentUpon>SaleReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -746,6 +773,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Resources\PieChart-removebg-preview.png" />
+    <None Include="Properties\Resources\BarChart-removebg-preview.png" />
+    <None Include="Properties\Resources\BarChart-nobg.png" />
+    <None Include="Properties\Resources\HorizontalChart-removebg-preview.png" />
+    <None Include="Properties\Resources\LineChart-removebg-preview.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

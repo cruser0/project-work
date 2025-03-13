@@ -181,7 +181,9 @@ namespace API.Controllers
                  "@Status," +
                  "@CustomerName," +
                  "@CustomerCountry," +
-                 "@SaleID",
+                 "@SaleID,"+
+                 "@DateFrom," +
+                 "@DateTo",
                  new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
                  new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
                  new SqlParameter("@TotalRevenueFrom", filter.TotalRevenueFrom ?? (object)DBNull.Value),
@@ -195,7 +197,9 @@ namespace API.Controllers
                  new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                  new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
                  new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
-                 new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value)).ToListAsync();
+                 new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value),
+                 new SqlParameter("@DateFrom", filter.DateFrom ?? (object)DBNull.Value),
+                 new SqlParameter("@DateTo", filter.DateTo ?? (object)DBNull.Value)).ToListAsync();
         }
 
         private async Task<List<TotalAmountGainedPerCustomerInvoice>> FilterCustomerInvoicesByAmountGained(TotalAmountGainedPerCustomerInvoiceFilter filter)
