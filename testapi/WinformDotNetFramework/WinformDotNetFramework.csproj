@@ -753,8 +753,6 @@
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <EmbeddedResource Include="Reports\SaleTemporalReport.rdlc" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Charts.SaleCountryTotalDTO.datasource" />
-    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Charts.SaleDateTotalDTO.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Charts.SaleListChartDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
