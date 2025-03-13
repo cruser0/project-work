@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button2 = new System.Windows.Forms.Button();
             this.ReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.DockButton = new System.Windows.Forms.Button();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.searchSaleReport1 = new WinformDotNetFramework.Forms.control.SearchSaleReport();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.DockButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SearchPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -70,11 +70,21 @@
             this.splitContainer1.SplitterDistance = 580;
             this.splitContainer1.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(502, 44);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // ReportViewer
             // 
             this.ReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportViewer.DocumentMapWidth = 56;
-            this.ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Report1.rdlc";
+            this.ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportSales.rdlc";
             this.ReportViewer.Location = new System.Drawing.Point(0, 0);
             this.ReportViewer.Name = "ReportViewer";
             this.ReportViewer.ServerReport.BearerToken = null;
@@ -91,28 +101,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.panel2.Controls.Add(this.DockButton);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 27);
-            this.panel2.TabIndex = 6;
-            // 
-            // DockButton
-            // 
-            this.DockButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.DockButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DockButton.Location = new System.Drawing.Point(0, 0);
-            this.DockButton.Name = "DockButton";
-            this.DockButton.Size = new System.Drawing.Size(20, 25);
-            this.DockButton.TabIndex = 0;
-            this.DockButton.Text = ">";
-            this.DockButton.UseVisualStyleBackColor = true;
-            this.DockButton.Click += new System.EventHandler(this.DockButton_Click);
             // 
             // SearchPanel
             // 
@@ -136,16 +124,6 @@
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(502, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // searchSaleReport1
             // 
             this.searchSaleReport1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -153,6 +131,28 @@
             this.searchSaleReport1.Name = "searchSaleReport1";
             this.searchSaleReport1.Size = new System.Drawing.Size(200, 434);
             this.searchSaleReport1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.panel2.Controls.Add(this.DockButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 27);
+            this.panel2.TabIndex = 6;
+            // 
+            // DockButton
+            // 
+            this.DockButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.DockButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.DockButton.Location = new System.Drawing.Point(0, 0);
+            this.DockButton.Name = "DockButton";
+            this.DockButton.Size = new System.Drawing.Size(20, 25);
+            this.DockButton.TabIndex = 0;
+            this.DockButton.Text = ">";
+            this.DockButton.UseVisualStyleBackColor = true;
+            this.DockButton.Click += new System.EventHandler(this.DockButton_Click);
             // 
             // SaleReportForm
             // 
@@ -168,8 +168,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.SearchPanel.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

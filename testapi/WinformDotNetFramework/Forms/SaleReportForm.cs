@@ -9,19 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms
 {
     public partial class SaleReportForm : Form
     {
+        ProceduresService _procedureService;
         public SaleReportForm()
         {
+            _procedureService = new ProceduresService();
             InitializeComponent();
-
         }
 
-        private void SaleReportForm_Load(object sender, EventArgs e)
+        private async void SaleReportForm_Load(object sender, EventArgs e)
         {
+            var list=await _procedureService.GetClassifySalesByProfit(new ClassifySalesByProfitFilter());
+            ReportDataSource reportDataSource = new ReportDataSource { Name= "SaleByProfit", Value= list };
+            ReportViewer.LocalReport.DataSources.Add(reportDataSource);
 
             this.ReportViewer.RefreshReport();
         }
@@ -37,15 +43,41 @@ namespace WinformDotNetFramework.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            byte[] bytes = ReportViewer.LocalReport.Render(
-           "PDF", null, out string mimeType, out string encoding,
-           out string filenameExtension, out string[] streamIds,
-           out Warning[] warnings);
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "PDF Files|*.pdf",
+                Title = "Save PDF File",
+                FileName = "Report.pdf" // Default filename
+            };
 
-            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Report.pdf");
-            File.WriteAllBytes(filePath, bytes);
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Cursor = Cursors.WaitCursor;
+                    Application.DoEvents(); // Forza l'aggiornamento dell'interfaccia utente
 
-            MessageBox.Show("PDF generated successfully!");
+                    // Generate the PDF from ReportViewer
+                    byte[] bytes = ReportViewer.LocalReport.Render(
+                        "PDF", null, out string mimeType, out string encoding,
+                        out string filenameExtension, out string[] streamIds,
+                        out Warning[] warnings);
+
+                    // Save the file to the selected path
+                    File.WriteAllBytes(saveFileDialog.FileName, bytes);
+
+                    MessageBox.Show("PDF saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Cursor = Cursors.Default;
+                }
+            }
         }
+
     }
 }
