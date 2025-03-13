@@ -23,15 +23,61 @@ namespace API.Controllers
         }
 
 
+        // classify by profit the records
+        [HttpGet("classify-by-profit")]
+        public async Task<IActionResult> GetClassifySalesByProfit([FromQuery] ClassifySalesByProfitFilter filter)
+        {
+            var profit = await FilterSalesByProfit(filter);
+            return Ok(profit);
 
-        [HttpGet("sale-status-chart")]
+        }
+
+
+        [HttpGet("chart/sale-status")]
         public async Task<IActionResult> SaleStatusChart([FromQuery] ClassifySalesByProfitFilter filter)
         {
             var sales = await FilterSalesByProfit(filter);
 
-            Dictionary<string, int> returnValue = _procedureService.StringIntChart(sales, "status");
+            Dictionary<string, int> returnValue = _procedureService.StringIntChart(sales, "Status");
             return Ok(returnValue);
         }
+        [HttpGet("chart/sale-string-int")]
+        public async Task<IActionResult> SaleFilterMarginChart([FromQuery] ClassifySalesByProfitFilter filter, [FromQuery] string type)
+        {
+            var sales = await FilterSalesByProfit(filter);
+
+            Dictionary<string, int> returnValue = _procedureService.StringIntChart(sales, "SaleMargins");
+            return Ok(returnValue);
+        }
+
+
+
+        [HttpGet("chart/sale-date-decimal")]
+        public async Task<IActionResult> SaleTemporalRevenue([FromQuery] ClassifySalesByProfitFilter filter,[FromQuery] string type)
+        {
+            var sales = await FilterSalesByProfit(filter);
+
+            Dictionary<DateTime, decimal> returnValue = _procedureService.DateTimeDecimalChart(sales, "SaleDate", type);
+            return Ok(returnValue);
+        }
+
+        [HttpGet("chart/sale-string-decimal")]
+        public async Task<IActionResult> SaleCountryProfit([FromQuery] ClassifySalesByProfitFilter filter,[FromQuery] string type)
+        {
+            var sales = await FilterSalesByProfit(filter);
+
+            Dictionary<string, decimal> returnValue = _procedureService.StringAndDecimalChart(sales, "Country", type);
+            return Ok(returnValue);
+        }
+       
+
+
+
+
+
+
+
+
 
 
         [HttpGet("customer-invoice-status-chart")]
@@ -53,21 +99,13 @@ namespace API.Controllers
         }
 
 
-        [HttpGet("sale-temporal")]
-        public async Task<IActionResult> SaleTemporal([FromQuery] ClassifySalesByProfitFilter filter)
-        {
-            var sales = await FilterSalesByProfit(filter);
-
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(sales, "SaleDate", "Profit");
-            return Ok(returnValue);
-        }
 
         [HttpGet("customer-invoice-temporal")]
         public async Task<IActionResult> CustomerInvoiceTemporal([FromQuery] TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
             var customerInvoices = await FilterCustomerInvoicesByAmountGained(filter);
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(customerInvoices, "InvoiceDate", "TotalGained");
+            Dictionary<DateTime, decimal> returnValue = _procedureService.DateTimeDecimalChart(customerInvoices, "InvoiceDate", "TotalGained");
             return Ok(returnValue);
         }
 
@@ -76,21 +114,11 @@ namespace API.Controllers
         {
             var supplierInvoices = await FilterSupplierInvoicesByAmountSpent(filter);
 
-            Dictionary<DateTime, decimal> returnValue = _procedureService.TemporalSeries(supplierInvoices, "InvoiceDate", "TotalSpent");
+            Dictionary<DateTime, decimal> returnValue = _procedureService.DateTimeDecimalChart(supplierInvoices, "InvoiceDate", "TotalSpent");
             return Ok(returnValue);
         }
 
 
-        // classify by profit the records
-        [HttpGet("classify-by-profit")]
-        public async Task<IActionResult> GetClassifySalesByProfit([FromQuery] ClassifySalesByProfitFilter filter)
-        {
-            var profit = await FilterSalesByProfit(filter);
-
-            SaleListChartDTO returnCharts = _procedureService.GetCharths(profit);
-            return Ok(returnCharts);
-
-        }
 
 
 
