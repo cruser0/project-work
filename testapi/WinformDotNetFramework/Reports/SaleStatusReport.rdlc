@@ -7,20 +7,13 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>a99c0d9d-c83e-4fc5-9b0b-19edab24f02d</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WinformDotNetFrameworkEntitiesCharts1">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>7796ab0a-8ba4-4a56-b062-c017607eb55e</rd:DataSourceID>
+      <rd:DataSourceID>04857a1e-61bb-41c6-8c7d-fd26a2f461ca</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="SaleStatusChart">
+    <DataSet Name="SaleStatus">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkEntitiesCharts1</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkEntitiesCharts</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -427,7 +420,7 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>SaleStatusChart</DataSetName>
+            <DataSetName>SaleStatus</DataSetName>
             <Height>9.28308cm</Height>
             <Width>17.52453cm</Width>
             <Style>
@@ -440,7 +433,7 @@
             </Style>
           </Chart>
         </ReportItems>
-        <Height>3.65475in</Height>
+        <Height>3.65476in</Height>
         <Style />
       </Body>
       <Width>6.89942in</Width>

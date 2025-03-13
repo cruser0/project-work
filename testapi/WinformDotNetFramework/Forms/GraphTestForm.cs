@@ -14,22 +14,22 @@ namespace WinformDotNetFramework.Forms
 
         public GraphTestForm()
         {
-            InitializeComponent();
             Init();
+            InitializeComponent();
         }
-        private void Init()
+        private async void Init()
         {
             _procedureService = new ProceduresService();
+            orderDetailsData = await _procedureService.GetClassifySalesByProfit(new Entities.Filters.ClassifySalesByProfitFilter());
         }
 
-        private async void GraphTestForm_Load(object sender, EventArgs e)
+        private void GraphTestForm_Load(object sender, EventArgs e)
         {
             reportViewer1.ProcessingMode = ProcessingMode.Local;
 
             reportViewer1.LocalReport.SubreportProcessing +=
                         new SubreportProcessingEventHandler(DemoSubreportProcessingEventHandler);
 
-            orderDetailsData = await _procedureService.GetClassifySalesByProfit(new Entities.Filters.ClassifySalesByProfitFilter());
 
             ReportDataSource dataSource = new ReportDataSource()
             {
@@ -47,9 +47,9 @@ namespace WinformDotNetFramework.Forms
 
         void DemoSubreportProcessingEventHandler(object sender, SubreportProcessingEventArgs e)
         {
-            e.DataSources.Add(new ReportDataSource("SaleStatusChart", orderDetailsData));
-            e.DataSources.Add(new ReportDataSource("SaleProfit", orderDetailsData));
-            e.DataSources.Add(new ReportDataSource("SaleProfitTemporal", orderDetailsData));
+            e.DataSources.Add(new ReportDataSource("SaleStatus", orderDetailsData));
+            e.DataSources.Add(new ReportDataSource("SaleMargins", orderDetailsData));
+            e.DataSources.Add(new ReportDataSource("SaleMArginsTemporal", orderDetailsData));
         }
 
 
