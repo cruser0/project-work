@@ -47,7 +47,7 @@ namespace WinformDotNetFramework.Forms
             {
                 Filter = "PDF Files|*.pdf",
                 Title = "Save PDF File",
-                FileName = "Report.pdf" // Default filename
+                FileName = "Report.pdf" 
             };
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -55,15 +55,13 @@ namespace WinformDotNetFramework.Forms
                 try
                 {
                     Cursor = Cursors.WaitCursor;
-                    Application.DoEvents(); // Forza l'aggiornamento dell'interfaccia utente
+                    Application.DoEvents();
 
-                    // Generate the PDF from ReportViewer
                     byte[] bytes = ReportViewer.LocalReport.Render(
                         "PDF", null, out string mimeType, out string encoding,
                         out string filenameExtension, out string[] streamIds,
                         out Warning[] warnings);
 
-                    // Save the file to the selected path
                     File.WriteAllBytes(saveFileDialog.FileName, bytes);
 
                     MessageBox.Show("PDF saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
