@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Reporting.WinForms;
+using System;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using WinformDotNetFramework.Services;
@@ -15,6 +10,7 @@ namespace WinformDotNetFramework.Forms
     public partial class GraphTestForm : Form
     {
         ProceduresService _procedureService;
+        CustomerService _customerService;
         public GraphTestForm()
         {
             InitializeComponent();
@@ -23,31 +19,56 @@ namespace WinformDotNetFramework.Forms
         private void Init()
         {
             _procedureService = new ProceduresService();
+            _customerService = new CustomerService();
         }
 
         private async void GraphTestForm_Load(object sender, EventArgs e)
         {
-            var list = await _procedureService.GetClassifySalesByProfit(new Entities.Filters.ClassifySalesByProfitFilter());
+            //var data = await _customerService.GetAll(new Entities.Filters.CustomerFilter());
 
-            
-            foreach (var item in list.ActiveClosedStatusChart)
+            var data = await _procedureService.GetClassifySalesByProfit(new Entities.Filters.ClassifySalesByProfitFilter());
+
+            ReportDataSource dataSource = new ReportDataSource()
+            {
+                Name = "DataSet1",
+                Value = data.ClassifySalesByProfit
+            };
+
+            ReportDataSource dataSource2 = new ReportDataSource()
+            {
+                Name = "DataSet2",
+                Value = data.TotalPerCountryPerSale
+            };
+
+
+
+            chart1.Series[0].Points.Clear();
+
+            foreach (var item in data.ProgitNoProfitRiskyChart)
+            {
                 chart1.Series[0].Points.AddXY(item.Key, item.Value);
 
-            foreach (var item in list.ProgitNoProfitRiskyChart)
-                chart3.Series[0].Points.AddXY(item.Key, item.Value);
-            chart4.Series[0].ChartType = SeriesChartType.Bar;
-            chart5.Series[0].ChartType = SeriesChartType.Bar;
-            chart6.Series[0].ChartType = SeriesChartType.Bar;
-            foreach (var item in list.TotalPerCountryPerSale)
-            {
-                chart4.Series[0].Points.AddXY(item.Country, item.TotalRevenue);
-                chart5.Series[0].Points.AddXY(item.Country, item.TotalProfit);
-                chart6.Series[0].Points.AddXY(item.Country, item.TotalSpent);
             }
 
-            foreach (var item in list.TotalPerDatePerSale)
-                chart2.Series[0].Points.AddXY(item.Date.Value.ToString("dd/MM/yyyy"), item.TotalProfit);
+            reportViewer1.LocalReport.DataSources.Add(dataSource);
+            reportViewer1.LocalReport.DataSources.Add(dataSource2);
+            reportViewer1.RefreshReport();
+
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            chart1.SaveImage("Chart1.bmp", ChartImageFormat.Bmp);
+
+
+            ReportParameter ImageLink = new ReportParameter("ImageLink");
+
+            string relativePath = "Chart1.bmp";
+            string fullPath = Path.GetFullPath(relativePath);
+            Uri fileUri = new Uri(fullPath, UriKind.Absolute);
+            ImageLink.Values.Add(fileUri.AbsoluteUri);
+            reportViewer1.LocalReport.SetParameters(ImageLink);
+            reportViewer1.RefreshReport();
+        }
     }
 }
