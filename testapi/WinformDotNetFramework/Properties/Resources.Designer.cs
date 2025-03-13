@@ -63,6 +63,26 @@ namespace WinformDotNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BarChart_nobg {
+            get {
+                object obj = ResourceManager.GetObject("BarChart-nobg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BarChart_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("BarChart-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cropped_logo_removebg_preview_50x50 {
             get {
                 object obj = ResourceManager.GetObject("cropped-logo-removebg-preview_50x50", resourceCulture);
@@ -133,9 +153,39 @@ namespace WinformDotNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HorizontalChart_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("HorizontalChart-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Invoice_Icon {
             get {
                 object obj = ResourceManager.GetObject("Invoice_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LineChart_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("LineChart-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PieChart_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("PieChart-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

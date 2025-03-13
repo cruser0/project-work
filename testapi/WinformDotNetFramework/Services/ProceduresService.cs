@@ -30,6 +30,8 @@ namespace WinformDotNetFramework.Services
                 { "CustomerName", filter.CustomerName ?? null},
                 { "CustomerCountry", filter.CustomerCountry ?? null},
                 { "SaleID", filter.SaleID ?? null},
+                { "DateFrom", filter.DateFrom ?? null},
+                { "DateTo", filter.DateTo ?? null},
 
             };
             foreach (var kvp in filters)
