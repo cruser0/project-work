@@ -124,6 +124,19 @@ namespace WinformDotNetFramework.Services
             return new List<T>();
         }
 
+        //Used for getting a list of items
+        protected async Task<Dictionary<TKey, TValue>> GetDictionary<TKey, TValue>(ClientAPI client, string uri, string queryString)
+        {
+            HttpResponseMessage response = await GetRepsponseGetWithQueryString(client, uri, queryString);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStreamAsync();
+                var items = await JsonSerializer.DeserializeAsync<Dictionary<TKey, TValue>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                return items ?? new Dictionary<TKey, TValue>();
+            }
+            return new Dictionary<TKey, TValue>();
+        }
 
 
         //Used for getting an item by ID

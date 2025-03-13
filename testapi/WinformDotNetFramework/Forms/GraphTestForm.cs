@@ -27,24 +27,29 @@ namespace WinformDotNetFramework.Forms
             //var data = await _customerService.GetAll(new Entities.Filters.CustomerFilter());
 
             var data = await _procedureService.GetClassifySalesByProfit(new Entities.Filters.ClassifySalesByProfitFilter());
+            var data2 = await _procedureService.SaleMarginCount(new Entities.Filters.ClassifySalesByProfitFilter());
 
             ReportDataSource dataSource = new ReportDataSource()
             {
                 Name = "DataSet1",
-                Value = data.ClassifySalesByProfit
+                Value = data
             };
 
             ReportDataSource dataSource2 = new ReportDataSource()
             {
                 Name = "DataSet2",
-                Value = data.TotalPerCountryPerSale
+                Value = data2
             };
+
+            reportViewer1.LocalReport.DataSources.Add(dataSource);
+            reportViewer1.LocalReport.DataSources.Add(dataSource2);
+
 
 
 
             chart1.Series[0].Points.Clear();
 
-            foreach (var item in data.ProgitNoProfitRiskyChart)
+            foreach (var item in data2)
             {
                 chart1.Series[0].Points.AddXY(item.Key, item.Value);
 
@@ -77,7 +82,7 @@ namespace WinformDotNetFramework.Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
-
+            reportViewer1.Refresh();
             if (reportViewer1.LocalReport.ReportEmbeddedResource == "WinformDotNetFramework.Report2.rdlc")
             {
 
@@ -97,17 +102,18 @@ namespace WinformDotNetFramework.Forms
             {
                 reportViewer1.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Report2.rdlc";
                 var data = await _procedureService.GetClassifySalesByProfit(new Entities.Filters.ClassifySalesByProfitFilter());
+                var data2 = await _procedureService.SaleMarginCount(new Entities.Filters.ClassifySalesByProfitFilter());
 
                 ReportDataSource dataSource = new ReportDataSource()
                 {
                     Name = "DataSet1",
-                    Value = data.ClassifySalesByProfit
+                    Value = data
                 };
 
                 ReportDataSource dataSource2 = new ReportDataSource()
                 {
                     Name = "DataSet2",
-                    Value = data.TotalPerCountryPerSale
+                    Value = data2
                 };
 
                 reportViewer1.LocalReport.DataSources.Add(dataSource);

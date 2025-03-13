@@ -1,5 +1,4 @@
 ﻿using API.Models;
-using API.Models.Entities.Charts;
 using API.Models.Filters;
 using API.Models.Procedures;
 using API.Models.Services;
@@ -46,14 +45,14 @@ namespace API.Controllers
         {
             var sales = await FilterSalesByProfit(filter);
 
-            Dictionary<string, int> returnValue = _procedureService.StringIntChart(sales, "SaleMargins");
+            Dictionary<string, int> returnValue = _procedureService.StringIntChart(sales, type);
             return Ok(returnValue);
         }
 
 
 
         [HttpGet("chart/sale-date-decimal")]
-        public async Task<IActionResult> SaleTemporalRevenue([FromQuery] ClassifySalesByProfitFilter filter,[FromQuery] string type)
+        public async Task<IActionResult> SaleTemporalRevenue([FromQuery] ClassifySalesByProfitFilter filter, [FromQuery] string type)
         {
             var sales = await FilterSalesByProfit(filter);
 
@@ -62,14 +61,14 @@ namespace API.Controllers
         }
 
         [HttpGet("chart/sale-string-decimal")]
-        public async Task<IActionResult> SaleCountryProfit([FromQuery] ClassifySalesByProfitFilter filter,[FromQuery] string type)
+        public async Task<IActionResult> SaleCountryProfit([FromQuery] ClassifySalesByProfitFilter filter, [FromQuery] string type)
         {
             var sales = await FilterSalesByProfit(filter);
 
             Dictionary<string, decimal> returnValue = _procedureService.StringAndDecimalChart(sales, "Country", type);
             return Ok(returnValue);
         }
-       
+
 
 
 

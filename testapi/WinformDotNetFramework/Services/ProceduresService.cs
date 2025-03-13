@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using WinformDotNetFramework.Entities.Charts;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Procedures;
 
 namespace WinformDotNetFramework.Services
 {
-    internal class ProceduresService:BaseCallService
+    internal class ProceduresService : BaseCallService
     {
 
         private string BuildQueryParamsClassifySalesByProfit(ClassifySalesByProfitFilter filter)
@@ -36,7 +34,7 @@ namespace WinformDotNetFramework.Services
             };
             foreach (var kvp in filters)
             {
-                    queryParameters.Add($"{kvp.Key}={kvp.Value}");
+                queryParameters.Add($"{kvp.Key}={kvp.Value}");
             }
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
 
@@ -54,21 +52,22 @@ namespace WinformDotNetFramework.Services
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<DateTime, decimal>>(client, "procedure/chart/sale-date-decimal", queryString+ "&type=TotalRevenue");
+            var returnResult = await GetDictionary<DateTime, decimal>(client, "procedure/chart/sale-date-decimal", queryString + "&type=TotalRevenue");
+
             return returnResult;
         }
         public async Task<Dictionary<DateTime, decimal>> SaleTemporalTotalSpent(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<DateTime, decimal>>(client, "procedure/chart/sale-date-decimal", queryString + "&type=TotalSpent");
+            var returnResult = await GetDictionary<DateTime, decimal>(client, "procedure/chart/sale-date-decimal", queryString + "&type=TotalSpent");
             return returnResult;
         }
         public async Task<Dictionary<DateTime, decimal>> SaleTemporalProfit(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<DateTime, decimal>>(client, "procedure/chart/sale-date-decimal", queryString + "&type=Profit");
+            var returnResult = await GetDictionary<DateTime, decimal>(client, "procedure/chart/sale-date-decimal", queryString + "&type=Profit");
             return returnResult;
         }
 
@@ -76,21 +75,21 @@ namespace WinformDotNetFramework.Services
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<string, decimal>>(client, "procedure/chart/sale-string-decimal", queryString + "&type=Profit");
+            var returnResult = await GetDictionary<string, decimal>(client, "procedure/chart/sale-string-decimal", queryString + "&type=Profit");
             return returnResult;
         }
         public async Task<Dictionary<string, decimal>> SaleCountryTotalSpent(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<string, decimal>>(client, "procedure/chart/sale-string-decimal", queryString + "&type=TotalSpent");
+            var returnResult = await GetDictionary<string, decimal>(client, "procedure/chart/sale-string-decimal", queryString + "&type=TotalSpent");
             return returnResult;
         }
         public async Task<Dictionary<string, decimal>> SaleCountryProfit(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<string, decimal>>(client, "procedure/chart/sale-string-decimal", queryString + "&type=Profit");
+            var returnResult = await GetDictionary<string, decimal>(client, "procedure/chart/sale-string-decimal", queryString + "&type=Profit");
             return returnResult;
         }
 
@@ -98,14 +97,14 @@ namespace WinformDotNetFramework.Services
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<string, int>>(client, "procedure/chart/sale-string-int", queryString + "&type=SaleMargins");
+            var returnResult = await GetDictionary<string, int>(client, "procedure/chart/sale-string-int", queryString + "&type=SaleMargins");
             return returnResult;
         }
         public async Task<Dictionary<string, int>> SaleMStatusCount(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetItem<Dictionary<string, int>>(client, "procedure/chart/sale-string-int", queryString + "&type=Status");
+            var returnResult = await GetDictionary<string, int>(client, "procedure/chart/sale-string-int", queryString + "&type=Status");
             return returnResult;
         }
 
