@@ -178,7 +178,7 @@
             // 
             this.ReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportViewer.DocumentMapWidth = 56;
-            this.ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.SaleProfitReport.rdlc";
+            this.ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportSales.rdlc";
             this.ReportViewer.Location = new System.Drawing.Point(0, 0);
             this.ReportViewer.Name = "ReportViewer";
             this.ReportViewer.ServerReport.BearerToken = null;
