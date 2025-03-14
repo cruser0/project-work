@@ -9,6 +9,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>f2ae3c9f-e4e2-43b1-8ce8-6e22f4b61e93</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="WinformDotNetFrameworkEntitiesCharts1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>9cb123ed-88e8-472e-b12d-b0418287cd42</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="SaleMargins">
