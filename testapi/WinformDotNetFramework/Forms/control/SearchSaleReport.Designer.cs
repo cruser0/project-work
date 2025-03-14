@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.GraphLbl = new System.Windows.Forms.Label();
+            this.GrapCBL = new System.Windows.Forms.CheckedListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.integerTextBoxUserControl3 = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
@@ -57,9 +59,6 @@
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.CountryLbl = new System.Windows.Forms.Label();
             this.CountryTxt = new System.Windows.Forms.TextBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,9 +67,8 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.TextBoxesRightPanel.Controls.Add(this.checkBox3);
-            this.TextBoxesRightPanel.Controls.Add(this.checkBox2);
-            this.TextBoxesRightPanel.Controls.Add(this.checkBox1);
+            this.TextBoxesRightPanel.Controls.Add(this.GraphLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.GrapCBL);
             this.TextBoxesRightPanel.Controls.Add(this.label6);
             this.TextBoxesRightPanel.Controls.Add(this.label7);
             this.TextBoxesRightPanel.Controls.Add(this.integerTextBoxUserControl3);
@@ -102,8 +100,38 @@
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 736);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 789);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // GraphLbl
+            // 
+            this.GraphLbl.AutoSize = true;
+            this.GraphLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.GraphLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.GraphLbl.Location = new System.Drawing.Point(5, 592);
+            this.GraphLbl.Name = "GraphLbl";
+            this.GraphLbl.Size = new System.Drawing.Size(51, 17);
+            this.GraphLbl.TabIndex = 39;
+            this.GraphLbl.Text = "Graphs";
+            // 
+            // GrapCBL
+            // 
+            this.GrapCBL.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GrapCBL.FormattingEnabled = true;
+            this.GrapCBL.Items.AddRange(new object[] {
+            "Total sales per status",
+            "Total sales per country",
+            "Total sales per sale margin",
+            "Total sales per date",
+            "Total sales per customer",
+            "Total profit per date",
+            "Total revenue-spent per date",
+            "Total profit per country",
+            "Total revenue-spent per country"});
+            this.GrapCBL.Location = new System.Drawing.Point(3, 612);
+            this.GrapCBL.Name = "GrapCBL";
+            this.GrapCBL.Size = new System.Drawing.Size(180, 157);
+            this.GrapCBL.TabIndex = 38;
             // 
             // label6
             // 
@@ -398,43 +426,13 @@
             this.CountryTxt.Size = new System.Drawing.Size(180, 20);
             this.CountryTxt.TabIndex = 2;
             // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(3, 647);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(120, 17);
-            this.checkBox3.TabIndex = 37;
-            this.checkBox3.Text = "Show Sale temporal";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(3, 624);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(105, 17);
-            this.checkBox2.TabIndex = 36;
-            this.checkBox2.Text = "Show Customers";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(3, 601);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(100, 17);
-            this.checkBox1.TabIndex = 35;
-            this.checkBox1.Text = "Show Saleprofit";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // SearchSaleReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSaleReport";
-            this.Size = new System.Drawing.Size(200, 736);
+            this.Size = new System.Drawing.Size(200, 789);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -472,8 +470,7 @@
         private System.Windows.Forms.Label TotalSpentLbl;
         public IntegerTextBoxUserControl integerTextBoxUserControl1;
         public IntegerTextBoxUserControl integerTextBoxUserControl2;
-        public System.Windows.Forms.CheckBox checkBox3;
-        public System.Windows.Forms.CheckBox checkBox2;
-        public System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label GraphLbl;
+        public System.Windows.Forms.CheckedListBox GrapCBL;
     }
 }

@@ -304,6 +304,12 @@
     <Compile Include="Forms\control\SearchCustomerInvoiceCost.Designer.cs">
       <DependentUpon>SearchCustomerInvoiceCost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\control\SearchCustomerInvoiceReportUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchCustomerInvoiceReportUserControl.Designer.cs">
+      <DependentUpon>SearchCustomerInvoiceReportUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\SearchSale.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -334,11 +340,23 @@
     <Compile Include="Forms\control\SearchSupplierInvoiceCost.Designer.cs">
       <DependentUpon>SearchSupplierInvoiceCost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\control\SearchSupplierInvoiceReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchSupplierInvoiceReport.Designer.cs">
+      <DependentUpon>SearchSupplierInvoiceReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\StarUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\control\StarUserControl.Designer.cs">
       <DependentUpon>StarUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomDialog\ChooseReportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomDialog\ChooseReportDialog.Designer.cs">
+      <DependentUpon>ChooseReportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomerForm.cs">
       <SubType>Form</SubType>
@@ -629,6 +647,9 @@
     <EmbeddedResource Include="Forms\control\SearchCustomerInvoiceCost.resx">
       <DependentUpon>SearchCustomerInvoiceCost.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchCustomerInvoiceReportUserControl.resx">
+      <DependentUpon>SearchCustomerInvoiceReportUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\SearchSale.resx">
       <DependentUpon>SearchSale.cs</DependentUpon>
     </EmbeddedResource>
@@ -644,8 +665,14 @@
     <EmbeddedResource Include="Forms\control\SearchSupplierInvoiceCost.resx">
       <DependentUpon>SearchSupplierInvoiceCost.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\SearchSupplierInvoiceReport.resx">
+      <DependentUpon>SearchSupplierInvoiceReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\StarUserControl.resx">
       <DependentUpon>StarUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomDialog\ChooseReportDialog.resx">
+      <DependentUpon>ChooseReportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
