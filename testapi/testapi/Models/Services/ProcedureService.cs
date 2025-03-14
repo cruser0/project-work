@@ -1,5 +1,8 @@
 ﻿using API.Models.Entities.Charts;
+using API.Models.Filters;
 using API.Models.Procedures;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -11,137 +14,86 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        internal SaleListChartDTO GetCharths(List<ClassifySalesByProfit> profit)
+        public async Task<List<ClassifySalesByProfit>> FilterSalesByProfit(ClassifySalesByProfitFilter filter)
         {
-
-
-            int activeSale = profit.Where(x => x.Status.ToLower().Equals("active")).Count();
-            int closedSale = profit.Where(x => x.Status.ToLower().Equals("closed")).Count();
-            Dictionary<string, int> ActiveClosedStatusChart = new Dictionary<string, int>();
-            ActiveClosedStatusChart.Add("active", activeSale);
-            ActiveClosedStatusChart.Add("closed", closedSale);
-
-
-            int profitSale = profit.Where(x => x.SaleMargins.ToLower().Equals("profit")).Count();
-            int noProfitSale = profit.Where(x => x.SaleMargins.ToLower().Equals("no profit")).Count();
-            int riskySale = profit.Where(x => x.SaleMargins.ToLower().Equals("risky")).Count();
-            Dictionary<string, int> ProgitNoProfitRiskyChart = new Dictionary<string, int>();
-            ProgitNoProfitRiskyChart.Add("profit", profitSale);
-            ProgitNoProfitRiskyChart.Add("no profit", noProfitSale);
-            ProgitNoProfitRiskyChart.Add("risky", riskySale);
-
-
-
-            List<SaleDateTotalDTO> TotalPerDatePerSale = profit.GroupBy(x => x.SaleDate)
-                .Select(g => new SaleDateTotalDTO
-                {
-                    Date = g.Key,
-                    TotalRevenue = g.Sum(x => x.TotalRevenue),
-                    TotalProfit = g.Sum(x => x.Profit),
-                    TotalSpent = g.Sum(x => x.TotalSpent)
-
-                }).ToList();
-
-            List<SaleCountryTotalDTO> TotalPerCountryPerSale = profit.GroupBy(x => x.Country)
-                .Select(g => new SaleCountryTotalDTO
-                {
-                    Country = g.Key,
-                    TotalRevenue = g.Sum(x => x.TotalRevenue),
-                    TotalProfit = g.Sum(x => x.Profit),
-                    TotalSpent = g.Sum(x => x.TotalSpent)
-                }).ToList();
-
-            return new SaleListChartDTO
-            {
-                TotalPerCountryPerSale = TotalPerCountryPerSale,
-                ActiveClosedStatusChart = ActiveClosedStatusChart,
-                ClassifySalesByProfit = profit,
-                ProgitNoProfitRiskyChart = ProgitNoProfitRiskyChart,
-                TotalPerDatePerSale = TotalPerDatePerSale,
-            };
+            return await _context.ClassifySalesByProfit.FromSqlRaw(
+                 "EXEC pf_ClassifySalesByProfit " +
+                 "@TotalSpentFrom," +
+                 "@TotalSpentTo," +
+                 "@TotalRevenueFrom," +
+                 "@TotalRevenueTo" +
+                 ",@FilterMargin," +
+                 "@ProfitFrom," +
+                 "@ProfitTo," +
+                 "@BoLNumber," +
+                 "@BKNumber," +
+                 "@CustomerID," +
+                 "@Status," +
+                 "@CustomerName," +
+                 "@CustomerCountry," +
+                 "@SaleID," +
+                 "@DateFrom," +
+                 "@DateTo",
+                 new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
+                 new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
+                 new SqlParameter("@TotalRevenueFrom", filter.TotalRevenueFrom ?? (object)DBNull.Value),
+                 new SqlParameter("@TotalRevenueTo", filter.TotalRevenueTo ?? (object)DBNull.Value),
+                 new SqlParameter("@FilterMargin", filter.FilterMargin ?? (object)DBNull.Value),
+                 new SqlParameter("@ProfitFrom", filter.ProfitFrom ?? (object)DBNull.Value),
+                 new SqlParameter("@ProfitTo", filter.ProfitTo ?? (object)DBNull.Value),
+                 new SqlParameter("@BoLNumber", filter.BoLNumber ?? (object)DBNull.Value),
+                 new SqlParameter("@BKNumber", filter.BKNumber ?? (object)DBNull.Value),
+                 new SqlParameter("@CustomerID", filter.CustomerID ?? (object)DBNull.Value),
+                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                 new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
+                 new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
+                 new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value),
+                 new SqlParameter("@DateFrom", filter.DateFrom ?? (object)DBNull.Value),
+                 new SqlParameter("@DateTo", filter.DateTo ?? (object)DBNull.Value)).ToListAsync();
         }
 
-        public Dictionary<DateTime, decimal> DateTimeDecimalChart<T>(List<T> lista, string dateName, string totalName)
+        public async Task<List<TotalAmountGainedPerCustomerInvoice>> FilterCustomerInvoicesByAmountGained(TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
-            if (lista == null || lista.Count == 0)
-                throw new ArgumentException("The list cannot be null or empty.");
-
-            Dictionary<DateTime, decimal> dict = new Dictionary<DateTime, decimal>();
-
-            foreach (T entity in lista)
-            {
-                var properties = entity.GetType().GetProperties();
-                DateTime? X = null;
-                decimal? Y = null;
-
-                foreach (var property in properties)
-                {
-                    if (property.Name.ToLower() == dateName.ToLower())
-                        X = property.GetValue(entity) as DateTime?;
-                    else if (property.Name.ToLower() == totalName.ToLower())
-                        Y = property.GetValue(entity) as decimal?;
-                }
-
-                if (dict.ContainsKey((DateTime)X))
-                    dict[(DateTime)X] += (decimal)Y;
-                else
-                    dict[(DateTime)X] = (decimal)Y;
-            }
-            return dict;
-        }
-        public Dictionary<string, decimal> StringAndDecimalChart<T>(List<T> lista, string stringName, string decimalName)
-        {
-            if (lista == null || lista.Count == 0)
-                throw new ArgumentException("The list cannot be null or empty.");
-
-            Dictionary<string, decimal> dict = new Dictionary<string, decimal>();
-
-            foreach (T entity in lista)
-            {
-                var properties = entity.GetType().GetProperties();
-                string? X = null;
-                decimal? Y = null;
-
-                foreach (var property in properties)
-                {
-                    if (property.Name.ToLower() == stringName.ToLower())
-                        X = property.GetValue(entity) as string;
-                    else if (property.Name.ToLower() == decimalName.ToLower())
-                        Y = property.GetValue(entity) as decimal?;
-                }
-
-                if (dict.ContainsKey((string)X))
-                    dict[X] += (decimal)Y;
-                else
-                    dict[X] = (decimal)Y;
-            }
-            return dict;
+            return await _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw(
+                $"EXEC pf_TotalAmountGainedPerCustomerInvoice " +
+                $"@customerInvoiceID," +
+                $"@TotalGainedFrom," +
+                $"@TotalGainedTo," +
+                $"@DateFrom," +
+                $"@DateTo," +
+                $"@Status," +
+                $"@CustomerName," +
+                $"@CustomerCountry",
+                new SqlParameter("@customerInvoiceID", filter.customerInvoiceID ?? (object)DBNull.Value),
+                new SqlParameter("@TotalGainedFrom", filter.TotalGainedFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalGainedTo", filter.TotalGainedTo ?? (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
+                new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value)).ToListAsync();
         }
 
-        public Dictionary<string, int> StringIntChart<T>(List<T> lista, string statusName)
+        public async Task<List<TotalAmountSpentPerSupplierInvoice>> FilterSupplierInvoicesByAmountSpent(TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
-            if (lista == null || lista.Count == 0)
-                throw new ArgumentException("The list cannot be null or empty.");
-
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-
-            foreach (T entity in lista)
-            {
-                var properties = entity.GetType().GetProperties();
-                string? Y = null;
-
-                foreach (var property in properties)
-                {
-                    if (property.Name.ToLower() == statusName.ToLower())
-                        Y = property.GetValue(entity) as string;
-                }
-
-                if (dict.ContainsKey(Y))
-                    dict[Y] += 1;
-                else
-                    dict[Y] = 1;
-            }
-            return dict;
+            return await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw(
+                $"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
+                $"@SupplierInvoiceID," +
+                $"@TotalSpentFrom," +
+                $"@TotalSpentTo," +
+                $"@DateFrom," +
+                $"@DateTo," +
+                $"@Status," +
+                $"@SupplierName," +
+                $"@SupplierCountry",
+                new SqlParameter("@SupplierInvoiceID", filter.SupplierInvoiceID ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
+                new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
+                new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
+                new SqlParameter("@SupplierCountry", filter.SupplierCountry ?? (object)DBNull.Value)).ToListAsync();
         }
     }
 }
