@@ -10,7 +10,7 @@ namespace WinformDotNetFramework.Services
     internal class ProceduresService : BaseCallService
     {
 
-        private string BuildQueryParamsClassifySalesByProfit(ClassifySalesByProfitFilter filter)
+        private string BuildQueryParams(ClassifySalesByProfitFilter filter)
         {
             var queryParameters = new List<string>();
 
@@ -42,74 +42,75 @@ namespace WinformDotNetFramework.Services
 
             return queryString;
         }
+        private string BuildQueryParams(TotalAmountGainedPerCustomerInvoiceFilter filter)
+        {
+            var queryParameters = new List<string>();
+
+            var filters = new Dictionary<string, object>
+            {
+                { "customerInvoiceID", filter.customerInvoiceID ?? null },
+                { "TotalGainedFrom", filter.TotalGainedFrom ?? null },
+                { "TotalGainedTo", filter.TotalGainedTo ?? null },
+                { "DateFrom", filter.DateFrom.HasValue ? filter.DateFrom: null },
+                { "DateTo", filter.DateTo.HasValue ? filter.DateTo : null },
+                { "Status", filter.Status ?? null},
+                { "CustomerName", filter.CustomerName ?? null},
+                { "CustomerCountry", filter.CustomerCountry ?? null},
+
+            };
+            foreach (var kvp in filters)
+            {
+                queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+        private string BuildQueryParams(TotalAmountSpentPerSupplierInvoiceFilter filter)
+        {
+            var queryParameters = new List<string>();
+
+            var filters = new Dictionary<string, object>
+            {
+                { "SupplierInvoiceID", filter.SupplierInvoiceID?? null },
+                { "TotalSpentFrom", filter.TotalSpentFrom ?? null },
+                { "TotalSpentTo", filter.TotalSpentTo ?? null },
+                { "DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : null },
+                { "DateTo", filter.DateTo.HasValue ? filter.DateTo : null},
+                { "Status", filter.Status ?? null},
+                { "SupplierName", filter.SupplierName ?? null},
+                { "SupplierCountry", filter.SupplierCountry ?? null},
+            };
+            foreach (var kvp in filters)
+            {
+                queryParameters.Add($"{kvp.Key}={kvp.Value}");
+            }
+            string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
+
+            return queryString;
+        }
+        
         public async Task<List<ClassifySalesByProfit>> GetClassifySalesByProfit(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
+            string queryString = BuildQueryParams(filter);
             var returnResult = await GetList<ClassifySalesByProfit>(client, "procedure/classify-by-profit", queryString);
             return returnResult;
         }
-
-        public async Task<Dictionary<DateTime, decimal>> SaleTemporalTotalRevenue(ClassifySalesByProfitFilter filter)
+        public async Task<List<TotalAmountGainedPerCustomerInvoice>> GetTotalAmountGainedPerCustomerInvoice(TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<DateTime, decimal>(client, "procedure/chart/sale-date-decimal", queryString + "&type=TotalRevenue");
-
+            string queryString = BuildQueryParams(filter);
+            var returnResult = await GetList<TotalAmountGainedPerCustomerInvoice>(client, "procedure/total-amount-gained-per-customer-invoice", queryString);
             return returnResult;
         }
-        public async Task<Dictionary<DateTime, decimal>> SaleTemporalTotalSpent(ClassifySalesByProfitFilter filter)
+        public async Task<List<TotalAmountSpentPerSupplierInvoice>> GetTotalAmountGainedPerCustomerInvoice(TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<DateTime, decimal>(client, "procedure/chart/sale-date-decimal", queryString + "&type=TotalSpent");
+            string queryString = BuildQueryParams(filter);
+            var returnResult = await GetList<TotalAmountSpentPerSupplierInvoice>(client, "procedure/total-amount-spent-per-supplier-invoice", queryString);
             return returnResult;
         }
-        public async Task<Dictionary<DateTime, decimal>> SaleTemporalProfit(ClassifySalesByProfitFilter filter)
-        {
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<DateTime, decimal>(client, "procedure/chart/sale-date-decimal", queryString + "&type=Profit");
-            return returnResult;
-        }
-
-        public async Task<Dictionary<string, decimal>> SaleCountryrofit(ClassifySalesByProfitFilter filter)
-        {
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<string, decimal>(client, "procedure/chart/sale-string-decimal", queryString + "&type=Profit");
-            return returnResult;
-        }
-        public async Task<Dictionary<string, decimal>> SaleCountryTotalSpent(ClassifySalesByProfitFilter filter)
-        {
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<string, decimal>(client, "procedure/chart/sale-string-decimal", queryString + "&type=TotalSpent");
-            return returnResult;
-        }
-        public async Task<Dictionary<string, decimal>> SaleCountryProfit(ClassifySalesByProfitFilter filter)
-        {
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<string, decimal>(client, "procedure/chart/sale-string-decimal", queryString + "&type=Profit");
-            return returnResult;
-        }
-
-        public async Task<Dictionary<string, int>> SaleMarginCount(ClassifySalesByProfitFilter filter)
-        {
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<string, int>(client, "procedure/chart/sale-string-int", queryString + "&type=SaleMargins");
-            return returnResult;
-        }
-        public async Task<Dictionary<string, int>> SaleMStatusCount(ClassifySalesByProfitFilter filter)
-        {
-            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            string queryString = BuildQueryParamsClassifySalesByProfit(filter);
-            var returnResult = await GetDictionary<string, int>(client, "procedure/chart/sale-string-int", queryString + "&type=Status");
-            return returnResult;
-        }
-
 
     }
 }
