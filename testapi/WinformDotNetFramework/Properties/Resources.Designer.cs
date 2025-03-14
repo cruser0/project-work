@@ -83,9 +83,29 @@ namespace WinformDotNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cleanpageicon_25x25 {
+            get {
+                object obj = ResourceManager.GetObject("cleanpageicon-25x25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cropped_logo_removebg_preview_50x50 {
             get {
                 object obj = ResourceManager.GetObject("cropped-logo-removebg-preview_50x50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dezoom_23_25 {
+            get {
+                object obj = ResourceManager.GetObject("dezoom-23-25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +123,49 @@ namespace WinformDotNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap double_left_resize1 {
+            get {
+                object obj = ResourceManager.GetObject("double_left_resize1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap double_right_resize {
             get {
                 object obj = ResourceManager.GetObject("double_right_resize", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap double_right_resize1 {
+            get {
+                object obj = ResourceManager.GetObject("double_right_resize1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap excelicon_25x25 {
+            get {
+                object obj = ResourceManager.GetObject("excelicon-25x25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap excelicon_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("excelicon-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +243,26 @@ namespace WinformDotNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pdficon_25x25 {
+            get {
+                object obj = ResourceManager.GetObject("pdficon-25x25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pdficon_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("pdficon-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PieChart_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("PieChart-removebg-preview", resourceCulture);
@@ -233,9 +313,29 @@ namespace WinformDotNetFramework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap single_left_resize1 {
+            get {
+                object obj = ResourceManager.GetObject("single_left_resize1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap single_right_resize {
             get {
                 object obj = ResourceManager.GetObject("single_right_resize", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap single_right_resize1 {
+            get {
+                object obj = ResourceManager.GetObject("single_right_resize1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -356,6 +456,16 @@ namespace WinformDotNetFramework.Properties {
         internal static System.Drawing.Bitmap User_Icon {
             get {
                 object obj = ResourceManager.GetObject("User_Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zoom_21x25 {
+            get {
+                object obj = ResourceManager.GetObject("zoom-21x25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
