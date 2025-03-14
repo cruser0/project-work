@@ -1,13 +1,6 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
@@ -25,8 +18,8 @@ namespace WinformDotNetFramework.Forms
 
         private async void SaleReportForm_Load(object sender, EventArgs e)
         {
-            var list=await _procedureService.GetClassifySalesByProfit(new ClassifySalesByProfitFilter());
-            ReportDataSource reportDataSource = new ReportDataSource { Name= "SaleByProfit", Value= list };
+            var list = await _procedureService.GetClassifySalesByProfit(new ClassifySalesByProfitFilter());
+            ReportDataSource reportDataSource = new ReportDataSource { Name = "SaleByProfit", Value = list };
             ReportViewer.LocalReport.DataSources.Add(reportDataSource);
 
             this.ReportViewer.RefreshReport();
@@ -36,7 +29,7 @@ namespace WinformDotNetFramework.Forms
         {
             if (splitContainer1.Panel2.Width == 200)
                 splitContainer1.SplitterDistance = this.Width - 25;
-            else if(splitContainer1.Panel2.Width == 25)
+            else if (splitContainer1.Panel2.Width == 25)
                 splitContainer1.SplitterDistance = splitContainer1.Width - 204;
 
         }
@@ -47,7 +40,7 @@ namespace WinformDotNetFramework.Forms
             {
                 Filter = "PDF Files|*.pdf",
                 Title = "Save PDF File",
-                FileName = "Report.pdf" 
+                FileName = "Report.pdf"
             };
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)

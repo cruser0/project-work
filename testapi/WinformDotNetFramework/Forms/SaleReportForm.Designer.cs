@@ -34,9 +34,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.searchSaleReport1 = new WinformDotNetFramework.Forms.control.SearchSaleReport();
             this.panel2 = new System.Windows.Forms.Panel();
             this.DockButton = new System.Windows.Forms.Button();
+            this.searchSaleReport1 = new WinformDotNetFramework.Forms.control.SearchSaleReport();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -44,6 +46,7 @@
             this.panel1.SuspendLayout();
             this.SearchPanel.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -56,8 +59,10 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.trackBar1);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.ReportViewer);
+            this.splitContainer1.Panel1.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // splitContainer1.Panel2
@@ -66,15 +71,15 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(784, 461);
-            this.splitContainer1.SplitterDistance = 580;
+            this.splitContainer1.Size = new System.Drawing.Size(1294, 784);
+            this.splitContainer1.SplitterDistance = 1090;
             this.splitContainer1.TabIndex = 0;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(502, 44);
+            this.button2.Location = new System.Drawing.Point(772, 102);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(115, 75);
             this.button2.TabIndex = 1;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -85,21 +90,21 @@
             this.ReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportViewer.DocumentMapWidth = 56;
             this.ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportSales.rdlc";
-            this.ReportViewer.Location = new System.Drawing.Point(0, 0);
+            this.ReportViewer.Location = new System.Drawing.Point(0, 25);
             this.ReportViewer.Name = "ReportViewer";
             this.ReportViewer.ServerReport.BearerToken = null;
-            this.ReportViewer.Size = new System.Drawing.Size(580, 461);
+            this.ReportViewer.Size = new System.Drawing.Size(1090, 759);
             this.ReportViewer.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.SearchPanel);
             this.panel1.Controls.Add(this.searchSaleReport1);
+            this.panel1.Controls.Add(this.SearchPanel);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 461);
+            this.panel1.Size = new System.Drawing.Size(200, 784);
             this.panel1.TabIndex = 2;
             // 
             // SearchPanel
@@ -124,14 +129,6 @@
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // searchSaleReport1
-            // 
-            this.searchSaleReport1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchSaleReport1.Location = new System.Drawing.Point(0, 27);
-            this.searchSaleReport1.Name = "searchSaleReport1";
-            this.searchSaleReport1.Size = new System.Drawing.Size(200, 434);
-            this.searchSaleReport1.TabIndex = 0;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
@@ -154,22 +151,47 @@
             this.DockButton.UseVisualStyleBackColor = true;
             this.DockButton.Click += new System.EventHandler(this.DockButton_Click);
             // 
+            // searchSaleReport1
+            // 
+            this.searchSaleReport1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchSaleReport1.Location = new System.Drawing.Point(0, 70);
+            this.searchSaleReport1.Name = "searchSaleReport1";
+            this.searchSaleReport1.Size = new System.Drawing.Size(200, 714);
+            this.searchSaleReport1.TabIndex = 0;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1090, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(379, 301);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(378, 45);
+            this.trackBar1.TabIndex = 3;
+            // 
             // SaleReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(1294, 784);
             this.Controls.Add(this.splitContainer1);
             this.Name = "SaleReportForm";
             this.Text = "SaleReportForm";
             this.Load += new System.EventHandler(this.SaleReportForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.SearchPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,5 +207,7 @@
         private System.Windows.Forms.Panel SearchPanel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }

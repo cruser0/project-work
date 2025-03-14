@@ -31,8 +31,8 @@ namespace WinformDotNetFramework
                 }
 
                 // If login is successful, start the main form
-                //using (SaleReportForm mainForm = new SaleReportForm())
-                using (MainForm mainForm = new MainForm())
+                using (SaleReportForm mainForm = new SaleReportForm())
+                //using (MainForm mainForm = new MainForm())
                 {
                     if (mainForm.ShowDialog() == DialogResult.Abort)
                     {

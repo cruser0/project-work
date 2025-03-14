@@ -95,9 +95,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>1.26683cm</Top>
-            <Left>6.50558cm</Left>
+            <Left>6.74308cm</Left>
             <Height>0.86458cm</Height>
-            <Width>8.00333cm</Width>
+            <Width>12.5cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -111,38 +111,11 @@
           <Subreport Name="Subreport2">
             <ReportName>SaleStatusReport</ReportName>
             <KeepTogether>true</KeepTogether>
-            <Top>4.17724cm</Top>
+            <Top>3.03953cm</Top>
             <Left>1.74308cm</Left>
-            <Height>6.19771cm</Height>
-            <Width>9.27271cm</Width>
+            <Height>12.78584cm</Height>
+            <Width>22.5cm</Width>
             <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Subreport>
-          <Subreport Name="Subreport3">
-            <ReportName>SaleProfitReport</ReportName>
-            <KeepTogether>true</KeepTogether>
-            <Top>4.17724cm</Top>
-            <Left>14.80405cm</Left>
-            <Height>6.19771cm</Height>
-            <Width>9.27271cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Subreport>
-          <Subreport Name="Subreport4">
-            <ReportName>SaleTemporalReport</ReportName>
-            <Top>10.73891cm</Top>
-            <Left>1.74308cm</Left>
-            <Height>4.82187cm</Height>
-            <Width>22.33368cm</Width>
-            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -727,7 +700,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -762,7 +734,7 @@
             <Left>1.74308cm</Left>
             <Height>1.2cm</Height>
             <Width>22.5cm</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
