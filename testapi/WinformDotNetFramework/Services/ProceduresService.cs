@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WinformDotNetFramework.Entities.Filters;
@@ -89,7 +88,7 @@ namespace WinformDotNetFramework.Services
 
             return queryString;
         }
-        
+
         public async Task<List<ClassifySalesByProfit>> GetClassifySalesByProfit(ClassifySalesByProfitFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
@@ -104,7 +103,7 @@ namespace WinformDotNetFramework.Services
             var returnResult = await GetList<TotalAmountGainedPerCustomerInvoice>(client, "procedure/total-amount-gained-per-customer-invoice", queryString);
             return returnResult;
         }
-        public async Task<List<TotalAmountSpentPerSupplierInvoice>> GetTotalAmountGainedPerCustomerInvoice(TotalAmountSpentPerSupplierInvoiceFilter filter)
+        public async Task<List<TotalAmountSpentPerSupplierInvoice>> GetTotalAmountSpentPerSupplierInvoice(TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
