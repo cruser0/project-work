@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Forms.CustomDialog;
 using WinformDotNetFramework.Procedures;
@@ -16,11 +15,11 @@ namespace WinformDotNetFramework.Forms
     {
         public string DialogReport { get; set; }
         ProceduresService _procedureService;
-        private CustomerService _customerService;
 
         // Data collections for the report and subreports
-        private List<ClassifySalesByProfit> _profitData = new List<ClassifySalesByProfit>();
-        private List<Customer> _customerData = new List<Customer>();
+        private List<ClassifySalesByProfit> _saleData = new List<ClassifySalesByProfit>();
+        private List<TotalAmountGainedPerCustomerInvoice> _customerInvoiceData = new List<TotalAmountGainedPerCustomerInvoice>();
+        private List<TotalAmountSpentPerSupplierInvoice> _supplierInvoiceData = new List<TotalAmountSpentPerSupplierInvoice>();
         public SaleReportForm()
         {
             InitializeComponent();
@@ -29,7 +28,6 @@ namespace WinformDotNetFramework.Forms
         private void Init()
         {
             _procedureService = new ProceduresService();
-            _customerService = new CustomerService();
             DisableTSItems();
             SetSearchVisibilityFalse();
         }
@@ -41,7 +39,7 @@ namespace WinformDotNetFramework.Forms
                         new SubreportProcessingEventHandler(SubreportProcessingEventHandler);
             CallDialogReport();
         }
-        
+
 
         private void DockButton_Click(object sender, EventArgs e)
         {
@@ -91,35 +89,36 @@ namespace WinformDotNetFramework.Forms
         private async void SearchButton_Click(object sender, EventArgs e)
         {
             ReportViewer.LocalReport.DataSources.Clear();
-            _profitData = new List<ClassifySalesByProfit>();
-            _customerData = new List<Customer>();
+            _saleData = new List<ClassifySalesByProfit>();
+            _customerInvoiceData = new List<TotalAmountGainedPerCustomerInvoice>();
+            _supplierInvoiceData = new List<TotalAmountSpentPerSupplierInvoice>();
 
             await LoadReportData();
             ReportDataSource mainDataSource = new ReportDataSource()
             {
                 Name = "SaleByProfit",
-                Value = _profitData
+                Value = _saleData
             };
             ReportViewer.LocalReport.DataSources.Add(mainDataSource);
             ReportViewer.RefreshReport();
             ReportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             ReportViewer.ZoomMode = ZoomMode.Percent;
             ReportViewer.ZoomPercent = 130;
-            ZoomTSLbl.Text=ReportViewer.ZoomPercent.ToString()+"%";
+            ZoomTSLbl.Text = ReportViewer.ZoomPercent.ToString() + "%";
             if (!PdfTSB.Enabled)
                 EnableTSItems();
         }
-      
+
 
         private void EmptyReportTSB_Click(object sender, EventArgs e)
         {
             ReportViewer.Clear();
-            toolStrip2.Enabled=false;
+            toolStrip2.Enabled = false;
         }
 
         private void PrintPagePreviewBTS_Click(object sender, EventArgs e)
         {
-            if (ReportViewer.DisplayMode!= DisplayMode.PrintLayout)
+            if (ReportViewer.DisplayMode != DisplayMode.PrintLayout)
                 ReportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             else
                 ReportViewer.SetDisplayMode(DisplayMode.Normal);
@@ -178,7 +177,7 @@ namespace WinformDotNetFramework.Forms
             if (ReportViewer.ZoomPercent < 400)
             {
                 ReportViewer.ZoomPercent += 5;
-                ZoomTSLbl.Text = ReportViewer.ZoomPercent.ToString()+"%";
+                ZoomTSLbl.Text = ReportViewer.ZoomPercent.ToString() + "%";
             }
         }
         void SubreportProcessingEventHandler(object sender, SubreportProcessingEventArgs e)
@@ -189,15 +188,25 @@ namespace WinformDotNetFramework.Forms
             //else
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", new List<ClassifySalesByProfit>()));
 
-            //if (searchSaleReport1.checkBox2.Checked)
-            //    e.DataSources.Add(new ReportDataSource("Customers", _customerData));
-            //else
-            //    e.DataSources.Add(new ReportDataSource("Customers", new List<Customer>()));
-
-            //if (searchSaleReport1.checkBox3.Checked)
-            //    e.DataSources.Add(new ReportDataSource("SaleTemporal", _profitData));
-            //else
-            //    e.DataSources.Add(new ReportDataSource("SaleTemporal", new List<ClassifySalesByProfit>()));
+            e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleCountByCountry", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleCountByMargin", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleCountByDateCountry", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleTotalSpentSumByCountry", _saleData));
+            e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSumByCountry", _saleData));
+            e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", _customerInvoiceData));
+            e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", _customerInvoiceData));
+            e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", _customerInvoiceData));
+            e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", _customerInvoiceData));
+            e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", _customerInvoiceData));
+            e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", _supplierInvoiceData));
+            e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", _supplierInvoiceData));
+            e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", _supplierInvoiceData));
+            e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData));
+            e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByCountry", _supplierInvoiceData));
 
         }
 
@@ -247,20 +256,43 @@ namespace WinformDotNetFramework.Forms
             //    tasks.Add(customerTask);
             //}
 
+            if (true)  // Main report always needs this data
+            {
+                var profitTask = LoadSaleData();
+                tasks.Add(profitTask);
+            }
+
+            if (true)
+            {
+                var cusInvoiceTask = LoadCustomerInvoiceData();
+                tasks.Add(cusInvoiceTask);
+            }
+
+            if (true)
+            {
+                var supInvoiceTask = LoadSupplierInvoiceData();
+                tasks.Add(supInvoiceTask);
+            }
+
             await Task.WhenAll(tasks);
         }
 
-        private async Task LoadProfitData()
+        private async Task LoadSaleData()
         {
             var filter = new ClassifySalesByProfitFilter();
-            _profitData = await _procedureService.GetClassifySalesByProfit(filter);
+            _saleData = await _procedureService.GetClassifySalesByProfit(filter);
         }
 
-        private async Task LoadCustomerData()
+        private async Task LoadCustomerInvoiceData()
         {
-            var filter = new CustomerFilter();
-            var customers = await _customerService.GetAll(filter);
-            _customerData = customers as List<Customer> ?? new List<Customer>(customers);
+            var filter = new TotalAmountGainedPerCustomerInvoiceFilter();
+            _customerInvoiceData = await _procedureService.GetTotalAmountGainedPerCustomerInvoice(filter);
+        }
+
+        private async Task LoadSupplierInvoiceData()
+        {
+            var filter = new TotalAmountSpentPerSupplierInvoiceFilter();
+            _supplierInvoiceData = await _procedureService.GetTotalAmountSpentPerSupplierInvoice(filter);
         }
         private void CallDialogReport()
         {
