@@ -748,12 +748,14 @@
     <EmbeddedResource Include="Forms\testChart.resx">
       <DependentUpon>testChart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Report1.rdlc" />
     <EmbeddedResource Include="Reports\SaleProfitReport.rdlc" />
     <EmbeddedResource Include="Reports\SaleStatusReport.rdlc" />
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <EmbeddedResource Include="Reports\SaleTemporalReport.rdlc" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Charts.SaleListChartDTO.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Customer.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.ClassifySalesByProfit.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

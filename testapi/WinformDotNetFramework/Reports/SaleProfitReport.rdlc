@@ -76,36 +76,6 @@
         <rd:ObjectDataSourceType>WinformDotNetFramework.Entities.Charts.SaleListChartDTO, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="DataSet1">
-      <Query>
-        <DataSourceName>WinformDotNetFrameworkEntitiesCharts1</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="TotalProfit">
-          <DataField>TotalProfit</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="TotalRevenue">
-          <DataField>TotalRevenue</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="TotalSpent">
-          <DataField>TotalSpent</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>WinformDotNetFramework.Entities.Charts</rd:DataSetName>
-        <rd:TableName>SaleListChartDTO</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>TotalPerDatePerSale</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>WinformDotNetFramework.Entities.Charts.SaleListChartDTO, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
