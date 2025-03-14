@@ -18,11 +18,7 @@ namespace WinformDotNetFramework.Forms
 
         private async void SaleReportForm_Load(object sender, EventArgs e)
         {
-            var list = await _procedureService.GetClassifySalesByProfit(new ClassifySalesByProfitFilter());
-            ReportDataSource reportDataSource = new ReportDataSource { Name = "SaleByProfit", Value = list };
-            ReportViewer.LocalReport.DataSources.Add(reportDataSource);
-
-            this.ReportViewer.RefreshReport();
+            
         }
 
         private void DockButton_Click(object sender, EventArgs e)
@@ -34,7 +30,7 @@ namespace WinformDotNetFramework.Forms
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void PrfButton_click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
@@ -70,5 +66,48 @@ namespace WinformDotNetFramework.Forms
             }
         }
 
+        private void PageTSTxt_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void SearchButton_Click(object sender, EventArgs e)
+        {
+            var list = await _procedureService.GetClassifySalesByProfit(new ClassifySalesByProfitFilter());
+            ReportDataSource reportDataSource = new ReportDataSource { Name = "SaleByProfit", Value = list };
+
+
+            ReportViewer.LocalReport.DataSources.Add(reportDataSource);
+            ReportViewer.RefreshReport();
+            ReportViewer.ZoomMode = ZoomMode.Percent;
+            ZoomTSLbl.Text=ReportViewer.ZoomPercent.ToString()+"%";
+        }
+
+        private void EmptyReportTSB_Click(object sender, EventArgs e)
+        {
+            ReportViewer.Clear();
+        }
+
+        private void PrintPagePreviewBTS_Click(object sender, EventArgs e)
+        {
+            ReportViewer.SetDisplayMode(DisplayMode.PrintLayout);
+        }
+
+        private void ExcelTSB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DezoomTSB_Click(object sender, EventArgs e)
+        {
+            if(ReportViewer.ZoomPercent<400)
+                ReportViewer.ZoomPercent += 5;
+        }
+
+        private void ZoomTSB_Click(object sender, EventArgs e)
+        {
+            if (ReportViewer.ZoomPercent > 0)
+                ReportViewer.ZoomPercent -= 5;
+        }
     }
 }

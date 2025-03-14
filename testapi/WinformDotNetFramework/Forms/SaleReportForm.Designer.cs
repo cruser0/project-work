@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleReportForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.EmptyReportTSB = new System.Windows.Forms.ToolStripButton();
+            this.PrintPagePreviewBTS = new System.Windows.Forms.ToolStripButton();
+            this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
+            this.PdfTSB = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.DezoomTSB = new System.Windows.Forms.ToolStripButton();
+            this.ZoomTSB = new System.Windows.Forms.ToolStripButton();
+            this.ZoomTSLbl = new System.Windows.Forms.ToolStripLabel();
             this.ReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SearchPanel = new System.Windows.Forms.Panel();
@@ -37,16 +46,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.DockButton = new System.Windows.Forms.Button();
             this.searchSaleReport1 = new WinformDotNetFramework.Forms.control.SearchSaleReport();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SearchPanel.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -59,10 +66,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.trackBar1);
-            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
             this.splitContainer1.Panel1.Controls.Add(this.ReportViewer);
-            this.splitContainer1.Panel1.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // splitContainer1.Panel2
@@ -71,29 +76,123 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(1294, 784);
-            this.splitContainer1.SplitterDistance = 1090;
+            this.splitContainer1.Size = new System.Drawing.Size(784, 461);
+            this.splitContainer1.SplitterDistance = 580;
             this.splitContainer1.TabIndex = 0;
             // 
-            // button2
+            // toolStrip2
             // 
-            this.button2.Location = new System.Drawing.Point(772, 102);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 75);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.toolStrip2.AutoSize = false;
+            this.toolStrip2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EmptyReportTSB,
+            this.PrintPagePreviewBTS,
+            this.ExcelTSB,
+            this.PdfTSB,
+            this.toolStripSeparator2,
+            this.DezoomTSB,
+            this.ZoomTSB,
+            this.ZoomTSLbl});
+            this.toolStrip2.Location = new System.Drawing.Point(338, 1);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(201, 24);
+            this.toolStrip2.TabIndex = 3;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // EmptyReportTSB
+            // 
+            this.EmptyReportTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.EmptyReportTSB.Image = global::WinformDotNetFramework.Properties.Resources.cleanpageicon_25x25;
+            this.EmptyReportTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EmptyReportTSB.Name = "EmptyReportTSB";
+            this.EmptyReportTSB.Size = new System.Drawing.Size(23, 21);
+            this.EmptyReportTSB.Text = "toolStripButton5";
+            this.EmptyReportTSB.Click += new System.EventHandler(this.EmptyReportTSB_Click);
+            // 
+            // PrintPagePreviewBTS
+            // 
+            this.PrintPagePreviewBTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PrintPagePreviewBTS.Image = ((System.Drawing.Image)(resources.GetObject("PrintPagePreviewBTS.Image")));
+            this.PrintPagePreviewBTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PrintPagePreviewBTS.Name = "PrintPagePreviewBTS";
+            this.PrintPagePreviewBTS.Size = new System.Drawing.Size(23, 21);
+            this.PrintPagePreviewBTS.Text = "toolStripButton6";
+            this.PrintPagePreviewBTS.Click += new System.EventHandler(this.PrintPagePreviewBTS_Click);
+            // 
+            // ExcelTSB
+            // 
+            this.ExcelTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ExcelTSB.Image = global::WinformDotNetFramework.Properties.Resources.excelicon_25x25;
+            this.ExcelTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExcelTSB.Name = "ExcelTSB";
+            this.ExcelTSB.Size = new System.Drawing.Size(23, 21);
+            this.ExcelTSB.Text = "toolStripButton8";
+            this.ExcelTSB.Click += new System.EventHandler(this.ExcelTSB_Click);
+            // 
+            // PdfTSB
+            // 
+            this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PdfTSB.Image = global::WinformDotNetFramework.Properties.Resources.pdficon_25x25;
+            this.PdfTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PdfTSB.Name = "PdfTSB";
+            this.PdfTSB.Size = new System.Drawing.Size(23, 21);
+            this.PdfTSB.Text = "toolStripButton7";
+            this.PdfTSB.Click += new System.EventHandler(this.PrfButton_click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 24);
+            // 
+            // DezoomTSB
+            // 
+            this.DezoomTSB.AutoSize = false;
+            this.DezoomTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DezoomTSB.Image = global::WinformDotNetFramework.Properties.Resources.dezoom_23_25;
+            this.DezoomTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DezoomTSB.Name = "DezoomTSB";
+            this.DezoomTSB.Size = new System.Drawing.Size(25, 23);
+            this.DezoomTSB.Text = "toolStripButton9";
+            this.DezoomTSB.Click += new System.EventHandler(this.DezoomTSB_Click);
+            // 
+            // ZoomTSB
+            // 
+            this.ZoomTSB.AutoSize = false;
+            this.ZoomTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ZoomTSB.Image = global::WinformDotNetFramework.Properties.Resources.zoom_21x25;
+            this.ZoomTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ZoomTSB.Name = "ZoomTSB";
+            this.ZoomTSB.Size = new System.Drawing.Size(25, 23);
+            this.ZoomTSB.Text = "toolStripButton10";
+            this.ZoomTSB.Click += new System.EventHandler(this.ZoomTSB_Click);
+            // 
+            // ZoomTSLbl
+            // 
+            this.ZoomTSLbl.Name = "ZoomTSLbl";
+            this.ZoomTSLbl.Size = new System.Drawing.Size(35, 21);
+            this.ZoomTSLbl.Text = "100%";
             // 
             // ReportViewer
             // 
             this.ReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportViewer.DocumentMapWidth = 56;
-            this.ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportSales.rdlc";
-            this.ReportViewer.Location = new System.Drawing.Point(0, 25);
+            this.ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.SaleProfitReport.rdlc";
+            this.ReportViewer.Location = new System.Drawing.Point(0, 0);
             this.ReportViewer.Name = "ReportViewer";
             this.ReportViewer.ServerReport.BearerToken = null;
-            this.ReportViewer.Size = new System.Drawing.Size(1090, 759);
+            this.ReportViewer.ShowBackButton = false;
+            this.ReportViewer.ShowContextMenu = false;
+            this.ReportViewer.ShowCredentialPrompts = false;
+            this.ReportViewer.ShowDocumentMapButton = false;
+            this.ReportViewer.ShowExportButton = false;
+            this.ReportViewer.ShowParameterPrompts = false;
+            this.ReportViewer.ShowPrintButton = false;
+            this.ReportViewer.ShowRefreshButton = false;
+            this.ReportViewer.ShowStopButton = false;
+            this.ReportViewer.ShowZoomControl = false;
+            this.ReportViewer.Size = new System.Drawing.Size(580, 461);
             this.ReportViewer.TabIndex = 0;
             // 
             // panel1
@@ -104,7 +203,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 784);
+            this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 2;
             // 
             // SearchPanel
@@ -128,6 +227,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // panel2
             // 
@@ -156,42 +256,28 @@
             this.searchSaleReport1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchSaleReport1.Location = new System.Drawing.Point(0, 70);
             this.searchSaleReport1.Name = "searchSaleReport1";
-            this.searchSaleReport1.Size = new System.Drawing.Size(200, 714);
+            this.searchSaleReport1.Size = new System.Drawing.Size(200, 391);
             this.searchSaleReport1.TabIndex = 0;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1090, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(379, 301);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(378, 45);
-            this.trackBar1.TabIndex = 3;
             // 
             // SaleReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1294, 784);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.splitContainer1);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "SaleReportForm";
             this.Text = "SaleReportForm";
             this.Load += new System.EventHandler(this.SaleReportForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.SearchPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -206,8 +292,14 @@
         private System.Windows.Forms.Button DockButton;
         private System.Windows.Forms.Panel SearchPanel;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton EmptyReportTSB;
+        private System.Windows.Forms.ToolStripButton PrintPagePreviewBTS;
+        private System.Windows.Forms.ToolStripButton PdfTSB;
+        private System.Windows.Forms.ToolStripButton ExcelTSB;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton DezoomTSB;
+        private System.Windows.Forms.ToolStripButton ZoomTSB;
+        private System.Windows.Forms.ToolStripLabel ZoomTSLbl;
     }
 }
