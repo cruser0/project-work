@@ -35,26 +35,23 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1 = new System.Windows.Forms.Panel();
             this.CustomerInvoiceCostDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.PdfTSB = new System.Windows.Forms.ToolStripButton();
-            this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.searchCustomerInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceCost();
+            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.PaginationPanel = new System.Windows.Forms.Panel();
+            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CustomerInvoiceCostIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostCustomerInvoiceIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
-            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
-            this.searchCustomerInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceCost();
-            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceCostDgv)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -96,9 +93,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToggleEditButton,
             this.toolStripButton2,
-            this.toolStripSeparator1,
-            this.PdfTSB,
-            this.ExcelTSB,
             this.toolStripSeparator2,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -106,6 +100,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.Size = new System.Drawing.Size(584, 25);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.ToolTipText = "Toggle Edit Mode";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // toolStripButton2
             // 
@@ -115,32 +120,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton1";
+            this.toolStripButton2.ToolTipText = "Save Changes";
             this.toolStripButton2.Click += new System.EventHandler(this.MassUpdateTSB_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // PdfTSB
-            // 
-            this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PdfTSB.Image = ((System.Drawing.Image)(resources.GetObject("PdfTSB.Image")));
-            this.PdfTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PdfTSB.Name = "PdfTSB";
-            this.PdfTSB.Size = new System.Drawing.Size(32, 22);
-            this.PdfTSB.Text = "PDF";
-            this.PdfTSB.Click += new System.EventHandler(this.Pdf_ClickBtn);
-            // 
-            // ExcelTSB
-            // 
-            this.ExcelTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ExcelTSB.Image = ((System.Drawing.Image)(resources.GetObject("ExcelTSB.Image")));
-            this.ExcelTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ExcelTSB.Name = "ExcelTSB";
-            this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
-            this.ExcelTSB.Text = "Excel";
-            this.ExcelTSB.Click += new System.EventHandler(this.Excel_ClickBtn);
             // 
             // toolStripSeparator2
             // 
@@ -155,6 +136,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton4";
+            this.toolStripButton1.ToolTipText = "Delete Selected Items";
             this.toolStripButton1.Click += new System.EventHandler(this.MassDeleteTSB_Click);
             // 
             // panel2
@@ -178,6 +160,21 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
+            // searchCustomerInvoiceCost1
+            // 
+            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 0);
+            this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
+            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(197, 169);
+            this.searchCustomerInvoiceCost1.TabIndex = 0;
+            // 
+            // RightSideBar
+            // 
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
+            this.RightSideBar.TabIndex = 0;
+            // 
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
@@ -196,6 +193,15 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.PaginationPanel.Name = "PaginationPanel";
             this.PaginationPanel.Size = new System.Drawing.Size(349, 87);
             this.PaginationPanel.TabIndex = 1;
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(30, 24);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(268, 43);
+            this.PaginationUserControl.TabIndex = 0;
             // 
             // RightClickDgv
             // 
@@ -256,40 +262,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceCostNameTsmi.Text = "Show Description Name";
             this.CustomerInvoiceCostNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // ToggleEditButton
-            // 
-            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
-            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToggleEditButton.Name = "ToggleEditButton";
-            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
-            this.ToggleEditButton.Text = "Toggle Edit";
-            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
-            // 
-            // PaginationUserControl
-            // 
-            this.PaginationUserControl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(30, 24);
-            this.PaginationUserControl.Name = "PaginationUserControl";
-            this.PaginationUserControl.Size = new System.Drawing.Size(268, 43);
-            this.PaginationUserControl.TabIndex = 0;
-            // 
-            // searchCustomerInvoiceCost1
-            // 
-            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 0);
-            this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
-            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(197, 169);
-            this.searchCustomerInvoiceCost1.TabIndex = 0;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
-            this.RightSideBar.TabIndex = 0;
-            // 
             // CustomerInvoiceCostGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,10 +306,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripMenuItem CustomerInvoiceCostNameTsmi;
         private Panel PaginationPanel;
         public ToolStrip toolStrip1;
-        private ToolStripButton PdfTSB;
-        private ToolStripButton ExcelTSB;
         private ToolStripButton toolStripButton2;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
         private control.SearchCustomerInvoiceCost searchCustomerInvoiceCost1;
         private ToolStripSeparator toolStripSeparator2;

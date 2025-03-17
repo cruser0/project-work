@@ -210,32 +210,29 @@ namespace API.Models.Services
                 if (data == null)
                     continue;
                 List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
+                await using var transaction = await _context.Database.BeginTransactionAsync();
                 try
                 {
                     if (si.Any())
                     {
-                        await using var transaction = await _context.Database.BeginTransactionAsync();
-                        try
-                        {
-                            foreach (SupplierInvoice item in si)
-                            {
 
-                                await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
-                            }
-                        }
-                        catch (ErrorInputPropertyException ex)
+
+                        foreach (SupplierInvoice item in si)
                         {
-                            await transaction.RollbackAsync();
-                            throw ex;
+
+                            await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
                         }
+
                     }
+                    _context.Suppliers.Remove(data);
+                    await _context.SaveChangesAsync();
                 }
-                catch (ErrorInputPropertyException)
+                catch (Exception)
                 {
+                    await transaction.RollbackAsync();
                     continue;
                 }
-                _context.Suppliers.Remove(data);
-                await _context.SaveChangesAsync();
+                transaction.Commit();
                 count++;
             }
             return $"{count} Suppliers were deleted out of {supplierId.Count}";
