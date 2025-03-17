@@ -138,12 +138,17 @@ namespace WinformDotNetFramework.Forms
             List<Form> childrenOpen = MainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
             // Check if the form is already open
-            Form existingForm = MainPanel.Controls.OfType<Form>().FirstOrDefault(f => f.Text == formName);
+            Form existingForm = MainPanel.Controls.OfType<Form>().FirstOrDefault(f => f.Text == formName || f.Text == "User Area");
             if (existingForm != null)
             {
-                // Check if the form is already minimized and exists in the minimized panel
-                var minimizedButton = minimizedPanel.Controls.OfType<formDockButton>()
-                    .FirstOrDefault(btn => btn.Name == formName);
+                formDockButton minimizedButton;
+                if (formName == "TS UserProfile")
+                    minimizedButton = minimizedPanel.Controls.OfType<formDockButton>()
+                   .FirstOrDefault(btn => btn.Name == "User Area");
+                else
+                    // Check if the form is already minimized and exists in the minimized panel
+                    minimizedButton = minimizedPanel.Controls.OfType<formDockButton>()
+                       .FirstOrDefault(btn => btn.Name == formName);
 
                 if (minimizedButton != null)
                 {

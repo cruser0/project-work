@@ -4,6 +4,7 @@ using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace API.Models.Services
 {
@@ -229,32 +230,69 @@ namespace API.Models.Services
             // Retrieve the sale from the database using the provided ID
             var data = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
 
-            // Check if the sale exists
-            if (data == null)
-                throw new NotFoundException("Sale not found!");
+            // Check if we're already in a transaction
+            bool isInTransaction = _context.Database.CurrentTransaction != null;
+            IDbContextTransaction? transaction = null;
 
+            if (!isInTransaction)
+            {
+                transaction = await _context.Database.BeginTransactionAsync();
+            }
 
-            // Retrieve all customer invoices associated with the sale
-            var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleId == id).ToListAsync();
+            try
+            {
+                // Check if the sale exists
+                if (data == null)
+                    throw new NotFoundException("Sale not found!");
+                if (data.Status.ToLower().Equals("closed"))
+                    throw new ErrorInputPropertyException("Sale is closed,can't delete!");
 
-            // If there are any customer invoices, delete them
-            if (customerInvoices.Count > 0)
-                foreach (var invoice in customerInvoices)
-                    await _ciService.DeleteCustomerInvoice(invoice.CustomerInvoiceId);
+                // Retrieve all customer invoices associated with the sale
+                var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleId == id).ToListAsync();
+                // If there are any customer invoices, delete them
+                if (customerInvoices.Count > 0)
+                {
+                    foreach (var invoice in customerInvoices)
+                    {
+                        await _siService.DeleteSupplierInvoice(invoice.CustomerInvoiceId);
+                    }
+                }
 
-            // Retrieve all supplier invoices associated with the sale
-            var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
+                // Retrieve all supplier invoices associated with the sale
+                var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
+                // If there are any supplier invoices, delete them
+                if (supplierInvoices.Count > 0)
+                {
+                    foreach (var invoice in supplierInvoices)
+                    {
+                        await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+                    }
+                }
 
-            // If there are any supplier invoices, delete them
-            if (supplierInvoices.Count > 0)
-                foreach (var invoice in supplierInvoices)
-                    await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+                // Remove the sale from the database
+                _context.Sales.Remove(data);
+                // Save the changes to commit the deletion
+                await _context.SaveChangesAsync();
 
-            // Remove the sale from the database
-            _context.Sales.Remove(data);
+                // Only commit if we started the transaction
+                if (!isInTransaction && transaction != null)
+                {
+                    await transaction.CommitAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Only rollback if we started the transaction
+                if (!isInTransaction && transaction != null)
+                {
+                    await transaction.RollbackAsync();
+                }
 
-            // Save the changes to commit the deletion
-            await _context.SaveChangesAsync();
+                if (ex is ErrorInputPropertyException)
+                    throw;
+                else
+                    throw new Exception($"Error deleting sale: {ex.Message}", ex);
+            }
 
             // Map the deleted sale to a DTO and return the result
             return SaleMapper.MapGet(data);
@@ -277,25 +315,50 @@ namespace API.Models.Services
 
                 // Retrieve all customer invoices associated with the sale
                 var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleId == id).ToListAsync();
+                await using var transaction = await _context.Database.BeginTransactionAsync();
+                try
+                {
+                    // If there are any customer invoices, delete them
+                    if (customerInvoices.Count > 0)
+                    {
+                        foreach (var invoice in customerInvoices)
+                        {
 
-                // If there are any customer invoices, delete them
-                if (customerInvoices.Count > 0)
-                    foreach (var invoice in customerInvoices)
-                        await _ciService.DeleteCustomerInvoice(invoice.CustomerInvoiceId);
+                            await _siService.DeleteSupplierInvoice(invoice.CustomerInvoiceId);
 
-                // Retrieve all supplier invoices associated with the sale
-                var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
+                        }
+                    }
 
-                // If there are any supplier invoices, delete them
-                if (supplierInvoices.Count > 0)
-                    foreach (var invoice in supplierInvoices)
-                        await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+                    // Retrieve all supplier invoices associated with the sale
+                    var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
+
+                    // If there are any supplier invoices, delete them
+                    if (supplierInvoices.Count > 0)
+                    {
+
+
+                        foreach (var invoice in supplierInvoices)
+                        {
+
+                            await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+
+
+                        }
+
+                    }
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    continue;
+                }
 
                 // Remove the sale from the database
                 _context.Sales.Remove(data);
 
                 // Save the changes to commit the deletion
                 await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
                 count++;
             }
             // Map the deleted sale to a DTO and return the result

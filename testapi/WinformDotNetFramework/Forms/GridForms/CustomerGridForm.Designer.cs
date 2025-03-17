@@ -49,9 +49,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.PdfTSB = new System.Windows.Forms.ToolStripButton();
-            this.ExcelTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
@@ -219,9 +216,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToggleEditButton,
             this.toolStripButton2,
-            this.toolStripSeparator1,
-            this.PdfTSB,
-            this.ExcelTSB,
             this.toolStripSeparator2,
             this.MassDeleteTSB});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -238,6 +232,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.ToggleEditButton.Name = "ToggleEditButton";
             this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
             this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.ToolTipText = "Toggle Edit Mode";
             this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // toolStripButton2
@@ -248,32 +243,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton1";
+            this.toolStripButton2.ToolTipText = "Save Changes";
             this.toolStripButton2.Click += new System.EventHandler(this.MassUpdateTSB_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // PdfTSB
-            // 
-            this.PdfTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PdfTSB.Image = ((System.Drawing.Image)(resources.GetObject("PdfTSB.Image")));
-            this.PdfTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PdfTSB.Name = "PdfTSB";
-            this.PdfTSB.Size = new System.Drawing.Size(32, 22);
-            this.PdfTSB.Text = "PDF";
-            this.PdfTSB.Click += new System.EventHandler(this.Pdf_ClickBtn);
-            // 
-            // ExcelTSB
-            // 
-            this.ExcelTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ExcelTSB.Image = ((System.Drawing.Image)(resources.GetObject("ExcelTSB.Image")));
-            this.ExcelTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ExcelTSB.Name = "ExcelTSB";
-            this.ExcelTSB.Size = new System.Drawing.Size(38, 22);
-            this.ExcelTSB.Text = "Excel";
-            this.ExcelTSB.Click += new System.EventHandler(this.Excel_ClickBtn);
             // 
             // toolStripSeparator2
             // 
@@ -288,6 +259,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.MassDeleteTSB.Name = "MassDeleteTSB";
             this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
             this.MassDeleteTSB.Text = "toolStripButton4";
+            this.MassDeleteTSB.ToolTipText = "Delete Selected Items";
             this.MassDeleteTSB.Click += new System.EventHandler(this.MassDeleteTSB_Click);
             // 
             // BottomPanel
@@ -384,12 +356,9 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripMenuItem CustomerDateTsmi;
         private ToolStripMenuItem CustomerOriginalIDTsmi;
         private ToolStripMenuItem CustomerStatusTsmi;
-        private ToolStripButton PdfTSB;
-        private ToolStripButton ExcelTSB;
         public ToolStrip toolStrip1;
         private ToolStripButton toolStripButton2;
         private ToolStripButton MassDeleteTSB;
-        private ToolStripSeparator toolStripSeparator1;
         private control.SearchCustomer searchCustomer1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton ToggleEditButton;

@@ -124,7 +124,7 @@ namespace API.Models.Services
             await _context.SaveChangesAsync();
 
             // Calculate the total revenue for the sale using a stored procedure
-            var Total = await _context.CustomerInvoices.Where(x=>x.SaleId==customerInvoice.SaleId).SumAsync(x=>x.InvoiceAmount);
+            var Total = await _context.CustomerInvoices.Where(x => x.SaleId == customerInvoice.SaleId).SumAsync(x => x.InvoiceAmount);
 
             // Update the sale record with the new total revenue
             sale.TotalRevenue = Total;
@@ -245,26 +245,34 @@ namespace API.Models.Services
                 {
                     CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
                     // Check if the customer invoice exists
-                    if (data == null)
-                        throw new NotFoundException("Customer invoice not found!");
-                    Sale? sale = await _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefaultAsync();
-                    if (sale == null)
-                        throw new NotFoundException("Sale not found!");
-
-                    if (sale.Status.ToLower().Equals("closed"))
-                        throw new ErrorInputPropertyException("Sale is closed,can't delete!");
-                    sale.TotalRevenue -= data.InvoiceAmount;
-                    List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == id).ToListAsync();
-                    if (listInvoiceCost.Count > 0)
+                    try
                     {
-                        _context.CustomerInvoiceCosts.RemoveRange(listInvoiceCost);
-                    }
 
-                    // Remove the customer invoice from the database
-                    _context.CustomerInvoices.Remove(data);
-                    _context.Sales.Update(sale);
-                    // Save the changes to commit the deletion
-                    await _context.SaveChangesAsync();
+                        if (data == null)
+                            throw new NotFoundException("Customer invoice not found!");
+                        Sale? sale = await _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefaultAsync();
+                        if (sale == null)
+                            throw new NotFoundException("Sale not found!");
+
+                        if (sale.Status.ToLower().Equals("closed"))
+                            throw new ErrorInputPropertyException("Sale is closed,can't delete!");
+                        sale.TotalRevenue -= data.InvoiceAmount;
+                        List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == id).ToListAsync();
+                        if (listInvoiceCost.Count > 0)
+                        {
+                            _context.CustomerInvoiceCosts.RemoveRange(listInvoiceCost);
+                        }
+
+                        // Remove the customer invoice from the database
+                        _context.CustomerInvoices.Remove(data);
+                        _context.Sales.Update(sale);
+                        // Save the changes to commit the deletion
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
 
                     count++;
                 }
