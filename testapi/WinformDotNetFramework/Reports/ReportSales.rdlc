@@ -605,7 +605,7 @@
                                 <TextRun>
                                   <Value>=Fields!Profit.Value</Value>
                                   <Style>
-                                    <Format>0.00'€';(0.00'€')</Format>
+                                    <Format>0.00'€'</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -637,7 +637,7 @@
                                 <TextRun>
                                   <Value>=Fields!TotalSpent.Value</Value>
                                   <Style>
-                                    <Format>0.00'€';(0.00'€')</Format>
+                                    <Format>0.00'€'</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -669,7 +669,7 @@
                                 <TextRun>
                                   <Value>=Fields!TotalRevenue.Value</Value>
                                   <Style>
-                                    <Format>0.00'€';(0.00'€')</Format>
+                                    <Format>0.00'€'</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>

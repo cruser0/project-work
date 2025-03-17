@@ -340,7 +340,7 @@ namespace WinformDotNetFramework.Forms
                 await LoadCustomerInvoiceData();
                 ReportDataSource mainDataSource = new ReportDataSource()
                 {
-                    Name = "SaleByProfit",
+                    Name = "CustomerInvoiceData",
                     Value = _customerInvoiceData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
@@ -351,7 +351,7 @@ namespace WinformDotNetFramework.Forms
                 await LoadSupplierInvoiceData();
                 ReportDataSource mainDataSource = new ReportDataSource()
                 {
-                    Name = "SaleByProfit",
+                    Name = "SupplierInvoiceData",
                     Value = _supplierInvoiceData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
