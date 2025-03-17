@@ -27,29 +27,30 @@ namespace WinformDotNetFramework.Forms.CustomDialog
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void OpenBtn_Click(object sender, EventArgs e)
         {
-            if(sender is Button btn)
-                switch (btn.Name)
-                {
-                    case "CustomerInvoiceBtn":
-                        ChoosenReport = ReportEnum.CustomerInvoice;
-                        DialogResult = DialogResult.OK;
-                        Close();
-                        break;
-                    case "SupplierInvoiceBtn":
-                        ChoosenReport = ReportEnum.SupplierInvoice;
-                        DialogResult = DialogResult.OK;
-                        Close();
-                        break;
-                    case "SaleBtn":
-                        ChoosenReport = ReportEnum.Sale;
-                        DialogResult = DialogResult.OK;
-                        Close();
-                        break;
-                    default:
-                        Close(); break;
-                }
+            if (CustomerInvoiceReportRadio.Checked)
+            {
+                ChoosenReport = ReportEnum.CustomerInvoice;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else if (SupplierInvoiceReportRadio.Checked)
+            {
+                ChoosenReport = ReportEnum.SupplierInvoice;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else if (SaleReportRadio.Checked)
+            {
+                ChoosenReport = ReportEnum.Sale;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Select the report you want to open");
+            }
         }
     }
 }

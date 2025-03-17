@@ -15,6 +15,10 @@ namespace WinformDotNetFramework.Forms
     {
         public string DialogReport { get; set; }
         ProceduresService _procedureService;
+        private bool saleFiltersVisible;
+        private bool customerInvoiceFiltersVisible;
+        private bool supplierInvoiceFiltersVisible;
+        List<Task> tasks=new List<Task>();
 
         // Data collections for the report and subreports
         private List<ClassifySalesByProfit> _saleData = new List<ClassifySalesByProfit>();
@@ -37,6 +41,9 @@ namespace WinformDotNetFramework.Forms
             ReportViewer.ProcessingMode = ProcessingMode.Local;
             ReportViewer.LocalReport.SubreportProcessing +=
                         new SubreportProcessingEventHandler(SubreportProcessingEventHandler);
+            tasks.Add(_procedureService.GetClassifySalesByProfit(new ClassifySalesByProfitFilter()));
+            tasks.Add(_procedureService.GetTotalAmountGainedPerCustomerInvoice(new TotalAmountGainedPerCustomerInvoiceFilter()));
+            tasks.Add(_procedureService.GetTotalAmountSpentPerSupplierInvoice(new TotalAmountSpentPerSupplierInvoiceFilter()));
             CallDialogReport();
         }
 
@@ -44,9 +51,22 @@ namespace WinformDotNetFramework.Forms
         private void DockButton_Click(object sender, EventArgs e)
         {
             if (splitContainer1.Panel2.Width != 25)
+            {
                 splitContainer1.SplitterDistance = this.Width - 25;
+                DockButton.Text = "<";
+                saleFiltersVisible = searchSaleReport1.Visible;
+                customerInvoiceFiltersVisible = searchCustomerInvoiceReportUserControl1.Visible;
+                supplierInvoiceFiltersVisible = searchSupplierInvoiceReport1.Visible;
+                SetSearchVisibilityFalse();
+            }
             else
+            {
                 splitContainer1.SplitterDistance = splitContainer1.Width - 236;
+                DockButton.Text = ">";
+                searchSaleReport1.Visible=saleFiltersVisible;
+                searchCustomerInvoiceReportUserControl1.Visible= customerInvoiceFiltersVisible;
+                searchSupplierInvoiceReport1.Visible = supplierInvoiceFiltersVisible;
+            }
 
         }
 
@@ -92,14 +112,7 @@ namespace WinformDotNetFramework.Forms
             _saleData = new List<ClassifySalesByProfit>();
             _customerInvoiceData = new List<TotalAmountGainedPerCustomerInvoice>();
             _supplierInvoiceData = new List<TotalAmountSpentPerSupplierInvoice>();
-
             await LoadReportData();
-            ReportDataSource mainDataSource = new ReportDataSource()
-            {
-                Name = "SaleByProfit",
-                Value = _saleData
-            };
-            ReportViewer.LocalReport.DataSources.Add(mainDataSource);
             ReportViewer.RefreshReport();
             ReportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             ReportViewer.ZoomMode = ZoomMode.Percent;
@@ -242,56 +255,66 @@ namespace WinformDotNetFramework.Forms
         }
         private async Task LoadReportData()
         {
-            var tasks = new List<Task>();
 
-            //if (true || searchSaleReport1.checkBox1.Checked || searchSaleReport1.checkBox3.Checked)  // Main report always needs this data
-            //{
-            //    var profitTask = LoadProfitData();
-            //    tasks.Add(profitTask);
-            //}
-
-            //if (searchSaleReport1.checkBox2.Checked)
-            //{
-            //    var customerTask = LoadCustomerData();
-            //    tasks.Add(customerTask);
-            //}
-
-            if (true)  // Main report always needs this data
+            if (DialogReport.Equals("Sale"))  // Main report always needs this data
             {
-                var profitTask = LoadSaleData();
-                tasks.Add(profitTask);
+                await LoadSaleData();
+                ReportDataSource mainDataSource = new ReportDataSource()
+                {
+                    Name = "SaleByProfit",
+                    Value = _saleData
+                };
+                ReportViewer.LocalReport.DataSources.Add(mainDataSource);
             }
 
-            if (true)
+            if (DialogReport.Equals("CustomerInvoice"))
             {
-                var cusInvoiceTask = LoadCustomerInvoiceData();
-                tasks.Add(cusInvoiceTask);
+                await LoadCustomerInvoiceData();
+                ReportDataSource mainDataSource = new ReportDataSource()
+                {
+                    Name = "SaleByProfit",
+                    Value = _customerInvoiceData
+                };
+                ReportViewer.LocalReport.DataSources.Add(mainDataSource);
             }
 
-            if (true)
+            if (DialogReport.Equals("SupplierInvoice"))
             {
-                var supInvoiceTask = LoadSupplierInvoiceData();
-                tasks.Add(supInvoiceTask);
+                await LoadSupplierInvoiceData();
+                ReportDataSource mainDataSource = new ReportDataSource()
+                {
+                    Name = "SaleByProfit",
+                    Value = _supplierInvoiceData
+                };
+                ReportViewer.LocalReport.DataSources.Add(mainDataSource);
             }
 
-            await Task.WhenAll(tasks);
         }
+
 
         private async Task LoadSaleData()
         {
-            var filter = new ClassifySalesByProfitFilter();
-            _saleData = await _procedureService.GetClassifySalesByProfit(filter);
+            var filter=searchSaleReport1.GetFilter();
+            if (searchSaleReport1.IsFilterEmpty(filter))
+                _saleData = await (Task<List<ClassifySalesByProfit>>)tasks[0];
+            else
+                _saleData = await _procedureService.GetClassifySalesByProfit(filter);
         }
 
         private async Task LoadCustomerInvoiceData()
         {
-            var filter = new TotalAmountGainedPerCustomerInvoiceFilter();
-            _customerInvoiceData = await _procedureService.GetTotalAmountGainedPerCustomerInvoice(filter);
+            var filter = searchCustomerInvoiceReportUserControl1.GetFilter();
+            if (searchCustomerInvoiceReportUserControl1.IsFilterEmpty(filter))
+                _customerInvoiceData = await (Task <List<TotalAmountGainedPerCustomerInvoice>>)tasks[1];
+            else
+                _customerInvoiceData = await _procedureService.GetTotalAmountGainedPerCustomerInvoice(filter);
         }
 
         private async Task LoadSupplierInvoiceData()
         {
-            var filter = new TotalAmountSpentPerSupplierInvoiceFilter();
+            var filter = searchSupplierInvoiceReport1.GetFilter();
+            if(searchSupplierInvoiceReport1.IsFilterEmpty(filter))
+                _supplierInvoiceData=await (Task<List<TotalAmountSpentPerSupplierInvoice>>)tasks[2];
             _supplierInvoiceData = await _procedureService.GetTotalAmountSpentPerSupplierInvoice(filter);
         }
         private void CallDialogReport()

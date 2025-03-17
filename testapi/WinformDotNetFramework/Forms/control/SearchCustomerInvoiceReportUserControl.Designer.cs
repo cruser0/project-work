@@ -203,8 +203,8 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "All",
-            "Active",
-            "Deprecated"});
+            "Paid",
+            "Unpaid"});
             this.comboBox1.Location = new System.Drawing.Point(3, 183);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(180, 21);
