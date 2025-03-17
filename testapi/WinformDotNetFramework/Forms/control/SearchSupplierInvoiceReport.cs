@@ -35,11 +35,11 @@ namespace WinformDotNetFramework.Forms.control
                 filter.DateTo = DateToClnd.Value;
             else
                 filter.DateTo = null;
-            if (SpentFromIntegerTxt.GetText() != null)
+            if (!string.IsNullOrEmpty(SpentFromIntegerTxt.GetText()))
                 filter.TotalSpentFrom = int.Parse(SpentFromIntegerTxt.GetText());
             else
                 filter.TotalSpentFrom = null;
-            if (SpentToIntegerTxt.GetText() != null)
+            if (!string.IsNullOrEmpty(SpentToIntegerTxt.GetText()))
                 filter.TotalSpentTo = int.Parse(SpentToIntegerTxt.GetText());
             else
                 filter.TotalSpentTo = null;
