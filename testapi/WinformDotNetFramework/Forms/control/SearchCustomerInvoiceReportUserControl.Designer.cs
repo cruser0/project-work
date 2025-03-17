@@ -72,7 +72,7 @@
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 434);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 418);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // GraphLbl
@@ -93,13 +93,12 @@
             this.GrapCBL.Items.AddRange(new object[] {
             "Total customer invoices per status",
             "Total customer invoices per country",
-            "Total customer invoices per customer",
             "Total customer invoices per date",
             "Total gained per date",
             "Total gained per country"});
             this.GrapCBL.Location = new System.Drawing.Point(2, 308);
             this.GrapCBL.Name = "GrapCBL";
-            this.GrapCBL.Size = new System.Drawing.Size(180, 106);
+            this.GrapCBL.Size = new System.Drawing.Size(180, 89);
             this.GrapCBL.TabIndex = 38;
             // 
             // GainedToLbl
@@ -203,8 +202,8 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "All",
-            "Active",
-            "Deprecated"});
+            "Paid",
+            "Unpaid"});
             this.comboBox1.Location = new System.Drawing.Point(3, 183);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(180, 21);
@@ -258,7 +257,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoiceReportUserControl";
-            this.Size = new System.Drawing.Size(200, 434);
+            this.Size = new System.Drawing.Size(200, 418);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

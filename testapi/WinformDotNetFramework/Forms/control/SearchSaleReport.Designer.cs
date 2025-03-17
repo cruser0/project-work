@@ -33,18 +33,18 @@
             this.GrapCBL = new System.Windows.Forms.CheckedListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.integerTextBoxUserControl3 = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.integerTextBoxUserControl4 = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.RevenueToIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.RevenueFromIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.SpentToLbl = new System.Windows.Forms.Label();
             this.TotalSpentLbl = new System.Windows.Forms.Label();
-            this.integerTextBoxUserControl1 = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.integerTextBoxUserControl2 = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.SpentToIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.SpentFromIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.ProfitToLbl = new System.Windows.Forms.Label();
             this.ProfitFromLbl = new System.Windows.Forms.Label();
             this.ProfitToIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.ProfitFromIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.MarginLbl = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.FilterMarginCmbx = new System.Windows.Forms.ComboBox();
             this.BKNumberTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.BoLNumberTxt = new System.Windows.Forms.TextBox();
@@ -54,7 +54,7 @@
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
             this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
             this.StatusLbl = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.StatusCmbx = new System.Windows.Forms.ComboBox();
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.CountryLbl = new System.Windows.Forms.Label();
@@ -71,18 +71,18 @@
             this.TextBoxesRightPanel.Controls.Add(this.GrapCBL);
             this.TextBoxesRightPanel.Controls.Add(this.label6);
             this.TextBoxesRightPanel.Controls.Add(this.label7);
-            this.TextBoxesRightPanel.Controls.Add(this.integerTextBoxUserControl3);
-            this.TextBoxesRightPanel.Controls.Add(this.integerTextBoxUserControl4);
+            this.TextBoxesRightPanel.Controls.Add(this.RevenueToIntegerTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.RevenueFromIntegerTxt);
             this.TextBoxesRightPanel.Controls.Add(this.SpentToLbl);
             this.TextBoxesRightPanel.Controls.Add(this.TotalSpentLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.integerTextBoxUserControl1);
-            this.TextBoxesRightPanel.Controls.Add(this.integerTextBoxUserControl2);
+            this.TextBoxesRightPanel.Controls.Add(this.SpentToIntegerTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.SpentFromIntegerTxt);
             this.TextBoxesRightPanel.Controls.Add(this.ProfitToLbl);
             this.TextBoxesRightPanel.Controls.Add(this.ProfitFromLbl);
             this.TextBoxesRightPanel.Controls.Add(this.ProfitToIntegerTxt);
             this.TextBoxesRightPanel.Controls.Add(this.ProfitFromIntegerTxt);
             this.TextBoxesRightPanel.Controls.Add(this.MarginLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.comboBox2);
+            this.TextBoxesRightPanel.Controls.Add(this.FilterMarginCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.BKNumberTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.BoLNumberTxt);
@@ -92,7 +92,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.DateToClnd);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
+            this.TextBoxesRightPanel.Controls.Add(this.StatusCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerNameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLbl);
@@ -123,7 +123,6 @@
             "Total sales per country",
             "Total sales per sale margin",
             "Total sales per date",
-            "Total sales per customer",
             "Total profit per date",
             "Total revenue-spent per date",
             "Total profit per country",
@@ -155,21 +154,21 @@
             this.label7.TabIndex = 33;
             this.label7.Text = "Gross From";
             // 
-            // integerTextBoxUserControl3
+            // RevenueToIntegerTxt
             // 
-            this.integerTextBoxUserControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.integerTextBoxUserControl3.Location = new System.Drawing.Point(4, 484);
-            this.integerTextBoxUserControl3.Name = "integerTextBoxUserControl3";
-            this.integerTextBoxUserControl3.Size = new System.Drawing.Size(179, 20);
-            this.integerTextBoxUserControl3.TabIndex = 32;
+            this.RevenueToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.RevenueToIntegerTxt.Location = new System.Drawing.Point(4, 484);
+            this.RevenueToIntegerTxt.Name = "RevenueToIntegerTxt";
+            this.RevenueToIntegerTxt.Size = new System.Drawing.Size(179, 20);
+            this.RevenueToIntegerTxt.TabIndex = 32;
             // 
-            // integerTextBoxUserControl4
+            // RevenueFromIntegerTxt
             // 
-            this.integerTextBoxUserControl4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.integerTextBoxUserControl4.Location = new System.Drawing.Point(4, 443);
-            this.integerTextBoxUserControl4.Name = "integerTextBoxUserControl4";
-            this.integerTextBoxUserControl4.Size = new System.Drawing.Size(179, 20);
-            this.integerTextBoxUserControl4.TabIndex = 31;
+            this.RevenueFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.RevenueFromIntegerTxt.Location = new System.Drawing.Point(4, 443);
+            this.RevenueFromIntegerTxt.Name = "RevenueFromIntegerTxt";
+            this.RevenueFromIntegerTxt.Size = new System.Drawing.Size(179, 20);
+            this.RevenueFromIntegerTxt.TabIndex = 31;
             // 
             // SpentToLbl
             // 
@@ -193,21 +192,21 @@
             this.TotalSpentLbl.TabIndex = 29;
             this.TotalSpentLbl.Text = "Spent From";
             // 
-            // integerTextBoxUserControl1
+            // SpentToIntegerTxt
             // 
-            this.integerTextBoxUserControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.integerTextBoxUserControl1.Location = new System.Drawing.Point(4, 402);
-            this.integerTextBoxUserControl1.Name = "integerTextBoxUserControl1";
-            this.integerTextBoxUserControl1.Size = new System.Drawing.Size(179, 20);
-            this.integerTextBoxUserControl1.TabIndex = 28;
+            this.SpentToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SpentToIntegerTxt.Location = new System.Drawing.Point(4, 402);
+            this.SpentToIntegerTxt.Name = "SpentToIntegerTxt";
+            this.SpentToIntegerTxt.Size = new System.Drawing.Size(179, 20);
+            this.SpentToIntegerTxt.TabIndex = 28;
             // 
-            // integerTextBoxUserControl2
+            // SpentFromIntegerTxt
             // 
-            this.integerTextBoxUserControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.integerTextBoxUserControl2.Location = new System.Drawing.Point(4, 361);
-            this.integerTextBoxUserControl2.Name = "integerTextBoxUserControl2";
-            this.integerTextBoxUserControl2.Size = new System.Drawing.Size(179, 20);
-            this.integerTextBoxUserControl2.TabIndex = 27;
+            this.SpentFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SpentFromIntegerTxt.Location = new System.Drawing.Point(4, 361);
+            this.SpentFromIntegerTxt.Name = "SpentFromIntegerTxt";
+            this.SpentFromIntegerTxt.Size = new System.Drawing.Size(179, 20);
+            this.SpentFromIntegerTxt.TabIndex = 27;
             // 
             // ProfitToLbl
             // 
@@ -258,19 +257,20 @@
             this.MarginLbl.TabIndex = 22;
             this.MarginLbl.Text = "Profit Margin";
             // 
-            // comboBox2
+            // FilterMarginCmbx
             // 
-            this.comboBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.FilterMarginCmbx.BackColor = System.Drawing.SystemColors.Window;
+            this.FilterMarginCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.FilterMarginCmbx.FormattingEnabled = true;
+            this.FilterMarginCmbx.Items.AddRange(new object[] {
             "All",
-            "Active",
-            "Deprecated"});
-            this.comboBox2.Location = new System.Drawing.Point(3, 148);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(180, 21);
-            this.comboBox2.TabIndex = 21;
+            "Profit",
+            "No Profit",
+            "Risky"});
+            this.FilterMarginCmbx.Location = new System.Drawing.Point(3, 148);
+            this.FilterMarginCmbx.Name = "FilterMarginCmbx";
+            this.FilterMarginCmbx.Size = new System.Drawing.Size(180, 21);
+            this.FilterMarginCmbx.TabIndex = 21;
             // 
             // BKNumberTxt
             // 
@@ -370,19 +370,19 @@
             this.StatusLbl.TabIndex = 6;
             this.StatusLbl.Text = "Status";
             // 
-            // comboBox1
+            // StatusCmbx
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.StatusCmbx.BackColor = System.Drawing.SystemColors.Window;
+            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusCmbx.FormattingEnabled = true;
+            this.StatusCmbx.Items.AddRange(new object[] {
             "All",
             "Active",
-            "Deprecated"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 105);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 21);
-            this.comboBox1.TabIndex = 5;
+            "Closed"});
+            this.StatusCmbx.Location = new System.Drawing.Point(3, 105);
+            this.StatusCmbx.Name = "StatusCmbx";
+            this.StatusCmbx.Size = new System.Drawing.Size(180, 21);
+            this.StatusCmbx.TabIndex = 5;
             // 
             // NameTxt
             // 
@@ -447,13 +447,13 @@
         public System.Windows.Forms.DateTimePicker DateToClnd;
         public System.Windows.Forms.DateTimePicker DateFromClnd;
         private System.Windows.Forms.Label StatusLbl;
-        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox StatusCmbx;
         public System.Windows.Forms.TextBox NameTxt;
         private System.Windows.Forms.Label CustomerNameLbl;
         private System.Windows.Forms.Label CountryLbl;
         public System.Windows.Forms.TextBox CountryTxt;
         private System.Windows.Forms.Label MarginLbl;
-        public System.Windows.Forms.ComboBox comboBox2;
+        public System.Windows.Forms.ComboBox FilterMarginCmbx;
         public System.Windows.Forms.TextBox BKNumberTxt;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox BoLNumberTxt;
@@ -464,12 +464,12 @@
         public IntegerTextBoxUserControl ProfitFromIntegerTxt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        public IntegerTextBoxUserControl integerTextBoxUserControl3;
-        public IntegerTextBoxUserControl integerTextBoxUserControl4;
+        public IntegerTextBoxUserControl RevenueToIntegerTxt;
+        public IntegerTextBoxUserControl RevenueFromIntegerTxt;
         private System.Windows.Forms.Label SpentToLbl;
         private System.Windows.Forms.Label TotalSpentLbl;
-        public IntegerTextBoxUserControl integerTextBoxUserControl1;
-        public IntegerTextBoxUserControl integerTextBoxUserControl2;
+        public IntegerTextBoxUserControl SpentToIntegerTxt;
+        public IntegerTextBoxUserControl SpentFromIntegerTxt;
         private System.Windows.Forms.Label GraphLbl;
         public System.Windows.Forms.CheckedListBox GrapCBL;
     }

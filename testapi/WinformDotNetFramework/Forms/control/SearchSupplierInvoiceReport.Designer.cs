@@ -91,15 +91,14 @@
             this.GrapCBL.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrapCBL.FormattingEnabled = true;
             this.GrapCBL.Items.AddRange(new object[] {
-            "Total supplier invoices per status",
             "Total supplier invoices per country",
-            "Total supplier invoices per supplier ",
+            "Total supplier invoices per status",
             "Total supplier invoices per date",
             "Total spent per date",
             "Total spent per country"});
             this.GrapCBL.Location = new System.Drawing.Point(2, 308);
             this.GrapCBL.Name = "GrapCBL";
-            this.GrapCBL.Size = new System.Drawing.Size(180, 106);
+            this.GrapCBL.Size = new System.Drawing.Size(181, 106);
             this.GrapCBL.TabIndex = 38;
             // 
             // SpentToLbl
@@ -203,8 +202,8 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "All",
-            "Active",
-            "Deprecated"});
+            "Approved",
+            "Unapproved"});
             this.comboBox1.Location = new System.Drawing.Point(3, 183);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(180, 21);

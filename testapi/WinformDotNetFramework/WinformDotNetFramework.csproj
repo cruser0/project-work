@@ -208,12 +208,6 @@
     <Compile Include="Forms\AddForms\CreateUserForm.Designer.cs">
       <DependentUpon>CreateUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AllChartTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AllChartTest.Designer.cs">
-      <DependentUpon>AllChartTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\control\BaseGridUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -352,10 +346,10 @@
     <Compile Include="Forms\control\StarUserControl.Designer.cs">
       <DependentUpon>StarUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CustomDialog\ChooseReportDialog.cs">
+    <Compile Include="Forms\CustomDialogs\ChooseReportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CustomDialog\ChooseReportDialog.Designer.cs">
+    <Compile Include="Forms\CustomDialogs\ChooseReportDialog.Designer.cs">
       <DependentUpon>ChooseReportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomerForm.cs">
@@ -567,12 +561,6 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ValueService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="Forms\testChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\testChart.Designer.cs">
-      <DependentUpon>testChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserAccessInfo.cs" />
     <Compile Include="UtilityFunctions.cs" />
     <EmbeddedResource Include="Forms\AddForms\CreateCustomerForm.resx">
@@ -598,9 +586,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddForms\CreateUserForm.resx">
       <DependentUpon>CreateUserForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AllChartTest.resx">
-      <DependentUpon>AllChartTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\BaseGridUserControl.resx">
       <DependentUpon>BaseGridUserControl.cs</DependentUpon>
@@ -671,7 +656,7 @@
     <EmbeddedResource Include="Forms\control\StarUserControl.resx">
       <DependentUpon>StarUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CustomDialog\ChooseReportDialog.resx">
+    <EmbeddedResource Include="Forms\CustomDialogs\ChooseReportDialog.resx">
       <DependentUpon>ChooseReportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomerForm.resx">
@@ -772,9 +757,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\testChart.resx">
-      <DependentUpon>testChart.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\SubReportCharts.rdlc" />
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <None Include="packages.config" />
@@ -859,7 +841,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Reports\" />
     <Folder Include="Properties\Resources\Charts\" />
   </ItemGroup>
   <ItemGroup>

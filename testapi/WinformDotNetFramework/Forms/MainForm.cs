@@ -34,7 +34,6 @@ namespace WinformDotNetFramework.Forms
 
             CreateDockPanel();
             tabControl.TabPages.Remove(ShowTP);
-            tabControl.TabPages.Remove(EditTP);
             tabControl.TabPages.Remove(AddTP);
             tabControl.TabPages.Remove(GroupTP);
             UserProfile.Text = "Hello " + UserAccessInfo.Name;
@@ -72,7 +71,6 @@ namespace WinformDotNetFramework.Forms
             if (UtilityFunctions.IsAuthorized(WriteRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles))
             {
                 tabControl.TabPages.Add(AddTP);
-                tabControl.TabPages.Add(EditTP);
             }
 
             if (UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||

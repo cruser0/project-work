@@ -44,21 +44,10 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCostShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SaleShowTS = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.UserShowTS = new System.Windows.Forms.ToolStripButton();
-            this.EditTP = new System.Windows.Forms.TabPage();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton17 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton18 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.ReportTS = new System.Windows.Forms.ToolStripButton();
             this.AddTP = new System.Windows.Forms.TabPage();
             this.Create = new System.Windows.Forms.ToolStrip();
             this.CustomerCreateTS = new System.Windows.Forms.ToolStripButton();
@@ -77,13 +66,6 @@ namespace WinformDotNetFramework.Forms
             this.CustomerGroupTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierGroupTS = new System.Windows.Forms.ToolStripButton();
-            this.TPReport = new System.Windows.Forms.TabPage();
-            this.Report = new System.Windows.Forms.ToolStrip();
-            this.SaleTSB = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.CustomerInvoiceTSB = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.SupplierInvoiceTSB = new System.Windows.Forms.ToolStripButton();
             this.TS = new System.Windows.Forms.ToolStrip();
             this.Logout = new System.Windows.Forms.ToolStripButton();
             this.UserProfile = new System.Windows.Forms.ToolStripButton();
@@ -91,20 +73,14 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.ReportTS = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
             this.Show.SuspendLayout();
-            this.EditTP.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
             this.AddTP.SuspendLayout();
             this.Create.SuspendLayout();
             this.GroupTP.SuspendLayout();
             this.Group.SuspendLayout();
-            this.TPReport.SuspendLayout();
-            this.Report.SuspendLayout();
             this.TS.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,10 +98,8 @@ namespace WinformDotNetFramework.Forms
             // tabControl
             // 
             this.tabControl.Controls.Add(this.ShowTP);
-            this.tabControl.Controls.Add(this.EditTP);
             this.tabControl.Controls.Add(this.AddTP);
             this.tabControl.Controls.Add(this.GroupTP);
-            this.tabControl.Controls.Add(this.TPReport);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.HotTrack = true;
@@ -266,10 +240,10 @@ namespace WinformDotNetFramework.Forms
             this.SaleShowTS.Text = "Sale";
             this.SaleShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // toolStripSeparator3
+            // toolStripSeparator13
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 31);
             // 
             // UserShowTS
             // 
@@ -283,143 +257,21 @@ namespace WinformDotNetFramework.Forms
             this.UserShowTS.Text = "User";
             this.UserShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // EditTP
+            // toolStripSeparator3
             // 
-            this.EditTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(214)))), ((int)(((byte)(222)))));
-            this.EditTP.Controls.Add(this.toolStrip3);
-            this.EditTP.Location = new System.Drawing.Point(4, 24);
-            this.EditTP.Name = "EditTP";
-            this.EditTP.Padding = new System.Windows.Forms.Padding(3);
-            this.EditTP.Size = new System.Drawing.Size(1069, 37);
-            this.EditTP.TabIndex = 1;
-            this.EditTP.Text = "Edit";
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
             // 
-            // toolStrip3
+            // ReportTS
             // 
-            this.toolStrip3.AutoSize = false;
-            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton12,
-            this.toolStripButton13,
-            this.toolStripButton14,
-            this.toolStripSeparator4,
-            this.toolStripButton15,
-            this.toolStripButton16,
-            this.toolStripButton17,
-            this.toolStripSeparator5,
-            this.toolStripButton18,
-            this.toolStripSeparator6,
-            this.toolStripButton19});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1063, 31);
-            this.toolStrip3.TabIndex = 1;
-            this.toolStrip3.Text = "toolStrip3";
-            // 
-            // toolStripButton12
-            // 
-            this.toolStripButton12.AutoSize = false;
-            this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
-            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton12.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton12.Text = "toolStripButton4";
-            // 
-            // toolStripButton13
-            // 
-            this.toolStripButton13.AutoSize = false;
-            this.toolStripButton13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton13.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton13.Image")));
-            this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton13.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton13.Name = "toolStripButton13";
-            this.toolStripButton13.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton13.Text = "toolStripButton5";
-            // 
-            // toolStripButton14
-            // 
-            this.toolStripButton14.AutoSize = false;
-            this.toolStripButton14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton14.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton14.Image")));
-            this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton14.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton14.Name = "toolStripButton14";
-            this.toolStripButton14.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton14.Text = "toolStripButton6";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripButton15
-            // 
-            this.toolStripButton15.AutoSize = false;
-            this.toolStripButton15.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
-            this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton15.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton15.Name = "toolStripButton15";
-            this.toolStripButton15.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton15.Text = "toolStripButton7";
-            // 
-            // toolStripButton16
-            // 
-            this.toolStripButton16.AutoSize = false;
-            this.toolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton16.Image")));
-            this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton16.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton16.Name = "toolStripButton16";
-            this.toolStripButton16.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton16.Text = "toolStripButton8";
-            // 
-            // toolStripButton17
-            // 
-            this.toolStripButton17.AutoSize = false;
-            this.toolStripButton17.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton17.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton17.Image")));
-            this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton17.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton17.Name = "toolStripButton17";
-            this.toolStripButton17.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton17.Text = "toolStripButton9";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripButton18
-            // 
-            this.toolStripButton18.AutoSize = false;
-            this.toolStripButton18.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton18.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton18.Image")));
-            this.toolStripButton18.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton18.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton18.Name = "toolStripButton18";
-            this.toolStripButton18.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton18.Text = "toolStripButton10";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripButton19
-            // 
-            this.toolStripButton19.AutoSize = false;
-            this.toolStripButton19.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton19.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton19.Image")));
-            this.toolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton19.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton19.Name = "toolStripButton19";
-            this.toolStripButton19.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton19.Text = "toolStripButton11";
+            this.ReportTS.AutoSize = false;
+            this.ReportTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ReportTS.Image = ((System.Drawing.Image)(resources.GetObject("ReportTS.Image")));
+            this.ReportTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReportTS.Name = "ReportTS";
+            this.ReportTS.Size = new System.Drawing.Size(100, 28);
+            this.ReportTS.Text = "Report";
+            this.ReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // AddTP
             // 
@@ -623,79 +475,6 @@ namespace WinformDotNetFramework.Forms
             this.SupplierGroupTS.Text = "Supplier";
             this.SupplierGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // TPReport
-            // 
-            this.TPReport.Controls.Add(this.Report);
-            this.TPReport.Location = new System.Drawing.Point(4, 24);
-            this.TPReport.Name = "TPReport";
-            this.TPReport.Padding = new System.Windows.Forms.Padding(3);
-            this.TPReport.Size = new System.Drawing.Size(1069, 37);
-            this.TPReport.TabIndex = 4;
-            this.TPReport.Text = "Report";
-            this.TPReport.UseVisualStyleBackColor = true;
-            // 
-            // Report
-            // 
-            this.Report.AutoSize = false;
-            this.Report.BackColor = System.Drawing.Color.Transparent;
-            this.Report.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Report.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.Report.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaleTSB,
-            this.toolStripSeparator10,
-            this.CustomerInvoiceTSB,
-            this.toolStripSeparator11,
-            this.SupplierInvoiceTSB});
-            this.Report.Location = new System.Drawing.Point(3, 3);
-            this.Report.Name = "Report";
-            this.Report.Size = new System.Drawing.Size(1063, 31);
-            this.Report.TabIndex = 2;
-            this.Report.Text = "Customer";
-            // 
-            // SaleTSB
-            // 
-            this.SaleTSB.AutoSize = false;
-            this.SaleTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SaleTSB.Image = ((System.Drawing.Image)(resources.GetObject("SaleTSB.Image")));
-            this.SaleTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SaleTSB.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.SaleTSB.Name = "SaleTSB";
-            this.SaleTSB.Size = new System.Drawing.Size(100, 27);
-            this.SaleTSB.Text = "Chart";
-            this.SaleTSB.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 31);
-            // 
-            // CustomerInvoiceTSB
-            // 
-            this.CustomerInvoiceTSB.AutoSize = false;
-            this.CustomerInvoiceTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CustomerInvoiceTSB.Image = ((System.Drawing.Image)(resources.GetObject("CustomerInvoiceTSB.Image")));
-            this.CustomerInvoiceTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CustomerInvoiceTSB.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.CustomerInvoiceTSB.Name = "CustomerInvoiceTSB";
-            this.CustomerInvoiceTSB.Size = new System.Drawing.Size(100, 27);
-            this.CustomerInvoiceTSB.Text = "Customer Invoice";
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 31);
-            // 
-            // SupplierInvoiceTSB
-            // 
-            this.SupplierInvoiceTSB.AutoSize = false;
-            this.SupplierInvoiceTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SupplierInvoiceTSB.Image = ((System.Drawing.Image)(resources.GetObject("SupplierInvoiceTSB.Image")));
-            this.SupplierInvoiceTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SupplierInvoiceTSB.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.SupplierInvoiceTSB.Name = "SupplierInvoiceTSB";
-            this.SupplierInvoiceTSB.Size = new System.Drawing.Size(100, 27);
-            this.SupplierInvoiceTSB.Text = "Supplier Invoice";
-            // 
             // TS
             // 
             this.TS.AutoSize = false;
@@ -778,22 +557,6 @@ namespace WinformDotNetFramework.Forms
             this.MainPanel.TabIndex = 10;
             this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
             // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 31);
-            // 
-            // ReportTS
-            // 
-            this.ReportTS.AutoSize = false;
-            this.ReportTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ReportTS.Image = ((System.Drawing.Image)(resources.GetObject("ReportTS.Image")));
-            this.ReportTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ReportTS.Name = "ReportTS";
-            this.ReportTS.Size = new System.Drawing.Size(100, 28);
-            this.ReportTS.Text = "Report";
-            this.ReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -812,18 +575,12 @@ namespace WinformDotNetFramework.Forms
             this.ShowTP.ResumeLayout(false);
             this.Show.ResumeLayout(false);
             this.Show.PerformLayout();
-            this.EditTP.ResumeLayout(false);
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
             this.AddTP.ResumeLayout(false);
             this.Create.ResumeLayout(false);
             this.Create.PerformLayout();
             this.GroupTP.ResumeLayout(false);
             this.Group.ResumeLayout(false);
             this.Group.PerformLayout();
-            this.TPReport.ResumeLayout(false);
-            this.Report.ResumeLayout(false);
-            this.Report.PerformLayout();
             this.TS.ResumeLayout(false);
             this.TS.PerformLayout();
             this.ResumeLayout(false);
@@ -843,19 +600,6 @@ namespace WinformDotNetFramework.Forms
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
-        private TabPage EditTP;
-        private ToolStrip toolStrip3;
-        private ToolStripButton toolStripButton12;
-        private ToolStripButton toolStripButton13;
-        private ToolStripButton toolStripButton14;
-        private ToolStripSeparator toolStripSeparator4;
-        private ToolStripButton toolStripButton15;
-        private ToolStripButton toolStripButton16;
-        private ToolStripButton toolStripButton17;
-        private ToolStripSeparator toolStripSeparator5;
-        private ToolStripButton toolStripButton18;
-        private ToolStripSeparator toolStripSeparator6;
-        private ToolStripButton toolStripButton19;
         private TabPage AddTP;
         private ToolStripSeparator toolStripSeparator7;
         private ToolStripSeparator toolStripSeparator8;
@@ -886,13 +630,6 @@ namespace WinformDotNetFramework.Forms
         public ToolStripButton CustomerGroupTS;
         public ToolStripButton SupplierGroupTS;
         public ToolStripButton AddFavoriteButton;
-        private TabPage TPReport;
-        public ToolStrip Report;
-        public ToolStripButton SaleTSB;
-        private ToolStripSeparator toolStripSeparator10;
-        public ToolStripButton CustomerInvoiceTSB;
-        private ToolStripSeparator toolStripSeparator11;
-        public ToolStripButton SupplierInvoiceTSB;
         private ToolStripSeparator toolStripSeparator13;
         private ToolStripButton ReportTS;
     }
