@@ -405,12 +405,12 @@ namespace WinformDotNetFramework.Forms
                     searchSaleReport1.Visible = true;
                     break;
                 case "CustomerInvoice":
-                    ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.SaleProfitReport.rdlc";
+                    ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportCustomerInvoices.rdlc";
                     SetSearchVisibilityFalse();
                     searchCustomerInvoiceReportUserControl1.Visible = true;
                     break;
                 case "SupplierInvoice":
-                    ReportViewer.LocalReport.ReportEmbeddedResource = "";
+                    ReportViewer.LocalReport.ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportSupplierInvoices.rdlc";
                     SetSearchVisibilityFalse();
                     searchSupplierInvoiceReport1.Visible = true;
                     break;

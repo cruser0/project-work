@@ -757,6 +757,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportCustomerInvoices.rdlc" />
+    <EmbeddedResource Include="Reports\ReportSupplierInvoices.rdlc" />
     <EmbeddedResource Include="Reports\SubReportCharts.rdlc" />
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <None Include="packages.config" />
