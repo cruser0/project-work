@@ -422,5 +422,13 @@ namespace WinformDotNetFramework.Forms
                     break;
             }
         }
+
+        private void SaleReportForm_Shown(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(DialogReport))
+            {
+                this.Close();
+            }
+        }
     }
 }
