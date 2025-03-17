@@ -179,7 +179,7 @@ namespace WinformDotNetFramework.Forms
                     child = new UserProfileForm();
                     break;
 
-                case "Report Chart":
+                case "Show Report":
                     //child = new AllChartTest();
                     //child = new testChart();
                     child = new SaleReportForm();

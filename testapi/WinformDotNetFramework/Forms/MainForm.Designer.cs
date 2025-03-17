@@ -91,6 +91,8 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.ReportTS = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -160,8 +162,10 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCostShowTS,
             this.toolStripSeparator2,
             this.SaleShowTS,
+            this.toolStripSeparator13,
+            this.UserShowTS,
             this.toolStripSeparator3,
-            this.UserShowTS});
+            this.ReportTS});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
             this.Show.Size = new System.Drawing.Size(1063, 31);
@@ -774,6 +778,22 @@ namespace WinformDotNetFramework.Forms
             this.MainPanel.TabIndex = 10;
             this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
             // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 31);
+            // 
+            // ReportTS
+            // 
+            this.ReportTS.AutoSize = false;
+            this.ReportTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ReportTS.Image = ((System.Drawing.Image)(resources.GetObject("ReportTS.Image")));
+            this.ReportTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReportTS.Name = "ReportTS";
+            this.ReportTS.Size = new System.Drawing.Size(100, 28);
+            this.ReportTS.Text = "Report";
+            this.ReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -873,5 +893,7 @@ namespace WinformDotNetFramework.Forms
         public ToolStripButton CustomerInvoiceTSB;
         private ToolStripSeparator toolStripSeparator11;
         public ToolStripButton SupplierInvoiceTSB;
+        private ToolStripSeparator toolStripSeparator13;
+        private ToolStripButton ReportTS;
     }
 }
