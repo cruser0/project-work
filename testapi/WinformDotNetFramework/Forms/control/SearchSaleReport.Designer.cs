@@ -123,7 +123,6 @@
             "Total sales per country",
             "Total sales per sale margin",
             "Total sales per date",
-            "Total sales per customer",
             "Total profit per date",
             "Total revenue-spent per date",
             "Total profit per country",

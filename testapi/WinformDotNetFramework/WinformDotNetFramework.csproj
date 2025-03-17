@@ -346,10 +346,10 @@
     <Compile Include="Forms\control\StarUserControl.Designer.cs">
       <DependentUpon>StarUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CustomDialog\ChooseReportDialog.cs">
+    <Compile Include="Forms\CustomDialogs\ChooseReportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CustomDialog\ChooseReportDialog.Designer.cs">
+    <Compile Include="Forms\CustomDialogs\ChooseReportDialog.Designer.cs">
       <DependentUpon>ChooseReportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomerForm.cs">
@@ -656,7 +656,7 @@
     <EmbeddedResource Include="Forms\control\StarUserControl.resx">
       <DependentUpon>StarUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CustomDialog\ChooseReportDialog.resx">
+    <EmbeddedResource Include="Forms\CustomDialogs\ChooseReportDialog.resx">
       <DependentUpon>ChooseReportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomerForm.resx">

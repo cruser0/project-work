@@ -200,22 +200,67 @@ namespace WinformDotNetFramework.Forms
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", _profitData));
             //else
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", new List<ClassifySalesByProfit>()));
+            if(searchSaleReport1.GrapCBL.SelectedIndices.Contains(0))
+                e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleCountByStatus", new List<ClassifySalesByProfit>()));
+            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(1))
+                e.DataSources.Add(new ReportDataSource("SaleCountByCountry", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleCountByCountry", new List<ClassifySalesByProfit>()));
+            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(2))
+                e.DataSources.Add(new ReportDataSource("SaleCountByMargin", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleCountByMargin", new List<ClassifySalesByProfit>()));
+            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(3))
+                e.DataSources.Add(new ReportDataSource("SaleCountByDate", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleCountByDate", new List<ClassifySalesByProfit>()));
+            if ( searchSaleReport1.GrapCBL.SelectedIndices.Contains(4))
+                e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", new List<ClassifySalesByProfit>()));
+            if(searchSaleReport1.GrapCBL.SelectedIndices.Contains(5))
+                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", new List<ClassifySalesByProfit>()));
+            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(6))
+                e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", new List<ClassifySalesByProfit>()));
 
-            e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleCountByCountry", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleCountByMargin", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleCountByDateCountry", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleTotalSpentSumByCountry", _saleData));
-            e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSumByCountry", _saleData));
-            e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", _customerInvoiceData));
-            e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", _customerInvoiceData));
-            e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", _customerInvoiceData));
-            e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", _customerInvoiceData));
-            e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", _customerInvoiceData));
+            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(7))
+                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", _saleData));
+            else
+                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", new List<ClassifySalesByProfit>()));
+
+
+
+            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(0))
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", _customerInvoiceData));
+            else
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", new List<TotalAmountGainedPerCustomerInvoice>()));
+            if(searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(1))
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", _customerInvoiceData));
+            else
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", new List<TotalAmountGainedPerCustomerInvoice>()));
+            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(2))
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", _customerInvoiceData));
+            else
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
+            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(3))
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", _customerInvoiceData));
+            else
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
+            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(4))
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", _customerInvoiceData));
+            else
+                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", new List<TotalAmountGainedPerCustomerInvoice>()));
+
+
+
             e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", _supplierInvoiceData));
+            e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", new List<TotalAmountSpentPerSupplierInvoice>()));
             e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", _supplierInvoiceData));
             e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", _supplierInvoiceData));
             e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData));

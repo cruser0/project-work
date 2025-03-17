@@ -93,13 +93,12 @@
             this.GrapCBL.Items.AddRange(new object[] {
             "Total supplier invoices per status",
             "Total supplier invoices per country",
-            "Total supplier invoices per supplier ",
             "Total supplier invoices per date",
             "Total spent per date",
             "Total spent per country"});
             this.GrapCBL.Location = new System.Drawing.Point(2, 308);
             this.GrapCBL.Name = "GrapCBL";
-            this.GrapCBL.Size = new System.Drawing.Size(180, 106);
+            this.GrapCBL.Size = new System.Drawing.Size(181, 106);
             this.GrapCBL.TabIndex = 38;
             // 
             // SpentToLbl
