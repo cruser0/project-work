@@ -199,24 +199,40 @@ namespace API.Models.Services
 
         public async Task<CustomerDTOGet> DeleteCustomer(int id)
         {
-            // Retrieve the customer from the database based on the provided ID
+            await using var transaction = await _context.Database.BeginTransactionAsync();
             var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+            try
+            {
+                // Retrieve the customer from the database based on the provided ID
 
-            // If the customer does not exist, throw an exception
-            if (data == null)
-                throw new NotFoundException("Customer not found!");
+                // If the customer does not exist, throw an exception
+                if (data == null)
+                    throw new NotFoundException("Customer not found!");
 
-            // Retrieve all sales associated with this customer
-            var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
+                // Retrieve all sales associated with this customer
+                var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
 
-            // If there are any sales, delete them
-            if (sales.Count > 0)
-                foreach (var sale in sales)
-                    await _sService.DeleteSale(sale.SaleId);
+                // If there are any sales, delete them
+                if (sales.Count > 0)
+                {
 
-            // Remove the customer from the database
-            _context.Customers.Remove(data);
-            await _context.SaveChangesAsync();
+                    foreach (var sale in sales)
+                    {
+                        await _sService.DeleteSale(sale.SaleId);
+
+                    }
+                }
+
+                // Remove the customer from the database
+                _context.Customers.Remove(data);
+                await _context.SaveChangesAsync();
+            }
+            catch (ErrorInputPropertyException ex)
+            {
+                await transaction.RollbackAsync();
+                throw ex;
+            }
+            await transaction.CommitAsync();
 
             // Map the deleted customer to DTO and return it
             return CustomerMapper.MapGet(data);
@@ -228,23 +244,35 @@ namespace API.Models.Services
             // Retrieve the customer from the database based on the provided ID
             foreach (var id in customerId)
             {
+                await using var transaction = await _context.Database.BeginTransactionAsync();
                 var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+                try
+                {
 
-                // If the customer does not exist, continues with the loop
-                if (data == null)
-                    continue;
+                    // If the customer does not exist, continues with the loop
+                    if (data == null)
+                        continue;
 
-                // Retrieve all sales associated with this customer
-                var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
+                    // Retrieve all sales associated with this customer
+                    var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
 
-                // If there are any sales, delete them
-                if (sales.Count > 0)
+                    // If there are any sales, delete them
+
+
                     foreach (var sale in sales)
+                    {
                         await _sService.DeleteSale(sale.SaleId);
-
-                // Remove the customer from the database
-                _context.Customers.Remove(data);
-                await _context.SaveChangesAsync();
+                    }
+                    // Remove the customer from the database
+                    _context.Customers.Remove(data);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    continue;
+                }
+                await transaction.CommitAsync();
                 count++;
             }
 

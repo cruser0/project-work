@@ -262,7 +262,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.button1.Location = new System.Drawing.Point(33, 3);
+            this.button1.Location = new System.Drawing.Point(58, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 37);
             this.button1.TabIndex = 0;
@@ -286,7 +286,7 @@
             this.DockButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DockButton.Location = new System.Drawing.Point(0, 0);
             this.DockButton.Name = "DockButton";
-            this.DockButton.Size = new System.Drawing.Size(20, 25);
+            this.DockButton.Size = new System.Drawing.Size(25, 25);
             this.DockButton.TabIndex = 0;
             this.DockButton.Text = ">";
             this.DockButton.UseVisualStyleBackColor = true;

@@ -175,10 +175,25 @@ namespace API.Models.Services
             if (data == null)
                 throw new NotFoundException("Supplier not found!");
             List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
+
             if (si.Any())
             {
-                foreach (SupplierInvoice item in si)
-                    await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                await using var transaction = await _context.Database.BeginTransactionAsync();
+                try
+                {
+                    foreach (SupplierInvoice item in si)
+                    {
+
+                        await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                    }
+                }
+                catch (ErrorInputPropertyException ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw ex;
+                }
+
+
             }
             _context.Suppliers.Remove(data);
             await _context.SaveChangesAsync();
@@ -195,10 +210,29 @@ namespace API.Models.Services
                 if (data == null)
                     continue;
                 List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
-                if (si.Any())
+                try
                 {
-                    foreach (SupplierInvoice item in si)
-                        await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                    if (si.Any())
+                    {
+                        await using var transaction = await _context.Database.BeginTransactionAsync();
+                        try
+                        {
+                            foreach (SupplierInvoice item in si)
+                            {
+
+                                await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                            }
+                        }
+                        catch (ErrorInputPropertyException ex)
+                        {
+                            await transaction.RollbackAsync();
+                            throw ex;
+                        }
+                    }
+                }
+                catch (ErrorInputPropertyException)
+                {
+                    continue;
                 }
                 _context.Suppliers.Remove(data);
                 await _context.SaveChangesAsync();
