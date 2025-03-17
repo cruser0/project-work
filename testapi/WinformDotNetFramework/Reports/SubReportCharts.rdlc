@@ -2548,6 +2548,9 @@
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>3</ZIndex>
+            <Visibility>
+              <Hidden>=IsNothing(First(Fields!BoLNumber.Value, "SaleProfitSumByDate"))</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
