@@ -407,7 +407,7 @@ namespace WinformDotNetFramework.Forms
             }
         }
 
-        private async Task UpdateFavoriteTab()
+        public async Task UpdateFavoriteTab()
         {
             // Recupera la lista di preferiti
             await GetPreferred();
