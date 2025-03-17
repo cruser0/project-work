@@ -200,87 +200,97 @@ namespace WinformDotNetFramework.Forms
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", _profitData));
             //else
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", new List<ClassifySalesByProfit>()));
-            if(searchSaleReport1.GrapCBL.SelectedIndices.Contains(0))
+            if(IsIndexSelected(searchSaleReport1.GrapCBL,0))
                 e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByStatus", new List<ClassifySalesByProfit>()));
-            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(1))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL,1))
                 e.DataSources.Add(new ReportDataSource("SaleCountByCountry", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByCountry", new List<ClassifySalesByProfit>()));
-            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(2))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL,2))
                 e.DataSources.Add(new ReportDataSource("SaleCountByMargin", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByMargin", new List<ClassifySalesByProfit>()));
-            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(3))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL,3))
                 e.DataSources.Add(new ReportDataSource("SaleCountByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByDate", new List<ClassifySalesByProfit>()));
-            if ( searchSaleReport1.GrapCBL.SelectedIndices.Contains(4))
+            if (IsIndexSelected (searchSaleReport1.GrapCBL,4))
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", new List<ClassifySalesByProfit>()));
-            if(searchSaleReport1.GrapCBL.SelectedIndices.Contains(5))
+            if(IsIndexSelected(searchSaleReport1.GrapCBL,5))
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", new List<ClassifySalesByProfit>()));
-            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(6))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL,6))
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", new List<ClassifySalesByProfit>()));
 
-            if (searchSaleReport1.GrapCBL.SelectedIndices.Contains(7))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL,7))
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", new List<ClassifySalesByProfit>()));
 
 
 
-            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(0))
+            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL,0))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", new List<TotalAmountGainedPerCustomerInvoice>()));
-            if(searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(1))
+            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 1))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", new List<TotalAmountGainedPerCustomerInvoice>()));
-            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(2))
+            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 2))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
-            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(3))
+            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 3))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
-            if (searchCustomerInvoiceReportUserControl1.GrapCBL.SelectedIndices.Contains(4))
+            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 4))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", new List<TotalAmountGainedPerCustomerInvoice>()));
 
 
-            if(searchSupplierInvoiceReport1.GrapCBL.SelectedIndices.Contains(0))
+            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 0))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", new List<TotalAmountSpentPerSupplierInvoice>()));
-            if (searchSupplierInvoiceReport1.GrapCBL.SelectedIndices.Contains(0))
+            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 1))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", new List<TotalAmountSpentPerSupplierInvoice>()));
-            if (searchSupplierInvoiceReport1.GrapCBL.SelectedIndices.Contains(0))
+            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 2))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", new List<TotalAmountSpentPerSupplierInvoice>()));
-            if (searchSupplierInvoiceReport1.GrapCBL.SelectedIndices.Contains(0))
+            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 3))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", new List<TotalAmountSpentPerSupplierInvoice>()));
-            if (searchSupplierInvoiceReport1.GrapCBL.SelectedIndices.Contains(0))
+            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 4))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByCountry", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByCountry", new List<TotalAmountSpentPerSupplierInvoice>()));
 
         }
-
+        private bool IsIndexSelected(CheckedListBox listBox, int index)
+        {
+            if (listBox.InvokeRequired)
+            {
+                return (bool)listBox.Invoke(new Func<bool>(() => listBox.SelectedIndices.Contains(index)));
+            }
+            else
+            {
+                return listBox.SelectedIndices.Contains(index);
+            }
+        }
         private void ChooseReportTSB_Click(object sender, EventArgs e)
         {
             CallDialogReport();
