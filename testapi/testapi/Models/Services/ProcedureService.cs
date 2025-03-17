@@ -1,5 +1,4 @@
-﻿using API.Models.Entities.Charts;
-using API.Models.Filters;
+﻿using API.Models.Filters;
 using API.Models.Procedures;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -48,8 +47,8 @@ namespace API.Models.Services
                  new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
                  new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
                  new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value),
-                 new SqlParameter("@DateFrom", filter.DateFrom ?? (object)DBNull.Value),
-                 new SqlParameter("@DateTo", filter.DateTo ?? (object)DBNull.Value)).ToListAsync();
+                 new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : (object)DBNull.Value),
+                 new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo.Value.Date : (object)DBNull.Value)).ToListAsync();
         }
 
         public async Task<List<TotalAmountGainedPerCustomerInvoice>> FilterCustomerInvoicesByAmountGained(TotalAmountGainedPerCustomerInvoiceFilter filter)
@@ -67,11 +66,11 @@ namespace API.Models.Services
                 new SqlParameter("@customerInvoiceID", filter.customerInvoiceID ?? (object)DBNull.Value),
                 new SqlParameter("@TotalGainedFrom", filter.TotalGainedFrom ?? (object)DBNull.Value),
                 new SqlParameter("@TotalGainedTo", filter.TotalGainedTo ?? (object)DBNull.Value),
-                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : (object)DBNull.Value),
                 new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
-                new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value)).ToListAsync();
+                new SqlParameter("@CustomerCountry", filter.DateTo.HasValue ? filter.DateTo.Value.Date : (object)DBNull.Value)).ToListAsync();
         }
 
         public async Task<List<TotalAmountSpentPerSupplierInvoice>> FilterSupplierInvoicesByAmountSpent(TotalAmountSpentPerSupplierInvoiceFilter filter)
@@ -89,8 +88,8 @@ namespace API.Models.Services
                 new SqlParameter("@SupplierInvoiceID", filter.SupplierInvoiceID ?? (object)DBNull.Value),
                 new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
                 new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
-                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : (object)DBNull.Value),
-                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : (object)DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo.Value.Date : (object)DBNull.Value),
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
                 new SqlParameter("@SupplierCountry", filter.SupplierCountry ?? (object)DBNull.Value)).ToListAsync();

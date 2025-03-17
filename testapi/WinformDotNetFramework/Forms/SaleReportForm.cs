@@ -18,7 +18,7 @@ namespace WinformDotNetFramework.Forms
         private bool saleFiltersVisible;
         private bool customerInvoiceFiltersVisible;
         private bool supplierInvoiceFiltersVisible;
-        List<Task> tasks=new List<Task>();
+        List<Task> tasks = new List<Task>();
 
         // Data collections for the report and subreports
         private List<ClassifySalesByProfit> _saleData = new List<ClassifySalesByProfit>();
@@ -63,8 +63,8 @@ namespace WinformDotNetFramework.Forms
             {
                 splitContainer1.SplitterDistance = splitContainer1.Width - 236;
                 DockButton.Text = ">";
-                searchSaleReport1.Visible=saleFiltersVisible;
-                searchCustomerInvoiceReportUserControl1.Visible= customerInvoiceFiltersVisible;
+                searchSaleReport1.Visible = saleFiltersVisible;
+                searchCustomerInvoiceReportUserControl1.Visible = customerInvoiceFiltersVisible;
                 searchSupplierInvoiceReport1.Visible = supplierInvoiceFiltersVisible;
             }
 
@@ -200,43 +200,43 @@ namespace WinformDotNetFramework.Forms
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", _profitData));
             //else
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", new List<ClassifySalesByProfit>()));
-            if(IsIndexSelected(searchSaleReport1.GrapCBL,0))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 0))
                 e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByStatus", new List<ClassifySalesByProfit>()));
-            if (IsIndexSelected(searchSaleReport1.GrapCBL,1))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 1))
                 e.DataSources.Add(new ReportDataSource("SaleCountByCountry", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByCountry", new List<ClassifySalesByProfit>()));
-            if (IsIndexSelected(searchSaleReport1.GrapCBL,2))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 2))
                 e.DataSources.Add(new ReportDataSource("SaleCountByMargin", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByMargin", new List<ClassifySalesByProfit>()));
-            if (IsIndexSelected(searchSaleReport1.GrapCBL,3))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 3))
                 e.DataSources.Add(new ReportDataSource("SaleCountByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByDate", new List<ClassifySalesByProfit>()));
-            if (IsIndexSelected (searchSaleReport1.GrapCBL,4))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 4))
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", new List<ClassifySalesByProfit>()));
-            if(IsIndexSelected(searchSaleReport1.GrapCBL,5))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 5))
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", new List<ClassifySalesByProfit>()));
-            if (IsIndexSelected(searchSaleReport1.GrapCBL,6))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 6))
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", new List<ClassifySalesByProfit>()));
 
-            if (IsIndexSelected(searchSaleReport1.GrapCBL,7))
+            if (IsIndexSelected(searchSaleReport1.GrapCBL, 7))
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", new List<ClassifySalesByProfit>()));
 
 
 
-            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL,0))
+            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 0))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", new List<TotalAmountGainedPerCustomerInvoice>()));
@@ -284,11 +284,11 @@ namespace WinformDotNetFramework.Forms
         {
             if (listBox.InvokeRequired)
             {
-                return (bool)listBox.Invoke(new Func<bool>(() => listBox.SelectedIndices.Contains(index)));
+                return (bool)listBox.Invoke(new Func<bool>(() => listBox.CheckedIndices.Contains(index)));
             }
             else
             {
-                return listBox.SelectedIndices.Contains(index);
+                return listBox.CheckedIndices.Contains(index);
             }
         }
         private void ChooseReportTSB_Click(object sender, EventArgs e)
@@ -362,7 +362,7 @@ namespace WinformDotNetFramework.Forms
 
         private async Task LoadSaleData()
         {
-            var filter=searchSaleReport1.GetFilter();
+            var filter = searchSaleReport1.GetFilter();
             if (searchSaleReport1.IsFilterEmpty(filter))
                 _saleData = await (Task<List<ClassifySalesByProfit>>)tasks[0];
             else
@@ -373,7 +373,7 @@ namespace WinformDotNetFramework.Forms
         {
             var filter = searchCustomerInvoiceReportUserControl1.GetFilter();
             if (searchCustomerInvoiceReportUserControl1.IsFilterEmpty(filter))
-                _customerInvoiceData = await (Task <List<TotalAmountGainedPerCustomerInvoice>>)tasks[1];
+                _customerInvoiceData = await (Task<List<TotalAmountGainedPerCustomerInvoice>>)tasks[1];
             else
                 _customerInvoiceData = await _procedureService.GetTotalAmountGainedPerCustomerInvoice(filter);
         }
@@ -381,8 +381,8 @@ namespace WinformDotNetFramework.Forms
         private async Task LoadSupplierInvoiceData()
         {
             var filter = searchSupplierInvoiceReport1.GetFilter();
-            if(searchSupplierInvoiceReport1.IsFilterEmpty(filter))
-                _supplierInvoiceData=await (Task<List<TotalAmountSpentPerSupplierInvoice>>)tasks[2];
+            if (searchSupplierInvoiceReport1.IsFilterEmpty(filter))
+                _supplierInvoiceData = await (Task<List<TotalAmountSpentPerSupplierInvoice>>)tasks[2];
             _supplierInvoiceData = await _procedureService.GetTotalAmountSpentPerSupplierInvoice(filter);
         }
         private void CallDialogReport()

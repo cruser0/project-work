@@ -13,6 +13,9 @@ namespace WinformDotNetFramework.Services
         {
             var queryParameters = new List<string>();
 
+            string dateFrom = filter.DateFrom.HasValue ? filter.DateFrom.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "";
+            string dateTo = filter.DateTo.HasValue ? filter.DateTo.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "";
+
             var filters = new Dictionary<string, object>
             {
                 { "TotalSpentFrom", filter.TotalSpentFrom ?? null },
@@ -29,8 +32,8 @@ namespace WinformDotNetFramework.Services
                 { "CustomerName", filter.CustomerName ?? null},
                 { "CustomerCountry", filter.CustomerCountry ?? null},
                 { "SaleID", filter.SaleID ?? null},
-                { "DateFrom", filter.DateFrom ?? null},
-                { "DateTo", filter.DateTo ?? null},
+                { "DateFrom", dateFrom ?? null},
+                { "DateTo", dateTo ?? null},
 
             };
             foreach (var kvp in filters)
@@ -45,13 +48,16 @@ namespace WinformDotNetFramework.Services
         {
             var queryParameters = new List<string>();
 
+            string dateFrom = filter.DateFrom.HasValue ? filter.DateFrom.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "";
+            string dateTo = filter.DateTo.HasValue ? filter.DateTo.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "";
+
             var filters = new Dictionary<string, object>
             {
                 { "customerInvoiceID", filter.customerInvoiceID ?? null },
                 { "TotalGainedFrom", filter.TotalGainedFrom ?? null },
                 { "TotalGainedTo", filter.TotalGainedTo ?? null },
-                { "DateFrom", filter.DateFrom.HasValue ? filter.DateFrom: null },
-                { "DateTo", filter.DateTo.HasValue ? filter.DateTo : null },
+                { "DateFrom", dateFrom?? null },
+                { "DateTo", dateTo?? null },
                 { "Status", filter.Status ?? null},
                 { "CustomerName", filter.CustomerName ?? null},
                 { "CustomerCountry", filter.CustomerCountry ?? null},
@@ -69,13 +75,16 @@ namespace WinformDotNetFramework.Services
         {
             var queryParameters = new List<string>();
 
+            string dateFrom = filter.DateFrom.HasValue ? filter.DateFrom.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "";
+            string dateTo = filter.DateTo.HasValue ? filter.DateTo.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "";
+
             var filters = new Dictionary<string, object>
             {
                 { "SupplierInvoiceID", filter.SupplierInvoiceID?? null },
                 { "TotalSpentFrom", filter.TotalSpentFrom ?? null },
                 { "TotalSpentTo", filter.TotalSpentTo ?? null },
-                { "DateFrom", filter.DateFrom.HasValue ? filter.DateFrom : null },
-                { "DateTo", filter.DateTo.HasValue ? filter.DateTo : null},
+                { "DateFrom", dateFrom ?? null },
+                { "DateTo", dateTo ?? null},
                 { "Status", filter.Status ?? null},
                 { "SupplierName", filter.SupplierName ?? null},
                 { "SupplierCountry", filter.SupplierCountry ?? null},
