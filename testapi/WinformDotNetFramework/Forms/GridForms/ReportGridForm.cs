@@ -306,6 +306,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PdfTSB.Enabled = false;
             EmptyReportTSB.Enabled = false;
             PrintPagePreviewBTS.Enabled = false;
+            ZoomTSLbl.Enabled = false;
         }
         private void EnableTSItems()
         {
@@ -315,6 +316,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PdfTSB.Enabled = true;
             EmptyReportTSB.Enabled = true;
             PrintPagePreviewBTS.Enabled = true;
+            ZoomTSLbl.Enabled=true;
         }
         private void SetSearchVisibilityFalse()
         {
