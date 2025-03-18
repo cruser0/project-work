@@ -141,11 +141,13 @@ namespace WinformDotNetFramework.Forms
             if (tabName.Equals("TS"))
                 formName = tabName + " " + menuItem.Name;
             else
+            {
                 formName = tabName + " " + menuItem.Text;
 
-            if (tabControl.SelectedTab.Text.Equals("Favorite"))
-            {
-                formName = (string)menuItem.Tag;
+                if (tabControl.SelectedTab.Text.Equals("Favorite"))
+                {
+                    formName = (string)menuItem.Tag;
+                }
             }
 
             int? countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
@@ -555,7 +557,7 @@ namespace WinformDotNetFramework.Forms
             form.ShowIcon = false;
             form.Resize += Form_Resize;
 
-            if (form.Text.Contains("Show") || form.Text.Contains("Group")|| form.Text.Contains("Report"))
+            if (form.Text.Contains("Show") || form.Text.Contains("Group") || form.Text.Contains("Report"))
             {
                 toolStripButton3.PerformClick();
                 form.WindowState = FormWindowState.Maximized;
