@@ -36,6 +36,7 @@ namespace WinformDotNetFramework.Forms
             tabControl.TabPages.Remove(ShowTP);
             tabControl.TabPages.Remove(AddTP);
             tabControl.TabPages.Remove(GroupTP);
+            tabControl.TabPages.Remove(ReportTP);
             UserProfile.Text = "Hello " + UserAccessInfo.Name;
         }
         private async void MainForm_Load(object sender, EventArgs e)
@@ -79,6 +80,12 @@ namespace WinformDotNetFramework.Forms
             {
                 tabControl.TabPages.Add(GroupTP);
             }
+            if (UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
+                UtilityFunctions.IsAuthorized(AdminRoles))
+            {
+                tabControl.TabPages.Add(ReportTP);
+            }
 
             // Impostazione visibilità ToolStripMenuItems
             CustomerShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
@@ -114,6 +121,13 @@ namespace WinformDotNetFramework.Forms
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
+
+            SupplierInvoiceReportTS.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
+            CustomerInvoiceReportTS.Visible = SaleReportTS.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
         }
 
         public void buttonOpenChild_Click(object sender, EventArgs e)
