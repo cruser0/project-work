@@ -15,7 +15,14 @@ namespace WinformDotNetFramework.Forms.control
         {
             SupplierInvoiceCostFilter filter = new SupplierInvoiceCostFilter();
             filter.SupplierInvoiceCostName = NameTxt.Text;
-
+            if (!string.IsNullOrEmpty(InvoiceIDTxt.GetText()))
+            {
+                filter.SupplierInvoiceCostSupplierInvoiceId = int.Parse(InvoiceIDTxt.GetText());
+            }
+            else
+            {
+                filter.SupplierInvoiceCostSupplierInvoiceId = null;
+            }
             if (!string.IsNullOrEmpty(CostFromTxt.GetText()))
             {
                 filter.SupplierInvoiceCostCostFrom = int.Parse(CostFromTxt.GetText());

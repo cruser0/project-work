@@ -24,6 +24,14 @@ namespace WinformDotNetFramework.Forms.control
             {
                 filter.SupplierInvoiceSaleID = null;
             }
+            if (!string.IsNullOrEmpty(SupplierIDTxt.GetText()))
+            {
+                filter.SupplierInvoiceSupplierID = int.Parse(SupplierIDTxt.GetText());
+            }
+            else
+            {
+                filter.SupplierInvoiceSupplierID = null;
+            }
 
             if (!string.IsNullOrEmpty(InvoiceAmountFromTxt.GetText()))
             {

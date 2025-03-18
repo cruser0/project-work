@@ -96,10 +96,10 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
-                { "Name", filter.UserName },
-                { "LastName", filter.UserLastName },
-                { "page", filter.UserPage },
-                { "Email", filter.UserEmail },
+                { "UserName", filter.UserName },
+                { "UserLastName", filter.UserLastName },
+                { "Userpage", filter.UserPage },
+                { "UserEmail", filter.UserEmail },
 
             };
 
@@ -110,7 +110,7 @@ namespace WinformDotNetFramework.Services
             }
             foreach (var kvp in filter.UserRoles)
             {
-                queryParameters.Add($"Roles={kvp}");
+                queryParameters.Add($"UserRoles={kvp}");
             }
 
             string queryString = queryParameters.Any() ? "?" + string.Join("&", queryParameters) : string.Empty;
