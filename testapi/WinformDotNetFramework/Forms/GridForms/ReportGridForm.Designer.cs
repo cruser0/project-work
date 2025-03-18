@@ -152,7 +152,7 @@
             this.DezoomTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DezoomTSB.Name = "DezoomTSB";
             this.DezoomTSB.Size = new System.Drawing.Size(25, 23);
-            this.DezoomTSB.Text = "toolStripButton9";
+            this.DezoomTSB.Text = "Zoom out";
             this.DezoomTSB.Click += new System.EventHandler(this.DezoomTSB_Click);
             // 
             // ZoomTSB
@@ -163,7 +163,7 @@
             this.ZoomTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ZoomTSB.Name = "ZoomTSB";
             this.ZoomTSB.Size = new System.Drawing.Size(25, 23);
-            this.ZoomTSB.Text = "toolStripButton10";
+            this.ZoomTSB.Text = "Zoom in";
             this.ZoomTSB.Click += new System.EventHandler(this.ZoomTSB_Click);
             // 
             // ZoomTSLbl
