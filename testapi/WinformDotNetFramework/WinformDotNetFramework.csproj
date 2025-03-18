@@ -370,6 +370,12 @@
     <Compile Include="Forms\CustomerInvoiceForm.Designer.cs">
       <DependentUpon>CustomerInvoiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CustomerInvoiceReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomerInvoiceReportForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DetailsForms\CustomerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -502,6 +508,12 @@
     <Compile Include="Forms\SaleForm.Designer.cs">
       <DependentUpon>SaleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GridForms\ReportGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridForms\ReportGridForm.Designer.cs">
+      <DependentUpon>ReportGridForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SaleReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -525,6 +537,12 @@
     </Compile>
     <Compile Include="Forms\SupplierInvoiceForm.Designer.cs">
       <DependentUpon>SupplierInvoiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SupplierInvoiceReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SupplierInvoiceReportForm.Designer.cs">
+      <DependentUpon>SupplierInvoiceReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserForm.cs">
       <SubType>Form</SubType>
@@ -734,8 +752,8 @@
     <EmbeddedResource Include="Forms\SaleForm.resx">
       <DependentUpon>SaleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SaleReportForm.resx">
-      <DependentUpon>SaleReportForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GridForms\ReportGridForm.resx">
+      <DependentUpon>ReportGridForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>
