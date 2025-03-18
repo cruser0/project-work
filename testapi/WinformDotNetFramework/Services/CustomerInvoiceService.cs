@@ -16,9 +16,9 @@ namespace WinformDotNetFramework.Services
             {
                 { "CustomerInvoiceSaleId", filter.CustomerInvoiceSaleId },
                 { "CustomerInvoiceInvoiceAmountFrom", filter.CustomerInvoiceInvoiceAmountFrom },
-                { "CustomerInvoiceInvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
+                { "CustomerInvoiceInvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo },
                 { "CustomerInvoiceInvoiceDateFrom", filter.CustomerInvoiceInvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
-                { "CustomerInvoiceInvoiceDateTo", filter.CustomerInvoiceInvoiceDateTo },
+                { "CustomerInvoiceInvoiceDateTo", filter.CustomerInvoiceInvoiceDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "CustomerInvoiceStatus", filter.CustomerInvoiceStatus?.ToLower() != "all" ? filter.CustomerInvoiceStatus : null },
                 { "CustomerInvoicePage", filter.CustomerInvoicePage }
             };

@@ -74,13 +74,13 @@ namespace API.Models.Services
 
                 query = query.Where(s => s.Sale.SaleDate >= filter.SaleDateFrom && s.Sale.SaleDate <= filter.SaleDateTo);
             }
-            else if (filter.SaleRevenueFrom != null)
+            else if (filter.SaleDateFrom != null)
             {
-                query = query.Where(s => s.Sale.TotalRevenue >= filter.SaleRevenueFrom);
+                query = query.Where(s => s.Sale.SaleDate >= filter.SaleDateFrom);
             }
-            else if (filter.SaleRevenueTo != null)
+            else if (filter.SaleDateTo != null)
             {
-                query = query.Where(s => s.Sale.TotalRevenue <= filter.SaleRevenueTo);
+                query = query.Where(s => s.Sale.SaleDate <= filter.SaleDateTo);
             }
 
             if (filter.SaleRevenueFrom != null && filter.SaleRevenueTo != null)

@@ -70,7 +70,6 @@
       </Textbox>
       <Subreport Name="SubReportCharts">
         <ReportName>SubReportCharts</ReportName>
-        <KeepTogether>true</KeepTogether>
         <Top>2.5cm</Top>
         <Left>1.5cm</Left>
         <Height>0.75cm</Height>
