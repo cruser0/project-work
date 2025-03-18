@@ -1393,7 +1393,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleCountByStatus</Caption>
+                <Caption>Sale Count By Status</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -1768,7 +1768,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleCountByCountry</Caption>
+                <Caption>Sale Count By Country</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontWeight>Normal</FontWeight>
@@ -2142,7 +2142,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleCountByMargin</Caption>
+                <Caption>Sale Count By Margin</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -2209,7 +2209,7 @@
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Total Revenue</Label>
+                  <Label>Profit</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -2219,7 +2219,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!TotalRevenue.Value)</Y>
+                        <Y>=Sum(Fields!Profit.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style>
@@ -2246,6 +2246,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Profit Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -2514,7 +2517,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleProfitSumByDate</Caption>
+                <Caption>Profit Per Day</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -2544,7 +2547,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleProfitSumByDate</DataSetName>
-            <Top>32cm</Top>
+            <Top>40cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>3</ZIndex>
@@ -2621,6 +2624,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Revenue Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -2659,6 +2665,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Loss Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -2929,7 +2938,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleTotalRevenueSpentSumByDate</Caption>
+                <Caption>Amount Gained and Lost By Date</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -2959,7 +2968,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleTotalRevenueSpentSumByDate</DataSetName>
-            <Top>40cm</Top>
+            <Top>32cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>4</ZIndex>
@@ -3033,6 +3042,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Profit Per Country</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -3299,7 +3311,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleProfitSumByCountry</Caption>
+                <Caption>Profit Per Country</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -3329,7 +3341,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleProfitSumByCountry</DataSetName>
-            <Top>48cm</Top>
+            <Top>56cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>5</ZIndex>
@@ -3406,6 +3418,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Revenue Per Country</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -3439,6 +3454,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Loss Per Country</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -3704,7 +3722,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleTotalRevenueSpentSumByCountry</Caption>
+                <Caption>Amount Gained and Lost By Country</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -3734,7 +3752,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleTotalRevenueSpentSumByCountry</DataSetName>
-            <Top>56cm</Top>
+            <Top>48cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>6</ZIndex>
@@ -4073,7 +4091,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>CustomerInvoiceCountByStatus</Caption>
+                <Caption>Customer Invoice Count By Status</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -4448,7 +4466,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>CustomerInvoiceCountByCountry</Caption>
+                <Caption>Customer Invoice Count By Country</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -4548,6 +4566,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Revenue Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -4814,7 +4835,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>CustomerInvoiceTotalGainedSumByDate</Caption>
+                <Caption>Customer Invoice Revenue By Date</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -4914,6 +4935,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Revenue Per Country</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -5180,7 +5204,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>CustomerInvoiceTotalGainedSumByCountry</Caption>
+                <Caption>Customer Invoice Revenue By Country</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -5280,6 +5304,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Customer Invoice Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -5546,7 +5573,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>CustomerInvoiceCountByDate</Caption>
+                <Caption>Customer Invoice Count By Date</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -5915,7 +5942,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SupplierInvoiceCountByStatus</Caption>
+                <Caption>Supplier Invoice Count By Status</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -6290,7 +6317,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SupplierInvoiceCountByCountry</Caption>
+                <Caption>Supplier Invoice Count By Country</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -6363,7 +6390,7 @@
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="InvoiceDate">
+                <ChartSeries Name="SupplierInvoicePerDay">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
@@ -6390,6 +6417,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Supplier Invoice Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -6656,7 +6686,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SupplierInvoiceCountByDate</Caption>
+                <Caption>Supplier Invoice Count By Date</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -6756,6 +6786,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Loss Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -7022,7 +7055,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SupplierInvoiceTotalSpentSumByDate</Caption>
+                <Caption>Supplier Invoice Revenue By Date</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -7122,6 +7155,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Loss Per Country</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -7388,7 +7424,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SupplierInvoiceTotalSpentSumByCountry</Caption>
+                <Caption>Supplier Invoice Revenue By Country</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -7492,6 +7528,9 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <ChartItemInLegend>
+                    <LegendText>Sales Per Day</LegendText>
+                  </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -7759,7 +7798,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>SaleCountByDate</Caption>
+                <Caption>Sale Count By Date</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -7805,6 +7844,43 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
+          <Rectangle Name="Rectangle1">
+            <PageBreak>
+              <BreakLocation>End</BreakLocation>
+            </PageBreak>
+            <KeepTogether>true</KeepTogether>
+            <Top>144cm</Top>
+            <Height>0cm</Height>
+            <Width>18cm</Width>
+            <ZIndex>18</ZIndex>
+            <Visibility>
+              <Hidden>=(IsNothing(First(Fields!SaleID.Value, "SaleCountByStatus"))) and
+(IsNothing(First(Fields!SaleID.Value, "SaleCountByCountry"))) and
+(IsNothing(First(Fields!SaleID.Value, "SaleCountByMargin"))) and
+(IsNothing(First(Fields!SaleID.Value, "SaleProfitSumByDate"))) and
+(IsNothing(First(Fields!SaleID.Value, "SaleTotalRevenueSpentSumByDate"))) and
+(IsNothing(First(Fields!SaleID.Value, "SaleProfitSumByCountry"))) and
+(IsNothing(First(Fields!SaleID.Value, "SaleTotalRevenueSpentSumByCountry"))) and
+(IsNothing(First(Fields!SaleID.Value, "SaleCountByDate"))) and
+
+(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByStatus"))) and
+(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByDate"))) and
+(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByCountry"))) and
+(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByDate"))) and
+(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByCountry"))) and
+
+(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByStatus"))) and
+(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByDate"))) and
+(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByCountry"))) and
+(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))) and
+(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry")))</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
         </ReportItems>
         <Height>144cm</Height>
         <Style />

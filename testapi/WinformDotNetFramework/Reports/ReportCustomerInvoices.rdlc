@@ -42,6 +42,7 @@
               <TextRun>
                 <Value>CUSTOMER INVOICES REPORT</Value>
                 <Style>
+                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>20pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
@@ -55,7 +56,7 @@
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>1cm</Top>
         <Left>1.5cm</Left>
-        <Height>0.86458cm</Height>
+        <Height>1cm</Height>
         <Width>18cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -71,9 +72,9 @@
       <Subreport Name="SubReportCharts">
         <ReportName>SubReportCharts</ReportName>
         <KeepTogether>true</KeepTogether>
-        <Top>2.04097cm</Top>
+        <Top>2.5cm</Top>
         <Left>1.5cm</Left>
-        <Height>0.78264cm</Height>
+        <Height>0.75cm</Height>
         <Width>18cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
@@ -118,7 +119,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Customer Name</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -148,7 +153,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Country</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -178,7 +187,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Invoice Date</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -208,7 +221,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Sale ID</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -238,7 +255,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Status</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -268,7 +289,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Total Gained</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>SemiBold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -303,7 +328,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!CustomerName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -332,7 +360,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Country.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -362,6 +393,8 @@
                             <TextRun>
                               <Value>=Fields!InvoiceDate.Value</Value>
                               <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <Format>d</Format>
                               </Style>
                             </TextRun>
@@ -392,7 +425,10 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!SaleID.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -422,6 +458,8 @@
                             <TextRun>
                               <Value>=Fields!Status.Value</Value>
                               <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <Format>d</Format>
                               </Style>
                             </TextRun>
@@ -453,6 +491,8 @@
                             <TextRun>
                               <Value>=Fields!TotalGained.Value</Value>
                               <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
                                 <Format>0.00</Format>
                               </Style>
                             </TextRun>
@@ -501,7 +541,7 @@
         <RepeatRowHeaders>true</RepeatRowHeaders>
         <KeepTogether>true</KeepTogether>
         <DataSetName>CustomerInvoiceData</DataSetName>
-        <Top>3cm</Top>
+        <Top>3.3cm</Top>
         <Left>1.5cm</Left>
         <Height>1.2cm</Height>
         <Width>18cm</Width>
@@ -510,6 +550,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <FontFamily>Segoe UI</FontFamily>
         </Style>
       </Tablix>
     </ReportItems>

@@ -91,8 +91,8 @@
             this.GrapCBL.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrapCBL.FormattingEnabled = true;
             this.GrapCBL.Items.AddRange(new object[] {
-            "Total supplier invoices per country",
             "Total supplier invoices per status",
+            "Total supplier invoices per country",
             "Total supplier invoices per date",
             "Total spent per date",
             "Total spent per country"});
