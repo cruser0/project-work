@@ -71,8 +71,6 @@ namespace WinformDotNetFramework.Forms
             this.SaleShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.UserShowTS = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.ReportTS = new System.Windows.Forms.ToolStripButton();
             this.Show = new System.Windows.Forms.ToolStrip();
             this.CustomerInvoiceReportTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -536,22 +534,6 @@ namespace WinformDotNetFramework.Forms
             this.UserShowTS.Text = "User";
             this.UserShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
-            // 
-            // ReportTS
-            // 
-            this.ReportTS.AutoSize = false;
-            this.ReportTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ReportTS.Image = ((System.Drawing.Image)(resources.GetObject("ReportTS.Image")));
-            this.ReportTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ReportTS.Name = "ReportTS";
-            this.ReportTS.Size = new System.Drawing.Size(100, 28);
-            this.ReportTS.Text = "Report";
-            this.ReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
             // Show
             // 
             this.Show.AutoSize = false;
@@ -569,9 +551,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripSeparator2,
             this.SaleShowTS,
             this.toolStripSeparator13,
-            this.UserShowTS,
-            this.toolStripSeparator3,
-            this.ReportTS});
+            this.UserShowTS});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
             this.Show.Size = new System.Drawing.Size(1063, 31);
@@ -719,8 +699,6 @@ namespace WinformDotNetFramework.Forms
         public ToolStripButton SaleShowTS;
         private ToolStripSeparator toolStripSeparator13;
         public ToolStripButton UserShowTS;
-        private ToolStripSeparator toolStripSeparator3;
-        private ToolStripButton ReportTS;
         public ToolStrip Report;
         public ToolStripButton CustomerInvoiceReportTS;
         private ToolStripSeparator toolStripSeparator4;
