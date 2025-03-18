@@ -44,87 +44,87 @@ namespace WinformDotNetFramework.Forms
             switch (prefPage)
             {
                 case "Show Customer":
-                    CustomerShowTSB.Image = CustomerShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CustomerShowTSB.Image =Properties.Resources.star_yellow_removebg;
                     CustomerShowTSB.Tag = "on";
                     break;
                 case "Show Customer Invoice":
-                    CustomerInvoiceShowTSB.Image = CustomerInvoiceShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CustomerInvoiceShowTSB.Image = Properties.Resources.star_yellow_removebg;
                     CustomerInvoiceShowTSB.Tag = "on";
                     break;
                 case "Show Customer Invoice Cost":
-                    CustomerInvoiceCostShowTSB.Image = CustomerInvoiceCostShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CustomerInvoiceCostShowTSB.Image =Properties.Resources.star_yellow_removebg;
                     CustomerInvoiceCostShowTSB.Tag = "on";
                     break;
                 case "Show Supplier":
-                    SupplierShowTSB.Image = SupplierShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    SupplierShowTSB.Image = Properties.Resources.star_yellow_removebg;
                     SupplierShowTSB.Tag = "on";
                     break;
                 case "Show Supplier Invoice":
-                    SupplierInvoiceShowTSB.Image = SupplierInvoiceShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    SupplierInvoiceShowTSB.Image = Properties.Resources.star_yellow_removebg;
                     SupplierInvoiceShowTSB.Tag = "on";
                     break;
                 case "Show Supplier Invoice Cost":
-                    SupplierInvoiceCostShowTSB.Image = SupplierInvoiceCostShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    SupplierInvoiceCostShowTSB.Image = Properties.Resources.star_yellow_removebg;
                     SupplierInvoiceCostShowTSB.Tag = "on";
                     break;
                 case "Show Sale":
-                    SaleShowTSB.Image = SaleShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    SaleShowTSB.Image = Properties.Resources.star_yellow_removebg;
                     SaleShowTSB.Tag = "on";
                     break;
                 case "Show User":
-                    UserShowTSB.Image = UserShowTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    UserShowTSB.Image = Properties.Resources.star_yellow_removebg;
                     UserShowTSB.Tag = "on";
                     break;
                 case "Create Customer":
-                    CreateCustomerTSB.Image = CreateCustomerTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateCustomerTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateCustomerTSB.Tag = "on";
                     break;
                 case "Create Customer Invoice":
-                    CreateCustomerInvoiceTSB.Image = CreateCustomerInvoiceTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateCustomerInvoiceTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateCustomerInvoiceTSB.Tag = "on";
                     break;
                 case "Create Customer Invoice Cost":
-                    CreateCustomerInvoiceCostTSB.Image = CreateCustomerInvoiceCostTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateCustomerInvoiceCostTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateCustomerInvoiceCostTSB.Tag = "on";
                     break;
                 case "Create Supplier":
-                    CreateSupplierTSB.Image = CreateSupplierTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateSupplierTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateSupplierTSB.Tag = "on";
                     break;
                 case "Create Supplier Invoice":
-                    CreateSupplierInvoiceTSB.Image = CreateSupplierInvoiceTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateSupplierInvoiceTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateSupplierInvoiceTSB.Tag = "on";
                     break;
                 case "Create Supplier Invoice Cost":
-                    CreateSupplierInvoiceCostTSB.Image = CreateSupplierInvoiceCostTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateSupplierInvoiceCostTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateSupplierInvoiceCostTSB.Tag = "on";
                     break;
                 case "Create Sale":
-                    CreateSaleTSB.Image = CreateSaleTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateSaleTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateSaleTSB.Tag = "on";
                     break;
                 case "Create User":
-                    CreateUserTSB.Image = CreateUserTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CreateUserTSB.Image = Properties.Resources.star_yellow_removebg;
                     CreateUserTSB.Tag = "on";
                     break;
                 case "Group Customer":
-                    CustomerGroupTSb.Image = CustomerGroupTSb.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CustomerGroupTSb.Image = Properties.Resources.star_yellow_removebg;
                     CustomerGroupTSb.Tag = "on";
                     break;
                 case "Group Supplier":
-                    SupplierGroupTSB.Image = SupplierGroupTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    SupplierGroupTSB.Image = Properties.Resources.star_yellow_removebg;
                     SupplierGroupTSB.Tag = "on";
                     break;
                 case "Report Customer Invoice":
-                    CustomerInvoiceReportTSB.Image = CustomerInvoiceReportTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    CustomerInvoiceReportTSB.Image = Properties.Resources.star_yellow_removebg;
                     CustomerInvoiceReportTSB.Tag = "on";
                     break;
                 case "Report Supplier Invoice":
-                    SupplierInvoiceReportTSB.Image = SupplierInvoiceReportTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    SupplierInvoiceReportTSB.Image = Properties.Resources.star_yellow_removebg;
                     SupplierInvoiceReportTSB.Tag = "on";
                     break;
                 case "Report Sale":
-                    SaleReportTSB.Image = SaleReportTSB.Image == Properties.Resources.star_yellow_removebg ? Properties.Resources.star : Properties.Resources.star_yellow_removebg;
+                    SaleReportTSB.Image = Properties.Resources.star_yellow_removebg;
                     SaleReportTSB.Tag = "on";
                     break;
                 default:
