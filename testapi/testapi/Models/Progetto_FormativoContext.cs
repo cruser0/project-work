@@ -68,14 +68,10 @@ namespace API.Models
 
             modelBuilder.Entity<Customer>(entity =>
             {
+                entity.ToTable("Customers");
                 entity.HasKey(e => e.CustomerId);
-
-                entity.Property(e => e.CustomerId)
-                    .HasColumnName("CustomerID");
-
                 entity.HasIndex(c => new { c.CustomerName, c.Country })
                 .IsUnique();
-
                 entity.Property(e => e.Country)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -93,6 +89,7 @@ namespace API.Models
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.ToTable("Users");
                 entity.HasKey(e => e.UserID);
 
                 entity.Property(e => e.UserID)
@@ -125,6 +122,7 @@ namespace API.Models
 
             modelBuilder.Entity<Role>(entity =>
             {
+                entity.ToTable("Roles");
                 entity.HasKey(e => e.RoleID);
 
                 entity.Property(e => e.RoleID)
@@ -141,6 +139,8 @@ namespace API.Models
             });
             modelBuilder.Entity<FavouritePages>(entity =>
             {
+                entity.ToTable("FavouritePages");
+
                 entity.HasKey(e => e.FavouritePageID);
 
                 entity.Property(e => e.FavouritePageID)
@@ -158,6 +158,8 @@ namespace API.Models
 
             modelBuilder.Entity<CustomerDGV>(entity =>
             {
+                entity.ToTable("CustomerDGVs");
+
                 entity.HasKey(e=>e.CustomerDGVID);
                 entity.Property(e => e.CustomerDGVID)
                     .HasColumnName("CustomerDGVID");
@@ -189,6 +191,7 @@ namespace API.Models
             });
             modelBuilder.Entity<SaleDGV>(entity =>
             {
+                entity.ToTable("SaleDGVs");
                 entity.HasKey(e => e.SaleDGVID);
                 entity.Property(e => e.SaleDGVID)
                     .HasColumnName("SaleDGVID");
@@ -229,6 +232,7 @@ namespace API.Models
             });
             modelBuilder.Entity<SupplierDGV>(entity =>
             {
+                entity.ToTable("SupplierDGVs");
                 entity.HasKey(e => e.SupplierDGVID);
                 entity.Property(e => e.SupplierDGVID)
                     .HasColumnName("SupplierDGVID");
@@ -260,6 +264,8 @@ namespace API.Models
             });
             modelBuilder.Entity<CustomerGroupSplit>(entity =>
             {
+                entity.ToTable("CustomerGroupSplits");
+
                 entity.HasKey(e => e.CustomerGroupSplitID);
                 entity.Property(e => e.CustomerGroupSplitID)
                     .HasColumnName("CustomerGroupSplitID");
@@ -278,6 +284,8 @@ namespace API.Models
 
             modelBuilder.Entity<SupplierGroupSplit>(entity =>
             {
+                entity.ToTable("SupplierGroupSplits");
+
                 entity.HasKey(e => e.SupplierGroupSplitID);
                 entity.Property(e => e.SupplierGroupSplitID)
                     .HasColumnName("SupplierGroupSplitID");
@@ -293,6 +301,8 @@ namespace API.Models
             });
             modelBuilder.Entity<CustomerInvoiceCostDGV>(entity =>
             {
+                entity.ToTable("CustomerInvoiceCostDGVs");
+
                 entity.HasKey(e => e.CustomerInvoiceCostDGVID);
                 entity.Property(e => e.CustomerInvoiceCostDGVID)
                     .HasColumnName("CustomerInvoiceCostDGVID");
@@ -321,6 +331,8 @@ namespace API.Models
             });
             modelBuilder.Entity<SupplierInvoiceCostDGV>(entity =>
             {
+                entity.ToTable("SupplierInvoiceCostDGVs");
+
                 entity.HasKey(e => e.SupplierInvoiceCostDGVID);
                 entity.Property(e => e.SupplierInvoiceCostDGVID)
                     .HasColumnName("SupplierInvoiceCostDGVID");
@@ -349,6 +361,8 @@ namespace API.Models
             });
             modelBuilder.Entity<CustomerInvoiceDGV>(entity =>
             {
+                entity.ToTable("CustomerInvoiceDGVs");
+
                 entity.HasKey(e => e.CustomerInvoiceDGVID);
                 entity.Property(e => e.CustomerInvoiceDGVID)
                     .HasColumnName("CustomerInvoiceDGVID");
@@ -377,6 +391,8 @@ namespace API.Models
             });
             modelBuilder.Entity<SupplierInvoiceDGV>(entity =>
             {
+                entity.ToTable("SupplierInvoiceDGVs");
+
                 entity.HasKey(e => e.SupplierInvoiceDGVID);
                 entity.Property(e => e.SupplierInvoiceDGVID)
                     .HasColumnName("SupplierInvoiceDGVID");
@@ -413,7 +429,8 @@ namespace API.Models
                 //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
             });
             modelBuilder.Entity<UserDGV>(entity =>
-            {
+            {                
+                entity.ToTable("UserDGVs");
                 entity.HasKey(e => e.UserDGVID);
                 entity.Property(e => e.UserDGVID)
                     .HasColumnName("UserDGVID");
@@ -444,6 +461,8 @@ namespace API.Models
 
             modelBuilder.Entity<RefreshToken>(entity =>
             {
+                entity.ToTable("RefreshTokens");
+
                 entity.HasKey(e => e.TokenID);
 
                 entity.Property(e => e.TokenID)
@@ -470,7 +489,10 @@ namespace API.Models
             });
 
             modelBuilder.Entity<UserFavouritePage>()
-          .HasKey(ur => new { ur.UserID, ur.FavouritePageID });
+                .ToTable("UserFavouritePages");
+
+            modelBuilder.Entity<UserFavouritePage>()
+          .HasKey(ur => new {ur.UserID, ur.FavouritePageID });
 
             modelBuilder.Entity<UserFavouritePage>()
                 .HasOne(ur => ur.User)
@@ -481,6 +503,9 @@ namespace API.Models
                 .HasOne(ur => ur.FavouritePage)
                 .WithMany(r => r.UserFavourtitePages)
                 .HasForeignKey(ur => ur.FavouritePageID);
+
+            modelBuilder.Entity<UserRole>()
+               .ToTable("UserRoles");
 
             modelBuilder.Entity<UserRole>()
            .HasKey(ur => new { ur.UserID, ur.RoleID });
@@ -498,6 +523,8 @@ namespace API.Models
 
             modelBuilder.Entity<CustomerInvoice>(entity =>
             {
+                entity.ToTable("CustomerInvoices");
+
                 entity.Property(e => e.CustomerInvoiceId)
 
                     .HasColumnName("CustomerInvoiceID");
@@ -520,6 +547,8 @@ namespace API.Models
 
             modelBuilder.Entity<Sale>(entity =>
             {
+                entity.ToTable("Sales");
+
                 entity.Property(e => e.SaleId)
 
                     .HasColumnName("SaleID");
@@ -549,52 +578,12 @@ namespace API.Models
                     .HasConstraintName("customer_sales_fk");
             });
 
-            modelBuilder.Entity<SalesView>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Sales_view");
-
-                entity.Property(e => e.BoLnumber)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("BoLNumber");
-
-                entity.Property(e => e.BookingNumber)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Country)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CustomerName)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Expr1)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.InvoiceAmount).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
-
-                entity.Property(e => e.SaleDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Status)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.SupplierName)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TotalRevenue).HasColumnType("decimal(18, 2)");
-            });
+           
 
             modelBuilder.Entity<Supplier>(entity =>
             {
+                entity.ToTable("Suppliers");
+
                 entity.HasKey(e => e.SupplierId);
 
                 entity.Property(e => e.SupplierId)
@@ -621,8 +610,9 @@ namespace API.Models
 
             modelBuilder.Entity<SupplierInvoice>(entity =>
             {
-                entity.HasKey(e => e.InvoiceId)
-                    .HasName("PK__Supplier__D796AAD52AAE58B4");
+                entity.ToTable("SupplierInvoices");
+
+                entity.HasKey(e => e.InvoiceId);
 
                 entity.Property(e => e.InvoiceId)
 
@@ -654,8 +644,9 @@ namespace API.Models
 
             modelBuilder.Entity<SupplierInvoiceCost>(entity =>
             {
-                entity.HasKey(e => e.SupplierInvoiceCostsId)
-                    .HasName("PK__Supplier__45346B41A6779A70");
+                entity.ToTable("SupplierInvoiceCosts");
+
+                entity.HasKey(e => e.SupplierInvoiceCostsId);
 
                 entity.Property(e => e.SupplierInvoiceCostsId)
 
@@ -677,8 +668,9 @@ namespace API.Models
 
             modelBuilder.Entity<CustomerInvoiceCost>(entity =>
             {
-                entity.HasKey(e => e.CustomerInvoiceCostsId)
-                    .HasName("PK__Customer__45346B41A6779A70");
+                entity.ToTable("CustomerInvoiceCosts");
+
+                entity.HasKey(e => e.CustomerInvoiceCostsId);
 
                 entity.Property(e => e.CustomerInvoiceCostsId)
 
