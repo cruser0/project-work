@@ -11,6 +11,7 @@
               <TextRun>
                 <Value>=Today()</Value>
                 <Style>
+                  <FontFamily>Segoe UI</FontFamily>
                   <Format>dddd d MMMM yyyy</Format>
                   <Color>DimGray</Color>
                 </Style>
@@ -113,6 +114,9 @@
                   <CellContents>
                     <Textbox Name="Textbox8">
                       <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=Fields!CustomerName.Value</SortExpression>
+                      </UserSort>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -147,6 +151,9 @@
                   <CellContents>
                     <Textbox Name="Textbox10">
                       <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=Fields!Country.Value</SortExpression>
+                      </UserSort>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -181,6 +188,9 @@
                   <CellContents>
                     <Textbox Name="Textbox14">
                       <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=Fields!InvoiceDate.Value</SortExpression>
+                      </UserSort>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -215,6 +225,9 @@
                   <CellContents>
                     <Textbox Name="Textbox16">
                       <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=Fields!SaleID.Value</SortExpression>
+                      </UserSort>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -249,6 +262,9 @@
                   <CellContents>
                     <Textbox Name="Textbox24">
                       <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=Fields!Status.Value</SortExpression>
+                      </UserSort>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -283,6 +299,9 @@
                   <CellContents>
                     <Textbox Name="Textbox22">
                       <CanGrow>true</CanGrow>
+                      <UserSort>
+                        <SortExpression>=Fields!TotalGained.Value</SortExpression>
+                      </UserSort>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
@@ -573,6 +592,7 @@
                 <TextRun>
                   <Value>=Globals.PageNumber &amp; " / " &amp; Globals.TotalPages</Value>
                   <Style>
+                    <FontFamily>Segoe UI</FontFamily>
                     <Color>DimGray</Color>
                   </Style>
                 </TextRun>

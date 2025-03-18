@@ -9,6 +9,10 @@ namespace WinformDotNetFramework.Forms.control
         {
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
+            for (int i = 0; i < GrapCBL.Items.Count; i++)
+            {
+                GrapCBL.SetItemChecked(i, true);
+            }
         }
         public TotalAmountGainedPerCustomerInvoiceFilter GetFilter()
         {
