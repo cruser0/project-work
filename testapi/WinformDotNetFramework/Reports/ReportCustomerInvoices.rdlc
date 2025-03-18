@@ -11,7 +11,6 @@
               <TextRun>
                 <Value>=Today()</Value>
                 <Style>
-                  <FontFamily>Segoe UI</FontFamily>
                   <Format>dddd d MMMM yyyy</Format>
                   <Color>DimGray</Color>
                 </Style>
@@ -43,7 +42,6 @@
               <TextRun>
                 <Value>CUSTOMER INVOICES REPORT</Value>
                 <Style>
-                  <FontFamily>Segoe UI</FontFamily>
                   <FontSize>20pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
@@ -124,7 +122,6 @@
                             <TextRun>
                               <Value>Customer Name</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>SemiBold</FontWeight>
                               </Style>
@@ -161,7 +158,6 @@
                             <TextRun>
                               <Value>Country</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>SemiBold</FontWeight>
                               </Style>
@@ -198,7 +194,6 @@
                             <TextRun>
                               <Value>Invoice Date</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>SemiBold</FontWeight>
                               </Style>
@@ -235,7 +230,6 @@
                             <TextRun>
                               <Value>Sale ID</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>SemiBold</FontWeight>
                               </Style>
@@ -272,7 +266,6 @@
                             <TextRun>
                               <Value>Status</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>SemiBold</FontWeight>
                               </Style>
@@ -309,7 +302,6 @@
                             <TextRun>
                               <Value>Total Gained</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>SemiBold</FontWeight>
                               </Style>
@@ -348,7 +340,6 @@
                             <TextRun>
                               <Value>=Fields!CustomerName.Value</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -380,7 +371,6 @@
                             <TextRun>
                               <Value>=Fields!Country.Value</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -412,7 +402,6 @@
                             <TextRun>
                               <Value>=Fields!InvoiceDate.Value</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>d</Format>
                               </Style>
@@ -445,7 +434,6 @@
                             <TextRun>
                               <Value>=Fields!SaleID.Value</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -477,7 +465,6 @@
                             <TextRun>
                               <Value>=Fields!Status.Value</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>d</Format>
                               </Style>
@@ -510,7 +497,6 @@
                             <TextRun>
                               <Value>=Fields!TotalGained.Value</Value>
                               <Style>
-                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>0.00</Format>
                               </Style>
@@ -569,7 +555,6 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <FontFamily>Segoe UI</FontFamily>
         </Style>
       </Tablix>
     </ReportItems>
@@ -592,7 +577,6 @@
                 <TextRun>
                   <Value>=Globals.PageNumber &amp; " / " &amp; Globals.TotalPages</Value>
                   <Style>
-                    <FontFamily>Segoe UI</FontFamily>
                     <Color>DimGray</Color>
                   </Style>
                 </TextRun>

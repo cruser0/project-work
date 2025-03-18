@@ -83,7 +83,6 @@
                   <TextRun>
                     <Value>SALES REPORT</Value>
                     <Style>
-                      <FontFamily>Segoe UI</FontFamily>
                       <FontSize>20pt</FontSize>
                       <FontWeight>SemiBold</FontWeight>
                     </Style>
@@ -158,7 +157,6 @@
                                 <TextRun>
                                   <Value>Bill of Lading</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -195,7 +193,6 @@
                                 <TextRun>
                                   <Value>Booking Number</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -232,7 +229,6 @@
                                 <TextRun>
                                   <Value>Customer Name</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -269,7 +265,6 @@
                                 <TextRun>
                                   <Value>Country</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -306,7 +301,6 @@
                                 <TextRun>
                                   <Value>Sale Date</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -343,7 +337,6 @@
                                 <TextRun>
                                   <Value>Status</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -380,7 +373,6 @@
                                 <TextRun>
                                   <Value>Spent</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -417,7 +409,6 @@
                                 <TextRun>
                                   <Value>Revenue</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -454,7 +445,6 @@
                                 <TextRun>
                                   <Value>Profit</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>SemiBold</FontWeight>
                                   </Style>
@@ -493,7 +483,6 @@
                                 <TextRun>
                                   <Value>=Fields!BoLNumber.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -525,7 +514,6 @@
                                 <TextRun>
                                   <Value>=Fields!BookingNumber.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -557,7 +545,6 @@
                                 <TextRun>
                                   <Value>=Fields!CustomerName.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -589,7 +576,6 @@
                                 <TextRun>
                                   <Value>=Fields!Country.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -621,7 +607,6 @@
                                 <TextRun>
                                   <Value>=Fields!SaleDate.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>d</Format>
                                   </Style>
@@ -654,7 +639,6 @@
                                 <TextRun>
                                   <Value>=Fields!Status.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -686,7 +670,6 @@
                                 <TextRun>
                                   <Value>=Fields!TotalSpent.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>0.00'€'</Format>
                                   </Style>
@@ -720,7 +703,6 @@
                                 <TextRun>
                                   <Value>=Fields!TotalRevenue.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>0.00'€'</Format>
                                   </Style>
@@ -754,7 +736,6 @@
                                 <TextRun>
                                   <Value>=Fields!Profit.Value</Value>
                                   <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -832,7 +813,6 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <FontFamily>Segoe UI</FontFamily>
             </Style>
           </Tablix>
           <Textbox Name="Textbox2">
@@ -844,7 +824,6 @@
                   <TextRun>
                     <Value>=Today()</Value>
                     <Style>
-                      <FontFamily>Segoe UI</FontFamily>
                       <Format>dddd d MMMM yyyy</Format>
                       <Color>DimGray</Color>
                     </Style>

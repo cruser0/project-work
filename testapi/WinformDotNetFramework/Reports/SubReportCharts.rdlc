@@ -3066,7 +3066,7 @@
                         <Color>Gainsboro</Color>
                         <Style>None</Style>
                       </Border>
-                      <FontFamily>Segoe UI</FontFamily>
+                      <FontFamily>Arial</FontFamily>
                       <FontSize>8pt</FontSize>
                       <Color>#5c5c5c</Color>
                     </Style>
