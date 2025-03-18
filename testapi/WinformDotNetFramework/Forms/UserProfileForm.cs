@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Services;
@@ -11,11 +10,11 @@ namespace WinformDotNetFramework.Forms
     {
         public bool ciao { get; set; }
         UserService userService;
-        List<string> userPrefPages=new List<string>();
+        List<string> userPrefPages = new List<string>();
         private static readonly HashSet<string> AdminRoles = new HashSet<string>() { "Admin" };
         private static readonly HashSet<string> WriteRoles = new HashSet<string>() { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
         private static readonly HashSet<string> ReadRoles = new HashSet<string>() { "Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "UserRead" };
-        private static readonly HashSet<string> AdminGroupRoles = new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
+        private static readonly HashSet<string> AdminGroupRoles = new HashSet<string>() { "Admin", "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
         public UserProfileForm()
         {
             userService = new UserService();
@@ -31,12 +30,12 @@ namespace WinformDotNetFramework.Forms
                 FlowPanelRoles.Controls.Add(lbl);
             }
 
-            var prefPages=await userService.GetAllPreferredPagesUser();
+            var prefPages = await userService.GetAllPreferredPagesUser();
             foreach (var prefPage in prefPages)
             {
                 userPrefPages.Add(prefPage);
                 AssignImageToPrefPages(prefPage);
-                
+
             }
             SetTSVisibilityByAuthorizations();
 
@@ -53,11 +52,11 @@ namespace WinformDotNetFramework.Forms
             switch (prefPage)
             {
                 case "Show Customer":
-                    CustomerShowTS.Image =Properties.Resources.star_yellow_removebg;
+                    CustomerShowTS.Image = Properties.Resources.star_yellow_removebg;
                     CustomerShowTS.Tag = "1";
                     break;
                 case "Show Customer Invoice":
-                    CustomerInvoiceShowTS.Image =Properties.Resources.star_yellow_removebg;
+                    CustomerInvoiceShowTS.Image = Properties.Resources.star_yellow_removebg;
                     CustomerInvoiceShowTS.Tag = "1";
                     break;
                 case "Show Customer Invoice Cost":
@@ -183,16 +182,17 @@ namespace WinformDotNetFramework.Forms
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
 
-            ShowTSb.Visible= UtilityFunctions.IsAuthorized(ReadRoles);
-            CreateTsb.Visible= UtilityFunctions.IsAuthorized(WriteRoles);
-            if(CustomerInvoiceReportTS.Visible||SupplierInvoiceReportTS.Visible||SaleReportTS.Visible)
+            ShowTSb.Visible = UtilityFunctions.IsAuthorized(ReadRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles);
+            CreateTsb.Visible = UtilityFunctions.IsAuthorized(WriteRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles);
+
+            if (CustomerInvoiceReportTS.Visible || SupplierInvoiceReportTS.Visible || SaleReportTS.Visible)
                 ReportTsb.Visible = true;
             else
                 ReportTsb.Visible = false;
             if (SupplierGroupTS.Visible || CustomerGroupTS.Visible)
                 GroupTsb.Visible = true;
             else
-                ReportTsb.Visible = false;
+                GroupTsb.Visible = false;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -247,28 +247,28 @@ namespace WinformDotNetFramework.Forms
 
         private async void ChangePreferenceBtn_Click(object sender, EventArgs e)
         {
-            if(sender is ToolStripMenuItem tsb)
+            if (sender is ToolStripMenuItem tsb)
             {
                 if ((string)tsb.Tag == "1")
                 {
                     tsb.Image = Properties.Resources.star;
-                    await userService.RemoveUserFavouritePage(new List<string> { tsb.Text});
-                    tsb.Tag="0";
+                    await userService.RemoveUserFavouritePage(new List<string> { tsb.Text });
+                    tsb.Tag = "0";
                     userPrefPages.Remove(tsb.Text);
-                    if(this.Parent.Parent is MainForm mf)
+                    if (this.Parent.Parent is MainForm mf)
                     {
                         await mf.UpdateFavoriteTab();
                     }
                 }
                 else
                 {
-                    tsb.Image=Properties.Resources.star_yellow_removebg;
+                    tsb.Image = Properties.Resources.star_yellow_removebg;
                     await userService.AddUserFavouritePage(new List<string> { tsb.Text });
                     tsb.Tag = "1";
                     userPrefPages.Add(tsb.Text);
                     if (this.Parent.Parent is MainForm mf)
                     {
-                       await mf.UpdateFavoriteTab();
+                        await mf.UpdateFavoriteTab();
                     }
                 }
 
@@ -278,7 +278,7 @@ namespace WinformDotNetFramework.Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            if(userPrefPages.Count == 0)
+            if (userPrefPages.Count == 0)
             {
                 MessageBox.Show("You have no favourite pages");
             }
