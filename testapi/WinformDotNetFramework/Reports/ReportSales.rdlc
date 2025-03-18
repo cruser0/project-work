@@ -881,7 +881,7 @@
                     <TextRun>
                       <Value>=Globals.PageNumber &amp; " / " &amp; Globals.TotalPages</Value>
                       <Style>
-                        <FontFamily>Segoe UI</FontFamily>
+                        <FontFamily>Arial</FontFamily>
                         <Color>DimGray</Color>
                       </Style>
                     </TextRun>
