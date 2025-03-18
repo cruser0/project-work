@@ -11,12 +11,12 @@ using WinformDotNetFramework.Forms.GridForms;
 
 namespace WinformDotNetFramework.Forms
 {
-    public partial class SaleReportForm : ReportGridForm
+    public partial class CustomerInvoiceReportForm : ReportGridForm
     {
-        public SaleReportForm()
+        public CustomerInvoiceReportForm()
         {
             InitializeComponent();
-            DialogReport = "Sale";
+            DialogReport = "CustomerInvoice";
             CallDialogReport();
         }
     }

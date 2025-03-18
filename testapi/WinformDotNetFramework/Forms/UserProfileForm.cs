@@ -47,6 +47,8 @@ namespace WinformDotNetFramework.Forms
             UserEmailTxt.Text = user.Email;
         }
 
+
+
         private void AssignImageToPrefPages(string prefPage)
         {
             switch (prefPage)
@@ -184,15 +186,18 @@ namespace WinformDotNetFramework.Forms
 
             ShowTSb.Visible = UtilityFunctions.IsAuthorized(ReadRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles);
             CreateTsb.Visible = UtilityFunctions.IsAuthorized(WriteRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles);
-
-            if (CustomerInvoiceReportTS.Visible || SupplierInvoiceReportTS.Visible || SaleReportTS.Visible)
-                ReportTsb.Visible = true;
-            else
-                ReportTsb.Visible = false;
-            if (SupplierGroupTS.Visible || CustomerGroupTS.Visible)
-                GroupTsb.Visible = true;
-            else
-                GroupTsb.Visible = false;
+            ReportTsb.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "SaleAdmin" }, requireAll: true)||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
+            GroupTsb.Visible= UtilityFunctions.IsAuthorized(ReadRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(WriteRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(AdminGroupRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(AdminRoles)||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

@@ -196,9 +196,15 @@ namespace WinformDotNetFramework.Forms
                     child = new UserProfileForm();
                     break;
 
-                case "Show Report":
+                case "Report Customer Invoice":
                     //child = new AllChartTest();
                     //child = new testChart();
+                    child = new CustomerInvoiceReportForm();
+                    break;
+                case "Report Supplier Invoice":
+                    child = new SupplierInvoiceReportForm();
+                    break;
+                case "Report Sale":
                     child = new SaleReportForm();
                     break;
 
@@ -478,6 +484,9 @@ namespace WinformDotNetFramework.Forms
                     { "Show Supplier Invoice Cost", SupplierInvoiceCostShowTS },
                     { "Show Sale", SaleShowTS },
                     { "Show User", UserShowTS },
+                    { "Report Customer Invoice",CustomerInvoiceReportTS },
+                    { "Report Supplier Invoice",SupplierInvoiceReportTS },
+                    { "Report Sale",SaleReportTS },
                    // {"Show Chart", ShowChartbutton},
                     { "Create Customer", CustomerCreateTS },
                     { "Create Customer Invoice", CustomerInvoiceCreateTS },
