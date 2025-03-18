@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Services;
@@ -8,7 +9,13 @@ namespace WinformDotNetFramework.Forms
 {
     public partial class UserProfileForm : Form
     {
+        public bool ciao { get; set; }
         UserService userService;
+        List<string> userPrefPages=new List<string>();
+        private static readonly HashSet<string> AdminRoles = new HashSet<string>() { "Admin" };
+        private static readonly HashSet<string> WriteRoles = new HashSet<string>() { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
+        private static readonly HashSet<string> ReadRoles = new HashSet<string>() { "Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "UserRead" };
+        private static readonly HashSet<string> AdminGroupRoles = new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
         public UserProfileForm()
         {
             userService = new UserService();
@@ -27,9 +34,11 @@ namespace WinformDotNetFramework.Forms
             var prefPages=await userService.GetAllPreferredPagesUser();
             foreach (var prefPage in prefPages)
             {
+                userPrefPages.Add(prefPage);
                 AssignImageToPrefPages(prefPage);
                 
             }
+            SetTSVisibilityByAuthorizations();
 
 
             UserRoleDTO user = await userService.GetById(UserAccessInfo.RefreshUserID);
@@ -44,92 +53,146 @@ namespace WinformDotNetFramework.Forms
             switch (prefPage)
             {
                 case "Show Customer":
-                    CustomerShowTSB.Image =Properties.Resources.star_yellow_removebg;
-                    CustomerShowTSB.Tag = "on";
+                    CustomerShowTS.Image =Properties.Resources.star_yellow_removebg;
+                    CustomerShowTS.Tag = "1";
                     break;
                 case "Show Customer Invoice":
-                    CustomerInvoiceShowTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CustomerInvoiceShowTSB.Tag = "on";
+                    CustomerInvoiceShowTS.Image =Properties.Resources.star_yellow_removebg;
+                    CustomerInvoiceShowTS.Tag = "1";
                     break;
                 case "Show Customer Invoice Cost":
-                    CustomerInvoiceCostShowTSB.Image =Properties.Resources.star_yellow_removebg;
-                    CustomerInvoiceCostShowTSB.Tag = "on";
+                    CustomerInvoiceCostShowTS.Image = Properties.Resources.star_yellow_removebg;
+                    CustomerInvoiceCostShowTS.Tag = "1";
                     break;
                 case "Show Supplier":
-                    SupplierShowTSB.Image = Properties.Resources.star_yellow_removebg;
-                    SupplierShowTSB.Tag = "on";
+                    SupplierShowTS.Image = Properties.Resources.star_yellow_removebg;
+                    SupplierShowTS.Tag = "1";
                     break;
                 case "Show Supplier Invoice":
-                    SupplierInvoiceShowTSB.Image = Properties.Resources.star_yellow_removebg;
-                    SupplierInvoiceShowTSB.Tag = "on";
+                    SupplierInvoiceShowTS.Image = Properties.Resources.star_yellow_removebg;
+                    SupplierInvoiceShowTS.Tag = "1";
                     break;
                 case "Show Supplier Invoice Cost":
-                    SupplierInvoiceCostShowTSB.Image = Properties.Resources.star_yellow_removebg;
-                    SupplierInvoiceCostShowTSB.Tag = "on";
+                    SupplierInvoiceCostShowTS.Image = Properties.Resources.star_yellow_removebg;
+                    SupplierInvoiceCostShowTS.Tag = "1";
                     break;
                 case "Show Sale":
-                    SaleShowTSB.Image = Properties.Resources.star_yellow_removebg;
-                    SaleShowTSB.Tag = "on";
+                    SaleShowTS.Image = Properties.Resources.star_yellow_removebg;
+                    SaleShowTS.Tag = "1";
                     break;
                 case "Show User":
-                    UserShowTSB.Image = Properties.Resources.star_yellow_removebg;
-                    UserShowTSB.Tag = "on";
+                    UserShowTS.Image = Properties.Resources.star_yellow_removebg;
+                    UserShowTS.Tag = "1";
                     break;
                 case "Create Customer":
-                    CreateCustomerTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateCustomerTSB.Tag = "on";
+                    CreateCustomerTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateCustomerTS.Tag = "1";
                     break;
                 case "Create Customer Invoice":
-                    CreateCustomerInvoiceTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateCustomerInvoiceTSB.Tag = "on";
+                    CreateCustomerInvoiceTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateCustomerInvoiceTS.Tag = "1";
                     break;
                 case "Create Customer Invoice Cost":
-                    CreateCustomerInvoiceCostTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateCustomerInvoiceCostTSB.Tag = "on";
+                    CreateCustomerInvoiceCostTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateCustomerInvoiceCostTS.Tag = "1";
                     break;
                 case "Create Supplier":
-                    CreateSupplierTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateSupplierTSB.Tag = "on";
+                    CreateSupplierTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateSupplierTS.Tag = "1";
                     break;
                 case "Create Supplier Invoice":
-                    CreateSupplierInvoiceTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateSupplierInvoiceTSB.Tag = "on";
+                    CreateSupplierInvoiceTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateSupplierInvoiceTS.Tag = "1";
                     break;
                 case "Create Supplier Invoice Cost":
-                    CreateSupplierInvoiceCostTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateSupplierInvoiceCostTSB.Tag = "on";
+                    CreateSupplierInvoiceCostTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateSupplierInvoiceCostTS.Tag = "1";
                     break;
                 case "Create Sale":
-                    CreateSaleTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateSaleTSB.Tag = "on";
+                    CreateSaleTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateSaleTS.Tag = "1";
                     break;
                 case "Create User":
-                    CreateUserTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CreateUserTSB.Tag = "on";
+                    CreateUserTS.Image = Properties.Resources.star_yellow_removebg;
+                    CreateUserTS.Tag = "1";
                     break;
                 case "Group Customer":
-                    CustomerGroupTSb.Image = Properties.Resources.star_yellow_removebg;
-                    CustomerGroupTSb.Tag = "on";
+                    CustomerGroupTS.Image = Properties.Resources.star_yellow_removebg;
+                    CustomerGroupTS.Tag = "1";
                     break;
                 case "Group Supplier":
-                    SupplierGroupTSB.Image = Properties.Resources.star_yellow_removebg;
-                    SupplierGroupTSB.Tag = "on";
+                    SupplierGroupTS.Image = Properties.Resources.star_yellow_removebg;
+                    SupplierGroupTS.Tag = "1";
                     break;
                 case "Report Customer Invoice":
-                    CustomerInvoiceReportTSB.Image = Properties.Resources.star_yellow_removebg;
-                    CustomerInvoiceReportTSB.Tag = "on";
+                    CustomerInvoiceReportTS.Image = Properties.Resources.star_yellow_removebg;
+                    CustomerInvoiceReportTS.Tag = "1";
                     break;
                 case "Report Supplier Invoice":
-                    SupplierInvoiceReportTSB.Image = Properties.Resources.star_yellow_removebg;
-                    SupplierInvoiceReportTSB.Tag = "on";
+                    SupplierInvoiceReportTS.Image = Properties.Resources.star_yellow_removebg;
+                    SupplierInvoiceReportTS.Tag = "1";
                     break;
                 case "Report Sale":
-                    SaleReportTSB.Image = Properties.Resources.star_yellow_removebg;
-                    SaleReportTSB.Tag = "on";
+                    SaleReportTS.Image = Properties.Resources.star_yellow_removebg;
+                    SaleReportTS.Tag = "1";
                     break;
                 default:
                     break;
             }
+        }
+        public void SetTSVisibilityByAuthorizations()
+        {
+            CustomerShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerRead", "CustomerWrite", "CustomerAdmin" });
+            CreateCustomerTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerWrite", "CustomerAdmin" });
+
+            CustomerInvoiceShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
+            CreateCustomerInvoiceTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
+
+            CustomerInvoiceCostShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
+            CreateCustomerInvoiceCostTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
+
+            SupplierShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
+            CreateSupplierTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierWrite", "SupplierAdmin" });
+
+            SupplierInvoiceShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
+            CreateSupplierInvoiceTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
+
+            SupplierInvoiceCostShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceCostRead", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
+            CreateSupplierInvoiceCostTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
+
+            SaleShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
+            CreateSaleTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleWrite", "SaleAdmin" });
+
+            UserShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
+            CreateUserTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
+
+            CustomerGroupTS.Visible = UtilityFunctions.IsAuthorized(ReadRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(WriteRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(AdminGroupRoles, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(AdminRoles);
+
+            SupplierGroupTS.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);
+
+            SupplierInvoiceReportTS.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
+            CustomerInvoiceReportTS.Visible = SaleReportTS.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
+
+            ShowTSb.Visible= UtilityFunctions.IsAuthorized(ReadRoles);
+            CreateTsb.Visible= UtilityFunctions.IsAuthorized(WriteRoles);
+            if(CustomerInvoiceReportTS.Visible||SupplierInvoiceReportTS.Visible||SaleReportTS.Visible)
+                ReportTsb.Visible = true;
+            else
+                ReportTsb.Visible = false;
+            if (SupplierGroupTS.Visible || CustomerGroupTS.Visible)
+                GroupTsb.Visible = true;
+            else
+                ReportTsb.Visible = false;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -186,11 +249,12 @@ namespace WinformDotNetFramework.Forms
         {
             if(sender is ToolStripMenuItem tsb)
             {
-                if ((string)tsb.Tag == "on")
+                if ((string)tsb.Tag == "1")
                 {
                     tsb.Image = Properties.Resources.star;
                     await userService.RemoveUserFavouritePage(new List<string> { tsb.Text});
-                    tsb.Tag="off";
+                    tsb.Tag="0";
+                    userPrefPages.Remove(tsb.Text);
                     if(this.Parent.Parent is MainForm mf)
                     {
                         await mf.UpdateFavoriteTab();
@@ -200,7 +264,8 @@ namespace WinformDotNetFramework.Forms
                 {
                     tsb.Image=Properties.Resources.star_yellow_removebg;
                     await userService.AddUserFavouritePage(new List<string> { tsb.Text });
-                    tsb.Tag = "on";
+                    tsb.Tag = "1";
+                    userPrefPages.Add(tsb.Text);
                     if (this.Parent.Parent is MainForm mf)
                     {
                        await mf.UpdateFavoriteTab();
@@ -208,6 +273,24 @@ namespace WinformDotNetFramework.Forms
                 }
 
 
+            }
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            if(userPrefPages.Count == 0)
+            {
+                MessageBox.Show("You have no favourite pages");
+            }
+            else
+            {
+                await userService.RemoveUserFavouritePage(userPrefPages);
+                userPrefPages.Clear();
+                if (this.Parent.Parent is MainForm mf)
+                {
+                    await mf.UpdateFavoriteTab();
+                }
+                MessageBox.Show("Favourite pages were successfully removed");
             }
         }
     }

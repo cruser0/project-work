@@ -73,6 +73,13 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.ReportTP = new System.Windows.Forms.TabPage();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.CustomerInvoiceReportTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.SupplierInvoiceReportTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaleReportTS = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -82,6 +89,8 @@ namespace WinformDotNetFramework.Forms
             this.GroupTP.SuspendLayout();
             this.Group.SuspendLayout();
             this.TS.SuspendLayout();
+            this.ReportTP.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,6 +109,7 @@ namespace WinformDotNetFramework.Forms
             this.tabControl.Controls.Add(this.ShowTP);
             this.tabControl.Controls.Add(this.AddTP);
             this.tabControl.Controls.Add(this.GroupTP);
+            this.tabControl.Controls.Add(this.ReportTP);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.HotTrack = true;
@@ -557,6 +567,81 @@ namespace WinformDotNetFramework.Forms
             this.MainPanel.TabIndex = 10;
             this.MainPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPanel_ControlAdded);
             // 
+            // ReportTP
+            // 
+            this.ReportTP.Controls.Add(this.toolStrip1);
+            this.ReportTP.Location = new System.Drawing.Point(4, 24);
+            this.ReportTP.Name = "ReportTP";
+            this.ReportTP.Padding = new System.Windows.Forms.Padding(3);
+            this.ReportTP.Size = new System.Drawing.Size(1069, 37);
+            this.ReportTP.TabIndex = 4;
+            this.ReportTP.Text = "Report";
+            this.ReportTP.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CustomerInvoiceReportTS,
+            this.toolStripSeparator4,
+            this.SupplierInvoiceReportTS,
+            this.toolStripSeparator5,
+            this.SaleReportTS});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1063, 31);
+            this.toolStrip1.TabIndex = 3;
+            this.toolStrip1.Text = "Customer";
+            // 
+            // CustomerInvoiceReportTS
+            // 
+            this.CustomerInvoiceReportTS.AutoSize = false;
+            this.CustomerInvoiceReportTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CustomerInvoiceReportTS.Image = ((System.Drawing.Image)(resources.GetObject("CustomerInvoiceReportTS.Image")));
+            this.CustomerInvoiceReportTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CustomerInvoiceReportTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.CustomerInvoiceReportTS.Name = "CustomerInvoiceReportTS";
+            this.CustomerInvoiceReportTS.Size = new System.Drawing.Size(100, 27);
+            this.CustomerInvoiceReportTS.Text = "Customer Invoice";
+            this.CustomerInvoiceReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            // 
+            // SupplierInvoiceReportTS
+            // 
+            this.SupplierInvoiceReportTS.AutoSize = false;
+            this.SupplierInvoiceReportTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SupplierInvoiceReportTS.Image = ((System.Drawing.Image)(resources.GetObject("SupplierInvoiceReportTS.Image")));
+            this.SupplierInvoiceReportTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SupplierInvoiceReportTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.SupplierInvoiceReportTS.Name = "SupplierInvoiceReportTS";
+            this.SupplierInvoiceReportTS.Size = new System.Drawing.Size(100, 27);
+            this.SupplierInvoiceReportTS.Text = "Supplier Invoice";
+            this.SupplierInvoiceReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
+            // 
+            // SaleReportTS
+            // 
+            this.SaleReportTS.AutoSize = false;
+            this.SaleReportTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SaleReportTS.Image = ((System.Drawing.Image)(resources.GetObject("SaleReportTS.Image")));
+            this.SaleReportTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SaleReportTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.SaleReportTS.Name = "SaleReportTS";
+            this.SaleReportTS.Size = new System.Drawing.Size(100, 27);
+            this.SaleReportTS.Text = "Sale";
+            this.SaleReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +668,9 @@ namespace WinformDotNetFramework.Forms
             this.Group.PerformLayout();
             this.TS.ResumeLayout(false);
             this.TS.PerformLayout();
+            this.ReportTP.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -632,5 +720,12 @@ namespace WinformDotNetFramework.Forms
         public ToolStripButton AddFavoriteButton;
         private ToolStripSeparator toolStripSeparator13;
         private ToolStripButton ReportTS;
+        private TabPage ReportTP;
+        public ToolStrip toolStrip1;
+        public ToolStripButton CustomerInvoiceReportTS;
+        private ToolStripSeparator toolStripSeparator4;
+        public ToolStripButton SupplierInvoiceReportTS;
+        private ToolStripSeparator toolStripSeparator5;
+        public ToolStripButton SaleReportTS;
     }
 }
