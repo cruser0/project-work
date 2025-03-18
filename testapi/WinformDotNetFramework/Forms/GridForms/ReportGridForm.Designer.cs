@@ -41,13 +41,13 @@
             this.ZoomTSLbl = new System.Windows.Forms.ToolStripLabel();
             this.ReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.searchSaleReport1 = new WinformDotNetFramework.Forms.control.SearchSaleReport();
-            this.searchSupplierInvoiceReport1 = new WinformDotNetFramework.Forms.control.SearchSupplierInvoiceReport();
-            this.searchCustomerInvoiceReportUserControl1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceReportUserControl();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.DockButton = new System.Windows.Forms.Button();
+            this.searchSaleReport1 = new WinformDotNetFramework.Forms.control.SearchSaleReport();
+            this.searchSupplierInvoiceReport1 = new WinformDotNetFramework.Forms.control.SearchSupplierInvoiceReport();
+            this.searchCustomerInvoiceReportUserControl1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceReportUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -78,7 +78,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(1034, 761);
+            this.splitContainer1.Size = new System.Drawing.Size(1034, 461);
             this.splitContainer1.SplitterDistance = 799;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -190,7 +190,7 @@
             this.ReportViewer.ShowRefreshButton = false;
             this.ReportViewer.ShowStopButton = false;
             this.ReportViewer.ShowZoomControl = false;
-            this.ReportViewer.Size = new System.Drawing.Size(799, 761);
+            this.ReportViewer.Size = new System.Drawing.Size(799, 461);
             this.ReportViewer.TabIndex = 0;
             // 
             // panel1
@@ -204,32 +204,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(231, 761);
+            this.panel1.Size = new System.Drawing.Size(231, 461);
             this.panel1.TabIndex = 2;
-            // 
-            // searchSaleReport1
-            // 
-            this.searchSaleReport1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchSaleReport1.Location = new System.Drawing.Point(0, 70);
-            this.searchSaleReport1.Name = "searchSaleReport1";
-            this.searchSaleReport1.Size = new System.Drawing.Size(231, 691);
-            this.searchSaleReport1.TabIndex = 8;
-            // 
-            // searchSupplierInvoiceReport1
-            // 
-            this.searchSupplierInvoiceReport1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchSupplierInvoiceReport1.Location = new System.Drawing.Point(0, 70);
-            this.searchSupplierInvoiceReport1.Name = "searchSupplierInvoiceReport1";
-            this.searchSupplierInvoiceReport1.Size = new System.Drawing.Size(231, 691);
-            this.searchSupplierInvoiceReport1.TabIndex = 10;
-            // 
-            // searchCustomerInvoiceReportUserControl1
-            // 
-            this.searchCustomerInvoiceReportUserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchCustomerInvoiceReportUserControl1.Location = new System.Drawing.Point(0, 70);
-            this.searchCustomerInvoiceReportUserControl1.Name = "searchCustomerInvoiceReportUserControl1";
-            this.searchCustomerInvoiceReportUserControl1.Size = new System.Drawing.Size(231, 691);
-            this.searchCustomerInvoiceReportUserControl1.TabIndex = 9;
             // 
             // SearchPanel
             // 
@@ -276,13 +252,37 @@
             this.DockButton.UseVisualStyleBackColor = true;
             this.DockButton.Click += new System.EventHandler(this.DockButton_Click);
             // 
+            // searchSaleReport1
+            // 
+            this.searchSaleReport1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchSaleReport1.Location = new System.Drawing.Point(0, 70);
+            this.searchSaleReport1.Name = "searchSaleReport1";
+            this.searchSaleReport1.Size = new System.Drawing.Size(231, 391);
+            this.searchSaleReport1.TabIndex = 8;
+            // 
+            // searchSupplierInvoiceReport1
+            // 
+            this.searchSupplierInvoiceReport1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchSupplierInvoiceReport1.Location = new System.Drawing.Point(0, 70);
+            this.searchSupplierInvoiceReport1.Name = "searchSupplierInvoiceReport1";
+            this.searchSupplierInvoiceReport1.Size = new System.Drawing.Size(231, 391);
+            this.searchSupplierInvoiceReport1.TabIndex = 10;
+            // 
+            // searchCustomerInvoiceReportUserControl1
+            // 
+            this.searchCustomerInvoiceReportUserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchCustomerInvoiceReportUserControl1.Location = new System.Drawing.Point(0, 70);
+            this.searchCustomerInvoiceReportUserControl1.Name = "searchCustomerInvoiceReportUserControl1";
+            this.searchCustomerInvoiceReportUserControl1.Size = new System.Drawing.Size(231, 391);
+            this.searchCustomerInvoiceReportUserControl1.TabIndex = 9;
+            // 
             // ReportGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 761);
+            this.ClientSize = new System.Drawing.Size(1034, 461);
             this.Controls.Add(this.splitContainer1);
-            this.MinimumSize = new System.Drawing.Size(1050, 800);
+            this.MinimumSize = new System.Drawing.Size(1050, 500);
             this.Name = "ReportGridForm";
             this.Text = "SaleReportForm";
             this.Load += new System.EventHandler(this.SaleReportForm_Load);

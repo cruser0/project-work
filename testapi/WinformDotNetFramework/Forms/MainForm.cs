@@ -555,7 +555,7 @@ namespace WinformDotNetFramework.Forms
             form.ShowIcon = false;
             form.Resize += Form_Resize;
 
-            if (form.Text.Contains("Show") || form.Text.Contains("Group"))
+            if (form.Text.Contains("Show") || form.Text.Contains("Group")|| form.Text.Contains("Report"))
             {
                 toolStripButton3.PerformClick();
                 form.WindowState = FormWindowState.Maximized;
