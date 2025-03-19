@@ -16,9 +16,11 @@ namespace API.Controllers
     public class CustomerInvoiceController : ControllerBase
     {
         private readonly ICustomerInvoicesService _customerInvoiceService;
-        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService)
+        private readonly StatusService _statusService;
+        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService,StatusService ss)
         {
             _customerInvoiceService = customerInvoiceService;
+            _statusService = ss;
         }
 
 
@@ -72,7 +74,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceDTO customerInvoice)
         {
-            var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice));
+            var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,_statusService.GetStatusByName(customerInvoice.Status)));
             if (data == null)
                 throw new NotFoundException("Customer Invoices not found!");
             return Ok(data);
@@ -85,8 +87,9 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
         {
-            var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice));
+            var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice, _statusService.GetStatusByName(customerInvoice.Status)));
             if (data == null)
+                if (data == null)
                 throw new NotFoundException("Customer Invoices not found!");
             return Ok(data);
         }

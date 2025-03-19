@@ -9,5 +9,6 @@
         public int? CustomerInvoiceCostQuantity { get; set; }
         public string? CustomerInvoiceCostName { get; set; }
         public int? CustomerInvoiceCostPage { get; set; }
+        public string? RegistryCode { get; set; }
     }
 }
