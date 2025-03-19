@@ -182,6 +182,7 @@ namespace API.Models.Services
             {
                 CustomerName = customer.CustomerName ?? cDB.CustomerName,
                 Country = customer.Country ?? cDB.Country,
+                CountryID = customer.CountryID?? cDB.CountryID,
                 Deprecated = false,
                 OriginalID = cDB.OriginalID,
                 CreatedAt = DateTime.Now,
@@ -317,7 +318,7 @@ namespace API.Models.Services
                     {
                         CustomerName = customerMapped.CustomerName ?? c.CustomerName,
                         Country = customerMapped.Country ?? c.Country,
-                        CountryID = customerMapped.CountryID,
+                        CountryID = customerMapped.CountryID??c.CountryID,
                         Deprecated = false,
                         OriginalID = c.OriginalID,
                         CreatedAt = DateTime.Now,

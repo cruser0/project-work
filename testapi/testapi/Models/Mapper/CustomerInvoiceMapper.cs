@@ -17,7 +17,7 @@ namespace API.Models.Mapper
         }
 
 
-        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status status)
+        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status? status)
         {
             return new CustomerInvoice()
             {
@@ -25,7 +25,7 @@ namespace API.Models.Mapper
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = status,
-                StatusID = status.StatusID
+                StatusID = status?.StatusID
             };
         }
 
@@ -42,7 +42,7 @@ namespace API.Models.Mapper
         }
 
 
-        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice, Status status)
+        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice, Status? status)
         {
             return new CustomerInvoice()
             {
@@ -51,7 +51,7 @@ namespace API.Models.Mapper
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = status,
-                StatusID = status.StatusID
+                StatusID = status?.StatusID
             };
         }
     }
