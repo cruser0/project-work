@@ -24,6 +24,7 @@ namespace API.Models
         public virtual DbSet<SupplierInvoiceCost> SupplierInvoiceCosts { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<Country> Countries { get; set; } = null!;
 
 
 
@@ -71,9 +72,7 @@ namespace API.Models
                 entity.HasKey(e => e.CustomerID);
                 entity.HasIndex(c => new { c.CustomerName, c.Country })
                 .IsUnique();
-                entity.Property(e => e.Country)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.CountryID);
 
                 entity.Property(e => e.CustomerName)
                     .HasMaxLength(100)
@@ -84,8 +83,24 @@ namespace API.Models
                     .HasDefaultValue(false);
                 entity.Property(e => e.OriginalID).HasColumnType("int");
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+                entity.HasOne(d => d.Country)
+                    .WithMany(p => p.Customers)
+                    .HasForeignKey(d => d.CountryID)
+                    .HasConstraintName("customer_country_fk");
             });
-
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.ToTable("Country");
+                entity.HasKey(e => e.CountryID);
+                entity.Property(entity => entity.CountryName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+                entity.Property(entity => entity.ISOCode)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+                entity.HasIndex(x=>x.CountryName).IsUnique();
+                entity.HasIndex(x=>x.ISOCode).IsUnique();
+            });
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("Users");

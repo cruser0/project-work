@@ -1,5 +1,4 @@
 using API.Models;
-using API.Models.Config;
 using API.Models.Middleware;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
