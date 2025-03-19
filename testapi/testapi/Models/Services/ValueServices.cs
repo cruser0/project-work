@@ -302,7 +302,7 @@ namespace API.Models.Services
         private IQueryable<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
         {
 
-            var query = _context.SupplierInvoices.AsQueryable();
+            var query = _context.SupplierInvoices.Include(x=>x.Status).AsQueryable();
 
             if (filter != null)
             {
@@ -343,7 +343,7 @@ namespace API.Models.Services
                 if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
                 {
                     if (!filter.SupplierInvoiceStatus.Equals("All"))
-                        query = query.Where(x => x.Status == filter.SupplierInvoiceStatus.ToLower());
+                        query = query.Where(x => x.Status.StatusName == filter.SupplierInvoiceStatus.ToLower());
                 }
                 if (filter.SupplierInvoicePage != null)
                 {
