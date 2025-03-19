@@ -155,7 +155,7 @@ namespace API.Models.Services
         public async Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer)
         {
             // Retrieve the customer from the database based on the provided ID
-            var cDB = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
+            var cDB = await _context.Customers.Where(x => x.CustomerID == id).Include(x=>x.Country).FirstOrDefaultAsync();
 
             // If the customer does not exist, throw an exception
             if (cDB == null)
@@ -290,7 +290,7 @@ namespace API.Models.Services
             {
                 foreach (CustomerDTOGet customer in newCustomers)
                 {
-                    var c = await _context.Customers.Where(x => x.CustomerID == customer.CustomerId).FirstOrDefaultAsync();
+                    var c = await _context.Customers.Where(x => x.CustomerID == customer.CustomerId).Include(x => x.Country).FirstOrDefaultAsync();
 
                     if (c == null)
                         throw new NotFoundException("Customer not found");
@@ -312,11 +312,12 @@ namespace API.Models.Services
                         if (!customer.Country.All(char.IsLetter))
                             throw new ErrorInputPropertyException("Country can't have special characters");
                     }
-                    Customer customerMapped = Mapper.CustomerMapper.Map(customer);
+                    Customer customerMapped = Mapper.CustomerMapper.Map(customer,_countryService.GetCountryByName(customer.CustomerName));
                     Customer newCustomer = new Customer
                     {
-                        CustomerName = customer.CustomerName ?? c.CustomerName,
-                        Country = customer.Country ?? c.Country,
+                        CustomerName = customerMapped.CustomerName ?? c.CustomerName,
+                        Country = customerMapped.Country ?? c.Country,
+                        CountryID = customerMapped.CountryID,
                         Deprecated = false,
                         OriginalID = c.OriginalID,
                         CreatedAt = DateTime.Now,
