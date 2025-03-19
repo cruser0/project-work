@@ -24,7 +24,7 @@ namespace API.Controllers
         // GET: api/<SaleController>
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] SaleFilter filter)
+        public async Task<IActionResult> Get([FromQuery] SaleCustomerFilter filter)
         {
             var result = await _saleService.GetAllSales(filter);
             if (result.Any())
@@ -36,7 +36,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet("count")]
-        public async Task<IActionResult> GetCount([FromQuery] SaleFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] SaleCustomerFilter filter)
         {
             var result = await _saleService.CountSales(filter);
             return Ok(result);

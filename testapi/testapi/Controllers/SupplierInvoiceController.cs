@@ -24,7 +24,7 @@ namespace API.Controllers
         // GET: api/<SupplierInvoiceController>
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] SupplierInvoiceFilter filter)
+        public async Task<IActionResult> Get([FromQuery] SupplierInvoiceSupplierFilter filter)
         {
             var data = await _supplierInvoiceService.GetAllSupplierInvoices(filter);
             if (data.Any())
@@ -37,7 +37,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet("count")]
-        public async Task<IActionResult> GetCount([FromQuery] SupplierInvoiceFilter filter)
+        public async Task<IActionResult> GetCount([FromQuery] SupplierInvoiceSupplierFilter filter)
         {
 
             var data = await _supplierInvoiceService.CountSupplierinvoices(filter);
