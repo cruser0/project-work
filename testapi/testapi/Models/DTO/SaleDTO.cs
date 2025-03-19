@@ -29,8 +29,8 @@ public class SaleCustomerDTO : SaleDTOGet
         SaleDate = sale.SaleDate;
         CustomerId = sale.CustomerID;
         TotalRevenue = sale.TotalRevenue;
-        Status = sale.Status;
+        Status = sale.Status.StatusName;
         CustomerName = customer.CustomerName;
-        Country = customer.Country;
+        Country = customer.Country.CountryName;
     }
 }
