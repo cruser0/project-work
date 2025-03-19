@@ -27,11 +27,11 @@ public class SupplierInvoiceSupplierDTO : SupplierInvoiceDTOGet
         InvoiceId = si.SupplierInvoiceID;
         InvoiceDate = si.InvoiceDate;
         SupplierName = s.SupplierName;
-        Country = s.Country;
+        Country = s.Country.CountryName;
         SupplierId = si.SupplierID;
         SaleId = si.SaleID;
         InvoiceAmount = si.InvoiceAmount;
         InvoiceDate = si.InvoiceDate;
-        Status = si.Status;
+        Status = si.Status.StatusName;
     }
 }

@@ -14,4 +14,10 @@
         public string? SaleStatus { get; set; }
         public int? SalePage { get; set; }
     }
+
+    public class SaleCustomerFilter : SaleFilter
+    {
+        public string? SaleCustomerName { get; set; }
+        public string? SaleCustomerCountry { get; set; }
+    }
 }

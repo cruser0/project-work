@@ -13,4 +13,10 @@
         public string? SupplierInvoiceStatus { get; set; }
         public int? SupplierInvoicePage { get; set; }
     }
+
+    public class SupplierInvoiceSupplierFilter : SupplierInvoiceFilter
+    {
+        public string? SupplierInvoiceSupplierName { get; set; }
+        public string? SupplierInvoiceSupplierCountry { get; set; }
+    }
 }

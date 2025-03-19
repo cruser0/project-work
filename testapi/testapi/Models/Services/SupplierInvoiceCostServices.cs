@@ -25,9 +25,12 @@ namespace API.Models.Services
     public class SupplierInvoiceCostServices : ISupplierInvoiceCostService
     {
         private readonly Progetto_FormativoContext _context;
-        public SupplierInvoiceCostServices(Progetto_FormativoContext ctx)
+        private readonly CostRegistryService _costRegistryService;
+        public SupplierInvoiceCostServices(Progetto_FormativoContext ctx, CostRegistryService costRegistryService)
         {
             _context = ctx;
+            _costRegistryService = costRegistryService;
+
         }
 
         public async Task<ICollection<SupplierInvoiceCostDTOGet>> GetAllSupplierInvoiceCosts(SupplierInvoiceCostFilter filter)
@@ -43,7 +46,7 @@ namespace API.Models.Services
         private IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
         {
             int itemsPage = 10;
-            var query = _context.SupplierInvoiceCosts.AsQueryable();
+            var query = _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
 
             if (filter.SupplierInvoiceCostSupplierInvoiceId != null)
             {
@@ -76,6 +79,12 @@ namespace API.Models.Services
             {
                 query = query.Where(x => x.Quantity == filter.SupplierInvoiceCostQuantity);
             }
+
+            if (filter.SupplierInvoiceCostRegistryCode != null)
+            {
+                query = query.Where(x => x.CostRegistry.CostRegistryUniqueCode.Contains(filter.SupplierInvoiceCostRegistryCode));
+            }
+
             if (filter.SupplierInvoiceCostPage != null)
             {
                 query = query.Skip(((int)filter.SupplierInvoiceCostPage - 1) * itemsPage).Take(itemsPage);
@@ -99,16 +108,22 @@ namespace API.Models.Services
             SupplierInvoice si;
             if (supplierInvoiceCost == null)
                 throw new NullPropertyException("Couldn't create supplier Invoice Cost,data is null");
+
             if (supplierInvoiceCost.SupplierInvoiceId == null)
                 throw new NullPropertyException("Supplier Invoice Id can't be null!");
-            if (!_context.SupplierInvoices.Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).Any())
+
+            if (!await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).AnyAsync())
                 throw new NotFoundException("Supplier Invoice Id not found!");
+
             if (supplierInvoiceCost.Cost < 0 || supplierInvoiceCost.Quantity < 1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
                 throw new ErrorInputPropertyException("Values can't be lesser than 1 or null");
+
             if (string.IsNullOrEmpty(supplierInvoiceCost.Name))
                 throw new NullPropertyException("Name can't be empty");
-            si = await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).FirstAsync();
-            if (si.Status.ToLower().Equals("approved"))
+
+            si = await _context.SupplierInvoices.Include(x => x.Status).Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).FirstAsync();
+
+            if (si.Status.StatusName.ToLower().Equals("approved"))
                 throw new ErrorInputPropertyException("Supplier Invoice is already approved");
 
 
@@ -131,7 +146,9 @@ namespace API.Models.Services
             {
                 if (supplierInvoiceCost.SupplierInvoiceId != null)
                     sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
-                if ((await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefaultAsync()).Status.ToLower().Equals("approved"))
+                if ((await _context.SupplierInvoices.Include(x => x.Status)
+                    .Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId)
+                    .FirstOrDefaultAsync()).Status.StatusName.ToLower().Equals("approved"))
                     throw new ErrorInputPropertyException("Supplier Invoice is already approved");
                 if (!await _context.SupplierInvoices.AnyAsync(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId))
                     throw new NotFoundException("Supplier Invoice not Found");
@@ -140,6 +157,8 @@ namespace API.Models.Services
                 if (supplierInvoiceCost.Cost > 0)
                     sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
                 sicDB.Name = supplierInvoiceCost.Name ?? sicDB.Name;
+                sicDB.CostRegistryID = supplierInvoiceCost.CostRegistryID ?? sicDB.CostRegistryID;
+
                 _context.SupplierInvoiceCosts.Update(sicDB);
                 await _context.SaveChangesAsync();
                 if (sicDB.Cost > 0 && sicDB.Quantity > 0)
@@ -200,22 +219,37 @@ namespace API.Models.Services
             {
 
                 SupplierInvoice? si;
-                var sicDB = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == supplierInvoiceCost.SupplierInvoiceCostsId).FirstOrDefaultAsync();
+
+                var sicDB = await _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Where(x => x.SupplierInvoiceCostsId == supplierInvoiceCost.SupplierInvoiceCostsId).FirstOrDefaultAsync();
+
                 SupplierInvoice? oldSi = await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == sicDB.SupplierInvoiceId).FirstOrDefaultAsync();
+
                 oldSi.InvoiceAmount = oldSi.InvoiceAmount - (sicDB.Cost * sicDB.Quantity);
+
                 if (sicDB != null)
                 {
                     if (supplierInvoiceCost.SupplierInvoiceId != null)
                         sicDB.SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId;
-                    if ((await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).FirstOrDefaultAsync()).Status.ToLower().Equals("approved"))
+
+                    if ((await _context.SupplierInvoices.Include(x => x.Status)
+                            .Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId)
+                            .FirstOrDefaultAsync())
+                            .Status.StatusName.ToLower().Equals("approved"))
                         throw new ErrorInputPropertyException("Supplier Invoice is already approved");
+
                     if (!await _context.SupplierInvoices.AnyAsync(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId))
                         throw new NotFoundException("Supplier Invoice not Found");
+
                     if (supplierInvoiceCost.Quantity > 0)
                         sicDB.Quantity = supplierInvoiceCost.Quantity ?? sicDB.Quantity;
+
                     if (supplierInvoiceCost.Cost > 0)
                         sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
+
+                    sicDB.CostRegistryID = _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode)?.CostRegistryID ?? sicDB.CostRegistryID;
+
                     sicDB.Name = supplierInvoiceCost.Name ?? sicDB.Name;
+
                     _context.SupplierInvoiceCosts.Update(sicDB);
                     await _context.SaveChangesAsync();
                     if (sicDB.Cost > 0 && sicDB.Quantity > 0)

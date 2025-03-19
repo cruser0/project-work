@@ -10,7 +10,7 @@
         public int SupplierID { get; set; }
         public string? SupplierName { get; set; }
         public bool? Deprecated { get; set; }
-        public int CountryID { get; set; }
+        public int? CountryID { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int OriginalID { get; set; }
 

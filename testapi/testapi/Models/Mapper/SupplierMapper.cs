@@ -24,7 +24,7 @@ namespace API.Models.Mapper
 
                 SupplierName = supplier.SupplierName,
                 Country = country,
-                CountryID = country.CountryID,
+                CountryID = country?.CountryID,
                 Deprecated = supplier.Deprecated,
                 CreatedAt = supplier.CreatedAt,
 
@@ -50,7 +50,7 @@ namespace API.Models.Mapper
                 SupplierID = (int)supplier.SupplierId!,
                 SupplierName = supplier.SupplierName,
                 Country = country,
-                CountryID = country.CountryID,
+                CountryID = country?.CountryID,
                 Deprecated = supplier.Deprecated,
                 CreatedAt = supplier.CreatedAt,
                 OriginalID = (int)supplier.OriginalID!,

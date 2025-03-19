@@ -28,7 +28,7 @@ namespace API.Models.Mapper
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = status,
-                StatusID = status.StatusID
+                StatusID = status?.StatusID
             };
         }
 
