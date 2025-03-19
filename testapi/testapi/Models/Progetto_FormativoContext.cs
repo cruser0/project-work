@@ -56,15 +56,6 @@ namespace API.Models
         public virtual DbSet<TotalAmountSpentPerSuppliers> TotalAmountSpentPerSuppliers { get; set; } = null!;
         public virtual DbSet<TotalAmountGainedPerCustomerInvoice> TotalAmountGainedPerCustomerInvoice { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\localdb;Database=Progetto_Formativo;Trusted_Connection=True;TrustServerCertificate=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -508,7 +499,7 @@ namespace API.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.RefreshTokens)
                     .HasForeignKey(d => d.UserID)
-                    .HasConstraintName("FK_RefreshTokens_Users");
+                    .HasConstraintName("FK_RefreshTokens_Users").OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -607,7 +598,7 @@ namespace API.Models
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Sales)
                     .HasForeignKey(d => d.CustomerID)
-                    .HasConstraintName("customer_sales_fk");
+                    .HasConstraintName("customer_sales_fk").OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<Supplier>(entity =>
@@ -641,7 +632,7 @@ namespace API.Models
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.Suppliers)
                     .HasForeignKey(d => d.CountryID)
-                    .HasConstraintName("supplier_country_fk");
+                    .HasConstraintName("supplier_country_fk").OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<SupplierInvoice>(entity =>
@@ -667,17 +658,17 @@ namespace API.Models
                 entity.HasOne(d => d.Sale)
                     .WithMany(p => p.SupplierInvoices)
                     .HasForeignKey(d => d.SaleID)
-                    .HasConstraintName("sale_supplierInvoices_fk");
+                    .HasConstraintName("sale_supplierInvoices_fk").OnDelete(DeleteBehavior.NoAction);
 
                 entity.HasOne(d => d.Supplier)
                     .WithMany(p => p.SupplierInvoices)
                     .HasForeignKey(d => d.SupplierID)
-                    .HasConstraintName("supplier_supplierInvoices_fk");
+                    .HasConstraintName("supplier_supplierInvoices_fk").OnDelete(DeleteBehavior.NoAction);
 
                 entity.HasOne(d => d.Status)
                     .WithMany(p => p.SupplierInvoices)
                     .HasForeignKey(d => d.StatusID)
-                    .HasConstraintName("status_supplierInvoices_fk");
+                    .HasConstraintName("status_supplierInvoices_fk").OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -706,12 +697,12 @@ namespace API.Models
                 entity.HasOne(d => d.CostRegistry)
                     .WithMany(p => p.SupplierInvoiceCosts)
                     .HasForeignKey(d => d.CostRegistryID)
-                    .HasConstraintName("costRegistry_SupplierInvoiceCosts_fk");
+                    .HasConstraintName("costRegistry_SupplierInvoiceCosts_fk").OnDelete(DeleteBehavior.NoAction);
 
                 entity.HasOne(d => d.SupplierInvoice)
                     .WithMany(p => p.SupplierInvoiceCosts)
                     .HasForeignKey(d => d.SupplierInvoiceId)
-                    .HasConstraintName("SupplierInvoiceID_SupplierInvoiceCosts_fk");
+                    .HasConstraintName("SupplierInvoiceID_SupplierInvoiceCosts_fk").OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<CustomerInvoiceCost>(entity =>
@@ -740,12 +731,12 @@ namespace API.Models
                 entity.HasOne(d => d.CostRegistry)
                     .WithMany(p => p.CustomerInvoiceCosts)
                     .HasForeignKey(d => d.CostRegistryID)
-                    .HasConstraintName("costRegistry_CustomerInvoiceCosts_fk");
+                    .HasConstraintName("costRegistry_CustomerInvoiceCosts_fk").OnDelete(DeleteBehavior.NoAction);
 
                 entity.HasOne(d => d.CustomerInvoice)
                     .WithMany(p => p.CustomerInvoiceCosts)
                     .HasForeignKey(d => d.CustomerInvoiceID)
-                    .HasConstraintName("FK_CustomerInvoiceCosts_CustomerInvoices");
+                    .HasConstraintName("FK_CustomerInvoiceCosts_CustomerInvoices").OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<CostRegistry>(entity =>
