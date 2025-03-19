@@ -187,11 +187,27 @@ namespace API.Models.Configuration
         public void Configure(EntityTypeBuilder<FavouritePages> builder)
         {
             builder.HasData(
-                new FavouritePages
-                {
-                    FavouritePageID= 1,
-                    Name= "Create Customer"
-                }
+                new FavouritePages() { FavouritePageID = 1, Name = "Show Customer" },
+                new FavouritePages() { FavouritePageID = 2, Name = "Show Customer Invoice" },
+                new FavouritePages() { FavouritePageID = 3, Name = "Show Sale" },
+                new FavouritePages() { FavouritePageID = 4, Name = "Show Supplier" },
+                new FavouritePages() { FavouritePageID = 5, Name = "Show Supplier Invoice" },
+                new FavouritePages() { FavouritePageID = 6, Name = "Show Supplier Invoice Cost" },
+                new FavouritePages() { FavouritePageID = 7, Name = "Show Customer Invoice Cost" },
+                new FavouritePages() { FavouritePageID = 8, Name = "Group Customer" },
+                new FavouritePages() { FavouritePageID = 9, Name = "Create Customer" },
+                new FavouritePages() { FavouritePageID = 10, Name = "Create Customer Invoice" },
+                new FavouritePages() { FavouritePageID = 11, Name = "Create Customer Invoice Cost" },
+                new FavouritePages() { FavouritePageID = 12, Name = "Create Supplier" },
+                new FavouritePages() { FavouritePageID = 13, Name = "Create Supplier Invoice" },
+                new FavouritePages() { FavouritePageID = 14, Name = "Create Supplier Invoice Cost" },
+                new FavouritePages() { FavouritePageID = 15, Name = "Create Sale" },
+                new FavouritePages() { FavouritePageID = 16, Name = "Create User" },
+                new FavouritePages() { FavouritePageID = 17, Name = "Group Supplier" },
+                new FavouritePages() { FavouritePageID = 18, Name = "Report Customer Invoice" },
+                new FavouritePages() { FavouritePageID = 19, Name = "User Area" },
+                new FavouritePages() { FavouritePageID = 20, Name = "Report Sale" },
+                new FavouritePages() { FavouritePageID = 21, Name = "Report Supplier Invoice" }
             );
         }
     }
@@ -200,14 +216,32 @@ namespace API.Models.Configuration
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder.HasData(
-                new Role
-                {
-                    RoleID = 1,
-                    RoleName = "Admin"
-                }
+                new Role() { RoleID = 1, RoleName = "Admin" },
+                new Role() { RoleID = 2, RoleName = "CustomerRead" },
+                new Role() { RoleID = 3, RoleName = "CustomerWrite" },
+                new Role() { RoleID = 4, RoleName = "CustomerAdmin" },
+                new Role() { RoleID = 5, RoleName = "CustomerInvoiceRead" },
+                new Role() { RoleID = 6, RoleName = "CustomerInvoiceWrite" },
+                new Role() { RoleID = 7, RoleName = "CustomerInvoiceAdmin" },
+                new Role() { RoleID = 8, RoleName = "CustomerInvoiceCostRead" },
+                new Role() { RoleID = 9, RoleName = "CustomerInvoiceCostWrite" },
+                new Role() { RoleID = 10, RoleName = "CustomerInvoiceCostAdmin" },
+                new Role() { RoleID = 11, RoleName = "SupplierRead" },
+                new Role() { RoleID = 12, RoleName = "SupplierWrite" },
+                new Role() { RoleID = 13, RoleName = "SupplierAdmin" },
+                new Role() { RoleID = 14, RoleName = "SupplierInvoiceRead" },
+                new Role() { RoleID = 15, RoleName = "SupplierInvoiceWrite" },
+                new Role() { RoleID = 16, RoleName = "SupplierInvoiceAdmin" },
+                new Role() { RoleID = 17, RoleName = "SupplierInvoiceCostRead" },
+                new Role() { RoleID = 18, RoleName = "SupplierInvoiceCostWrite" },
+                new Role() { RoleID = 19, RoleName = "SupplierInvoiceCostAdmin" },
+                new Role() { RoleID = 20, RoleName = "SaleRead" },
+                new Role() { RoleID = 21, RoleName = "SaleWrite" },
+                new Role() { RoleID = 22, RoleName = "SaleAdmin" }
             );
         }
     }
+
     public class UserRolesConfiguration : IEntityTypeConfiguration<UserRole>
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
