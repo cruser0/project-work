@@ -126,7 +126,11 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<UserRoleDTO> query = await getAllNotFiltered;
-            paginationControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            if (mPage <= 0)
+                mPage = 1;
+
+            paginationControl.maxPage = mPage.ToString();
             paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
             userDgv.DataSource = query.ToList();
 

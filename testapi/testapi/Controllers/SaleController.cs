@@ -31,7 +31,7 @@ namespace API.Controllers
             {
                 return Ok(result);
             }
-            else throw new NotFoundException("Sale not found");
+            else return Ok(new List<SaleCustomerDTO>());
         }
 
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]

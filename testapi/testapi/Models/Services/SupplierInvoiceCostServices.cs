@@ -95,7 +95,7 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceCostDTOGet> GetSupplierInvoiceCostById(int id)
         {
-            var data = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
+            var data = await _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new NotFoundException("Supplier Invoice Cost not found!");
@@ -120,6 +120,9 @@ namespace API.Models.Services
 
             if (string.IsNullOrEmpty(supplierInvoiceCost.Name))
                 throw new NullPropertyException("Name can't be empty");
+
+            if (supplierInvoiceCost.CostRegistryID == null)
+                throw new ErrorInputPropertyException("Cost Registry Code wrong or missing");
 
             si = await _context.SupplierInvoices.Include(x => x.Status).Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).FirstAsync();
 

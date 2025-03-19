@@ -12,7 +12,7 @@ namespace API.Models.Configuration
             builder.HasData(
                 new User
                 {
-                    UserID=1,
+                    UserID = 1,
                     Name = "Admin",
                     LastName = "Admin",
                     Email = "Admin",
@@ -164,7 +164,7 @@ namespace API.Models.Configuration
                     TokenID = 1,
                     Created = DateTime.Now,
                     Expires = DateTime.Now.AddDays(10),
-                    Token="BASEADMINTOKEN"
+                    Token = "BASEADMINTOKEN"
                 }
             );
         }
@@ -207,7 +207,8 @@ namespace API.Models.Configuration
                 new FavouritePages() { FavouritePageID = 18, Name = "Report Customer Invoice" },
                 new FavouritePages() { FavouritePageID = 19, Name = "User Area" },
                 new FavouritePages() { FavouritePageID = 20, Name = "Report Sale" },
-                new FavouritePages() { FavouritePageID = 21, Name = "Report Supplier Invoice" }
+                new FavouritePages() { FavouritePageID = 21, Name = "Report Supplier Invoice" },
+                new FavouritePages() { FavouritePageID = 22, Name = "Show User" }
             );
         }
     }
@@ -250,7 +251,7 @@ namespace API.Models.Configuration
                 new UserRole
                 {
                     RoleID = 1,
-                    UserID=1,
+                    UserID = 1,
                 }
             );
         }

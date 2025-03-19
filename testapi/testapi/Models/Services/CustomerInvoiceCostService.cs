@@ -42,7 +42,7 @@ namespace API.Models.Services
         public IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter filter)
         {
             int itemsPage = 10;
-            var query = _context.CustomerInvoiceCosts.Include(x=>x.CostRegistry).AsQueryable();
+            var query = _context.CustomerInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
 
             if (filter.CustomerInvoiceCostCustomerInvoiceId != null)
             {
@@ -89,7 +89,7 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoiceCostDTOGet> GetCustomerInvoiceCostById(int id)
         {
-            var data = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceCostsID == id).Include(x=>x.CostRegistry).FirstOrDefaultAsync();
+            var data = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceCostsID == id).Include(x => x.CostRegistry).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new NotFoundException("Customer Invoice Cost not found!");
@@ -111,7 +111,7 @@ namespace API.Models.Services
             if (string.IsNullOrEmpty(customerInvoiceCost.Name))
                 throw new NullPropertyException("Name can't be empty");
 
-            ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).Include(x=>x.Status).FirstAsync();
+            ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).Include(x => x.Status).FirstAsync();
             if (ci.Status.StatusName.ToLower().Equals("paid"))
                 throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
             var total = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceID == ci.CustomerInvoiceID).SumAsync(x => x.Cost);
@@ -120,6 +120,10 @@ namespace API.Models.Services
             else
                 ci.InvoiceAmount = customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
             //_context.CustomerInvoices.Update(ci);
+
+            if (customerInvoiceCost.CostRegistryID == null)
+                throw new ErrorInputPropertyException("Cost Registry Code wrong or missing");
+
             await _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceID, ci);
 
             _context.Add(customerInvoiceCost);
@@ -134,7 +138,7 @@ namespace API.Models.Services
 
             // Fetch the existing CustomerInvoiceCost record from the database based on the provided ID
             var oldCustomerInvCost = await _context.CustomerInvoiceCosts
-                .Where(x => x.CustomerInvoiceCostsID == id).Include(x=>x.CostRegistry)
+                .Where(x => x.CustomerInvoiceCostsID == id).Include(x => x.CostRegistry)
                 .FirstOrDefaultAsync();
 
             // Fetch the related CustomerInvoice for the existing cost record
@@ -266,7 +270,7 @@ namespace API.Models.Services
 
                     // Fetch the related CustomerInvoice for the existing cost record
                     var oldCustomerInvoice = await _context.CustomerInvoices
-                        .Where(x => x.CustomerInvoiceID == oldCustomerInvCost.CustomerInvoiceID).Include(x=>x.Status)
+                        .Where(x => x.CustomerInvoiceID == oldCustomerInvCost.CustomerInvoiceID).Include(x => x.Status)
                         .FirstOrDefaultAsync();
 
                     // Subtract the old cost amount from the associated invoice before updating
@@ -292,12 +296,12 @@ namespace API.Models.Services
                         if (customerInvoiceCost.Cost > 0)
                             oldCustomerInvCost.Cost = customerInvoiceCost.Cost ?? oldCustomerInvCost.Cost;
 
-                        var registry1 =await _context.CostRegistries.Where(x => x.CostRegistryUniqueCode == customerInvoiceCost.CostRegistryCode).FirstOrDefaultAsync();
+                        var registry1 = await _context.CostRegistries.Where(x => x.CostRegistryUniqueCode == customerInvoiceCost.CostRegistryCode).FirstOrDefaultAsync();
                         if (registry1 == null)
                             throw new NotFoundException("Registry not found");
                         else
                         {
-                            oldCustomerInvCost.CostRegistry =registry1;
+                            oldCustomerInvCost.CostRegistry = registry1;
                             oldCustomerInvCost.CostRegistryID = registry1.CostRegistryID;
                         }
                         if (customerInvoiceCost.Cost > 0)
@@ -305,7 +309,7 @@ namespace API.Models.Services
 
                         // Fetch the updated CustomerInvoice associated with the cost
                         newCustomerInvoice = await _context.CustomerInvoices
-                            .Where(x => x.CustomerInvoiceID == oldCustomerInvCost.CustomerInvoiceID).Include(x=>x.Status)
+                            .Where(x => x.CustomerInvoiceID == oldCustomerInvCost.CustomerInvoiceID).Include(x => x.Status)
                             .FirstOrDefaultAsync();
 
                         // Prevent modifications if the invoice is already marked as "paid"

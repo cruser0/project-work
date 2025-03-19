@@ -5,7 +5,6 @@ using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,7 +16,7 @@ namespace API.Controllers
     {
         private readonly ICustomerInvoicesService _customerInvoiceService;
         private readonly StatusService _statusService;
-        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService,StatusService ss)
+        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService, StatusService ss)
         {
             _customerInvoiceService = customerInvoiceService;
             _statusService = ss;
@@ -35,7 +34,7 @@ namespace API.Controllers
             {
                 return Ok(result);
             }
-            else throw new NotFoundException("Customer Invoices not found");
+            else return Ok(new List<CustomerInvoiceDTOGet>());
         }
 
 
@@ -74,7 +73,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceDTO customerInvoice)
         {
-            var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,_statusService.GetStatusByName(customerInvoice.Status)));
+            var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice, _statusService.GetStatusByName(customerInvoice.Status)));
             if (data == null)
                 throw new NotFoundException("Customer Invoices not found!");
             return Ok(data);
@@ -90,7 +89,7 @@ namespace API.Controllers
             var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice, _statusService.GetStatusByName(customerInvoice.Status)));
             if (data == null)
                 if (data == null)
-                throw new NotFoundException("Customer Invoices not found!");
+                    throw new NotFoundException("Customer Invoices not found!");
             return Ok(data);
         }
 
@@ -114,8 +113,8 @@ namespace API.Controllers
         [HttpDelete("mass-delete")]
         public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
-                var data = await _customerInvoiceService.MassDeleteCustomerInvoice(id);
-                return Ok(data);
+            var data = await _customerInvoiceService.MassDeleteCustomerInvoice(id);
+            return Ok(data);
         }
 
 

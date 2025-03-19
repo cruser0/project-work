@@ -4,6 +4,7 @@ using API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(Progetto_FormativoContext))]
-    partial class Progetto_FormativoContextModelSnapshot : ModelSnapshot
+    [Migration("20250319151217_StoredProceduresMigration")]
+    partial class StoredProceduresMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1702,11 +1704,6 @@ namespace API.Migrations
                         {
                             FavouritePageID = 21,
                             Name = "Report Supplier Invoice"
-                        },
-                        new
-                        {
-                            FavouritePageID = 22,
-                            Name = "Show User"
                         });
                 });
 
@@ -2108,8 +2105,8 @@ namespace API.Migrations
                         new
                         {
                             TokenID = 1,
-                            Created = new DateTime(2025, 3, 19, 17, 16, 33, 884, DateTimeKind.Local).AddTicks(7320),
-                            Expires = new DateTime(2025, 3, 29, 17, 16, 33, 884, DateTimeKind.Local).AddTicks(7375),
+                            Created = new DateTime(2025, 3, 19, 16, 12, 15, 689, DateTimeKind.Local).AddTicks(5157),
+                            Expires = new DateTime(2025, 3, 29, 16, 12, 15, 689, DateTimeKind.Local).AddTicks(5213),
                             Token = "BASEADMINTOKEN",
                             UserID = 1
                         });

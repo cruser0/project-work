@@ -96,7 +96,11 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<SupplierInvoiceCost> query = await getAllNotFiltered;
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            if (mPage <= 0)
+                mPage = 1;
+
+            PaginationUserControl.maxPage = mPage.ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierInvoiceCostDgv.DataSource = query.ToList();
             SupplierInvoiceCostDGV cdgv = await getFav;

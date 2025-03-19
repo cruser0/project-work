@@ -45,6 +45,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             _userService = new UserService();
             _customerInvoiceService = new CustomerInvoiceService();
             InitializeComponent();
+
             pages = (int)Math.Ceiling(await _customerInvoiceService.Count(new CustomerInvoiceFilter()) / itemsPage);
 
             PaginationUserControl.CurrentPage = 1;
@@ -97,7 +98,11 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<CustomerInvoice> query = await getAllNotFiltered;
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await countNotFiltered / itemsPage)).ToString();
+            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            if (mPage <= 0)
+                mPage = 1;
+
+            PaginationUserControl.maxPage = mPage.ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CenterDgv.DataSource = query.ToList();
             CustomerInvoiceDGV cdgv = await getFav;

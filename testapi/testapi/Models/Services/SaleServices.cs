@@ -134,8 +134,8 @@ namespace API.Models.Services
         public async Task<SaleCustomerDTO> GetSaleById(int id)
         {
             // Retrieve the sale from the database using the provided ID
-            var sale = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
-            var customer = await _context.Customers.Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
+            var sale = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == id).FirstOrDefaultAsync();
+            var customer = await _context.Customers.Include(x => x.Country).Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
             var result = new SaleCustomerDTO(sale, customer);
 
             // Check if the sale exists

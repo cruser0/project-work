@@ -25,7 +25,7 @@ namespace API.Models.Services
         private readonly Progetto_FormativoContext _context;
         private readonly ISalesService _sService;
         private readonly CountryService _countryService;
-        public CustomerServices(Progetto_FormativoContext ctx, ISalesService SaleService,CountryService cs)
+        public CustomerServices(Progetto_FormativoContext ctx, ISalesService SaleService, CountryService cs)
         {
             _context = ctx;
             _sService = SaleService;
@@ -46,7 +46,7 @@ namespace API.Models.Services
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
             int itemsPerPage = 10;
-            var query = _context.Customers.Include(x=>x.Country).AsQueryable();
+            var query = _context.Customers.Include(x => x.Country).AsQueryable();
 
             // Filtra per OriginalID se specificato
             if (filter.CustomerOriginalID != null)
@@ -97,7 +97,7 @@ namespace API.Models.Services
         public async Task<CustomerDTOGet> GetCustomerById(int id)
         {
             // Retrieve the customer from the database based on the provided ID
-            var data = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
+            var data = await _context.Customers.Include(x => x.Country).Where(x => x.CustomerID == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new NotFoundException("Customer not found!");
@@ -139,8 +139,6 @@ namespace API.Models.Services
             if (customer.Country.CountryName.Length > 50)
                 throw new ErrorInputPropertyException("Country is too long");
 
-            if (!customer.Country.CountryName.All(char.IsLetter))
-                throw new ErrorInputPropertyException("Country can't have special characters");
 
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
@@ -155,7 +153,7 @@ namespace API.Models.Services
         public async Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer)
         {
             // Retrieve the customer from the database based on the provided ID
-            var cDB = await _context.Customers.Where(x => x.CustomerID == id).Include(x=>x.Country).FirstOrDefaultAsync();
+            var cDB = await _context.Customers.Where(x => x.CustomerID == id).Include(x => x.Country).FirstOrDefaultAsync();
 
             // If the customer does not exist, throw an exception
             if (cDB == null)
@@ -172,8 +170,6 @@ namespace API.Models.Services
                 if (customer.Country.CountryName.Length > 50)
                     throw new ErrorInputPropertyException("Country is too long");
 
-                if (!customer.Country.CountryName.All(char.IsLetter))
-                    throw new ErrorInputPropertyException("Country can't have special characters");
             }
 
 
@@ -182,7 +178,7 @@ namespace API.Models.Services
             {
                 CustomerName = customer.CustomerName ?? cDB.CustomerName,
                 Country = customer.Country ?? cDB.Country,
-                CountryID = customer.CountryID?? cDB.CountryID,
+                CountryID = customer.CountryID ?? cDB.CountryID,
                 Deprecated = false,
                 OriginalID = cDB.OriginalID,
                 CreatedAt = DateTime.Now,
@@ -310,15 +306,13 @@ namespace API.Models.Services
                         if (customer.Country.Length > 50)
                             throw new ErrorInputPropertyException("Country is too long");
 
-                        if (!customer.Country.All(char.IsLetter))
-                            throw new ErrorInputPropertyException("Country can't have special characters");
                     }
-                    Customer customerMapped = Mapper.CustomerMapper.Map(customer,_countryService.GetCountryByName(customer.CustomerName));
+                    Customer customerMapped = Mapper.CustomerMapper.Map(customer, _countryService.GetCountryByName(customer.CustomerName));
                     Customer newCustomer = new Customer
                     {
                         CustomerName = customerMapped.CustomerName ?? c.CustomerName,
                         Country = customerMapped.Country ?? c.Country,
-                        CountryID = customerMapped.CountryID??c.CountryID,
+                        CountryID = customerMapped.CountryID ?? c.CountryID,
                         Deprecated = false,
                         OriginalID = c.OriginalID,
                         CreatedAt = DateTime.Now,

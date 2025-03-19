@@ -120,7 +120,7 @@ namespace API.Controllers
             {
                 return Ok(result);
             }
-            else throw new NotFoundException("Users not found");
+            else return Ok(new List<UserRoleDTO>());
         }
 
 

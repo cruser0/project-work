@@ -31,7 +31,7 @@ namespace API.Controllers
             {
                 return Ok(data);
             }
-            else throw new NotFoundException("Supplier Invoice not found");
+            else return Ok(new List<SupplierInvoiceSupplierDTO>());
 
         }
 

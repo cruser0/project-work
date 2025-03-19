@@ -31,7 +31,7 @@ namespace API.Controllers
             {
                 return Ok(data);
             }
-            else throw new NotFoundException("Supplier Invoice Cost not found");
+            else return Ok(new List<SupplierInvoiceCostDTOGet>());
         }
 
         [Authorize(Roles = "Admin,SupplierInvoiceCostRead,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]

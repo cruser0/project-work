@@ -39,14 +39,14 @@ namespace WinformDotNetFramework.Forms
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var ret = await _userService.Login(new UserDTO() { Email = "CustomerAdmin", Password = "string" });
+            var ret = await _userService.Login(new UserDTO() { Email = "Customeradmin", Password = "string" });
             DialogResult = DialogResult.OK;
             Close();
         }
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            var ret = await _userService.Login(new UserDTO() { Email = "Testalo2", Password = "string" });
+            var ret = await _userService.Login(new UserDTO() { Email = "Admin", Password = "Admin" });
             DialogResult = DialogResult.OK;
             Close();
         }
