@@ -70,7 +70,7 @@ namespace API.Models
             {
                 entity.ToTable("Customers");
                 entity.HasKey(e => e.CustomerID);
-                entity.HasIndex(c => new { c.CustomerName, c.Country })
+                entity.HasIndex(c => new { c.CustomerName, c.CountryID })
                 .IsUnique();
                 entity.Property(e => e.CountryID);
 
