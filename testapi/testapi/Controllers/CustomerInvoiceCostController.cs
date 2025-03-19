@@ -16,9 +16,11 @@ namespace API.Controllers
     public class CustomerInvoiceCostController : ControllerBase
     {
         private readonly ICustomerInvoiceCostService _customerInvoiceCostService;
-        public CustomerInvoiceCostController(ICustomerInvoiceCostService customerInvoiceCostService)
+        private readonly CostRegistryService _costRegistryService;
+        public CustomerInvoiceCostController(ICustomerInvoiceCostService customerInvoiceCostService,CostRegistryService crs)
         {
             _customerInvoiceCostService = customerInvoiceCostService;
+            _costRegistryService = crs;
         }
 
 
@@ -64,7 +66,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceCostDTO customerInvoiceCost)
         {
-            var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost));
+            var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost, _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode)));
             if (data == null)
                 throw new NotFoundException("Customer Invoice Cost not found");
             return Ok(data);
@@ -75,8 +77,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceCostDTO customerInvoiceCost)
         {
-                var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost));
-                if (data == null)
+                var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost, _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode)));
+            if (data == null)
                     throw new NotFoundException("Customer Invoice Cost not found");
                 return Ok(data);
         }
