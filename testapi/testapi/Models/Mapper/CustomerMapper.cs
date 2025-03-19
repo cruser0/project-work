@@ -12,19 +12,20 @@ namespace API.Models.Mapper
             return new CustomerDTO()
             {
                 CustomerName = customer.CustomerName,
-                Country = customer.Country,
+                Country = customer.Country.CountryName,
                 Deprecated = customer.Deprecated,
                 CreatedAt = customer.CreatedAt
             };
         }
-        public static Customer Map(CustomerDTO customer)
+        public static Customer Map(CustomerDTO customer,Country country)
         {
             if (customer == null)
                 return null;
             return new Customer()
             {
                 CustomerName = customer.CustomerName,
-                Country = customer.Country,
+                Country = country,
+                CountryID = country.CountryID,
                 Deprecated = customer.Deprecated,
                 CreatedAt = customer.CreatedAt
             };
@@ -37,21 +38,22 @@ namespace API.Models.Mapper
             return new CustomerDTOGet()
             {
                 CustomerName = customer.CustomerName,
-                Country = customer.Country,
+                Country = customer.Country.CountryName,
                 Deprecated = customer.Deprecated,
                 CustomerId = customer.CustomerID,
                 CreatedAt = customer.CreatedAt,
                 OriginalID = customer.OriginalID
             };
         }
-        public static Customer MapGet(CustomerDTOGet customer)
+        public static Customer MapGet(CustomerDTOGet customer, Country country)
         {
             if (customer == null)
                 return null;
             return new Customer()
             {
                 CustomerName = customer.CustomerName,
-                Country = customer.Country,
+                Country = country,
+                CountryID= country.CountryID,
                 Deprecated = customer.Deprecated,
                 CustomerID = (int)customer.CustomerId,
                 CreatedAt = customer.CreatedAt,

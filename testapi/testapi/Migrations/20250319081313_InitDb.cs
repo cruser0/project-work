@@ -28,6 +28,7 @@ namespace API.Migrations
                     table.PrimaryKey("PK_CustomerDGVs", x => x.CustomerDGVID);
                 });
 
+
             migrationBuilder.CreateTable(
                 name: "CustomerGroupSplits",
                 columns: table => new
