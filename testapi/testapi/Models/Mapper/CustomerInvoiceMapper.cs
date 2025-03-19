@@ -7,57 +7,51 @@ namespace API.Models.Mapper
     {
         public static CustomerInvoiceDTO Map(CustomerInvoice customerInvoice)
         {
-            if (customerInvoice == null)
-                return null;
             return new CustomerInvoiceDTO()
             {
                 SaleId = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
-                Status = customerInvoice.Status
+                Status = customerInvoice.Status!.StatusName
             };
         }
 
 
-        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice)
+        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status status)
         {
-            if (customerInvoice == null)
-                return null;
             return new CustomerInvoice()
             {
                 SaleID = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
-                Status = customerInvoice.Status
+                Status = status,
+                StatusID = status.StatusID
             };
         }
 
         public static CustomerInvoiceDTOGet MapGet(CustomerInvoice customerInvoice)
         {
-            if (customerInvoice == null)
-                return null;
             return new CustomerInvoiceDTOGet()
             {
                 CustomerInvoiceId = customerInvoice.CustomerInvoiceID,
                 SaleId = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
-                Status = customerInvoice.Status
+                Status = customerInvoice.Status!.StatusName
             };
         }
 
 
-        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice)
+        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice, Status status)
         {
-            if (customerInvoice == null)
-                return null;
             return new CustomerInvoice()
             {
-                CustomerInvoiceID = (int)customerInvoice.CustomerInvoiceId,
+                CustomerInvoiceID = (int)customerInvoice.CustomerInvoiceId!,
                 SaleID = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
-                Status = customerInvoice.Status
+                Status = status,
+                StatusID = status.StatusID
             };
         }
     }

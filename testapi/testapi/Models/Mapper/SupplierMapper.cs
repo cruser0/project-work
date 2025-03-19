@@ -7,27 +7,24 @@ namespace API.Models.Mapper
     {
         public static SupplierDTO Map(Supplier supplier)
         {
-            if (supplier == null)
-                return null;
             return new SupplierDTO()
             {
 
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country,
+                Country = supplier.Country.CountryName,
                 Deprecated = supplier.Deprecated,
                 CreatedAt = supplier.CreatedAt,
 
             };
         }
-        public static Supplier Map(SupplierDTO supplier)
+        public static Supplier Map(SupplierDTO supplier, Country country)
         {
-            if (supplier == null)
-                return null;
             return new Supplier()
             {
 
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country,
+                Country = country,
+                CountryID = country.CountryID,
                 Deprecated = supplier.Deprecated,
                 CreatedAt = supplier.CreatedAt,
 
@@ -36,32 +33,27 @@ namespace API.Models.Mapper
 
         public static SupplierDTOGet MapGet(Supplier supplier)
         {
-            if (supplier == null)
-                return null;
             return new SupplierDTOGet()
             {
                 SupplierId = supplier.SupplierID,
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country,
+                Country = supplier.Country.CountryName,
                 Deprecated = supplier.Deprecated,
                 CreatedAt = supplier.CreatedAt,
                 OriginalID = supplier.OriginalID,
-
             };
         }
-        public static Supplier MapGet(SupplierDTOGet supplier)
+        public static Supplier MapGet(SupplierDTOGet supplier, Country country)
         {
-            if (supplier == null)
-                return null;
             return new Supplier()
             {
-                SupplierID = (int)supplier.SupplierId,
+                SupplierID = (int)supplier.SupplierId!,
                 SupplierName = supplier.SupplierName,
-                Country = supplier.Country,
+                Country = country,
+                CountryID = country.CountryID,
                 Deprecated = supplier.Deprecated,
                 CreatedAt = supplier.CreatedAt,
-                OriginalID = (int)supplier.OriginalID,
-
+                OriginalID = (int)supplier.OriginalID!,
             };
         }
     }
