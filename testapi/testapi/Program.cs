@@ -21,6 +21,7 @@ builder.Services.AddDbContext<Progetto_FormativoContext>(options =>
 
 builder.Services.AddTransient<GlobalExceptionHandler>();
 builder.Services.AddScoped<ICustomerService, CustomerServices>();
+builder.Services.AddScoped<CountryService>();
 builder.Services.AddScoped<ICustomerInvoicesService, CustomerInvoicesServices>();
 builder.Services.AddScoped<ISalesService, SaleServices>();
 builder.Services.AddScoped<ISupplierInvoiceCostService, SupplierInvoiceCostServices>();

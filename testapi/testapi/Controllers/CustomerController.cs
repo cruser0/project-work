@@ -18,9 +18,11 @@ namespace API.Controllers
     {
 
         private readonly ICustomerService _customerService;
-        public CustomerController(ICustomerService customerService)
+        private readonly CountryService _countryService;
+        public CustomerController(ICustomerService customerService,CountryService countryService)
         {
             _customerService = customerService;
+            _countryService = countryService;
         }
 
 
@@ -70,7 +72,8 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerDTO customer)
         {
-                var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer));
+
+                var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer,_countryService.GetCountryByName(customer.Country!)));
                 if (data == null)
                     throw new NotFoundException("Data can't be null!");
                 return Ok(data);
@@ -84,7 +87,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerDTO customer)
         {
-            var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer));
+            var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer, _countryService.GetCountryByName(customer.Country!)));
             if (data == null)
                 throw new NotFoundException("Customer not found!");
             return Ok(data);
