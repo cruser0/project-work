@@ -24,10 +24,12 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ISalesService _sService;
-        public CustomerServices(Progetto_FormativoContext ctx, ISalesService SaleService)
+        private readonly CountryService _countryService;
+        public CustomerServices(Progetto_FormativoContext ctx, ISalesService SaleService,CountryService cs)
         {
             _context = ctx;
             _sService = SaleService;
+            _countryService = cs;
         }
 
         public async Task<ICollection<CustomerDTOGet>> GetAllCustomers(CustomerFilter filter)
@@ -44,7 +46,7 @@ namespace API.Models.Services
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
             int itemsPerPage = 10;
-            var query = _context.Customers.AsQueryable();
+            var query = _context.Customers.Include(x=>x.Country).AsQueryable();
 
             // Filtra per OriginalID se specificato
             if (filter.CustomerOriginalID != null)
@@ -74,7 +76,7 @@ namespace API.Models.Services
             // Filtra per paese se specificato
             if (!string.IsNullOrEmpty(filter.CustomerCountry))
             {
-                query = query.Where(x => x.Country.Contains(filter.CustomerCountry));
+                query = query.Where(x => x.Country.CountryName.Contains(filter.CustomerCountry));
             }
 
             // Filtra per stato di deprecazione se specificato
@@ -115,7 +117,7 @@ namespace API.Models.Services
 
             // Check if required fields are null or empty
             if (string.IsNullOrEmpty(customer.CustomerName)) nullFields.Add("CustomerName");
-            if (string.IsNullOrEmpty(customer.Country)) nullFields.Add("Country");
+            if (string.IsNullOrEmpty(customer.Country.CountryName)) nullFields.Add("Country");
 
             // If any required field is missing, throw an exception with details
             if (nullFields.Any())
@@ -134,10 +136,10 @@ namespace API.Models.Services
             if (customer.CustomerName.Length > 100)
                 throw new ErrorInputPropertyException("Customer name is too long");
 
-            if (customer.Country.Length > 50)
+            if (customer.Country.CountryName.Length > 50)
                 throw new ErrorInputPropertyException("Country is too long");
 
-            if (!customer.Country.All(char.IsLetter))
+            if (!customer.Country.CountryName.All(char.IsLetter))
                 throw new ErrorInputPropertyException("Country can't have special characters");
 
             _context.Customers.Add(customer);
@@ -167,10 +169,10 @@ namespace API.Models.Services
                     throw new ErrorInputPropertyException("Customer name is too long");
             if (customer.Country != null)
             {
-                if (customer.Country.Length > 50)
+                if (customer.Country.CountryName.Length > 50)
                     throw new ErrorInputPropertyException("Country is too long");
 
-                if (!customer.Country.All(char.IsLetter))
+                if (!customer.Country.CountryName.All(char.IsLetter))
                     throw new ErrorInputPropertyException("Country can't have special characters");
             }
 
@@ -310,7 +312,7 @@ namespace API.Models.Services
                         if (!customer.Country.All(char.IsLetter))
                             throw new ErrorInputPropertyException("Country can't have special characters");
                     }
-
+                    Customer customerMapped = Mapper.CustomerMapper.Map(customer);
                     Customer newCustomer = new Customer
                     {
                         CustomerName = customer.CustomerName ?? c.CustomerName,

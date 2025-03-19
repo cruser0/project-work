@@ -10,9 +10,9 @@ namespace API.Models.Services
             _context= ctx;
         }
 
-        public Country GetCountryByName(string name)
+        public Country? GetCountryByName(string? name)
         {
-            return _context.Countries.Where(x=>x.CountryName.Equals(name)).First();
+            return _context.Countries.Where(x=>x.CountryName.Equals(name)).FirstOrDefault();
         }
     }
 }
