@@ -81,6 +81,7 @@ namespace API.Models
                     .HasForeignKey(d => d.CountryID)
                     .HasConstraintName("customer_country_fk").OnDelete(DeleteBehavior.NoAction);
             });
+
             modelBuilder.Entity<Country>(entity =>
             {
                 entity.ToTable("Country");

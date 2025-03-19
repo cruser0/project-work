@@ -7,8 +7,6 @@ namespace API.Models.Mapper
     {
         public static CustomerDTO Map(Customer customer)
         {
-            if (customer == null)
-                return null;
             return new CustomerDTO()
             {
                 CustomerName = customer.CustomerName,
@@ -17,10 +15,8 @@ namespace API.Models.Mapper
                 CreatedAt = customer.CreatedAt
             };
         }
-        public static Customer Map(CustomerDTO customer,Country country)
+        public static Customer Map(CustomerDTO customer, Country country)
         {
-            if (customer == null)
-                return null;
             return new Customer()
             {
                 CustomerName = customer.CustomerName,
@@ -33,8 +29,6 @@ namespace API.Models.Mapper
 
         public static CustomerDTOGet MapGet(Customer customer)
         {
-            if (customer == null)
-                return null;
             return new CustomerDTOGet()
             {
                 CustomerName = customer.CustomerName,
@@ -47,17 +41,15 @@ namespace API.Models.Mapper
         }
         public static Customer MapGet(CustomerDTOGet customer, Country country)
         {
-            if (customer == null)
-                return null;
             return new Customer()
             {
                 CustomerName = customer.CustomerName,
                 Country = country,
-                CountryID= country.CountryID,
+                CountryID = country.CountryID,
                 Deprecated = customer.Deprecated,
-                CustomerID = (int)customer.CustomerId,
+                CustomerID = (int)customer.CustomerId!,
                 CreatedAt = customer.CreatedAt,
-                OriginalID = (int)customer.OriginalID
+                OriginalID = (int)customer.OriginalID!
             };
         }
 

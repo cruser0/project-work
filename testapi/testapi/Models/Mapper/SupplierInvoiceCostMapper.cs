@@ -7,8 +7,6 @@ namespace API.Models.Mapper
     {
         public static SupplierInvoiceCostDTO Map(SupplierInvoiceCost supplierInvoiceCost)
         {
-            if (supplierInvoiceCost == null)
-                return null;
             return new SupplierInvoiceCostDTO()
             {
 
@@ -16,13 +14,11 @@ namespace API.Models.Mapper
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
-
+                CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode
             };
         }
-        public static SupplierInvoiceCost Map(SupplierInvoiceCostDTO supplierInvoiceCost)
+        public static SupplierInvoiceCost Map(SupplierInvoiceCostDTO supplierInvoiceCost, CostRegistry costRegistry)
         {
-            if (supplierInvoiceCost == null)
-                return null;
             return new SupplierInvoiceCost()
             {
 
@@ -30,14 +26,13 @@ namespace API.Models.Mapper
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
-
+                CostRegistry = costRegistry,
+                CostRegistryID = costRegistry.CostRegistryID
             };
         }
 
         public static SupplierInvoiceCostDTOGet MapGet(SupplierInvoiceCost supplierInvoiceCost)
         {
-            if (supplierInvoiceCost == null)
-                return null;
             return new SupplierInvoiceCostDTOGet()
             {
                 SupplierInvoiceCostsId = supplierInvoiceCost.SupplierInvoiceCostsId,
@@ -45,20 +40,20 @@ namespace API.Models.Mapper
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
-
+                CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode
             };
         }
-        public static SupplierInvoiceCost MapGet(SupplierInvoiceCostDTOGet supplierInvoiceCost)
+        public static SupplierInvoiceCost MapGet(SupplierInvoiceCostDTOGet supplierInvoiceCost, CostRegistry costRegistry)
         {
-            if (supplierInvoiceCost == null)
-                return null;
             return new SupplierInvoiceCost()
             {
-                SupplierInvoiceCostsId = (int)supplierInvoiceCost.SupplierInvoiceCostsId,
+                SupplierInvoiceCostsId = (int)supplierInvoiceCost.SupplierInvoiceCostsId!,
                 SupplierInvoiceId = supplierInvoiceCost.SupplierInvoiceId,
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
+                CostRegistry = costRegistry,
+                CostRegistryID = costRegistry.CostRegistryID
 
             };
         }

@@ -7,8 +7,6 @@ namespace API.Models.Mapper
     {
         public static SaleDTO Map(Sale sale)
         {
-            if (sale == null)
-                return null;
             return new SaleDTO()
             {
 
@@ -17,14 +15,12 @@ namespace API.Models.Mapper
                 SaleDate = sale.SaleDate,
                 CustomerId = sale.CustomerID,
                 TotalRevenue = sale.TotalRevenue,
-                Status = sale.Status
+                Status = sale.Status!.StatusName
 
             };
         }
-        public static Sale Map(SaleDTO sale)
+        public static Sale Map(SaleDTO sale, Status status)
         {
-            if (sale == null)
-                return null;
             return new Sale()
             {
 
@@ -33,15 +29,14 @@ namespace API.Models.Mapper
                 SaleDate = sale.SaleDate,
                 CustomerID = sale.CustomerId,
                 TotalRevenue = sale.TotalRevenue,
-                Status = sale.Status
+                Status = status,
+                StatusID = status.StatusID
 
             };
         }
 
         public static SaleDTOGet MapGet(Sale sale)
         {
-            if (sale == null)
-                return null;
             return new SaleDTOGet()
             {
                 SaleId = sale.SaleID,
@@ -50,23 +45,22 @@ namespace API.Models.Mapper
                 SaleDate = sale.SaleDate,
                 CustomerId = sale.CustomerID,
                 TotalRevenue = sale.TotalRevenue,
-                Status = sale.Status
+                Status = sale.Status!.StatusName
 
             };
         }
-        public static Sale MapGet(SaleDTOGet sale)
+        public static Sale MapGet(SaleDTOGet sale, Status status)
         {
-            if (sale == null)
-                return null;
             return new Sale()
             {
-                SaleID = (int)sale.SaleId,
+                SaleID = (int)sale.SaleId!,
                 BookingNumber = sale.BookingNumber,
                 BoLnumber = sale.BoLnumber,
                 SaleDate = sale.SaleDate,
                 CustomerID = sale.CustomerId,
                 TotalRevenue = sale.TotalRevenue,
-                Status = sale.Status
+                Status = status,
+                StatusID = status.StatusID
 
             };
         }

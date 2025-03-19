@@ -4,8 +4,8 @@
     {
         public CostRegistry()
         {
-            CustomerInvoiceCosts=new HashSet<CustomerInvoiceCost>();
-            SupplierInvoiceCosts=new HashSet<SupplierInvoiceCost>();
+            CustomerInvoiceCosts = new HashSet<CustomerInvoiceCost>();
+            SupplierInvoiceCosts = new HashSet<SupplierInvoiceCost>();
 
         }
         public int CostRegistryID { get; set; }
