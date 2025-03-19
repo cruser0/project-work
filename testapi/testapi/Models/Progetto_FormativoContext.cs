@@ -19,7 +19,6 @@ namespace API.Models
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<CustomerInvoice> CustomerInvoices { get; set; } = null!;
         public virtual DbSet<Sale> Sales { get; set; } = null!;
-        public virtual DbSet<SalesView> SalesViews { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<SupplierInvoice> SupplierInvoices { get; set; } = null!;
         public virtual DbSet<SupplierInvoiceCost> SupplierInvoiceCosts { get; set; } = null!;
@@ -542,7 +541,7 @@ namespace API.Models
                 entity.HasOne(d => d.Sale)
                     .WithMany(p => p.CustomerInvoices)
                     .HasForeignKey(d => d.SaleId)
-                    .HasConstraintName("sale_CustomerInvoices_fk");
+                    .HasConstraintName("sale_CustomerInvoices_fk").OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<Sale>(entity =>
