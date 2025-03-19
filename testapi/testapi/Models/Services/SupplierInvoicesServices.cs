@@ -9,12 +9,12 @@ namespace API.Models.Services
 {
     public interface ISupplierInvoiceService
     {
-        Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceFilter? filter);
+        Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceSupplierFilter filter);
         Task<SupplierInvoiceSupplierDTO> GetSupplierInvoiceById(int id);
         Task<SupplierInvoiceDTOGet> CreateSupplierInvoice(SupplierInvoice supplierInvoice);
         Task<SupplierInvoiceDTOGet> UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
         Task<SupplierInvoiceDTOGet> DeleteSupplierInvoice(int id);
-        Task<int> CountSupplierinvoices(SupplierInvoiceFilter filter);
+        Task<int> CountSupplierinvoices(SupplierInvoiceSupplierFilter filter);
         Task<string> MassDeleteSupplierInvoice(List<int> supplierInvoiceId);
         Task<string> MassUpdateSupplierInvoice(List<SupplierInvoiceDTOGet> newSupplierInvoices);
 
@@ -24,28 +24,31 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ISupplierInvoiceCostService _serviceCost;
-        public SupplierInvoiceService(Progetto_FormativoContext ctx, ISupplierInvoiceCostService serviceCost)
+        private readonly StatusService _statusService;
+        public SupplierInvoiceService(Progetto_FormativoContext ctx, ISupplierInvoiceCostService serviceCost, StatusService statusService)
         {
             _context = ctx;
             _serviceCost = serviceCost;
+            _statusService = statusService;
+
         }
 
-        public async Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceFilter? filter)
+        public async Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceSupplierFilter filter)
         {
             // Retrieve all suppliers from the database and map them to DTOs
             return await ApplyFilter(filter).ToListAsync();
         }
 
-        public async Task<int> CountSupplierinvoices(SupplierInvoiceFilter filter)
+        public async Task<int> CountSupplierinvoices(SupplierInvoiceSupplierFilter filter)
         {
             return await ApplyFilter(filter).CountAsync();
         }
 
-        private IQueryable<SupplierInvoiceSupplierDTO> ApplyFilter(SupplierInvoiceFilter? filter)
+        private IQueryable<SupplierInvoiceSupplierDTO> ApplyFilter(SupplierInvoiceSupplierFilter filter)
         {
             int itemsPage = 10;
-            var query = (from si in _context.SupplierInvoices
-                         join s in _context.Suppliers on si.SupplierID equals s.SupplierID into SupplierInvoiceGroup
+            var query = (from si in _context.SupplierInvoices.Include(x => x.Status)
+                         join s in _context.Suppliers.Include(x => x.Country) on si.SupplierID equals s.SupplierID into SupplierInvoiceGroup
                          from supplier in SupplierInvoiceGroup.DefaultIfEmpty()
                          select new { SupplierInvoice = si, Supplier = supplier }).AsQueryable();
 
@@ -86,8 +89,20 @@ namespace API.Models.Services
             if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
             {
                 if (!filter.SupplierInvoiceStatus.Equals("All"))
-                    query = query.Where(x => x.SupplierInvoice.Status == filter.SupplierInvoiceStatus.ToLower());
+                    query = query.Where(x => x.SupplierInvoice.Status.StatusName == filter.SupplierInvoiceStatus.ToLower());
             }
+
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceSupplierName))
+            {
+                query = query.Where(x => x.Supplier.SupplierName.Contains(filter.SupplierInvoiceSupplierName));
+            }
+
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceSupplierCountry))
+            {
+                query = query.Where(x => x.Supplier.Country.CountryName.Contains(filter.SupplierInvoiceSupplierCountry));
+            }
+
+
             if (filter.SupplierInvoicePage != null)
             {
                 query = query.Skip(((int)filter.SupplierInvoicePage - 1) * itemsPage).Take(itemsPage);
@@ -122,7 +137,7 @@ namespace API.Models.Services
             if (!await _context.Sales.AnyAsync(x => x.SaleID == supplierInvoice.SaleID))
                 throw new NotFoundException("SaleID not found");
 
-            if (!new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
+            if (!new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.StatusName?.ToLower()))
                 throw new ErrorInputPropertyException("Status is not valid");
             if (supplierInvoice.InvoiceDate == null || supplierInvoice.InvoiceDate > DateTime.Now)
                 throw new ErrorInputPropertyException("Date is not valid");
@@ -178,9 +193,9 @@ namespace API.Models.Services
 
             if (supplierInvoice.Status != null)
             {
-                if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.ToLower()))
+                if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.StatusName.ToLower()))
                 {
-                    siDB.Status = supplierInvoice.Status ?? siDB.Status;
+                    siDB.StatusID = supplierInvoice.StatusID ?? siDB.StatusID;
                 }
                 else
                 {
@@ -248,7 +263,7 @@ namespace API.Models.Services
             {
                 foreach (SupplierInvoiceDTOGet supplierInvoice in newSupplierInvoices)
                 {
-                    var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.SupplierInvoiceID == supplierInvoice.InvoiceId);
+                    var siDB = await _context.SupplierInvoices.Include(x => x.Status).FirstOrDefaultAsync(x => x.SupplierInvoiceID == supplierInvoice.InvoiceId);
 
                     if (siDB == null)
                     {
@@ -293,7 +308,7 @@ namespace API.Models.Services
                     {
                         if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.ToLower()))
                         {
-                            siDB.Status = supplierInvoice.Status ?? siDB.Status;
+                            siDB.StatusID = _statusService.GetStatusByName(supplierInvoice.Status)?.StatusID ?? siDB.StatusID;
                         }
                         else
                         {

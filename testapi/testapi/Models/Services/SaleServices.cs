@@ -10,13 +10,13 @@ namespace API.Models.Services
 {
     public interface ISalesService
     {
-        Task<ICollection<SaleCustomerDTO>> GetAllSales(SaleFilter filter);
+        Task<ICollection<SaleCustomerDTO>> GetAllSales(SaleCustomerFilter filter);
         Task<SaleCustomerDTO> GetSaleById(int id);
         Task<SaleDTOGet> CreateSale(Sale sale);
         Task<SaleDTOGet> UpdateSale(int id, Sale sale);
         Task<SaleDTOGet> DeleteSale(int id);
 
-        Task<int> CountSales(SaleFilter filter);
+        Task<int> CountSales(SaleCustomerFilter filter);
         Task<string> MassDeleteSale(List<int> saleId);
         Task<string> MassUpdateSale(List<SaleDTOGet> newSales);
 
@@ -26,32 +26,35 @@ namespace API.Models.Services
         private readonly Progetto_FormativoContext _context;
         private readonly ICustomerInvoicesService _ciService;
         private readonly ISupplierInvoiceService _siService;
+        private readonly StatusService _statusService;
         // List of valid sale statuses
         List<string> statusList = new() { "active", "closed" };
-        public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIservice, ISupplierInvoiceService SIservice)
+        public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIservice, ISupplierInvoiceService SIservice, StatusService statusService)
         {
             _context = ctx;
             _ciService = CIservice;
             _siService = SIservice;
+            _statusService = statusService;
+
         }
 
-        public async Task<ICollection<SaleCustomerDTO>> GetAllSales(SaleFilter filter)
+        public async Task<ICollection<SaleCustomerDTO>> GetAllSales(SaleCustomerFilter filter)
         {
             // Retrieve all sales from the database and map each one to a SaleDTOGet
             return await ApplyFilter(filter).ToListAsync();
         }
 
-        public async Task<int> CountSales(SaleFilter filter)
+        public async Task<int> CountSales(SaleCustomerFilter filter)
         {
             // Retrieve all sales from the database and map each one to a SaleDTOGet
             return await ApplyFilter(filter).CountAsync();
         }
 
-        private IQueryable<SaleCustomerDTO> ApplyFilter(SaleFilter filter)
+        private IQueryable<SaleCustomerDTO> ApplyFilter(SaleCustomerFilter filter)
         {
             int itemsPage = 10;
-            var query = (from s in _context.Sales
-                         join c in _context.Customers on s.CustomerID equals c.CustomerID into SaleGroup
+            var query = (from s in _context.Sales.Include(x => x.Status)
+                         join c in _context.Customers.Include(x => x.Country) on s.CustomerID equals c.CustomerID into SaleGroup
                          from customer in SaleGroup.DefaultIfEmpty()
                          select new { Sale = s, Customer = customer }).AsQueryable();
 
@@ -108,8 +111,19 @@ namespace API.Models.Services
 
             if (!string.IsNullOrEmpty(filter.SaleStatus))
             {
-                query = query.Where(s => s.Sale.Status == filter.SaleStatus);
+                query = query.Where(s => s.Sale.Status.StatusName == filter.SaleStatus);
             }
+
+            if (!string.IsNullOrEmpty(filter.SaleCustomerName))
+            {
+                query = query.Where(s => s.Customer.CustomerName.Contains(filter.SaleCustomerName));
+            }
+
+            if (!string.IsNullOrEmpty(filter.SaleCustomerCountry))
+            {
+                query = query.Where(s => s.Customer.Country.CountryName.Contains(filter.SaleCustomerCountry));
+            }
+
             if (filter.SalePage != null)
             {
                 query = query.Skip(((int)filter.SalePage - 1) * itemsPage).Take(itemsPage);
@@ -145,7 +159,7 @@ namespace API.Models.Services
             if (string.IsNullOrEmpty(sale.BoLnumber)) nullFields.Add("BOL");
             if (sale.SaleDate == null) nullFields.Add("Date");
             if (sale.CustomerID == null) nullFields.Add("CustomerID");
-            if (string.IsNullOrEmpty(sale.Status)) nullFields.Add("Status");
+            if (string.IsNullOrEmpty(sale.Status.StatusName)) nullFields.Add("Status");
 
             // If any fields are null, throw an exception with the list of missing fields
             if (nullFields.Any())
@@ -158,7 +172,7 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException("BoL Number is too long");
 
             // Check if the provided status is valid
-            if (!statusList.Contains(sale.Status.ToLower()))
+            if (!statusList.Contains(sale.Status.StatusName.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
             // Check if a customer exists with the provided CustomerId
@@ -190,7 +204,7 @@ namespace API.Models.Services
 
             // Update sale fields only if new values are provided
             sDB.BoLnumber = sale.BoLnumber ?? sDB.BoLnumber;
-            sDB.Status = sale.Status ?? sDB.Status;
+            sDB.StatusID = sale.StatusID ?? sDB.StatusID;
             sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
             sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
             sDB.CustomerID = sale.CustomerID ?? sDB.CustomerID;
@@ -204,7 +218,7 @@ namespace API.Models.Services
                     throw new ErrorInputPropertyException("BoL Number is too long");
 
             // Check if the provided status is valid
-            if (!string.IsNullOrEmpty(sale.Status) && !statusList.Contains(sale.Status.ToLower()))
+            if (!string.IsNullOrEmpty(sale.Status.StatusName) && !statusList.Contains(sale.Status.StatusName.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
             // If a new CustomerId is provided, check if the customer exists
@@ -228,7 +242,7 @@ namespace API.Models.Services
         public async Task<SaleDTOGet> DeleteSale(int id)
         {
             // Retrieve the sale from the database using the provided ID
-            var data = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
+            var data = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == id).FirstOrDefaultAsync();
 
             // Check if we're already in a transaction
             bool isInTransaction = _context.Database.CurrentTransaction != null;
@@ -244,7 +258,7 @@ namespace API.Models.Services
                 // Check if the sale exists
                 if (data == null)
                     throw new NotFoundException("Sale not found!");
-                if (data.Status.ToLower().Equals("closed"))
+                if (data.Status.StatusName.ToLower().Equals("closed"))
                     throw new ErrorInputPropertyException("Sale is closed,can't delete!");
 
                 // Retrieve all customer invoices associated with the sale
@@ -371,7 +385,7 @@ namespace API.Models.Services
 
             foreach (SaleDTOGet sale in newSales)
             {
-                var sDB = await _context.Sales.Where(x => x.SaleID == sale.SaleId).FirstOrDefaultAsync();
+                var sDB = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == sale.SaleId).FirstOrDefaultAsync();
 
                 // Check if the sale exists
                 if (sDB == null)
@@ -379,7 +393,7 @@ namespace API.Models.Services
 
                 // Update sale fields only if new values are provided
                 sDB.BoLnumber = sale.BoLnumber ?? sDB.BoLnumber;
-                sDB.Status = sale.Status ?? sDB.Status;
+                sDB.StatusID = _statusService.GetStatusByName(sale.Status)?.StatusID ?? sDB.StatusID;
                 sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
                 sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
                 sDB.CustomerID = sale.CustomerId ?? sDB.CustomerID;
@@ -393,7 +407,8 @@ namespace API.Models.Services
                         throw new ErrorInputPropertyException("BoL Number is too long");
 
                 // Check if the provided status is valid
-                if (!string.IsNullOrEmpty(sale.Status) && !statusList.Contains(sale.Status.ToLower()))
+                string stat = _statusService.GetStatusByName(sale.Status).StatusName;
+                if (!string.IsNullOrEmpty(stat) && !statusList.Contains(stat.ToLower()))
                     throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
                 // If a new CustomerId is provided, check if the customer exists

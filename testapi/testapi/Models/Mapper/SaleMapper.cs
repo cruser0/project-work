@@ -30,7 +30,7 @@ namespace API.Models.Mapper
                 CustomerID = sale.CustomerId,
                 TotalRevenue = sale.TotalRevenue,
                 Status = status,
-                StatusID = status.StatusID
+                StatusID = status?.StatusID
 
             };
         }
@@ -60,7 +60,7 @@ namespace API.Models.Mapper
                 CustomerID = sale.CustomerId,
                 TotalRevenue = sale.TotalRevenue,
                 Status = status,
-                StatusID = status.StatusID
+                StatusID = status?.StatusID
 
             };
         }

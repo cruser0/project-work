@@ -27,7 +27,7 @@ namespace API.Models.Mapper
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
                 CostRegistry = costRegistry,
-                CostRegistryID = costRegistry.CostRegistryID
+                CostRegistryID = costRegistry?.CostRegistryID
             };
         }
 
@@ -53,7 +53,7 @@ namespace API.Models.Mapper
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
                 CostRegistry = costRegistry,
-                CostRegistryID = costRegistry.CostRegistryID
+                CostRegistryID = costRegistry?.CostRegistryID
 
             };
         }

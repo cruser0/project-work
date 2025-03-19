@@ -9,7 +9,7 @@ namespace API.Models.Services
 {
     public interface ISupplierService
     {
-        Task<ICollection<SupplierDTOGet>> GetAllSuppliers(SupplierFilter? filter);
+        Task<ICollection<SupplierDTOGet>> GetAllSuppliers(SupplierFilter filter);
         Task<SupplierDTOGet> GetSupplierById(int id);
         Task<SupplierDTOGet> CreateSupplier(Supplier supplier);
         Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier);
@@ -25,13 +25,15 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ISupplierInvoiceService _supplierInvoiceService;
-        public SupplierService(Progetto_FormativoContext ctx, ISupplierInvoiceService supplierInvoiceService)
+        private readonly CountryService _countryService;
+        public SupplierService(Progetto_FormativoContext ctx, ISupplierInvoiceService supplierInvoiceService, CountryService countryService)
         {
             _context = ctx;
             _supplierInvoiceService = supplierInvoiceService;
+            _countryService = countryService;
         }
 
-        public async Task<ICollection<SupplierDTOGet>> GetAllSuppliers(SupplierFilter? filter)
+        public async Task<ICollection<SupplierDTOGet>> GetAllSuppliers(SupplierFilter filter)
         {
             return await ApplyFilter(filter).ToListAsync();
         }
@@ -41,7 +43,7 @@ namespace API.Models.Services
             return await ApplyFilter(filter).CountAsync();
         }
 
-        private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
+        private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter filter)
         {
             int itemsPage = 10;
             var query = _context.Suppliers.Include(x => x.Country).AsQueryable();
@@ -52,7 +54,7 @@ namespace API.Models.Services
             }
             if (!string.IsNullOrEmpty(filter.SupplierName))
             {
-                query = query.Where(x => x.SupplierName.Contains(filter.SupplierName));
+                query = query.Where(x => x.SupplierName!.Contains(filter.SupplierName));
             }
             if (filter.SupplierCreatedDateFrom.HasValue)
             {
@@ -130,17 +132,17 @@ namespace API.Models.Services
 
         public async Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier)
         {
-            var cDB = await _context.Suppliers.Where(x => x.SupplierID == id).FirstOrDefaultAsync();
+            var cDB = await _context.Suppliers.Include(x => x.Country).Where(x => x.SupplierID == id).FirstOrDefaultAsync();
             if (cDB != null)
             {
-                if ((bool)cDB.Deprecated)
+                if ((bool)cDB.Deprecated!)
                     throw new ErrorInputPropertyException("Can't update deprecated supplier");
 
                 if (supplier.SupplierName != null)
                     if (supplier.SupplierName.Length > 100)
                         throw new ErrorInputPropertyException("Supplier name is too long");
 
-                if (supplier.Country != null)
+                if (supplier.Country.CountryName != null)
                 {
                     if (supplier.Country.CountryName.Length > 50)
                         throw new ErrorInputPropertyException("Country is too long");
@@ -247,12 +249,12 @@ namespace API.Models.Services
             {
                 foreach (SupplierDTOGet supplier in newSuppliers)
                 {
-                    var c = await _context.Suppliers.Where(x => x.SupplierID == supplier.SupplierId).FirstOrDefaultAsync();
+                    var c = await _context.Suppliers.Include(x => x.Country).Where(x => x.SupplierID == supplier.SupplierId).FirstOrDefaultAsync();
 
                     if (c == null)
                         throw new NotFoundException("Supplier not found");
 
-                    if ((bool)c.Deprecated)
+                    if ((bool)c.Deprecated!)
                         throw new ErrorInputPropertyException("Can't update deprecated supplier");
 
                     if (supplier.SupplierName != null)
@@ -273,7 +275,7 @@ namespace API.Models.Services
                     Supplier newSupplier = new Supplier
                     {
                         SupplierName = supplier.SupplierName ?? c.SupplierName,
-                        Country = supplier.Country ?? c.Country,
+                        CountryID = _countryService.GetCountryByName(supplier.Country)?.CountryID ?? c.CountryID,
                         Deprecated = false,
                         OriginalID = c.OriginalID,
                         CreatedAt = DateTime.Now,
