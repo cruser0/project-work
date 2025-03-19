@@ -51,7 +51,7 @@ namespace API.Models.Services
         {
             int itemsPage = 10;
             var query = (from s in _context.Sales
-                         join c in _context.Customers on s.CustomerId equals c.CustomerId into SaleGroup
+                         join c in _context.Customers on s.CustomerID equals c.CustomerID into SaleGroup
                          from customer in SaleGroup.DefaultIfEmpty()
                          select new { Sale = s, Customer = customer }).AsQueryable();
 
@@ -103,7 +103,7 @@ namespace API.Models.Services
 
             if (filter.SaleCustomerId != null)
             {
-                query = query.Where(s => s.Sale.CustomerId == filter.SaleCustomerId);
+                query = query.Where(s => s.Sale.CustomerID == filter.SaleCustomerId);
             }
 
             if (!string.IsNullOrEmpty(filter.SaleStatus))
@@ -120,8 +120,8 @@ namespace API.Models.Services
         public async Task<SaleCustomerDTO> GetSaleById(int id)
         {
             // Retrieve the sale from the database using the provided ID
-            var sale = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
-            var customer = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
+            var sale = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
+            var customer = await _context.Customers.Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
             var result = new SaleCustomerDTO(sale, customer);
 
             // Check if the sale exists
@@ -144,7 +144,7 @@ namespace API.Models.Services
             if (string.IsNullOrEmpty(sale.BookingNumber)) nullFields.Add("BN");
             if (string.IsNullOrEmpty(sale.BoLnumber)) nullFields.Add("BOL");
             if (sale.SaleDate == null) nullFields.Add("Date");
-            if (sale.CustomerId == null) nullFields.Add("CustomerID");
+            if (sale.CustomerID == null) nullFields.Add("CustomerID");
             if (string.IsNullOrEmpty(sale.Status)) nullFields.Add("Status");
 
             // If any fields are null, throw an exception with the list of missing fields
@@ -162,11 +162,11 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
             // Check if a customer exists with the provided CustomerId
-            var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
+            var customers = await _context.Customers.Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
             if (customers == null)
-                throw new NotFoundException($"There is no customer with ID {sale.CustomerId}");
+                throw new NotFoundException($"There is no customer with ID {sale.CustomerID}");
             else if ((bool)customers.Deprecated)
-                throw new ErrorInputPropertyException($"The customer {sale.CustomerId} is deprecated");
+                throw new ErrorInputPropertyException($"The customer {sale.CustomerID} is deprecated");
 
             // Set the initial TotalRevenue to 0
             sale.TotalRevenue = 0;
@@ -182,7 +182,7 @@ namespace API.Models.Services
         public async Task<SaleDTOGet> UpdateSale(int id, Sale sale)
         {
             // Retrieve the existing sale from the database
-            var sDB = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
+            var sDB = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
 
             // Check if the sale exists
             if (sDB == null)
@@ -193,7 +193,7 @@ namespace API.Models.Services
             sDB.Status = sale.Status ?? sDB.Status;
             sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
             sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
-            sDB.CustomerId = sale.CustomerId ?? sDB.CustomerId;
+            sDB.CustomerID = sale.CustomerID ?? sDB.CustomerID;
 
             if (sale.BookingNumber != null)
                 if (sale.BookingNumber.Length > 50)
@@ -208,13 +208,13 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
             // If a new CustomerId is provided, check if the customer exists
-            if (sale.CustomerId != null)
+            if (sale.CustomerID != null)
             {
-                var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
+                var customers = await _context.Customers.Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
                 if (customers == null)
-                    throw new NotFoundException($"There is no customer with ID {sale.CustomerId}");
+                    throw new NotFoundException($"There is no customer with ID {sale.CustomerID}");
                 else if ((bool)customers.Deprecated)
-                    throw new ErrorInputPropertyException($"The customer {sale.CustomerId} is deprecated");
+                    throw new ErrorInputPropertyException($"The customer {sale.CustomerID} is deprecated");
             }
 
             // Update the sale in the database
@@ -228,7 +228,7 @@ namespace API.Models.Services
         public async Task<SaleDTOGet> DeleteSale(int id)
         {
             // Retrieve the sale from the database using the provided ID
-            var data = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
+            var data = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
 
             // Check if we're already in a transaction
             bool isInTransaction = _context.Database.CurrentTransaction != null;
@@ -248,24 +248,24 @@ namespace API.Models.Services
                     throw new ErrorInputPropertyException("Sale is closed,can't delete!");
 
                 // Retrieve all customer invoices associated with the sale
-                var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleId == id).ToListAsync();
+                var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleID == id).ToListAsync();
                 // If there are any customer invoices, delete them
                 if (customerInvoices.Count > 0)
                 {
                     foreach (var invoice in customerInvoices)
                     {
-                        await _siService.DeleteSupplierInvoice(invoice.CustomerInvoiceId);
+                        await _siService.DeleteSupplierInvoice(invoice.CustomerInvoiceID);
                     }
                 }
 
                 // Retrieve all supplier invoices associated with the sale
-                var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
+                var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleID == id).ToListAsync();
                 // If there are any supplier invoices, delete them
                 if (supplierInvoices.Count > 0)
                 {
                     foreach (var invoice in supplierInvoices)
                     {
-                        await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+                        await _siService.DeleteSupplierInvoice(invoice.SupplierInvoiceID);
                     }
                 }
 
@@ -306,7 +306,7 @@ namespace API.Models.Services
             {
 
                 // Retrieve the sale from the database using the provided ID
-                var data = await _context.Sales.Where(x => x.SaleId == id).FirstOrDefaultAsync();
+                var data = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
 
                 // Check if the sale exists
                 if (data == null)
@@ -314,7 +314,7 @@ namespace API.Models.Services
 
 
                 // Retrieve all customer invoices associated with the sale
-                var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleId == id).ToListAsync();
+                var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleID == id).ToListAsync();
                 await using var transaction = await _context.Database.BeginTransactionAsync();
                 try
                 {
@@ -324,13 +324,13 @@ namespace API.Models.Services
                         foreach (var invoice in customerInvoices)
                         {
 
-                            await _siService.DeleteSupplierInvoice(invoice.CustomerInvoiceId);
+                            await _siService.DeleteSupplierInvoice(invoice.CustomerInvoiceID);
 
                         }
                     }
 
                     // Retrieve all supplier invoices associated with the sale
-                    var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleId == id).ToListAsync();
+                    var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleID == id).ToListAsync();
 
                     // If there are any supplier invoices, delete them
                     if (supplierInvoices.Count > 0)
@@ -340,7 +340,7 @@ namespace API.Models.Services
                         foreach (var invoice in supplierInvoices)
                         {
 
-                            await _siService.DeleteSupplierInvoice(invoice.InvoiceId);
+                            await _siService.DeleteSupplierInvoice(invoice.SupplierInvoiceID);
 
 
                         }
@@ -371,7 +371,7 @@ namespace API.Models.Services
 
             foreach (SaleDTOGet sale in newSales)
             {
-                var sDB = await _context.Sales.Where(x => x.SaleId == sale.SaleId).FirstOrDefaultAsync();
+                var sDB = await _context.Sales.Where(x => x.SaleID == sale.SaleId).FirstOrDefaultAsync();
 
                 // Check if the sale exists
                 if (sDB == null)
@@ -382,7 +382,7 @@ namespace API.Models.Services
                 sDB.Status = sale.Status ?? sDB.Status;
                 sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
                 sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
-                sDB.CustomerId = sale.CustomerId ?? sDB.CustomerId;
+                sDB.CustomerID = sale.CustomerId ?? sDB.CustomerID;
 
                 if (sale.BookingNumber != null)
                     if (sale.BookingNumber.Length > 50)
@@ -399,7 +399,7 @@ namespace API.Models.Services
                 // If a new CustomerId is provided, check if the customer exists
                 if (sale.CustomerId != null)
                 {
-                    var customers = await _context.Customers.Where(x => x.CustomerId == sale.CustomerId).FirstOrDefaultAsync();
+                    var customers = await _context.Customers.Where(x => x.CustomerID == sale.CustomerId).FirstOrDefaultAsync();
                     if (customers == null)
                         throw new NotFoundException($"There is no customer with ID {sale.CustomerId}");
                     else if ((bool)customers.Deprecated)

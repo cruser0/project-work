@@ -45,7 +45,7 @@ namespace API.Models.Services
         {
             int itemsPage = 10;
             var query = (from si in _context.SupplierInvoices
-                         join s in _context.Suppliers on si.SupplierId equals s.SupplierId into SupplierInvoiceGroup
+                         join s in _context.Suppliers on si.SupplierID equals s.SupplierID into SupplierInvoiceGroup
                          from supplier in SupplierInvoiceGroup.DefaultIfEmpty()
                          select new { SupplierInvoice = si, Supplier = supplier }).AsQueryable();
 
@@ -77,11 +77,11 @@ namespace API.Models.Services
 
             if (filter.SupplierInvoiceSaleID != null)
             {
-                query = query.Where(x => x.SupplierInvoice.SaleId == filter.SupplierInvoiceSaleID);
+                query = query.Where(x => x.SupplierInvoice.SaleID == filter.SupplierInvoiceSaleID);
             }
             if (filter.SupplierInvoiceSupplierID != null)
             {
-                query = query.Where(x => x.SupplierInvoice.SupplierId == filter.SupplierInvoiceSupplierID);
+                query = query.Where(x => x.SupplierInvoice.SupplierID == filter.SupplierInvoiceSupplierID);
             }
             if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
             {
@@ -97,8 +97,8 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceSupplierDTO> GetSupplierInvoiceById(int id)
         {
-            var si = await _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefaultAsync();
-            var supplier = await _context.Suppliers.Where(x => x.SupplierId == si.SupplierId).FirstOrDefaultAsync();
+            var si = await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == id).FirstOrDefaultAsync();
+            var supplier = await _context.Suppliers.Where(x => x.SupplierID == si.SupplierID).FirstOrDefaultAsync();
             var result = new SupplierInvoiceSupplierDTO(si, supplier);
             if (si == null || supplier == null)
             {
@@ -112,14 +112,14 @@ namespace API.Models.Services
             if (supplierInvoice == null)
                 throw new NullPropertyException("Couldn't create supplier Invoice,data is null");
 
-            var supplier = await _context.Suppliers.Where(x => x.SupplierId == supplierInvoice.SupplierId).FirstOrDefaultAsync();
+            var supplier = await _context.Suppliers.Where(x => x.SupplierID == supplierInvoice.SupplierID).FirstOrDefaultAsync();
             if (supplier == null)
                 throw new NotFoundException("Supplier not found");
             else if ((bool)supplier.Deprecated)
-                throw new ErrorInputPropertyException($"The supplier {supplierInvoice.SupplierId} is deprecated");
+                throw new ErrorInputPropertyException($"The supplier {supplierInvoice.SupplierID} is deprecated");
 
 
-            if (!await _context.Sales.AnyAsync(x => x.SaleId == supplierInvoice.SaleId))
+            if (!await _context.Sales.AnyAsync(x => x.SaleID == supplierInvoice.SaleID))
                 throw new NotFoundException("SaleID not found");
 
             if (!new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status?.ToLower()))
@@ -135,25 +135,25 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceDTOGet> UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice)
         {
-            var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.InvoiceId == id);
+            var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.SupplierInvoiceID == id);
 
             if (siDB == null)
             {
                 throw new NotFoundException("Supplier Invoice not found");
             }
 
-            if (supplierInvoice.SaleId != null)
+            if (supplierInvoice.SaleID != null)
             {
-                if (!await _context.Sales.AnyAsync(x => x.SaleId == supplierInvoice.SaleId))
+                if (!await _context.Sales.AnyAsync(x => x.SaleID == supplierInvoice.SaleID))
                 {
                     throw new NotFoundException("SaleID not present");
                 }
-                siDB.SaleId = supplierInvoice.SaleId;
+                siDB.SaleID = supplierInvoice.SaleID;
             }
 
-            if (supplierInvoice.SupplierId != null)
+            if (supplierInvoice.SupplierID != null)
             {
-                var supplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierId == supplierInvoice.SupplierId);
+                var supplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierID == supplierInvoice.SupplierID);
                 if (supplier == null)
                 {
                     throw new NotFoundException("SupplierID not present");
@@ -161,10 +161,10 @@ namespace API.Models.Services
 
                 if ((bool)supplier.Deprecated)
                 {
-                    throw new ErrorInputPropertyException($"The supplier {supplierInvoice.SupplierId} is deprecated");
+                    throw new ErrorInputPropertyException($"The supplier {supplierInvoice.SupplierID} is deprecated");
                 }
 
-                siDB.SupplierId = supplierInvoice.SupplierId;
+                siDB.SupplierID = supplierInvoice.SupplierID;
             }
 
             if (supplierInvoice.InvoiceDate > DateTime.Now)
@@ -197,7 +197,7 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceDTOGet> DeleteSupplierInvoice(int id)
         {
-            var data = await _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefaultAsync();
+            var data = await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == id).FirstOrDefaultAsync();
             if (data == null || id < 1)
             {
                 throw new NotFoundException("Supplier Invoice not found!");
@@ -221,7 +221,7 @@ namespace API.Models.Services
             int count = 0;
             foreach (int id in supplierInvoiceId)
             {
-                var data = await _context.SupplierInvoices.Where(x => x.InvoiceId == id).FirstOrDefaultAsync();
+                var data = await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == id).FirstOrDefaultAsync();
                 if (data == null || id < 1)
                     continue;
                 List<SupplierInvoiceCost> listInvoiceCost = await _context.SupplierInvoiceCosts.Where(x => x.SupplierInvoiceId == id).ToListAsync();
@@ -248,7 +248,7 @@ namespace API.Models.Services
             {
                 foreach (SupplierInvoiceDTOGet supplierInvoice in newSupplierInvoices)
                 {
-                    var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.InvoiceId == supplierInvoice.InvoiceId);
+                    var siDB = await _context.SupplierInvoices.FirstOrDefaultAsync(x => x.SupplierInvoiceID == supplierInvoice.InvoiceId);
 
                     if (siDB == null)
                     {
@@ -257,16 +257,16 @@ namespace API.Models.Services
 
                     if (supplierInvoice.SaleId != null)
                     {
-                        if (!await _context.Sales.AnyAsync(x => x.SaleId == supplierInvoice.SaleId))
+                        if (!await _context.Sales.AnyAsync(x => x.SaleID == supplierInvoice.SaleId))
                         {
                             throw new NotFoundException("SaleID not present");
                         }
-                        siDB.SaleId = supplierInvoice.SaleId;
+                        siDB.SaleID = supplierInvoice.SaleId;
                     }
 
                     if (supplierInvoice.SupplierId != null)
                     {
-                        var supplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierId == supplierInvoice.SupplierId);
+                        var supplier = await _context.Suppliers.FirstOrDefaultAsync(x => x.SupplierID == supplierInvoice.SupplierId);
                         if (supplier == null)
                         {
                             throw new NotFoundException("SupplierID not present");
@@ -277,7 +277,7 @@ namespace API.Models.Services
                             throw new ErrorInputPropertyException($"The supplier {supplierInvoice.SupplierId} is deprecated");
                         }
 
-                        siDB.SupplierId = supplierInvoice.SupplierId;
+                        siDB.SupplierID = supplierInvoice.SupplierId;
                     }
 
                     if (supplierInvoice.InvoiceDate > DateTime.Now)

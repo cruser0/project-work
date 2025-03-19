@@ -15,7 +15,7 @@ namespace API.Models.Mapper
                 BookingNumber = sale.BookingNumber,
                 BoLnumber = sale.BoLnumber,
                 SaleDate = sale.SaleDate,
-                CustomerId = sale.CustomerId,
+                CustomerId = sale.CustomerID,
                 TotalRevenue = sale.TotalRevenue,
                 Status = sale.Status
 
@@ -31,7 +31,7 @@ namespace API.Models.Mapper
                 BookingNumber = sale.BookingNumber,
                 BoLnumber = sale.BoLnumber,
                 SaleDate = sale.SaleDate,
-                CustomerId = sale.CustomerId,
+                CustomerID = sale.CustomerId,
                 TotalRevenue = sale.TotalRevenue,
                 Status = sale.Status
 
@@ -44,11 +44,11 @@ namespace API.Models.Mapper
                 return null;
             return new SaleDTOGet()
             {
-                SaleId = sale.SaleId,
+                SaleId = sale.SaleID,
                 BookingNumber = sale.BookingNumber,
                 BoLnumber = sale.BoLnumber,
                 SaleDate = sale.SaleDate,
-                CustomerId = sale.CustomerId,
+                CustomerId = sale.CustomerID,
                 TotalRevenue = sale.TotalRevenue,
                 Status = sale.Status
 
@@ -60,11 +60,11 @@ namespace API.Models.Mapper
                 return null;
             return new Sale()
             {
-                SaleId = (int)sale.SaleId,
+                SaleID = (int)sale.SaleId,
                 BookingNumber = sale.BookingNumber,
                 BoLnumber = sale.BoLnumber,
                 SaleDate = sale.SaleDate,
-                CustomerId = sale.CustomerId,
+                CustomerID = sale.CustomerId,
                 TotalRevenue = sale.TotalRevenue,
                 Status = sale.Status
 

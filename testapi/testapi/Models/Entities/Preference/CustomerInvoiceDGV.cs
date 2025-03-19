@@ -9,6 +9,6 @@
         public bool? ShowInvoiceAmount { get; set; }
         public bool? ShowDate { get; set; }
         public bool? ShowStatus { get; set; }
-        //public virtual User? User { get; set; }
+        public virtual User? User { get; set; }
     }
 }

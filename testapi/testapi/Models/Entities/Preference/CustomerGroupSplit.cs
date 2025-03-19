@@ -8,6 +8,6 @@
         public int? Split2 { get; set; }
         public int? Split3 { get; set; }
         public int? Split4 { get; set; }
-        //public User? User { get; set; }
+        public User? User { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace API.Models.Mapper
                 return null;
             return new CustomerInvoiceDTO()
             {
-                SaleId = customerInvoice.SaleId,
+                SaleId = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status
@@ -25,7 +25,7 @@ namespace API.Models.Mapper
                 return null;
             return new CustomerInvoice()
             {
-                SaleId = customerInvoice.SaleId,
+                SaleID = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status
@@ -38,8 +38,8 @@ namespace API.Models.Mapper
                 return null;
             return new CustomerInvoiceDTOGet()
             {
-                CustomerInvoiceId = customerInvoice.CustomerInvoiceId,
-                SaleId = customerInvoice.SaleId,
+                CustomerInvoiceId = customerInvoice.CustomerInvoiceID,
+                SaleId = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status
@@ -53,8 +53,8 @@ namespace API.Models.Mapper
                 return null;
             return new CustomerInvoice()
             {
-                CustomerInvoiceId = (int)customerInvoice.CustomerInvoiceId,
-                SaleId = customerInvoice.SaleId,
+                CustomerInvoiceID = (int)customerInvoice.CustomerInvoiceId,
+                SaleID = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status

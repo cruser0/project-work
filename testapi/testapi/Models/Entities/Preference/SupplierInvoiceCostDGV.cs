@@ -9,7 +9,7 @@
         public bool? ShowCost { get; set; }
         public bool? ShowQuantity { get; set; }
         public bool? ShowName { get; set; }
-        //public virtual User? User { get; set; }
+        public virtual User? User { get; set; }
 
     }
 }

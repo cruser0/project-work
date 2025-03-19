@@ -9,6 +9,6 @@
         public bool? ShowLastName { get; set; }
         public bool? ShowEmail { get; set; }
         public bool? ShowRoles { get; set; }
-        //public virtual User? User { get; set; }
+        public virtual User? User { get; set; }
     }
 }

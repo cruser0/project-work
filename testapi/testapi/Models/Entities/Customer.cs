@@ -4,21 +4,16 @@
     {
         public Customer()
         {
-            Sales = new HashSet<Sale>();
+            Sales = new HashSet<Sale>();   
         }
-        public int CustomerId { get; set; }
+        public int CustomerID { get; set; }
         public string? CustomerName { get; set; }
-        public string? Country { get; set; }
-
+        public int CountryID { get; set; }
         public bool? Deprecated { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int OriginalID { get; set; }
 
+        public virtual Country Country { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }
-
-        public Customer Returns(Customer expectedCustomer)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

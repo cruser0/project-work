@@ -12,7 +12,7 @@
         public bool? ShowSupplierID { get; set; }
         public bool? ShowSupplierName { get; set; }
         public bool? ShowCountry { get; set; }
-        // public virtual User? User { get; set; }
+        public virtual User? User { get; set; }
 
     }
 }

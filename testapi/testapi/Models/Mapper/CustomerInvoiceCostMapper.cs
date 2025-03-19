@@ -12,7 +12,7 @@ namespace API.Models.Mapper
             return new CustomerInvoiceCostDTO()
             {
 
-                CustomerInvoiceId = customerInvoiceCost.CustomerInvoiceId,
+                CustomerInvoiceId = customerInvoiceCost.CustomerInvoiceID,
                 Cost = customerInvoiceCost.Cost,
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
@@ -26,7 +26,7 @@ namespace API.Models.Mapper
             return new CustomerInvoiceCost()
             {
 
-                CustomerInvoiceId = customerInvoiceCost.CustomerInvoiceId,
+                CustomerInvoiceID = customerInvoiceCost.CustomerInvoiceId,
                 Cost = customerInvoiceCost.Cost,
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
@@ -40,8 +40,8 @@ namespace API.Models.Mapper
                 return null;
             return new CustomerInvoiceCostDTOGet()
             {
-                CustomerInvoiceCostsId = customerInvoiceCost.CustomerInvoiceCostsId,
-                CustomerInvoiceId = customerInvoiceCost.CustomerInvoiceId,
+                CustomerInvoiceCostsId = customerInvoiceCost.CustomerInvoiceCostsID,
+                CustomerInvoiceId = customerInvoiceCost.CustomerInvoiceID,
                 Cost = customerInvoiceCost.Cost,
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
@@ -54,8 +54,8 @@ namespace API.Models.Mapper
                 return null;
             return new CustomerInvoiceCost()
             {
-                CustomerInvoiceCostsId = (int)customerInvoiceCost.CustomerInvoiceCostsId,
-                CustomerInvoiceId = customerInvoiceCost.CustomerInvoiceId,
+                CustomerInvoiceCostsID = (int)customerInvoiceCost.CustomerInvoiceCostsId,
+                CustomerInvoiceID = customerInvoiceCost.CustomerInvoiceId,
                 Cost = customerInvoiceCost.Cost,
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,

@@ -40,7 +40,7 @@ namespace API.Models.Mapper
                 return null;
             return new SupplierDTOGet()
             {
-                SupplierId = supplier.SupplierId,
+                SupplierId = supplier.SupplierID,
                 SupplierName = supplier.SupplierName,
                 Country = supplier.Country,
                 Deprecated = supplier.Deprecated,
@@ -55,7 +55,7 @@ namespace API.Models.Mapper
                 return null;
             return new Supplier()
             {
-                SupplierId = (int)supplier.SupplierId,
+                SupplierID = (int)supplier.SupplierId,
                 SupplierName = supplier.SupplierName,
                 Country = supplier.Country,
                 Deprecated = supplier.Deprecated,

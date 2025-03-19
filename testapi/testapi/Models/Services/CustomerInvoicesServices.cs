@@ -50,7 +50,7 @@ namespace API.Models.Services
 
             if (filter.CustomerInvoiceSaleId != null)
             {
-                query = query.Where(x => x.SaleId == filter.CustomerInvoiceSaleId);
+                query = query.Where(x => x.SaleID == filter.CustomerInvoiceSaleId);
             }
 
 
@@ -101,7 +101,7 @@ namespace API.Models.Services
             var nullFields = new List<string>();
 
             // Check if any required fields in the customerInvoice object are null or empty
-            if (customerInvoice.SaleId == null) nullFields.Add("SaleID");
+            if (customerInvoice.SaleID == null) nullFields.Add("SaleID");
             if (customerInvoice.InvoiceDate == null) nullFields.Add("Date");
             if (string.IsNullOrEmpty(customerInvoice.Status)) nullFields.Add("Status");
 
@@ -112,9 +112,9 @@ namespace API.Models.Services
             if (!statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA customer invoice is Paid or Unpaid");
             // Check if a sale exists with the provided SaleId
-            var sale = await _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).FirstOrDefaultAsync();
+            var sale = await _context.Sales.Where(x => x.SaleID == customerInvoice.SaleID).FirstOrDefaultAsync();
             if (sale == null)
-                throw new NotFoundException($"There is no sale with id {customerInvoice.SaleId}");
+                throw new NotFoundException($"There is no sale with id {customerInvoice.SaleID}");
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ErrorInputPropertyException($"The Sale is already closed");
 
@@ -124,7 +124,7 @@ namespace API.Models.Services
             await _context.SaveChangesAsync();
 
             // Calculate the total revenue for the sale using a stored procedure
-            var Total = await _context.CustomerInvoices.Where(x => x.SaleId == customerInvoice.SaleId).SumAsync(x => x.InvoiceAmount);
+            var Total = await _context.CustomerInvoices.Where(x => x.SaleID == customerInvoice.SaleID).SumAsync(x => x.InvoiceAmount);
 
             // Update the sale record with the new total revenue
             sale.TotalRevenue = Total;
@@ -138,20 +138,20 @@ namespace API.Models.Services
         public async Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customerInvoice)
         {
             // Retrieve the existing customer invoice from the database
-            var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
+            var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).FirstOrDefaultAsync();
 
             // Check if the customer invoice exists
             if (ciDB == null)
                 throw new NotFoundException("Customer invoice not found");
 
             // Store the old SaleId before updating (used to recalculate revenue later)
-            int? oldSaleId = ciDB.SaleId;
+            int? oldSaleId = ciDB.SaleID;
 
             // Update customer invoice fields only if a new one is provided
-            ciDB.SaleId = customerInvoice.SaleId ?? ciDB.SaleId;
-            if (!await _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).AnyAsync())
+            ciDB.SaleID = customerInvoice.SaleID ?? ciDB.SaleID;
+            if (!await _context.Sales.Where(x => x.SaleID == customerInvoice.SaleID).AnyAsync())
                 throw new NotFoundException("SaleId not found");
-            if (!await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).AnyAsync())
+            if (!await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).AnyAsync())
                 throw new NotFoundException("Old SaleId not found");
             ciDB.InvoiceAmount = customerInvoice.InvoiceAmount ?? ciDB.InvoiceAmount;
             ciDB.InvoiceDate = customerInvoice.InvoiceDate ?? ciDB.InvoiceDate;
@@ -160,7 +160,7 @@ namespace API.Models.Services
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(customerInvoice.Status) && !statusList.Contains(customerInvoice.Status.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA customer invoice is Paid or Unpaid");
-            Sale sale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstAsync();
+            Sale sale = await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).FirstAsync();
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ErrorInputPropertyException($"The current Sale is already closed");
             // Validate that the invoice amount is greater than zero
@@ -175,17 +175,17 @@ namespace API.Models.Services
             if (oldSaleId.HasValue)
             {
                 // Recalculate revenue for the old sale
-                var newSale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefaultAsync();
+                var newSale = await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).FirstOrDefaultAsync();
                 if (newSale.Status.ToLower().Equals("closed"))
                     throw new ErrorInputPropertyException($"The current Sale is already closed");
-                var TotalOldSale = await _context.CustomerInvoices.Where(x => x.SaleId == oldSaleId.Value).SumAsync(x => x.InvoiceAmount);
+                var TotalOldSale = await _context.CustomerInvoices.Where(x => x.SaleID == oldSaleId.Value).SumAsync(x => x.InvoiceAmount);
 
 
-                var oldSale = await _context.Sales.Where(x => x.SaleId == oldSaleId.Value).FirstOrDefaultAsync();
+                var oldSale = await _context.Sales.Where(x => x.SaleID == oldSaleId.Value).FirstOrDefaultAsync();
                 oldSale.TotalRevenue = TotalOldSale;
 
                 // Recalculate revenue for the new sale
-                var TotalNewSale = await _context.CustomerInvoices.Where(x => x.SaleId == ciDB.SaleId).SumAsync(x => x.InvoiceAmount);
+                var TotalNewSale = await _context.CustomerInvoices.Where(x => x.SaleID == ciDB.SaleID).SumAsync(x => x.InvoiceAmount);
 
 
 
@@ -206,18 +206,18 @@ namespace API.Models.Services
         {
             // Retrieve the customer invoice from the database using the provided ID
 
-            CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
+            CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).FirstOrDefaultAsync();
             // Check if the customer invoice exists
             if (data == null)
                 throw new NotFoundException("Customer invoice not found!");
-            Sale? sale = await _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefaultAsync();
+            Sale? sale = await _context.Sales.Where(x => x.SaleID == data.SaleID).FirstOrDefaultAsync();
             if (sale == null)
                 throw new NotFoundException("Sale not found!");
 
             if (sale.Status.ToLower().Equals("closed"))
                 throw new ErrorInputPropertyException("Sale is closed,can't delete!");
             sale.TotalRevenue -= data.InvoiceAmount;
-            List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == id).ToListAsync();
+            List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceID == id).ToListAsync();
             if (listInvoiceCost.Count > 0)
             {
                 _context.CustomerInvoiceCosts.RemoveRange(listInvoiceCost);
@@ -243,21 +243,21 @@ namespace API.Models.Services
                 // Retrieve the customer invoice from the database using the provided ID
                 foreach (int id in customerInvoiceId)
                 {
-                    CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
+                    CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).FirstOrDefaultAsync();
                     // Check if the customer invoice exists
                     try
                     {
 
                         if (data == null)
                             throw new NotFoundException("Customer invoice not found!");
-                        Sale? sale = await _context.Sales.Where(x => x.SaleId == data.SaleId).FirstOrDefaultAsync();
+                        Sale? sale = await _context.Sales.Where(x => x.SaleID == data.SaleID).FirstOrDefaultAsync();
                         if (sale == null)
                             throw new NotFoundException("Sale not found!");
 
                         if (sale.Status.ToLower().Equals("closed"))
                             throw new ErrorInputPropertyException("Sale is closed,can't delete!");
                         sale.TotalRevenue -= data.InvoiceAmount;
-                        List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceId == id).ToListAsync();
+                        List<CustomerInvoiceCost> listInvoiceCost = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceID == id).ToListAsync();
                         if (listInvoiceCost.Count > 0)
                         {
                             _context.CustomerInvoiceCosts.RemoveRange(listInvoiceCost);
@@ -294,7 +294,7 @@ namespace API.Models.Services
         public async Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id)
         {
             // Retrieve the customer invoice from the database using the provided ID
-            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == id).FirstOrDefaultAsync();
+            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).FirstOrDefaultAsync();
 
             // Check if the customer invoice exists
             if (data == null)
@@ -312,20 +312,20 @@ namespace API.Models.Services
             {
                 foreach (CustomerInvoiceDTOGet customerInvoice in newCustomerInvoices)
                 {
-                    var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceId == customerInvoice.CustomerInvoiceId).FirstOrDefaultAsync();
+                    var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoice.CustomerInvoiceId).FirstOrDefaultAsync();
 
                     // Check if the customer invoice exists
                     if (ciDB == null)
                         throw new NotFoundException("Customer invoice not found");
 
                     // Store the old SaleId before updating (used to recalculate revenue later)
-                    int? oldSaleId = ciDB.SaleId;
+                    int? oldSaleId = ciDB.SaleID;
 
                     // Update customer invoice fields only if a new one is provided
-                    ciDB.SaleId = customerInvoice.SaleId ?? ciDB.SaleId;
-                    if (!await _context.Sales.Where(x => x.SaleId == customerInvoice.SaleId).AnyAsync())
+                    ciDB.SaleID = customerInvoice.SaleId ?? ciDB.SaleID;
+                    if (!await _context.Sales.Where(x => x.SaleID == customerInvoice.SaleId).AnyAsync())
                         throw new NotFoundException("SaleId not found");
-                    if (!await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).AnyAsync())
+                    if (!await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).AnyAsync())
                         throw new NotFoundException("Old SaleId not found");
                     ciDB.InvoiceAmount = customerInvoice.InvoiceAmount ?? ciDB.InvoiceAmount;
                     ciDB.InvoiceDate = customerInvoice.InvoiceDate ?? ciDB.InvoiceDate;
@@ -334,7 +334,7 @@ namespace API.Models.Services
                     // Check if the provided status is valid
                     if (!string.IsNullOrEmpty(customerInvoice.Status) && !statusList.Contains(customerInvoice.Status.ToLower()))
                         throw new ErrorInputPropertyException("Incorrect status\nA customer invoice is Paid or Unpaid");
-                    Sale sale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstAsync();
+                    Sale sale = await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).FirstAsync();
                     if (sale.Status.ToLower().Equals("closed"))
                         throw new ErrorInputPropertyException($"The current Sale is already closed");
                     // Validate that the invoice amount is greater than zero
@@ -349,17 +349,17 @@ namespace API.Models.Services
                     if (oldSaleId.HasValue)
                     {
                         // Recalculate revenue for the old sale
-                        var newSale = await _context.Sales.Where(x => x.SaleId == ciDB.SaleId).FirstOrDefaultAsync();
+                        var newSale = await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).FirstOrDefaultAsync();
                         if (newSale.Status.ToLower().Equals("closed"))
                             throw new ErrorInputPropertyException($"The current Sale is already closed");
 
-                        var TotalOldSale = await _context.CustomerInvoices.Where(x => x.SaleId == oldSaleId.Value).SumAsync(x => x.InvoiceAmount);
+                        var TotalOldSale = await _context.CustomerInvoices.Where(x => x.SaleID == oldSaleId.Value).SumAsync(x => x.InvoiceAmount);
 
-                        var oldSale = await _context.Sales.Where(x => x.SaleId == oldSaleId.Value).FirstOrDefaultAsync();
+                        var oldSale = await _context.Sales.Where(x => x.SaleID == oldSaleId.Value).FirstOrDefaultAsync();
                         oldSale.TotalRevenue = TotalOldSale;
 
                         // Recalculate revenue for the new sale
-                        var TotalNewSale = await _context.CustomerInvoices.Where(x => x.SaleId == ciDB.SaleId).SumAsync(x => x.InvoiceAmount);
+                        var TotalNewSale = await _context.CustomerInvoices.Where(x => x.SaleID == ciDB.SaleID).SumAsync(x => x.InvoiceAmount);
 
 
                         newSale.TotalRevenue = TotalNewSale;

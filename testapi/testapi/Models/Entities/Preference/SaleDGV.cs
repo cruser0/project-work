@@ -13,6 +13,6 @@
         public bool? ShowCustomerName { get; set; }
         public bool? ShowCustomerCountry { get; set; }
         public bool? ShowTotalRevenue { get; set; }
-        //public virtual User? User { get; set; }
+        public virtual User? User { get; set; }
     }
 }

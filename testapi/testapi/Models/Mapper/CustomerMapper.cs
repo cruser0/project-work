@@ -39,7 +39,7 @@ namespace API.Models.Mapper
                 CustomerName = customer.CustomerName,
                 Country = customer.Country,
                 Deprecated = customer.Deprecated,
-                CustomerId = customer.CustomerId,
+                CustomerId = customer.CustomerID,
                 CreatedAt = customer.CreatedAt,
                 OriginalID = customer.OriginalID
             };
@@ -53,7 +53,7 @@ namespace API.Models.Mapper
                 CustomerName = customer.CustomerName,
                 Country = customer.Country,
                 Deprecated = customer.Deprecated,
-                CustomerId = (int)customer.CustomerId,
+                CustomerID = (int)customer.CustomerId,
                 CreatedAt = customer.CreatedAt,
                 OriginalID = (int)customer.OriginalID
             };

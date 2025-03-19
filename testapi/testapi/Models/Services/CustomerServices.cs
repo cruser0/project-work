@@ -95,7 +95,7 @@ namespace API.Models.Services
         public async Task<CustomerDTOGet> GetCustomerById(int id)
         {
             // Retrieve the customer from the database based on the provided ID
-            var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+            var data = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new NotFoundException("Customer not found!");
@@ -142,7 +142,7 @@ namespace API.Models.Services
 
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
-            customer.OriginalID = customer.CustomerId;
+            customer.OriginalID = customer.CustomerID;
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
             return CustomerMapper.MapGet(customer);
@@ -153,7 +153,7 @@ namespace API.Models.Services
         public async Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer)
         {
             // Retrieve the customer from the database based on the provided ID
-            var cDB = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+            var cDB = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
 
             // If the customer does not exist, throw an exception
             if (cDB == null)
@@ -200,7 +200,7 @@ namespace API.Models.Services
         public async Task<CustomerDTOGet> DeleteCustomer(int id)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
-            var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+            var data = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
             try
             {
                 // Retrieve the customer from the database based on the provided ID
@@ -210,7 +210,7 @@ namespace API.Models.Services
                     throw new NotFoundException("Customer not found!");
 
                 // Retrieve all sales associated with this customer
-                var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
+                var sales = await _context.Sales.Where(s => s.CustomerID == id).ToListAsync();
 
                 // If there are any sales, delete them
                 if (sales.Count > 0)
@@ -218,7 +218,7 @@ namespace API.Models.Services
 
                     foreach (var sale in sales)
                     {
-                        await _sService.DeleteSale(sale.SaleId);
+                        await _sService.DeleteSale(sale.SaleID);
 
                     }
                 }
@@ -245,7 +245,7 @@ namespace API.Models.Services
             foreach (var id in customerId)
             {
                 await using var transaction = await _context.Database.BeginTransactionAsync();
-                var data = await _context.Customers.Where(x => x.CustomerId == id).FirstOrDefaultAsync();
+                var data = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
                 try
                 {
 
@@ -254,14 +254,14 @@ namespace API.Models.Services
                         continue;
 
                     // Retrieve all sales associated with this customer
-                    var sales = await _context.Sales.Where(s => s.CustomerId == id).ToListAsync();
+                    var sales = await _context.Sales.Where(s => s.CustomerID == id).ToListAsync();
 
                     // If there are any sales, delete them
 
 
                     foreach (var sale in sales)
                     {
-                        await _sService.DeleteSale(sale.SaleId);
+                        await _sService.DeleteSale(sale.SaleID);
                     }
                     // Remove the customer from the database
                     _context.Customers.Remove(data);
@@ -288,7 +288,7 @@ namespace API.Models.Services
             {
                 foreach (CustomerDTOGet customer in newCustomers)
                 {
-                    var c = await _context.Customers.Where(x => x.CustomerId == customer.CustomerId).FirstOrDefaultAsync();
+                    var c = await _context.Customers.Where(x => x.CustomerID == customer.CustomerId).FirstOrDefaultAsync();
 
                     if (c == null)
                         throw new NotFoundException("Customer not found");

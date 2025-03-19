@@ -23,11 +23,11 @@ public class SaleCustomerDTO : SaleDTOGet
     public string? Country { get; set; }
     public SaleCustomerDTO(Sale sale, Customer customer)
     {
-        SaleId = sale.SaleId;
+        SaleId = sale.SaleID;
         BookingNumber = sale.BookingNumber;
         BoLnumber = sale.BoLnumber;
         SaleDate = sale.SaleDate;
-        CustomerId = sale.CustomerId;
+        CustomerId = sale.CustomerID;
         TotalRevenue = sale.TotalRevenue;
         Status = sale.Status;
         CustomerName = customer.CustomerName;

@@ -53,7 +53,7 @@ namespace API.Models.Services
             {
                 if (filter.CustomerInvoiceCostCustomerInvoiceId != null)
                 {
-                    query = query.Where(x => x.CustomerInvoiceId == filter.CustomerInvoiceCostCustomerInvoiceId);
+                    query = query.Where(x => x.CustomerInvoiceID == filter.CustomerInvoiceCostCustomerInvoiceId);
                 }
                 if (!string.IsNullOrEmpty(filter.CustomerInvoiceCostName))
                 {
@@ -95,7 +95,7 @@ namespace API.Models.Services
             {
                 if (filter.CustomerInvoiceSaleId != null)
                 {
-                    query = query.Where(x => x.SaleId == filter.CustomerInvoiceSaleId);
+                    query = query.Where(x => x.SaleID == filter.CustomerInvoiceSaleId);
                 }
 
                 if (filter.CustomerInvoiceInvoiceAmountFrom != null && filter.CustomerInvoiceInvoiceAmountTo != null)
@@ -188,7 +188,7 @@ namespace API.Models.Services
 
                 if (filter.SaleCustomerId != null)
                 {
-                    query = query.Where(s => s.CustomerId == filter.SaleCustomerId);
+                    query = query.Where(s => s.CustomerID == filter.SaleCustomerId);
                 }
 
                 if (!string.IsNullOrEmpty(filter.SaleStatus))
@@ -334,11 +334,11 @@ namespace API.Models.Services
 
                 if (filter.SupplierInvoiceSaleID != null)
                 {
-                    query = query.Where(x => x.SaleId == filter.SupplierInvoiceSaleID);
+                    query = query.Where(x => x.SaleID == filter.SupplierInvoiceSaleID);
                 }
                 if (filter.SupplierInvoiceSupplierID != null)
                 {
-                    query = query.Where(x => x.SupplierId == filter.SupplierInvoiceSupplierID);
+                    query = query.Where(x => x.SupplierID == filter.SupplierInvoiceSupplierID);
                 }
                 if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
                 {

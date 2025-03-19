@@ -84,7 +84,7 @@ namespace API.Models.Services
 
         public async Task<SupplierDTOGet> GetSupplierById(int id)
         {
-            var data = await _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefaultAsync();
+            var data = await _context.Suppliers.Where(x => x.SupplierID == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new ArgumentException("Supplier not found!");
@@ -122,7 +122,7 @@ namespace API.Models.Services
 
             _context.Add(supplier);
             await _context.SaveChangesAsync();
-            supplier.OriginalID = supplier.SupplierId;
+            supplier.OriginalID = supplier.SupplierID;
             _context.Update(supplier);
             await _context.SaveChangesAsync();
             return SupplierMapper.MapGet(supplier);
@@ -130,7 +130,7 @@ namespace API.Models.Services
 
         public async Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier)
         {
-            var cDB = await _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefaultAsync();
+            var cDB = await _context.Suppliers.Where(x => x.SupplierID == id).FirstOrDefaultAsync();
             if (cDB != null)
             {
                 if ((bool)cDB.Deprecated)
@@ -171,10 +171,10 @@ namespace API.Models.Services
 
         public async Task<SupplierDTOGet> DeleteSupplier(int id)
         {
-            var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
+            var data = _context.Suppliers.Where(x => x.SupplierID == id).FirstOrDefault();
             if (data == null)
                 throw new NotFoundException("Supplier not found!");
-            List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
+            List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierID == id).ToListAsync();
 
             if (si.Any())
             {
@@ -184,7 +184,7 @@ namespace API.Models.Services
                     foreach (SupplierInvoice item in si)
                     {
 
-                        await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                        await _supplierInvoiceService.DeleteSupplierInvoice(item.SupplierInvoiceID);
                     }
                 }
                 catch (ErrorInputPropertyException ex)
@@ -206,10 +206,10 @@ namespace API.Models.Services
             int count = 0;
             foreach (int id in supplierId)
             {
-                var data = _context.Suppliers.Where(x => x.SupplierId == id).FirstOrDefault();
+                var data = _context.Suppliers.Where(x => x.SupplierID == id).FirstOrDefault();
                 if (data == null)
                     continue;
-                List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierId == id).ToListAsync();
+                List<SupplierInvoice> si = await _context.SupplierInvoices.Where(x => x.SupplierID == id).ToListAsync();
                 await using var transaction = await _context.Database.BeginTransactionAsync();
                 try
                 {
@@ -220,7 +220,7 @@ namespace API.Models.Services
                         foreach (SupplierInvoice item in si)
                         {
 
-                            await _supplierInvoiceService.DeleteSupplierInvoice(item.InvoiceId);
+                            await _supplierInvoiceService.DeleteSupplierInvoice(item.SupplierInvoiceID);
                         }
 
                     }
@@ -247,7 +247,7 @@ namespace API.Models.Services
             {
                 foreach (SupplierDTOGet supplier in newSuppliers)
                 {
-                    var c = await _context.Suppliers.Where(x => x.SupplierId == supplier.SupplierId).FirstOrDefaultAsync();
+                    var c = await _context.Suppliers.Where(x => x.SupplierID == supplier.SupplierId).FirstOrDefaultAsync();
 
                     if (c == null)
                         throw new NotFoundException("Supplier not found");

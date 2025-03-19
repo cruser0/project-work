@@ -7,13 +7,14 @@
             SupplierInvoices = new HashSet<SupplierInvoice>();
         }
 
-        public int SupplierId { get; set; }
+        public int SupplierID { get; set; }
         public string? SupplierName { get; set; }
-        public string? Country { get; set; }
         public bool? Deprecated { get; set; }
+        public int CountryID { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int OriginalID { get; set; }
 
         public virtual ICollection<SupplierInvoice> SupplierInvoices { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

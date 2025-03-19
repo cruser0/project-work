@@ -12,8 +12,8 @@ namespace API.Models.Mapper
             return new SupplierInvoiceDTO()
             {
 
-                SaleId = supplierInvoice.SaleId,
-                SupplierId = supplierInvoice.SupplierId,
+                SaleId = supplierInvoice.SaleID,
+                SupplierId = supplierInvoice.SupplierID,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = supplierInvoice.Status
@@ -27,8 +27,8 @@ namespace API.Models.Mapper
             return new SupplierInvoice()
             {
 
-                SaleId = supplierInvoice.SaleId,
-                SupplierId = supplierInvoice.SupplierId,
+                SaleID = supplierInvoice.SaleId,
+                SupplierID = supplierInvoice.SupplierId,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = supplierInvoice.Status
@@ -43,9 +43,9 @@ namespace API.Models.Mapper
             return new SupplierInvoiceDTOGet()
             {
 
-                InvoiceId = supplierInvoice.InvoiceId,
-                SaleId = supplierInvoice.SaleId,
-                SupplierId = supplierInvoice.SupplierId,
+                InvoiceId = supplierInvoice.SupplierInvoiceID,
+                SaleId = supplierInvoice.SaleID,
+                SupplierId = supplierInvoice.SupplierID,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = supplierInvoice.Status
@@ -59,9 +59,9 @@ namespace API.Models.Mapper
             return new SupplierInvoice()
             {
 
-                InvoiceId = (int)supplierInvoice.InvoiceId,
-                SaleId = supplierInvoice.SaleId,
-                SupplierId = supplierInvoice.SupplierId,
+                SupplierInvoiceID = (int)supplierInvoice.InvoiceId,
+                SaleID = supplierInvoice.SaleId,
+                SupplierID = supplierInvoice.SupplierId,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = supplierInvoice.Status

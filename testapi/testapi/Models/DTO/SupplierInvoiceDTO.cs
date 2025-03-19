@@ -24,12 +24,12 @@ public class SupplierInvoiceSupplierDTO : SupplierInvoiceDTOGet
     public string? Country { get; set; }
     public SupplierInvoiceSupplierDTO(SupplierInvoice si, Supplier s)
     {
-        InvoiceId = si.InvoiceId;
+        InvoiceId = si.SupplierInvoiceID;
         InvoiceDate = si.InvoiceDate;
         SupplierName = s.SupplierName;
         Country = s.Country;
-        SupplierId = si.SupplierId;
-        SaleId = si.SaleId;
+        SupplierId = si.SupplierID;
+        SaleId = si.SaleID;
         InvoiceAmount = si.InvoiceAmount;
         InvoiceDate = si.InvoiceDate;
         Status = si.Status;

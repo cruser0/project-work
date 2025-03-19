@@ -68,7 +68,7 @@ namespace API.Models
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.ToTable("Customers");
-                entity.HasKey(e => e.CustomerId);
+                entity.HasKey(e => e.CustomerID);
                 entity.HasIndex(c => new { c.CustomerName, c.Country })
                 .IsUnique();
                 entity.Property(e => e.Country)
@@ -524,7 +524,7 @@ namespace API.Models
             {
                 entity.ToTable("CustomerInvoices");
 
-                entity.Property(e => e.CustomerInvoiceId)
+                entity.Property(e => e.CustomerInvoiceID)
 
                     .HasColumnName("CustomerInvoiceID");
 
@@ -532,7 +532,7 @@ namespace API.Models
 
                 entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
 
-                entity.Property(e => e.SaleId).HasColumnName("SaleID");
+                entity.Property(e => e.SaleID).HasColumnName("SaleID");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(20)
@@ -540,7 +540,7 @@ namespace API.Models
 
                 entity.HasOne(d => d.Sale)
                     .WithMany(p => p.CustomerInvoices)
-                    .HasForeignKey(d => d.SaleId)
+                    .HasForeignKey(d => d.SaleID)
                     .HasConstraintName("sale_CustomerInvoices_fk").OnDelete(DeleteBehavior.NoAction);
             });
 
@@ -548,7 +548,7 @@ namespace API.Models
             {
                 entity.ToTable("Sales");
 
-                entity.Property(e => e.SaleId)
+                entity.Property(e => e.SaleID)
 
                     .HasColumnName("SaleID");
 
@@ -561,7 +561,7 @@ namespace API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+                entity.Property(e => e.CustomerID).HasColumnName("CustomerID");
 
                 entity.Property(e => e.SaleDate).HasColumnType("datetime");
 
@@ -573,7 +573,7 @@ namespace API.Models
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Sales)
-                    .HasForeignKey(d => d.CustomerId)
+                    .HasForeignKey(d => d.CustomerID)
                     .HasConstraintName("customer_sales_fk");
             });
 
@@ -583,9 +583,9 @@ namespace API.Models
             {
                 entity.ToTable("Suppliers");
 
-                entity.HasKey(e => e.SupplierId);
+                entity.HasKey(e => e.SupplierID);
 
-                entity.Property(e => e.SupplierId)
+                entity.Property(e => e.SupplierID)
 
                     .HasColumnName("SupplierID");
 
@@ -611,9 +611,9 @@ namespace API.Models
             {
                 entity.ToTable("SupplierInvoices");
 
-                entity.HasKey(e => e.InvoiceId);
+                entity.HasKey(e => e.SupplierInvoiceID);
 
-                entity.Property(e => e.InvoiceId)
+                entity.Property(e => e.SupplierInvoiceID)
 
                     .HasColumnName("InvoiceID");
 
@@ -621,22 +621,22 @@ namespace API.Models
 
                 entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
 
-                entity.Property(e => e.SaleId).HasColumnName("SaleID");
+                entity.Property(e => e.SaleID).HasColumnName("SaleID");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
+                entity.Property(e => e.SupplierID).HasColumnName("SupplierID");
 
                 entity.HasOne(d => d.Sale)
                     .WithMany(p => p.SupplierInvoices)
-                    .HasForeignKey(d => d.SaleId)
+                    .HasForeignKey(d => d.SaleID)
                     .HasConstraintName("sale_supplierInvoices_fk");
 
                 entity.HasOne(d => d.Supplier)
                     .WithMany(p => p.SupplierInvoices)
-                    .HasForeignKey(d => d.SupplierId)
+                    .HasForeignKey(d => d.SupplierID)
                     .HasConstraintName("supplier_supplierInvoices_fk");
 
             });
@@ -669,15 +669,15 @@ namespace API.Models
             {
                 entity.ToTable("CustomerInvoiceCosts");
 
-                entity.HasKey(e => e.CustomerInvoiceCostsId);
+                entity.HasKey(e => e.CustomerInvoiceCostsID);
 
-                entity.Property(e => e.CustomerInvoiceCostsId)
+                entity.Property(e => e.CustomerInvoiceCostsID)
 
                     .HasColumnName("CustomerInvoiceCostsID");
 
                 entity.Property(e => e.Cost).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.CustomerInvoiceId).HasColumnName("CustomerInvoiceID");
+                entity.Property(e => e.CustomerInvoiceID).HasColumnName("CustomerInvoiceID");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
@@ -685,7 +685,7 @@ namespace API.Models
 
                 entity.HasOne(d => d.CustomerInvoice)
                     .WithMany(p => p.CustomerInvoiceCosts)
-                    .HasForeignKey(d => d.CustomerInvoiceId)
+                    .HasForeignKey(d => d.CustomerInvoiceID)
                     .HasConstraintName("FK_CustomerInvoiceCosts_CustomerInvoices");
             });
 
