@@ -1,4 +1,5 @@
-﻿using API.Models.Entities;
+﻿using API.Models.Configuration;
+using API.Models.Entities;
 using API.Models.Entities.Preference;
 using API.Models.Procedures;
 using Microsoft.EntityFrameworkCore;
@@ -780,6 +781,33 @@ namespace API.Models
             modelBuilder.Entity<TotalAmountSpentPerSupplierInvoice>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalAmountSpentPerSuppliers>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalAmountGainedPerCustomerInvoice>().HasNoKey().ToView(null);
+            
+            modelBuilder.ApplyConfiguration(new RegistryCostConfiguration());
+            modelBuilder.ApplyConfiguration(new StatusConfiguration());
+            modelBuilder.ApplyConfiguration(new CountryConfiguration());
+
+
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRolesConfiguration());
+
+            modelBuilder.ApplyConfiguration(new FavouritePagesConfiguration());
+            modelBuilder.ApplyConfiguration(new UserFavouritePageConfiguration());
+
+            modelBuilder.ApplyConfiguration(new CustomerDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerInvoiceDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerInvoiceCostDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierInvoiceDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierInvoiceCostDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SaleDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new UserDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerGroupSplitConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierGroupSplitConfiguration());
+            modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
+
+
+
 
             OnModelCreatingPartial(modelBuilder);
         }
