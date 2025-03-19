@@ -86,7 +86,7 @@ namespace API.Models
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.Customers)
                     .HasForeignKey(d => d.CountryID)
-                    .HasConstraintName("customer_country_fk");
+                    .HasConstraintName("customer_country_fk").OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<Country>(entity =>
             {
@@ -199,9 +199,9 @@ namespace API.Models
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
 
-                //entity.HasOne(d => d.User)
-                //    .WithOne(p => p.CustomerDGV)
-                //    .HasForeignKey<CustomerDGV>(d => d.UserID);
+                entity.HasOne(d => d.User)
+                    .WithOne(p => p.CustomerDGV)
+                    .HasForeignKey<CustomerDGV>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<SaleDGV>(entity =>
             {
@@ -240,9 +240,9 @@ namespace API.Models
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
 
-                //entity.HasOne(d => d.User)
-                //    .WithOne(p => p.CustomerDGV)
-                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+                entity.HasOne(d => d.User)
+                    .WithOne(p => p.SaleDGV)
+                    .HasForeignKey<SaleDGV>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<SupplierDGV>(entity =>
             {
@@ -272,9 +272,9 @@ namespace API.Models
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
 
-                //entity.HasOne(d => d.User)
-                //    .WithOne(p => p.CustomerDGV)
-                //    .HasForeignKey<CustomerDGV>(d=>d.UserID);
+                entity.HasOne(d => d.User)
+                    .WithOne(p => p.SupplierDGV)
+                    .HasForeignKey<SupplierDGV>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<CustomerGroupSplit>(entity =>
             {
@@ -294,6 +294,9 @@ namespace API.Models
                    .HasColumnType("int");
                 entity.Property(e => e.Split4)
                    .HasColumnType("int");
+                entity.HasOne(d => d.User)
+                    .WithOne(p => p.CustomerGroupSplit)
+                    .HasForeignKey<CustomerGroupSplit>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<SupplierGroupSplit>(entity =>
@@ -312,6 +315,9 @@ namespace API.Models
                    .HasColumnType("int");
                 entity.Property(e => e.Split3)
                    .HasColumnType("int");
+                entity.HasOne(d => d.User)
+                    .WithOne(p => p.SupplierGroupSplit)
+                    .HasForeignKey<SupplierGroupSplit>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<CustomerInvoiceCostDGV>(entity =>
             {
