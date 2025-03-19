@@ -45,6 +45,7 @@ namespace API.Models.Services
             return new TabelleSupplierDto(suppliers, supplierInvoices, supplierInvoiceCosts);
         }
 
+        // AGGIUNGI REGISTRY COST
         private IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter? filter)
         {
             var query = _context.CustomerInvoiceCosts.AsQueryable();
@@ -89,7 +90,7 @@ namespace API.Models.Services
 
         private IQueryable<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter? filter)
         {
-            var query = _context.CustomerInvoices.AsQueryable();
+            var query = _context.CustomerInvoices.Include(x => x.Status).AsQueryable();
 
             if (filter != null)
             {
@@ -126,7 +127,7 @@ namespace API.Models.Services
 
                 if (!string.IsNullOrEmpty(filter.CustomerInvoiceStatus))
                 {
-                    query = query.Where(s => s.Status == filter.CustomerInvoiceStatus);
+                    query = query.Where(s => s.Status.StatusName == filter.CustomerInvoiceStatus);
                 }
 
             }
@@ -136,7 +137,7 @@ namespace API.Models.Services
 
         private IQueryable<SaleDTOGet> ApplyFilter(SaleFilter? filter)
         {
-            var query = _context.Sales.AsQueryable();
+            var query = _context.Sales.Include(x => x.Status).AsQueryable();
 
             if (filter != null)
             {
@@ -193,7 +194,7 @@ namespace API.Models.Services
 
                 if (!string.IsNullOrEmpty(filter.SaleStatus))
                 {
-                    query = query.Where(s => s.Status == filter.SaleStatus);
+                    query = query.Where(s => s.Status.StatusName == filter.SaleStatus);
                 }
 
             }
@@ -204,7 +205,7 @@ namespace API.Models.Services
         private IQueryable<CustomerDTOGet> ApplyFilter(CustomerFilter? filter)
         {
 
-            var query = _context.Customers.AsQueryable();
+            var query = _context.Customers.Include(x => x.Country).AsQueryable();
 
             if (filter != null)
             {
@@ -236,7 +237,7 @@ namespace API.Models.Services
                 // Filtra per paese se specificato
                 if (!string.IsNullOrEmpty(filter.CustomerCountry))
                 {
-                    query = query.Where(x => x.Country.Contains(filter.CustomerCountry));
+                    query = query.Where(x => x.Country.CountryName.Contains(filter.CustomerCountry));
                 }
 
                 // Filtra per stato di deprecazione se specificato
@@ -254,7 +255,7 @@ namespace API.Models.Services
         private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
         {
 
-            var query = _context.Suppliers.AsQueryable();
+            var query = _context.Suppliers.Include(x => x.Country).AsQueryable();
 
 
             if (filter != null)
@@ -284,7 +285,7 @@ namespace API.Models.Services
 
                 if (!string.IsNullOrEmpty(filter.SupplierCountry))
                 {
-                    query = query.Where(x => x.Country.Contains(filter.SupplierCountry));
+                    query = query.Where(x => x.Country.CountryName.Contains(filter.SupplierCountry));
                 }
 
                 if (filter.SupplierDeprecated != null)
@@ -302,7 +303,7 @@ namespace API.Models.Services
         private IQueryable<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
         {
 
-            var query = _context.SupplierInvoices.Include(x=>x.Status).AsQueryable();
+            var query = _context.SupplierInvoices.Include(x => x.Status).AsQueryable();
 
             if (filter != null)
             {
@@ -357,7 +358,7 @@ namespace API.Models.Services
 
         public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter? filter)
         {
-            var query = _context.SupplierInvoiceCosts.AsQueryable();
+            var query = _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
 
             if (filter != null)
             {
@@ -392,6 +393,11 @@ namespace API.Models.Services
                 {
                     query = query.Where(x => x.Quantity == filter.SupplierInvoiceCostQuantity);
                 }
+                if (filter.SupplierInvoiceCostRegistryCode != null)
+                {
+                    query = query.Where(x => x.CostRegistry.CostRegistryUniqueCode.Contains(filter.SupplierInvoiceCostRegistryCode));
+                }
+
                 if (filter.SupplierInvoiceCostPage != null)
                 {
                     query = query.Skip(((int)filter.SupplierInvoiceCostPage - 1) * itemsPerPage).Take(itemsPerPage);
