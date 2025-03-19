@@ -44,7 +44,7 @@ namespace API.Models.Services
         private IQueryable<SupplierDTOGet> ApplyFilter(SupplierFilter? filter)
         {
             int itemsPage = 10;
-            var query = _context.Suppliers.AsQueryable();
+            var query = _context.Suppliers.Include(x => x.Country).AsQueryable();
 
             if (filter.SupplierOriginalID != null)
             {
@@ -68,7 +68,7 @@ namespace API.Models.Services
             }
             if (!string.IsNullOrEmpty(filter.SupplierCountry))
             {
-                query = query.Where(x => x.Country.Contains(filter.SupplierCountry));
+                query = query.Where(x => x.Country.CountryName.Contains(filter.SupplierCountry));
             }
 
             if (filter.SupplierDeprecated != null)
@@ -96,7 +96,7 @@ namespace API.Models.Services
         {
             if (supplier == null)
                 throw new NullPropertyException("Couldn't create supplier,data is null");
-            if (string.IsNullOrEmpty(supplier.Country))
+            if (string.IsNullOrEmpty(supplier.Country.CountryName))
                 throw new NullPropertyException("Country can't be null");
             if (string.IsNullOrEmpty(supplier.SupplierName))
                 throw new NullPropertyException("Supplier name can't be null");
@@ -114,10 +114,10 @@ namespace API.Models.Services
             if (supplier.SupplierName.Length > 100)
                 throw new ErrorInputPropertyException("Supplier name is too long");
 
-            if (supplier.Country.Length > 50)
+            if (supplier.Country.CountryName.Length > 50)
                 throw new ErrorInputPropertyException("Country is too long");
 
-            if (!supplier.Country.All(char.IsLetter))
+            if (!supplier.Country.CountryName.All(char.IsLetter))
                 throw new ErrorInputPropertyException("Country can't have special characters");
 
             _context.Add(supplier);
@@ -142,10 +142,10 @@ namespace API.Models.Services
 
                 if (supplier.Country != null)
                 {
-                    if (supplier.Country.Length > 50)
+                    if (supplier.Country.CountryName.Length > 50)
                         throw new ErrorInputPropertyException("Country is too long");
 
-                    if (!supplier.Country.All(char.IsLetter))
+                    if (!supplier.Country.CountryName.All(char.IsLetter))
                         throw new ErrorInputPropertyException("Country can't have special characters");
                 }
 

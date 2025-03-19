@@ -5,7 +5,6 @@ using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,9 +15,11 @@ namespace API.Controllers
     public class SupplierController : ControllerBase
     {
         private readonly ISupplierService _supplierService;
-        public SupplierController(ISupplierService supplierService)
+        private readonly CountryService _countryService;
+        public SupplierController(ISupplierService supplierService, CountryService countryService)
         {
             _supplierService = supplierService;
+            _countryService = countryService;
         }
         // GET: api/<SupplierController>
         [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
@@ -26,12 +27,12 @@ namespace API.Controllers
         public async Task<IActionResult> Get([FromQuery] SupplierFilter filter)
         {
 
-                var data = await _supplierService.GetAllSuppliers(filter);
-                if (data.Any())
-                {
-                    return Ok(data);
-                }
-                else throw new NotFoundException("Supplier not found");
+            var data = await _supplierService.GetAllSuppliers(filter);
+            if (data.Any())
+            {
+                return Ok(data);
+            }
+            else throw new NotFoundException("Supplier not found");
 
         }
 
@@ -49,10 +50,10 @@ namespace API.Controllers
         public async Task<IActionResult> Get(int id)
         {
 
-                var data = await _supplierService.GetSupplierById(id);
-                if (data == null)
-                    throw new NotFoundException("Supplier not found!");
-                return Ok(data);
+            var data = await _supplierService.GetSupplierById(id);
+            if (data == null)
+                throw new NotFoundException("Supplier not found!");
+            return Ok(data);
 
         }
 
@@ -62,10 +63,10 @@ namespace API.Controllers
         public async Task<IActionResult> Post(SupplierDTO supplier)
         {
 
-                var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier));
-                if (data == null)
-                    throw new NotFoundException("Data can't be null!");
-                return Ok(data);
+            var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier, _countryService.GetCountryByName(supplier.Country!)));
+            if (data == null)
+                throw new NotFoundException("Data can't be null!");
+            return Ok(data);
         }
 
         // PUT api/<SupplierController>/5
@@ -74,10 +75,10 @@ namespace API.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] SupplierDTO supplier)
         {
 
-                var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier));
-                if (data == null)
-                    throw new NotFoundException("Supplier not found!");
-                return Ok(data);
+            var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier, _countryService.GetCountryByName(supplier.Country!)));
+            if (data == null)
+                throw new NotFoundException("Supplier not found!");
+            return Ok(data);
 
         }
 
@@ -88,10 +89,10 @@ namespace API.Controllers
         {
 
 
-                var data = await _supplierService.DeleteSupplier(id);
-                if (data == null)
-                    throw new NotFoundException("Supplier not found!");
-                return Ok(data);
+            var data = await _supplierService.DeleteSupplier(id);
+            if (data == null)
+                throw new NotFoundException("Supplier not found!");
+            return Ok(data);
 
         }
 
@@ -101,8 +102,8 @@ namespace API.Controllers
         {
 
 
-                var data = await _supplierService.MassDeleteSupplier(id);
-                return Ok(data);
+            var data = await _supplierService.MassDeleteSupplier(id);
+            return Ok(data);
 
         }
 
@@ -112,8 +113,8 @@ namespace API.Controllers
         {
 
 
-                var data = await _supplierService.MassUpdateSupplier(newSuppliers);
-                return Ok(data);
+            var data = await _supplierService.MassUpdateSupplier(newSuppliers);
+            return Ok(data);
 
         }
     }

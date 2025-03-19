@@ -15,9 +15,11 @@ namespace API.Controllers
     public class SaleController : ControllerBase
     {
         private readonly ISalesService _saleService;
-        public SaleController(ISalesService saleService)
+        private readonly StatusService _statusService;
+        public SaleController(ISalesService saleService, StatusService statusService)
         {
             _saleService = saleService;
+            _statusService = statusService;
         }
         // GET: api/<SaleController>
         [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
@@ -56,7 +58,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SaleDTO sale)
         {
-            var data = await _saleService.CreateSale(SaleMapper.Map(sale));
+            var data = await _saleService.CreateSale(SaleMapper.Map(sale, _statusService.GetStatusByName(sale.Status!)));
             if (data == null)
                 throw new NotFoundException("Couldn't create sale");
             return Ok(data);
@@ -67,7 +69,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SaleDTO sale)
         {
-            var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale));
+            var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale, _statusService.GetStatusByName(sale.Status!)));
             if (data == null)
                 throw new NotFoundException("Couldn't update sale");
             return Ok(data);

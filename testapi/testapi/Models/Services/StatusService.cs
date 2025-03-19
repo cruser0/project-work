@@ -10,9 +10,9 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public Status GetStatusByName(string name)
+        public Status? GetStatusByName(string? name)
         {
-            return _context.Statuses.Where(x => x.StatusName.Equals(name)).First();
+            return _context.Statuses.Where(x => x.StatusName.Equals(name)).FirstOrDefault();
         }
     }
 }

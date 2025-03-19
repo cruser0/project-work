@@ -10,9 +10,9 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public CostRegistry GetCostRegistryByCode(string name)
+        public CostRegistry? GetCostRegistryByCode(string? name)
         {
-            return _context.CostRegistries.Where(x => x.CostRegistryUniqueCode.Equals(name)).First();
+            return _context.CostRegistries.Where(x => x.CostRegistryUniqueCode.Equals(name)).FirstOrDefault();
         }
     }
 }

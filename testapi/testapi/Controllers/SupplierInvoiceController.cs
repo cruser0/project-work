@@ -5,7 +5,6 @@ using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,21 +15,23 @@ namespace API.Controllers
     public class SupplierInvoiceController : ControllerBase
     {
         private readonly ISupplierInvoiceService _supplierInvoiceService;
-        public SupplierInvoiceController(ISupplierInvoiceService supplierInvoiceService)
+        private readonly StatusService _statusService;
+        public SupplierInvoiceController(ISupplierInvoiceService supplierInvoiceService, StatusService statusService)
         {
             _supplierInvoiceService = supplierInvoiceService;
+            _statusService = statusService;
         }
         // GET: api/<SupplierInvoiceController>
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] SupplierInvoiceFilter filter)
         {
-                var data = await _supplierInvoiceService.GetAllSupplierInvoices(filter);
-                if (data.Any())
-                {
-                    return Ok(data);
-                }
-                else throw new NotFoundException("Supplier Invoice not found");
+            var data = await _supplierInvoiceService.GetAllSupplierInvoices(filter);
+            if (data.Any())
+            {
+                return Ok(data);
+            }
+            else throw new NotFoundException("Supplier Invoice not found");
 
         }
 
@@ -49,10 +50,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-                var data = await _supplierInvoiceService.GetSupplierInvoiceById(id);
-                if (data == null)
-                    throw new NotFoundException("Supplier Invoice not found!");
-                return Ok(data);
+            var data = await _supplierInvoiceService.GetSupplierInvoiceById(id);
+            if (data == null)
+                throw new NotFoundException("Supplier Invoice not found!");
+            return Ok(data);
 
         }
 
@@ -61,10 +62,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SupplierInvoiceDTO supplierInvoice)
         {
-                var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice));
-                if (data == null)
-                    throw new NotFoundException("Couldn't create supplier invoice");
-                return Ok(data);
+            var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice, _statusService.GetStatusByName(supplierInvoice.Status!)));
+            if (data == null)
+                throw new NotFoundException("Couldn't create supplier invoice");
+            return Ok(data);
 
 
         }
@@ -74,10 +75,10 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceDTO supplierInvoice)
         {
-                var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice));
-                if (data == null)
-                    throw new NotFoundException("Couldn't update supplier invoice");
-                return Ok(data);
+            var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice, _statusService.GetStatusByName(supplierInvoice.Status!)));
+            if (data == null)
+                throw new NotFoundException("Couldn't update supplier invoice");
+            return Ok(data);
 
 
         }
@@ -88,10 +89,10 @@ namespace API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
 
-                var data = await _supplierInvoiceService.DeleteSupplierInvoice(id);
-                if (data == null)
-                    throw new NotFoundException("Couldn't delete supplier invoice");
-                return Ok(data);
+            var data = await _supplierInvoiceService.DeleteSupplierInvoice(id);
+            if (data == null)
+                throw new NotFoundException("Couldn't delete supplier invoice");
+            return Ok(data);
 
         }
         [Authorize(Roles = "Admin,SupplierInvoiceAdmin")]
@@ -99,8 +100,8 @@ namespace API.Controllers
         public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
         {
 
-                var data = await _supplierInvoiceService.MassDeleteSupplierInvoice(id);
-                return Ok(data);
+            var data = await _supplierInvoiceService.MassDeleteSupplierInvoice(id);
+            return Ok(data);
 
         }
 
@@ -109,8 +110,8 @@ namespace API.Controllers
         public async Task<IActionResult> MassUpdate([FromBody] List<SupplierInvoiceDTOGet> newSupplierInvoices)
         {
 
-                var data = await _supplierInvoiceService.MassUpdateSupplierInvoice(newSupplierInvoices);
-                return Ok(data);
+            var data = await _supplierInvoiceService.MassUpdateSupplierInvoice(newSupplierInvoices);
+            return Ok(data);
 
 
         }
