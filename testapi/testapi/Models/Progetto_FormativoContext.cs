@@ -25,6 +25,8 @@ namespace API.Models
         public virtual DbSet<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Country> Countries { get; set; } = null!;
+        public virtual DbSet<Status> Statuses { get; set; } = null!;
+        public virtual DbSet<CostRegistry> CostRegistries { get; set; } = null!;
 
 
 
@@ -98,8 +100,8 @@ namespace API.Models
                 entity.Property(entity => entity.ISOCode)
                     .HasMaxLength(20)
                     .IsUnicode(false);
-                entity.HasIndex(x=>x.CountryName).IsUnique();
-                entity.HasIndex(x=>x.ISOCode).IsUnique();
+                entity.HasIndex(x => x.CountryName).IsUnique();
+                entity.HasIndex(x => x.ISOCode).IsUnique();
             });
             modelBuilder.Entity<User>(entity =>
             {
@@ -577,7 +579,11 @@ namespace API.Models
 
                 entity.Property(e => e.BookingNumber)
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasColumnName("BookingNumber");
+
+                entity.HasIndex(c => new { c.BoLnumber, c.BookingNumber })
+               .IsUnique();
 
                 entity.Property(e => e.CustomerID).HasColumnName("CustomerID");
 
@@ -598,8 +604,6 @@ namespace API.Models
                     .HasConstraintName("customer_sales_fk");
             });
 
-
-
             modelBuilder.Entity<Supplier>(entity =>
             {
                 entity.ToTable("Suppliers");
@@ -610,12 +614,11 @@ namespace API.Models
 
                     .HasColumnName("SupplierID");
 
-                entity.HasIndex(c => new { c.SupplierName, c.Country })
+                entity.HasIndex(c => new { c.SupplierName, c.CountryID })
                .IsUnique();
 
-                entity.Property(e => e.Country)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.CountryID)
+                    .HasColumnType("int");
 
                 entity.Property(e => e.SupplierName)
                     .HasMaxLength(100)
@@ -626,6 +629,13 @@ namespace API.Models
                     .HasDefaultValue(false);
                 entity.Property(e => e.OriginalID).HasColumnType("int");
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CountryID);
+
+                entity.HasOne(d => d.Country)
+                    .WithMany(p => p.Suppliers)
+                    .HasForeignKey(d => d.CountryID)
+                    .HasConstraintName("supplier_country_fk");
             });
 
             modelBuilder.Entity<SupplierInvoice>(entity =>
@@ -636,7 +646,7 @@ namespace API.Models
 
                 entity.Property(e => e.SupplierInvoiceID)
 
-                    .HasColumnName("InvoiceID");
+                    .HasColumnName("SupplierInvoiceID");
 
                 entity.Property(e => e.InvoiceAmount).HasColumnType("decimal(18, 2)");
 
@@ -644,9 +654,7 @@ namespace API.Models
 
                 entity.Property(e => e.SaleID).HasColumnName("SaleID");
 
-                entity.Property(e => e.Status)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                entity.Property(e => e.StatusID).HasColumnType("int");
 
                 entity.Property(e => e.SupplierID).HasColumnName("SupplierID");
 
@@ -660,6 +668,11 @@ namespace API.Models
                     .HasForeignKey(d => d.SupplierID)
                     .HasConstraintName("supplier_supplierInvoices_fk");
 
+                entity.HasOne(d => d.Status)
+                    .WithMany(p => p.SupplierInvoices)
+                    .HasForeignKey(d => d.StatusID)
+                    .HasConstraintName("status_supplierInvoices_fk");
+
             });
 
             modelBuilder.Entity<SupplierInvoiceCost>(entity =>
@@ -669,16 +682,25 @@ namespace API.Models
                 entity.HasKey(e => e.SupplierInvoiceCostsId);
 
                 entity.Property(e => e.SupplierInvoiceCostsId)
-
                     .HasColumnName("SupplierInvoiceCostsID");
 
                 entity.Property(e => e.Cost).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.Quantity).HasColumnType("int");
 
                 entity.Property(e => e.SupplierInvoiceId).HasColumnName("SupplierInvoiceID");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.CostRegistryID)
+                .HasColumnName("CostRegistryID");
+
+                entity.HasOne(d => d.CostRegistry)
+                    .WithMany(p => p.SupplierInvoiceCosts)
+                    .HasForeignKey(d => d.CostRegistryID)
+                    .HasConstraintName("costRegistry_SupplierInvoiceCosts_fk");
 
                 entity.HasOne(d => d.SupplierInvoice)
                     .WithMany(p => p.SupplierInvoiceCosts)
@@ -696,6 +718,8 @@ namespace API.Models
 
                     .HasColumnName("CustomerInvoiceCostsID");
 
+                entity.Property(e => e.Quantity).HasColumnType("int");
+
                 entity.Property(e => e.Cost).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.CustomerInvoiceID).HasColumnName("CustomerInvoiceID");
@@ -704,10 +728,54 @@ namespace API.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.CostRegistryID)
+                .HasColumnName("CostRegistryID");
+
+                entity.HasOne(d => d.CostRegistry)
+                    .WithMany(p => p.CustomerInvoiceCosts)
+                    .HasForeignKey(d => d.CostRegistryID)
+                    .HasConstraintName("costRegistry_CustomerInvoiceCosts_fk");
+
                 entity.HasOne(d => d.CustomerInvoice)
                     .WithMany(p => p.CustomerInvoiceCosts)
                     .HasForeignKey(d => d.CustomerInvoiceID)
                     .HasConstraintName("FK_CustomerInvoiceCosts_CustomerInvoices");
+            });
+
+            modelBuilder.Entity<CostRegistry>(entity =>
+            {
+                entity.ToTable("CostRegistries");
+
+                entity.HasKey(e => e.CostRegistryID);
+
+                entity.Property(e => e.CostRegistryID)
+                    .HasColumnName("CostRegistryID");
+
+                entity.Property(e => e.CostRegistryUniqueCode)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CostRegistryUniqueCode)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CostRegistryQuantity).HasColumnType("int");
+
+                entity.Property(e => e.CostRegistryPrice).HasColumnType("decimal(18, 2)");
+            });
+
+            modelBuilder.Entity<Status>(entity =>
+            {
+                entity.ToTable("Statuses");
+
+                entity.HasKey(e => e.StatusID);
+
+                entity.Property(e => e.StatusID)
+                    .HasColumnName("StatusID");
+
+                entity.Property(e => e.StatusName)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<ClassifySalesByProfit>().HasNoKey().ToView(null);
