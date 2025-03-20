@@ -279,7 +279,7 @@ namespace API.Models.Services
                     Supplier newSupplier = new Supplier
                     {
                         SupplierName = supplier.SupplierName ?? c.SupplierName,
-                        CountryID = _countryService.GetCountryByName(supplier.Country)?.CountryID ?? c.CountryID,
+                        CountryID = (await _countryService.GetCountryByName(supplier.Country))?.CountryID ?? c.CountryID,
                         Deprecated = false,
                         OriginalID = c.OriginalID,
                         CreatedAt = DateTime.Now,

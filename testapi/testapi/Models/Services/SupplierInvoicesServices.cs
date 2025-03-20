@@ -322,7 +322,7 @@ namespace API.Models.Services
                     {
                         if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.ToLower()))
                         {
-                            siDB.StatusID = _statusService.GetStatusByName(supplierInvoice.Status)?.StatusID ?? siDB.StatusID;
+                            siDB.StatusID = (await _statusService.GetStatusByName(supplierInvoice.Status))?.StatusID ?? siDB.StatusID;
                         }
                         else
                         {

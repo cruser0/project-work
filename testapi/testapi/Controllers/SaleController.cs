@@ -58,7 +58,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SaleDTO sale)
         {
-            var data = await _saleService.CreateSale(SaleMapper.Map(sale, _statusService.GetStatusByName(sale.Status!)));
+            var data = await _saleService.CreateSale(SaleMapper.Map(sale, await _statusService.GetStatusByName(sale.Status!)));
             if (data == null)
                 throw new NotFoundException("Couldn't create sale");
             return Ok(data);
@@ -69,7 +69,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SaleDTO sale)
         {
-            var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale, _statusService.GetStatusByName(sale.Status!)));
+            var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale, await _statusService.GetStatusByName(sale.Status!)));
             if (data == null)
                 throw new NotFoundException("Couldn't update sale");
             return Ok(data);

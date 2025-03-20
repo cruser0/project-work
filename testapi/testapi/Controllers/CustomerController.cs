@@ -72,7 +72,7 @@ namespace API.Controllers
         public async Task<IActionResult> Post(CustomerDTO customer)
         {
 
-            var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer, _countryService.GetCountryByName(customer.Country!)));
+            var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.Country!)));
             if (data == null)
                 throw new NotFoundException("Data can't be null!");
             return Ok(data);
@@ -86,7 +86,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerDTO customer)
         {
-            var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer, _countryService.GetCountryByName(customer.Country)));
+            var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.Country)));
             if (data == null)
                 throw new NotFoundException("Customer not found!");
             return Ok(data);

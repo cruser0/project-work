@@ -76,7 +76,7 @@ namespace API.Controllers
         public async Task<IActionResult> Post(CustomerInvoiceDTO customerInvoice)
         {
             var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,
-                                                                                                    _statusService.GetStatusByName(customerInvoice.Status),
+                                                                                                    await _statusService.GetStatusByName(customerInvoice.Status),
                                                                                                     await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));
             if (data == null)
                 throw new NotFoundException("Customer Invoices not found!");
@@ -91,7 +91,7 @@ namespace API.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
         {
             var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice,
-                                                                                                    _statusService.GetStatusByName(customerInvoice.Status),
+                                                                                                   await _statusService.GetStatusByName(customerInvoice.Status),
                                                                                                     await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));
             if (data == null)
                 if (data == null)

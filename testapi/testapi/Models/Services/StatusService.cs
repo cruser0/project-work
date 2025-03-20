@@ -1,4 +1,5 @@
 ﻿using API.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -10,9 +11,9 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public Status? GetStatusByName(string? name)
+        public async Task<Status?> GetStatusByName(string? name)
         {
-            return _context.Statuses.Where(x => x.StatusName.ToLower().Equals(name.ToLower())).FirstOrDefault();
+            return await _context.Statuses.Where(x => x.StatusName.ToLower().Equals(name.ToLower())).FirstOrDefaultAsync();
         }
     }
 }

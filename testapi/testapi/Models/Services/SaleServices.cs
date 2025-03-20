@@ -396,7 +396,7 @@ namespace API.Models.Services
 
                 // Update sale fields only if new values are provided
                 sDB.BoLnumber = sale.BoLnumber ?? sDB.BoLnumber;
-                sDB.StatusID = _statusService.GetStatusByName(sale.Status)?.StatusID ?? sDB.StatusID;
+                sDB.StatusID = (await _statusService.GetStatusByName(sale.Status))?.StatusID ?? sDB.StatusID;
                 sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
                 sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
                 sDB.CustomerID = sale.CustomerId ?? sDB.CustomerID;
@@ -410,7 +410,7 @@ namespace API.Models.Services
                         throw new ErrorInputPropertyException("BoL Number is too long");
 
                 // Check if the provided status is valid
-                string stat = _statusService.GetStatusByName(sale.Status).StatusName;
+                string stat = (await _statusService.GetStatusByName(sale.Status)).StatusName;
                 if (!string.IsNullOrEmpty(stat) && !statusList.Contains(stat.ToLower()))
                     throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
