@@ -621,7 +621,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>a323e3c2-e228-4fa9-b704-50d6b697b631</rd:DataSourceID>
+      <rd:DataSourceID>c0e573d4-6d35-4c41-9337-562a7b9775b1</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -639,10 +639,6 @@
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="InvoiceID">
-          <DataField>InvoiceID</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
         <Field Name="SaleID">
           <DataField>SaleID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -653,6 +649,10 @@
         </Field>
         <Field Name="SupplierID">
           <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SupplierInvoiceID">
+          <DataField>SupplierInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="SupplierName">

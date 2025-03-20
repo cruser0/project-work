@@ -7,161 +7,126 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>0f5a23fe-6f5f-4e8d-9986-a8be5c9c4be6</rd:DataSourceID>
+      <rd:DataSourceID>e6034f04-33e8-4ac7-a5e6-2e0c7bf02c80</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures1">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>da09c13a-1d72-4832-b568-8573781ab25b</rd:DataSourceID>
+      <rd:DataSourceID>06a4551a-c80b-4c44-a9de-d83bcb3db6ef</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures2">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>4feecd83-0881-41cf-ad54-fe2de079963a</rd:DataSourceID>
+      <rd:DataSourceID>d0d7d1cd-6289-4e9f-88cf-2502b6ab378b</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures3">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>6ed155dc-cbdf-414f-9467-32626ecd914f</rd:DataSourceID>
+      <rd:DataSourceID>ed0acf4e-e2f4-477b-aa65-50b3d3aed958</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures4">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>0edb46b9-049f-48e4-846e-c873b4ea5708</rd:DataSourceID>
+      <rd:DataSourceID>da387676-2c98-4a9d-bb95-2d5206d68ebd</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures5">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>728cc5ae-f2d0-4d27-a3cc-5b164258627e</rd:DataSourceID>
+      <rd:DataSourceID>2992a6b6-ed0f-4fd7-99c9-1af8b47739d8</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures6">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>77f5f88b-0216-4ca9-bb79-1188c3888015</rd:DataSourceID>
+      <rd:DataSourceID>0d9ad6c6-bd54-4c64-bb02-f6e4f37a33c9</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures7">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>b34d2136-2fba-42fe-944a-55fbbee90741</rd:DataSourceID>
+      <rd:DataSourceID>d5ada615-9600-4d32-8662-b1f03e84255e</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures8">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>52419148-a14e-411d-a22c-85c49f91590e</rd:DataSourceID>
+      <rd:DataSourceID>ce4670b2-2140-4419-91e0-085388e737d8</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures9">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>1a1faabd-a763-4088-927e-1bfac5522abb</rd:DataSourceID>
+      <rd:DataSourceID>e0e58b1b-13be-4bbe-b545-4a1479956265</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures10">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>f665de2c-2683-44a3-a390-75f37a678a75</rd:DataSourceID>
+      <rd:DataSourceID>465cf121-b74b-4180-ab88-19ecf1b33484</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures11">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>a3ec1046-bbc4-4885-aa8d-d48572a48b41</rd:DataSourceID>
+      <rd:DataSourceID>75b36beb-9fea-4ca8-b60d-9b80bd9bf70a</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures12">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>512d7d11-3223-469d-9d84-52806c6e1601</rd:DataSourceID>
+      <rd:DataSourceID>db705d5d-0bc9-4c47-83c8-6bacd91cdb54</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures13">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>c100e311-3797-44d6-bfc8-546cafbd25b8</rd:DataSourceID>
+      <rd:DataSourceID>4a69aecf-914b-4363-9373-1e868b2a87bc</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures14">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>1d0d7dfc-bd1f-48c4-86b9-41f9185775bb</rd:DataSourceID>
+      <rd:DataSourceID>8202bf69-0e91-41e6-b667-f5193330a2cc</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures15">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>14bfd8df-8e68-4f5e-b634-78f47bbc8e52</rd:DataSourceID>
+      <rd:DataSourceID>7172c21d-a6fd-415c-a987-4f72fdc9659e</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures16">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>f0adbc2e-1094-40a4-ba8a-74b26c9e68eb</rd:DataSourceID>
+      <rd:DataSourceID>67a311a2-048c-4c45-913f-ee856a3aeb8c</rd:DataSourceID>
     </DataSource>
     <DataSource Name="WinformDotNetFrameworkProcedures17">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>501eac8f-b54f-4b4c-a658-2fb180325e53</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WinformDotNetFrameworkProcedures18">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>2a867cfe-b583-44f1-8bc8-97926acb2837</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WinformDotNetFrameworkProcedures19">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>d710cda1-d201-4d2d-94f5-d0bf7462d7b9</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WinformDotNetFrameworkProcedures20">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>36cdc94a-5b80-4fe9-9ba0-145a6efa9832</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WinformDotNetFrameworkProcedures21">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>4c6d7fd8-77f4-42b1-add0-a70a959f5664</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="WinformDotNetFrameworkProcedures22">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>8dd1194b-47e1-4a6a-953d-916c7c3b7b51</rd:DataSourceID>
+      <rd:DataSourceID>8a15dc4c-deed-49ee-a561-4adb16c14714</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -336,9 +301,66 @@
         <rd:ObjectDataSourceType>WinformDotNetFramework.Procedures.ClassifySalesByProfit, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="SaleCountByDate">
+      <Query>
+        <DataSourceName>WinformDotNetFrameworkProcedures3</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="BoLNumber">
+          <DataField>BoLNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BookingNumber">
+          <DataField>BookingNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CustomerName">
+          <DataField>CustomerName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Profit">
+          <DataField>Profit</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SaleDate">
+          <DataField>SaleDate</DataField>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SaleID">
+          <DataField>SaleID</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SaleMargins">
+          <DataField>SaleMargins</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Status">
+          <DataField>Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TotalRevenue">
+          <DataField>TotalRevenue</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="TotalSpent">
+          <DataField>TotalSpent</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>WinformDotNetFramework.Procedures</rd:DataSetName>
+        <rd:TableName>ClassifySalesByProfit</rd:TableName>
+        <rd:ObjectDataSourceType>WinformDotNetFramework.Procedures.ClassifySalesByProfit, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
     <DataSet Name="SaleProfitSumByDate">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures5</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures4</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -395,7 +417,7 @@
     </DataSet>
     <DataSet Name="SaleTotalRevenueSpentSumByDate">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures6</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures5</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -452,7 +474,7 @@
     </DataSet>
     <DataSet Name="SaleProfitSumByCountry">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures8</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures6</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -509,7 +531,7 @@
     </DataSet>
     <DataSet Name="SaleTotalRevenueSpentSumByCountry">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures9</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures7</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -566,7 +588,7 @@
     </DataSet>
     <DataSet Name="CustomerInvoiceCountByStatus">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures10</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures8</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -607,7 +629,7 @@
     </DataSet>
     <DataSet Name="CustomerInvoiceCountByCountry">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures11</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures9</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -648,7 +670,7 @@
     </DataSet>
     <DataSet Name="CustomerInvoiceCountByDate">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures13</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures10</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -689,7 +711,7 @@
     </DataSet>
     <DataSet Name="CustomerInvoiceTotalGainedSumByDate">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures14</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures11</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -730,7 +752,7 @@
     </DataSet>
     <DataSet Name="CustomerInvoiceTotalGainedSumByCountry">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures15</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures12</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -771,7 +793,7 @@
     </DataSet>
     <DataSet Name="SupplierInvoiceCountByCountry">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures16</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures13</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -783,10 +805,6 @@
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="InvoiceID">
-          <DataField>InvoiceID</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
         <Field Name="SaleID">
           <DataField>SaleID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -797,6 +815,10 @@
         </Field>
         <Field Name="SupplierID">
           <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SupplierInvoiceID">
+          <DataField>SupplierInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="SupplierName">
@@ -816,7 +838,7 @@
     </DataSet>
     <DataSet Name="SupplierInvoiceCountByStatus">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures17</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures14</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -828,10 +850,6 @@
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="InvoiceID">
-          <DataField>InvoiceID</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
         <Field Name="SaleID">
           <DataField>SaleID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -842,6 +860,10 @@
         </Field>
         <Field Name="SupplierID">
           <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SupplierInvoiceID">
+          <DataField>SupplierInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="SupplierName">
@@ -861,7 +883,7 @@
     </DataSet>
     <DataSet Name="SupplierInvoiceCountByDate">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures19</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures15</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -873,10 +895,6 @@
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="InvoiceID">
-          <DataField>InvoiceID</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
         <Field Name="SaleID">
           <DataField>SaleID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -887,6 +905,10 @@
         </Field>
         <Field Name="SupplierID">
           <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SupplierInvoiceID">
+          <DataField>SupplierInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="SupplierName">
@@ -906,7 +928,7 @@
     </DataSet>
     <DataSet Name="SupplierInvoiceTotalSpentSumByDate">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures20</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures16</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -918,10 +940,6 @@
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="InvoiceID">
-          <DataField>InvoiceID</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
         <Field Name="SaleID">
           <DataField>SaleID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -932,6 +950,10 @@
         </Field>
         <Field Name="SupplierID">
           <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SupplierInvoiceID">
+          <DataField>SupplierInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="SupplierName">
@@ -951,7 +973,7 @@
     </DataSet>
     <DataSet Name="SupplierInvoiceTotalSpentSumByCountry">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures21</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures17</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -963,10 +985,6 @@
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="InvoiceID">
-          <DataField>InvoiceID</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
         <Field Name="SaleID">
           <DataField>SaleID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -977,6 +995,10 @@
         </Field>
         <Field Name="SupplierID">
           <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="SupplierInvoiceID">
+          <DataField>SupplierInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="SupplierName">
@@ -992,63 +1014,6 @@
         <rd:DataSetName>WinformDotNetFramework.Procedures</rd:DataSetName>
         <rd:TableName>TotalAmountSpentPerSupplierInvoice</rd:TableName>
         <rd:ObjectDataSourceType>WinformDotNetFramework.Procedures.TotalAmountSpentPerSupplierInvoice, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="SaleCountByDate">
-      <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures22</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="BoLNumber">
-          <DataField>BoLNumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="BookingNumber">
-          <DataField>BookingNumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Country">
-          <DataField>Country</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CustomerName">
-          <DataField>CustomerName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Profit">
-          <DataField>Profit</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="SaleDate">
-          <DataField>SaleDate</DataField>
-          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="SaleID">
-          <DataField>SaleID</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="SaleMargins">
-          <DataField>SaleMargins</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Status">
-          <DataField>Status</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TotalRevenue">
-          <DataField>TotalRevenue</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="TotalSpent">
-          <DataField>TotalSpent</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>WinformDotNetFramework.Procedures</rd:DataSetName>
-        <rd:TableName>ClassifySalesByProfit</rd:TableName>
-        <rd:ObjectDataSourceType>WinformDotNetFramework.Procedures.ClassifySalesByProfit, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -3066,7 +3031,6 @@
                         <Color>Gainsboro</Color>
                         <Style>None</Style>
                       </Border>
-                      <FontFamily>Arial</FontFamily>
                       <FontSize>8pt</FontSize>
                       <Color>#5c5c5c</Color>
                     </Style>
@@ -4873,7 +4837,6 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>CustomerInvoiceTotalGainedSumByDate</DataSetName>
             <Top>88cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
@@ -5244,7 +5207,6 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>CustomerInvoiceTotalGainedSumByCountry</DataSetName>
             <Top>96cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
@@ -5615,7 +5577,6 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>CustomerInvoiceCountByDate</DataSetName>
             <Top>80cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
@@ -5984,8 +5945,7 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>SupplierInvoiceCountByStatus</DataSetName>
-            <Top>104.03528cm</Top>
+            <Top>104cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>12</ZIndex>
@@ -6359,7 +6319,6 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>SupplierInvoiceCountByCountry</DataSetName>
             <Top>112cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
@@ -6730,7 +6689,6 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>SupplierInvoiceCountByDate</DataSetName>
             <Top>120cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
@@ -7101,7 +7059,6 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>SupplierInvoiceTotalSpentSumByDate</DataSetName>
             <Top>128cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
@@ -7472,7 +7429,6 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>SupplierInvoiceTotalSpentSumByCountry</DataSetName>
             <Top>136cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>

@@ -10,6 +10,7 @@
         public int CountryID { get; set; }
         public string CountryName { get; set; }
         public string ISOCode { get; set; }
+        public string Region { get; set; }
         public virtual ICollection<Customer> Customers { get; set; }
         public virtual ICollection<Supplier> Suppliers { get; set; }
     }

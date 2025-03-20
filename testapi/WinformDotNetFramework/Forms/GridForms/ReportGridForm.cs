@@ -201,30 +201,37 @@ namespace WinformDotNetFramework.Forms.GridForms
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", _profitData));
             //else
             //    e.DataSources.Add(new ReportDataSource("SaleByProfit", new List<ClassifySalesByProfit>()));
+
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 0))
                 e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByStatus", new List<ClassifySalesByProfit>()));
+
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 1))
                 e.DataSources.Add(new ReportDataSource("SaleCountByCountry", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByCountry", new List<ClassifySalesByProfit>()));
+
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 2))
                 e.DataSources.Add(new ReportDataSource("SaleCountByMargin", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByMargin", new List<ClassifySalesByProfit>()));
+
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 3))
                 e.DataSources.Add(new ReportDataSource("SaleCountByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleCountByDate", new List<ClassifySalesByProfit>()));
+
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 4))
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", new List<ClassifySalesByProfit>()));
+
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 5))
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", _saleData));
             else
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", new List<ClassifySalesByProfit>()));
+
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 6))
                 e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", _saleData));
             else
@@ -236,23 +243,26 @@ namespace WinformDotNetFramework.Forms.GridForms
                 e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", new List<ClassifySalesByProfit>()));
 
 
-
             if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 0))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", new List<TotalAmountGainedPerCustomerInvoice>()));
+
             if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 1))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", new List<TotalAmountGainedPerCustomerInvoice>()));
+
             if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 2))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
+
             if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 3))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", _customerInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
+
             if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 4))
                 e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", _customerInvoiceData));
             else
@@ -263,18 +273,22 @@ namespace WinformDotNetFramework.Forms.GridForms
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", new List<TotalAmountSpentPerSupplierInvoice>()));
+
             if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 1))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", new List<TotalAmountSpentPerSupplierInvoice>()));
+
             if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 2))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", new List<TotalAmountSpentPerSupplierInvoice>()));
+
             if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 3))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData));
             else
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", new List<TotalAmountSpentPerSupplierInvoice>()));
+
             if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 4))
                 e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByCountry", _supplierInvoiceData));
             else
@@ -316,7 +330,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PdfTSB.Enabled = true;
             EmptyReportTSB.Enabled = true;
             PrintPagePreviewBTS.Enabled = true;
-            ZoomTSLbl.Enabled=true;
+            ZoomTSLbl.Enabled = true;
         }
         private void SetSearchVisibilityFalse()
         {

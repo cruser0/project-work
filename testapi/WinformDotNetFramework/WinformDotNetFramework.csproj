@@ -437,12 +437,6 @@
     <Compile Include="Forms\FinalForms\SupplierFinalForm.Designer.cs">
       <DependentUpon>SupplierFinalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GraphTestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\GraphTestForm.Designer.cs">
-      <DependentUpon>GraphTestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\GridForms\CustomerGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -717,9 +711,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FinalForms\SupplierFinalForm.resx">
       <DependentUpon>SupplierFinalForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GraphTestForm.resx">
-      <DependentUpon>GraphTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridForms\CustomerGridForm.resx">
       <DependentUpon>CustomerGridForm.cs</DependentUpon>

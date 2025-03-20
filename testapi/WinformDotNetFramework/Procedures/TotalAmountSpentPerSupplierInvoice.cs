@@ -5,7 +5,7 @@ namespace WinformDotNetFramework.Procedures
     public class TotalAmountSpentPerSupplierInvoice
     {
 
-        public int? InvoiceID { get; set; }
+        public int? SupplierInvoiceID { get; set; }
         public int? SaleID { get; set; }
         public int? SupplierID { get; set; }
         public DateTime? InvoiceDate { get; set; }

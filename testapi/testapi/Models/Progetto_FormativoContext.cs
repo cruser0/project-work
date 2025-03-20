@@ -93,6 +93,9 @@ namespace API.Models
                 entity.Property(entity => entity.ISOCode)
                     .HasMaxLength(20)
                     .IsUnicode(false);
+                entity.Property(entity => entity.Region)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
                 entity.HasIndex(x => x.CountryName).IsUnique();
                 entity.HasIndex(x => x.ISOCode).IsUnique();
             });
