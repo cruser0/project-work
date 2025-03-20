@@ -23,7 +23,6 @@ namespace WinformDotNetFramework.Services
                 { "SaleDateTo", filter.SaleDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "SaleRevenueFrom", filter.SaleRevenueFrom },
                 { "SaleRevenueTo", filter.SaleRevenueTo },
-                { "SaleCustomerId", filter.SaleCustomerId },
                 { "SaleStatus", filter.SaleStatus?.ToLower() != "all" ? filter.SaleStatus : null },
                 { "SalePage", filter.SalePage },
                 { "SaleCustomerName", filter.SaleCustomerName },

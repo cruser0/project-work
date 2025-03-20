@@ -20,7 +20,8 @@ namespace WinformDotNetFramework.Services
                 { "CustomerPage", filter.CustomerPage },
                 { "CustomerCreatedDateFrom", filter.CustomerCreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
                 { "CustomerCreatedDateTo", filter.CustomerCreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
-                { "CustomerOriginalID", filter.CustomerOriginalID }
+                { "CustomerOriginalID", filter.CustomerOriginalID },
+                
 
             };
             foreach (var kvp in filters)

@@ -50,9 +50,10 @@ namespace WinformDotNetFramework.Services
                 { "SaleDateTo", filter.SaleDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
                 { "SaleRevenueFrom", filter.SaleRevenueFrom ??null},
                 { "SaleRevenueTo", filter.SaleRevenueTo ??null},
-                { "SaleCustomerId", filter.SaleCustomerId ??null},
                 { "SaleStatus", filter.SaleStatus?.ToLower() != "all" ? filter.SaleStatus : null },
-                { "SalePage", filter.SalePage ??null}
+                { "SalePage", filter.SalePage ??null},
+                { "SaleCustomerName", filter.SaleCustomerName },
+                { "SaleCustomerCountry", filter.SaleCustomerCountry },
             };
 
             foreach (var kvp in filters)
@@ -72,7 +73,8 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
-                { "CustomerInvoiceSaleBkBoL", filter.CustomerInvoiceSaleBkBoL ??null},
+                { "CustomerInvoiceSaleBk", filter.CustomerInvoiceSaleBk ??null},
+                { "CustomerInvoiceSaleBoL", filter.CustomerInvoiceSaleBoL ??null},
                 { "CustomerInvoiceInvoiceAmountFrom", filter.CustomerInvoiceInvoiceAmountFrom ??null},
                 { "CustomerInvoiceInvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
                 { "CustomerInvoiceInvoiceDateFrom", filter.CustomerInvoiceInvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
@@ -105,6 +107,7 @@ namespace WinformDotNetFramework.Services
                 { "CustomerInvoiceCostQuantity", filter.CustomerInvoiceCostQuantity??null },
                 { "CustomerInvoiceCostPage", filter.CustomerInvoiceCostPage??null },
                 { "CustomerInvoiceCostName", filter.CustomerInvoiceCostName ??null},
+                { "RegistryCode", filter.RegistryCode ??null},
             };
 
             foreach (var kvp in filters)
@@ -152,8 +155,10 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
-                { "SupplierInvoiceSaleID", filter.SupplierInvoiceSaleID??null },
-                { "SupplierInvoiceSupplierID", filter.SupplierInvoiceSupplierID??null },
+                { "SupplierInvoiceSaleBk", filter.SupplierInvoiceSaleBk??null },
+                { "SupplierInvoiceSaleBoL", filter.SupplierInvoiceSaleBoL??null },
+                { "SupplierInvoiceSupplierName", filter.SupplierInvoiceSupplierName??null },
+                { "SupplierInvoiceSupplierCountry", filter.SupplierInvoiceSupplierCountry??null },
                 { "SupplierInvoiceInvoiceDateFrom", filter.SupplierInvoiceInvoiceDateFrom ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "SupplierInvoiceInvoiceDateTo", filter.SupplierInvoiceInvoiceDateTo ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "SupplierInvoiceInvoiceAmountFrom", filter.SupplierInvoiceInvoiceAmountFrom??null },
@@ -180,11 +185,12 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
-                { "SupplierInvoiceCostSupplierInvoiceId", filter.SupplierInvoiceCostSupplierInvoiceId??null },
+                { "SupplierInvoiceCostSupplierInvoiceCode", filter.SupplierInvoiceCostSupplierInvoiceCode??null },
                 { "SupplierInvoiceCostCostFrom", filter.SupplierInvoiceCostCostFrom??null },
                 { "SupplierInvoiceCostCostTo", filter.SupplierInvoiceCostCostTo??null },
                 { "SupplierInvoiceCostQuantity", filter.SupplierInvoiceCostQuantity??null },
                 { "SupplierInvoiceCostName", filter.SupplierInvoiceCostName??string.Empty },
+                { "SupplierInvoiceCostRegistryCode", filter.SupplierInvoiceCostRegistryCode??string.Empty },
                 { "SupplierInvoiceCostPage", filter.SupplierInvoiceCostPage??null }
             };
 
