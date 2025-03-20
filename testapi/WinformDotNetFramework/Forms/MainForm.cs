@@ -618,50 +618,35 @@ namespace WinformDotNetFramework.Forms
 
         private void AttachMouseDownToControls(Control parent, HashSet<Control> controlsWithEvent)
         {
-            // Skip ComboBox controls
 
-            // Only attach the event if it hasn't already been attached to this control
-            if (!controlsWithEvent.Contains(parent))
+            // Skip already processed controls
+            if (controlsWithEvent.Contains(parent))
+                return;
+
+            // Check if the control is an interactive component
+            bool isInteractive = parent is ComboBox ||
+                                 parent is TextBox ||
+                                 parent is Button ||
+                                 parent is CheckBox ||
+                                 parent is RadioButton ||
+                                 parent is ListBox ||
+                                 parent is DateTimePicker ||
+                                 parent is NumericUpDown ||
+                                 parent is TrackBar;
+
+            if (!isInteractive)
             {
-                if (!(parent is ComboBox cb))
-                {
-                    parent.MouseClick += FormControl_MouseDown;
-                }
-                else
-                {
-                    cb.DropDown += FormControl_DropDown;
-                }
+                // Attach the event only to non-interactive controls
+                parent.MouseClick += FormControl_MouseDown;
                 controlsWithEvent.Add(parent);  // Track that the event is attached
             }
-
-
 
             // Recursively attach the event to all child controls
             foreach (Control child in parent.Controls)
             {
-                AttachMouseDownToControls(child, controlsWithEvent); // Recursive call for nested controls
+                AttachMouseDownToControls(child, controlsWithEvent);
             }
-        }
 
-        private void FormControl_DropDown(object sender, EventArgs e)
-        {
-            if (sender is Control control)
-            {
-                // Traverse up the control tree to find the parent Form
-                Form form = control.FindForm();
-
-                // Now you have the correct Form object, regardless of the control's nesting
-                if (form != null)
-                {
-                    form.BringToFront();
-                    form.Focus();
-
-                    if (favoriteList.Contains(form.Text))
-                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
-                    else
-                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
-                }
-            }
         }
 
         private void FormControl_MouseDown(object sender, MouseEventArgs e)

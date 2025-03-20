@@ -620,7 +620,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>63bbec3b-5a51-4de5-90ac-3efe4bbb40ae</rd:DataSourceID>
+      <rd:DataSourceID>197d5c9e-5d8c-4135-8cfc-6c3c90e60e0c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>

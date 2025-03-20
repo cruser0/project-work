@@ -4,6 +4,7 @@ using API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(Progetto_FormativoContext))]
-    partial class Progetto_FormativoContextModelSnapshot : ModelSnapshot
+    [Migration("20250320133543_fixstored")]
+    partial class fixstored
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,12 +82,6 @@ namespace API.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(20)");
 
-                    b.Property<string>("Region")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(10)");
-
                     b.HasKey("CountryID");
 
                     b.HasIndex("CountryName")
@@ -101,1366 +97,1171 @@ namespace API.Migrations
                         {
                             CountryID = 1,
                             CountryName = "Afghanistan",
-                            ISOCode = "AF",
-                            Region = "SA"
+                            ISOCode = "AF"
                         },
                         new
                         {
                             CountryID = 2,
                             CountryName = "Albania",
-                            ISOCode = "AL",
-                            Region = "NON_EU"
+                            ISOCode = "AL"
                         },
                         new
                         {
                             CountryID = 3,
                             CountryName = "Algeria",
-                            ISOCode = "DZ",
-                            Region = "MEA"
+                            ISOCode = "DZ"
                         },
                         new
                         {
                             CountryID = 4,
                             CountryName = "Andorra",
-                            ISOCode = "AD",
-                            Region = "NON_EU"
+                            ISOCode = "AD"
                         },
                         new
                         {
                             CountryID = 5,
                             CountryName = "Angola",
-                            ISOCode = "AO",
-                            Region = "MEA"
+                            ISOCode = "AO"
                         },
                         new
                         {
                             CountryID = 6,
                             CountryName = "Antigua and Barbuda",
-                            ISOCode = "AG",
-                            Region = "LATAM"
+                            ISOCode = "AG"
                         },
                         new
                         {
                             CountryID = 7,
                             CountryName = "Argentina",
-                            ISOCode = "AR",
-                            Region = "LATAM"
+                            ISOCode = "AR"
                         },
                         new
                         {
                             CountryID = 8,
                             CountryName = "Armenia",
-                            ISOCode = "AM",
-                            Region = "CIS"
+                            ISOCode = "AM"
                         },
                         new
                         {
                             CountryID = 9,
                             CountryName = "Australia",
-                            ISOCode = "AU",
-                            Region = "OCE"
+                            ISOCode = "AU"
                         },
                         new
                         {
                             CountryID = 10,
                             CountryName = "Austria",
-                            ISOCode = "AT",
-                            Region = "EU"
+                            ISOCode = "AT"
                         },
                         new
                         {
                             CountryID = 11,
                             CountryName = "Azerbaijan",
-                            ISOCode = "AZ",
-                            Region = "CIS"
+                            ISOCode = "AZ"
                         },
                         new
                         {
                             CountryID = 12,
                             CountryName = "Bahamas",
-                            ISOCode = "BS",
-                            Region = "LATAM"
+                            ISOCode = "BS"
                         },
                         new
                         {
                             CountryID = 13,
                             CountryName = "Bahrain",
-                            ISOCode = "BH",
-                            Region = "MEA"
+                            ISOCode = "BH"
                         },
                         new
                         {
                             CountryID = 14,
                             CountryName = "Bangladesh",
-                            ISOCode = "BD",
-                            Region = "SA"
+                            ISOCode = "BD"
                         },
                         new
                         {
                             CountryID = 15,
                             CountryName = "Barbados",
-                            ISOCode = "BB",
-                            Region = "LATAM"
+                            ISOCode = "BB"
                         },
                         new
                         {
                             CountryID = 16,
                             CountryName = "Belarus",
-                            ISOCode = "BY",
-                            Region = "CIS"
+                            ISOCode = "BY"
                         },
                         new
                         {
                             CountryID = 17,
                             CountryName = "Belgium",
-                            ISOCode = "BE",
-                            Region = "EU"
+                            ISOCode = "BE"
                         },
                         new
                         {
                             CountryID = 18,
                             CountryName = "Belize",
-                            ISOCode = "BZ",
-                            Region = "LATAM"
+                            ISOCode = "BZ"
                         },
                         new
                         {
                             CountryID = 19,
                             CountryName = "Benin",
-                            ISOCode = "BJ",
-                            Region = "MEA"
+                            ISOCode = "BJ"
                         },
                         new
                         {
                             CountryID = 20,
                             CountryName = "Bhutan",
-                            ISOCode = "BT",
-                            Region = "SA"
+                            ISOCode = "BT"
                         },
                         new
                         {
                             CountryID = 21,
                             CountryName = "Bolivia",
-                            ISOCode = "BO",
-                            Region = "LATAM"
+                            ISOCode = "BO"
                         },
                         new
                         {
                             CountryID = 22,
                             CountryName = "Bosnia and Herzegovina",
-                            ISOCode = "BA",
-                            Region = "NON_EU"
+                            ISOCode = "BA"
                         },
                         new
                         {
                             CountryID = 23,
                             CountryName = "Botswana",
-                            ISOCode = "BW",
-                            Region = "MEA"
+                            ISOCode = "BW"
                         },
                         new
                         {
                             CountryID = 24,
                             CountryName = "Brazil",
-                            ISOCode = "BR",
-                            Region = "LATAM"
+                            ISOCode = "BR"
                         },
                         new
                         {
                             CountryID = 25,
                             CountryName = "Brunei",
-                            ISOCode = "BN",
-                            Region = "SEA"
+                            ISOCode = "BN"
                         },
                         new
                         {
                             CountryID = 26,
                             CountryName = "Bulgaria",
-                            ISOCode = "BG",
-                            Region = "EU"
+                            ISOCode = "BG"
                         },
                         new
                         {
                             CountryID = 27,
                             CountryName = "Burkina Faso",
-                            ISOCode = "BF",
-                            Region = "MEA"
+                            ISOCode = "BF"
                         },
                         new
                         {
                             CountryID = 28,
                             CountryName = "Burundi",
-                            ISOCode = "BI",
-                            Region = "MEA"
+                            ISOCode = "BI"
                         },
                         new
                         {
                             CountryID = 29,
                             CountryName = "Cabo Verde",
-                            ISOCode = "CV",
-                            Region = "MEA"
+                            ISOCode = "CV"
                         },
                         new
                         {
                             CountryID = 30,
                             CountryName = "Cambodia",
-                            ISOCode = "KH",
-                            Region = "SEA"
+                            ISOCode = "KH"
                         },
                         new
                         {
                             CountryID = 31,
                             CountryName = "Cameroon",
-                            ISOCode = "CM",
-                            Region = "MEA"
+                            ISOCode = "CM"
                         },
                         new
                         {
                             CountryID = 32,
                             CountryName = "Canada",
-                            ISOCode = "CA",
-                            Region = "NA"
+                            ISOCode = "CA"
                         },
                         new
                         {
                             CountryID = 33,
                             CountryName = "Central African Republic",
-                            ISOCode = "CF",
-                            Region = "MEA"
+                            ISOCode = "CF"
                         },
                         new
                         {
                             CountryID = 34,
                             CountryName = "Chad",
-                            ISOCode = "TD",
-                            Region = "MEA"
+                            ISOCode = "TD"
                         },
                         new
                         {
                             CountryID = 35,
                             CountryName = "Chile",
-                            ISOCode = "CL",
-                            Region = "LATAM"
+                            ISOCode = "CL"
                         },
                         new
                         {
                             CountryID = 36,
                             CountryName = "China",
-                            ISOCode = "CN",
-                            Region = "EAS"
+                            ISOCode = "CN"
                         },
                         new
                         {
                             CountryID = 37,
                             CountryName = "Colombia",
-                            ISOCode = "CO",
-                            Region = "LATAM"
+                            ISOCode = "CO"
                         },
                         new
                         {
                             CountryID = 38,
                             CountryName = "Comoros",
-                            ISOCode = "KM",
-                            Region = "MEA"
+                            ISOCode = "KM"
                         },
                         new
                         {
                             CountryID = 39,
                             CountryName = "Congo (Congo-Brazzaville)",
-                            ISOCode = "CG",
-                            Region = "MEA"
+                            ISOCode = "CG"
                         },
                         new
                         {
                             CountryID = 40,
                             CountryName = "Congo (Congo-Kinshasa)",
-                            ISOCode = "CD",
-                            Region = "MEA"
+                            ISOCode = "CD"
                         },
                         new
                         {
                             CountryID = 41,
                             CountryName = "Costa Rica",
-                            ISOCode = "CR",
-                            Region = "LATAM"
+                            ISOCode = "CR"
                         },
                         new
                         {
                             CountryID = 42,
                             CountryName = "Croatia",
-                            ISOCode = "HR",
-                            Region = "EU"
+                            ISOCode = "HR"
                         },
                         new
                         {
                             CountryID = 43,
                             CountryName = "Cuba",
-                            ISOCode = "CU",
-                            Region = "LATAM"
+                            ISOCode = "CU"
                         },
                         new
                         {
                             CountryID = 44,
                             CountryName = "Cyprus",
-                            ISOCode = "CY",
-                            Region = "EU"
+                            ISOCode = "CY"
                         },
                         new
                         {
                             CountryID = 45,
                             CountryName = "Czechia",
-                            ISOCode = "CZ",
-                            Region = "EU"
+                            ISOCode = "CZ"
                         },
                         new
                         {
                             CountryID = 46,
                             CountryName = "Denmark",
-                            ISOCode = "DK",
-                            Region = "EU"
+                            ISOCode = "DK"
                         },
                         new
                         {
                             CountryID = 47,
                             CountryName = "Djibouti",
-                            ISOCode = "DJ",
-                            Region = "MEA"
+                            ISOCode = "DJ"
                         },
                         new
                         {
                             CountryID = 48,
                             CountryName = "Dominica",
-                            ISOCode = "DM",
-                            Region = "LATAM"
+                            ISOCode = "DM"
                         },
                         new
                         {
                             CountryID = 49,
                             CountryName = "Dominican Republic",
-                            ISOCode = "DO",
-                            Region = "LATAM"
+                            ISOCode = "DO"
                         },
                         new
                         {
                             CountryID = 50,
                             CountryName = "Ecuador",
-                            ISOCode = "EC",
-                            Region = "LATAM"
+                            ISOCode = "EC"
                         },
                         new
                         {
                             CountryID = 51,
                             CountryName = "Egypt",
-                            ISOCode = "EG",
-                            Region = "MEA"
+                            ISOCode = "EG"
                         },
                         new
                         {
                             CountryID = 52,
                             CountryName = "El Salvador",
-                            ISOCode = "SV",
-                            Region = "LATAM"
+                            ISOCode = "SV"
                         },
                         new
                         {
                             CountryID = 53,
                             CountryName = "Equatorial Guinea",
-                            ISOCode = "GQ",
-                            Region = "MEA"
+                            ISOCode = "GQ"
                         },
                         new
                         {
                             CountryID = 54,
                             CountryName = "Eritrea",
-                            ISOCode = "ER",
-                            Region = "MEA"
+                            ISOCode = "ER"
                         },
                         new
                         {
                             CountryID = 55,
                             CountryName = "Estonia",
-                            ISOCode = "EE",
-                            Region = "EU"
+                            ISOCode = "EE"
                         },
                         new
                         {
                             CountryID = 56,
                             CountryName = "Eswatini",
-                            ISOCode = "SZ",
-                            Region = "MEA"
+                            ISOCode = "SZ"
                         },
                         new
                         {
                             CountryID = 57,
                             CountryName = "Ethiopia",
-                            ISOCode = "ET",
-                            Region = "MEA"
+                            ISOCode = "ET"
                         },
                         new
                         {
                             CountryID = 58,
                             CountryName = "Fiji",
-                            ISOCode = "FJ",
-                            Region = "OCE"
+                            ISOCode = "FJ"
                         },
                         new
                         {
                             CountryID = 59,
                             CountryName = "Finland",
-                            ISOCode = "FI",
-                            Region = "EU"
+                            ISOCode = "FI"
                         },
                         new
                         {
                             CountryID = 60,
                             CountryName = "France",
-                            ISOCode = "FR",
-                            Region = "EU"
+                            ISOCode = "FR"
                         },
                         new
                         {
                             CountryID = 61,
                             CountryName = "Gabon",
-                            ISOCode = "GA",
-                            Region = "MEA"
+                            ISOCode = "GA"
                         },
                         new
                         {
                             CountryID = 62,
                             CountryName = "Gambia",
-                            ISOCode = "GM",
-                            Region = "MEA"
+                            ISOCode = "GM"
                         },
                         new
                         {
                             CountryID = 63,
                             CountryName = "Georgia",
-                            ISOCode = "GE",
-                            Region = "CIS"
+                            ISOCode = "GE"
                         },
                         new
                         {
                             CountryID = 64,
                             CountryName = "Germany",
-                            ISOCode = "DE",
-                            Region = "EU"
+                            ISOCode = "DE"
                         },
                         new
                         {
                             CountryID = 65,
                             CountryName = "Ghana",
-                            ISOCode = "GH",
-                            Region = "MEA"
+                            ISOCode = "GH"
                         },
                         new
                         {
                             CountryID = 66,
                             CountryName = "Greece",
-                            ISOCode = "GR",
-                            Region = "EU"
+                            ISOCode = "GR"
                         },
                         new
                         {
                             CountryID = 67,
                             CountryName = "Grenada",
-                            ISOCode = "GD",
-                            Region = "LATAM"
+                            ISOCode = "GD"
                         },
                         new
                         {
                             CountryID = 68,
                             CountryName = "Guatemala",
-                            ISOCode = "GT",
-                            Region = "LATAM"
+                            ISOCode = "GT"
                         },
                         new
                         {
                             CountryID = 69,
                             CountryName = "Guinea",
-                            ISOCode = "GN",
-                            Region = "MEA"
+                            ISOCode = "GN"
                         },
                         new
                         {
                             CountryID = 70,
                             CountryName = "Guinea-Bissau",
-                            ISOCode = "GW",
-                            Region = "MEA"
+                            ISOCode = "GW"
                         },
                         new
                         {
                             CountryID = 71,
                             CountryName = "Guyana",
-                            ISOCode = "GY",
-                            Region = "LATAM"
+                            ISOCode = "GY"
                         },
                         new
                         {
                             CountryID = 72,
                             CountryName = "Haiti",
-                            ISOCode = "HT",
-                            Region = "LATAM"
+                            ISOCode = "HT"
                         },
                         new
                         {
                             CountryID = 73,
                             CountryName = "Honduras",
-                            ISOCode = "HN",
-                            Region = "LATAM"
+                            ISOCode = "HN"
                         },
                         new
                         {
                             CountryID = 74,
                             CountryName = "Hungary",
-                            ISOCode = "HU",
-                            Region = "EU"
+                            ISOCode = "HU"
                         },
                         new
                         {
                             CountryID = 75,
                             CountryName = "Iceland",
-                            ISOCode = "IS",
-                            Region = "NON_EU"
+                            ISOCode = "IS"
                         },
                         new
                         {
                             CountryID = 76,
                             CountryName = "India",
-                            ISOCode = "IN",
-                            Region = "SA"
+                            ISOCode = "IN"
                         },
                         new
                         {
                             CountryID = 77,
                             CountryName = "Indonesia",
-                            ISOCode = "ID",
-                            Region = "SEA"
+                            ISOCode = "ID"
                         },
                         new
                         {
                             CountryID = 78,
                             CountryName = "Iran",
-                            ISOCode = "IR",
-                            Region = "MEA"
+                            ISOCode = "IR"
                         },
                         new
                         {
                             CountryID = 79,
                             CountryName = "Iraq",
-                            ISOCode = "IQ",
-                            Region = "MEA"
+                            ISOCode = "IQ"
                         },
                         new
                         {
                             CountryID = 80,
                             CountryName = "Ireland",
-                            ISOCode = "IE",
-                            Region = "EU"
+                            ISOCode = "IE"
                         },
                         new
                         {
                             CountryID = 81,
                             CountryName = "Israel",
-                            ISOCode = "IL",
-                            Region = "MEA"
+                            ISOCode = "IL"
                         },
                         new
                         {
                             CountryID = 82,
                             CountryName = "Italy",
-                            ISOCode = "IT",
-                            Region = "EU"
+                            ISOCode = "IT"
                         },
                         new
                         {
                             CountryID = 83,
                             CountryName = "Jamaica",
-                            ISOCode = "JM",
-                            Region = "LATAM"
+                            ISOCode = "JM"
                         },
                         new
                         {
                             CountryID = 84,
                             CountryName = "Japan",
-                            ISOCode = "JP",
-                            Region = "EAS"
+                            ISOCode = "JP"
                         },
                         new
                         {
                             CountryID = 85,
                             CountryName = "Jordan",
-                            ISOCode = "JO",
-                            Region = "MEA"
+                            ISOCode = "JO"
                         },
                         new
                         {
                             CountryID = 86,
                             CountryName = "Kazakhstan",
-                            ISOCode = "KZ",
-                            Region = "CIS"
+                            ISOCode = "KZ"
                         },
                         new
                         {
                             CountryID = 87,
                             CountryName = "Kenya",
-                            ISOCode = "KE",
-                            Region = "MEA"
+                            ISOCode = "KE"
                         },
                         new
                         {
                             CountryID = 88,
                             CountryName = "Kiribati",
-                            ISOCode = "KI",
-                            Region = "OCE"
+                            ISOCode = "KI"
                         },
                         new
                         {
                             CountryID = 89,
                             CountryName = "Korea, North",
-                            ISOCode = "KP",
-                            Region = "EAS"
+                            ISOCode = "KP"
                         },
                         new
                         {
                             CountryID = 90,
                             CountryName = "Korea, South",
-                            ISOCode = "KR",
-                            Region = "EAS"
+                            ISOCode = "KR"
                         },
                         new
                         {
                             CountryID = 91,
                             CountryName = "Kuwait",
-                            ISOCode = "KW",
-                            Region = "MEA"
+                            ISOCode = "KW"
                         },
                         new
                         {
                             CountryID = 92,
                             CountryName = "Kyrgyzstan",
-                            ISOCode = "KG",
-                            Region = "CIS"
+                            ISOCode = "KG"
                         },
                         new
                         {
                             CountryID = 93,
                             CountryName = "Laos",
-                            ISOCode = "LA",
-                            Region = "SEA"
+                            ISOCode = "LA"
                         },
                         new
                         {
                             CountryID = 94,
                             CountryName = "Latvia",
-                            ISOCode = "LV",
-                            Region = "EU"
+                            ISOCode = "LV"
                         },
                         new
                         {
                             CountryID = 95,
                             CountryName = "Lebanon",
-                            ISOCode = "LB",
-                            Region = "MEA"
+                            ISOCode = "LB"
                         },
                         new
                         {
                             CountryID = 96,
                             CountryName = "Lesotho",
-                            ISOCode = "LS",
-                            Region = "MEA"
+                            ISOCode = "LS"
                         },
                         new
                         {
                             CountryID = 97,
                             CountryName = "Liberia",
-                            ISOCode = "LR",
-                            Region = "MEA"
+                            ISOCode = "LR"
                         },
                         new
                         {
                             CountryID = 98,
                             CountryName = "Libya",
-                            ISOCode = "LY",
-                            Region = "MEA"
+                            ISOCode = "LY"
                         },
                         new
                         {
                             CountryID = 99,
                             CountryName = "Liechtenstein",
-                            ISOCode = "LI",
-                            Region = "NON_EU"
+                            ISOCode = "LI"
                         },
                         new
                         {
                             CountryID = 100,
                             CountryName = "Lithuania",
-                            ISOCode = "LT",
-                            Region = "EU"
+                            ISOCode = "LT"
                         },
                         new
                         {
                             CountryID = 101,
                             CountryName = "Luxembourg",
-                            ISOCode = "LU",
-                            Region = "EU"
+                            ISOCode = "LU"
                         },
                         new
                         {
                             CountryID = 102,
                             CountryName = "Madagascar",
-                            ISOCode = "MG",
-                            Region = "MEA"
+                            ISOCode = "MG"
                         },
                         new
                         {
                             CountryID = 103,
                             CountryName = "Malawi",
-                            ISOCode = "MW",
-                            Region = "MEA"
+                            ISOCode = "MW"
                         },
                         new
                         {
                             CountryID = 104,
                             CountryName = "Malaysia",
-                            ISOCode = "MY",
-                            Region = "SEA"
+                            ISOCode = "MY"
                         },
                         new
                         {
                             CountryID = 105,
                             CountryName = "Maldives",
-                            ISOCode = "MV",
-                            Region = "SA"
+                            ISOCode = "MV"
                         },
                         new
                         {
                             CountryID = 106,
                             CountryName = "Mali",
-                            ISOCode = "ML",
-                            Region = "MEA"
+                            ISOCode = "ML"
                         },
                         new
                         {
                             CountryID = 107,
                             CountryName = "Malta",
-                            ISOCode = "MT",
-                            Region = "EU"
+                            ISOCode = "MT"
                         },
                         new
                         {
                             CountryID = 108,
                             CountryName = "Marshall Islands",
-                            ISOCode = "MH",
-                            Region = "OCE"
+                            ISOCode = "MH"
                         },
                         new
                         {
                             CountryID = 109,
                             CountryName = "Mauritania",
-                            ISOCode = "MR",
-                            Region = "MEA"
+                            ISOCode = "MR"
                         },
                         new
                         {
                             CountryID = 110,
                             CountryName = "Mauritius",
-                            ISOCode = "MU",
-                            Region = "MEA"
+                            ISOCode = "MU"
                         },
                         new
                         {
                             CountryID = 111,
                             CountryName = "Mexico",
-                            ISOCode = "MX",
-                            Region = "NA"
+                            ISOCode = "MX"
                         },
                         new
                         {
                             CountryID = 112,
                             CountryName = "Micronesia",
-                            ISOCode = "FM",
-                            Region = "OCE"
+                            ISOCode = "FM"
                         },
                         new
                         {
                             CountryID = 113,
                             CountryName = "Moldova",
-                            ISOCode = "MD",
-                            Region = "CIS"
+                            ISOCode = "MD"
                         },
                         new
                         {
                             CountryID = 114,
                             CountryName = "Monaco",
-                            ISOCode = "MC",
-                            Region = "NON_EU"
+                            ISOCode = "MC"
                         },
                         new
                         {
                             CountryID = 115,
                             CountryName = "Mongolia",
-                            ISOCode = "MN",
-                            Region = "EAS"
+                            ISOCode = "MN"
                         },
                         new
                         {
                             CountryID = 116,
                             CountryName = "Montenegro",
-                            ISOCode = "ME",
-                            Region = "NON_EU"
+                            ISOCode = "ME"
                         },
                         new
                         {
                             CountryID = 117,
                             CountryName = "Morocco",
-                            ISOCode = "MA",
-                            Region = "MEA"
+                            ISOCode = "MA"
                         },
                         new
                         {
                             CountryID = 118,
                             CountryName = "Mozambique",
-                            ISOCode = "MZ",
-                            Region = "MEA"
+                            ISOCode = "MZ"
                         },
                         new
                         {
                             CountryID = 119,
                             CountryName = "Myanmar",
-                            ISOCode = "MM",
-                            Region = "SEA"
+                            ISOCode = "MM"
                         },
                         new
                         {
                             CountryID = 120,
                             CountryName = "Namibia",
-                            ISOCode = "NA",
-                            Region = "MEA"
+                            ISOCode = "NA"
                         },
                         new
                         {
                             CountryID = 121,
                             CountryName = "Nauru",
-                            ISOCode = "NR",
-                            Region = "OCE"
+                            ISOCode = "NR"
                         },
                         new
                         {
                             CountryID = 122,
                             CountryName = "Nepal",
-                            ISOCode = "NP",
-                            Region = "SA"
+                            ISOCode = "NP"
                         },
                         new
                         {
                             CountryID = 123,
                             CountryName = "Netherlands",
-                            ISOCode = "NL",
-                            Region = "EU"
+                            ISOCode = "NL"
                         },
                         new
                         {
                             CountryID = 124,
                             CountryName = "New Zealand",
-                            ISOCode = "NZ",
-                            Region = "OCE"
+                            ISOCode = "NZ"
                         },
                         new
                         {
                             CountryID = 125,
                             CountryName = "Nicaragua",
-                            ISOCode = "NI",
-                            Region = "LATAM"
+                            ISOCode = "NI"
                         },
                         new
                         {
                             CountryID = 126,
                             CountryName = "Niger",
-                            ISOCode = "NE",
-                            Region = "MEA"
+                            ISOCode = "NE"
                         },
                         new
                         {
                             CountryID = 127,
                             CountryName = "Nigeria",
-                            ISOCode = "NG",
-                            Region = "MEA"
+                            ISOCode = "NG"
                         },
                         new
                         {
                             CountryID = 128,
                             CountryName = "North Macedonia",
-                            ISOCode = "MK",
-                            Region = "NON_EU"
+                            ISOCode = "MK"
                         },
                         new
                         {
                             CountryID = 129,
                             CountryName = "Norway",
-                            ISOCode = "NO",
-                            Region = "NON_EU"
+                            ISOCode = "NO"
                         },
                         new
                         {
                             CountryID = 130,
                             CountryName = "Oman",
-                            ISOCode = "OM",
-                            Region = "MEA"
+                            ISOCode = "OM"
                         },
                         new
                         {
                             CountryID = 131,
                             CountryName = "Pakistan",
-                            ISOCode = "PK",
-                            Region = "SA"
+                            ISOCode = "PK"
                         },
                         new
                         {
                             CountryID = 132,
                             CountryName = "Palau",
-                            ISOCode = "PW",
-                            Region = "OCE"
+                            ISOCode = "PW"
                         },
                         new
                         {
                             CountryID = 133,
                             CountryName = "Palestine",
-                            ISOCode = "PS",
-                            Region = "MEA"
+                            ISOCode = "PS"
                         },
                         new
                         {
                             CountryID = 134,
                             CountryName = "Panama",
-                            ISOCode = "PA",
-                            Region = "LATAM"
+                            ISOCode = "PA"
                         },
                         new
                         {
                             CountryID = 135,
                             CountryName = "Papua New Guinea",
-                            ISOCode = "PG",
-                            Region = "OCE"
+                            ISOCode = "PG"
                         },
                         new
                         {
                             CountryID = 136,
                             CountryName = "Paraguay",
-                            ISOCode = "PY",
-                            Region = "LATAM"
+                            ISOCode = "PY"
                         },
                         new
                         {
                             CountryID = 137,
                             CountryName = "Peru",
-                            ISOCode = "PE",
-                            Region = "LATAM"
+                            ISOCode = "PE"
                         },
                         new
                         {
                             CountryID = 138,
                             CountryName = "Philippines",
-                            ISOCode = "PH",
-                            Region = "SEA"
+                            ISOCode = "PH"
                         },
                         new
                         {
                             CountryID = 139,
                             CountryName = "Poland",
-                            ISOCode = "PL",
-                            Region = "EU"
+                            ISOCode = "PL"
                         },
                         new
                         {
                             CountryID = 140,
                             CountryName = "Portugal",
-                            ISOCode = "PT",
-                            Region = "EU"
+                            ISOCode = "PT"
                         },
                         new
                         {
                             CountryID = 141,
                             CountryName = "Qatar",
-                            ISOCode = "QA",
-                            Region = "MEA"
+                            ISOCode = "QA"
                         },
                         new
                         {
                             CountryID = 142,
                             CountryName = "Romania",
-                            ISOCode = "RO",
-                            Region = "EU"
+                            ISOCode = "RO"
                         },
                         new
                         {
                             CountryID = 143,
                             CountryName = "Russia",
-                            ISOCode = "RU",
-                            Region = "CIS"
+                            ISOCode = "RU"
                         },
                         new
                         {
                             CountryID = 144,
                             CountryName = "Rwanda",
-                            ISOCode = "RW",
-                            Region = "MEA"
+                            ISOCode = "RW"
                         },
                         new
                         {
                             CountryID = 145,
                             CountryName = "Saint Kitts and Nevis",
-                            ISOCode = "KN",
-                            Region = "LATAM"
+                            ISOCode = "KN"
                         },
                         new
                         {
                             CountryID = 146,
                             CountryName = "Saint Lucia",
-                            ISOCode = "LC",
-                            Region = "LATAM"
+                            ISOCode = "LC"
                         },
                         new
                         {
                             CountryID = 147,
                             CountryName = "Saint Vincent and the Grenadines",
-                            ISOCode = "VC",
-                            Region = "LATAM"
+                            ISOCode = "VC"
                         },
                         new
                         {
                             CountryID = 148,
                             CountryName = "Samoa",
-                            ISOCode = "WS",
-                            Region = "OCE"
+                            ISOCode = "WS"
                         },
                         new
                         {
                             CountryID = 149,
                             CountryName = "San Marino",
-                            ISOCode = "SM",
-                            Region = "NON_EU"
+                            ISOCode = "SM"
                         },
                         new
                         {
                             CountryID = 150,
                             CountryName = "Sao Tome and Principe",
-                            ISOCode = "ST",
-                            Region = "MEA"
+                            ISOCode = "ST"
                         },
                         new
                         {
                             CountryID = 151,
                             CountryName = "Saudi Arabia",
-                            ISOCode = "SA",
-                            Region = "MEA"
+                            ISOCode = "SA"
                         },
                         new
                         {
                             CountryID = 152,
                             CountryName = "Senegal",
-                            ISOCode = "SN",
-                            Region = "MEA"
+                            ISOCode = "SN"
                         },
                         new
                         {
                             CountryID = 153,
                             CountryName = "Serbia",
-                            ISOCode = "RS",
-                            Region = "NON_EU"
+                            ISOCode = "RS"
                         },
                         new
                         {
                             CountryID = 154,
                             CountryName = "Seychelles",
-                            ISOCode = "SC",
-                            Region = "MEA"
+                            ISOCode = "SC"
                         },
                         new
                         {
                             CountryID = 155,
                             CountryName = "Sierra Leone",
-                            ISOCode = "SL",
-                            Region = "MEA"
+                            ISOCode = "SL"
                         },
                         new
                         {
                             CountryID = 156,
                             CountryName = "Singapore",
-                            ISOCode = "SG",
-                            Region = "SEA"
+                            ISOCode = "SG"
                         },
                         new
                         {
                             CountryID = 157,
                             CountryName = "Slovakia",
-                            ISOCode = "SK",
-                            Region = "EU"
+                            ISOCode = "SK"
                         },
                         new
                         {
                             CountryID = 158,
                             CountryName = "Slovenia",
-                            ISOCode = "SI",
-                            Region = "EU"
+                            ISOCode = "SI"
                         },
                         new
                         {
                             CountryID = 159,
                             CountryName = "Solomon Islands",
-                            ISOCode = "SB",
-                            Region = "OCE"
+                            ISOCode = "SB"
                         },
                         new
                         {
                             CountryID = 160,
                             CountryName = "Somalia",
-                            ISOCode = "SO",
-                            Region = "MEA"
+                            ISOCode = "SO"
                         },
                         new
                         {
                             CountryID = 161,
                             CountryName = "South Africa",
-                            ISOCode = "ZA",
-                            Region = "MEA"
+                            ISOCode = "ZA"
                         },
                         new
                         {
                             CountryID = 162,
                             CountryName = "South Sudan",
-                            ISOCode = "SS",
-                            Region = "MEA"
+                            ISOCode = "SS"
                         },
                         new
                         {
                             CountryID = 163,
                             CountryName = "Spain",
-                            ISOCode = "ES",
-                            Region = "EU"
+                            ISOCode = "ES"
                         },
                         new
                         {
                             CountryID = 164,
                             CountryName = "Sri Lanka",
-                            ISOCode = "LK",
-                            Region = "SA"
+                            ISOCode = "LK"
                         },
                         new
                         {
                             CountryID = 165,
                             CountryName = "Sudan",
-                            ISOCode = "SD",
-                            Region = "MEA"
+                            ISOCode = "SD"
                         },
                         new
                         {
                             CountryID = 166,
                             CountryName = "Suriname",
-                            ISOCode = "SR",
-                            Region = "LATAM"
+                            ISOCode = "SR"
                         },
                         new
                         {
                             CountryID = 167,
                             CountryName = "Sweden",
-                            ISOCode = "SE",
-                            Region = "EU"
+                            ISOCode = "SE"
                         },
                         new
                         {
                             CountryID = 168,
                             CountryName = "Switzerland",
-                            ISOCode = "CH",
-                            Region = "NON_EU"
+                            ISOCode = "CH"
                         },
                         new
                         {
                             CountryID = 169,
                             CountryName = "Syria",
-                            ISOCode = "SY",
-                            Region = "MEA"
+                            ISOCode = "SY"
                         },
                         new
                         {
                             CountryID = 170,
                             CountryName = "Taiwan",
-                            ISOCode = "TW",
-                            Region = "EAS"
+                            ISOCode = "TW"
                         },
                         new
                         {
                             CountryID = 171,
                             CountryName = "Tajikistan",
-                            ISOCode = "TJ",
-                            Region = "CIS"
+                            ISOCode = "TJ"
                         },
                         new
                         {
                             CountryID = 172,
                             CountryName = "Tanzania",
-                            ISOCode = "TZ",
-                            Region = "MEA"
+                            ISOCode = "TZ"
                         },
                         new
                         {
                             CountryID = 173,
                             CountryName = "Thailand",
-                            ISOCode = "TH",
-                            Region = "SEA"
+                            ISOCode = "TH"
                         },
                         new
                         {
                             CountryID = 174,
                             CountryName = "Timor-Leste",
-                            ISOCode = "TL",
-                            Region = "SEA"
+                            ISOCode = "TL"
                         },
                         new
                         {
                             CountryID = 175,
                             CountryName = "Togo",
-                            ISOCode = "TG",
-                            Region = "MEA"
+                            ISOCode = "TG"
                         },
                         new
                         {
                             CountryID = 176,
                             CountryName = "Tonga",
-                            ISOCode = "TO",
-                            Region = "OCE"
+                            ISOCode = "TO"
                         },
                         new
                         {
                             CountryID = 177,
                             CountryName = "Trinidad and Tobago",
-                            ISOCode = "TT",
-                            Region = "LATAM"
+                            ISOCode = "TT"
                         },
                         new
                         {
                             CountryID = 178,
                             CountryName = "Tunisia",
-                            ISOCode = "TN",
-                            Region = "MEA"
+                            ISOCode = "TN"
                         },
                         new
                         {
                             CountryID = 179,
                             CountryName = "Turkey",
-                            ISOCode = "TR",
-                            Region = "MEA"
+                            ISOCode = "TR"
                         },
                         new
                         {
                             CountryID = 180,
                             CountryName = "Turkmenistan",
-                            ISOCode = "TM",
-                            Region = "CIS"
+                            ISOCode = "TM"
                         },
                         new
                         {
                             CountryID = 181,
                             CountryName = "Tuvalu",
-                            ISOCode = "TV",
-                            Region = "OCE"
+                            ISOCode = "TV"
                         },
                         new
                         {
                             CountryID = 182,
                             CountryName = "Uganda",
-                            ISOCode = "UG",
-                            Region = "MEA"
+                            ISOCode = "UG"
                         },
                         new
                         {
                             CountryID = 183,
                             CountryName = "Ukraine",
-                            ISOCode = "UA",
-                            Region = "CIS"
+                            ISOCode = "UA"
                         },
                         new
                         {
                             CountryID = 184,
                             CountryName = "United Arab Emirates",
-                            ISOCode = "AE",
-                            Region = "MEA"
+                            ISOCode = "AE"
                         },
                         new
                         {
                             CountryID = 185,
                             CountryName = "United Kingdom",
-                            ISOCode = "GB",
-                            Region = "NON_EU"
+                            ISOCode = "GB"
                         },
                         new
                         {
                             CountryID = 186,
                             CountryName = "United States",
-                            ISOCode = "US",
-                            Region = "NA"
+                            ISOCode = "US"
                         },
                         new
                         {
                             CountryID = 187,
                             CountryName = "Uruguay",
-                            ISOCode = "UY",
-                            Region = "LATAM"
+                            ISOCode = "UY"
                         },
                         new
                         {
                             CountryID = 188,
                             CountryName = "Uzbekistan",
-                            ISOCode = "UZ",
-                            Region = "CIS"
+                            ISOCode = "UZ"
                         },
                         new
                         {
                             CountryID = 189,
                             CountryName = "Vanuatu",
-                            ISOCode = "VU",
-                            Region = "OCE"
+                            ISOCode = "VU"
                         },
                         new
                         {
                             CountryID = 190,
                             CountryName = "Vatican City",
-                            ISOCode = "VA",
-                            Region = "NON_EU"
+                            ISOCode = "VA"
                         },
                         new
                         {
                             CountryID = 191,
                             CountryName = "Venezuela",
-                            ISOCode = "VE",
-                            Region = "LATAM"
+                            ISOCode = "VE"
                         },
                         new
                         {
                             CountryID = 192,
                             CountryName = "Vietnam",
-                            ISOCode = "VN",
-                            Region = "SEA"
+                            ISOCode = "VN"
                         },
                         new
                         {
                             CountryID = 193,
                             CountryName = "Yemen",
-                            ISOCode = "YE",
-                            Region = "MEA"
+                            ISOCode = "YE"
                         },
                         new
                         {
                             CountryID = 194,
                             CountryName = "Zambia",
-                            ISOCode = "ZM",
-                            Region = "MEA"
+                            ISOCode = "ZM"
                         },
                         new
                         {
                             CountryID = 195,
                             CountryName = "Zimbabwe",
-                            ISOCode = "ZW",
-                            Region = "MEA"
+                            ISOCode = "ZW"
                         });
                 });
 
@@ -2319,8 +2120,8 @@ namespace API.Migrations
                         new
                         {
                             TokenID = 1,
-                            Created = new DateTime(2025, 3, 20, 15, 27, 7, 471, DateTimeKind.Local).AddTicks(7226),
-                            Expires = new DateTime(2025, 3, 30, 15, 27, 7, 471, DateTimeKind.Local).AddTicks(7280),
+                            Created = new DateTime(2025, 3, 20, 14, 35, 42, 248, DateTimeKind.Local).AddTicks(8944),
+                            Expires = new DateTime(2025, 3, 30, 14, 35, 42, 248, DateTimeKind.Local).AddTicks(8996),
                             Token = "BASEADMINTOKEN",
                             UserID = 1
                         });
@@ -2832,6 +2633,9 @@ namespace API.Migrations
                     b.Property<DateTime?>("InvoiceDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("InvoiceID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SaleID")
                         .HasColumnType("int");
 
@@ -2839,9 +2643,6 @@ namespace API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SupplierID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SupplierInvoiceID")
                         .HasColumnType("int");
 
                     b.Property<string>("SupplierName")

@@ -2,18 +2,18 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="WinformDotNetFrameworkEntitiesCharts">
+    <DataSource Name="WinformDotNetFrameworkProcedures">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>6b71d1ec-29f3-4257-bb96-9966cacaf9b0</rd:DataSourceID>
+      <rd:DataSourceID>7ddbf4bd-7d83-4ce2-b985-ef05378aec0b</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="SaleByProfit">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkEntitiesCharts</DataSourceName>
+        <DataSourceName>WinformDotNetFrameworkProcedures</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -63,10 +63,9 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>WinformDotNetFramework.Entities.Charts</rd:DataSetName>
-        <rd:TableName>SaleListChartDTO</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>ClassifySalesByProfit</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>WinformDotNetFramework.Entities.Charts.SaleListChartDTO, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:DataSetName>WinformDotNetFramework.Procedures</rd:DataSetName>
+        <rd:TableName>ClassifySalesByProfit</rd:TableName>
+        <rd:ObjectDataSourceType>WinformDotNetFramework.Procedures.ClassifySalesByProfit, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -881,7 +880,6 @@
                     <TextRun>
                       <Value>=Globals.PageNumber &amp; " / " &amp; Globals.TotalPages</Value>
                       <Style>
-                        <FontFamily>Arial</FontFamily>
                         <Color>DimGray</Color>
                       </Style>
                     </TextRun>
