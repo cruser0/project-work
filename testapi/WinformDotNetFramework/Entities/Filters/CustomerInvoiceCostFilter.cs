@@ -2,7 +2,7 @@
 {
     public class CustomerInvoiceCostFilter
     {
-        public int? CustomerInvoiceCostCustomerInvoiceId { get; set; }
+        public string CustomerInvoiceCostCustomerInvoiceCode { get; set; }
 
         public int? CustomerInvoiceCostCostFrom { get; set; }
         public int? CustomerInvoiceCostCostTo { get; set; }

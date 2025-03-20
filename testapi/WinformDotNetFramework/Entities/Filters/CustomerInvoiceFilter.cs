@@ -4,7 +4,8 @@ namespace WinformDotNetFramework.Entities.Filters
 {
     public class CustomerInvoiceFilter
     {
-        public int? CustomerInvoiceSaleId { get; set; }
+        public string CustomerInvoiceSaleBkBoL { get; set; }
+        public string CustomerInvoiceSaleBk { get; set; }
 
         public int? CustomerInvoiceInvoiceAmountFrom { get; set; }
         public int? CustomerInvoiceInvoiceAmountTo { get; set; }
