@@ -9,7 +9,9 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Forms;
 using WinformDotNetFramework.Forms.control;
 
@@ -177,7 +179,14 @@ namespace WinformDotNetFramework
                 return formattedName;
             }
         }
-
+        public static async Task<List<Country>> GetCountries()
+        {
+            return new List<Country>() { new Country() {CountryID=0,CountryName="All",ISOCountry="All" } }.Concat(await mainForm.CountriesList).ToList();
+        }
+        public static async Task<List<CostRegistry>> GetCostRegistry()
+        {
+            return new List<CostRegistry>() { new CostRegistry() { CostRegistryID=0,CostRegistryName="All",CostRegistryPrice=1,CostRegistryQuantity=1,CostRegistryUniqueCode="All" } }.Concat(await mainForm.CostRegistryList).ToList();
+        }
         public static void Pdf_ClickBtn(DataGridView CustomerInvoiceCostDgv, Form form)
         {
             //    SaveFileDialog saveFileDialog = new SaveFileDialog

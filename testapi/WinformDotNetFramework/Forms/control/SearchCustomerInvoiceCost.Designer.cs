@@ -191,7 +191,6 @@ namespace WinformDotNetFramework.Forms.control
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoiceCost";
             this.Size = new System.Drawing.Size(200, 256);
-            this.Load += new System.EventHandler(this.SearchCustomerInvoiceCost_Load);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

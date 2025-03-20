@@ -31,6 +31,7 @@ namespace WinformDotNetFramework.Forms.control
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@ namespace WinformDotNetFramework.Forms.control
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
-            this.CountryTxt = new System.Windows.Forms.TextBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
@@ -60,12 +61,22 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
-            this.TextBoxesRightPanel.Controls.Add(this.CountryTxt);
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 254);
             this.TextBoxesRightPanel.TabIndex = 7;
+            // 
+            // CountryCmbx
+            // 
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(0, 86);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 25;
+            this.CountryCmbx.Text = "All";
             // 
             // label4
             // 
@@ -137,6 +148,7 @@ namespace WinformDotNetFramework.Forms.control
             // comboBox1
             // 
             this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
@@ -180,16 +192,6 @@ namespace WinformDotNetFramework.Forms.control
             this.CountryLvl.TabIndex = 4;
             this.CountryLvl.Text = "Country";
             // 
-            // CountryTxt
-            // 
-            this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountryTxt.Location = new System.Drawing.Point(0, 82);
-            this.CountryTxt.MaxLength = 50;
-            this.CountryTxt.Name = "CountryTxt";
-            this.CountryTxt.Size = new System.Drawing.Size(180, 20);
-            this.CountryTxt.TabIndex = 2;
-            // 
             // SearchCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,7 +217,7 @@ namespace WinformDotNetFramework.Forms.control
         public DateTimePicker DateFromClnd;
         public ComboBox comboBox1;
         public TextBox NameTxt;
-        public TextBox CountryTxt;
         private Label label4;
+        private ComboBox CountryCmbx;
     }
 }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.control;
 using WinformDotNetFramework.Forms.FinalForms;
@@ -17,14 +18,17 @@ namespace WinformDotNetFramework.Forms
         private TableLayoutPanel minimizedPanel; // Panel to hold minimized child forms
         UserService _userService;
         public ICollection<string> favoriteList;
-
+        private UtilityService _utilityService;
         private static readonly HashSet<string> AdminRoles = new HashSet<string>() { "Admin" };
         private static readonly HashSet<string> WriteRoles = new HashSet<string>() { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
         private static readonly HashSet<string> ReadRoles = new HashSet<string>() { "Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "UserRead" };
         private static readonly HashSet<string> AdminGroupRoles = new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
+        public Task<ICollection<Country>> CountriesList { get; set; }
+        public Task<ICollection<CostRegistry>> CostRegistryList { get; set; }
 
         public MainForm()
         {
+            _utilityService = new UtilityService();
             _userService = new UserService();
 
             InitializeComponent();
@@ -38,10 +42,13 @@ namespace WinformDotNetFramework.Forms
             tabControl.TabPages.Remove(GroupTP);
             tabControl.TabPages.Remove(ReportTP);
             UserProfile.Text = "Hello " + UserAccessInfo.Name;
+
         }
         private async void MainForm_Load(object sender, EventArgs e)
         {
             SetAuthorizations();
+            CountriesList = _utilityService.GetAllCountry();
+            CostRegistryList = _utilityService.GetAllCostRegistry();
             var preferredTask = GetPreferred();
             var updateTask = UpdateFavoriteTab();
             await Task.WhenAll(preferredTask, updateTask);
@@ -130,7 +137,7 @@ namespace WinformDotNetFramework.Forms
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
         }
 
-        public void buttonOpenChild_Click(object sender, EventArgs e)
+        public async void buttonOpenChild_Click(object sender, EventArgs e)
         {
             var menuItem = sender as ToolStripButton;
 
