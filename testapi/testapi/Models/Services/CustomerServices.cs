@@ -317,7 +317,7 @@ namespace API.Models.Services
                             throw new ErrorInputPropertyException("Country is too long");
 
                     }
-                    Customer customerMapped = Mapper.CustomerMapper.Map(customer, _countryService.GetCountryByName(customer.CustomerName));
+                    Customer customerMapped = Mapper.CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.CustomerName));
                     Customer newCustomer = new Customer
                     {
                         CustomerName = customerMapped.CustomerName ?? c.CustomerName,

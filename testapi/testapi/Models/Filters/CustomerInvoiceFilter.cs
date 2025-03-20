@@ -2,11 +2,9 @@
 {
     public class CustomerInvoiceFilter
     {
-        public string CustomerInvoiceCode { get; set; }
-
-        public string? CustomerInvoiceSaleBkBoL { get; set; }
+        public string? CustomerInvoiceSaleBoL { get; set; }
         public string? CustomerInvoiceSaleBk { get; set; }
-
+        public string? CustomerInvoiceCode { get; set; }
         public int? CustomerInvoiceInvoiceAmountFrom { get; set; }
         public int? CustomerInvoiceInvoiceAmountTo { get; set; }
 

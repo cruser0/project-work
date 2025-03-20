@@ -98,14 +98,18 @@ namespace API.Models.Services
 
             if (filter != null)
             {
-                if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBkBoL))
+                if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBoL))
                 {
-                    query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBkBoL));
+                    query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBoL));
                 }
 
                 if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBk))
                 {
                     query = query.Where(x => x.Sale.BookingNumber.Contains(filter.CustomerInvoiceSaleBk));
+                }
+                if (!string.IsNullOrEmpty(filter.CustomerInvoiceCode))
+                {
+                    query = query.Where(x => x.CustomerInvoiceCode.Contains(filter.CustomerInvoiceCode));
                 }
 
                 if (filter.CustomerInvoiceInvoiceAmountFrom != null && filter.CustomerInvoiceInvoiceAmountTo != null)
@@ -146,7 +150,7 @@ namespace API.Models.Services
 
         private IQueryable<SaleDTOGet> ApplyFilter(SaleCustomerFilter? filter)
         {
-            var query = _context.Sales.Include(x => x.Status).AsQueryable();
+            var query = _context.Sales.Include(x => x.Status).Include(x => x.Customer).ThenInclude(x => x.Country).AsQueryable();
 
             if (filter != null)
             {
@@ -196,9 +200,13 @@ namespace API.Models.Services
                     query = query.Where(s => s.TotalRevenue <= filter.SaleRevenueTo);
                 }
 
-                if (filter.SaleCustomerId != null)
+                if (!string.IsNullOrEmpty(filter.SaleCustomerName))
                 {
-                    query = query.Where(s => s.CustomerID == filter.SaleCustomerId);
+                    query = query.Where(s => s.Customer.CustomerName.Contains(filter.SaleCustomerName));
+                }
+                if (!string.IsNullOrEmpty(filter.SaleCustomerCountry))
+                {
+                    query = query.Where(s => s.Customer.Country.CountryName.Contains(filter.SaleCustomerCountry));
                 }
 
                 if (!string.IsNullOrEmpty(filter.SaleStatus))
@@ -347,9 +355,9 @@ namespace API.Models.Services
                     query = query.Where(s => s.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
                 }
 
-                if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBkBoL))
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBoL))
                 {
-                    query = query.Where(s => s.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBkBoL));
+                    query = query.Where(s => s.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBoL));
                 }
                 if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBk))
                 {

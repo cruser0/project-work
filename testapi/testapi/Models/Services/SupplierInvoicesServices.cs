@@ -58,9 +58,9 @@ namespace API.Models.Services
             {
                 query = query.Where(x => x.SupplierInvoice.SupplierInvoiceCode.Contains(filter.SupplierInvoiceCode));
             }
-            if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBkBoL))
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBoL))
             {
-                query = query.Where(s => s.SupplierInvoice.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBkBoL));
+                query = query.Where(s => s.SupplierInvoice.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBoL));
             }
             if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBk))
             {
@@ -322,7 +322,7 @@ namespace API.Models.Services
                     {
                         if (new[] { "approved", "unapproved" }.Contains(supplierInvoice.Status.ToLower()))
                         {
-                            siDB.StatusID = _statusService.GetStatusByName(supplierInvoice.Status)?.StatusID ?? siDB.StatusID;
+                            siDB.StatusID = (await _statusService.GetStatusByName(supplierInvoice.Status))?.StatusID ?? siDB.StatusID;
                         }
                         else
                         {

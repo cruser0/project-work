@@ -1,4 +1,5 @@
 ﻿using API.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -7,12 +8,12 @@ namespace API.Models.Services
         private readonly Progetto_FormativoContext _context;
         public CountryService(Progetto_FormativoContext ctx)
         {
-            _context= ctx;
+            _context = ctx;
         }
 
-        public Country? GetCountryByName(string? name)
+        public async Task<Country?> GetCountryByName(string? name)
         {
-            return _context.Countries.Where(x=>x.CountryName.Equals(name)).FirstOrDefault();
+            return await _context.Countries.Where(x => x.CountryName.Equals(name)).FirstOrDefaultAsync();
         }
     }
 }

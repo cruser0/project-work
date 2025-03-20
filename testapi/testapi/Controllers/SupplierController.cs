@@ -63,7 +63,7 @@ namespace API.Controllers
         public async Task<IActionResult> Post(SupplierDTO supplier)
         {
 
-            var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier, _countryService.GetCountryByName(supplier.Country!)));
+            var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier, await _countryService.GetCountryByName(supplier.Country!)));
             if (data == null)
                 throw new NotFoundException("Data can't be null!");
             return Ok(data);
@@ -75,7 +75,7 @@ namespace API.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] SupplierDTO supplier)
         {
 
-            var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier, _countryService.GetCountryByName(supplier.Country!)));
+            var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier, await _countryService.GetCountryByName(supplier.Country!)));
             if (data == null)
                 throw new NotFoundException("Supplier not found!");
             return Ok(data);

@@ -65,7 +65,7 @@ namespace API.Controllers
         public async Task<IActionResult> Post(SupplierInvoiceDTO supplierInvoice)
         {
             var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice,
-                                                                                                    _statusService.GetStatusByName(supplierInvoice.Status!),
+                                                                                                    await _statusService.GetStatusByName(supplierInvoice.Status!),
                                                                                                     await _saleService.GetOnlySaleById((int)supplierInvoice.SaleId!)));
             if (data == null)
                 throw new NotFoundException("Couldn't create supplier invoice");
@@ -80,7 +80,7 @@ namespace API.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceDTO supplierInvoice)
         {
             var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice,
-                                                                                                    _statusService.GetStatusByName(supplierInvoice.Status!),
+                                                                                                    await _statusService.GetStatusByName(supplierInvoice.Status!),
                                                                                                     await _saleService.GetOnlySaleById((int)supplierInvoice.SaleId!)));
             if (data == null)
                 throw new NotFoundException("Couldn't update supplier invoice");

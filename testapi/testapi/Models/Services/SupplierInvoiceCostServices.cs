@@ -46,7 +46,7 @@ namespace API.Models.Services
         private IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter filter)
         {
             int itemsPage = 10;
-            var query = _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
+            var query = _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Include(x => x.SupplierInvoice).AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.SupplierInvoiceCostSupplierInvoiceCode))
             {
@@ -249,7 +249,7 @@ namespace API.Models.Services
                     if (supplierInvoiceCost.Cost > 0)
                         sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
 
-                    sicDB.CostRegistryID = _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode)?.CostRegistryID ?? sicDB.CostRegistryID;
+                    sicDB.CostRegistryID = (await _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode))?.CostRegistryID ?? sicDB.CostRegistryID;
 
                     sicDB.Name = supplierInvoiceCost.Name ?? sicDB.Name;
 
