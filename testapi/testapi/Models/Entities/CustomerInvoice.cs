@@ -7,6 +7,8 @@
             CustomerInvoiceCosts = new HashSet<CustomerInvoiceCost>();
         }
         public int CustomerInvoiceID { get; set; }
+
+        public string? CustomerInvoiceCode { get; set; }
         public int? SaleID { get; set; }
         public decimal? InvoiceAmount { get; set; }
         public DateTime? InvoiceDate { get; set; }

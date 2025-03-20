@@ -4,7 +4,7 @@ namespace API.Models.DTO;
 
 public class SupplierInvoiceDTO
 {
-
+    public string? SupplierInvoiceCode { get; set; }
     public int? SaleId { get; set; }
     public int? SupplierId { get; set; }
     public decimal? InvoiceAmount { get; set; }
@@ -24,6 +24,7 @@ public class SupplierInvoiceSupplierDTO : SupplierInvoiceDTOGet
     public string? Country { get; set; }
     public SupplierInvoiceSupplierDTO(SupplierInvoice si, Supplier s)
     {
+        SupplierInvoiceCode = si.SupplierInvoiceCode;
         InvoiceId = si.SupplierInvoiceID;
         InvoiceDate = si.InvoiceDate;
         SupplierName = s.SupplierName;

@@ -544,6 +544,14 @@ namespace API.Models
                 entity.Property(e => e.CustomerInvoiceID)
                     .HasColumnName("CustomerInvoiceID");
 
+                entity.Property(e => e.CustomerInvoiceCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("CustomerInvoiceCode");
+
+                entity.HasIndex(e => e.CustomerInvoiceCode)
+                    .IsUnique();
+
                 entity.Property(e => e.InvoiceAmount).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.InvoiceDate).HasColumnType("datetime");
@@ -646,6 +654,15 @@ namespace API.Models
                 entity.Property(e => e.SupplierInvoiceID)
 
                     .HasColumnName("SupplierInvoiceID");
+
+                entity.Property(e => e.SupplierInvoiceCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("SupplierInvoiceCode");
+
+                entity.HasIndex(e => e.SupplierInvoiceCode)
+                    .IsUnique();
+
 
                 entity.Property(e => e.InvoiceAmount).HasColumnType("decimal(18, 2)");
 
@@ -781,7 +798,7 @@ namespace API.Models
             modelBuilder.Entity<TotalAmountSpentPerSupplierInvoice>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalAmountSpentPerSuppliers>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalAmountGainedPerCustomerInvoice>().HasNoKey().ToView(null);
-            
+
             modelBuilder.ApplyConfiguration(new RegistryCostConfiguration());
             modelBuilder.ApplyConfiguration(new StatusConfiguration());
             modelBuilder.ApplyConfiguration(new CountryConfiguration());

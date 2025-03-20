@@ -12,7 +12,8 @@ namespace API.Models.Mapper
                 SaleId = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
-                Status = customerInvoice.Status!.StatusName
+                Status = customerInvoice.Status!.StatusName,
+                CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode
             };
         }
 
@@ -24,6 +25,7 @@ namespace API.Models.Mapper
                 SaleID = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
+                CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 Status = status,
                 StatusID = status?.StatusID
             };
@@ -36,6 +38,7 @@ namespace API.Models.Mapper
                 CustomerInvoiceId = customerInvoice.CustomerInvoiceID,
                 SaleId = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
+                CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status!.StatusName
             };
@@ -50,6 +53,7 @@ namespace API.Models.Mapper
                 SaleID = customerInvoice.SaleId,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
+                CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 Status = status,
                 StatusID = status?.StatusID
             };

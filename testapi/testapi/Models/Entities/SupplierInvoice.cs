@@ -8,7 +8,10 @@
         }
 
         public int SupplierInvoiceID { get; set; }
+        public string? SupplierInvoiceCode { get; set; }
         public int? SaleID { get; set; }
+        public string? SaleBookingNumber { get; set; }
+        public string? SaleBoL { get; set; }
         public int? SupplierID { get; set; }
         public decimal? InvoiceAmount { get; set; }
         public DateTime? InvoiceDate { get; set; }
