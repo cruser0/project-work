@@ -90,6 +90,7 @@ builder.Services.AddSwaggerGen(c =>
 
 
 var app = builder.Build();
+
 static void ApplyMigration<TDbContext>(IServiceScope services)
     where TDbContext:DbContext
 {

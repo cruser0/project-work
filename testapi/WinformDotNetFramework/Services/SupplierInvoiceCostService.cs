@@ -20,7 +20,8 @@ namespace WinformDotNetFramework.Services
                 { "SupplierInvoiceCostCostTo", filter.SupplierInvoiceCostCostTo },
                 { "SupplierInvoiceCostQuantity", filter.SupplierInvoiceCostQuantity },
                 { "SupplierInvoiceCostName", filter.SupplierInvoiceCostName },
-                { "SupplierInvoiceCostPage", filter.SupplierInvoiceCostPage }
+                { "SupplierInvoiceCostPage", filter.SupplierInvoiceCostPage },
+                { "SupplierInvoiceCostRegistryCode", filter.SupplierInvoiceCostRegistryCode }
             };
 
             foreach (var kvp in filters)

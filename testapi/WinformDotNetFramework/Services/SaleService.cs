@@ -25,7 +25,9 @@ namespace WinformDotNetFramework.Services
                 { "SaleRevenueTo", filter.SaleRevenueTo },
                 { "SaleCustomerId", filter.SaleCustomerId },
                 { "SaleStatus", filter.SaleStatus?.ToLower() != "all" ? filter.SaleStatus : null },
-                { "SalePage", filter.SalePage }
+                { "SalePage", filter.SalePage },
+                { "SaleCustomerName", filter.SaleCustomerName },
+                { "SaleCustomerCountry", filter.SaleCustomerCountry },
             };
             foreach (var kvp in filters)
             {
