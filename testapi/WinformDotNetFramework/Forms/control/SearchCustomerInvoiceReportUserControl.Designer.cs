@@ -44,7 +44,7 @@
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.CountryLbl = new System.Windows.Forms.Label();
-            this.CountryTxt = new System.Windows.Forms.TextBox();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,7 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.GraphLbl);
             this.TextBoxesRightPanel.Controls.Add(this.GrapCBL);
             this.TextBoxesRightPanel.Controls.Add(this.GainedToLbl);
@@ -68,11 +69,10 @@
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerNameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.CountryTxt);
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 418);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 427);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // GraphLbl
@@ -80,7 +80,7 @@
             this.GraphLbl.AutoSize = true;
             this.GraphLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.GraphLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.GraphLbl.Location = new System.Drawing.Point(4, 288);
+            this.GraphLbl.Location = new System.Drawing.Point(5, 294);
             this.GraphLbl.Name = "GraphLbl";
             this.GraphLbl.Size = new System.Drawing.Size(51, 17);
             this.GraphLbl.TabIndex = 39;
@@ -96,7 +96,7 @@
             "Total customer invoices per date",
             "Total gained per date",
             "Total gained per country"});
-            this.GrapCBL.Location = new System.Drawing.Point(2, 308);
+            this.GrapCBL.Location = new System.Drawing.Point(3, 314);
             this.GrapCBL.Name = "GrapCBL";
             this.GrapCBL.Size = new System.Drawing.Size(180, 89);
             this.GrapCBL.TabIndex = 38;
@@ -241,15 +241,15 @@
             this.CountryLbl.TabIndex = 4;
             this.CountryLbl.Text = "Customer Country";
             // 
-            // CountryTxt
+            // CountryCmbx
             // 
-            this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountryTxt.Location = new System.Drawing.Point(3, 268);
-            this.CountryTxt.MaxLength = 50;
-            this.CountryTxt.Name = "CountryTxt";
-            this.CountryTxt.Size = new System.Drawing.Size(180, 20);
-            this.CountryTxt.TabIndex = 2;
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(3, 270);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 40;
             // 
             // SearchCustomerInvoiceReportUserControl
             // 
@@ -257,7 +257,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoiceReportUserControl";
-            this.Size = new System.Drawing.Size(200, 418);
+            this.Size = new System.Drawing.Size(200, 427);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -282,6 +282,6 @@
         public System.Windows.Forms.TextBox NameTxt;
         private System.Windows.Forms.Label CustomerNameLbl;
         private System.Windows.Forms.Label CountryLbl;
-        public System.Windows.Forms.TextBox CountryTxt;
+        private System.Windows.Forms.ComboBox CountryCmbx;
     }
 }

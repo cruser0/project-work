@@ -76,7 +76,6 @@ namespace WinformDotNetFramework.Forms.control
             this.CountryCmbx.Name = "CountryCmbx";
             this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
             this.CountryCmbx.TabIndex = 25;
-            this.CountryCmbx.Text = "All";
             // 
             // label4
             // 

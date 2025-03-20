@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
@@ -8,9 +9,14 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplierInvoice()
         {
             InitializeComponent();
-            StatusCmb.SelectedIndex = 0;
+            
+            Init();
         }
-
+        public async void Init()
+        {
+            StatusCmb.SelectedIndex = 0;
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+        }
         public SupplierInvoiceFilter GetFilter()
         {
             SupplierInvoiceFilter filter = new SupplierInvoiceFilter();
@@ -19,8 +25,13 @@ namespace WinformDotNetFramework.Forms.control
             filter.SupplierInvoiceSaleBoL = string.IsNullOrEmpty(SaleBoLTxt.Text) ? null: SaleBoLTxt.Text;
             filter.SupplierInvoiceSaleBk = string.IsNullOrEmpty(SaleBkTxt.Text) ? null: SaleBkTxt.Text;
 
-            if(!string.IsNullOrEmpty(CountrySupplierTxt.Text))
-                filter.SupplierInvoiceSupplierCountry = CountrySupplierTxt.Text;
+            if (!string.IsNullOrEmpty(CountryCmbx.Text))
+            {
+                if (CountryCmbx.Text.Equals("All"))
+                    filter.SupplierInvoiceSupplierCountry = null;
+                else
+                    filter.SupplierInvoiceSupplierCountry = CountryCmbx.Text;
+            }
             else
                 filter.SupplierInvoiceSupplierCountry = null;
 

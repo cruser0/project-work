@@ -88,9 +88,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // searchSupplier1
             // 
-            this.searchSupplier1.Location = new System.Drawing.Point(3, 0);
+            this.searchSupplier1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchSupplier1.Location = new System.Drawing.Point(0, 0);
             this.searchSupplier1.Name = "searchSupplier1";
-            this.searchSupplier1.Size = new System.Drawing.Size(197, 256);
+            this.searchSupplier1.Size = new System.Drawing.Size(200, 372);
             this.searchSupplier1.TabIndex = 0;
             // 
             // RightSideBar

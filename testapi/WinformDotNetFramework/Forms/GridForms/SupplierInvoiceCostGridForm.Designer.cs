@@ -162,9 +162,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // searchSupplierInvoiceCost1
             // 
-            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(3, 0);
+            this.searchSupplierInvoiceCost1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(0, 0);
             this.searchSupplierInvoiceCost1.Name = "searchSupplierInvoiceCost1";
-            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(197, 216);
+            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(200, 372);
             this.searchSupplierInvoiceCost1.TabIndex = 0;
             // 
             // RightSideBar

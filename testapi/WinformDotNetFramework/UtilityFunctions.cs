@@ -19,7 +19,7 @@ namespace WinformDotNetFramework
 {
     internal static class UtilityFunctions
     {
-        private static MainForm mainForm = Application.OpenForms.OfType<MainForm>().First();
+        private static MainForm mainForm => Application.OpenForms.OfType<MainForm>().FirstOrDefault();
         // Verifica se l'utente ha uno dei ruoli richiesti
         public static bool IsAuthorized(HashSet<string> requiredRoles, bool requireAll = false)
         {
@@ -181,12 +181,24 @@ namespace WinformDotNetFramework
         }
         public static async Task<List<Country>> GetCountries()
         {
-            return new List<Country>() { new Country() {CountryID=0,CountryName="All",ISOCountry="All" } }.Concat(await mainForm.CountriesList).ToList();
+            if (mainForm == null)
+                return new List<Country>() { new Country() { CountryID = 0, CountryName = "All", ISOCountry = "All" } };
+
+            return new List<Country>() { new Country() { CountryID = 0, CountryName = "All", ISOCountry = "All" } }
+                .Concat(await mainForm.CountriesList)
+                .ToList();
         }
+
         public static async Task<List<CostRegistry>> GetCostRegistry()
         {
-            return new List<CostRegistry>() { new CostRegistry() { CostRegistryID=0,CostRegistryName="All",CostRegistryPrice=1,CostRegistryQuantity=1,CostRegistryUniqueCode="All" } }.Concat(await mainForm.CostRegistryList).ToList();
+            if (mainForm == null)
+                return new List<CostRegistry>() { new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } };
+
+            return new List<CostRegistry>() { new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } }
+                .Concat(await mainForm.CostRegistryList)
+                .ToList();
         }
+
         public static void Pdf_ClickBtn(DataGridView CustomerInvoiceCostDgv, Form form)
         {
             //    SaveFileDialog saveFileDialog = new SaveFileDialog

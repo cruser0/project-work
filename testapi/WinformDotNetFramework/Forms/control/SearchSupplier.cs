@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
@@ -8,14 +9,27 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplier()
         {
             InitializeComponent();
-            comboBox1.SelectedIndex = 0;
+            
+            Init();
         }
-
+        public async void Init()
+        {
+            comboBox1.SelectedIndex = 0;
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+        }
         public SupplierFilter GetFilter()
         {
             SupplierFilter filter = new SupplierFilter();
             filter.SupplierName = NameSupplierTxt.Text;
-            filter.SupplierCountry = CountrySupplierTxt.Text;
+            if (!string.IsNullOrEmpty(CountryCmbx.Text))
+            {
+                if (CountryCmbx.Text.Equals("All"))
+                    filter.SupplierCountry = null;
+                else
+                    filter.SupplierCountry = CountryCmbx.Text;
+            }
+            else
+                filter.SupplierCountry = null;
 
             if (DateFromClnd.Checked)
             {

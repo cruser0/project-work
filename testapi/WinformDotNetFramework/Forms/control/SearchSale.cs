@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
@@ -8,9 +9,13 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSale()
         {
             InitializeComponent();
-            StatusCB.SelectedIndex = 0;
+            Init();
         }
-
+        public async void Init()
+        {
+            StatusCB.SelectedIndex = 0;
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+        }
         public SaleFilter GetFilter()
         {
             SaleFilter saleFilter = new SaleFilter
@@ -24,8 +29,13 @@ namespace WinformDotNetFramework.Forms.control
             else
                 saleFilter.SaleCustomerName = null;
 
-            if (!string.IsNullOrEmpty(CustomerCountryTxt.Text))
-                saleFilter.SaleCustomerCountry = CustomerCountryTxt.Text;
+            if (!string.IsNullOrEmpty(CountryCmbx.Text))
+            {
+                if (CountryCmbx.Text.Equals("All"))
+                    saleFilter.SaleCustomerCountry = null;
+                else
+                    saleFilter.SaleCustomerCountry = CountryCmbx.Text;
+            }
             else
                 saleFilter.SaleCustomerCountry = null;
 

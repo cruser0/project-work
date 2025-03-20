@@ -41,7 +41,7 @@ namespace WinformDotNetFramework.Forms.control
             this.NameSupplierTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
-            this.CountrySupplierTxt = new System.Windows.Forms.TextBox();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromLbl);
@@ -60,11 +61,10 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Controls.Add(this.NameSupplierTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLvl);
-            this.TextBoxesRightPanel.Controls.Add(this.CountrySupplierTxt);
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 257);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 257);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // label4
@@ -181,16 +181,15 @@ namespace WinformDotNetFramework.Forms.control
             this.CountryLvl.TabIndex = 4;
             this.CountryLvl.Text = "Country";
             // 
-            // CountrySupplierTxt
+            // CountryCmbx
             // 
-            this.CountrySupplierTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.CountrySupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountrySupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountrySupplierTxt.Location = new System.Drawing.Point(0, 85);
-            this.CountrySupplierTxt.MaxLength = 50;
-            this.CountrySupplierTxt.Name = "CountrySupplierTxt";
-            this.CountrySupplierTxt.Size = new System.Drawing.Size(180, 20);
-            this.CountrySupplierTxt.TabIndex = 2;
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(0, 87);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 43;
             // 
             // SearchSupplier
             // 
@@ -198,7 +197,7 @@ namespace WinformDotNetFramework.Forms.control
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplier";
-            this.Size = new System.Drawing.Size(180, 257);
+            this.Size = new System.Drawing.Size(200, 257);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -210,7 +209,6 @@ namespace WinformDotNetFramework.Forms.control
         public DateTimePicker DateFromClnd;
         public ComboBox comboBox1;
         public TextBox NameSupplierTxt;
-        public TextBox CountrySupplierTxt;
         public Panel TextBoxesRightPanel;
         public Label label2;
         public Label DateFromLbl;
@@ -218,5 +216,6 @@ namespace WinformDotNetFramework.Forms.control
         public Label label1;
         public Label CountryLvl;
         public Label label4;
+        private ComboBox CountryCmbx;
     }
 }

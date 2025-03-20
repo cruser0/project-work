@@ -162,9 +162,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // searchCustomerInvoiceCost1
             // 
+            this.searchCustomerInvoiceCost1.AutoScroll = true;
             this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 0);
             this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
-            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(197, 169);
+            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(197, 258);
             this.searchCustomerInvoiceCost1.TabIndex = 0;
             // 
             // RightSideBar

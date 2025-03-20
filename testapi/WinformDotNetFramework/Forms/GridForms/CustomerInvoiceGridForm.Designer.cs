@@ -82,14 +82,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Controls.Add(this.searchCustomerInvoice1);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 409);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // searchCustomerInvoice1
             // 
-            this.searchCustomerInvoice1.Location = new System.Drawing.Point(3, 0);
+            this.searchCustomerInvoice1.Location = new System.Drawing.Point(0, 0);
             this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
-            this.searchCustomerInvoice1.Size = new System.Drawing.Size(197, 243);
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(197, 385);
             this.searchCustomerInvoice1.TabIndex = 0;
             // 
             // RightSideBar

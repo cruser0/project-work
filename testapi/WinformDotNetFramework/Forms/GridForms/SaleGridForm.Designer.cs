@@ -33,8 +33,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleGridForm));
             this.RigtPanel = new System.Windows.Forms.Panel();
-            this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.searchSale1 = new WinformDotNetFramework.Forms.control.SearchSale();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
@@ -58,14 +56,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchSale1 = new WinformDotNetFramework.Forms.control.SearchSale();
+            this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.RigtPanel.SuspendLayout();
-            this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
+            this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // RigtPanel
@@ -77,23 +77,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RigtPanel.Name = "RigtPanel";
             this.RigtPanel.Size = new System.Drawing.Size(200, 461);
             this.RigtPanel.TabIndex = 15;
-            // 
-            // TextBoxesRightPanel
-            // 
-            this.TextBoxesRightPanel.AutoScroll = true;
-            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.TextBoxesRightPanel.Controls.Add(this.searchSale1);
-            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
-            this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
-            this.TextBoxesRightPanel.TabIndex = 7;
-            // 
-            // searchSale1
-            // 
-            this.searchSale1.Location = new System.Drawing.Point(3, 0);
-            this.searchSale1.Name = "searchSale1";
-            this.searchSale1.Size = new System.Drawing.Size(197, 325);
-            this.searchSale1.TabIndex = 0;
             // 
             // RightSideBar
             // 
@@ -329,6 +312,24 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // searchSale1
+            // 
+            this.searchSale1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchSale1.Location = new System.Drawing.Point(0, 0);
+            this.searchSale1.Name = "searchSale1";
+            this.searchSale1.Size = new System.Drawing.Size(200, 372);
+            this.searchSale1.TabIndex = 0;
+            // 
+            // TextBoxesRightPanel
+            // 
+            this.TextBoxesRightPanel.AutoScroll = true;
+            this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.searchSale1);
+            this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
+            this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
+            this.TextBoxesRightPanel.TabIndex = 7;
+            // 
             // SaleGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,7 +344,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.Load += new System.EventHandler(this.SaleGridForm_Load);
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.RigtPanel.ResumeLayout(false);
-            this.TextBoxesRightPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).EndInit();
@@ -353,6 +353,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.RightClickDgv.ResumeLayout(false);
+            this.TextBoxesRightPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -360,7 +361,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         #endregion
         private Panel RigtPanel;
         private control.RightSideBarUserControl RightSideBar;
-        private Panel TextBoxesRightPanel;
         public Panel panel1;
         private Panel BottomPanel;
         private Panel panel5;
@@ -382,7 +382,8 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton MassSaveTSB;
         private ToolStripButton MassDeleteTSB;
         private ToolStripSeparator toolStripSeparator1;
-        private control.SearchSale searchSale1;
         private ToolStripButton ToggleEditButton;
+        private Panel TextBoxesRightPanel;
+        private control.SearchSale searchSale1;
     }
 }
