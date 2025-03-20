@@ -1,4 +1,6 @@
-﻿using API.Models.Entities;
+﻿using API.Models.DTO;
+using API.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
@@ -10,9 +12,16 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public CostRegistry? GetCostRegistryByCode(string? name)
+        public async  Task<CostRegistry?> GetCostRegistryByCode(string? name)
         {
-            return _context.CostRegistries.Where(x => x.CostRegistryUniqueCode.Equals(name)).FirstOrDefault();
+            return await  _context.CostRegistries.Where(x => x.CostRegistryUniqueCode.Equals(name)).FirstOrDefaultAsync();
+        }
+        public async Task<List<CostRegistryDTO>> GetAllCostRegistryByCode()
+        {
+            var list=await _context.CostRegistries.ToListAsync();
+            if(list.Any())
+                return (List<CostRegistryDTO>)list.Select(x => Mapper.CostRegistryMapper.Map(x));
+            return new List<CostRegistryDTO>();
         }
     }
 }
