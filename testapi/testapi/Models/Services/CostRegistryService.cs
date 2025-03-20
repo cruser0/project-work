@@ -20,7 +20,7 @@ namespace API.Models.Services
         {
             var list=await _context.CostRegistries.ToListAsync();
             if(list.Any())
-                return (List<CostRegistryDTOGet>)list.Select(x => Mapper.CostRegistryMapper.MapGet(x));
+                return list.Select(x => Mapper.CostRegistryMapper.MapGet(x)).ToList();
             return new List<CostRegistryDTOGet>();
         }
     }

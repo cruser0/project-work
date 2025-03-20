@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
@@ -23,10 +24,18 @@ namespace WinformDotNetFramework.Forms.control
             {
                 CustomerInvoiceCostName = string.IsNullOrEmpty(NameTxt.Text) ? null : NameTxt.Text,
                 CustomerInvoiceCostCustomerInvoiceCode = string.IsNullOrEmpty(InvoiceCodeTxt.Text) ? null : InvoiceCodeTxt.Text,
-                RegistryCode = string.IsNullOrEmpty(CostRegistryCmbx.Text) ? null : CostRegistryCmbx.Text,
 
 
             };
+            if (!string.IsNullOrEmpty(CostRegistryCmbx.Text))
+            {
+                if (CostRegistryCmbx.Text.Equals("All"))
+                    customerInvoiceCostfilter.RegistryCode = null;
+                else
+                    customerInvoiceCostfilter.RegistryCode = CostRegistryCmbx.Text;
+            } 
+            else
+                customerInvoiceCostfilter.RegistryCode = null;
 
             if (string.IsNullOrEmpty(CostFromTxt.GetText()))
                 customerInvoiceCostfilter.CustomerInvoiceCostCostFrom = null;
@@ -44,7 +53,8 @@ namespace WinformDotNetFramework.Forms.control
         private async void SearchCustomerInvoiceCost_Load(object sender, System.EventArgs e)
         {
             list=await costRegistryService.GetAll();
-            CostRegistryCmbx.DataSource=list;
+            list.Add(new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 0, CostRegistryQuantity = 0, CostRegistryUniqueCode = "All" });
+            CostRegistryCmbx.DataSource = list.Select(x => x.CostRegistryUniqueCode).ToList();
         }
     }
 }
