@@ -150,7 +150,7 @@ namespace API.Models.Services
 
         private IQueryable<SaleDTOGet> ApplyFilter(SaleCustomerFilter? filter)
         {
-            var query = _context.Sales.Include(x => x.Status).AsQueryable();
+            var query = _context.Sales.Include(x => x.Status).Include(x => x.Customer).ThenInclude(x => x.Country).AsQueryable();
 
             if (filter != null)
             {
@@ -200,9 +200,13 @@ namespace API.Models.Services
                     query = query.Where(s => s.TotalRevenue <= filter.SaleRevenueTo);
                 }
 
-                if (filter.SaleCustomerId != null)
+                if (!string.IsNullOrEmpty(filter.SaleCustomerName))
                 {
-                    query = query.Where(s => s.CustomerID == filter.SaleCustomerId);
+                    query = query.Where(s => s.Customer.CustomerName.Contains(filter.SaleCustomerName));
+                }
+                if (!string.IsNullOrEmpty(filter.SaleCustomerCountry))
+                {
+                    query = query.Where(s => s.Customer.Country.CountryName.Contains(filter.SaleCustomerCountry));
                 }
 
                 if (!string.IsNullOrEmpty(filter.SaleStatus))
