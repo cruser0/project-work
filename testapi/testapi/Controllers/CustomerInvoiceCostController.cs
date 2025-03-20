@@ -5,7 +5,6 @@ using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,7 +16,7 @@ namespace API.Controllers
     {
         private readonly ICustomerInvoiceCostService _customerInvoiceCostService;
         private readonly CostRegistryService _costRegistryService;
-        public CustomerInvoiceCostController(ICustomerInvoiceCostService customerInvoiceCostService,CostRegistryService crs)
+        public CustomerInvoiceCostController(ICustomerInvoiceCostService customerInvoiceCostService, CostRegistryService crs)
         {
             _customerInvoiceCostService = customerInvoiceCostService;
             _costRegistryService = crs;
@@ -37,7 +36,7 @@ namespace API.Controllers
             {
                 return Ok(data);
             }
-            else throw new NotFoundException("Customer Invoice Cost not found");
+            else return Ok(new List<CustomerInvoiceCostDTOGet>());
         }
 
         [Authorize(Roles = "Admin,CustomerInvoiceCostRead,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
@@ -77,10 +76,10 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceCostDTO customerInvoiceCost)
         {
-                var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost, _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode)));
+            var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost, _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode)));
             if (data == null)
-                    throw new NotFoundException("Customer Invoice Cost not found");
-                return Ok(data);
+                throw new NotFoundException("Customer Invoice Cost not found");
+            return Ok(data);
         }
 
         // DELETE api/<CustomerInvoiceCostController>/5

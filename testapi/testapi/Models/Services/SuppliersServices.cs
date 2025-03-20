@@ -86,7 +86,7 @@ namespace API.Models.Services
 
         public async Task<SupplierDTOGet> GetSupplierById(int id)
         {
-            var data = await _context.Suppliers.Where(x => x.SupplierID == id).FirstOrDefaultAsync();
+            var data = await _context.Suppliers.Include(x => x.Country).Where(x => x.SupplierID == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new ArgumentException("Supplier not found!");
@@ -119,8 +119,6 @@ namespace API.Models.Services
             if (supplier.Country.CountryName.Length > 50)
                 throw new ErrorInputPropertyException("Country is too long");
 
-            if (!supplier.Country.CountryName.All(char.IsLetter))
-                throw new ErrorInputPropertyException("Country can't have special characters");
 
             _context.Add(supplier);
             await _context.SaveChangesAsync();
@@ -147,8 +145,6 @@ namespace API.Models.Services
                     if (supplier.Country.CountryName.Length > 50)
                         throw new ErrorInputPropertyException("Country is too long");
 
-                    if (!supplier.Country.CountryName.All(char.IsLetter))
-                        throw new ErrorInputPropertyException("Country can't have special characters");
                 }
 
                 Supplier newSupplier = new Supplier
@@ -268,8 +264,6 @@ namespace API.Models.Services
                         if (supplier.Country.Length > 50)
                             throw new ErrorInputPropertyException("Country is too long");
 
-                        if (!supplier.Country.All(char.IsLetter))
-                            throw new ErrorInputPropertyException("Country can't have special characters");
                     }
 
                     Supplier newSupplier = new Supplier

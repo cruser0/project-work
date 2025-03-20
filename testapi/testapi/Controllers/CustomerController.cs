@@ -5,7 +5,6 @@ using API.Models.Mapper;
 using API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,7 +18,7 @@ namespace API.Controllers
 
         private readonly ICustomerService _customerService;
         private readonly CountryService _countryService;
-        public CustomerController(ICustomerService customerService,CountryService countryService)
+        public CustomerController(ICustomerService customerService, CountryService countryService)
         {
             _customerService = customerService;
             _countryService = countryService;
@@ -38,7 +37,7 @@ namespace API.Controllers
             {
                 return Ok(data);
             }
-            else throw new NotFoundException("Customer not found");
+            else return Ok(new List<CustomerDTOGet>());
         }
 
 
@@ -58,10 +57,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-                var data = await _customerService.GetCustomerById(id);
-                if (data == null)
-                    throw new NotFoundException("Customer not found!");
-                return Ok(data);
+            var data = await _customerService.GetCustomerById(id);
+            if (data == null)
+                throw new NotFoundException("Customer not found!");
+            return Ok(data);
         }
 
 
@@ -73,10 +72,10 @@ namespace API.Controllers
         public async Task<IActionResult> Post(CustomerDTO customer)
         {
 
-                var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer,_countryService.GetCountryByName(customer.Country!)));
-                if (data == null)
-                    throw new NotFoundException("Data can't be null!");
-                return Ok(data);
+            var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer, _countryService.GetCountryByName(customer.Country!)));
+            if (data == null)
+                throw new NotFoundException("Data can't be null!");
+            return Ok(data);
         }
 
 
@@ -125,8 +124,8 @@ namespace API.Controllers
         [HttpPut("mass-update")]
         public async Task<IActionResult> MassUpdate([FromBody] List<CustomerDTOGet> newCustomers)
         {
-                var data = await _customerService.MassUpdateCustomer(newCustomers);
-                return Ok(data);
+            var data = await _customerService.MassUpdateCustomer(newCustomers);
+            return Ok(data);
         }
     }
 }
