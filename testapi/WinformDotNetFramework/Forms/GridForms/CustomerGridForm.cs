@@ -26,13 +26,13 @@ namespace WinformDotNetFramework.Forms.GridForms
         private UserService _userService;
         public CustomerGridForm()
         {
-            Init();
+            InitializeComponent();
         }
 
         public CustomerGridForm(CreateSaleForm father)
         {
+            InitializeComponent();
             _father = father;
-            Init();
             toolStrip1.Visible = false;
         }
 
@@ -42,7 +42,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             _userService = new UserService();
 
 
-            InitializeComponent();
             CustomerDgv.ReadOnly = true;
 
             pages = (int)Math.Ceiling(await _customerService.Count(new CustomerFilter() { CustomerDeprecated = false }) / itemsPage);
@@ -239,6 +238,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void CustomerGridForm_Load(object sender, EventArgs e)
         {
+            Init();
             getAllNotFiltered = _customerService.GetAll(filter);
             countNotFiltered = _customerService.Count(new CustomerFilter() { CustomerDeprecated = false });
             getFav = _userService.GetCustomerDGV();

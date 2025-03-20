@@ -23,6 +23,8 @@ namespace WinformDotNetFramework
         // Verifica se l'utente ha uno dei ruoli richiesti
         public static bool IsAuthorized(HashSet<string> requiredRoles, bool requireAll = false)
         {
+            if(mainForm == null)
+                return false;
             var userRoles = new HashSet<string>(UserAccessInfo.Role);
             return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
         }
@@ -32,6 +34,8 @@ namespace WinformDotNetFramework
         // Apre un form dei dettagli (con ID) del tipo specificato
         public static void OpenFormDetails<T>(object sender, DataGridViewCellEventArgs e, int id) where T : Form
         {
+            if (mainForm == null)
+                return;
             if (sender is DataGridView dgv)
             {
                 if (e.RowIndex == -1)
@@ -62,6 +66,8 @@ namespace WinformDotNetFramework
         // Apre un form dei dettagli (con riferimento a un altro form) del tipo specificato
         public static void OpenFormDetails<T>(object sender, EventArgs e, Form father) where T : Form
         {
+            if (mainForm == null)
+                return;
             // Chiude i form aperti dello stesso tipo
             CloseOpenForms<T>();
 
@@ -86,6 +92,8 @@ namespace WinformDotNetFramework
         // Chiude i form aperti dello stesso tipo
         private static void CloseOpenForms<T>() where T : Form
         {
+            if (mainForm == null)
+                return;
             foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
             {
                 if (form is T)
@@ -98,6 +106,8 @@ namespace WinformDotNetFramework
         // Rimuove i pulsanti minimizzati dei form aperti dello stesso tipo
         private static void RemoveMinimizedButtons<T>(TableLayoutPanel minimizedPanel) where T : Form
         {
+            if (mainForm == null)
+                return;
             foreach (var button in minimizedPanel.Controls)
             {
                 if (button is formDockButton btn)
@@ -115,12 +125,16 @@ namespace WinformDotNetFramework
         // Gestisce la chiusura di un form figlio
         public static void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
+            if (mainForm == null)
+                return;
             mainForm.BeginInvoke(new Action(UpdateMdiLayout));
         }
 
         // Riorganizza i layout dei form MDI
         private static void UpdateMdiLayout()
         {
+            if (mainForm == null)
+                return;
             Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
             int countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
@@ -129,6 +143,8 @@ namespace WinformDotNetFramework
         // Gestisce il ridimensionamento di un form figlio
         public static void ChildForm_Resize(object sender, EventArgs e)
         {
+            if (mainForm == null)
+                return;
             var childForm = sender as Form;
             TableLayoutPanel minimizedPanel = (TableLayoutPanel)mainForm.Controls.Find("minimizedPanel", true)[0];
 
@@ -144,6 +160,7 @@ namespace WinformDotNetFramework
 
             var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, mainForm)
             {
+
                 Name = childForm.Text,
                 Dock = DockStyle.Top
             };
@@ -157,6 +174,8 @@ namespace WinformDotNetFramework
         // Format the form name to be more user-friendly
         public static string FormatFormName(string formName)
         {
+            if (mainForm == null)
+                return "";
             if (formName.Contains("Details"))
             {
                 // Capitalizes each word
@@ -181,6 +200,7 @@ namespace WinformDotNetFramework
         }
         public static async Task<List<Country>> GetCountries()
         {
+
             if (mainForm == null)
                 return new List<Country>() { new Country() { CountryID = 0, CountryName = "All", ISOCountry = "All" } };
 
