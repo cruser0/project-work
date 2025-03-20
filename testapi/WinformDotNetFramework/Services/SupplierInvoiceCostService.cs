@@ -15,7 +15,7 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
-                { "SupplierInvoiceCostSupplierInvoiceId", filter.SupplierInvoiceCostSupplierInvoiceId },
+                { "SupplierInvoiceCostSupplierInvoiceCode", filter.SupplierInvoiceCostSupplierInvoiceCode },
                 { "SupplierInvoiceCostCostFrom", filter.SupplierInvoiceCostCostFrom },
                 { "SupplierInvoiceCostCostTo", filter.SupplierInvoiceCostCostTo },
                 { "SupplierInvoiceCostQuantity", filter.SupplierInvoiceCostQuantity },
