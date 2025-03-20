@@ -15,46 +15,33 @@ namespace WinformDotNetFramework.Forms.control
         {
             CustomerInvoiceFilter customerInvoiceFilter = new CustomerInvoiceFilter
             {
-                CustomerInvoiceSaleId = null
+                CustomerInvoiceSaleBk = string.IsNullOrEmpty(InvoiceSaleBkTxt.Text)?null: InvoiceSaleBkTxt.Text,
+                CustomerInvoiceSaleBoL = string.IsNullOrEmpty(InvoiceBoLTxt.Text)?null: InvoiceBoLTxt.Text,
+                CustomerInvoiceCode = string.IsNullOrEmpty(CustomerInvoiceCodeTxt.Text)?null: CustomerInvoiceCodeTxt.Text,
+                CustomerInvoiceStatus = StatusCmb.Text,
             };
 
             if (DateFromClnd.Checked)
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceDateFrom = DateFromClnd.Value;
-            }
             else
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceDateFrom = null;
-            }
 
             if (DateToClnd.Checked)
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceDateTo = DateToClnd.Value;
-            }
             else
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceDateTo = null;
-            }
 
-            customerInvoiceFilter.CustomerInvoiceStatus = StatusCmb.Text;
 
             if (string.IsNullOrEmpty(AmountFromTxt.GetText()))
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceAmountFrom = null;
-            }
             else
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceAmountFrom = int.Parse(AmountFromTxt.GetText());
-            }
 
             if (string.IsNullOrEmpty(AmountToTxt.GetText()))
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceAmountTo = null;
-            }
             else
-            {
                 customerInvoiceFilter.CustomerInvoiceInvoiceAmountTo = int.Parse(AmountToTxt.GetText());
-            }
+
             return customerInvoiceFilter;
         }
     }

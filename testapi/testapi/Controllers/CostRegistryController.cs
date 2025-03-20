@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class CostRegistryController : Controller
+    [Route("api/")]
+    [ApiController]
+    public class CostRegistryController : ControllerBase
     {
         private readonly CostRegistryService _costRegistryService;
         public CostRegistryController(CostRegistryService crs)
@@ -13,15 +15,15 @@ namespace API.Controllers
             _costRegistryService = crs;
         }
         [Authorize()]
-        [HttpGet]
+        [HttpGet("get-all-cost-registry")]
         public async Task<IActionResult> Get()
         {
-            List<CostRegistryDTO> data = await _costRegistryService.GetAllCostRegistryByCode();
+            List<CostRegistryDTOGet> data = await _costRegistryService.GetAllCostRegistryByCode();
             if (data.Any())
             {
                 return Ok(data);
             }
-            else return Ok(new List<CostRegistryDTO>());
+            else return Ok(new List<CostRegistryDTOGet>());
         }
     }
 }

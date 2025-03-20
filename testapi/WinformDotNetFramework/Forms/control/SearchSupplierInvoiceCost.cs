@@ -1,29 +1,36 @@
 ﻿
+using System.Collections.Generic;
 using System.Windows.Forms;
+using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.control
 {
     public partial class SearchSupplierInvoiceCost : UserControl
     {
+        CostRegistryService _costRegistryService;
+        ICollection<CostRegistry> list = new List<CostRegistry>();
+
         public SearchSupplierInvoiceCost()
         {
+            _costRegistryService = new CostRegistryService();
             InitializeComponent();
         }
 
         public SupplierInvoiceCostFilter GetFilter()
         {
             SupplierInvoiceCostFilter filter = new SupplierInvoiceCostFilter();
-            filter.SupplierInvoiceCostName = NameTxt.Text;
-            if (!string.IsNullOrEmpty(RegistryTxt.Text))
-                filter.SupplierInvoiceCostRegistryCode = RegistryTxt.Text;
+            filter.SupplierInvoiceCostName = string.IsNullOrEmpty(NameTxt.Text)?null:NameTxt.Text;
+            if (!string.IsNullOrEmpty(CostRegistryCmbx.Text))
+                filter.SupplierInvoiceCostRegistryCode = CostRegistryCmbx.Text;
             else
                 filter.SupplierInvoiceCostRegistryCode = null;
 
-            if (!string.IsNullOrEmpty(InvoiceIDTxt.GetText()))
-                filter.SupplierInvoiceCostSupplierInvoiceId = int.Parse(InvoiceIDTxt.GetText());
+            if (!string.IsNullOrEmpty(InvoiceCodeTxt.Text))
+                filter.SupplierInvoiceCostSupplierInvoiceCode = InvoiceCodeTxt.Text;
             else
-                filter.SupplierInvoiceCostSupplierInvoiceId = null;
+                filter.SupplierInvoiceCostSupplierInvoiceCode = null;
             if (!string.IsNullOrEmpty(CostFromTxt.GetText()))
                 filter.SupplierInvoiceCostCostFrom = int.Parse(CostFromTxt.GetText());
             else
@@ -35,6 +42,11 @@ namespace WinformDotNetFramework.Forms.control
                 filter.SupplierInvoiceCostCostTo = null;
 
             return filter;
+        }
+        private async void SearchCustomerInvoiceCost_Load(object sender, System.EventArgs e)
+        {
+            list = await _costRegistryService.GetAll();
+            CostRegistryCmbx.DataSource = list;
         }
     }
 }

@@ -15,6 +15,9 @@ namespace WinformDotNetFramework.Forms.control
         {
             SupplierInvoiceFilter filter = new SupplierInvoiceFilter();
             filter.SupplierInvoiceStatus = StatusCmb.Text;
+            filter.SupplierInvoiceCode = string.IsNullOrEmpty(SupplierInvoiceCodeTxt.Text) ? null: SupplierInvoiceCodeTxt.Text;
+            filter.SupplierInvoiceSaleBoL = string.IsNullOrEmpty(SaleBoLTxt.Text) ? null: SaleBoLTxt.Text;
+            filter.SupplierInvoiceSaleBk = string.IsNullOrEmpty(SaleBkTxt.Text) ? null: SaleBkTxt.Text;
 
             if(!string.IsNullOrEmpty(CountrySupplierTxt.Text))
                 filter.SupplierInvoiceSupplierCountry = CountrySupplierTxt.Text;
@@ -26,15 +29,6 @@ namespace WinformDotNetFramework.Forms.control
             else
                 filter.SupplierInvoiceSupplierName = null;
 
-            if (!string.IsNullOrEmpty(SaleIDTxt.GetText()))
-                filter.SupplierInvoiceSaleID = int.Parse(SaleIDTxt.GetText());
-            else
-                filter.SupplierInvoiceSaleID = null;
-
-            if (!string.IsNullOrEmpty(SupplierIDTxt.GetText()))
-                filter.SupplierInvoiceSupplierID = int.Parse(SupplierIDTxt.GetText());
-            else
-                filter.SupplierInvoiceSupplierID = null;
 
             if (!string.IsNullOrEmpty(InvoiceAmountFromTxt.GetText()))
                 filter.SupplierInvoiceInvoiceAmountFrom = int.Parse(InvoiceAmountFromTxt.GetText());

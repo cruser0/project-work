@@ -15,8 +15,8 @@ namespace WinformDotNetFramework.Forms.control
         {
             SaleFilter saleFilter = new SaleFilter
             {
-                SaleBookingNumber = BNTextBox.Text,
-                SaleBoLnumber = BoLTextBox.Text
+                SaleBookingNumber = string.IsNullOrEmpty(BNTextBox.Text)?null: BNTextBox.Text,
+                SaleBoLnumber = string.IsNullOrEmpty(BoLTextBox.Text) ? null : BoLTextBox.Text
             };
 
             if(!string.IsNullOrEmpty(CustomerNameTxt.Text))
@@ -39,9 +39,6 @@ namespace WinformDotNetFramework.Forms.control
                 saleFilter.SaleRevenueTo = null;
             else
                 saleFilter.SaleRevenueTo = int.Parse(RevenueToTxt.GetText());
-
-            saleFilter.SaleCustomerId = null;
-
             if (StatusCB.Text == "All")
                 saleFilter.SaleStatus = null;
             else

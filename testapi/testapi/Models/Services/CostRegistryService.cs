@@ -16,12 +16,12 @@ namespace API.Models.Services
         {
             return await  _context.CostRegistries.Where(x => x.CostRegistryUniqueCode.Equals(name)).FirstOrDefaultAsync();
         }
-        public async Task<List<CostRegistryDTO>> GetAllCostRegistryByCode()
+        public async Task<List<CostRegistryDTOGet>> GetAllCostRegistryByCode()
         {
             var list=await _context.CostRegistries.ToListAsync();
             if(list.Any())
-                return (List<CostRegistryDTO>)list.Select(x => Mapper.CostRegistryMapper.Map(x));
-            return new List<CostRegistryDTO>();
+                return (List<CostRegistryDTOGet>)list.Select(x => Mapper.CostRegistryMapper.MapGet(x));
+            return new List<CostRegistryDTOGet>();
         }
     }
 }

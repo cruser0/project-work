@@ -47,7 +47,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             Init();
             if (id != null)
             {
-                searchSupplierInvoice1.SupplierIDTxt.SetText(id);
+                //searchSupplierInvoice1.SupplierIDTxt.SetText(id);
                 MyControl_ButtonClicked(this, EventArgs.Empty);
             }
         }

@@ -31,6 +31,10 @@ namespace WinformDotNetFramework.Forms.control
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.CustomerNameTxt = new System.Windows.Forms.TextBox();
+            this.CustomerNameLbl = new System.Windows.Forms.Label();
+            this.CustomerCountryLbl = new System.Windows.Forms.Label();
+            this.CustomerCountryTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.RevenueFromTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,10 +50,6 @@ namespace WinformDotNetFramework.Forms.control
             this.BillofLadingLbl = new System.Windows.Forms.Label();
             this.DateFromDTP = new System.Windows.Forms.DateTimePicker();
             this.BoLTextBox = new System.Windows.Forms.TextBox();
-            this.CustomerNameTxt = new System.Windows.Forms.TextBox();
-            this.CustomerNameLbl = new System.Windows.Forms.Label();
-            this.CustomerCountryLbl = new System.Windows.Forms.Label();
-            this.CustomerCountryTxt = new System.Windows.Forms.TextBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,8 +79,52 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 392);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 392);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // CustomerNameTxt
+            // 
+            this.CustomerNameTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.CustomerNameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CustomerNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerNameTxt.Location = new System.Drawing.Point(0, 324);
+            this.CustomerNameTxt.MaxLength = 50;
+            this.CustomerNameTxt.Name = "CustomerNameTxt";
+            this.CustomerNameTxt.Size = new System.Drawing.Size(180, 20);
+            this.CustomerNameTxt.TabIndex = 21;
+            // 
+            // CustomerNameLbl
+            // 
+            this.CustomerNameLbl.AutoSize = true;
+            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerNameLbl.Location = new System.Drawing.Point(3, 306);
+            this.CustomerNameLbl.Name = "CustomerNameLbl";
+            this.CustomerNameLbl.Size = new System.Drawing.Size(107, 17);
+            this.CustomerNameLbl.TabIndex = 23;
+            this.CustomerNameLbl.Text = "Customer Name";
+            // 
+            // CustomerCountryLbl
+            // 
+            this.CustomerCountryLbl.AutoSize = true;
+            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerCountryLbl.Location = new System.Drawing.Point(3, 347);
+            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
+            this.CustomerCountryLbl.Size = new System.Drawing.Size(121, 17);
+            this.CustomerCountryLbl.TabIndex = 24;
+            this.CustomerCountryLbl.Text = "Customer Country";
+            // 
+            // CustomerCountryTxt
+            // 
+            this.CustomerCountryTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.CustomerCountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CustomerCountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerCountryTxt.Location = new System.Drawing.Point(0, 365);
+            this.CustomerCountryTxt.MaxLength = 50;
+            this.CustomerCountryTxt.Name = "CustomerCountryTxt";
+            this.CustomerCountryTxt.Size = new System.Drawing.Size(180, 20);
+            this.CustomerCountryTxt.TabIndex = 22;
             // 
             // label4
             // 
@@ -247,57 +291,13 @@ namespace WinformDotNetFramework.Forms.control
             this.BoLTextBox.Size = new System.Drawing.Size(180, 20);
             this.BoLTextBox.TabIndex = 2;
             // 
-            // CustomerNameTxt
-            // 
-            this.CustomerNameTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.CustomerNameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CustomerNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerNameTxt.Location = new System.Drawing.Point(0, 324);
-            this.CustomerNameTxt.MaxLength = 50;
-            this.CustomerNameTxt.Name = "CustomerNameTxt";
-            this.CustomerNameTxt.Size = new System.Drawing.Size(180, 20);
-            this.CustomerNameTxt.TabIndex = 21;
-            // 
-            // CustomerNameLbl
-            // 
-            this.CustomerNameLbl.AutoSize = true;
-            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerNameLbl.Location = new System.Drawing.Point(3, 306);
-            this.CustomerNameLbl.Name = "CustomerNameLbl";
-            this.CustomerNameLbl.Size = new System.Drawing.Size(107, 17);
-            this.CustomerNameLbl.TabIndex = 23;
-            this.CustomerNameLbl.Text = "Customer Name";
-            // 
-            // CustomerCountryLbl
-            // 
-            this.CustomerCountryLbl.AutoSize = true;
-            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerCountryLbl.Location = new System.Drawing.Point(3, 347);
-            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
-            this.CustomerCountryLbl.Size = new System.Drawing.Size(121, 17);
-            this.CustomerCountryLbl.TabIndex = 24;
-            this.CustomerCountryLbl.Text = "Customer Country";
-            // 
-            // CustomerCountryTxt
-            // 
-            this.CustomerCountryTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.CustomerCountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CustomerCountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerCountryTxt.Location = new System.Drawing.Point(0, 365);
-            this.CustomerCountryTxt.MaxLength = 50;
-            this.CustomerCountryTxt.Name = "CustomerCountryTxt";
-            this.CustomerCountryTxt.Size = new System.Drawing.Size(180, 20);
-            this.CustomerCountryTxt.TabIndex = 22;
-            // 
             // SearchSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSale";
-            this.Size = new System.Drawing.Size(180, 392);
+            this.Size = new System.Drawing.Size(200, 392);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

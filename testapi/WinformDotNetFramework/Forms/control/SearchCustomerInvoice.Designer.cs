@@ -42,6 +42,12 @@ namespace WinformDotNetFramework.Forms.control
             this.StatusCmb = new System.Windows.Forms.ComboBox();
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
             this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
+            this.InvoiceBoLTxt = new System.Windows.Forms.TextBox();
+            this.InvoiceSaleBoLLbl = new System.Windows.Forms.Label();
+            this.InvoiceSaleBkTxt = new System.Windows.Forms.TextBox();
+            this.InvoiceSaleBKLbl = new System.Windows.Forms.Label();
+            this.CustomerInvoiceCodeTxt = new System.Windows.Forms.TextBox();
+            this.CustomerInvoiceCodeLbl = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +56,12 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.CustomerInvoiceCodeTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.CustomerInvoiceCodeLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceSaleBkTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceSaleBKLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceBoLTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceSaleBoLLbl);
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.label3);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
@@ -64,7 +76,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 243);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 382);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // label4
@@ -185,13 +197,79 @@ namespace WinformDotNetFramework.Forms.control
             this.DateFromClnd.Size = new System.Drawing.Size(180, 20);
             this.DateFromClnd.TabIndex = 5;
             // 
+            // InvoiceBoLTxt
+            // 
+            this.InvoiceBoLTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.InvoiceBoLTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InvoiceBoLTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceBoLTxt.Location = new System.Drawing.Point(-1, 248);
+            this.InvoiceBoLTxt.MaxLength = 100;
+            this.InvoiceBoLTxt.Name = "InvoiceBoLTxt";
+            this.InvoiceBoLTxt.Size = new System.Drawing.Size(180, 20);
+            this.InvoiceBoLTxt.TabIndex = 23;
+            // 
+            // InvoiceSaleBoLLbl
+            // 
+            this.InvoiceSaleBoLLbl.AutoSize = true;
+            this.InvoiceSaleBoLLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.InvoiceSaleBoLLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceSaleBoLLbl.Location = new System.Drawing.Point(2, 228);
+            this.InvoiceSaleBoLLbl.Name = "InvoiceSaleBoLLbl";
+            this.InvoiceSaleBoLLbl.Size = new System.Drawing.Size(60, 17);
+            this.InvoiceSaleBoLLbl.TabIndex = 24;
+            this.InvoiceSaleBoLLbl.Text = "Sale BoL";
+            // 
+            // InvoiceSaleBkTxt
+            // 
+            this.InvoiceSaleBkTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.InvoiceSaleBkTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InvoiceSaleBkTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceSaleBkTxt.Location = new System.Drawing.Point(-1, 294);
+            this.InvoiceSaleBkTxt.MaxLength = 100;
+            this.InvoiceSaleBkTxt.Name = "InvoiceSaleBkTxt";
+            this.InvoiceSaleBkTxt.Size = new System.Drawing.Size(180, 20);
+            this.InvoiceSaleBkTxt.TabIndex = 25;
+            // 
+            // InvoiceSaleBKLbl
+            // 
+            this.InvoiceSaleBKLbl.AutoSize = true;
+            this.InvoiceSaleBKLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.InvoiceSaleBKLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceSaleBKLbl.Location = new System.Drawing.Point(2, 274);
+            this.InvoiceSaleBKLbl.Name = "InvoiceSaleBKLbl";
+            this.InvoiceSaleBKLbl.Size = new System.Drawing.Size(142, 17);
+            this.InvoiceSaleBKLbl.TabIndex = 26;
+            this.InvoiceSaleBKLbl.Text = "Sale Booking Number";
+            // 
+            // CustomerInvoiceCodeTxt
+            // 
+            this.CustomerInvoiceCodeTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.CustomerInvoiceCodeTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CustomerInvoiceCodeTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerInvoiceCodeTxt.Location = new System.Drawing.Point(-1, 341);
+            this.CustomerInvoiceCodeTxt.MaxLength = 100;
+            this.CustomerInvoiceCodeTxt.Name = "CustomerInvoiceCodeTxt";
+            this.CustomerInvoiceCodeTxt.Size = new System.Drawing.Size(180, 20);
+            this.CustomerInvoiceCodeTxt.TabIndex = 27;
+            // 
+            // CustomerInvoiceCodeLbl
+            // 
+            this.CustomerInvoiceCodeLbl.AutoSize = true;
+            this.CustomerInvoiceCodeLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.CustomerInvoiceCodeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerInvoiceCodeLbl.Location = new System.Drawing.Point(2, 321);
+            this.CustomerInvoiceCodeLbl.Name = "CustomerInvoiceCodeLbl";
+            this.CustomerInvoiceCodeLbl.Size = new System.Drawing.Size(150, 17);
+            this.CustomerInvoiceCodeLbl.TabIndex = 28;
+            this.CustomerInvoiceCodeLbl.Text = "Customer Invoice Code";
+            // 
             // SearchCustomerInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoice";
-            this.Size = new System.Drawing.Size(180, 243);
+            this.Size = new System.Drawing.Size(200, 382);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -212,5 +290,11 @@ namespace WinformDotNetFramework.Forms.control
         public ComboBox StatusCmb;
         public DateTimePicker DateToClnd;
         public DateTimePicker DateFromClnd;
+        public TextBox InvoiceSaleBkTxt;
+        private Label InvoiceSaleBKLbl;
+        public TextBox InvoiceBoLTxt;
+        private Label InvoiceSaleBoLLbl;
+        public TextBox CustomerInvoiceCodeTxt;
+        private Label CustomerInvoiceCodeLbl;
     }
 }

@@ -121,6 +121,7 @@
     <Compile Include="Entities\Charts\SaleCountryTotalDTO.cs" />
     <Compile Include="Entities\Charts\SaleDateTotalDTO.cs" />
     <Compile Include="Entities\Charts\SaleListChartDTO.cs" />
+    <Compile Include="Entities\CostRegistry.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerInvoice.cs" />
     <Compile Include="Entities\CustomerInvoiceCost.cs" />
@@ -568,6 +569,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\BaseCallService.cs" />
+    <Compile Include="Services\CostRegistryService.cs" />
     <Compile Include="Services\CustomerInvoiceCostService.cs" />
     <Compile Include="Services\CustomerInvoiceService.cs" />
     <Compile Include="Services\CustomerService.cs" />

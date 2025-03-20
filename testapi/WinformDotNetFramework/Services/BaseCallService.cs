@@ -22,7 +22,11 @@ namespace WinformDotNetFramework.Services
         //makes a delete call to the api with query string used for getAll and Count
         private async Task<HttpResponseMessage> GetRepsponseGetWithQueryString(ClientAPI client, string uri, string queryString)
         {
-            HttpResponseMessage response = await client.GetClient().GetAsync(client.GetBaseUri() + uri + queryString);
+            HttpResponseMessage response;
+            if (string.IsNullOrEmpty(queryString))
+                response = await client.GetClient().GetAsync(client.GetBaseUri() + uri);
+            else
+                response = await client.GetClient().GetAsync(client.GetBaseUri() + uri + queryString);
             return response;
         }
 

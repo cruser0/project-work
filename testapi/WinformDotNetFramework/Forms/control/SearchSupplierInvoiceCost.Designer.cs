@@ -37,11 +37,11 @@ namespace WinformDotNetFramework.Forms.control
             this.CostToTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.label1 = new System.Windows.Forms.Label();
             this.CostFromTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.InvoiceIDTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
-            this.RegistryTxt = new System.Windows.Forms.TextBox();
-            this.RegistryLbl = new System.Windows.Forms.Label();
+            this.CostRegistryLbl = new System.Windows.Forms.Label();
+            this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
+            this.InvoiceCodeTxt = new System.Windows.Forms.TextBox();
+            this.InvoiceCodeLbl = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,21 +50,21 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.TextBoxesRightPanel.Controls.Add(this.RegistryTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.RegistryLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceCodeTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceCodeLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.CostRegistryLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.CostRegistryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostToTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label1);
             this.TextBoxesRightPanel.Controls.Add(this.CostFromTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDTxt);
-            this.TextBoxesRightPanel.Controls.Add(this.InvoiceIDLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CostLbl);
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 260);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 263);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // label2
@@ -129,26 +129,6 @@ namespace WinformDotNetFramework.Forms.control
             this.CostFromTxt.Size = new System.Drawing.Size(180, 20);
             this.CostFromTxt.TabIndex = 12;
             // 
-            // InvoiceIDTxt
-            // 
-            this.InvoiceIDTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.InvoiceIDTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceIDTxt.Location = new System.Drawing.Point(0, 42);
-            this.InvoiceIDTxt.Name = "InvoiceIDTxt";
-            this.InvoiceIDTxt.Size = new System.Drawing.Size(180, 20);
-            this.InvoiceIDTxt.TabIndex = 11;
-            // 
-            // InvoiceIDLbl
-            // 
-            this.InvoiceIDLbl.AutoSize = true;
-            this.InvoiceIDLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.InvoiceIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceIDLbl.Location = new System.Drawing.Point(2, 23);
-            this.InvoiceIDLbl.Name = "InvoiceIDLbl";
-            this.InvoiceIDLbl.Size = new System.Drawing.Size(70, 17);
-            this.InvoiceIDLbl.TabIndex = 3;
-            this.InvoiceIDLbl.Text = "Invoice ID";
-            // 
             // CostLbl
             // 
             this.CostLbl.AutoSize = true;
@@ -160,27 +140,48 @@ namespace WinformDotNetFramework.Forms.control
             this.CostLbl.TabIndex = 4;
             this.CostLbl.Text = "Cost From";
             // 
-            // RegistryTxt
+            // CostRegistryLbl
             // 
-            this.RegistryTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.RegistryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RegistryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RegistryTxt.Location = new System.Drawing.Point(0, 219);
-            this.RegistryTxt.MaxLength = 100;
-            this.RegistryTxt.Name = "RegistryTxt";
-            this.RegistryTxt.Size = new System.Drawing.Size(180, 20);
-            this.RegistryTxt.TabIndex = 18;
+            this.CostRegistryLbl.AutoSize = true;
+            this.CostRegistryLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.CostRegistryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CostRegistryLbl.Location = new System.Drawing.Point(3, 201);
+            this.CostRegistryLbl.Name = "CostRegistryLbl";
+            this.CostRegistryLbl.Size = new System.Drawing.Size(125, 17);
+            this.CostRegistryLbl.TabIndex = 26;
+            this.CostRegistryLbl.Text = "Cost Registry Code";
             // 
-            // RegistryLbl
+            // CostRegistryCmbx
             // 
-            this.RegistryLbl.AutoSize = true;
-            this.RegistryLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.RegistryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RegistryLbl.Location = new System.Drawing.Point(3, 201);
-            this.RegistryLbl.Name = "RegistryLbl";
-            this.RegistryLbl.Size = new System.Drawing.Size(94, 17);
-            this.RegistryLbl.TabIndex = 19;
-            this.RegistryLbl.Text = "Registry Code";
+            this.CostRegistryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CostRegistryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CostRegistryCmbx.FormattingEnabled = true;
+            this.CostRegistryCmbx.Location = new System.Drawing.Point(0, 221);
+            this.CostRegistryCmbx.Name = "CostRegistryCmbx";
+            this.CostRegistryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CostRegistryCmbx.TabIndex = 25;
+            // 
+            // InvoiceCodeTxt
+            // 
+            this.InvoiceCodeTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.InvoiceCodeTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InvoiceCodeTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceCodeTxt.Location = new System.Drawing.Point(0, 41);
+            this.InvoiceCodeTxt.MaxLength = 100;
+            this.InvoiceCodeTxt.Name = "InvoiceCodeTxt";
+            this.InvoiceCodeTxt.Size = new System.Drawing.Size(180, 20);
+            this.InvoiceCodeTxt.TabIndex = 27;
+            // 
+            // InvoiceCodeLbl
+            // 
+            this.InvoiceCodeLbl.AutoSize = true;
+            this.InvoiceCodeLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.InvoiceCodeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceCodeLbl.Location = new System.Drawing.Point(3, 21);
+            this.InvoiceCodeLbl.Name = "InvoiceCodeLbl";
+            this.InvoiceCodeLbl.Size = new System.Drawing.Size(142, 17);
+            this.InvoiceCodeLbl.TabIndex = 28;
+            this.InvoiceCodeLbl.Text = "Supplier Invoice Code";
             // 
             // SearchSupplierInvoiceCost
             // 
@@ -188,7 +189,7 @@ namespace WinformDotNetFramework.Forms.control
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplierInvoiceCost";
-            this.Size = new System.Drawing.Size(200, 260);
+            this.Size = new System.Drawing.Size(200, 263);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -203,11 +204,11 @@ namespace WinformDotNetFramework.Forms.control
         private IntegerTextBoxUserControl CostToTxt;
         private Label label1;
         private IntegerTextBoxUserControl CostFromTxt;
-        private IntegerTextBoxUserControl InvoiceIDTxt;
-        private Label InvoiceIDLbl;
         private Label CostLbl;
         private Label label2;
-        private TextBox RegistryTxt;
-        private Label RegistryLbl;
+        private Label CostRegistryLbl;
+        private ComboBox CostRegistryCmbx;
+        public TextBox InvoiceCodeTxt;
+        private Label InvoiceCodeLbl;
     }
 }
