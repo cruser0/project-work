@@ -611,36 +611,35 @@ namespace WinformDotNetFramework.Forms
 
         private void AttachMouseDownToControls(Control parent, HashSet<Control> controlsWithEvent)
         {
-            private void AttachMouseDownToControls(Control parent, HashSet<Control> controlsWithEvent)
+
+            // Skip already processed controls
+            if (controlsWithEvent.Contains(parent))
+                return;
+
+            // Check if the control is an interactive component
+            bool isInteractive = parent is ComboBox ||
+                                 parent is TextBox ||
+                                 parent is Button ||
+                                 parent is CheckBox ||
+                                 parent is RadioButton ||
+                                 parent is ListBox ||
+                                 parent is DateTimePicker ||
+                                 parent is NumericUpDown ||
+                                 parent is TrackBar;
+
+            if (!isInteractive)
             {
-                // Skip already processed controls
-                if (controlsWithEvent.Contains(parent))
-                    return;
-
-                // Check if the control is an interactive component
-                bool isInteractive = parent is ComboBox ||
-                                     parent is TextBox ||
-                                     parent is Button ||
-                                     parent is CheckBox ||
-                                     parent is RadioButton ||
-                                     parent is ListBox ||
-                                     parent is DateTimePicker ||
-                                     parent is NumericUpDown ||
-                                     parent is TrackBar;
-
-                if (!isInteractive)
-                {
-                    // Attach the event only to non-interactive controls
-                    parent.MouseClick += FormControl_MouseDown;
-                    controlsWithEvent.Add(parent);  // Track that the event is attached
-                }
-
-                // Recursively attach the event to all child controls
-                foreach (Control child in parent.Controls)
-                {
-                    AttachMouseDownToControls(child, controlsWithEvent);
-                }
+                // Attach the event only to non-interactive controls
+                parent.MouseClick += FormControl_MouseDown;
+                controlsWithEvent.Add(parent);  // Track that the event is attached
             }
+
+            // Recursively attach the event to all child controls
+            foreach (Control child in parent.Controls)
+            {
+                AttachMouseDownToControls(child, controlsWithEvent);
+            }
+
         }
 
         private void FormControl_MouseDown(object sender, MouseEventArgs e)
