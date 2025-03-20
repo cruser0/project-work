@@ -25,14 +25,14 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly StatusService _statusService;
-        private readonly ISalesService _saleService;
+
         // List of valid invoice statuses
         List<string> statusList = new() { "paid", "unpaid" };
-        public CustomerInvoicesServices(Progetto_FormativoContext ctx, StatusService ss, ISalesService salesService)
+        public CustomerInvoicesServices(Progetto_FormativoContext ctx, StatusService ss)
         {
             _context = ctx;
             _statusService = ss;
-            _saleService = salesService;
+
         }
 
         public async Task<ICollection<CustomerInvoiceDTOGet>> GetAllCustomerInvoices(CustomerInvoiceFilter filter)
@@ -330,7 +330,7 @@ namespace API.Models.Services
             {
                 foreach (CustomerInvoiceDTOGet customerInvoice in newCustomerInvoices)
                 {
-                    var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoice.CustomerInvoiceId).Include(x => x.Status).FirstOrDefaultAsync();
+                    var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoice.CustomerInvoiceId).Include(x => x.Status).Include(x => x.Sale).FirstOrDefaultAsync();
 
                     // Check if the customer invoice exists
                     if (ciDB == null)
@@ -346,7 +346,7 @@ namespace API.Models.Services
                     if (!await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).AnyAsync())
                         throw new NotFoundException("Old SaleId not found");
                     Status statusnew = _statusService.GetStatusByName(customerInvoice.Status);
-                    CustomerInvoice customerInvoiceMapped = CustomerInvoiceMapper.Map(customerInvoice, statusnew, await _saleService.GetOnlySaleById((int)customerInvoice.SaleID));
+                    CustomerInvoice customerInvoiceMapped = CustomerInvoiceMapper.Map(customerInvoice, statusnew, ciDB.Sale);
                     ciDB.InvoiceAmount = customerInvoiceMapped.InvoiceAmount ?? ciDB.InvoiceAmount;
                     ciDB.InvoiceDate = customerInvoiceMapped.InvoiceDate ?? ciDB.InvoiceDate;
                     ciDB.StatusID = customerInvoiceMapped.StatusID ?? ciDB.StatusID;
