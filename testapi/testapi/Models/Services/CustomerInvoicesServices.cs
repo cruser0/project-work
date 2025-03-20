@@ -53,9 +53,9 @@ namespace API.Models.Services
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
             var query = _context.CustomerInvoices.Include(x => x.Status).Include(x => x.Sale).AsQueryable();
 
-            if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBkBoL))
+            if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBoL))
             {
-                query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBkBoL));
+                query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBoL));
             }
 
             if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBk))

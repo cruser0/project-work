@@ -98,9 +98,9 @@ namespace API.Models.Services
 
             if (filter != null)
             {
-                if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBkBoL))
+                if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBoL))
                 {
-                    query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBkBoL));
+                    query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBoL));
                 }
 
                 if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBk))
@@ -355,9 +355,9 @@ namespace API.Models.Services
                     query = query.Where(s => s.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
                 }
 
-                if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBkBoL))
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBoL))
                 {
-                    query = query.Where(s => s.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBkBoL));
+                    query = query.Where(s => s.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBoL));
                 }
                 if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBk))
                 {
