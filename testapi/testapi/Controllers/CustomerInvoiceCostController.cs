@@ -68,7 +68,7 @@ namespace API.Controllers
         public async Task<IActionResult> Post(CustomerInvoiceCostDTO customerInvoiceCost)
         {
             var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost,
-                                                                                                                    _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),
+                                                                                                                    await _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),
                                                                                                                     await _customerInvoiceService.GetOnlyCustomerInvoiceById((int)customerInvoiceCost.CustomerInvoiceId!)));
             if (data == null)
                 throw new NotFoundException("Customer Invoice Cost not found");
@@ -81,7 +81,7 @@ namespace API.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceCostDTO customerInvoiceCost)
         {
             var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost,
-                                                                                                                    _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),
+                                                                                                                    await _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),
                                                                                                                     await _customerInvoiceService.GetOnlyCustomerInvoiceById((int)customerInvoiceCost.CustomerInvoiceId!)));
             if (data == null)
                 throw new NotFoundException("Customer Invoice Cost not found");

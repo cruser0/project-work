@@ -68,7 +68,7 @@ namespace API.Controllers
 
 
             var data = await _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost,
-                                                                                                                    _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
+                                                                                                                    await _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
                                                                                                                     await _supplierInvoiceService.GetOnlySupplierInvoiceById((int)supplierInvoiceCost.SupplierInvoiceId!)));
             if (data == null)
                 throw new NotFoundException("Supplier Invoice Cost not found");
@@ -84,7 +84,7 @@ namespace API.Controllers
         {
 
             var data = await _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost,
-                                                                                                                    _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
+                                                                                                                    await _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
                                                                                                                     await _supplierInvoiceService.GetOnlySupplierInvoiceById((int)supplierInvoiceCost.SupplierInvoiceId!)));
             if (data == null)
                 throw new NotFoundException("Supplier Invoice Cost not found");
