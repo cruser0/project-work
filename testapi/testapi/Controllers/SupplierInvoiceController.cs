@@ -15,11 +15,13 @@ namespace API.Controllers
     public class SupplierInvoiceController : ControllerBase
     {
         private readonly ISupplierInvoiceService _supplierInvoiceService;
+        private readonly ISalesService _saleService;
         private readonly StatusService _statusService;
-        public SupplierInvoiceController(ISupplierInvoiceService supplierInvoiceService, StatusService statusService)
+        public SupplierInvoiceController(ISupplierInvoiceService supplierInvoiceService, StatusService statusService, SaleServices saleServ)
         {
             _supplierInvoiceService = supplierInvoiceService;
             _statusService = statusService;
+            _saleService = saleServ;
         }
         // GET: api/<SupplierInvoiceController>
         [Authorize(Roles = "Admin,SupplierInvoiceRead,SupplierInvoiceWrite,SupplierInvoiceAdmin,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
@@ -62,7 +64,9 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SupplierInvoiceDTO supplierInvoice)
         {
-            var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice, _statusService.GetStatusByName(supplierInvoice.Status!)));
+            var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice,
+                                                                                                    _statusService.GetStatusByName(supplierInvoice.Status!),
+                                                                                                    await _saleService.GetOnlySaleById((int)supplierInvoice.SaleId!)));
             if (data == null)
                 throw new NotFoundException("Couldn't create supplier invoice");
             return Ok(data);
@@ -75,7 +79,9 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceDTO supplierInvoice)
         {
-            var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice, _statusService.GetStatusByName(supplierInvoice.Status!)));
+            var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice,
+                                                                                                    _statusService.GetStatusByName(supplierInvoice.Status!),
+                                                                                                    await _saleService.GetOnlySaleById((int)supplierInvoice.SaleId!)));
             if (data == null)
                 throw new NotFoundException("Couldn't update supplier invoice");
             return Ok(data);

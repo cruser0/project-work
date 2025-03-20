@@ -15,11 +15,13 @@ namespace API.Controllers
     public class CustomerInvoiceController : ControllerBase
     {
         private readonly ICustomerInvoicesService _customerInvoiceService;
+        private readonly ISalesService _saleService;
         private readonly StatusService _statusService;
-        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService, StatusService ss)
+        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService, StatusService ss, SaleServices saleServ)
         {
             _customerInvoiceService = customerInvoiceService;
             _statusService = ss;
+            _saleService = saleServ;
         }
 
 
@@ -73,7 +75,9 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceDTO customerInvoice)
         {
-            var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice, _statusService.GetStatusByName(customerInvoice.Status)));
+            var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,
+                                                                                                    _statusService.GetStatusByName(customerInvoice.Status),
+                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));
             if (data == null)
                 throw new NotFoundException("Customer Invoices not found!");
             return Ok(data);
@@ -86,7 +90,9 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
         {
-            var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice, _statusService.GetStatusByName(customerInvoice.Status)));
+            var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice,
+                                                                                                    _statusService.GetStatusByName(customerInvoice.Status),
+                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));
             if (data == null)
                 if (data == null)
                     throw new NotFoundException("Customer Invoices not found!");
