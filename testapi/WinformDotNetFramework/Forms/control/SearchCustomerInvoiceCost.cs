@@ -53,7 +53,7 @@ namespace WinformDotNetFramework.Forms.control
         private async void SearchCustomerInvoiceCost_Load(object sender, System.EventArgs e)
         {
             list=await costRegistryService.GetAll();
-            list.Add(new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 0, CostRegistryQuantity = 0, CostRegistryUniqueCode = "All" });
+            list = new List<CostRegistry>() { new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 0, CostRegistryQuantity = 0, CostRegistryUniqueCode = "All" } }.Concat(list).ToList();
             CostRegistryCmbx.DataSource = list.Select(x => x.CostRegistryUniqueCode).ToList();
         }
     }
