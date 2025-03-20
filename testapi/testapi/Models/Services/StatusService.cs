@@ -12,7 +12,7 @@ namespace API.Models.Services
 
         public Status? GetStatusByName(string? name)
         {
-            return _context.Statuses.Where(x => x.StatusName.Equals(name)).FirstOrDefault();
+            return _context.Statuses.Where(x => x.StatusName.ToLower().Equals(name.ToLower())).FirstOrDefault();
         }
     }
 }
