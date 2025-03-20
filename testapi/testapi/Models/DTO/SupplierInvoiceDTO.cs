@@ -6,6 +6,8 @@ public class SupplierInvoiceDTO
 {
     public string? SupplierInvoiceCode { get; set; }
     public int? SaleId { get; set; }
+    public string? SaleBookingNumber { get; set; }
+    public string? SaleBoL { get; set; }
     public int? SupplierId { get; set; }
     public decimal? InvoiceAmount { get; set; }
     public DateTime? InvoiceDate { get; set; }
@@ -31,6 +33,8 @@ public class SupplierInvoiceSupplierDTO : SupplierInvoiceDTOGet
         Country = s.Country.CountryName;
         SupplierId = si.SupplierID;
         SaleId = si.SaleID;
+        SaleBookingNumber = si.SaleBookingNumber;
+        SaleBoL = si.SaleBoL;
         InvoiceAmount = si.InvoiceAmount;
         InvoiceDate = si.InvoiceDate;
         Status = si.Status.StatusName;

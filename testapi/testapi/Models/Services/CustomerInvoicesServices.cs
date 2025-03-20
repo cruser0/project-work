@@ -50,13 +50,6 @@ namespace API.Models.Services
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
             var query = _context.CustomerInvoices.Include(x => x.Status).AsQueryable();
 
-            if (filter.CustomerInvoiceSaleId != null)
-            {
-                query = query.Where(x => x.SaleID == filter.CustomerInvoiceSaleId);
-            }
-
-
-
             if (filter.CustomerInvoiceInvoiceAmountFrom != null && filter.CustomerInvoiceInvoiceAmountTo != null)
             {
                 query = query.Where(s => s.InvoiceAmount >= filter.CustomerInvoiceInvoiceAmountFrom && s.InvoiceAmount <= filter.CustomerInvoiceInvoiceAmountTo);
@@ -325,8 +318,8 @@ namespace API.Models.Services
                     int? oldSaleId = ciDB.SaleID;
 
                     // Update customer invoice fields only if a new one is provided
-                    ciDB.SaleID = customerInvoice.SaleId ?? ciDB.SaleID;
-                    if (!await _context.Sales.Where(x => x.SaleID == customerInvoice.SaleId).AnyAsync())
+                    ciDB.SaleID = customerInvoice.SaleID ?? ciDB.SaleID;
+                    if (!await _context.Sales.Where(x => x.SaleID == customerInvoice.SaleID).AnyAsync())
                         throw new NotFoundException("SaleId not found");
                     if (!await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).AnyAsync())
                         throw new NotFoundException("Old SaleId not found");

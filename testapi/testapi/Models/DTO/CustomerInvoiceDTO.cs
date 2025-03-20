@@ -3,7 +3,7 @@
 public class CustomerInvoiceDTO
 {
     public string? CustomerInvoiceCode { get; set; }
-    public int? SaleId { get; set; }
+    public int? SaleID { get; set; }
     public string? SaleBookingNumber { get; set; }
     public string? SaleBoL { get; set; }
     public decimal? InvoiceAmount { get; set; }
