@@ -11,6 +11,8 @@ namespace API.Models.Mapper
             {
 
                 SaleId = supplierInvoice.SaleID,
+                SaleBoL = supplierInvoice.Sale.BoLnumber,
+                SaleBookingNumber = supplierInvoice.Sale.BookingNumber,
                 SupplierId = supplierInvoice.SupplierID,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
                 SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
@@ -19,7 +21,7 @@ namespace API.Models.Mapper
 
             };
         }
-        public static SupplierInvoice Map(SupplierInvoiceDTO supplierInvoice, Status status)
+        public static SupplierInvoice Map(SupplierInvoiceDTO supplierInvoice, Status? status, Sale? sale)
         {
             return new SupplierInvoice()
             {
@@ -30,7 +32,8 @@ namespace API.Models.Mapper
                 SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = status,
-                StatusID = status?.StatusID
+                StatusID = status?.StatusID,
+                Sale = sale
             };
         }
 
@@ -41,6 +44,8 @@ namespace API.Models.Mapper
 
                 InvoiceId = supplierInvoice.SupplierInvoiceID,
                 SaleId = supplierInvoice.SaleID,
+                SaleBoL = supplierInvoice.Sale.BoLnumber,
+                SaleBookingNumber = supplierInvoice.Sale.BookingNumber,
                 SupplierId = supplierInvoice.SupplierID,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
                 SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
@@ -49,7 +54,7 @@ namespace API.Models.Mapper
 
             };
         }
-        public static SupplierInvoice MapGet(SupplierInvoiceDTOGet supplierInvoice, Status status)
+        public static SupplierInvoice MapGet(SupplierInvoiceDTOGet supplierInvoice, Status? status, Sale? sale)
         {
             return new SupplierInvoice()
             {
@@ -61,7 +66,8 @@ namespace API.Models.Mapper
                 SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = status,
-                StatusID = status.StatusID
+                StatusID = status.StatusID,
+                Sale = sale
 
             };
         }

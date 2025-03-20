@@ -9,7 +9,9 @@ namespace API.Models.Mapper
         {
             return new CustomerInvoiceDTO()
             {
-                SaleId = customerInvoice.SaleID,
+                SaleID = customerInvoice.SaleID,
+                SaleBoL = customerInvoice.Sale.BoLnumber,
+                SaleBookingNumber = customerInvoice.Sale.BookingNumber,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status!.StatusName,
@@ -18,16 +20,17 @@ namespace API.Models.Mapper
         }
 
 
-        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status? status)
+        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status? status, Sale? sale)
         {
             return new CustomerInvoice()
             {
-                SaleID = customerInvoice.SaleId,
+                SaleID = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 Status = status,
-                StatusID = status?.StatusID
+                StatusID = status?.StatusID,
+                Sale = sale
             };
         }
 
@@ -36,7 +39,9 @@ namespace API.Models.Mapper
             return new CustomerInvoiceDTOGet()
             {
                 CustomerInvoiceId = customerInvoice.CustomerInvoiceID,
-                SaleId = customerInvoice.SaleID,
+                SaleID = customerInvoice.SaleID,
+                SaleBoL = customerInvoice.Sale.BoLnumber,
+                SaleBookingNumber = customerInvoice.Sale.BookingNumber,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 InvoiceDate = customerInvoice.InvoiceDate,
@@ -45,17 +50,18 @@ namespace API.Models.Mapper
         }
 
 
-        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice, Status? status)
+        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice, Status? status, Sale? sale)
         {
             return new CustomerInvoice()
             {
                 CustomerInvoiceID = (int)customerInvoice.CustomerInvoiceId!,
-                SaleID = customerInvoice.SaleId,
+                SaleID = customerInvoice.SaleID,
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 Status = status,
-                StatusID = status?.StatusID
+                StatusID = status?.StatusID,
+                Sale = sale
             };
         }
     }
