@@ -152,48 +152,58 @@ namespace API.Models.Services
 
         public async Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer)
         {
+            await using var transaction = await _context.Database.BeginTransactionAsync();
             // Retrieve the customer from the database based on the provided ID
             var cDB = await _context.Customers.Where(x => x.CustomerID == id).Include(x => x.Country).FirstOrDefaultAsync();
 
-            // If the customer does not exist, throw an exception
-            if (cDB == null)
-                throw new NotFoundException("Customer not found");
 
-            if ((bool)cDB.Deprecated)
-                throw new ErrorInputPropertyException("Can't update deprecated customer");
-
-            if (customer.CustomerName != null)
-                if (customer.CustomerName.Length > 100)
-                    throw new ErrorInputPropertyException("Customer name is too long");
-            if (customer.Country != null)
+            try
             {
-                if (customer.Country.CountryName.Length > 50)
-                    throw new ErrorInputPropertyException("Country is too long");
+                // If the customer does not exist, throw an exception
+                if (cDB == null)
+                    throw new NotFoundException("Customer not found");
 
+                if ((bool)cDB.Deprecated)
+                    throw new ErrorInputPropertyException("Can't update deprecated customer");
+
+                if (customer.CustomerName != null)
+                    if (customer.CustomerName.Length > 100)
+                        throw new ErrorInputPropertyException("Customer name is too long");
+                if (customer.Country != null)
+                {
+                    if (customer.Country.CountryName.Length > 50)
+                        throw new ErrorInputPropertyException("Country is too long");
+
+                }
+
+
+
+                Customer newCustomer = new Customer
+                {
+                    CustomerName = customer.CustomerName ?? cDB.CustomerName,
+                    Country = customer.Country ?? cDB.Country,
+                    CountryID = customer.CountryID ?? cDB.CountryID,
+                    Deprecated = false,
+                    OriginalID = cDB.OriginalID,
+                    CreatedAt = DateTime.Now,
+                };
+
+                cDB.Deprecated = true;
+                // Save the changes to the database
+                _context.Customers.Update(cDB);
+                await _context.SaveChangesAsync();
+
+                _context.Customers.Add(newCustomer);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                // Map and return the updated customer as a DTO
+                return CustomerMapper.MapGet(newCustomer);
             }
-
-
-
-            Customer newCustomer = new Customer
+            catch
             {
-                CustomerName = customer.CustomerName ?? cDB.CustomerName,
-                Country = customer.Country ?? cDB.Country,
-                CountryID = customer.CountryID ?? cDB.CountryID,
-                Deprecated = false,
-                OriginalID = cDB.OriginalID,
-                CreatedAt = DateTime.Now,
-            };
-
-            cDB.Deprecated = true;
-            // Save the changes to the database
-            _context.Customers.Update(cDB);
-            await _context.SaveChangesAsync();
-
-            _context.Customers.Add(newCustomer);
-            await _context.SaveChangesAsync();
-
-            // Map and return the updated customer as a DTO
-            return CustomerMapper.MapGet(newCustomer);
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task<CustomerDTOGet> DeleteCustomer(int id)
