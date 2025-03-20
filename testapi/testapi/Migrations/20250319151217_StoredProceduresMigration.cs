@@ -84,7 +84,7 @@ namespace API.Migrations
                     @CustomerCountry VARCHAR(100) = NULL
                 AS
                 BEGIN
-                    SELECT DISTINCT ci.CustomerInvoiceID, ci.InvoiceDate, ci.SaleID, st.StatusName AS Status, cif.TotalGained, cus.CustomerName AS Country, co.CountryName
+                    SELECT DISTINCT ci.CustomerInvoiceID, ci.InvoiceDate, ci.SaleID, st.StatusName AS Status, cif.TotalGained, cus.CustomerName, co.CountryName  AS Country
                     FROM Progetto_Formativo.dbo.CustomerinvoiceCosts AS c
                     LEFT JOIN Progetto_Formativo.dbo.CustomerInvoices ci ON c.CustomerInvoiceID = ci.CustomerInvoiceID
                     JOIN dbo.Sales s ON s.SaleID = ci.SaleID
