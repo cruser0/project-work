@@ -19,17 +19,17 @@ namespace API.Controllers
         [HttpGet("customers")]
         public async Task<IActionResult> GetCustomerInvoiceCosts([FromQuery] CustomerInvoiceCostFilter? costFilter,
                                                      [FromQuery] CustomerInvoiceFilter? invoiceFilter,
-                                                     [FromQuery] SaleFilter? saleFilter,
+                                                     [FromQuery] SaleCustomerFilter? saleFilter,
                                                      [FromQuery] CustomerFilter? customerFilter)
         {
             try
             {
-            costFilter = CheckFilter(costFilter);
-            invoiceFilter = CheckFilter(invoiceFilter);
-            saleFilter = CheckFilter(saleFilter);
-            customerFilter = CheckFilter(customerFilter);
-            var results = await _valueServices.GetCustomerInvoiceCosts(costFilter, invoiceFilter, saleFilter, customerFilter);
-            return Ok(results);
+                costFilter = CheckFilter(costFilter);
+                invoiceFilter = CheckFilter(invoiceFilter);
+                saleFilter = CheckFilter(saleFilter);
+                customerFilter = CheckFilter(customerFilter);
+                var results = await _valueServices.GetCustomerInvoiceCosts(costFilter, invoiceFilter, saleFilter, customerFilter);
+                return Ok(results);
             }
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }
@@ -44,11 +44,11 @@ namespace API.Controllers
             try
             {
 
-            costFilter = CheckFilter(costFilter);
-            invoiceFilter = CheckFilter(invoiceFilter);
-            supplierFilter = CheckFilter(supplierFilter);
-            var results = await _valueServices.GetSupplierInvoiceCosts(costFilter, invoiceFilter, supplierFilter);
-            return Ok(results);
+                costFilter = CheckFilter(costFilter);
+                invoiceFilter = CheckFilter(invoiceFilter);
+                supplierFilter = CheckFilter(supplierFilter);
+                var results = await _valueServices.GetSupplierInvoiceCosts(costFilter, invoiceFilter, supplierFilter);
+                return Ok(results);
             }
             catch (NotFoundException ex) { return NotFound(ex.Message); }
             catch (ErrorInputPropertyException ex) { return UnprocessableEntity(ex.Message); }

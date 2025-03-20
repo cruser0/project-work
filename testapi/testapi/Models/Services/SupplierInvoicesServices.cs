@@ -49,10 +49,23 @@ namespace API.Models.Services
         private IQueryable<SupplierInvoiceSupplierDTO> ApplyFilter(SupplierInvoiceSupplierFilter filter)
         {
             int itemsPage = 10;
-            var query = (from si in _context.SupplierInvoices.Include(x => x.Status)
+            var query = (from si in _context.SupplierInvoices.Include(x => x.Status).Include(x => x.Sale)
                          join s in _context.Suppliers.Include(x => x.Country) on si.SupplierID equals s.SupplierID into SupplierInvoiceGroup
                          from supplier in SupplierInvoiceGroup.DefaultIfEmpty()
                          select new { SupplierInvoice = si, Supplier = supplier }).AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceCode))
+            {
+                query = query.Where(x => x.SupplierInvoice.SupplierInvoiceCode.Contains(filter.SupplierInvoiceCode));
+            }
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBkBoL))
+            {
+                query = query.Where(s => s.SupplierInvoice.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBkBoL));
+            }
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBk))
+            {
+                query = query.Where(s => s.SupplierInvoice.Sale.BookingNumber.Contains(filter.SupplierInvoiceSaleBk));
+            }
 
             if (filter.SupplierInvoiceInvoiceDateFrom.HasValue)
             {
@@ -80,14 +93,6 @@ namespace API.Models.Services
                 query = query.Where(s => s.SupplierInvoice.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
             }
 
-            if (filter.SupplierInvoiceSaleID != null)
-            {
-                query = query.Where(x => x.SupplierInvoice.SaleID == filter.SupplierInvoiceSaleID);
-            }
-            if (filter.SupplierInvoiceSupplierID != null)
-            {
-                query = query.Where(x => x.SupplierInvoice.SupplierID == filter.SupplierInvoiceSupplierID);
-            }
             if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
             {
                 if (!filter.SupplierInvoiceStatus.Equals("All"))

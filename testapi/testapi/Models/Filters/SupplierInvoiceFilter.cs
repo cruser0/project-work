@@ -4,6 +4,7 @@
     {
         public string? SupplierInvoiceSaleBkBoL { get; set; }
         public string? SupplierInvoiceSaleBk { get; set; }
+        public string? SupplierInvoiceCode { get; set; }
         public DateTime? SupplierInvoiceInvoiceDateFrom { get; set; }
         public DateTime? SupplierInvoiceInvoiceDateTo { get; set; }
 
