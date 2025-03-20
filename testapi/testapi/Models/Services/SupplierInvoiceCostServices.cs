@@ -249,7 +249,7 @@ namespace API.Models.Services
                     if (supplierInvoiceCost.Cost > 0)
                         sicDB.Cost = supplierInvoiceCost.Cost ?? sicDB.Cost;
 
-                    sicDB.CostRegistryID = _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode)?.CostRegistryID ?? sicDB.CostRegistryID;
+                    sicDB.CostRegistryID = (await _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode))?.CostRegistryID ?? sicDB.CostRegistryID;
 
                     sicDB.Name = supplierInvoiceCost.Name ?? sicDB.Name;
 
