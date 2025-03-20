@@ -38,6 +38,8 @@ namespace WinformDotNetFramework.Forms.control
             this.label1 = new System.Windows.Forms.Label();
             this.CostFromTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.CostLbl = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.InvoiceCodeLbl = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,6 +47,8 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.textBox1);
+            this.TextBoxesRightPanel.Controls.Add(this.InvoiceCodeLbl);
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
@@ -55,7 +59,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 168);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 298);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // label4
@@ -131,13 +135,35 @@ namespace WinformDotNetFramework.Forms.control
             this.CostLbl.TabIndex = 4;
             this.CostLbl.Text = "Cost From";
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.textBox1.Location = new System.Drawing.Point(0, 172);
+            this.textBox1.MaxLength = 100;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(180, 20);
+            this.textBox1.TabIndex = 21;
+            // 
+            // InvoiceCodeLbl
+            // 
+            this.InvoiceCodeLbl.AutoSize = true;
+            this.InvoiceCodeLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.InvoiceCodeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.InvoiceCodeLbl.Location = new System.Drawing.Point(3, 152);
+            this.InvoiceCodeLbl.Name = "InvoiceCodeLbl";
+            this.InvoiceCodeLbl.Size = new System.Drawing.Size(150, 17);
+            this.InvoiceCodeLbl.TabIndex = 22;
+            this.InvoiceCodeLbl.Text = "Customer Invoice Code";
+            // 
             // SearchCustomerInvoiceCost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoiceCost";
-            this.Size = new System.Drawing.Size(180, 168);
+            this.Size = new System.Drawing.Size(180, 298);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -154,5 +180,7 @@ namespace WinformDotNetFramework.Forms.control
         public IntegerTextBoxUserControl CostFromTxt;
         public IntegerTextBoxUserControl CostToTxt;
         public TextBox NameTxt;
+        public TextBox textBox1;
+        private Label InvoiceCodeLbl;
     }
 }
