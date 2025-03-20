@@ -46,6 +46,10 @@ namespace WinformDotNetFramework.Forms.control
             this.SaleIDLbl = new System.Windows.Forms.Label();
             this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
+            this.NameSupplierTxt = new System.Windows.Forms.TextBox();
+            this.SupplierNameLbl = new System.Windows.Forms.Label();
+            this.SupplierCountryLbl = new System.Windows.Forms.Label();
+            this.CountrySupplierTxt = new System.Windows.Forms.TextBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +58,10 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.NameSupplierTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.SupplierNameLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.SupplierCountryLbl);
+            this.TextBoxesRightPanel.Controls.Add(this.CountrySupplierTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountToTxt);
             this.TextBoxesRightPanel.Controls.Add(this.InvoiceAmountFromTxt);
@@ -72,7 +80,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 327);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 418);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // label4
@@ -236,13 +244,57 @@ namespace WinformDotNetFramework.Forms.control
             this.DateFromClnd.Size = new System.Drawing.Size(180, 20);
             this.DateFromClnd.TabIndex = 5;
             // 
+            // NameSupplierTxt
+            // 
+            this.NameSupplierTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.NameSupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NameSupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.NameSupplierTxt.Location = new System.Drawing.Point(0, 328);
+            this.NameSupplierTxt.MaxLength = 100;
+            this.NameSupplierTxt.Name = "NameSupplierTxt";
+            this.NameSupplierTxt.Size = new System.Drawing.Size(180, 20);
+            this.NameSupplierTxt.TabIndex = 19;
+            // 
+            // SupplierNameLbl
+            // 
+            this.SupplierNameLbl.AutoSize = true;
+            this.SupplierNameLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.SupplierNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierNameLbl.Location = new System.Drawing.Point(3, 310);
+            this.SupplierNameLbl.Name = "SupplierNameLbl";
+            this.SupplierNameLbl.Size = new System.Drawing.Size(99, 17);
+            this.SupplierNameLbl.TabIndex = 21;
+            this.SupplierNameLbl.Text = "Supplier Name";
+            // 
+            // SupplierCountryLbl
+            // 
+            this.SupplierCountryLbl.AutoSize = true;
+            this.SupplierCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.SupplierCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierCountryLbl.Location = new System.Drawing.Point(3, 351);
+            this.SupplierCountryLbl.Name = "SupplierCountryLbl";
+            this.SupplierCountryLbl.Size = new System.Drawing.Size(113, 17);
+            this.SupplierCountryLbl.TabIndex = 22;
+            this.SupplierCountryLbl.Text = "Supplier Country";
+            // 
+            // CountrySupplierTxt
+            // 
+            this.CountrySupplierTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.CountrySupplierTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CountrySupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CountrySupplierTxt.Location = new System.Drawing.Point(0, 369);
+            this.CountrySupplierTxt.MaxLength = 50;
+            this.CountrySupplierTxt.Name = "CountrySupplierTxt";
+            this.CountrySupplierTxt.Size = new System.Drawing.Size(180, 20);
+            this.CountrySupplierTxt.TabIndex = 20;
+            // 
             // SearchSupplierInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplierInvoice";
-            this.Size = new System.Drawing.Size(180, 327);
+            this.Size = new System.Drawing.Size(180, 418);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -267,5 +319,9 @@ namespace WinformDotNetFramework.Forms.control
         private DateTimePicker DateFromClnd;
         private Label label4;
         public IntegerTextBoxUserControl SupplierIDTxt;
+        public TextBox NameSupplierTxt;
+        public Label SupplierNameLbl;
+        public Label SupplierCountryLbl;
+        public TextBox CountrySupplierTxt;
     }
 }

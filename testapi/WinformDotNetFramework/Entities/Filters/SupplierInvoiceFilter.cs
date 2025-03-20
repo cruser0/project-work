@@ -14,5 +14,8 @@ namespace WinformDotNetFramework.Entities.Filters
 
         public string SupplierInvoiceStatus { get; set; }
         public int? SupplierInvoicePage { get; set; }
+
+        public string SupplierInvoiceSupplierName { get; set; }
+        public string SupplierInvoiceSupplierCountry { get; set; }
     }
 }

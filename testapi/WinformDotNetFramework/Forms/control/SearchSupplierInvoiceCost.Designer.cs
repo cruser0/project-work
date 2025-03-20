@@ -40,6 +40,8 @@ namespace WinformDotNetFramework.Forms.control
             this.InvoiceIDTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceIDLbl = new System.Windows.Forms.Label();
             this.CostLbl = new System.Windows.Forms.Label();
+            this.RegistryTxt = new System.Windows.Forms.TextBox();
+            this.RegistryLbl = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +50,8 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.RegistryTxt);
+            this.TextBoxesRightPanel.Controls.Add(this.RegistryLbl);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.NameLbl);
@@ -60,7 +64,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(180, 215);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 260);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // label2
@@ -156,13 +160,35 @@ namespace WinformDotNetFramework.Forms.control
             this.CostLbl.TabIndex = 4;
             this.CostLbl.Text = "Cost From";
             // 
+            // RegistryTxt
+            // 
+            this.RegistryTxt.BackColor = System.Drawing.SystemColors.Window;
+            this.RegistryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RegistryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.RegistryTxt.Location = new System.Drawing.Point(0, 219);
+            this.RegistryTxt.MaxLength = 100;
+            this.RegistryTxt.Name = "RegistryTxt";
+            this.RegistryTxt.Size = new System.Drawing.Size(180, 20);
+            this.RegistryTxt.TabIndex = 18;
+            // 
+            // RegistryLbl
+            // 
+            this.RegistryLbl.AutoSize = true;
+            this.RegistryLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.RegistryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.RegistryLbl.Location = new System.Drawing.Point(3, 201);
+            this.RegistryLbl.Name = "RegistryLbl";
+            this.RegistryLbl.Size = new System.Drawing.Size(94, 17);
+            this.RegistryLbl.TabIndex = 19;
+            this.RegistryLbl.Text = "Registry Code";
+            // 
             // SearchSupplierInvoiceCost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplierInvoiceCost";
-            this.Size = new System.Drawing.Size(180, 215);
+            this.Size = new System.Drawing.Size(200, 260);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -181,5 +207,7 @@ namespace WinformDotNetFramework.Forms.control
         private Label InvoiceIDLbl;
         private Label CostLbl;
         private Label label2;
+        private TextBox RegistryTxt;
+        private Label RegistryLbl;
     }
 }

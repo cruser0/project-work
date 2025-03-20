@@ -91,9 +91,17 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+static void ApplyMigration<TDbContext>(IServiceScope services)
+    where TDbContext:DbContext
+{
+    using TDbContext context = services.ServiceProvider.GetRequiredService<TDbContext>();
+    context.Database.Migrate();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    using IServiceScope scope=app.Services.CreateScope();
+    ApplyMigration<Progetto_FormativoContext>(scope);
     app.UseSwagger();
     app.UseSwaggerUI();
 }
