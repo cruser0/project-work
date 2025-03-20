@@ -72,7 +72,7 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
-                { "CustomerInvoiceSaleId", filter.CustomerInvoiceSaleId ??null},
+                { "CustomerInvoiceSaleBkBoL", filter.CustomerInvoiceSaleBkBoL ??null},
                 { "CustomerInvoiceInvoiceAmountFrom", filter.CustomerInvoiceInvoiceAmountFrom ??null},
                 { "CustomerInvoiceInvoiceAmountTo", filter.CustomerInvoiceInvoiceAmountTo?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
                 { "CustomerInvoiceInvoiceDateFrom", filter.CustomerInvoiceInvoiceDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ??null },
@@ -99,7 +99,7 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
-                { "CustomerInvoiceCostCustomerInvoiceId", filter.CustomerInvoiceCostCustomerInvoiceId??null },
+                { "CustomerInvoiceCostCustomerInvoiceCode", filter.CustomerInvoiceCostCustomerInvoiceCode??null },
                 { "CustomerInvoiceCostCostFrom", filter.CustomerInvoiceCostCostFrom??null },
                 { "CustomerInvoiceCostCostTo", filter.CustomerInvoiceCostCostTo ??null},
                 { "CustomerInvoiceCostQuantity", filter.CustomerInvoiceCostQuantity??null },

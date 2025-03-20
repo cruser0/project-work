@@ -2,8 +2,8 @@
 {
     public class SupplierInvoiceFilter
     {
-        public int? SupplierInvoiceSaleID { get; set; }
-        public int? SupplierInvoiceSupplierID { get; set; }
+        public string? SupplierInvoiceSaleBkBoL { get; set; }
+        public string? SupplierInvoiceSaleBk { get; set; }
         public DateTime? SupplierInvoiceInvoiceDateFrom { get; set; }
         public DateTime? SupplierInvoiceInvoiceDateTo { get; set; }
 

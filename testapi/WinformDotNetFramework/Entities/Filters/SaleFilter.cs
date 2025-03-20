@@ -12,7 +12,6 @@ namespace WinformDotNetFramework.Entities.Filters
         public int? SaleRevenueFrom { get; set; }
         public int? SaleRevenueTo { get; set; }
 
-        public int? SaleCustomerId { get; set; }
         public string SaleStatus { get; set; }
         public int? SalePage { get; set; }
 
