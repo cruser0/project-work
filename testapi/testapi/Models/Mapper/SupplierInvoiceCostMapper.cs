@@ -14,10 +14,11 @@ namespace API.Models.Mapper
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
-                CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode
+                CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
+                SupplierInvoiceCode = supplierInvoiceCost.SupplierInvoice.SupplierInvoiceCode
             };
         }
-        public static SupplierInvoiceCost Map(SupplierInvoiceCostDTO supplierInvoiceCost, CostRegistry costRegistry)
+        public static SupplierInvoiceCost Map(SupplierInvoiceCostDTO supplierInvoiceCost, CostRegistry? costRegistry, SupplierInvoice? supplierInvoice)
         {
             return new SupplierInvoiceCost()
             {
@@ -27,7 +28,8 @@ namespace API.Models.Mapper
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
                 CostRegistry = costRegistry,
-                CostRegistryID = costRegistry?.CostRegistryID
+                CostRegistryID = costRegistry?.CostRegistryID,
+                SupplierInvoice = supplierInvoice
             };
         }
 
@@ -40,10 +42,11 @@ namespace API.Models.Mapper
                 Cost = supplierInvoiceCost.Cost,
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
-                CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode
+                CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
+                SupplierInvoiceCode = supplierInvoiceCost.SupplierInvoice.SupplierInvoiceCode
             };
         }
-        public static SupplierInvoiceCost MapGet(SupplierInvoiceCostDTOGet supplierInvoiceCost, CostRegistry costRegistry)
+        public static SupplierInvoiceCost MapGet(SupplierInvoiceCostDTOGet supplierInvoiceCost, CostRegistry costRegistry, SupplierInvoice? supplierInvoice)
         {
             return new SupplierInvoiceCost()
             {
@@ -53,7 +56,8 @@ namespace API.Models.Mapper
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
                 CostRegistry = costRegistry,
-                CostRegistryID = costRegistry?.CostRegistryID
+                CostRegistryID = costRegistry?.CostRegistryID,
+                SupplierInvoice = supplierInvoice
 
             };
         }

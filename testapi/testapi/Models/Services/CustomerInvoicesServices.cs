@@ -11,6 +11,7 @@ namespace API.Models.Services
     {
         Task<ICollection<CustomerInvoiceDTOGet>> GetAllCustomerInvoices(CustomerInvoiceFilter filter);
         Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id);
+        Task<CustomerInvoice?> GetOnlyCustomerInvoiceById(int id);
         Task<CustomerInvoiceDTOGet> CreateCustomerInvoice(CustomerInvoice customer);
         Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customer);
         Task<CustomerInvoiceDTOGet> DeleteCustomerInvoice(int id);
@@ -298,6 +299,15 @@ namespace API.Models.Services
 
             // Map the customer invoice entity to a DTO and return the result
             return CustomerInvoiceMapper.MapGet(data);
+        }
+
+        public async Task<CustomerInvoice?> GetOnlyCustomerInvoiceById(int id)
+        {
+            // Retrieve the customer invoice from the database using the provided ID
+            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).FirstOrDefaultAsync();
+
+            // Map the customer invoice entity to a DTO and return the result
+            return data;
         }
 
         public async Task<string> MassUpdateCustomerInvoice(List<CustomerInvoiceDTOGet> newCustomerInvoices)

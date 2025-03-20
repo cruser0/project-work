@@ -14,6 +14,8 @@ namespace API.Models.Services
         Task<SupplierInvoiceDTOGet> CreateSupplierInvoice(SupplierInvoice supplierInvoice);
         Task<SupplierInvoiceDTOGet> UpdateSupplierInvoice(int id, SupplierInvoice supplierInvoice);
         Task<SupplierInvoiceDTOGet> DeleteSupplierInvoice(int id);
+
+        Task<SupplierInvoice?> GetOnlySupplierInvoiceById(int id);
         Task<int> CountSupplierinvoices(SupplierInvoiceSupplierFilter filter);
         Task<string> MassDeleteSupplierInvoice(List<int> supplierInvoiceId);
         Task<string> MassUpdateSupplierInvoice(List<SupplierInvoiceDTOGet> newSupplierInvoices);
@@ -120,6 +122,13 @@ namespace API.Models.Services
                 throw new NotFoundException("Supplier Invoice not found!");
             }
             return result;
+        }
+
+        public async Task<SupplierInvoice?> GetOnlySupplierInvoiceById(int id)
+        {
+            var si = await _context.SupplierInvoices.Include(x => x.Status).Where(x => x.SupplierInvoiceID == id).FirstOrDefaultAsync();
+
+            return si;
         }
 
         public async Task<SupplierInvoiceDTOGet> CreateSupplierInvoice(SupplierInvoice supplierInvoice)

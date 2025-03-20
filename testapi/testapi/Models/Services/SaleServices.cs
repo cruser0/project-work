@@ -16,6 +16,7 @@ namespace API.Models.Services
         Task<SaleDTOGet> UpdateSale(int id, Sale sale);
         Task<SaleDTOGet> DeleteSale(int id);
 
+        Task<Sale?> GetOnlySaleById(int id);
         Task<int> CountSales(SaleCustomerFilter filter);
         Task<string> MassDeleteSale(List<int> saleId);
         Task<string> MassUpdateSale(List<SaleDTOGet> newSales);
@@ -104,11 +105,6 @@ namespace API.Models.Services
                 query = query.Where(s => s.Sale.TotalRevenue <= filter.SaleRevenueTo);
             }
 
-            if (filter.SaleCustomerId != null)
-            {
-                query = query.Where(s => s.Sale.CustomerID == filter.SaleCustomerId);
-            }
-
             if (!string.IsNullOrEmpty(filter.SaleStatus))
             {
                 query = query.Where(s => s.Sale.Status.StatusName == filter.SaleStatus);
@@ -144,6 +140,13 @@ namespace API.Models.Services
 
             // Map the sale entity to a DTO and return the result
             return result;
+        }
+
+        public async Task<Sale?> GetOnlySaleById(int id)
+        {
+            // Retrieve the sale from the database using the provided ID
+            var sale = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == id).FirstOrDefaultAsync();
+            return sale;
         }
 
         public async Task<SaleDTOGet> CreateSale(Sale sale)

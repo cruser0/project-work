@@ -15,11 +15,13 @@ namespace API.Controllers
     public class SupplierInvoiceCostController : ControllerBase
     {
         private readonly ISupplierInvoiceCostService _supplierInvoiceCostService;
+        private readonly ISupplierInvoiceService _supplierInvoiceService;
         private readonly CostRegistryService _costRegistryService;
-        public SupplierInvoiceCostController(ISupplierInvoiceCostService supplierInvoiceCostService, CostRegistryService costRegistryService)
+        public SupplierInvoiceCostController(ISupplierInvoiceCostService supplierInvoiceCostService, CostRegistryService costRegistryService, ISupplierInvoiceService supplierInvoiceService)
         {
             _supplierInvoiceCostService = supplierInvoiceCostService;
             _costRegistryService = costRegistryService;
+            _supplierInvoiceService = supplierInvoiceService;
         }
         // GET: api/<SupplierInvoiceCostController>
         [Authorize(Roles = "Admin,SupplierInvoiceCostRead,SupplierInvoiceCostWrite,SupplierInvoiceCostAdmin")]
@@ -65,7 +67,9 @@ namespace API.Controllers
 
 
 
-            var data = await _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost, _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!)));
+            var data = await _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost,
+                                                                                                                    _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
+                                                                                                                    await _supplierInvoiceService.GetOnlySupplierInvoiceById((int)supplierInvoiceCost.SupplierInvoiceId!)));
             if (data == null)
                 throw new NotFoundException("Supplier Invoice Cost not found");
             return Ok(data);
@@ -79,7 +83,9 @@ namespace API.Controllers
         public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceCostDTO supplierInvoiceCost)
         {
 
-            var data = await _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost, _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!)));
+            var data = await _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost,
+                                                                                                                    _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
+                                                                                                                    await _supplierInvoiceService.GetOnlySupplierInvoiceById((int)supplierInvoiceCost.SupplierInvoiceId!)));
             if (data == null)
                 throw new NotFoundException("Supplier Invoice Cost not found");
             return Ok(data);

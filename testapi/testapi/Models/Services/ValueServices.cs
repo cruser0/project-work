@@ -48,13 +48,13 @@ namespace API.Models.Services
         // AGGIUNGI REGISTRY COST
         private IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter? filter)
         {
-            var query = _context.CustomerInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
+            var query = _context.CustomerInvoiceCosts.Include(x => x.CostRegistry).Include(x => x.CustomerInvoice).AsQueryable();
 
             if (filter != null)
             {
-                if (filter.CustomerInvoiceCostCustomerInvoiceId != null)
+                if (!string.IsNullOrEmpty(filter.CustomerInvoiceCostCustomerInvoiceCode))
                 {
-                    query = query.Where(x => x.CustomerInvoiceID == filter.CustomerInvoiceCostCustomerInvoiceId);
+                    query = query.Where(x => x.CustomerInvoice.CustomerInvoiceCode.Contains(filter.CustomerInvoiceCostCustomerInvoiceCode));
                 }
                 if (!string.IsNullOrEmpty(filter.CustomerInvoiceCostName))
                 {

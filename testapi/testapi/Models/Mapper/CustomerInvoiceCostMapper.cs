@@ -14,11 +14,12 @@ namespace API.Models.Mapper
                 Cost = customerInvoiceCost.Cost,
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
-                CostRegistryCode = customerInvoiceCost.CostRegistry!.CostRegistryUniqueCode
+                CostRegistryCode = customerInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
+                CustomerInvoiceCode = customerInvoiceCost.CustomerInvoice.CustomerInvoiceCode
 
             };
         }
-        public static CustomerInvoiceCost Map(CustomerInvoiceCostDTO customerInvoiceCost, CostRegistry? costRegistry)
+        public static CustomerInvoiceCost Map(CustomerInvoiceCostDTO customerInvoiceCost, CostRegistry? costRegistry, CustomerInvoice? customerInvoice)
         {
             return new CustomerInvoiceCost()
             {
@@ -28,7 +29,8 @@ namespace API.Models.Mapper
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
                 CostRegistryID = costRegistry?.CostRegistryID,
-                CostRegistry = costRegistry
+                CostRegistry = costRegistry,
+                CustomerInvoice = customerInvoice,
 
             };
         }
@@ -42,11 +44,12 @@ namespace API.Models.Mapper
                 Cost = customerInvoiceCost.Cost,
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
-                CostRegistryCode = customerInvoiceCost.CostRegistry!.CostRegistryUniqueCode
+                CostRegistryCode = customerInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
+                CustomerInvoiceCode = customerInvoiceCost.CustomerInvoice.CustomerInvoiceCode
 
             };
         }
-        public static CustomerInvoiceCost MapGet(CustomerInvoiceCostDTOGet customerInvoiceCost, CostRegistry? costRegistry)
+        public static CustomerInvoiceCost MapGet(CustomerInvoiceCostDTOGet customerInvoiceCost, CostRegistry? costRegistry, CustomerInvoice? customerInvoice)
         {
             return new CustomerInvoiceCost()
             {
@@ -56,7 +59,8 @@ namespace API.Models.Mapper
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
                 CostRegistryID = costRegistry?.CostRegistryID,
-                CostRegistry = costRegistry
+                CostRegistry = costRegistry,
+                CustomerInvoice = customerInvoice,
 
             };
         }
