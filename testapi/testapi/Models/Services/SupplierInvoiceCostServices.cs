@@ -48,10 +48,11 @@ namespace API.Models.Services
             int itemsPage = 10;
             var query = _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
 
-            if (filter.SupplierInvoiceCostSupplierInvoiceId != null)
+            if (!string.IsNullOrEmpty(filter.SupplierInvoiceCostSupplierInvoiceCode))
             {
-                query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceCostSupplierInvoiceId);
+                query = query.Where(x => x.SupplierInvoice.SupplierInvoiceCode.Contains(filter.SupplierInvoiceCostSupplierInvoiceCode));
             }
+
             if (!string.IsNullOrEmpty(filter.SupplierInvoiceCostName))
             {
                 query = query.Where(x => x.Name.Contains(filter.SupplierInvoiceCostName));
@@ -79,7 +80,6 @@ namespace API.Models.Services
             {
                 query = query.Where(x => x.Quantity == filter.SupplierInvoiceCostQuantity);
             }
-
             if (filter.SupplierInvoiceCostRegistryCode != null)
             {
                 query = query.Where(x => x.CostRegistry.CostRegistryUniqueCode.Contains(filter.SupplierInvoiceCostRegistryCode));

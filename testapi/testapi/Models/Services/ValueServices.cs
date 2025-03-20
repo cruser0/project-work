@@ -21,7 +21,7 @@ namespace API.Models.Services
 
         public async Task<TabelleCustomerDto> GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
                                                 CustomerInvoiceFilter? invoiceFilter,
-                                                SaleFilter? saleFilter,
+                                                SaleCustomerFilter? saleFilter,
                                                 CustomerFilter? customerFilter)
         {
             var customerInvoiceCosts = await ApplyFilter(costFilter).ToListAsync();
@@ -45,7 +45,6 @@ namespace API.Models.Services
             return new TabelleSupplierDto(suppliers, supplierInvoices, supplierInvoiceCosts);
         }
 
-        // AGGIUNGI REGISTRY COST
         private IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter? filter)
         {
             var query = _context.CustomerInvoiceCosts.Include(x => x.CostRegistry).Include(x => x.CustomerInvoice).AsQueryable();
@@ -95,13 +94,18 @@ namespace API.Models.Services
 
         private IQueryable<CustomerInvoiceDTOGet> ApplyFilter(CustomerInvoiceFilter? filter)
         {
-            var query = _context.CustomerInvoices.Include(x => x.Status).AsQueryable();
+            var query = _context.CustomerInvoices.Include(x => x.Status).Include(x => x.Sale).AsQueryable();
 
             if (filter != null)
             {
-                if (filter.CustomerInvoiceSaleId != null)
+                if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBkBoL))
                 {
-                    query = query.Where(x => x.SaleID == filter.CustomerInvoiceSaleId);
+                    query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBkBoL));
+                }
+
+                if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBk))
+                {
+                    query = query.Where(x => x.Sale.BookingNumber.Contains(filter.CustomerInvoiceSaleBk));
                 }
 
                 if (filter.CustomerInvoiceInvoiceAmountFrom != null && filter.CustomerInvoiceInvoiceAmountTo != null)
@@ -140,7 +144,7 @@ namespace API.Models.Services
             return query.Select(x => CustomerInvoiceMapper.MapGet(x));
         }
 
-        private IQueryable<SaleDTOGet> ApplyFilter(SaleFilter? filter)
+        private IQueryable<SaleDTOGet> ApplyFilter(SaleCustomerFilter? filter)
         {
             var query = _context.Sales.Include(x => x.Status).AsQueryable();
 
@@ -308,10 +312,15 @@ namespace API.Models.Services
         private IQueryable<SupplierInvoiceDTOGet> ApplyFilter(SupplierInvoiceFilter? filter)
         {
 
-            var query = _context.SupplierInvoices.Include(x => x.Status).AsQueryable();
+            var query = _context.SupplierInvoices.Include(x => x.Status).Include(x => x.Sale).AsQueryable();
 
             if (filter != null)
             {
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceCode))
+                {
+                    query = query.Where(x => x.SupplierInvoiceCode.Contains(filter.SupplierInvoiceCode));
+                }
+
                 if (filter.SupplierInvoiceInvoiceDateFrom.HasValue)
                 {
                     if ((filter.SupplierInvoiceInvoiceDateFrom <= DateTime.Now && filter.SupplierInvoiceInvoiceDateFrom > new DateTime(1975, 1, 1)))
@@ -338,14 +347,15 @@ namespace API.Models.Services
                     query = query.Where(s => s.InvoiceAmount <= filter.SupplierInvoiceInvoiceAmountTo);
                 }
 
-                if (filter.SupplierInvoiceSaleID != null)
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBkBoL))
                 {
-                    query = query.Where(x => x.SaleID == filter.SupplierInvoiceSaleID);
+                    query = query.Where(s => s.Sale.BoLnumber.Contains(filter.SupplierInvoiceSaleBkBoL));
                 }
-                if (filter.SupplierInvoiceSupplierID != null)
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceSaleBk))
                 {
-                    query = query.Where(x => x.SupplierID == filter.SupplierInvoiceSupplierID);
+                    query = query.Where(s => s.Sale.BookingNumber.Contains(filter.SupplierInvoiceSaleBk));
                 }
+
                 if (!string.IsNullOrEmpty(filter.SupplierInvoiceStatus))
                 {
                     if (!filter.SupplierInvoiceStatus.Equals("All"))
@@ -363,14 +373,16 @@ namespace API.Models.Services
 
         public IQueryable<SupplierInvoiceCostDTOGet> ApplyFilter(SupplierInvoiceCostFilter? filter)
         {
-            var query = _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
+            var query = _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Include(x => x.SupplierInvoice).AsQueryable();
 
             if (filter != null)
             {
-                if (filter.SupplierInvoiceCostSupplierInvoiceId != null)
+
+                if (!string.IsNullOrEmpty(filter.SupplierInvoiceCostSupplierInvoiceCode))
                 {
-                    query = query.Where(x => x.SupplierInvoiceId == filter.SupplierInvoiceCostSupplierInvoiceId);
+                    query = query.Where(x => x.SupplierInvoice.SupplierInvoiceCode.Contains(filter.SupplierInvoiceCostSupplierInvoiceCode));
                 }
+
                 if (!string.IsNullOrEmpty(filter.SupplierInvoiceCostName))
                 {
                     query = query.Where(x => x.Name.Contains(filter.SupplierInvoiceCostName));
