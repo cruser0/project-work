@@ -387,45 +387,52 @@ namespace WinformDotNetFramework.Forms
 
             if (latestForm != null)
             {
-                string response;
-
-                if (favoriteList.Contains(latestForm.Text))
+                if (!latestForm.Name.Contains("Details"))
                 {
-                    DialogResult result = MessageBox.Show($"Remove \"{latestForm.Text}\" from favorites?", "Favorite Confirmation",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    string response;
 
-                    if (result == DialogResult.Yes)
+                    if (favoriteList.Contains(latestForm.Text))
                     {
-                        // Immediately update the button image
-                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
+                        DialogResult result = MessageBox.Show($"Remove \"{latestForm.Text}\" from favorites?", "Favorite Confirmation",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        response = await _userService.RemoveUserFavouritePage(new List<string>() { latestForm.Text });
+                        if (result == DialogResult.Yes)
+                        {
+                            // Immediately update the button image
+                            AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
 
-                        // Remove the item from the local list immediately
-                        favoriteList.Remove(latestForm.Text);
+                            response = await _userService.RemoveUserFavouritePage(new List<string>() { latestForm.Text });
 
-                        MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        await UpdateFavoriteTab();
+                            // Remove the item from the local list immediately
+                            favoriteList.Remove(latestForm.Text);
+
+                            MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            await UpdateFavoriteTab();
+                        }
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show($"Add \"{latestForm.Text}\" to favorites?", "Favorite Confirmation",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            // Immediately update the button image
+                            AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
+
+                            response = await _userService.AddUserFavouritePage(new List<string>() { latestForm.Text });
+
+                            // Add the item to the local list immediately
+                            favoriteList.Add(latestForm.Text);
+
+                            MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            await UpdateFavoriteTab();
+                        }
                     }
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show($"Add \"{latestForm.Text}\" to favorites?", "Favorite Confirmation",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
-                    {
-                        // Immediately update the button image
-                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
-
-                        response = await _userService.AddUserFavouritePage(new List<string>() { latestForm.Text });
-
-                        // Add the item to the local list immediately
-                        favoriteList.Add(latestForm.Text);
-
-                        MessageBox.Show(response, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        await UpdateFavoriteTab();
-                    }
+                    MessageBox.Show("Can't add details form to favorites");
                 }
             }
             else

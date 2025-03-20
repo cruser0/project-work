@@ -13,6 +13,7 @@ namespace API.Models.Mapper
                 SaleId = supplierInvoice.SaleID,
                 SupplierId = supplierInvoice.SupplierID,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
+                SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = supplierInvoice.Status!.StatusName
 
@@ -26,6 +27,7 @@ namespace API.Models.Mapper
                 SaleID = supplierInvoice.SaleId,
                 SupplierID = supplierInvoice.SupplierId,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
+                SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = status,
                 StatusID = status?.StatusID
@@ -41,6 +43,7 @@ namespace API.Models.Mapper
                 SaleId = supplierInvoice.SaleID,
                 SupplierId = supplierInvoice.SupplierID,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
+                SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = supplierInvoice.Status!.StatusName
 
@@ -55,6 +58,7 @@ namespace API.Models.Mapper
                 SaleID = supplierInvoice.SaleId,
                 SupplierID = supplierInvoice.SupplierId,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
+                SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = status,
                 StatusID = status.StatusID

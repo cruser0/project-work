@@ -130,41 +130,51 @@ namespace API.Models.Services
 
         public async Task<SupplierDTOGet> UpdateSupplier(int id, Supplier supplier)
         {
+            await using var transaction = await _context.Database.BeginTransactionAsync();
             var cDB = await _context.Suppliers.Include(x => x.Country).Where(x => x.SupplierID == id).FirstOrDefaultAsync();
-            if (cDB != null)
+            try
             {
-                if ((bool)cDB.Deprecated!)
-                    throw new ErrorInputPropertyException("Can't update deprecated supplier");
-
-                if (supplier.SupplierName != null)
-                    if (supplier.SupplierName.Length > 100)
-                        throw new ErrorInputPropertyException("Supplier name is too long");
-
-                if (supplier.Country.CountryName != null)
+                if (cDB != null)
                 {
-                    if (supplier.Country.CountryName.Length > 50)
-                        throw new ErrorInputPropertyException("Country is too long");
+                    if ((bool)cDB.Deprecated!)
+                        throw new ErrorInputPropertyException("Can't update deprecated supplier");
 
+                    if (supplier.SupplierName != null)
+                        if (supplier.SupplierName.Length > 100)
+                            throw new ErrorInputPropertyException("Supplier name is too long");
+
+                    if (supplier.Country.CountryName != null)
+                    {
+                        if (supplier.Country.CountryName.Length > 50)
+                            throw new ErrorInputPropertyException("Country is too long");
+
+                    }
+
+                    Supplier newSupplier = new Supplier
+                    {
+                        SupplierName = supplier.SupplierName ?? cDB.SupplierName,
+                        Country = supplier.Country ?? cDB.Country,
+                        Deprecated = false,
+                        OriginalID = cDB.OriginalID,
+                        CreatedAt = DateTime.Now,
+                    };
+
+                    cDB.Deprecated = true;
+                    _context.Suppliers.Update(cDB);
+                    await _context.SaveChangesAsync();
+
+                    _context.Suppliers.Add(newSupplier);
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                    return SupplierMapper.MapGet(newSupplier);
                 }
-
-                Supplier newSupplier = new Supplier
-                {
-                    SupplierName = supplier.SupplierName ?? cDB.SupplierName,
-                    Country = supplier.Country ?? cDB.Country,
-                    Deprecated = false,
-                    OriginalID = cDB.OriginalID,
-                    CreatedAt = DateTime.Now,
-                };
-
-                cDB.Deprecated = true;
-                _context.Suppliers.Update(cDB);
-                await _context.SaveChangesAsync();
-
-                _context.Suppliers.Add(newSupplier);
-                await _context.SaveChangesAsync();
-                return SupplierMapper.MapGet(newSupplier);
+                throw new NotFoundException("Supplier not found");
             }
-            throw new NotFoundException("Supplier not found");
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task<SupplierDTOGet> DeleteSupplier(int id)

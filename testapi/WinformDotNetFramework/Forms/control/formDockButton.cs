@@ -27,6 +27,11 @@ namespace WinformDotNetFramework.Forms.control
         {
             _userService = new UserService();
             InitializeComponent();
+            if (childForm.Text.Contains("Detail"))
+            {
+                AddFavoriteButton.Visible = false;
+            }
+
             buttonShowForm.Text = buttonName;
             form = childForm;
             panel = panelFather;
