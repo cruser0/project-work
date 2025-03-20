@@ -107,6 +107,10 @@ namespace API.Models.Services
                 {
                     query = query.Where(x => x.Sale.BookingNumber.Contains(filter.CustomerInvoiceSaleBk));
                 }
+                if (!string.IsNullOrEmpty(filter.CustomerInvoiceCode))
+                {
+                    query = query.Where(x => x.CustomerInvoiceCode.Contains(filter.CustomerInvoiceCode));
+                }
 
                 if (filter.CustomerInvoiceInvoiceAmountFrom != null && filter.CustomerInvoiceInvoiceAmountTo != null)
                 {

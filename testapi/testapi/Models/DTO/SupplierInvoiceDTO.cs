@@ -33,8 +33,8 @@ public class SupplierInvoiceSupplierDTO : SupplierInvoiceDTOGet
         Country = s.Country.CountryName;
         SupplierId = si.SupplierID;
         SaleId = si.SaleID;
-        SaleBookingNumber = si.SaleBookingNumber;
-        SaleBoL = si.SaleBoL;
+        SaleBookingNumber = si.Sale.BookingNumber;
+        SaleBoL = si.Sale.BoLnumber;
         InvoiceAmount = si.InvoiceAmount;
         InvoiceDate = si.InvoiceDate;
         Status = si.Status.StatusName;

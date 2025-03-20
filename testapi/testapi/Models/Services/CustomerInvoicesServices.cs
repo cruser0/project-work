@@ -25,12 +25,14 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly StatusService _statusService;
+        private readonly ISalesService _saleService;
         // List of valid invoice statuses
         List<string> statusList = new() { "paid", "unpaid" };
-        public CustomerInvoicesServices(Progetto_FormativoContext ctx, StatusService ss)
+        public CustomerInvoicesServices(Progetto_FormativoContext ctx, StatusService ss, ISalesService salesService)
         {
             _context = ctx;
             _statusService = ss;
+            _saleService = salesService;
         }
 
         public async Task<ICollection<CustomerInvoiceDTOGet>> GetAllCustomerInvoices(CustomerInvoiceFilter filter)
@@ -49,7 +51,22 @@ namespace API.Models.Services
         {
             int itemsPage = 10;
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
-            var query = _context.CustomerInvoices.Include(x => x.Status).AsQueryable();
+            var query = _context.CustomerInvoices.Include(x => x.Status).Include(x => x.Sale).AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBkBoL))
+            {
+                query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBkBoL));
+            }
+
+            if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBk))
+            {
+                query = query.Where(x => x.Sale.BookingNumber.Contains(filter.CustomerInvoiceSaleBk));
+            }
+
+            if (!string.IsNullOrEmpty(filter.CustomerInvoiceCode))
+            {
+                query = query.Where(x => x.CustomerInvoiceCode.Contains(filter.CustomerInvoiceCode));
+            }
 
             if (filter.CustomerInvoiceInvoiceAmountFrom != null && filter.CustomerInvoiceInvoiceAmountTo != null)
             {
@@ -75,11 +92,6 @@ namespace API.Models.Services
             else if (filter.CustomerInvoiceInvoiceDateTo != null)
             {
                 query = query.Where(s => s.InvoiceDate <= filter.CustomerInvoiceInvoiceDateTo);
-            }
-
-            if (!string.IsNullOrEmpty(filter.CustomerInvoiceStatus))
-            {
-                query = query.Where(s => s.Status.StatusName == filter.CustomerInvoiceStatus);
             }
             if (filter.CustomerInvoicePage != null)
             {
@@ -334,7 +346,7 @@ namespace API.Models.Services
                     if (!await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).AnyAsync())
                         throw new NotFoundException("Old SaleId not found");
                     Status statusnew = _statusService.GetStatusByName(customerInvoice.Status);
-                    CustomerInvoice customerInvoiceMapped = Mapper.CustomerInvoiceMapper.Map(customerInvoice, statusnew);
+                    CustomerInvoice customerInvoiceMapped = CustomerInvoiceMapper.Map(customerInvoice, statusnew, await _saleService.GetOnlySaleById((int)customerInvoice.SaleID));
                     ciDB.InvoiceAmount = customerInvoiceMapped.InvoiceAmount ?? ciDB.InvoiceAmount;
                     ciDB.InvoiceDate = customerInvoiceMapped.InvoiceDate ?? ciDB.InvoiceDate;
                     ciDB.StatusID = customerInvoiceMapped.StatusID ?? ciDB.StatusID;

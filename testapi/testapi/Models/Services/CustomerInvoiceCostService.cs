@@ -42,19 +42,15 @@ namespace API.Models.Services
         public IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter filter)
         {
             int itemsPage = 10;
-            var query = _context.CustomerInvoiceCosts.Include(x => x.CostRegistry).AsQueryable();
+            var query = _context.CustomerInvoiceCosts.Include(x => x.CostRegistry).Include(x => x.CustomerInvoice).AsQueryable();
 
-            if (filter.CustomerInvoiceCostCustomerInvoiceId != null)
+            if (!string.IsNullOrEmpty(filter.CustomerInvoiceCostCustomerInvoiceCode))
             {
-                query = query.Where(x => x.CustomerInvoiceID == filter.CustomerInvoiceCostCustomerInvoiceId);
+                query = query.Where(x => x.CustomerInvoice.CustomerInvoiceCode.Contains(filter.CustomerInvoiceCostCustomerInvoiceCode));
             }
             if (!string.IsNullOrEmpty(filter.CustomerInvoiceCostName))
             {
                 query = query.Where(x => x.Name.Contains(filter.CustomerInvoiceCostName));
-            }
-            if (!string.IsNullOrEmpty(filter.RegistryCode))
-            {
-                query = query.Where(x => x.CostRegistry.CostRegistryName.Contains(filter.RegistryCode));
             }
 
             if (filter.CustomerInvoiceCostCostFrom != null && filter.CustomerInvoiceCostCostTo != null)
@@ -73,6 +69,11 @@ namespace API.Models.Services
             else if (filter.CustomerInvoiceCostCostTo != null)
             {
                 query = query.Where(s => s.Cost <= filter.CustomerInvoiceCostCostTo);
+            }
+
+            if (!string.IsNullOrEmpty(filter.RegistryCode))
+            {
+                query = query.Where(x => x.CostRegistry.CostRegistryName.Contains(filter.RegistryCode));
             }
 
             if (filter.CustomerInvoiceCostQuantity != null)
