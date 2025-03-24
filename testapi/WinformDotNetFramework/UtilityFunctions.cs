@@ -9,6 +9,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Forms;
+using WinformDotNetFramework.Forms.control;
 
 namespace WinformDotNetFramework
 {
