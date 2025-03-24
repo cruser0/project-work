@@ -138,7 +138,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 if (_father is CreateCustomerInvoiceCostForm csif)
                 {
                     csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["CustomerInvoiceId"].Value.ToString());
-                    csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["CustomerInvoiceCode"].Value.ToString());
+                    csif.SetCustomerInvoiceCode(dgv.CurrentRow.Cells["CustomerInvoiceCode"].Value.ToString());
                 }
             }
 

@@ -234,6 +234,12 @@
     <Compile Include="Forms\control\DecimalTextBoxUserControl.Designer.cs">
       <DependentUpon>DecimalTextBoxUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\control\DropDownMenuAutoCompleteUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\DropDownMenuAutoCompleteUserControl.Designer.cs">
+      <DependentUpon>DropDownMenuAutoCompleteUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\formDockButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -613,6 +619,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\DecimalTextBoxUserControl.resx">
       <DependentUpon>DecimalTextBoxUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\DropDownMenuAutoCompleteUserControl.resx">
+      <DependentUpon>DropDownMenuAutoCompleteUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\formDockButton.resx">
       <DependentUpon>formDockButton.cs</DependentUpon>
