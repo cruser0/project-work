@@ -7922,43 +7922,6 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Rectangle Name="Rectangle1">
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-            </PageBreak>
-            <KeepTogether>true</KeepTogether>
-            <Top>144cm</Top>
-            <Height>0cm</Height>
-            <Width>18cm</Width>
-            <ZIndex>18</ZIndex>
-            <Visibility>
-              <Hidden>=(IsNothing(First(Fields!SaleID.Value, "SaleCountByStatus"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleCountByCountry"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleCountByMargin"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleProfitSumByDate"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleTotalRevenueSpentSumByDate"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleProfitSumByCountry"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleTotalRevenueSpentSumByCountry"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleCountByDate"))) and
-
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByStatus"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByDate"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByCountry"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByDate"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByCountry"))) and
-
-(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByStatus"))) and
-(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByDate"))) and
-(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByCountry"))) and
-(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))) and
-(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry")))</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
         </ReportItems>
         <Height>144.02646cm</Height>
         <Style />

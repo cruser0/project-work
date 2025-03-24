@@ -575,7 +575,6 @@
     <Compile Include="Services\SupplierService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ValueService.cs" />
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="UserAccessInfo.cs" />
     <Compile Include="UtilityFunctions.cs" />
     <EmbeddedResource Include="Forms\AddForms\CreateCustomerForm.resx">
@@ -803,19 +802,6 @@
     <None Include="Properties\Resources\pdficon-25x25.png" />
     <Content Include="Properties\Resources\pdficon-removebg-preview.png" />
     <None Include="Properties\Resources\zoom-21x25.png" />
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\Resources\cropped-logo-removebg-preview_50x50.png" />
     <Content Include="Properties\Resources\double_left_resize.png" />
     <Content Include="Properties\Resources\double_right_resize.png" />

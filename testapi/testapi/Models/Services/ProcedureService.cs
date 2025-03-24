@@ -57,7 +57,7 @@ namespace API.Models.Services
 
         public async Task<List<TotalAmountGainedPerCustomerInvoice>> FilterCustomerInvoicesByAmountGained(TotalAmountGainedPerCustomerInvoiceFilter filter)
         {
-            return await _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw(
+            var sql = _context.TotalAmountGainedPerCustomerInvoice.FromSqlRaw(
                 $"EXEC pf_TotalAmountGainedPerCustomerInvoice " +
                 $"@customerInvoiceID," +
                 $"@TotalGainedFrom," +
@@ -66,7 +66,7 @@ namespace API.Models.Services
                 $"@DateTo," +
                 $"@Status," +
                 $"@CustomerName," +
-                $"@CustomerCountry" +
+                $"@CustomerCountry," +
                 "@CountryRegion",
                 new SqlParameter("@customerInvoiceID", filter.customerInvoiceID ?? (object)DBNull.Value),
                 new SqlParameter("@TotalGainedFrom", filter.TotalGainedFrom ?? (object)DBNull.Value),
@@ -76,12 +76,13 @@ namespace API.Models.Services
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
-                new SqlParameter("@CountryRegion", filter.CountryRegion ?? (object)DBNull.Value)).ToListAsync();
+                new SqlParameter("@CountryRegion", filter.CountryRegion ?? (object)DBNull.Value));
+            return await sql.ToListAsync();
         }
 
         public async Task<List<TotalAmountSpentPerSupplierInvoice>> FilterSupplierInvoicesByAmountSpent(TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
-            return await _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw(
+            var sql = _context.TotalAmountSpentPerSupplierInvoice.FromSqlRaw(
                 $"EXEC pf_TotalAmountSpentPerSupplierInvoice " +
                 $"@SupplierInvoiceID," +
                 $"@TotalSpentFrom," +
@@ -90,7 +91,7 @@ namespace API.Models.Services
                 $"@DateTo," +
                 $"@Status," +
                 $"@SupplierName," +
-                $"@SupplierCountry" +
+                $"@SupplierCountry," +
                 "@CountryRegion",
                 new SqlParameter("@SupplierInvoiceID", filter.SupplierInvoiceID ?? (object)DBNull.Value),
                 new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
@@ -100,7 +101,8 @@ namespace API.Models.Services
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
                 new SqlParameter("@SupplierCountry", filter.SupplierCountry ?? (object)DBNull.Value),
-                new SqlParameter("@CountryRegion", filter.CountryRegion ?? (object)DBNull.Value)).ToListAsync();
+                new SqlParameter("@CountryRegion", filter.CountryRegion ?? (object)DBNull.Value));
+            return await sql.ToListAsync();
         }
     }
 }
