@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(Progetto_FormativoContext))]
-    [Migration("20250319151217_StoredProceduresMigration")]
+    [Migration("20250324151217_StoredProceduresMigration")]
     partial class StoredProceduresMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

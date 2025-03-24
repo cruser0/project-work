@@ -11,5 +11,6 @@ namespace WinformDotNetFramework.Procedures
         public decimal? TotalGained { get; set; }
         public string CustomerName { get; set; }
         public string Country { get; set; }
+        public string CountryRegion { get; set; }
     }
 }

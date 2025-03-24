@@ -23,6 +23,7 @@ namespace API.Migrations
                 @Status VARCHAR(20) = NULL,
                 @CustomerName VARCHAR(100) = NULL,
                 @CustomerCountry VARCHAR(100) = NULL,
+                @CountryRegion VARCHAR(100) = NULL,
                 @SaleID INT = NULL,
                 @DateFrom DATETIME = NULL,
                 @DateTo DATETIME = NULL
@@ -30,7 +31,7 @@ namespace API.Migrations
             BEGIN
                 WITH SalesData AS (
                     SELECT 
-                        aIN.*, sBolBk.BoLNumber, sBolBk.BookingNumber, sBolBk.SaleDate, sBolBk.Status, sBolBk.CustomerName, sBolBk.Country,
+                        aIN.*, sBolBk.BoLNumber, sBolBk.BookingNumber, sBolBk.SaleDate, sBolBk.Status, sBolBk.CustomerName, sBolBk.Country, sBolBk.Region,
                         aOUT.TotalSpent, 
                         (aIN.TotalRevenue - aOUT.TotalSpent) AS Profit, 
                         CASE 
@@ -61,7 +62,7 @@ namespace API.Migrations
                             (@TotalSpentTo IS NULL OR SUM(si.InvoiceAmount) <= @TotalSpentTo)
                         ) AS aOUT 
                     ON aIN.SaleID = aOUT.SaleID
-                    JOIN dbo.Sale_Filtered(@BKNumber, @BoLNumber, @CustomerID, @Status, @CustomerName, @CustomerCountry, @SaleID, @DateFrom, @DateTo) sBolBk 
+                    JOIN dbo.Sale_Filtered(@BKNumber, @BoLNumber, @CustomerID, @Status, @CustomerName, @CustomerCountry, @CountryRegion, @SaleID, @DateFrom, @DateTo) sBolBk 
                     ON sBolBk.SaleID = aIN.SaleID
                 )
                 SELECT * 
@@ -81,10 +82,11 @@ namespace API.Migrations
                     @DateTo DATETIME = NULL,
                     @Status VARCHAR(20) = NULL,
                     @CustomerName VARCHAR(100) = NULL,
-                    @CustomerCountry VARCHAR(100) = NULL
+                    @CustomerCountry VARCHAR(100) = NULL,
+                    @CountryRegion VARCHAR(100) = NULL
                 AS
                 BEGIN
-                    SELECT DISTINCT ci.CustomerInvoiceID, ci.InvoiceDate, ci.SaleID, st.StatusName AS Status, cif.TotalGained, cus.CustomerName, co.CountryName  AS Country
+                    SELECT DISTINCT ci.CustomerInvoiceID, ci.InvoiceDate, ci.SaleID, st.StatusName AS Status, cif.TotalGained, cus.CustomerName, co.CountryName  AS Country, co.Region
                     FROM Progetto_Formativo.dbo.CustomerinvoiceCosts AS c
                     LEFT JOIN Progetto_Formativo.dbo.CustomerInvoices ci ON c.CustomerInvoiceID = ci.CustomerInvoiceID
                     JOIN dbo.Sales s ON s.SaleID = ci.SaleID
@@ -97,6 +99,7 @@ namespace API.Migrations
                           (@TotalGainedTo IS NULL OR cif.TotalGained <= @TotalGainedTo) AND
                           (@Status IS NULL OR st.StatusName = @Status) AND
                           (@CustomerCountry IS NULL OR co.CountryName LIKE '%' + @CustomerCountry + '%') AND
+                          (@CountryRegion IS NULL OR co.Region LIKE '%' + @CountryRegion + '%') AND
                           (@CustomerName IS NULL OR cus.CustomerName LIKE '%' + @CustomerName + '%') AND
                           (@DateFrom IS NULL OR ci.InvoiceDate >= @DateFrom) AND
                           (@DateTo IS NULL OR ci.InvoiceDate <= @DateTo);
@@ -112,12 +115,13 @@ namespace API.Migrations
 	            @DateTo DateTime=null,
 	            @Status varchar(20)=null,
 	            @SupplierName varchar(100)=null,
-	            @SupplierCountry varchar(100)=null
+	            @SupplierCountry varchar(100)=null,
+                @CountryRegion VARCHAR(100) = NULL
             )
 
             AS
             BEGIN
-                select distinct si.SupplierInvoiceID,si.SaleID,si.SupplierID,si.InvoiceDate,st.StatusName AS Status,sup.SupplierName,co.CountryName AS Country,sif.TotalSpent
+                select distinct si.SupplierInvoiceID,si.SaleID,si.SupplierID,si.InvoiceDate,st.StatusName AS Status,sup.SupplierName,co.CountryName AS Country, co.Region, sif.TotalSpent
 		            from Progetto_Formativo.dbo.SupplierInvoiceCosts as sic
 		            left join Progetto_Formativo.dbo.SupplierInvoices si on si.SupplierInvoiceID=sic.SupplierInvoiceID
 		            join dbo.Suppliers sup on sup.SupplierID = si.SupplierID
@@ -129,6 +133,7 @@ namespace API.Migrations
 		            (@TotalSpentTo is null or sif.TotalSpent<=@TotalSpentTo)and
 		            (@Status is null or st.StatusName=@Status)and
 		            (@SupplierCountry is null or co.CountryName like '%'+@SupplierCountry+'%')and
+                    (@CountryRegion IS NULL OR co.Region LIKE '%' + @CountryRegion + '%') AND
 		            (@SupplierName is null or sup.SupplierName like '%'+@SupplierName+'%')and
 		            (@DateFrom is null or si.InvoiceDate>=@DateFrom)and
 		            (@DateTo is null or si.InvoiceDate<=@DateTo)

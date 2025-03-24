@@ -1,4 +1,6 @@
-﻿namespace API.Models.Procedures
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API.Models.Procedures
 {
     public class TotalAmountSpentPerSupplierInvoice
     {
@@ -10,6 +12,8 @@
         public string? Status { get; set; }
         public string? SupplierName { get; set; }
         public string? Country { get; set; }
+        [Column("Region")]
+        public string? CountryRegion { get; set; }
         public decimal? TotalSpent { get; set; }
     }
 }

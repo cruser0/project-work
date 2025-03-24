@@ -31,6 +31,7 @@ namespace WinformDotNetFramework.Services
                 { "Status", filter.Status ?? null},
                 { "CustomerName", filter.CustomerName ?? null},
                 { "CustomerCountry", filter.CustomerCountry ?? null},
+                { "CountryRegion", filter.CountryRegion ?? null},
                 { "SaleID", filter.SaleID ?? null},
                 { "DateFrom", dateFrom ?? null},
                 { "DateTo", dateTo ?? null},
@@ -61,6 +62,7 @@ namespace WinformDotNetFramework.Services
                 { "Status", filter.Status ?? null},
                 { "CustomerName", filter.CustomerName ?? null},
                 { "CustomerCountry", filter.CustomerCountry ?? null},
+                { "CountryRegion", filter.CountryRegion ?? null},
 
             };
             foreach (var kvp in filters)
@@ -88,6 +90,7 @@ namespace WinformDotNetFramework.Services
                 { "Status", filter.Status ?? null},
                 { "SupplierName", filter.SupplierName ?? null},
                 { "SupplierCountry", filter.SupplierCountry ?? null},
+                { "CountryRegion", filter.CountryRegion ?? null},
             };
             foreach (var kvp in filters)
             {

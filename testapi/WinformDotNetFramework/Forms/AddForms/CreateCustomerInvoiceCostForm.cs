@@ -14,7 +14,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         CustomerInvoiceCostService _customerInvoiceCostService;
         CustomerInvoiceService _customerInvoiceService;
         List<string> customerInvoiceCodes;
-        private int id=0;
+        private int id = 0;
         List<CostRegistry> list;
         public CreateCustomerInvoiceCostForm()
         {
@@ -29,8 +29,8 @@ namespace WinformDotNetFramework.Forms.AddForms
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
             CostRegistry cr;
-            if(!CostRegistryCmbx.Text.Equals("All"))
-                cr=list.Where(x=>x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text)).FirstOrDefault();
+            if (!CostRegistryCmbx.Text.Equals("All"))
+                cr = list.Where(x => x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text)).FirstOrDefault();
             else
             {
                 MessageBox.Show("You need to select a Cost Registry");
@@ -51,7 +51,7 @@ namespace WinformDotNetFramework.Forms.AddForms
                 MessageBox.Show("You need to choose a Customer Invoice Code");
                 return;
             }
-            if (!string.IsNullOrEmpty(CostRegistryCmbx.Text)&&!CostRegistryCmbx.Text.Equals("All"))
+            if (!string.IsNullOrEmpty(CostRegistryCmbx.Text) && !CostRegistryCmbx.Text.Equals("All"))
                 customerInvoiceCost.CostRegistryCode = CostRegistryCmbx.Text;
             else
             {
@@ -85,7 +85,7 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         public void SetCustomerInvoiceCode(string code)
         {
-            CustomerInvoiceCodeCmbx.Text=code;
+            CustomerInvoiceCodeCmbx.Text = code;
         }
         public void SetCustomerInvoiceID(string idFromForm)
         {
@@ -107,8 +107,9 @@ namespace WinformDotNetFramework.Forms.AddForms
         {
             timer.Stop();
 
-            CostRegistryCmbx.DataSource = _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { 
-                CustomerInvoiceCode=string.IsNullOrEmpty(CustomerInvoiceCodeCmbx.Text)?null: CustomerInvoiceCodeCmbx.Text
+            CostRegistryCmbx.DataSource = _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
+            {
+                CustomerInvoiceCode = string.IsNullOrEmpty(CustomerInvoiceCodeCmbx.Text) ? null : CustomerInvoiceCodeCmbx.Text
             });
         }
     }

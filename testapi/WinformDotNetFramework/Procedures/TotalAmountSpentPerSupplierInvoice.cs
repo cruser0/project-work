@@ -12,6 +12,7 @@ namespace WinformDotNetFramework.Procedures
         public string Status { get; set; }
         public string SupplierName { get; set; }
         public string Country { get; set; }
+        public string CountryRegion { get; set; }
         public decimal? TotalSpent { get; set; }
     }
 }

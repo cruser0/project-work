@@ -19,6 +19,7 @@ namespace WinformDotNetFramework.Entities.Filters
         public string Status { get; set; }
         public string CustomerName { get; set; }
         public string CustomerCountry { get; set; }
+        public string CountryRegion { get; set; }
         public int? SaleID { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }

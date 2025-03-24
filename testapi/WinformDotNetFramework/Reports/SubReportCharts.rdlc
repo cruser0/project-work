@@ -5919,7 +5919,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>="Supplier Invoice Count By Status (" &amp; CStr(Count(Fields!InvoiceID.Value)) &amp; ")"</Caption>
+                <Caption>="Supplier Invoice Count By Status (" &amp; CStr(Count(Fields!SupplierInvoiceID.Value)) &amp; ")"</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -5949,12 +5949,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByStatus</DataSetName>
-            <Top>104cm</Top>
+            <Top>104.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>12</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByStatus"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByStatus"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -6294,7 +6294,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>="Supplier Invoice Count By Country (" &amp; CStr(Count(Fields!InvoiceID.Value)) &amp; ")"</Caption>
+                <Caption>="Supplier Invoice Count By Country (" &amp; CStr(Count(Fields!SupplierInvoiceID.Value)) &amp; ")"</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -6324,12 +6324,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByCountry</DataSetName>
-            <Top>112cm</Top>
+            <Top>112.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>13</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByCountry"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByCountry"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -6695,12 +6695,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByDate</DataSetName>
-            <Top>120cm</Top>
+            <Top>120.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>14</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByDate"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByDate"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -7066,12 +7066,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceTotalSpentSumByDate</DataSetName>
-            <Top>128cm</Top>
+            <Top>128.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>15</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -7437,12 +7437,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceTotalSpentSumByCountry</DataSetName>
-            <Top>136cm</Top>
+            <Top>136.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>16</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -7854,11 +7854,11 @@
 (IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByDate"))) and
 (IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByCountry"))) and
 
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByStatus"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByDate"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByCountry"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry")))</Hidden>
+(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByStatus"))) and
+(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByDate"))) and
+(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByCountry"))) and
+(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))) and
+(IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry")))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -7867,7 +7867,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>144cm</Height>
+        <Height>144.02646cm</Height>
         <Style />
       </Body>
       <Width>18cm</Width>

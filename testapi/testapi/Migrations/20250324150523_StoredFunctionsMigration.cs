@@ -16,6 +16,7 @@ namespace API.Migrations
                     @Status VARCHAR(20),
                     @CustomerName VARCHAR(100),
                     @CustomerCountry VARCHAR(100),
+                    @CountryRegion VARCHAR(100),
                     @SaleID INT,
                     @DateFrom DATETIME,
                     @DateTo DATETIME
@@ -24,7 +25,7 @@ namespace API.Migrations
                 AS
                 RETURN
                     SELECT 
-                        s.SaleID, s.BoLNumber, s.BookingNumber, s.SaleDate, st.StatusName As Status, c.CustomerName, co.CountryName As Country
+                        s.SaleID, s.BoLNumber, s.BookingNumber, s.SaleDate, st.StatusName As Status, c.CustomerName, co.CountryName As Country, co.Region
                     FROM
                         dbo.Sales s
                     LEFT JOIN dbo.Customers c ON c.CustomerID = s.CustomerID
@@ -37,6 +38,7 @@ namespace API.Migrations
                         (@Status IS NULL OR @Status = st.StatusName) AND
                         (@CustomerName IS NULL OR c.CustomerName LIKE '%' + @CustomerName + '%') AND
                         (@CustomerCountry IS NULL OR co.CountryName LIKE '%' + @CustomerCountry + '%') AND
+                        
                         (@SaleID IS NULL OR @SaleID = s.SaleID) AND
                         (@DateFrom IS NULL OR s.SaleDate >= @DateFrom) AND
                         (@DateTo IS NULL OR s.SaleDate <= @DateTo)

@@ -1,4 +1,6 @@
-﻿namespace API.Models.Procedures
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API.Models.Procedures
 {
     public class ClassifySalesByProfit
     {
@@ -10,6 +12,8 @@
         public string? Status { get; set; }
         public string? CustomerName { get; set; }
         public string? Country { get; set; }
+        [Column("Region")]
+        public string? CountryRegion { get; set; }
         public decimal? TotalSpent { get; set; }
         public decimal? Profit { get; set; }
         public string? SaleMargins { get; set; }

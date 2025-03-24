@@ -10,5 +10,6 @@
         public string? Status { get; set; }
         public string? CustomerName { get; set; }
         public string? CustomerCountry { get; set; }
+        public string? CountryRegion { get; set; }
     }
 }
