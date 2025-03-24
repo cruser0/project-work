@@ -7,6 +7,8 @@ namespace WinformDotNetFramework.Entities
 
         public int CustomerInvoiceId { get; set; }
         public int? SaleId { get; set; }
+        public string CustomerInvoiceCode { get; set; }
+
         public string SaleBookingNumber { get; set; }
         public string SaleBoL { get; set; }
         public decimal? InvoiceAmount { get; set; }

@@ -9,20 +9,19 @@ namespace WinformDotNetFramework.Forms.AddForms
 {
     public partial class CreateCustomerInvoiceForm : Form
     {
-        MainForm mainForm = Application.OpenForms.OfType<MainForm>().First();
         CustomerInvoiceService _customerInvoiceService;
+        int id;
         public CreateCustomerInvoiceForm()
         {
             _customerInvoiceService = new CustomerInvoiceService();
             InitializeComponent();
-            integerTextBoxUserControl1.ValueChanged += NameTxt_TextChanged;
         }
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
             CustomerInvoice customerInvoice = new CustomerInvoice()
             {
-                SaleId = int.Parse(integerTextBoxUserControl1.GetText()),
+                SaleId = id,
                 InvoiceDate = dateTimePicker1.Value,
                 Status = "Unpaid"
             };
@@ -40,7 +39,7 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         private void NameTxt_TextChanged(object sender, EventArgs e)
         {
-            SaveBtn.Enabled = integerTextBoxUserControl1.GetText().Length > 0 && dateTimePicker1.Checked;
+            SaveBtn.Enabled = CustomerInvoiceBkTxt.TextLength > 0 && CustomerInvoiceBolTxt.TextLength > 0 && dateTimePicker1.Checked;
         }
 
         private void OpenSale_Click(object sender, EventArgs e)
@@ -48,9 +47,14 @@ namespace WinformDotNetFramework.Forms.AddForms
             UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);
         }
 
-        public void SetSaleID(string id)
+        public void SetSaleID(string idSale)
         {
-            integerTextBoxUserControl1.SetText(id);
+            id= int.Parse(idSale);
+        }
+        public void SetSaleBkBol(string bk,string bol)
+        {
+            CustomerInvoiceBkTxt.Text = bk;
+            CustomerInvoiceBolTxt.Text = bol;
         }
     }
 }

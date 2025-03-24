@@ -136,7 +136,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             if (sender is DataGridView dgv)
             {
                 if (_father is CreateCustomerInvoiceCostForm csif)
+                {
                     csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["CustomerInvoiceId"].Value.ToString());
+                    csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["CustomerInvoiceCode"].Value.ToString());
+                }
             }
 
         }
@@ -218,6 +221,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     case "CustomerInvoiceStatusTsmi":
                         CenterDgv.Columns["Status"].Visible = tsmi.Checked;
                         break;
+
                     default:
                         break;
                 }

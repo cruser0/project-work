@@ -171,9 +171,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             if (sender is DataGridView dgv)
             {
                 if (_father is CreateSupplierInvoicesForm csif)
+                {
                     csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
+                }
                 if (_father is CreateCustomerInvoiceForm ccif)
+                {
+                    ccif.SetSaleBkBol(dgv.CurrentRow.Cells["BookingNumber"].Value.ToString(), dgv.CurrentRow.Cells["BoLNumber"].Value.ToString());
                     ccif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
+                }
             }
         }
 

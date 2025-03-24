@@ -9,8 +9,8 @@ namespace WinformDotNetFramework.Forms.AddForms
 {
     public partial class CreateSaleForm : Form
     {
-        MainForm mainForm = Application.OpenForms.OfType<MainForm>().First();
         SaleService _saleService;
+        int id;
         public CreateSaleForm()
         {
             _saleService = new SaleService();
@@ -19,12 +19,17 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
+            if (!saleDateDtp.Checked)
+            {
+                MessageBox.Show("Select a date");
+                return;
+            }
             Sale sale = new Sale
             {
                 BookingNumber = bntxt.Text,
                 BoLnumber = boltxt.Text,
                 SaleDate = saleDateDtp.Value,
-                CustomerId = int.Parse(CustomerIdtxt.GetText()),
+                CustomerId = id,
                 Status = StatusCmbx.Text
             };
             try
@@ -36,15 +41,24 @@ namespace WinformDotNetFramework.Forms.AddForms
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+        private void NameTxt_TextChanged(object sender, EventArgs e)
+        {
+            SaveBtn.Enabled = boltxt.TextLength > 0 && bntxt.TextLength > 0 && saleDateDtp.Checked && CustomerNameTxt.TextLength>0 && CustomerCountryTxt.TextLength > 0&&!string.IsNullOrEmpty(StatusCmbx.Text);
+        }
 
         private void OpenSale_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<CustomerGridForm>(sender, e, this);
 
         }
-        public void SetCustomerID(string id)
+        public void SetCustomerID(string idCustomer)
         {
-            CustomerIdtxt.SetText(id);
+            id= int.Parse(idCustomer);
+        }
+        public void SetCustomerNameCountry(string name,string country)
+        {
+            CustomerNameTxt.Text = name;
+            CustomerCountryTxt.Text = country;
         }
     }
 }

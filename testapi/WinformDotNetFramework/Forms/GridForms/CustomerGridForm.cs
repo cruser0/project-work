@@ -164,6 +164,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 if (_father is CreateSaleForm csf)
                 {
                     csf.SetCustomerID(dgv.CurrentRow.Cells["CustomerID"].Value.ToString());
+                    csf.SetCustomerNameCountry(dgv.CurrentRow.Cells["CustomerName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
                 }
             }
         }

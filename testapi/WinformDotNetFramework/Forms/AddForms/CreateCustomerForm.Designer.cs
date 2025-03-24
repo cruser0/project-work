@@ -33,9 +33,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.NameTxt = new System.Windows.Forms.TextBox();
-            this.CountryTxt = new System.Windows.Forms.TextBox();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -75,21 +75,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.NameTxt.Location = new System.Drawing.Point(289, 161);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(172, 23);
+            this.NameTxt.Size = new System.Drawing.Size(180, 23);
             this.NameTxt.TabIndex = 2;
             this.NameTxt.TextChanged += new System.EventHandler(this.NameTxt_TextChanged);
-            // 
-            // CountryTxt
-            // 
-            this.CountryTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CountryTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountryTxt.Location = new System.Drawing.Point(289, 205);
-            this.CountryTxt.MaxLength = 50;
-            this.CountryTxt.Name = "CountryTxt";
-            this.CountryTxt.Size = new System.Drawing.Size(172, 23);
-            this.CountryTxt.TabIndex = 3;
-            this.CountryTxt.TextChanged += new System.EventHandler(this.NameTxt_TextChanged);
             // 
             // SaveBtn
             // 
@@ -110,16 +98,27 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.CountryCmbx);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.SaveBtn);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.CountryTxt);
             this.panel1.Controls.Add(this.NameTxt);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(17, 17);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 5;
+            // 
+            // CountryCmbx
+            // 
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(289, 207);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 27;
+            this.CountryCmbx.SelectedIndexChanged += new System.EventHandler(this.NameTxt_TextChanged);
             // 
             // panel2
             // 
@@ -193,12 +192,12 @@ namespace WinformDotNetFramework.Forms.AddForms
         private Label label1;
         private Label label2;
         private TextBox NameTxt;
-        private TextBox CountryTxt;
         private Button SaveBtn;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private ComboBox CountryCmbx;
     }
 }

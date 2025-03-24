@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Services;
@@ -14,6 +15,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         public CreateCustomerForm()
         {
             Init();
+
         }
 
         private async void Init()
@@ -22,6 +24,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             _customerService = new CustomerService();
             InitializeComponent();
             prefUserPages = await _userService.GetAllPreferredPagesUser();
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
         }
 
         private async void SaveBtn_Click(object sender, EventArgs e)
@@ -29,9 +32,12 @@ namespace WinformDotNetFramework.Forms.AddForms
             Customer customer = new Customer()
             {
                 CustomerName = NameTxt.Text,
-                Country = CountryTxt.Text
+                Country = CountryCmbx.Text
             };
-
+            if (customer.Country.Equals("All"))
+                MessageBox.Show("You Need to Select a country");
+            else
+            {
             try
             {
                 await _customerService.Create(customer);
@@ -43,11 +49,12 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 MessageBox.Show(ex.Message);
             }
+            }
         }
 
         private void NameTxt_TextChanged(object sender, EventArgs e)
         {
-            SaveBtn.Enabled = NameTxt.Text.Length > 0 && CountryTxt.Text.Length > 0;
+            SaveBtn.Enabled = NameTxt.Text.Length > 0 && !CountryCmbx.Text.Equals("All") && !string.IsNullOrEmpty(CountryCmbx.Text);
         }
 
     }
