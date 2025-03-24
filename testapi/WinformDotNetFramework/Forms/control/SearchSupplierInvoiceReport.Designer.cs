@@ -44,7 +44,7 @@
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.SupplierNameLbl = new System.Windows.Forms.Label();
             this.CountryLbl = new System.Windows.Forms.Label();
-            this.CountryTxt = new System.Windows.Forms.TextBox();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,7 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.GraphLbl);
             this.TextBoxesRightPanel.Controls.Add(this.GrapCBL);
             this.TextBoxesRightPanel.Controls.Add(this.SpentToLbl);
@@ -68,7 +69,6 @@
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.SupplierNameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.CountryTxt);
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
@@ -241,15 +241,15 @@
             this.CountryLbl.TabIndex = 4;
             this.CountryLbl.Text = "Supplier Country";
             // 
-            // CountryTxt
+            // CountryCmbx
             // 
-            this.CountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountryTxt.Location = new System.Drawing.Point(3, 268);
-            this.CountryTxt.MaxLength = 50;
-            this.CountryTxt.Name = "CountryTxt";
-            this.CountryTxt.Size = new System.Drawing.Size(180, 20);
-            this.CountryTxt.TabIndex = 2;
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(4, 270);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 43;
             // 
             // SearchSupplierInvoiceReport
             // 
@@ -282,6 +282,6 @@
         public System.Windows.Forms.TextBox NameTxt;
         private System.Windows.Forms.Label SupplierNameLbl;
         private System.Windows.Forms.Label CountryLbl;
-        public System.Windows.Forms.TextBox CountryTxt;
+        private System.Windows.Forms.ComboBox CountryCmbx;
     }
 }

@@ -92,7 +92,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.searchCustomer1.Location = new System.Drawing.Point(3, 0);
             this.searchCustomer1.Name = "searchCustomer1";
-            this.searchCustomer1.Size = new System.Drawing.Size(197, 254);
+            this.searchCustomer1.Size = new System.Drawing.Size(197, 258);
             this.searchCustomer1.TabIndex = 15;
             // 
             // RightSideBar

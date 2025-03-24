@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
@@ -8,12 +9,18 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSaleReport()
         {
             InitializeComponent();
+            
+            Init();
+        }
+        public async void Init()
+        {
             StatusCmbx.SelectedIndex = 0;
             FilterMarginCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
                 GrapCBL.SetItemChecked(i, true);
             }
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
         }
         public ClassifySalesByProfitFilter GetFilter()
         {
@@ -21,11 +28,20 @@ namespace WinformDotNetFramework.Forms.control
             {
                 BKNumber = string.IsNullOrEmpty(BKNumberTxt.Text) ? null : BKNumberTxt.Text,
                 BoLNumber = string.IsNullOrEmpty(BoLNumberTxt.Text) ? null : BoLNumberTxt.Text,
-                CustomerCountry = string.IsNullOrEmpty(CountryTxt.Text) ? null : CountryTxt.Text,
                 CustomerName = string.IsNullOrEmpty(NameTxt.Text) ? null : NameTxt.Text,
                 FilterMargin = FilterMarginCmbx.Text.ToLower().Equals("all") ? null : FilterMarginCmbx.Text.ToLower(),
                 Status = StatusCmbx.Text.ToLower().Equals("all") ? null : StatusCmbx.Text,
             };
+            if (!string.IsNullOrEmpty(CountryCmbx.Text))
+            {
+                if (CountryCmbx.Text.Equals("All"))
+                    filter.CustomerCountry = null;
+                else
+                    filter.CustomerCountry = CountryCmbx.Text;
+            }
+            else
+                filter.CustomerCountry = null;
+
             if (DateFromClnd.Checked)
                 filter.DateFrom = DateFromClnd.Value;
             else

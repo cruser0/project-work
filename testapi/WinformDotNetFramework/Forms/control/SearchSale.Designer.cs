@@ -34,7 +34,6 @@ namespace WinformDotNetFramework.Forms.control
             this.CustomerNameTxt = new System.Windows.Forms.TextBox();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.CustomerCountryLbl = new System.Windows.Forms.Label();
-            this.CustomerCountryTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.RevenueFromTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@ namespace WinformDotNetFramework.Forms.control
             this.BillofLadingLbl = new System.Windows.Forms.Label();
             this.DateFromDTP = new System.Windows.Forms.DateTimePicker();
             this.BoLTextBox = new System.Windows.Forms.TextBox();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,10 +57,10 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerNameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerNameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerCountryLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.CustomerCountryTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label4);
             this.TextBoxesRightPanel.Controls.Add(this.RevenueFromTxt);
             this.TextBoxesRightPanel.Controls.Add(this.label2);
@@ -114,17 +114,6 @@ namespace WinformDotNetFramework.Forms.control
             this.CustomerCountryLbl.Size = new System.Drawing.Size(121, 17);
             this.CustomerCountryLbl.TabIndex = 24;
             this.CustomerCountryLbl.Text = "Customer Country";
-            // 
-            // CustomerCountryTxt
-            // 
-            this.CustomerCountryTxt.BackColor = System.Drawing.SystemColors.Window;
-            this.CustomerCountryTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CustomerCountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerCountryTxt.Location = new System.Drawing.Point(0, 365);
-            this.CustomerCountryTxt.MaxLength = 50;
-            this.CustomerCountryTxt.Name = "CustomerCountryTxt";
-            this.CustomerCountryTxt.Size = new System.Drawing.Size(180, 20);
-            this.CustomerCountryTxt.TabIndex = 22;
             // 
             // label4
             // 
@@ -291,6 +280,16 @@ namespace WinformDotNetFramework.Forms.control
             this.BoLTextBox.Size = new System.Drawing.Size(180, 20);
             this.BoLTextBox.TabIndex = 2;
             // 
+            // CountryCmbx
+            // 
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(-1, 367);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 41;
+            // 
             // SearchSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,6 +324,6 @@ namespace WinformDotNetFramework.Forms.control
         public TextBox CustomerNameTxt;
         private Label CustomerNameLbl;
         private Label CustomerCountryLbl;
-        public TextBox CustomerCountryTxt;
+        private ComboBox CountryCmbx;
     }
 }

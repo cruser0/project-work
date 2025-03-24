@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
@@ -8,21 +9,35 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplierInvoiceReport()
         {
             InitializeComponent();
+            
+            Init();
+        }
+        public async void Init()
+        {
             comboBox1.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
                 GrapCBL.SetItemChecked(i, true);
             }
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
         }
         public TotalAmountSpentPerSupplierInvoiceFilter GetFilter()
         {
             TotalAmountSpentPerSupplierInvoiceFilter filter = new TotalAmountSpentPerSupplierInvoiceFilter()
             {
-                SupplierCountry = string.IsNullOrEmpty(CountryTxt.Text) ? null : CountryTxt.Text,
                 SupplierName = string.IsNullOrEmpty(NameTxt.Text) ? null : NameTxt.Text,
                 Status = comboBox1.Text.Equals("All") ? null : comboBox1.Text,
 
             };
+            if (!string.IsNullOrEmpty(CountryCmbx.Text))
+            {
+                if (CountryCmbx.Text.Equals("All"))
+                    filter.SupplierCountry = null;
+                else
+                    filter.SupplierCountry = CountryCmbx.Text;
+            }
+            else
+                filter.SupplierCountry = null;
             if (DateFromClnd.Checked)
                 filter.DateFrom = DateFromClnd.Value;
             else

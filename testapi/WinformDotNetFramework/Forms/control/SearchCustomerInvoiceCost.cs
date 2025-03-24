@@ -9,13 +9,15 @@ namespace WinformDotNetFramework.Forms.control
 {
     public partial class SearchCustomerInvoiceCost : UserControl
     {
-        CostRegistryService costRegistryService;
-        ICollection<CostRegistry> list = new List<CostRegistry>();
         public SearchCustomerInvoiceCost()
         {
-            costRegistryService = new CostRegistryService();
             InitializeComponent();
+            Init();
 
+        }
+        public async void Init()
+        {
+            CostRegistryCmbx.DataSource = (await UtilityFunctions.GetCostRegistry()).Select(x => x.CostRegistryUniqueCode).ToList();
         }
 
         public CustomerInvoiceCostFilter GetFilter()
@@ -48,13 +50,6 @@ namespace WinformDotNetFramework.Forms.control
                 customerInvoiceCostfilter.CustomerInvoiceCostCostTo = int.Parse(CostToTxt.GetText());
             
             return customerInvoiceCostfilter;
-        }
-
-        private async void SearchCustomerInvoiceCost_Load(object sender, System.EventArgs e)
-        {
-            list=await costRegistryService.GetAll();
-            list = new List<CostRegistry>() { new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 0, CostRegistryQuantity = 0, CostRegistryUniqueCode = "All" } }.Concat(list).ToList();
-            CostRegistryCmbx.DataSource = list.Select(x => x.CostRegistryUniqueCode).ToList();
         }
     }
 }

@@ -40,6 +40,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.SupplierInvoiceDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -55,7 +56,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceSupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceSupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
@@ -100,9 +100,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // searchSupplierInvoice1
             // 
-            this.searchSupplierInvoice1.Location = new System.Drawing.Point(3, 0);
+            this.searchSupplierInvoice1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchSupplierInvoice1.Location = new System.Drawing.Point(0, 0);
             this.searchSupplierInvoice1.Name = "searchSupplierInvoice1";
-            this.searchSupplierInvoice1.Size = new System.Drawing.Size(197, 326);
+            this.searchSupplierInvoice1.Size = new System.Drawing.Size(200, 369);
             this.searchSupplierInvoice1.TabIndex = 0;
             // 
             // RightSideBar
@@ -152,6 +153,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.Size = new System.Drawing.Size(584, 25);
             this.toolStrip1.TabIndex = 12;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.ToolTipText = "Toggle Edit Mode";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // toolStripButton2
             // 
@@ -296,17 +308,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceCountryTsmi.Size = new System.Drawing.Size(195, 22);
             this.SupplierInvoiceCountryTsmi.Text = "Show Supplier Country";
             this.SupplierInvoiceCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
-            // 
-            // ToggleEditButton
-            // 
-            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
-            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToggleEditButton.Name = "ToggleEditButton";
-            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
-            this.ToggleEditButton.Text = "Toggle Edit";
-            this.ToggleEditButton.ToolTipText = "Toggle Edit Mode";
-            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // SupplierInvoiceGridForm
             // 
