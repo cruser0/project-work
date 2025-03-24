@@ -69,7 +69,8 @@ namespace API.Migrations
                 FROM SalesData sd
                 WHERE (@FilterMargin IS NULL OR SaleMargins = @FilterMargin) AND
                       (@ProfitFrom  IS NULL OR Profit >= @ProfitFrom) AND
-                      (@ProfitTo  IS NULL OR Profit <= @ProfitTo);
+                      (@ProfitTo  IS NULL OR Profit <= @ProfitTo) AND
+                      (sd.TotalRevenue <> 0 OR sd.TotalSpent <> 0);
             END;
         ");
 

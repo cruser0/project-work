@@ -38,6 +38,7 @@ namespace API.Migrations
                         (@Status IS NULL OR @Status = st.StatusName) AND
                         (@CustomerName IS NULL OR c.CustomerName LIKE '%' + @CustomerName + '%') AND
                         (@CustomerCountry IS NULL OR co.CountryName LIKE '%' + @CustomerCountry + '%') AND
+                        (@CountryRegion IS NULL OR co.Region = @CountryRegion) AND
                         
                         (@SaleID IS NULL OR @SaleID = s.SaleID) AND
                         (@DateFrom IS NULL OR s.SaleDate >= @DateFrom) AND

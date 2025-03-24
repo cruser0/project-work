@@ -197,11 +197,6 @@ namespace WinformDotNetFramework.Forms.GridForms
         void SubreportProcessingEventHandler(object sender, SubreportProcessingEventArgs e)
         {
 
-            //if (searchSaleReport1.checkBox1.Checked)
-            //    e.DataSources.Add(new ReportDataSource("SaleByProfit", _profitData));
-            //else
-            //    e.DataSources.Add(new ReportDataSource("SaleByProfit", new List<ClassifySalesByProfit>()));
-
             if (IsIndexSelected(searchSaleReport1.GrapCBL, 0))
                 e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
             else

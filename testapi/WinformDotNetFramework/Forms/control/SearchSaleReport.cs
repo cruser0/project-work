@@ -9,12 +9,13 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSaleReport()
         {
             InitializeComponent();
-            
+
             Init();
         }
         public async void Init()
         {
             StatusCmbx.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 0;
             FilterMarginCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
@@ -41,6 +42,17 @@ namespace WinformDotNetFramework.Forms.control
             }
             else
                 filter.CustomerCountry = null;
+
+            if (!string.IsNullOrEmpty(comboBox1.Text))
+            {
+                if (comboBox1.Text.Equals("All"))
+                    filter.CountryRegion = null;
+                else
+                    filter.CountryRegion = comboBox1.Text.Split(' ')[0];
+            }
+            else
+                filter.CountryRegion = null;
+
 
             if (DateFromClnd.Checked)
                 filter.DateFrom = DateFromClnd.Value;
@@ -83,7 +95,7 @@ namespace WinformDotNetFramework.Forms.control
 
         public bool IsFilterEmpty(ClassifySalesByProfitFilter filter)
         {
-            if (filter.TotalRevenueFrom != null || filter.DateFrom.HasValue || filter.DateTo.HasValue || filter.TotalRevenueTo != null || filter.BKNumber != null || filter.BoLNumber != null || filter.CustomerCountry != null || filter.TotalSpentTo != null || filter.TotalSpentFrom != null || filter.ProfitFrom != null || filter.ProfitTo != null || filter.CustomerName != null || filter.FilterMargin != null || filter.Status != null)
+            if (filter.TotalRevenueFrom != null || filter.DateFrom.HasValue || filter.DateTo.HasValue || filter.TotalRevenueTo != null || filter.BKNumber != null || filter.BoLNumber != null || filter.CustomerCountry != null || filter.CountryRegion != null || filter.TotalSpentTo != null || filter.TotalSpentFrom != null || filter.ProfitFrom != null || filter.ProfitTo != null || filter.CustomerName != null || filter.FilterMargin != null || filter.Status != null)
                 return false;
             else
                 return true;

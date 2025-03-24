@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.GraphLbl = new System.Windows.Forms.Label();
             this.GrapCBL = new System.Windows.Forms.CheckedListBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,7 +59,8 @@
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.CountryLbl = new System.Windows.Forms.Label();
-            this.CountryCmbx = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.RegionLbl = new System.Windows.Forms.Label();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +69,8 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
+            this.TextBoxesRightPanel.Controls.Add(this.RegionLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.GraphLbl);
             this.TextBoxesRightPanel.Controls.Add(this.GrapCBL);
@@ -100,15 +104,25 @@
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 789);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 893);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // CountryCmbx
+            // 
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(2, 233);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 42;
             // 
             // GraphLbl
             // 
             this.GraphLbl.AutoSize = true;
             this.GraphLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.GraphLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.GraphLbl.Location = new System.Drawing.Point(5, 592);
+            this.GraphLbl.Location = new System.Drawing.Point(5, 638);
             this.GraphLbl.Name = "GraphLbl";
             this.GraphLbl.Size = new System.Drawing.Size(51, 17);
             this.GraphLbl.TabIndex = 39;
@@ -127,7 +141,7 @@
             "Total revenue-spent per date",
             "Total profit per country",
             "Total revenue-spent per country"});
-            this.GrapCBL.Location = new System.Drawing.Point(3, 612);
+            this.GrapCBL.Location = new System.Drawing.Point(3, 658);
             this.GrapCBL.Name = "GrapCBL";
             this.GrapCBL.Size = new System.Drawing.Size(180, 157);
             this.GrapCBL.TabIndex = 38;
@@ -137,7 +151,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label6.Location = new System.Drawing.Point(3, 463);
+            this.label6.Location = new System.Drawing.Point(3, 509);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 17);
             this.label6.TabIndex = 34;
@@ -148,7 +162,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label7.Location = new System.Drawing.Point(3, 424);
+            this.label7.Location = new System.Drawing.Point(3, 470);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 17);
             this.label7.TabIndex = 33;
@@ -157,7 +171,7 @@
             // RevenueToIntegerTxt
             // 
             this.RevenueToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RevenueToIntegerTxt.Location = new System.Drawing.Point(4, 484);
+            this.RevenueToIntegerTxt.Location = new System.Drawing.Point(4, 530);
             this.RevenueToIntegerTxt.Name = "RevenueToIntegerTxt";
             this.RevenueToIntegerTxt.Size = new System.Drawing.Size(179, 20);
             this.RevenueToIntegerTxt.TabIndex = 32;
@@ -165,7 +179,7 @@
             // RevenueFromIntegerTxt
             // 
             this.RevenueFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.RevenueFromIntegerTxt.Location = new System.Drawing.Point(4, 443);
+            this.RevenueFromIntegerTxt.Location = new System.Drawing.Point(4, 489);
             this.RevenueFromIntegerTxt.Name = "RevenueFromIntegerTxt";
             this.RevenueFromIntegerTxt.Size = new System.Drawing.Size(179, 20);
             this.RevenueFromIntegerTxt.TabIndex = 31;
@@ -175,7 +189,7 @@
             this.SpentToLbl.AutoSize = true;
             this.SpentToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.SpentToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SpentToLbl.Location = new System.Drawing.Point(3, 383);
+            this.SpentToLbl.Location = new System.Drawing.Point(3, 429);
             this.SpentToLbl.Name = "SpentToLbl";
             this.SpentToLbl.Size = new System.Drawing.Size(62, 17);
             this.SpentToLbl.TabIndex = 30;
@@ -186,7 +200,7 @@
             this.TotalSpentLbl.AutoSize = true;
             this.TotalSpentLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.TotalSpentLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.TotalSpentLbl.Location = new System.Drawing.Point(3, 340);
+            this.TotalSpentLbl.Location = new System.Drawing.Point(3, 386);
             this.TotalSpentLbl.Name = "TotalSpentLbl";
             this.TotalSpentLbl.Size = new System.Drawing.Size(79, 17);
             this.TotalSpentLbl.TabIndex = 29;
@@ -195,7 +209,7 @@
             // SpentToIntegerTxt
             // 
             this.SpentToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SpentToIntegerTxt.Location = new System.Drawing.Point(4, 402);
+            this.SpentToIntegerTxt.Location = new System.Drawing.Point(4, 448);
             this.SpentToIntegerTxt.Name = "SpentToIntegerTxt";
             this.SpentToIntegerTxt.Size = new System.Drawing.Size(179, 20);
             this.SpentToIntegerTxt.TabIndex = 28;
@@ -203,7 +217,7 @@
             // SpentFromIntegerTxt
             // 
             this.SpentFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SpentFromIntegerTxt.Location = new System.Drawing.Point(4, 361);
+            this.SpentFromIntegerTxt.Location = new System.Drawing.Point(4, 407);
             this.SpentFromIntegerTxt.Name = "SpentFromIntegerTxt";
             this.SpentFromIntegerTxt.Size = new System.Drawing.Size(179, 20);
             this.SpentFromIntegerTxt.TabIndex = 27;
@@ -213,7 +227,7 @@
             this.ProfitToLbl.AutoSize = true;
             this.ProfitToLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.ProfitToLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.ProfitToLbl.Location = new System.Drawing.Point(5, 295);
+            this.ProfitToLbl.Location = new System.Drawing.Point(5, 341);
             this.ProfitToLbl.Name = "ProfitToLbl";
             this.ProfitToLbl.Size = new System.Drawing.Size(62, 17);
             this.ProfitToLbl.TabIndex = 26;
@@ -224,7 +238,7 @@
             this.ProfitFromLbl.AutoSize = true;
             this.ProfitFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.ProfitFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.ProfitFromLbl.Location = new System.Drawing.Point(3, 254);
+            this.ProfitFromLbl.Location = new System.Drawing.Point(3, 300);
             this.ProfitFromLbl.Name = "ProfitFromLbl";
             this.ProfitFromLbl.Size = new System.Drawing.Size(79, 17);
             this.ProfitFromLbl.TabIndex = 25;
@@ -233,7 +247,7 @@
             // ProfitToIntegerTxt
             // 
             this.ProfitToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.ProfitToIntegerTxt.Location = new System.Drawing.Point(3, 314);
+            this.ProfitToIntegerTxt.Location = new System.Drawing.Point(3, 360);
             this.ProfitToIntegerTxt.Name = "ProfitToIntegerTxt";
             this.ProfitToIntegerTxt.Size = new System.Drawing.Size(179, 20);
             this.ProfitToIntegerTxt.TabIndex = 24;
@@ -241,7 +255,7 @@
             // ProfitFromIntegerTxt
             // 
             this.ProfitFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.ProfitFromIntegerTxt.Location = new System.Drawing.Point(3, 273);
+            this.ProfitFromIntegerTxt.Location = new System.Drawing.Point(3, 319);
             this.ProfitFromIntegerTxt.Name = "ProfitFromIntegerTxt";
             this.ProfitFromIntegerTxt.Size = new System.Drawing.Size(179, 20);
             this.ProfitFromIntegerTxt.TabIndex = 23;
@@ -319,7 +333,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(5, 549);
+            this.label2.Location = new System.Drawing.Point(5, 595);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 14;
@@ -330,7 +344,7 @@
             this.DateFromLbl.AutoSize = true;
             this.DateFromLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.DateFromLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DateFromLbl.Location = new System.Drawing.Point(6, 510);
+            this.DateFromLbl.Location = new System.Drawing.Point(6, 556);
             this.DateFromLbl.Name = "DateFromLbl";
             this.DateFromLbl.Size = new System.Drawing.Size(73, 17);
             this.DateFromLbl.TabIndex = 13;
@@ -341,7 +355,7 @@
             this.DateToClnd.Checked = false;
             this.DateToClnd.CustomFormat = "ddMMMMyyyy";
             this.DateToClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateToClnd.Location = new System.Drawing.Point(3, 569);
+            this.DateToClnd.Location = new System.Drawing.Point(3, 615);
             this.DateToClnd.Name = "DateToClnd";
             this.DateToClnd.ShowCheckBox = true;
             this.DateToClnd.Size = new System.Drawing.Size(180, 20);
@@ -353,7 +367,7 @@
             this.DateFromClnd.Checked = false;
             this.DateFromClnd.CustomFormat = "ddMMMMyyyy";
             this.DateFromClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DateFromClnd.Location = new System.Drawing.Point(3, 528);
+            this.DateFromClnd.Location = new System.Drawing.Point(3, 574);
             this.DateFromClnd.Name = "DateFromClnd";
             this.DateFromClnd.ShowCheckBox = true;
             this.DateFromClnd.Size = new System.Drawing.Size(180, 20);
@@ -416,15 +430,38 @@
             this.CountryLbl.TabIndex = 4;
             this.CountryLbl.Text = "Customer Country";
             // 
-            // CountryCmbx
+            // comboBox1
             // 
-            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.CountryCmbx.FormattingEnabled = true;
-            this.CountryCmbx.Location = new System.Drawing.Point(2, 233);
-            this.CountryCmbx.Name = "CountryCmbx";
-            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
-            this.CountryCmbx.TabIndex = 42;
+            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "All",
+            "NA  (North America)",
+            "LATAM  (Latin America & Caribbean)",
+            "EU  (European Union)",
+            "NON_EU  (Non-European Union)",
+            "MEA  (Middle East & Africa)",
+            "CIS  (Commonwealth of Independent)",
+            "SEA  (Southeast Asia)",
+            "EAS  (East Asia)",
+            "OCE  (Oceania)",
+            "SA  (South Asia)"});
+            this.comboBox1.Location = new System.Drawing.Point(5, 277);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(180, 21);
+            this.comboBox1.TabIndex = 44;
+            // 
+            // RegionLbl
+            // 
+            this.RegionLbl.AutoSize = true;
+            this.RegionLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.RegionLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.RegionLbl.Location = new System.Drawing.Point(6, 257);
+            this.RegionLbl.Name = "RegionLbl";
+            this.RegionLbl.Size = new System.Drawing.Size(51, 17);
+            this.RegionLbl.TabIndex = 43;
+            this.RegionLbl.Text = "Region";
             // 
             // SearchSaleReport
             // 
@@ -432,7 +469,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSaleReport";
-            this.Size = new System.Drawing.Size(200, 789);
+            this.Size = new System.Drawing.Size(200, 893);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -472,5 +509,7 @@
         private System.Windows.Forms.Label GraphLbl;
         public System.Windows.Forms.CheckedListBox GrapCBL;
         private System.Windows.Forms.ComboBox CountryCmbx;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label RegionLbl;
     }
 }
