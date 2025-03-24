@@ -135,8 +135,7 @@ namespace WinformDotNetFramework
         // Riorganizza i layout dei form MDI
         private static void UpdateMdiLayout()
         {
-            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
-            int countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
+            int countOpenForms = mainForm.MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
