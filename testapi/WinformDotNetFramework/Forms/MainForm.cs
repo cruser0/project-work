@@ -150,11 +150,11 @@ namespace WinformDotNetFramework.Forms
                 }
             }
 
-            int? countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
-            List<Form> childrenOpen = MainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+            int? countOpenForms = MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+            List<Form> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
 
             // Check if the form is already open
-            Form existingForm = MainPanel.Controls.OfType<Form>().FirstOrDefault(f => f.Text == formName || f.Text == "User Area");
+            Form existingForm = MdiChildren.FirstOrDefault(f => f.Text == formName || f.Text == "User Area");
             if (existingForm != null)
             {
                 formDockButton minimizedButton;
@@ -294,7 +294,32 @@ namespace WinformDotNetFramework.Forms
 
             child.Resize += ChildForm_Resize;
             child.FormClosing += ChildForm_Close;
-            MainPanel.Controls.Add(child);
+
+            if (favoriteList.Contains(child.Text))
+                AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
+            else
+                AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
+
+            if (!AddFavoriteButton.Visible)
+                AddFavoriteButton.Visible = true;
+
+            child.ShowIcon = false;
+            child.Resize += Form_Resize;
+            child.Activated += ChildForm_Activate;
+
+            if (child.Text.Contains("Show") || child.Text.Contains("Group") || child.Text.Contains("Report"))
+            {
+                toolStripButton3.PerformClick();
+                child.WindowState = FormWindowState.Maximized;
+            }
+            else if (child.Text.Contains("Create") || child.Text.Contains("Details"))
+            {
+                child.MaximizeBox = false;
+                child.FormBorderStyle = FormBorderStyle.FixedSingle;
+            }
+
+
+
             child.Show();
             child.BringToFront();
             child.Activate();
@@ -306,6 +331,28 @@ namespace WinformDotNetFramework.Forms
             Cursor.Current = Cursors.Default;
         }
 
+        private void ChildForm_Activate(object sender, EventArgs e)
+        {
+
+            var latestForm = ActiveMdiChild;
+
+            if (latestForm == null || latestForm.Text.Contains("Details"))
+            {
+                AddFavoriteButton.Visible = false;
+            }
+            else
+            {
+                if (favoriteList.Contains(latestForm.Text))
+                    AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
+                else
+                    AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
+            }
+
+            if (!AddFavoriteButton.Visible)
+                AddFavoriteButton.Visible = true;
+
+        }
+
         public void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
             BeginInvoke(new Action(UpdateMdiLayout));
@@ -313,7 +360,7 @@ namespace WinformDotNetFramework.Forms
 
         private void UpdateMdiLayout()
         {
-            int countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
+            int countOpenForms = MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
             LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
@@ -346,8 +393,8 @@ namespace WinformDotNetFramework.Forms
             // Hide the minimized form in the MDI parent
             childForm.Hide();
 
-            int? countOpenForms = MainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
-            List<Form> childrenOpen = MainPanel.Controls.OfType<Form>().Where(x => x.WindowState != FormWindowState.Minimized).ToList();
+            int? countOpenForms = MdiChildren.Count(x => x.WindowState != FormWindowState.Minimized);
+            List<Form> childrenOpen = MdiChildren.Where(x => x.WindowState != FormWindowState.Minimized).ToList();
             LayoutMdi(MdiLayout.ArrangeIcons);
 
         }
@@ -365,8 +412,7 @@ namespace WinformDotNetFramework.Forms
 
         private void MinimizeAll_Click(object sender, EventArgs e)
         {
-            MainPanel.Controls
-                .OfType<Form>()
+            MdiChildren
                 .Where(form => form.WindowState != FormWindowState.Minimized)
                 .ToList()
                 .ForEach(form => form.WindowState = FormWindowState.Minimized);
@@ -379,11 +425,7 @@ namespace WinformDotNetFramework.Forms
 
         private async void AddFavoriteButton_Click(object sender, EventArgs e)
         {
-            var latestForm = MainPanel.Controls
-                .OfType<Form>()
-                .Where(form => form.WindowState != FormWindowState.Minimized)
-                .OrderByDescending(form => MainPanel.Controls.GetChildIndex(form))
-                .LastOrDefault();
+            var latestForm = ActiveMdiChild;
 
             if (latestForm != null)
             {
@@ -546,47 +588,13 @@ namespace WinformDotNetFramework.Forms
             }
         }
 
-        private void MainPanel_ControlAdded(object sender, ControlEventArgs e)
-        {
-            Form form = (Form)e.Control;
-            HashSet<Control> set = new HashSet<Control>();
-            // Recursively add the MouseDown event to all controls within the form, including nested containers
-            AttachMouseDownToControls(form, set);
-
-            if (favoriteList.Contains(form.Text))
-                AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
-            else
-                AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
-
-            if (!AddFavoriteButton.Visible)
-                AddFavoriteButton.Visible = true;
-
-            form.ShowIcon = false;
-            form.Resize += Form_Resize;
-
-            if (form.Text.Contains("Show") || form.Text.Contains("Group") || form.Text.Contains("Report"))
-            {
-                toolStripButton3.PerformClick();
-                form.WindowState = FormWindowState.Maximized;
-            }
-            else if (form.Text.Contains("Create") || form.Text.Contains("Details"))
-            {
-                form.MaximizeBox = false;
-                form.FormBorderStyle = FormBorderStyle.FixedSingle;
-            }
-        }
-
         private void Form_Resize(object sender, EventArgs e)
         {
             Form form = (Form)sender;
 
             if (form.WindowState == FormWindowState.Minimized)
             {
-                var latestForm = MainPanel.Controls
-                .OfType<Form>()
-                .Where(f => f.WindowState != FormWindowState.Minimized)
-                .OrderByDescending(f => MainPanel.Controls.GetChildIndex(f))
-                .LastOrDefault();
+                var latestForm = ActiveMdiChild;
 
                 if (latestForm == null)
                 {
@@ -607,60 +615,6 @@ namespace WinformDotNetFramework.Forms
                     AddFavoriteButton.Visible = true;
             }
 
-        }
-
-        private void AttachMouseDownToControls(Control parent, HashSet<Control> controlsWithEvent)
-        {
-
-            // Skip already processed controls
-            if (controlsWithEvent.Contains(parent))
-                return;
-
-            // Check if the control is an interactive component
-            bool isInteractive = parent is ComboBox ||
-                                 parent is TextBox ||
-                                 parent is Button ||
-                                 parent is CheckBox ||
-                                 parent is RadioButton ||
-                                 parent is ListBox ||
-                                 parent is DateTimePicker ||
-                                 parent is NumericUpDown ||
-                                 parent is TrackBar;
-
-            if (!isInteractive)
-            {
-                // Attach the event only to non-interactive controls
-                parent.MouseClick += FormControl_MouseDown;
-                controlsWithEvent.Add(parent);  // Track that the event is attached
-            }
-
-            // Recursively attach the event to all child controls
-            foreach (Control child in parent.Controls)
-            {
-                AttachMouseDownToControls(child, controlsWithEvent);
-            }
-
-        }
-
-        private void FormControl_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (sender is Control control)
-            {
-                // Traverse up the control tree to find the parent Form
-                Form form = control.FindForm();
-
-                // Now you have the correct Form object, regardless of the control's nesting
-                if (form != null)
-                {
-                    form.BringToFront();
-                    form.Focus();
-
-                    if (favoriteList.Contains(form.Text))
-                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
-                    else
-                        AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
-                }
-            }
         }
     }
 }
