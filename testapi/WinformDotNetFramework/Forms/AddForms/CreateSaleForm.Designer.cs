@@ -43,12 +43,12 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.CustomerCountryLbl = new System.Windows.Forms.Label();
-            this.CustomerCountryTxt = new System.Windows.Forms.TextBox();
-            this.CustomerNameTxt = new System.Windows.Forms.TextBox();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,9 +191,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.CountryCmbxUC);
+            this.panel2.Controls.Add(this.NameCmbxUC);
             this.panel2.Controls.Add(this.CustomerCountryLbl);
-            this.panel2.Controls.Add(this.CustomerCountryTxt);
-            this.panel2.Controls.Add(this.CustomerNameTxt);
             this.panel2.Controls.Add(this.CustomerNameLbl);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label3);
@@ -223,28 +223,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.CustomerCountryLbl.Size = new System.Drawing.Size(110, 15);
             this.CustomerCountryLbl.TabIndex = 42;
             this.CustomerCountryLbl.Text = "Customer Country*";
-            // 
-            // CustomerCountryTxt
-            // 
-            this.CustomerCountryTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerCountryTxt.Enabled = false;
-            this.CustomerCountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerCountryTxt.Location = new System.Drawing.Point(428, 148);
-            this.CustomerCountryTxt.Name = "CustomerCountryTxt";
-            this.CustomerCountryTxt.Size = new System.Drawing.Size(200, 23);
-            this.CustomerCountryTxt.TabIndex = 41;
-            this.CustomerCountryTxt.TextChanged += new System.EventHandler(this.NameTxt_TextChanged);
-            // 
-            // CustomerNameTxt
-            // 
-            this.CustomerNameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerNameTxt.Enabled = false;
-            this.CustomerNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerNameTxt.Location = new System.Drawing.Point(428, 102);
-            this.CustomerNameTxt.Name = "CustomerNameTxt";
-            this.CustomerNameTxt.Size = new System.Drawing.Size(200, 23);
-            this.CustomerNameTxt.TabIndex = 40;
-            this.CustomerNameTxt.TextChanged += new System.EventHandler(this.NameTxt_TextChanged);
             // 
             // CustomerNameLbl
             // 
@@ -288,6 +266,24 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.Size = new System.Drawing.Size(20, 422);
             this.panel5.TabIndex = 36;
             // 
+            // CountryCmbxUC
+            // 
+            this.CountryCmbxUC.listItemsDropCmbx = null;
+            this.CountryCmbxUC.Location = new System.Drawing.Point(428, 148);
+            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.CountryCmbxUC.Name = "CountryCmbxUC";
+            this.CountryCmbxUC.Size = new System.Drawing.Size(201, 23);
+            this.CountryCmbxUC.TabIndex = 44;
+            // 
+            // NameCmbxUC
+            // 
+            this.NameCmbxUC.listItemsDropCmbx = null;
+            this.NameCmbxUC.Location = new System.Drawing.Point(428, 103);
+            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.NameCmbxUC.Name = "NameCmbxUC";
+            this.NameCmbxUC.Size = new System.Drawing.Size(201, 24);
+            this.NameCmbxUC.TabIndex = 43;
+            // 
             // CreateSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -326,8 +322,8 @@ namespace WinformDotNetFramework.Forms.AddForms
         private Panel panel4;
         private Panel panel5;
         private Label CustomerCountryLbl;
-        private TextBox CustomerCountryTxt;
-        private TextBox CustomerNameTxt;
         private Label CustomerNameLbl;
+        private control.DropDownMenuAutoCompleteUserControl CountryCmbxUC;
+        private control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
     }
 }

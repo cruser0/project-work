@@ -39,10 +39,14 @@ namespace WinformDotNetFramework.Forms.control
                     Cmbx.DroppedDown = false;
                     return;
                 }
-                if(ParentForm is CreateCustomerInvoiceCostForm cif)
-                {
-                    listItemsDropCmbx=await cif.SetList(currentText);
-                }
+                if(ParentForm is CreateCustomerInvoiceCostForm cicf)
+                    await cicf.SetList(currentText);
+
+                if(ParentForm is CreateCustomerInvoiceForm cif)
+                    await cif.SetList();
+                if(ParentForm is CreateSaleForm sf)
+                    await sf.SetList();
+
                 if (listItemsDropCmbx.Count > 0)
                 {
                     Cmbx.BeginUpdate();

@@ -36,13 +36,13 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaleBKLbl = new System.Windows.Forms.Label();
             this.OpenSale = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.CustomerInvoiceBkTxt = new System.Windows.Forms.TextBox();
-            this.CustomerInvoiceBolTxt = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,13 +67,11 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.dateTimePicker1.ShowCheckBox = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(172, 23);
             this.dateTimePicker1.TabIndex = 18;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.NameTxt_TextChanged);
             // 
             // SaveBtn
             // 
             this.SaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveBtn.Enabled = false;
             this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SaveBtn.Location = new System.Drawing.Point(397, 232);
@@ -115,9 +113,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.BoLCmbxUC);
+            this.panel1.Controls.Add(this.BKCmbxUC);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.CustomerInvoiceBolTxt);
-            this.panel1.Controls.Add(this.CustomerInvoiceBkTxt);
             this.panel1.Controls.Add(this.SaleBKLbl);
             this.panel1.Controls.Add(this.SaveBtn);
             this.panel1.Controls.Add(this.dateTimePicker1);
@@ -128,6 +126,36 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 33;
+            // 
+            // BoLCmbxUC
+            // 
+            this.BoLCmbxUC.listItemsDropCmbx = null;
+            this.BoLCmbxUC.Location = new System.Drawing.Point(289, 159);
+            this.BoLCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BoLCmbxUC.Name = "BoLCmbxUC";
+            this.BoLCmbxUC.Size = new System.Drawing.Size(172, 23);
+            this.BoLCmbxUC.TabIndex = 40;
+            // 
+            // BKCmbxUC
+            // 
+            this.BKCmbxUC.listItemsDropCmbx = null;
+            this.BKCmbxUC.Location = new System.Drawing.Point(289, 119);
+            this.BKCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BKCmbxUC.Name = "BKCmbxUC";
+            this.BKCmbxUC.Size = new System.Drawing.Size(172, 23);
+            this.BKCmbxUC.TabIndex = 39;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(289, 142);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 15);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Sale Bill Of Lading*";
             // 
             // panel2
             // 
@@ -165,40 +193,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 0;
             // 
-            // CustomerInvoiceBkTxt
-            // 
-            this.CustomerInvoiceBkTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerInvoiceBkTxt.Enabled = false;
-            this.CustomerInvoiceBkTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerInvoiceBkTxt.Location = new System.Drawing.Point(288, 119);
-            this.CustomerInvoiceBkTxt.Name = "CustomerInvoiceBkTxt";
-            this.CustomerInvoiceBkTxt.Size = new System.Drawing.Size(172, 20);
-            this.CustomerInvoiceBkTxt.TabIndex = 36;
-            this.CustomerInvoiceBkTxt.TextChanged += new System.EventHandler(this.NameTxt_TextChanged);
-            // 
-            // CustomerInvoiceBolTxt
-            // 
-            this.CustomerInvoiceBolTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerInvoiceBolTxt.Enabled = false;
-            this.CustomerInvoiceBolTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerInvoiceBolTxt.Location = new System.Drawing.Point(288, 160);
-            this.CustomerInvoiceBolTxt.Name = "CustomerInvoiceBolTxt";
-            this.CustomerInvoiceBolTxt.Size = new System.Drawing.Size(172, 20);
-            this.CustomerInvoiceBolTxt.TabIndex = 37;
-            this.CustomerInvoiceBolTxt.TextChanged += new System.EventHandler(this.NameTxt_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(289, 142);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 15);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "Sale Bill Of Lading*";
-            // 
             // CreateCustomerInvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,8 +224,8 @@ namespace WinformDotNetFramework.Forms.AddForms
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
-        private TextBox CustomerInvoiceBkTxt;
         private Label label1;
-        private TextBox CustomerInvoiceBolTxt;
+        private control.DropDownMenuAutoCompleteUserControl BoLCmbxUC;
+        private control.DropDownMenuAutoCompleteUserControl BKCmbxUC;
     }
 }

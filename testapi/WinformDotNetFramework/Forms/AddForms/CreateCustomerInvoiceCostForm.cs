@@ -104,12 +104,12 @@ namespace WinformDotNetFramework.Forms.AddForms
             CostRegistryCmbx.DataSource=list.Select(x=>x.CostRegistryUniqueCode).ToList();
         }
 
-        public async Task<List<string>> SetList(string text)
+        public async Task SetList(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
             {
                 InvoiceCodeCmbxUC.Cmbx.DroppedDown = false;
-                return null;
+                return;
             }
             var listFiltered = await _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
             {
@@ -118,7 +118,6 @@ namespace WinformDotNetFramework.Forms.AddForms
 
             var listItems = listFiltered.Select(x => x.CustomerInvoiceCode).ToList();
             InvoiceCodeCmbxUC.listItemsDropCmbx = listItems;
-            return listItems;
         }
     }
 }
