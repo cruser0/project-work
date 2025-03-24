@@ -290,16 +290,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 MessageBox.Show("Action canceled.");
             }
         }
-        private void Pdf_ClickBtn(object sender, EventArgs e)
-        {
-            UtilityFunctions.Pdf_ClickBtn(SupplierDgv, this);
-        }
 
-
-        private void Excel_ClickBtn(object sender, EventArgs e)
-        {
-            UtilityFunctions.Excel_ClickBtn(SupplierDgv, this);
-        }
 
         private HashSet<int> modifiedRows = new HashSet<int>();
 

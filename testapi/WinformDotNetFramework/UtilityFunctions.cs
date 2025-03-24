@@ -5,7 +5,6 @@ using System.Collections.Generic;
 //using iText.Kernel.Pdf;
 //using iText.Layout;
 //using iText.Layout.Element;
-using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -23,7 +22,7 @@ namespace WinformDotNetFramework
         // Verifica se l'utente ha uno dei ruoli richiesti
         public static bool IsAuthorized(HashSet<string> requiredRoles, bool requireAll = false)
         {
-            if(mainForm == null)
+            if (mainForm == null)
                 return false;
             var userRoles = new HashSet<string>(UserAccessInfo.Role);
             return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
@@ -54,9 +53,8 @@ namespace WinformDotNetFramework
                 formInstance.Text = FormatFormName(typeof(T).Name);
                 formInstance.Resize += ChildForm_Resize;
                 formInstance.FormClosing += ChildForm_Close;
+                formInstance.Activated += FormInstance_Activated;
 
-                Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
-                mainPanel.Controls.Add(formInstance);
                 formInstance.Show();
                 formInstance.BringToFront();
                 formInstance.Activate();
@@ -81,12 +79,16 @@ namespace WinformDotNetFramework
             formInstance.Text = FormatFormName(typeof(T).Name);
             formInstance.Resize += ChildForm_Resize;
             formInstance.FormClosing += ChildForm_Close;
+            formInstance.Activated += FormInstance_Activated;
 
-            Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
-            mainPanel.Controls.Add(formInstance);
             formInstance.Show();
             formInstance.BringToFront();
             formInstance.Activate();
+        }
+
+        private static void FormInstance_Activated(object sender, EventArgs e)
+        {
+            mainForm.AddFavoriteButton.Visible = false;
         }
 
         // Chiude i form aperti dello stesso tipo
@@ -133,8 +135,6 @@ namespace WinformDotNetFramework
         // Riorganizza i layout dei form MDI
         private static void UpdateMdiLayout()
         {
-            if (mainForm == null)
-                return;
             Panel mainPanel = (Panel)mainForm.Controls.Find("MainPanel", true)[0];
             int countOpenForms = mainPanel.Controls.OfType<Form>().Count(x => x.WindowState != FormWindowState.Minimized);
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
@@ -217,153 +217,6 @@ namespace WinformDotNetFramework
             return new List<CostRegistry>() { new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } }
                 .Concat(await mainForm.CostRegistryList)
                 .ToList();
-        }
-
-        public static void Pdf_ClickBtn(DataGridView CustomerInvoiceCostDgv, Form form)
-        {
-            //    SaveFileDialog saveFileDialog = new SaveFileDialog
-            //    {
-            //        Filter = "PDF Files|*.pdf",
-            //        Title = "Save PDF File"
-            //    };
-
-            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        try
-            //        {
-            //            form.Cursor = Cursors.WaitCursor;
-            //            Application.DoEvents(); // Forza l'aggiornamento dell'interfaccia utente
-
-            //            using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
-            //            {
-            //                using (PdfWriter writer = new PdfWriter(fs))
-            //                {
-            //                    using (PdfDocument pdf = new PdfDocument(writer))
-            //                    {
-            //                        Document doc = new Document(pdf, PageSize.A4);
-
-            //                        string title = form.Text[5..] + " Data Report";  // Customize your title here
-            //                        Paragraph titleParagraph = new Paragraph(title)
-            //                            .SetFontSize(18)
-            //                            .SimulateBold()
-            //                            .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
-            //                            .SetMarginBottom(20);
-            //                        doc.Add(titleParagraph);
-
-            //                        int visibleColumnCount = CustomerInvoiceCostDgv.Columns.Cast<DataGridViewColumn>().Count(c => c.Visible);
-            //                        Table table = new Table(visibleColumnCount);
-
-            //                        // Aggiungi le intestazioni delle colonne visibili
-            //                        foreach (DataGridViewColumn column in CustomerInvoiceCostDgv.Columns)
-            //                        {
-            //                            if (column.Visible)
-            //                            {
-            //                                table.AddCell(column.HeaderText);
-            //                            }
-            //                        }
-
-            //                        // Aggiungi le righe della DataGridView
-            //                        foreach (DataGridViewRow row in CustomerInvoiceCostDgv.Rows)
-            //                        {
-            //                            if (!row.IsNewRow)
-            //                            {
-            //                                foreach (DataGridViewColumn column in CustomerInvoiceCostDgv.Columns)
-            //                                {
-            //                                    if (column.Visible)
-            //                                    {
-            //                                        DataGridViewCell cell = row.Cells[column.Index];
-            //                                        table.AddCell(cell.Value?.ToString() ?? "");
-            //                                    }
-            //                                }
-            //                            }
-            //                        }
-
-            //                        doc.Add(table);
-            //                        doc.Close();
-            //                    }
-            //                }
-            //            }
-
-            //            MessageBox.Show("PDF salvato con successo!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("Errore: " + ex.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //        finally
-            //        {
-            //            form.Cursor = Cursors.Default;
-            //        }
-            //    }
-        }
-
-
-        public static void Excel_ClickBtn(DataGridView CustomerInvoiceCostDgv, Form form)
-        {
-            //    SaveFileDialog saveFileDialog = new SaveFileDialog
-            //    {
-            //        Filter = "Excel Files|*.xlsx",
-            //        Title = "Save Excel File"
-            //    };
-
-            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        try
-            //        {
-            //            form.Cursor = Cursors.WaitCursor;
-            //            Application.DoEvents(); // Forza l'aggiornamento dell'interfaccia utente
-
-            //            using (XLWorkbook xLWorkbook = new XLWorkbook())
-            //            {
-            //                DataTable dt = new DataTable() { TableName = form.Text[5..] + " Data Report" };
-
-            //                // Create columns from DataGridView
-
-            //                foreach (DataGridViewColumn col in CustomerInvoiceCostDgv.Columns)
-            //                {
-            //                    if (col.Visible)
-            //                    {
-            //                        dt.Columns.Add(col.HeaderText);
-            //                    }
-            //                }
-
-            //                // Add rows from DataGridView
-            //                foreach (DataGridViewRow row in CustomerInvoiceCostDgv.Rows)
-            //                {
-            //                    if (!row.IsNewRow) // Skip the empty new row
-            //                    {
-            //                        DataRow dRow = dt.NewRow();
-            //                        int index = 0;
-            //                        foreach (DataGridViewColumn column in CustomerInvoiceCostDgv.Columns)
-            //                        {
-            //                            if (column.Visible)
-            //                            {
-            //                                dRow[index] = row.Cells[column.Name].Value ?? "";
-            //                                index++;
-            //                            }
-            //                        }
-            //                        dt.Rows.Add(dRow);
-            //                    }
-            //                }
-
-            //                // Add DataTable to the Excel file
-            //                xLWorkbook.Worksheets.Add(dt, "Sheet1");
-
-            //                // Save the file
-            //                xLWorkbook.SaveAs(saveFileDialog.FileName);
-
-            //                MessageBox.Show("Excel file saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            }
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //        finally
-            //        {
-            //            form.Cursor = Cursors.Default;
-            //        }
-            //    }
         }
     }
 }

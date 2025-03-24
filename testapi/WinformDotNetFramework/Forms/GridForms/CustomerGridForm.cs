@@ -246,17 +246,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             await SetCheckBoxes();
         }
 
-        private void Pdf_ClickBtn(object sender, EventArgs e)
-        {
-            UtilityFunctions.Pdf_ClickBtn(CustomerDgv, this);
-        }
-
-
-        private void Excel_ClickBtn(object sender, EventArgs e)
-        {
-            UtilityFunctions.Excel_ClickBtn(CustomerDgv, this);
-        }
-
 
         private async void MassDeleteTSB_Click(object sender, EventArgs e)
         {
