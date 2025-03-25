@@ -111,14 +111,15 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             // CountryCmbx
             // 
-            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CountryCmbx.FormattingEnabled = true;
             this.CountryCmbx.Location = new System.Drawing.Point(289, 207);
             this.CountryCmbx.Name = "CountryCmbx";
             this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
             this.CountryCmbx.TabIndex = 27;
-            this.CountryCmbx.SelectedIndexChanged += new System.EventHandler(this.NameTxt_TextChanged);
+            this.CountryCmbx.SelectionChangeCommitted += new System.EventHandler(this.NameTxt_TextChanged);
             // 
             // panel2
             // 

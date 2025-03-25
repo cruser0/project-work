@@ -173,6 +173,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 if (_father is CreateSupplierInvoicesForm csif)
                 {
                     csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
+                    csif.SetSaleBkBol(dgv.CurrentRow.Cells["BoLNumber"].Value.ToString(), dgv.CurrentRow.Cells["BookingNumber"].Value.ToString());
                 }
                 if (_father is CreateCustomerInvoiceForm ccif)
                 {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
@@ -14,23 +16,33 @@ namespace WinformDotNetFramework.Forms.AddForms
         CustomerInvoiceCostService _customerInvoiceCostService;
         CustomerInvoiceService _customerInvoiceService;
         List<string> customerInvoiceCodes;
-        private int id = 0;
+        private int id=0;
+        bool isSelecting=false;
         List<CostRegistry> list;
         public CreateCustomerInvoiceCostForm()
         {
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             _customerInvoiceService = new CustomerInvoiceService();
             InitializeComponent();
-            CostTxt.ValueChanged += NameTxt_TextChanged;
-            QuantityTxt.ValueChanged += NameTxt_TextChanged;
             timer.Interval = 500;
         }
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
             CostRegistry cr;
+            CustomerInvoice listItems1;
+            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
+            {
+                listItems1= (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode= InvoiceCodeCmbxUC.Cmbx.Text})).FirstOrDefault();
+                id = listItems1.CustomerInvoiceId;
+            }
+            else
+            {
+                MessageBox.Show("You need to select an Invoice Code");
+                return;
+            }
             if (!CostRegistryCmbx.Text.Equals("All"))
-                cr = list.Where(x => x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text)).FirstOrDefault();
+                cr=list.Where(x=>x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text)).FirstOrDefault();
             else
             {
                 MessageBox.Show("You need to select a Cost Registry");
@@ -39,13 +51,14 @@ namespace WinformDotNetFramework.Forms.AddForms
             CustomerInvoiceCost customerInvoiceCost = new CustomerInvoiceCost()
             {
                 CustomerInvoiceId = id,
-
+                CostRegistryCode = CostRegistryCmbx.Text,
+                CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
                 Cost = string.IsNullOrEmpty(CostTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostTxt.GetText()),
                 Quantity = string.IsNullOrEmpty(QuantityTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityTxt.GetText()),
                 Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
             };
-            if (!string.IsNullOrEmpty(CustomerInvoiceCodeCmbx.Text))
-                customerInvoiceCost.CustomerInvoiceCode = CustomerInvoiceCodeCmbx.Text;
+            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
+                customerInvoiceCost.CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text;
             else
             {
                 MessageBox.Show("You need to choose a Customer Invoice Code");
@@ -72,12 +85,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             }
         }
 
-        private void NameTxt_TextChanged(object sender, EventArgs e)
-        {
-            SaveBtn.Enabled =
-                !string.IsNullOrEmpty(CustomerInvoiceCodeCmbx.Text) && !CustomerInvoiceCodeCmbx.Text.Equals("All");
-        }
-
         private void OpenSale_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<CustomerInvoiceGridForm>(sender, e, this);
@@ -85,7 +92,7 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         public void SetCustomerInvoiceCode(string code)
         {
-            CustomerInvoiceCodeCmbx.Text = code;
+            InvoiceCodeCmbxUC.Cmbx.Text=code;
         }
         public void SetCustomerInvoiceID(string idFromForm)
         {
@@ -95,22 +102,23 @@ namespace WinformDotNetFramework.Forms.AddForms
         private async void CreateCustomerInvoiceCostForm_Load(object sender, EventArgs e)
         {
             list = await UtilityFunctions.GetCostRegistry();
+            CostRegistryCmbx.DataSource=list.Select(x=>x.CostRegistryUniqueCode).ToList();
         }
 
-        private void CustomerInvoiceCodeCmbx_TextChanged(object sender, EventArgs e)
+        public async Task SetList(string text)
         {
-            timer.Start();
-            timer.Stop();
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            timer.Stop();
-
-            CostRegistryCmbx.DataSource = _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
+            if (string.IsNullOrWhiteSpace(text))
             {
-                CustomerInvoiceCode = string.IsNullOrEmpty(CustomerInvoiceCodeCmbx.Text) ? null : CustomerInvoiceCodeCmbx.Text
+                InvoiceCodeCmbxUC.Cmbx.DroppedDown = false;
+                return;
+            }
+            var listFiltered = await _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
+            {
+                CustomerInvoiceCode = text
             });
+
+            var listItems = listFiltered.Select(x => x.CustomerInvoiceCode).ToList();
+            InvoiceCodeCmbxUC.listItemsDropCmbx = listItems;
         }
     }
 }

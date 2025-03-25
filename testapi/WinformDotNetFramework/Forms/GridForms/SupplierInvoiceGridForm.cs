@@ -89,7 +89,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             if (sender is DataGridView dgv)
             {
                 if (_father is CreateSupplierInvoiceCostForm sigf)
+                {
                     sigf.SetSupplierID(dgv.CurrentRow.Cells["InvoiceID"].Value.ToString());
+                    sigf.SetSupplierCode(dgv.CurrentRow.Cells["SupplierInvoiceCode"].Value.ToString());
+
+                }
             }
         }
 

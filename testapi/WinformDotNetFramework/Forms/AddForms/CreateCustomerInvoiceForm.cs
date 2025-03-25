@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -10,20 +13,32 @@ namespace WinformDotNetFramework.Forms.AddForms
     public partial class CreateCustomerInvoiceForm : Form
     {
         CustomerInvoiceService _customerInvoiceService;
-        int id;
+        SaleService _saleService;
+        int id=-1;
+        string bol;
+        string bk;
         public CreateCustomerInvoiceForm()
         {
+            _saleService = new SaleService();
             _customerInvoiceService = new CustomerInvoiceService();
             InitializeComponent();
         }
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !dateTimePicker1.Checked)
+            {
+                MessageBox.Show("All the fields must be filled");
+                return;
+            }
+            if(id==-1)
+                id=(await _saleService.GetAll(new SaleFilter() { SaleBoLnumber=BoLCmbxUC.Cmbx.Text,SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
             CustomerInvoice customerInvoice = new CustomerInvoice()
             {
                 SaleId = id,
                 InvoiceDate = dateTimePicker1.Value,
-                Status = "Unpaid"
+                Status = "Unpaid",
+                CustomerInvoiceCode = (bk+bol).GetHashCode().ToString(),
             };
             try
             {
@@ -37,11 +52,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             }
         }
 
-        private void NameTxt_TextChanged(object sender, EventArgs e)
-        {
-            SaveBtn.Enabled = CustomerInvoiceBkTxt.TextLength > 0 && CustomerInvoiceBolTxt.TextLength > 0 && dateTimePicker1.Checked;
-        }
-
         private void OpenSale_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);
@@ -53,8 +63,24 @@ namespace WinformDotNetFramework.Forms.AddForms
         }
         public void SetSaleBkBol(string bk,string bol)
         {
-            CustomerInvoiceBkTxt.Text = bk;
-            CustomerInvoiceBolTxt.Text = bol;
+            BKCmbxUC.Cmbx.Text = bk;
+            BoLCmbxUC.Cmbx.Text = bol;
+        }
+
+        public async Task SetList()
+        {
+            bk = BKCmbxUC.Cmbx.Text;
+            bol = BoLCmbxUC.Cmbx.Text;
+            var listFiltered = await _saleService.GetAll(new SaleFilter()
+            {
+                SaleBookingNumber = string.IsNullOrEmpty(bk)?null:bk,
+                SaleBoLnumber = string.IsNullOrEmpty(bol) ? null : bol
+            });
+
+            var listItemsBk = listFiltered.Select(x => x.BookingNumber).ToList();
+            var listItemsBol = listFiltered.Select(x => x.BoLnumber).ToList();
+            BKCmbxUC.listItemsDropCmbx = listItemsBk;
+            BoLCmbxUC.listItemsDropCmbx = listItemsBol;
         }
     }
 }

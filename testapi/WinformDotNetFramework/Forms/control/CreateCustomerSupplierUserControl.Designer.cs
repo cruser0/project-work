@@ -33,13 +33,13 @@ namespace WinformDotNetFramework.Forms.control
             this.CreateSaveBtn = new System.Windows.Forms.Button();
             this.CreateCountryLbl = new System.Windows.Forms.Label();
             this.CreateNameLbl = new System.Windows.Forms.Label();
-            this.CreateCountryTxt = new System.Windows.Forms.TextBox();
             this.CreateNameTxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +68,6 @@ namespace WinformDotNetFramework.Forms.control
             this.CreateCountryLbl.Size = new System.Drawing.Size(58, 15);
             this.CreateCountryLbl.TabIndex = 20;
             this.CreateCountryLbl.Text = "Country *";
-            this.CreateCountryLbl.Click += new System.EventHandler(this.CreateCountryLbl_Click);
             // 
             // CreateNameLbl
             // 
@@ -81,19 +80,6 @@ namespace WinformDotNetFramework.Forms.control
             this.CreateNameLbl.Size = new System.Drawing.Size(47, 15);
             this.CreateNameLbl.TabIndex = 19;
             this.CreateNameLbl.Text = "Name *";
-            this.CreateNameLbl.Click += new System.EventHandler(this.CreateNameLbl_Click);
-            // 
-            // CreateCountryTxt
-            // 
-            this.CreateCountryTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CreateCountryTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateCountryTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CreateCountryTxt.Location = new System.Drawing.Point(233, 158);
-            this.CreateCountryTxt.MaxLength = 50;
-            this.CreateCountryTxt.Name = "CreateCountryTxt";
-            this.CreateCountryTxt.Size = new System.Drawing.Size(172, 23);
-            this.CreateCountryTxt.TabIndex = 18;
-            this.CreateCountryTxt.TextChanged += new System.EventHandler(this.CreateCountryTxt_TextChanged);
             // 
             // CreateNameTxt
             // 
@@ -103,9 +89,8 @@ namespace WinformDotNetFramework.Forms.control
             this.CreateNameTxt.Location = new System.Drawing.Point(233, 114);
             this.CreateNameTxt.MaxLength = 100;
             this.CreateNameTxt.Name = "CreateNameTxt";
-            this.CreateNameTxt.Size = new System.Drawing.Size(172, 23);
+            this.CreateNameTxt.Size = new System.Drawing.Size(180, 23);
             this.CreateNameTxt.TabIndex = 17;
-            this.CreateNameTxt.TextChanged += new System.EventHandler(this.CreateNameTxt_TextChanged);
             // 
             // panel1
             // 
@@ -129,9 +114,9 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.CountryCmbx);
             this.panel3.Controls.Add(this.CreateNameLbl);
             this.panel3.Controls.Add(this.CreateNameTxt);
-            this.panel3.Controls.Add(this.CreateCountryTxt);
             this.panel3.Controls.Add(this.CreateCountryLbl);
             this.panel3.Controls.Add(this.CreateSaveBtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -158,6 +143,17 @@ namespace WinformDotNetFramework.Forms.control
             this.panel5.Size = new System.Drawing.Size(17, 366);
             this.panel5.TabIndex = 27;
             // 
+            // CountryCmbx
+            // 
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(233, 158);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CountryCmbx.TabIndex = 28;
+            // 
             // CreateCustomerSupplierUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,12 +176,12 @@ namespace WinformDotNetFramework.Forms.control
         private Button CreateSaveBtn;
         private Label CreateCountryLbl;
         private Label CreateNameLbl;
-        private TextBox CreateCountryTxt;
         private TextBox CreateNameTxt;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private ComboBox CountryCmbx;
     }
 }

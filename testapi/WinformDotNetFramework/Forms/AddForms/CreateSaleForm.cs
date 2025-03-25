@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -10,9 +12,11 @@ namespace WinformDotNetFramework.Forms.AddForms
     public partial class CreateSaleForm : Form
     {
         SaleService _saleService;
-        int id;
+        CustomerService _customerService;
+        int id=-1;
         public CreateSaleForm()
         {
+            _customerService = new CustomerService();
             _saleService = new SaleService();
             InitializeComponent();
         }
@@ -23,6 +27,11 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 MessageBox.Show("Select a date");
                 return;
+            }
+            if (id == -1)
+            {
+                var customer=(await _customerService.GetAll(new CustomerFilter() { CustomerName = NameCmbxUC.Cmbx.Text, CustomerCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault();
+                id = customer.CustomerId;
             }
             Sale sale = new Sale
             {
@@ -43,7 +52,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         }
         private void NameTxt_TextChanged(object sender, EventArgs e)
         {
-            SaveBtn.Enabled = boltxt.TextLength > 0 && bntxt.TextLength > 0 && saleDateDtp.Checked && CustomerNameTxt.TextLength>0 && CustomerCountryTxt.TextLength > 0&&!string.IsNullOrEmpty(StatusCmbx.Text);
+            SaveBtn.Enabled = boltxt.TextLength > 0 && bntxt.TextLength > 0 && saleDateDtp.Checked && !string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) && !string.IsNullOrEmpty(CountryCmbxUC.Cmbx.Text) && !string.IsNullOrEmpty(StatusCmbx.Text);
         }
 
         private void OpenSale_Click(object sender, EventArgs e)
@@ -57,8 +66,25 @@ namespace WinformDotNetFramework.Forms.AddForms
         }
         public void SetCustomerNameCountry(string name,string country)
         {
-            CustomerNameTxt.Text = name;
-            CustomerCountryTxt.Text = country;
+            NameCmbxUC.Cmbx.Text = name;
+            CountryCmbxUC.Cmbx.Text = country;
+        }
+        string cname;
+        string ccountry;
+        public async Task SetList()
+        {
+            cname = NameCmbxUC.Cmbx.Text;
+            ccountry = CountryCmbxUC.Cmbx.Text;
+            var listFiltered = await _customerService.GetAll(new CustomerFilter()
+            {
+                CustomerName = string.IsNullOrEmpty(cname) ? null : cname,
+                CustomerCountry = string.IsNullOrEmpty(ccountry) ? null : ccountry
+            });
+
+            var listItemsName = listFiltered.Select(x => x.CustomerName).ToList();
+            var listItemsCountry = listFiltered.Select(x => x.Country).ToList();
+            NameCmbxUC.listItemsDropCmbx = listItemsName;
+            CountryCmbxUC.listItemsDropCmbx = listItemsCountry;
         }
     }
 }
