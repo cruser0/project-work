@@ -133,5 +133,12 @@ namespace API.Controllers
             var data = await _customerInvoiceService.MassUpdateCustomerInvoice(newCustomerInvoices);
             return Ok(data);
         }
+
+        [HttpGet("customer-invoice-summary/{CustomerID}")]
+        public async Task<ActionResult<CustomerInvoiceSummary>> GetCustomerInvoiceSummary(int CustomerID)
+        {
+            var data = await _customerInvoiceService.GetCustomerInvoiceSummary(CustomerID);
+            return Ok(data);
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.NameCustomerTxt = new System.Windows.Forms.TextBox();
             this.NameCustomerLbl = new System.Windows.Forms.Label();
             this.IdCustomerLbl = new System.Windows.Forms.Label();
@@ -41,11 +42,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusTxt = new System.Windows.Forms.TextBox();
             this.IdCustomerTxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // NameCustomerTxt
@@ -53,7 +56,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameCustomerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCustomerTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameCustomerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameCustomerTxt.Location = new System.Drawing.Point(273, 194);
+            this.NameCustomerTxt.Location = new System.Drawing.Point(87, 213);
             this.NameCustomerTxt.Name = "NameCustomerTxt";
             this.NameCustomerTxt.Size = new System.Drawing.Size(200, 23);
             this.NameCustomerTxt.TabIndex = 2;
@@ -64,7 +67,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameCustomerLbl.AutoSize = true;
             this.NameCustomerLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameCustomerLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameCustomerLbl.Location = new System.Drawing.Point(274, 176);
+            this.NameCustomerLbl.Location = new System.Drawing.Point(88, 195);
             this.NameCustomerLbl.Name = "NameCustomerLbl";
             this.NameCustomerLbl.Size = new System.Drawing.Size(39, 15);
             this.NameCustomerLbl.TabIndex = 5;
@@ -76,7 +79,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.IdCustomerLbl.AutoSize = true;
             this.IdCustomerLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdCustomerLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.IdCustomerLbl.Location = new System.Drawing.Point(274, 86);
+            this.IdCustomerLbl.Location = new System.Drawing.Point(88, 105);
             this.IdCustomerLbl.Name = "IdCustomerLbl";
             this.IdCustomerLbl.Size = new System.Drawing.Size(17, 15);
             this.IdCustomerLbl.TabIndex = 4;
@@ -88,7 +91,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCustomerCbx.AutoSize = true;
             this.EditCustomerCbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditCustomerCbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.EditCustomerCbx.Location = new System.Drawing.Point(427, 267);
+            this.EditCustomerCbx.Location = new System.Drawing.Point(241, 286);
             this.EditCustomerCbx.Name = "EditCustomerCbx";
             this.EditCustomerCbx.Size = new System.Drawing.Size(46, 19);
             this.EditCustomerCbx.TabIndex = 7;
@@ -102,7 +105,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountryCustomerLbl.AutoSize = true;
             this.CountryCustomerLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountryCustomerLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountryCustomerLbl.Location = new System.Drawing.Point(274, 220);
+            this.CountryCustomerLbl.Location = new System.Drawing.Point(88, 239);
             this.CountryCustomerLbl.Name = "CountryCustomerLbl";
             this.CountryCustomerLbl.Size = new System.Drawing.Size(50, 15);
             this.CountryCustomerLbl.TabIndex = 6;
@@ -114,7 +117,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountryCustomerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CountryCustomerTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountryCustomerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountryCustomerTxt.Location = new System.Drawing.Point(273, 238);
+            this.CountryCustomerTxt.Location = new System.Drawing.Point(87, 257);
             this.CountryCustomerTxt.Name = "CountryCustomerTxt";
             this.CountryCustomerTxt.Size = new System.Drawing.Size(200, 23);
             this.CountryCustomerTxt.TabIndex = 3;
@@ -125,7 +128,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveEditCustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditCustomerBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveEditCustomerBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(381, 292);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(195, 311);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
             this.SaveEditCustomerBtn.Size = new System.Drawing.Size(92, 25);
             this.SaveEditCustomerBtn.TabIndex = 8;
@@ -139,7 +142,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(274, 132);
+            this.StatusLbl.Location = new System.Drawing.Point(88, 151);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
             this.StatusLbl.TabIndex = 10;
@@ -150,7 +153,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.StatusTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusTxt.Location = new System.Drawing.Point(273, 150);
+            this.StatusTxt.Location = new System.Drawing.Point(87, 169);
             this.StatusTxt.Name = "StatusTxt";
             this.StatusTxt.Size = new System.Drawing.Size(200, 23);
             this.StatusTxt.TabIndex = 9;
@@ -160,7 +163,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.IdCustomerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IdCustomerTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdCustomerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.IdCustomerTxt.Location = new System.Drawing.Point(273, 104);
+            this.IdCustomerTxt.Location = new System.Drawing.Point(87, 123);
             this.IdCustomerTxt.Name = "IdCustomerTxt";
             this.IdCustomerTxt.Size = new System.Drawing.Size(200, 23);
             this.IdCustomerTxt.TabIndex = 11;
@@ -168,6 +171,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.chart1);
             this.panel1.Controls.Add(this.IdCustomerLbl);
             this.panel1.Controls.Add(this.NameCustomerTxt);
             this.panel1.Controls.Add(this.IdCustomerTxt);
@@ -183,6 +187,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 24;
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chart1.BackColor = System.Drawing.Color.Transparent;
+            this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(410, 105);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(250, 250);
+            this.chart1.TabIndex = 12;
+            this.chart1.Text = "chart1";
             // 
             // panel2
             // 
@@ -235,6 +252,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Text = "CustomerDetailsForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -256,5 +274,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

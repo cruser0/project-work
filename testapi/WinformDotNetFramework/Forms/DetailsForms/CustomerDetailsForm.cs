@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -10,6 +12,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
     public partial class CustomerDetailsForm : Form
     {
         CustomerService _customerService;
+        CustomerInvoiceService _customerInvoiceService;
+        CustomerInvoiceSummary summary;
+
         public CustomerDetailsForm(int id)
         {
             Init(id);
@@ -19,6 +24,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             InitializeComponent();
             _customerService = new CustomerService();
+            _customerInvoiceService = new CustomerInvoiceService();
+
+            summary = await _customerInvoiceService.GetSummary(id);
             Customer customer = await _customerService.GetById(id);
             IdCustomerTxt.Text = customer.CustomerId.ToString();
             if (customer.Deprecated != null)
@@ -51,8 +59,42 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 EditCustomerCbx.Visible = false;
                 SaveEditCustomerBtn.Visible = false;
             }
-            //if (!Authorize(authRoles))
-            //    DeleteBtn.Visible = false;
+            CreateDonutChart();
+        }
+
+        private void CreateDonutChart()
+        {
+            int open = summary.OpenInvoices;
+            int paid = summary.ClosedInvoices;
+
+            // Make chart background transparent
+            chart1.BackColor = System.Drawing.Color.Transparent;
+            chart1.ChartAreas[0].BackColor = System.Drawing.Color.Transparent;
+
+            chart1.Series.Clear();
+            Series series = new Series("Payment Status")
+            {
+                ChartType = SeriesChartType.Doughnut,
+                CustomProperties = "DoughnutRadius=50"
+            };
+
+            series.Points.AddXY($"Open ({open})", open);
+            series.Points.AddXY($"Paid ({paid})", paid);
+
+            chart1.Series.Add(series);
+
+            series.Points[0].Color = System.Drawing.Color.Red;
+            series.Points[1].Color = System.Drawing.Color.Green;
+            series.Color = System.Drawing.Color.Transparent;
+
+            // Make legend transparent
+
+            chart1.Titles.Add(new Title("Invoicing Status", Docking.Top));
+            chart1.Legends.Add(new Legend("Status")
+            {
+                Docking = Docking.Bottom
+            });
+            chart1.Legends[0].BackColor = System.Drawing.Color.Transparent;
         }
 
         private bool Authorize(List<string> allowedRoles)

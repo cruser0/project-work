@@ -127,6 +127,7 @@
     <Compile Include="Entities\CustomerInvoice.cs" />
     <Compile Include="Entities\CustomerInvoiceCost.cs" />
     <Compile Include="Entities\DTO\CustomerGroupDTO.cs" />
+    <Compile Include="Entities\DTO\CustomerInvoiceSummary.cs" />
     <Compile Include="Entities\DTO\SaleCustomerDTO.cs" />
     <Compile Include="Entities\DTO\SupplierCustomerDTO.cs" />
     <Compile Include="Entities\DTO\supplierGroupDTO.cs" />
