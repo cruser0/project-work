@@ -13,5 +13,6 @@ namespace WinformDotNetFramework.Entities.Filters
         public string Status { get; set; }
         public string SupplierName { get; set; }
         public string SupplierCountry { get; set; }
+        public string CountryRegion { get; set; }
     }
 }

@@ -63,7 +63,7 @@ namespace WinformDotNetFramework.Forms.AddForms
                 MessageBox.Show("You need to choose a Customer Invoice Code");
                 return;
             }
-            if (!string.IsNullOrEmpty(CostRegistryCmbx.Text)&&!CostRegistryCmbx.Text.Equals("All"))
+            if (!string.IsNullOrEmpty(CostRegistryCmbx.Text) && !CostRegistryCmbx.Text.Equals("All"))
                 customerInvoiceCost.CostRegistryCode = CostRegistryCmbx.Text;
             else
             {

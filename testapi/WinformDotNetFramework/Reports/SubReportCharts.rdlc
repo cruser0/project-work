@@ -148,6 +148,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerName">
           <DataField>CustomerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -203,6 +207,10 @@
         </Field>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CustomerName">
@@ -262,6 +270,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerName">
           <DataField>CustomerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -317,6 +329,10 @@
         </Field>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CustomerName">
@@ -376,6 +392,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerName">
           <DataField>CustomerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -431,6 +451,10 @@
         </Field>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CustomerName">
@@ -490,6 +514,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerName">
           <DataField>CustomerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -547,6 +575,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerName">
           <DataField>CustomerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -596,6 +628,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerInvoiceID">
           <DataField>CustomerInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -635,6 +671,10 @@
       <Fields>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CustomerInvoiceID">
@@ -678,6 +718,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerInvoiceID">
           <DataField>CustomerInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -717,6 +761,10 @@
       <Fields>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CustomerInvoiceID">
@@ -760,6 +808,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerInvoiceID">
           <DataField>CustomerInvoiceID</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -799,6 +851,10 @@
       <Fields>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="InvoiceDate">
@@ -846,6 +902,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="InvoiceDate">
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -889,6 +949,10 @@
       <Fields>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="InvoiceDate">
@@ -936,6 +1000,10 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="InvoiceDate">
           <DataField>InvoiceDate</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -979,6 +1047,10 @@
       <Fields>
         <Field Name="Country">
           <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="InvoiceDate">
@@ -1440,9 +1512,10 @@
                           <FontWeight>SemiBold</FontWeight>
                         </Style>
                         <Label>#VALY (#PERCENT)</Label>
-                        <Visible>true</Visible>
+                        <Visible>= (Count(Fields!SaleID.Value) / Count(Fields!SaleID.Value, "SaleCountByCountry")) * 100 &gt;= 5.0</Visible>
                         <Position>Outside</Position>
                       </ChartDataLabel>
+                      <ToolTip>= CStr(Count(Fields!SaleID.Value)) &amp; "("&amp; Fields!Country.Value &amp; ")"</ToolTip>
                       <Style />
                       <ChartMarker>
                         <Style />
@@ -1466,6 +1539,10 @@
                     <CustomProperty>
                       <Name>PieLineColor</Name>
                       <Value>Black</Value>
+                    </CustomProperty>
+                    <CustomProperty>
+                      <Name>MinimumRelativePieSize</Name>
+                      <Value>50</Value>
                     </CustomProperty>
                   </CustomProperties>
                   <ChartAreaName>Default</ChartAreaName>
@@ -1732,7 +1809,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>="Sale Count By Country (" &amp; CStr(Count(Fields!SaleID.Value)) &amp; ")"</Caption>
+                <Caption>="Sale Count By Country in "&amp; Fields!CountryRegion.Value &amp;" (" &amp; CStr(Count(Fields!SaleID.Value)) &amp; ")"</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontWeight>Normal</FontWeight>
@@ -1761,7 +1838,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleCountByCountry</DataSetName>
-            <Top>8cm</Top>
+            <Top>8.03528cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>1</ZIndex>
@@ -2136,7 +2213,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleCountByMargin</DataSetName>
-            <Top>16cm</Top>
+            <Top>16.03528cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>2</ZIndex>
@@ -2242,7 +2319,6 @@
                         <Color>#5c5c5c</Color>
                       </Style>
                     </ChartAxisTitle>
-                    <Interval>=1</Interval>
                     <IntervalType>Months</IntervalType>
                     <ChartMajorGridLines>
                       <Enabled>True</Enabled>
@@ -2253,7 +2329,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -2513,7 +2589,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleProfitSumByDate</DataSetName>
-            <Top>40cm</Top>
+            <Top>40.03528cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>3</ZIndex>
@@ -2580,6 +2656,7 @@
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
+                  <Subtype>Stacked</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -2621,6 +2698,7 @@
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
+                  <Subtype>Stacked</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -2663,7 +2741,6 @@
                         <Color>#5c5c5c</Color>
                       </Style>
                     </ChartAxisTitle>
-                    <Interval>=1</Interval>
                     <IntervalType>Months</IntervalType>
                     <ChartMajorGridLines>
                       <Enabled>True</Enabled>
@@ -2674,7 +2751,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -2756,7 +2833,6 @@
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
                     <Location>Opposite</Location>
-                    <Scalar>true</Scalar>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
                     <ChartAxisScaleBreak>
@@ -2784,7 +2860,6 @@
                       </Style>
                     </ChartAxisTitle>
                     <ChartMajorGridLines>
-                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -3052,7 +3127,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -3377,6 +3452,7 @@
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
+                  <Subtype>Stacked</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -3413,6 +3489,7 @@
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
+                  <Subtype>Stacked</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -3465,7 +3542,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -3800,6 +3877,12 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <CustomProperties>
+                    <CustomProperty>
+                      <Name>PieLineColor</Name>
+                      <Value>Black</Value>
+                    </CustomProperty>
+                  </CustomProperties>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -4147,7 +4230,7 @@
                           <FontWeight>SemiBold</FontWeight>
                         </Style>
                         <Label>#VALY (#PERCENT)</Label>
-                        <Visible>true</Visible>
+                        <Visible>=(Count(Fields!CustomerInvoiceID.Value) / Count(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByCountry")) * 100 &gt;= 5.0</Visible>
                         <Position>Outside</Position>
                       </ChartDataLabel>
                       <Style />
@@ -4580,7 +4663,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -4605,6 +4688,7 @@
                       <Length>0.5</Length>
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
+                    <Scalar>true</Scalar>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
                     <ChartAxisScaleBreak>
@@ -4951,7 +5035,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -5322,7 +5406,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -5347,6 +5431,7 @@
                       <Length>0.5</Length>
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
+                    <Scalar>true</Scalar>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
                     <ChartAxisScaleBreak>
@@ -5657,6 +5742,12 @@
                       <Style />
                     </ChartDataLabel>
                   </ChartEmptyPoints>
+                  <CustomProperties>
+                    <CustomProperty>
+                      <Name>PieLineColor</Name>
+                      <Value>Black</Value>
+                    </CustomProperty>
+                  </CustomProperties>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
                   <ChartSmartLabel>
@@ -5919,7 +6010,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>="Supplier Invoice Count By Status (" &amp; CStr(Count(Fields!InvoiceID.Value)) &amp; ")"</Caption>
+                <Caption>="Supplier Invoice Count By Status (" &amp; CStr(Count(Fields!SupplierInvoiceID.Value)) &amp; ")"</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -5949,12 +6040,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByStatus</DataSetName>
-            <Top>104cm</Top>
+            <Top>104.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>12</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByStatus"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByStatus"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -6004,7 +6095,7 @@
                           <FontWeight>SemiBold</FontWeight>
                         </Style>
                         <Label>#VALY (#PERCENT)</Label>
-                        <Visible>true</Visible>
+                        <Visible>=(Count(Fields!SupplierInvoiceID.Value) / Count(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByCountry")) * 100 &gt;= 5.0</Visible>
                         <Position>Outside</Position>
                       </ChartDataLabel>
                       <Style />
@@ -6294,7 +6385,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>="Supplier Invoice Count By Country (" &amp; CStr(Count(Fields!InvoiceID.Value)) &amp; ")"</Caption>
+                <Caption>="Supplier Invoice Count By Country (" &amp; CStr(Count(Fields!SupplierInvoiceID.Value)) &amp; ")"</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -6324,12 +6415,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByCountry</DataSetName>
-            <Top>112cm</Top>
+            <Top>112.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>13</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByCountry"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByCountry"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -6437,7 +6528,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -6462,6 +6553,7 @@
                       <Length>0.5</Length>
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
+                    <Scalar>true</Scalar>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
                     <ChartAxisScaleBreak>
@@ -6695,12 +6787,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByDate</DataSetName>
-            <Top>120cm</Top>
+            <Top>120.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>14</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByDate"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceCountByDate"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -6808,7 +6900,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -6833,6 +6925,7 @@
                       <Length>0.5</Length>
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
+                    <Scalar>true</Scalar>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
                     <ChartAxisScaleBreak>
@@ -7066,12 +7159,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceTotalSpentSumByDate</DataSetName>
-            <Top>128cm</Top>
+            <Top>128.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>15</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -7179,7 +7272,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -7437,12 +7530,12 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceTotalSpentSumByCountry</DataSetName>
-            <Top>136cm</Top>
+            <Top>136.02646cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>16</ZIndex>
             <Visibility>
-              <Hidden>=IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry"))</Hidden>
+              <Hidden>=IsNothing(First(Fields!SupplierInvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry"))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -7554,7 +7647,7 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
+                      <Enabled>False</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -7829,45 +7922,8 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Rectangle Name="Rectangle1">
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-            </PageBreak>
-            <KeepTogether>true</KeepTogether>
-            <Top>144cm</Top>
-            <Height>0cm</Height>
-            <Width>18cm</Width>
-            <ZIndex>18</ZIndex>
-            <Visibility>
-              <Hidden>=(IsNothing(First(Fields!SaleID.Value, "SaleCountByStatus"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleCountByCountry"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleCountByMargin"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleProfitSumByDate"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleTotalRevenueSpentSumByDate"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleProfitSumByCountry"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleTotalRevenueSpentSumByCountry"))) and
-(IsNothing(First(Fields!SaleID.Value, "SaleCountByDate"))) and
-
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByStatus"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByDate"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceCountByCountry"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByDate"))) and
-(IsNothing(First(Fields!CustomerInvoiceID.Value, "CustomerInvoiceTotalGainedSumByCountry"))) and
-
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByStatus"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByDate"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceCountByCountry"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByDate"))) and
-(IsNothing(First(Fields!InvoiceID.Value, "SupplierInvoiceTotalSpentSumByCountry")))</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
         </ReportItems>
-        <Height>144cm</Height>
+        <Height>144.02646cm</Height>
         <Style />
       </Body>
       <Width>18cm</Width>

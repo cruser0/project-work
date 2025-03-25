@@ -196,105 +196,43 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
         void SubreportProcessingEventHandler(object sender, SubreportProcessingEventArgs e)
         {
+            // Refactor logic into a method for easier reuse
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 0, "SaleCountByStatus", _saleData);
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 1, "SaleCountByCountry", _saleData);
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 2, "SaleCountByMargin", _saleData);
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 3, "SaleCountByDate", _saleData);
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 4, "SaleProfitSumByDate", _saleData);
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 5, "SaleTotalRevenueSpentSumByDate", _saleData);
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 6, "SaleProfitSumByCountry", _saleData);
+            AddReportDataSource(e, searchSaleReport1.GrapCBL, 7, "SaleTotalRevenueSpentSumByCountry", _saleData);
 
-            //if (searchSaleReport1.checkBox1.Checked)
-            //    e.DataSources.Add(new ReportDataSource("SaleByProfit", _profitData));
-            //else
-            //    e.DataSources.Add(new ReportDataSource("SaleByProfit", new List<ClassifySalesByProfit>()));
+            AddReportDataSource(e, searchCustomerInvoiceReportUserControl1.GrapCBL, 0, "CustomerInvoiceCountByStatus", _customerInvoiceData);
+            AddReportDataSource(e, searchCustomerInvoiceReportUserControl1.GrapCBL, 1, "CustomerInvoiceCountByCountry", _customerInvoiceData);
+            AddReportDataSource(e, searchCustomerInvoiceReportUserControl1.GrapCBL, 2, "CustomerInvoiceCountByDate", _customerInvoiceData);
+            AddReportDataSource(e, searchCustomerInvoiceReportUserControl1.GrapCBL, 3, "CustomerInvoiceTotalGainedSumByDate", _customerInvoiceData);
+            AddReportDataSource(e, searchCustomerInvoiceReportUserControl1.GrapCBL, 4, "CustomerInvoiceTotalGainedSumByCountry", _customerInvoiceData);
 
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 0))
-                e.DataSources.Add(new ReportDataSource("SaleCountByStatus", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleCountByStatus", new List<ClassifySalesByProfit>()));
-
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 1))
-                e.DataSources.Add(new ReportDataSource("SaleCountByCountry", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleCountByCountry", new List<ClassifySalesByProfit>()));
-
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 2))
-                e.DataSources.Add(new ReportDataSource("SaleCountByMargin", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleCountByMargin", new List<ClassifySalesByProfit>()));
-
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 3))
-                e.DataSources.Add(new ReportDataSource("SaleCountByDate", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleCountByDate", new List<ClassifySalesByProfit>()));
-
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 4))
-                e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleProfitSumByDate", new List<ClassifySalesByProfit>()));
-
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 5))
-                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByDate", new List<ClassifySalesByProfit>()));
-
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 6))
-                e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleProfitSumByCountry", new List<ClassifySalesByProfit>()));
-
-            if (IsIndexSelected(searchSaleReport1.GrapCBL, 7))
-                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", _saleData));
-            else
-                e.DataSources.Add(new ReportDataSource("SaleTotalRevenueSpentSumByCountry", new List<ClassifySalesByProfit>()));
-
-
-            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 0))
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", _customerInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByStatus", new List<TotalAmountGainedPerCustomerInvoice>()));
-
-            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 1))
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", _customerInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByCountry", new List<TotalAmountGainedPerCustomerInvoice>()));
-
-            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 2))
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", _customerInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceCountByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
-
-            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 3))
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", _customerInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByDate", new List<TotalAmountGainedPerCustomerInvoice>()));
-
-            if (IsIndexSelected(searchCustomerInvoiceReportUserControl1.GrapCBL, 4))
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", _customerInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("CustomerInvoiceTotalGainedSumByCountry", new List<TotalAmountGainedPerCustomerInvoice>()));
-
-
-            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 0))
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", _supplierInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByCountry", new List<TotalAmountSpentPerSupplierInvoice>()));
-
-            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 1))
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", _supplierInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByStatus", new List<TotalAmountSpentPerSupplierInvoice>()));
-
-            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 2))
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", _supplierInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceCountByDate", new List<TotalAmountSpentPerSupplierInvoice>()));
-
-            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 3))
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByDate", new List<TotalAmountSpentPerSupplierInvoice>()));
-
-            if (IsIndexSelected(searchSupplierInvoiceReport1.GrapCBL, 4))
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByCountry", _supplierInvoiceData));
-            else
-                e.DataSources.Add(new ReportDataSource("SupplierInvoiceTotalSpentSumByCountry", new List<TotalAmountSpentPerSupplierInvoice>()));
-
+            AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 0, "SupplierInvoiceCountByCountry", _supplierInvoiceData);
+            AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 1, "SupplierInvoiceCountByStatus", _supplierInvoiceData);
+            AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 2, "SupplierInvoiceCountByDate", _supplierInvoiceData);
+            AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 3, "SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData);
+            AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 4, "SupplierInvoiceTotalSpentSumByCountry", _supplierInvoiceData);
         }
+
+        bool subReportHidden = false;
+        void AddReportDataSource(SubreportProcessingEventArgs e, CheckedListBox checkboxList, int index, string dataSourceName, object data)
+        {
+            if (IsIndexSelected(checkboxList, index))
+            {
+                e.DataSources.Add(new ReportDataSource(dataSourceName, data));
+                if (!subReportHidden) subReportHidden = true;
+            }
+            else
+            {
+                e.DataSources.Add(new ReportDataSource(dataSourceName, new List<object>()));
+            }
+        }
+
         private bool IsIndexSelected(CheckedListBox listBox, int index)
         {
             if (listBox.InvokeRequired)
@@ -350,6 +288,8 @@ namespace WinformDotNetFramework.Forms.GridForms
                     Value = _saleData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
+                ReportParameter param = new ReportParameter("SubReportHidden", subReportHidden.ToString());
+                ReportViewer.LocalReport.SetParameters(param);
             }
 
             if (DialogReport.Equals("CustomerInvoice"))
@@ -361,6 +301,8 @@ namespace WinformDotNetFramework.Forms.GridForms
                     Value = _customerInvoiceData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
+                ReportParameter param = new ReportParameter("SubReportHidden", subReportHidden.ToString());
+                ReportViewer.LocalReport.SetParameters(param);
             }
 
             if (DialogReport.Equals("SupplierInvoice"))
@@ -372,6 +314,8 @@ namespace WinformDotNetFramework.Forms.GridForms
                     Value = _supplierInvoiceData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
+                ReportParameter param = new ReportParameter("SubReportHidden", subReportHidden.ToString());
+                ReportViewer.LocalReport.SetParameters(param);
             }
 
         }

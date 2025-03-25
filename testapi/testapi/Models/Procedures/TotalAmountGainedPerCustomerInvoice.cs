@@ -1,4 +1,6 @@
-﻿namespace API.Models.Procedures
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API.Models.Procedures
 {
     public class TotalAmountGainedPerCustomerInvoice
     {
@@ -9,5 +11,7 @@
         public decimal? TotalGained { get; set; }
         public string? CustomerName { get; set; }
         public string? Country { get; set; }
+        [Column("Region")]
+        public string? CountryRegion { get; set; }
     }
 }
