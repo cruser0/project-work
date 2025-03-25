@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.control;
-using WinformDotNetFramework.Forms.FinalForms;
+using WinformDotNetFramework.Forms.GroupForms;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms
@@ -254,7 +254,7 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Create Customer Invoice":
-                    child = new CreateCustomerInvoiceForm();
+                    child = new CustomerInvoiceGroupCreateForm();
                     break;
 
                 case "Create Customer Invoice Cost":
@@ -282,11 +282,11 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Group Supplier":
-                    child = new SupplierFinalForm();
+                    child = new SupplierGroupForm();
                     break;
 
                 case "Group Customer":
-                    child = new CustomerFinalForm();
+                    child = new CustomerGroupForm();
                     break;
 
                 default:

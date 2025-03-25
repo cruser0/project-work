@@ -114,6 +114,13 @@ namespace API.Controllers
             var data = await _customerInvoiceCostService.MassUpdateCustomerInvoiceCost(newCustomerInvoiceCosts);
             return Ok(data);
         }
+        [Authorize(Roles = "Admin,CustomerInvoiceCostAdmin")]
+        [HttpPut("mass-save")]
+        public async Task<IActionResult> MassSave([FromBody] List<CustomerInvoiceCostDTO> newCustomerInvoiceCosts)
+        {
+            var data = await _customerInvoiceCostService.MassSaveCustomerInvoiceCost(newCustomerInvoiceCosts);
+            return Ok(data);
+        }
     }
 }
 

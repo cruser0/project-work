@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-namespace WinformDotNetFramework.Forms.FinalForms
+namespace WinformDotNetFramework.Forms.GroupForms
 {
-    partial class SupplierFinalForm
+    partial class SupplierGroupForm
     {
         /// <summary>
         /// Required designer variable.

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Forms.GridForms;
-using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.AddForms
 {
@@ -13,9 +8,9 @@ namespace WinformDotNetFramework.Forms.AddForms
     {
         CustomerInvoiceService _customerInvoiceService;
         SaleService _saleService;
-        int id = -1;
-        string bol;
-        string bk;
+        public int id { get; set; } = -1;
+        public string bol { get; set; }
+        public string bk { get; set; }
         public CreateCustomerInvoiceForm()
         {
             _saleService = new SaleService();
@@ -23,12 +18,21 @@ namespace WinformDotNetFramework.Forms.AddForms
             InitializeComponent();
         }
 
-        private async void SaveBtn_Click(object sender, EventArgs e)
+        public virtual async void SaveBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await Save();
+                Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        public async Task<CustomerInvoice> Save()
         {
             if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !dateTimePicker1.Checked)
             {
                 MessageBox.Show("All the fields must be filled");
-                return;
+                return null;
             }
             if (id == -1)
                 id = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
@@ -37,20 +41,14 @@ namespace WinformDotNetFramework.Forms.AddForms
                 SaleId = id,
                 InvoiceDate = dateTimePicker1.Value,
                 Status = "Unpaid",
-                CustomerInvoiceCode = (bk + bol).GetHashCode().ToString(),
+                CustomerInvoiceCode = Guid.NewGuid().ToString("N").Substring(0, 20),
             };
-            try
-            {
-                await _customerInvoiceService.Create(customerInvoice);
-                MessageBox.Show("Customer Invoice Created Succesfully");
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
+            await _customerInvoiceService.Create(customerInvoice);
+            MessageBox.Show("Customer Invoice Created Succesfully");
+            return customerInvoice;
+
+        }
         private void OpenSale_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);

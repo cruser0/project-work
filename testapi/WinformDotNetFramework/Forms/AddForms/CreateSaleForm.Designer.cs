@@ -42,13 +42,13 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.OpenSale = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CustomerCountryLbl = new System.Windows.Forms.Label();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -212,6 +212,24 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel2.Size = new System.Drawing.Size(744, 422);
             this.panel2.TabIndex = 33;
             // 
+            // CountryCmbxUC
+            // 
+            this.CountryCmbxUC.listItemsDropCmbx = null;
+            this.CountryCmbxUC.Location = new System.Drawing.Point(428, 148);
+            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.CountryCmbxUC.Name = "CountryCmbxUC";
+            this.CountryCmbxUC.Size = new System.Drawing.Size(201, 23);
+            this.CountryCmbxUC.TabIndex = 44;
+            // 
+            // NameCmbxUC
+            // 
+            this.NameCmbxUC.listItemsDropCmbx = null;
+            this.NameCmbxUC.Location = new System.Drawing.Point(428, 103);
+            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.NameCmbxUC.Name = "NameCmbxUC";
+            this.NameCmbxUC.Size = new System.Drawing.Size(201, 24);
+            this.NameCmbxUC.TabIndex = 43;
+            // 
             // CustomerCountryLbl
             // 
             this.CustomerCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -266,24 +284,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.Size = new System.Drawing.Size(20, 422);
             this.panel5.TabIndex = 36;
             // 
-            // CountryCmbxUC
-            // 
-            this.CountryCmbxUC.listItemsDropCmbx = null;
-            this.CountryCmbxUC.Location = new System.Drawing.Point(428, 148);
-            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.CountryCmbxUC.Name = "CountryCmbxUC";
-            this.CountryCmbxUC.Size = new System.Drawing.Size(201, 23);
-            this.CountryCmbxUC.TabIndex = 44;
-            // 
-            // NameCmbxUC
-            // 
-            this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(428, 103);
-            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(201, 24);
-            this.NameCmbxUC.TabIndex = 43;
-            // 
             // CreateSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -306,24 +306,25 @@ namespace WinformDotNetFramework.Forms.AddForms
         }
 
         #endregion
-        private DateTimePicker saleDateDtp;
-        private TextBox boltxt;
-        private TextBox bntxt;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label StatusLbl;
-        private ComboBox StatusCmbx;
-        private Button SaveBtn;
-        private Button OpenSale;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
-        private Label CustomerCountryLbl;
-        private Label CustomerNameLbl;
-        private control.DropDownMenuAutoCompleteUserControl CountryCmbxUC;
-        private control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
+
+        public DateTimePicker saleDateDtp;
+        public TextBox boltxt;
+        public TextBox bntxt;
+        public Label label4;
+        public Label label3;
+        public Label label2;
+        public Label StatusLbl;
+        public ComboBox StatusCmbx;
+        public Button SaveBtn;
+        public Button OpenSale;
+        public Panel panel1;
+        public Panel panel2;
+        public Panel panel3;
+        public Panel panel4;
+        public Panel panel5;
+        public Label CustomerCountryLbl;
+        public Label CustomerNameLbl;
+        public control.DropDownMenuAutoCompleteUserControl CountryCmbxUC;
+        public control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
     }
 }

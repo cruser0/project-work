@@ -18,15 +18,18 @@ namespace API.Models.Services
         Task<int> CountCustomerInvoiceCosts(CustomerInvoiceCostFilter filter);
         Task<string> MassDeleteCustomerInvoiceCost(List<int> customerInvoiceCostId);
         Task<string> MassUpdateCustomerInvoiceCost(List<CustomerInvoiceCostDTOGet> newCustomerInvoiceCosts);
+        Task<string> MassSaveCustomerInvoiceCost(List<CustomerInvoiceCostDTO> CustomerInvoiceCostsList);
     }
     public class CustomerInvoiceCostService : ICustomerInvoiceCostService
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ICustomerInvoicesService _serviceCustomerInvoice;
-        public CustomerInvoiceCostService(Progetto_FormativoContext ctx, ICustomerInvoicesService service)
+        private readonly CostRegistryService _costRegistry;
+        public CustomerInvoiceCostService(Progetto_FormativoContext ctx, ICustomerInvoicesService service,CostRegistryService cr)
         {
             _context = ctx;
             _serviceCustomerInvoice = service;
+            _costRegistry = cr;
         }
 
         public async Task<ICollection<CustomerInvoiceCostDTOGet>> GetAllCustomerInvoiceCosts(CustomerInvoiceCostFilter filter)
@@ -368,6 +371,46 @@ namespace API.Models.Services
                 await transaction.RollbackAsync();
                 throw new Exception("Database update error occurred", ex);
             }
+        }
+
+        public async Task<string> MassSaveCustomerInvoiceCost(List<CustomerInvoiceCostDTO> CustomerInvoiceCostsList)
+        {
+            int count = 0;
+
+            foreach(CustomerInvoiceCostDTO customerInvoiceCostDto in CustomerInvoiceCostsList)
+            {
+                CustomerInvoiceCost customerInvoiceCost = Mapper.CustomerInvoiceCostMapper.Map(customerInvoiceCostDto,await _costRegistry.GetCostRegistryByCode(customerInvoiceCostDto.CostRegistryCode),await _serviceCustomerInvoice.GetOnlyCustomerInvoiceById((int)customerInvoiceCostDto.CustomerInvoiceId));
+                CustomerInvoice ci;
+                if (customerInvoiceCost == null)
+                    throw new NullPropertyException("Couldn't create customer Invoice Cost,the input was null");
+                if (customerInvoiceCost.CustomerInvoiceID == null)
+                    throw new NullPropertyException("Customer Invoice Id can't be null!");
+                if (!await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).AnyAsync())
+                    throw new ErrorInputPropertyException("Customer Invoice Id not found!");
+                if (customerInvoiceCost.Cost < 0 || customerInvoiceCost.Quantity < 1 || customerInvoiceCost.Cost == null || customerInvoiceCost.Quantity == null)
+                    throw new ErrorInputPropertyException("Values can't be lesser than 1 or null");
+                if (string.IsNullOrEmpty(customerInvoiceCost.Name))
+                    throw new NullPropertyException("Name can't be empty");
+
+                ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).Include(x => x.Status).FirstAsync();
+                if (ci.Status.StatusName.ToLower().Equals("paid"))
+                    throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
+                var total = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceID == ci.CustomerInvoiceID).SumAsync(x => x.Cost);
+                if (total != null)
+                    ci.InvoiceAmount = total + customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
+                else
+                    ci.InvoiceAmount = customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
+
+                if (customerInvoiceCost.CostRegistryID == null)
+                    throw new ErrorInputPropertyException("Cost Registry Code wrong or missing");
+
+                await _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceID, ci);
+
+                _context.Add(customerInvoiceCost);
+                count++;
+            }
+            await _context.SaveChangesAsync();
+            return $"{count} out of {CustomerInvoiceCostsList.Count} Customer Invoice Costs were created";
         }
     }
 }

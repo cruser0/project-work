@@ -214,18 +214,18 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         #endregion
 
-        private Label label2;
-        private DateTimePicker dateTimePicker1;
-        private Button SaveBtn;
-        private Label SaleBKLbl;
-        private Button OpenSale;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
-        private Label label1;
-        private control.DropDownMenuAutoCompleteUserControl BoLCmbxUC;
-        private control.DropDownMenuAutoCompleteUserControl BKCmbxUC;
+        public Label label2;
+        public DateTimePicker dateTimePicker1;
+        public Button SaveBtn;
+        public Label SaleBKLbl;
+        public Button OpenSale;
+        public Panel panel1;
+        public Panel panel2;
+        public Panel panel3;
+        public Panel panel4;
+        public Panel panel5;
+        public Label label1;
+        public control.DropDownMenuAutoCompleteUserControl BoLCmbxUC;
+        public control.DropDownMenuAutoCompleteUserControl BKCmbxUC;
     }
 }

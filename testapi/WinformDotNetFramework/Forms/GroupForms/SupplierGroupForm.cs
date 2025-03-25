@@ -7,9 +7,9 @@ using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
 
-namespace WinformDotNetFramework.Forms.FinalForms
+namespace WinformDotNetFramework.Forms.GroupForms
 {
-    public partial class SupplierFinalForm : Form
+    public partial class SupplierGroupForm : Form
     {
         private ValueService _valueService;
 
@@ -40,7 +40,7 @@ namespace WinformDotNetFramework.Forms.FinalForms
         private int supplierInvoiceCostTotalPages;
         private List<SupplierInvoiceCost> allSupplierInvoiceCosts = new List<SupplierInvoiceCost>(); // Lista completa dei supplier inv cost
 
-        public SupplierFinalForm()
+        public SupplierGroupForm()
         {
             _valueService = new ValueService();
             InitializeComponent();

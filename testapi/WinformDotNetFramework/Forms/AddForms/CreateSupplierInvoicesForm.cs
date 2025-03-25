@@ -65,7 +65,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 try
                 {
-                    SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = StatusCmbx.Text };
+                    SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = StatusCmbx.Text,SupplierInvoiceCode= Guid.NewGuid().ToString("N").Substring(0, 20), };
                     await _service.Create(si);
                     MessageBox.Show("Supplier Invoice created Successfully!");
 
