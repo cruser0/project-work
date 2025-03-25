@@ -176,9 +176,7 @@
     <Compile Include="Forms\AddForms\CreateCustomerInvoiceCostForm.Designer.cs">
       <DependentUpon>CreateCustomerInvoiceCostForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddForms\CreateCustomerInvoiceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\AddForms\CreateCustomerInvoiceForm.cs" />
     <Compile Include="Forms\AddForms\CreateCustomerInvoiceForm.Designer.cs">
       <DependentUpon>CreateCustomerInvoiceForm.cs</DependentUpon>
     </Compile>
@@ -440,9 +438,7 @@
     <Compile Include="Forms\GroupForms\CustomerGroupForm.Designer.cs">
       <DependentUpon>CustomerGroupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GroupForms\CustomerInvoiceGroupCreateForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\GroupForms\CustomerInvoiceGroupCreateForm.cs" />
     <Compile Include="Forms\GroupForms\CustomerInvoiceGroupCreateForm.Designer.cs">
       <DependentUpon>CustomerInvoiceGroupCreateForm.cs</DependentUpon>
     </Compile>
