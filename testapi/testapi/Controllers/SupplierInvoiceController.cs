@@ -121,5 +121,12 @@ namespace API.Controllers
 
 
         }
+
+        [HttpGet("supplier-invoice-summary/{SupplierID}")]
+        public async Task<ActionResult<SupplierInvoiceSummary>> GetSupplierInvoiceSummary(int SupplierID)
+        {
+            var data = await _supplierInvoiceService.GetSupplierInvoiceSummary(SupplierID);
+            return Ok(data);
+        }
     }
 }

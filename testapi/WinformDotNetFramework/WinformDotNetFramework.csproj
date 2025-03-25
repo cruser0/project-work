@@ -131,6 +131,7 @@
     <Compile Include="Entities\DTO\SaleCustomerDTO.cs" />
     <Compile Include="Entities\DTO\SupplierCustomerDTO.cs" />
     <Compile Include="Entities\DTO\supplierGroupDTO.cs" />
+    <Compile Include="Entities\DTO\SupplierInvoiceSummary.cs" />
     <Compile Include="Entities\DTO\SupplierInvoiceSupplierDTO.cs" />
     <Compile Include="Entities\DTO\UserDTO.cs" />
     <Compile Include="Entities\Filters\ClassifySalesByProfitFilter.cs" />

@@ -417,25 +417,23 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoiceSummary> GetCustomerInvoiceSummary(int customerID)
         {
-            var data = _context.CustomerInvoices
+            var data = await _context.CustomerInvoices
                 .Include(x => x.Sale)
                 .ThenInclude(x => x.Customer)
-                .Include(x => x.Status);
-
-
-            var data1 = data.Where(x => x.Sale.Customer.CustomerID == customerID);
-            var data2 = data1.GroupBy(x => x.Status.StatusName)  // Accessing the StatusName from the related Status entity
+                .Include(x => x.Status)
+                .Where(x => x.Sale.Customer.CustomerID == customerID)
+                .GroupBy(x => x.Status.StatusName)  // Accessing the StatusName from the related Status entity
                 .Select(g => new
                 {
                     Status = g.Key,
                     Count = g.Count()
-                });
-            var data3 = await data2.ToDictionaryAsync(x => x.Status.ToLower(), x => x.Count);
+                })
+                .ToDictionaryAsync(x => x.Status.ToLower(), x => x.Count);
 
             return new CustomerInvoiceSummary()
             {
-                OpenInvoices = data3.ContainsKey("unpaid") ? data3["unpaid"] : 0,
-                ClosedInvoices = data3.ContainsKey("paid") ? data3["paid"] : 0
+                OpenInvoices = data.ContainsKey("unpaid") ? data["unpaid"] : 0,
+                ClosedInvoices = data.ContainsKey("paid") ? data["paid"] : 0
             };
         }
     }
