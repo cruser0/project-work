@@ -19,6 +19,7 @@ namespace API.Models.Services
         Task<string> MassDeleteCustomerInvoice(List<int> customerInvoiceId);
 
         Task<string> MassUpdateCustomerInvoice(List<CustomerInvoiceDTOGet> newCustomerInvoices);
+        Task<CustomerInvoiceSummary> GetCustomerInvoiceSummary(int customerID);
 
     }
     public class CustomerInvoicesServices : ICustomerInvoicesService
@@ -414,5 +415,26 @@ namespace API.Models.Services
             }
         }
 
+        public async Task<CustomerInvoiceSummary> GetCustomerInvoiceSummary(int customerID)
+        {
+            var data = await _context.CustomerInvoices
+                .Include(x => x.Sale)
+                .ThenInclude(x => x.Customer)
+                .Include(x => x.Status)
+                .Where(x => x.Sale.Customer.CustomerID == customerID)
+                .GroupBy(x => x.Status.StatusName)  // Accessing the StatusName from the related Status entity
+                .Select(g => new
+                {
+                    Status = g.Key,
+                    Count = g.Count()
+                })
+                .ToDictionaryAsync(x => x.Status.ToLower(), x => x.Count);
+
+            return new CustomerInvoiceSummary()
+            {
+                OpenInvoices = data.ContainsKey("unpaid") ? data["unpaid"] : 0,
+                ClosedInvoices = data.ContainsKey("paid") ? data["paid"] : 0
+            };
+        }
     }
 }

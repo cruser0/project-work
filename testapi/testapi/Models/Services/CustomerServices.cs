@@ -191,8 +191,6 @@ namespace API.Models.Services
                 cDB.Deprecated = true;
                 // Save the changes to the database
                 _context.Customers.Update(cDB);
-                await _context.SaveChangesAsync();
-
                 _context.Customers.Add(newCustomer);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();

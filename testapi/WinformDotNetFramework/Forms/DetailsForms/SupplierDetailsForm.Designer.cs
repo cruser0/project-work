@@ -30,20 +30,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.SaveEditSupplierBtn = new System.Windows.Forms.Button();
             this.EditSupplierCbx = new System.Windows.Forms.CheckBox();
             this.CountrySupplierLbl = new System.Windows.Forms.Label();
             this.NameSupplierLbl = new System.Windows.Forms.Label();
-            this.IdSupplierLbl = new System.Windows.Forms.Label();
-            this.CountrySupplierTxt = new System.Windows.Forms.TextBox();
-            this.IdSupplierTxt = new System.Windows.Forms.TextBox();
             this.NameSupplierTxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // SaveEditSupplierBtn
@@ -51,7 +52,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveEditSupplierBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveEditSupplierBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditSupplierBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveEditSupplierBtn.Location = new System.Drawing.Point(377, 235);
+            this.SaveEditSupplierBtn.Location = new System.Drawing.Point(196, 330);
             this.SaveEditSupplierBtn.Name = "SaveEditSupplierBtn";
             this.SaveEditSupplierBtn.Size = new System.Drawing.Size(92, 25);
             this.SaveEditSupplierBtn.TabIndex = 16;
@@ -65,7 +66,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditSupplierCbx.AutoSize = true;
             this.EditSupplierCbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditSupplierCbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.EditSupplierCbx.Location = new System.Drawing.Point(423, 210);
+            this.EditSupplierCbx.Location = new System.Drawing.Point(242, 305);
             this.EditSupplierCbx.Name = "EditSupplierCbx";
             this.EditSupplierCbx.Size = new System.Drawing.Size(46, 19);
             this.EditSupplierCbx.TabIndex = 15;
@@ -79,7 +80,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountrySupplierLbl.AutoSize = true;
             this.CountrySupplierLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountrySupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountrySupplierLbl.Location = new System.Drawing.Point(270, 163);
+            this.CountrySupplierLbl.Location = new System.Drawing.Point(88, 195);
             this.CountrySupplierLbl.Name = "CountrySupplierLbl";
             this.CountrySupplierLbl.Size = new System.Drawing.Size(50, 15);
             this.CountrySupplierLbl.TabIndex = 14;
@@ -91,51 +92,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameSupplierLbl.AutoSize = true;
             this.NameSupplierLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameSupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierLbl.Location = new System.Drawing.Point(270, 119);
+            this.NameSupplierLbl.Location = new System.Drawing.Point(88, 105);
             this.NameSupplierLbl.Name = "NameSupplierLbl";
             this.NameSupplierLbl.Size = new System.Drawing.Size(39, 15);
             this.NameSupplierLbl.TabIndex = 13;
             this.NameSupplierLbl.Text = "Name";
-            // 
-            // IdSupplierLbl
-            // 
-            this.IdSupplierLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.IdSupplierLbl.AutoSize = true;
-            this.IdSupplierLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdSupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.IdSupplierLbl.Location = new System.Drawing.Point(270, 75);
-            this.IdSupplierLbl.Name = "IdSupplierLbl";
-            this.IdSupplierLbl.Size = new System.Drawing.Size(17, 15);
-            this.IdSupplierLbl.TabIndex = 12;
-            this.IdSupplierLbl.Text = "Id";
-            // 
-            // CountrySupplierTxt
-            // 
-            this.CountrySupplierTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CountrySupplierTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountrySupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountrySupplierTxt.Location = new System.Drawing.Point(269, 181);
-            this.CountrySupplierTxt.MaxLength = 50;
-            this.CountrySupplierTxt.Name = "CountrySupplierTxt";
-            this.CountrySupplierTxt.Size = new System.Drawing.Size(200, 23);
-            this.CountrySupplierTxt.TabIndex = 11;
-            // 
-            // IdSupplierTxt
-            // 
-            this.IdSupplierTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.IdSupplierTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdSupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.IdSupplierTxt.Location = new System.Drawing.Point(269, 93);
-            this.IdSupplierTxt.Name = "IdSupplierTxt";
-            this.IdSupplierTxt.Size = new System.Drawing.Size(200, 23);
-            this.IdSupplierTxt.TabIndex = 9;
             // 
             // NameSupplierTxt
             // 
             this.NameSupplierTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameSupplierTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameSupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierTxt.Location = new System.Drawing.Point(269, 137);
+            this.NameSupplierTxt.Location = new System.Drawing.Point(88, 123);
             this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
             this.NameSupplierTxt.Size = new System.Drawing.Size(200, 23);
@@ -144,11 +112,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.panel1.Controls.Add(this.IdSupplierLbl);
+            this.panel1.Controls.Add(this.CountryCmbx);
+            this.panel1.Controls.Add(this.chart1);
             this.panel1.Controls.Add(this.NameSupplierTxt);
-            this.panel1.Controls.Add(this.IdSupplierTxt);
             this.panel1.Controls.Add(this.SaveEditSupplierBtn);
-            this.panel1.Controls.Add(this.CountrySupplierTxt);
             this.panel1.Controls.Add(this.EditSupplierCbx);
             this.panel1.Controls.Add(this.NameSupplierLbl);
             this.panel1.Controls.Add(this.CountrySupplierLbl);
@@ -194,6 +161,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(750, 17);
             this.panel5.TabIndex = 23;
             // 
+            // chart1
+            // 
+            this.chart1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chart1.BackColor = System.Drawing.Color.Transparent;
+            this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
+            this.chart1.Location = new System.Drawing.Point(410, 105);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(250, 250);
+            this.chart1.TabIndex = 17;
+            this.chart1.Text = "chart1";
+            // 
+            // CountryCmbx
+            // 
+            this.CountryCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CountryCmbx.BackColor = System.Drawing.SystemColors.Control;
+            this.CountryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CountryCmbx.FormattingEnabled = true;
+            this.CountryCmbx.Location = new System.Drawing.Point(88, 213);
+            this.CountryCmbx.Name = "CountryCmbx";
+            this.CountryCmbx.Size = new System.Drawing.Size(200, 21);
+            this.CountryCmbx.TabIndex = 29;
+            // 
             // SupplierDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +202,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Text = "SupplierDetailsForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -219,14 +213,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private CheckBox EditSupplierCbx;
         private Label CountrySupplierLbl;
         private Label NameSupplierLbl;
-        private Label IdSupplierLbl;
-        private TextBox CountrySupplierTxt;
-        private TextBox IdSupplierTxt;
         private TextBox NameSupplierTxt;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private ComboBox CountryCmbx;
     }
 }

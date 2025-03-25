@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Services
@@ -41,6 +42,13 @@ namespace WinformDotNetFramework.Services
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
             var returnResult = await GetList<CustomerInvoice>(client, "customer-invoice", queryString);
+            return returnResult;
+        }
+
+        public async Task<CustomerInvoiceSummary> GetSummary(int id)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await GetItem<CustomerInvoiceSummary>(client, $"customer-invoice/customer-invoice-summary/{id}", "Customer Invoice Summary");
             return returnResult;
         }
 

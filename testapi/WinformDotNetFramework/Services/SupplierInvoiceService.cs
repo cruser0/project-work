@@ -47,6 +47,12 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
+        public async Task<SupplierInvoiceSummary> GetSummary(int id)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await GetItem<SupplierInvoiceSummary>(client, $"supplier-invoice/supplier-invoice-summary/{id}", "Supplier Invoice Summary");
+            return returnResult;
+        }
         public async Task<SupplierInvoiceSupplierDTO> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);

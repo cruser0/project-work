@@ -19,6 +19,7 @@ namespace API.Models.Services
         Task<int> CountSupplierinvoices(SupplierInvoiceSupplierFilter filter);
         Task<string> MassDeleteSupplierInvoice(List<int> supplierInvoiceId);
         Task<string> MassUpdateSupplierInvoice(List<SupplierInvoiceDTOGet> newSupplierInvoices);
+        Task<SupplierInvoiceSummary> GetSupplierInvoiceSummary(int id);
 
 
     }
@@ -357,5 +358,25 @@ namespace API.Models.Services
             }
         }
 
+        public async Task<SupplierInvoiceSummary> GetSupplierInvoiceSummary(int id)
+        {
+            var data = await _context.SupplierInvoices
+                .Include(x => x.Supplier)
+                .Include(x => x.Status)
+                .Where(x => x.Supplier.SupplierID == id)
+                .GroupBy(x => x.Status.StatusName)  // Accessing the StatusName from the related Status entity
+                .Select(g => new
+                {
+                    Status = g.Key,
+                    Count = g.Count()
+                })
+                .ToDictionaryAsync(x => x.Status.ToLower(), x => x.Count);
+
+            return new SupplierInvoiceSummary()
+            {
+                OpenInvoices = data.ContainsKey("unapproved") ? data["unapproved"] : 0,
+                ClosedInvoices = data.ContainsKey("approved") ? data["approved"] : 0
+            };
+        }
     }
 }

@@ -125,8 +125,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             ZoomTSLbl.Text = ReportViewer.ZoomPercent.ToString() + "%";
             if (!PdfTSB.Enabled)
                 EnableTSItems();
-            button1.Enabled = true;
-            Cursor = Cursors.Default;
+
         }
 
 
@@ -218,8 +217,12 @@ namespace WinformDotNetFramework.Forms.GridForms
             AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 3, "SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData);
             AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 4, "SupplierInvoiceTotalSpentSumByCountry", _supplierInvoiceData);
 
+            BeginInvoke(new Action(() =>
+            {
+                Cursor = Cursors.Default;
+                button1.Enabled = true;
+            }));
         }
-
 
         void AddReportDataSource(SubreportProcessingEventArgs e, CheckedListBox checkboxList, int index, string dataSourceName, object data)
         {
