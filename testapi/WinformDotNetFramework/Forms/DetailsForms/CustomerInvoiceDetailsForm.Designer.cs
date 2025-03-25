@@ -30,8 +30,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.CustomerInvoiceIdTxt = new System.Windows.Forms.TextBox();
-            this.SaleIdTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.InvoiceDateDTP = new System.Windows.Forms.DateTimePicker();
             this.StatusCB = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,39 +41,28 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // CustomerInvoiceIdTxt
-            // 
-            this.CustomerInvoiceIdTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerInvoiceIdTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerInvoiceIdTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerInvoiceIdTxt.Location = new System.Drawing.Point(293, 95);
-            this.CustomerInvoiceIdTxt.Name = "CustomerInvoiceIdTxt";
-            this.CustomerInvoiceIdTxt.Size = new System.Drawing.Size(200, 23);
-            this.CustomerInvoiceIdTxt.TabIndex = 20;
-            // 
-            // SaleIdTxt
-            // 
-            this.SaleIdTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaleIdTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaleIdTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIdTxt.Location = new System.Drawing.Point(293, 139);
-            this.SaleIdTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SaleIdTxt.Name = "SaleIdTxt";
-            this.SaleIdTxt.Size = new System.Drawing.Size(200, 25);
-            this.SaleIdTxt.TabIndex = 21;
             // 
             // InvoiceDateDTP
             // 
             this.InvoiceDateDTP.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.InvoiceDateDTP.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InvoiceDateDTP.Location = new System.Drawing.Point(293, 229);
+            this.InvoiceDateDTP.Location = new System.Drawing.Point(284, 88);
             this.InvoiceDateDTP.Name = "InvoiceDateDTP";
             this.InvoiceDateDTP.Size = new System.Drawing.Size(200, 23);
             this.InvoiceDateDTP.TabIndex = 22;
@@ -89,7 +76,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusCB.Items.AddRange(new object[] {
             "Paid",
             "Unpaid"});
-            this.StatusCB.Location = new System.Drawing.Point(292, 273);
+            this.StatusCB.Location = new System.Drawing.Point(535, 88);
             this.StatusCB.Name = "StatusCB";
             this.StatusCB.Size = new System.Drawing.Size(200, 23);
             this.StatusCB.TabIndex = 23;
@@ -100,11 +87,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(293, 77);
+            this.label1.Location = new System.Drawing.Point(30, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 15);
+            this.label1.Size = new System.Drawing.Size(131, 15);
             this.label1.TabIndex = 24;
-            this.label1.Text = "Customer Invoice Id";
+            this.label1.Text = "Customer Invoice Code";
             // 
             // label2
             // 
@@ -112,11 +99,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(293, 121);
+            this.label2.Location = new System.Drawing.Point(532, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 15);
+            this.label2.Size = new System.Drawing.Size(76, 15);
             this.label2.TabIndex = 25;
-            this.label2.Text = "Sale Id";
+            this.label2.Text = "Bill of Lading";
             // 
             // label3
             // 
@@ -124,7 +111,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(293, 211);
+            this.label3.Location = new System.Drawing.Point(281, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 15);
             this.label3.TabIndex = 26;
@@ -136,7 +123,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label4.Location = new System.Drawing.Point(293, 255);
+            this.label4.Location = new System.Drawing.Point(532, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 15);
             this.label4.TabIndex = 27;
@@ -148,7 +135,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label5.Location = new System.Drawing.Point(293, 167);
+            this.label5.Location = new System.Drawing.Point(30, 70);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 15);
             this.label5.TabIndex = 29;
@@ -159,7 +146,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.InvoiceAmountTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.InvoiceAmountTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InvoiceAmountTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceAmountTxt.Location = new System.Drawing.Point(293, 185);
+            this.InvoiceAmountTxt.Location = new System.Drawing.Point(33, 88);
             this.InvoiceAmountTxt.Name = "InvoiceAmountTxt";
             this.InvoiceAmountTxt.Size = new System.Drawing.Size(200, 23);
             this.InvoiceAmountTxt.TabIndex = 28;
@@ -170,7 +157,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.checkBox1.Location = new System.Drawing.Point(446, 302);
+            this.checkBox1.Location = new System.Drawing.Point(603, 126);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(46, 19);
             this.checkBox1.TabIndex = 30;
@@ -184,7 +171,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.button1.Location = new System.Drawing.Point(412, 327);
+            this.button1.Location = new System.Drawing.Point(655, 126);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 25);
             this.button1.TabIndex = 31;
@@ -195,18 +182,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.CustomerInvoiceIdTxt);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.SaleIdTxt);
-            this.panel1.Controls.Add(this.InvoiceAmountTxt);
-            this.panel1.Controls.Add(this.InvoiceDateDTP);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.StatusCB);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.panel7);
+            this.panel1.Controls.Add(this.panel6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.panel1.Location = new System.Drawing.Point(17, 17);
@@ -214,41 +191,127 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 32;
             // 
+            // BoLCmbxUC
+            // 
+            this.BoLCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BoLCmbxUC.listItemsDropCmbx = null;
+            this.BoLCmbxUC.Location = new System.Drawing.Point(535, 44);
+            this.BoLCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BoLCmbxUC.Name = "BoLCmbxUC";
+            this.BoLCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.BoLCmbxUC.TabIndex = 42;
+            // 
+            // BKCmbxUC
+            // 
+            this.BKCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BKCmbxUC.listItemsDropCmbx = null;
+            this.BKCmbxUC.Location = new System.Drawing.Point(284, 44);
+            this.BKCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BKCmbxUC.Name = "BKCmbxUC";
+            this.BKCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.BKCmbxUC.TabIndex = 41;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBox1.Location = new System.Drawing.Point(33, 44);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(200, 23);
+            this.textBox1.TabIndex = 34;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(750, 265);
+            this.dataGridView1.TabIndex = 33;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label6.Location = new System.Drawing.Point(281, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 15);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Booking Number";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(17, 0);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(750, 17);
+            this.panel2.Size = new System.Drawing.Size(784, 17);
             this.panel2.TabIndex = 33;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(17, 444);
+            this.panel3.Location = new System.Drawing.Point(0, 444);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(750, 17);
+            this.panel3.Size = new System.Drawing.Size(784, 17);
             this.panel3.TabIndex = 34;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(767, 0);
+            this.panel4.Location = new System.Drawing.Point(767, 17);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(17, 461);
+            this.panel4.Size = new System.Drawing.Size(17, 427);
             this.panel4.TabIndex = 35;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Location = new System.Drawing.Point(0, 17);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(17, 461);
+            this.panel5.Size = new System.Drawing.Size(17, 427);
             this.panel5.TabIndex = 36;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label1);
+            this.panel6.Controls.Add(this.BoLCmbxUC);
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.BKCmbxUC);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Controls.Add(this.textBox1);
+            this.panel6.Controls.Add(this.StatusCB);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Controls.Add(this.label6);
+            this.panel6.Controls.Add(this.InvoiceDateDTP);
+            this.panel6.Controls.Add(this.InvoiceAmountTxt);
+            this.panel6.Controls.Add(this.button1);
+            this.panel6.Controls.Add(this.label5);
+            this.panel6.Controls.Add(this.checkBox1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(750, 162);
+            this.panel6.TabIndex = 43;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.dataGridView1);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 162);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(750, 265);
+            this.panel7.TabIndex = 44;
             // 
             // CustomerInvoiceDetailsForm
             // 
@@ -257,22 +320,23 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CustomerInvoiceDetailsForm";
             this.Text = "CustomerInvoiceDetailsForm";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private TextBox CustomerInvoiceIdTxt;
-        private control.IntegerTextBoxUserControl SaleIdTxt;
         private DateTimePicker InvoiceDateDTP;
         private ComboBox StatusCB;
         private Label label1;
@@ -288,5 +352,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private Label label6;
+        private TextBox textBox1;
+        private DataGridView dataGridView1;
+        private control.DropDownMenuAutoCompleteUserControl BoLCmbxUC;
+        private control.DropDownMenuAutoCompleteUserControl BKCmbxUC;
+        private Panel panel6;
+        private Panel panel7;
     }
 }

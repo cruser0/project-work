@@ -32,9 +32,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             supplierID = id;
             NameSupplierTxt.Text = supplier.SupplierName;
             CountryCmbx.Text = supplier.Country;
+            comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
 
             NameSupplierTxt.Enabled = false;
             CountryCmbx.Enabled = false;
+            comboBox1.Enabled = false;
+
             List<string> authRolesWrite = new List<string>
             {
                 "SupplierWrite",
@@ -98,18 +101,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             NameSupplierTxt.Enabled = EditSupplierCbx.Checked;
             CountryCmbx.Enabled = EditSupplierCbx.Checked;
+            comboBox1.Enabled = EditSupplierCbx.Checked;
 
             if (!EditSupplierCbx.Checked)
             {
                 NameSupplierTxt.Text = supplier.SupplierName;
                 CountryCmbx.Text = supplier.Country;
+                comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
             }
 
         }
 
+        bool enabled;
         private async void SaveEditSupplierBtn_Click(object sender, EventArgs e)
         {
-            Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text };
+            switch (comboBox1.Text)
+            {
+                case "Active":
+                    enabled = false;
+                    break;
+
+                case "Deprecated":
+                    enabled = true;
+                    break;
+            };
+
+            Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
             try
             {
                 await _supplierService.Update(supplierID, supplier);

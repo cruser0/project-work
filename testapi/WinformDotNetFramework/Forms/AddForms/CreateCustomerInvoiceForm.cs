@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +13,7 @@ namespace WinformDotNetFramework.Forms.AddForms
     {
         CustomerInvoiceService _customerInvoiceService;
         SaleService _saleService;
-        int id=-1;
+        int id = -1;
         string bol;
         string bk;
         public CreateCustomerInvoiceForm()
@@ -31,14 +30,14 @@ namespace WinformDotNetFramework.Forms.AddForms
                 MessageBox.Show("All the fields must be filled");
                 return;
             }
-            if(id==-1)
-                id=(await _saleService.GetAll(new SaleFilter() { SaleBoLnumber=BoLCmbxUC.Cmbx.Text,SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
+            if (id == -1)
+                id = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
             CustomerInvoice customerInvoice = new CustomerInvoice()
             {
                 SaleId = id,
                 InvoiceDate = dateTimePicker1.Value,
                 Status = "Unpaid",
-                CustomerInvoiceCode = (bk+bol).GetHashCode().ToString(),
+                CustomerInvoiceCode = (bk + bol).GetHashCode().ToString(),
             };
             try
             {
@@ -59,9 +58,9 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         public void SetSaleID(string idSale)
         {
-            id= int.Parse(idSale);
+            id = int.Parse(idSale);
         }
-        public void SetSaleBkBol(string bk,string bol)
+        public void SetSaleBkBol(string bk, string bol)
         {
             BKCmbxUC.Cmbx.Text = bk;
             BoLCmbxUC.Cmbx.Text = bol;
@@ -73,7 +72,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             bol = BoLCmbxUC.Cmbx.Text;
             var listFiltered = await _saleService.GetAll(new SaleFilter()
             {
-                SaleBookingNumber = string.IsNullOrEmpty(bk)?null:bk,
+                SaleBookingNumber = string.IsNullOrEmpty(bk) ? null : bk,
                 SaleBoLnumber = string.IsNullOrEmpty(bol) ? null : bol
             });
 

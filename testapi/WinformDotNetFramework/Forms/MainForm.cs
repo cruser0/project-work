@@ -295,6 +295,8 @@ namespace WinformDotNetFramework.Forms
             }
 
 
+            child.StartPosition = FormStartPosition.CenterScreen;
+
             child.Text = formName.Equals("TS UserProfile") ? "User Area" : formName;
             child.MdiParent = this;
             child.Size = new Size(800, 500);
@@ -322,6 +324,7 @@ namespace WinformDotNetFramework.Forms
             else if (child.Text.Contains("Create") || child.Text.Contains("Details"))
             {
                 child.MaximizeBox = false;
+                child.WindowState = FormWindowState.Normal;
                 child.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
 
@@ -350,9 +353,9 @@ namespace WinformDotNetFramework.Forms
             else
             {
                 if (favoriteList.Contains(latestForm.Text))
-                    AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star_yellow_removebg;
+                    AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
                 else
-                    AddFavoriteButton.Image = WinformDotNetFramework.Properties.Resources.star;
+                    AddFavoriteButton.Image = Properties.Resources.star;
             }
 
             if (!AddFavoriteButton.Visible)
@@ -622,6 +625,15 @@ namespace WinformDotNetFramework.Forms
                     AddFavoriteButton.Visible = true;
             }
 
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            MdiChildren
+                .ToList()
+                .ForEach(form => form.Close());
+
+            minimizedPanel.Controls.Clear();
         }
     }
 }

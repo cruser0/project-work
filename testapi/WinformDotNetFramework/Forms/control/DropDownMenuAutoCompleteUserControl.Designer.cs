@@ -35,13 +35,13 @@
             // 
             // Cmbx
             // 
-            this.Cmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Cmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Cmbx.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Cmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cmbx.FormattingEnabled = true;
             this.Cmbx.Location = new System.Drawing.Point(0, 0);
-            this.Cmbx.MaximumSize = new System.Drawing.Size(172, 0);
             this.Cmbx.Name = "Cmbx";
-            this.Cmbx.Size = new System.Drawing.Size(172, 21);
+            this.Cmbx.Size = new System.Drawing.Size(172, 23);
             this.Cmbx.TabIndex = 38;
             this.Cmbx.SelectedIndexChanged += new System.EventHandler(this.Cmbx_SelectedIndexChanged);
             this.Cmbx.SelectionChangeCommitted += new System.EventHandler(this.Cmbx_SelectionChangeCommitted);
@@ -63,7 +63,7 @@
         }
 
         #endregion
-        public System.Windows.Forms.ComboBox Cmbx;
         public System.Windows.Forms.Timer timer;
+        public System.Windows.Forms.ComboBox Cmbx;
     }
 }

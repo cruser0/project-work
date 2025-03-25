@@ -32,8 +32,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             customerId = id;
             NameCustomerTxt.Text = customer.CustomerName;
             CountryCmbx.Text = customer.Country;
+            comboBox1.Text = (bool)customer.Deprecated ? "Deprecated" : "Active";
             NameCustomerTxt.Enabled = false;
             CountryCmbx.Enabled = false;
+            comboBox1.Enabled = false;
 
             List<string> authRolesWrite = new List<string>
             {
@@ -98,18 +100,33 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             NameCustomerTxt.Enabled = EditCustomerCbx.Checked;
             CountryCmbx.Enabled = EditCustomerCbx.Checked;
+            comboBox1.Enabled = EditCustomerCbx.Checked;
 
             if (!EditCustomerCbx.Checked)
             {
                 NameCustomerTxt.Text = customer.CustomerName;
                 CountryCmbx.Text = customer.Country;
+                comboBox1.Text = (bool)customer.Deprecated ? "Deprecated" : "Active";
             }
 
         }
-
+        bool enabled;
         private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
-            Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text };
+
+
+            switch (comboBox1.Text)
+            {
+                case "Active":
+                    enabled = false;
+                    break;
+
+                case "Deprecated":
+                    enabled = true;
+                    break;
+            };
+
+            Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
             try
             {
                 await _customerService.Update(customerId, customer);

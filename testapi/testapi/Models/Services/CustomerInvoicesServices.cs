@@ -304,7 +304,7 @@ namespace API.Models.Services
         public async Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id)
         {
             // Retrieve the customer invoice from the database using the provided ID
-            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).FirstOrDefaultAsync();
+            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).Include(x => x.Sale).FirstOrDefaultAsync();
 
             // Check if the customer invoice exists
             if (data == null)

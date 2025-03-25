@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -11,6 +13,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
     {
 
         CustomerInvoiceService _customerInvoiceService;
+        CustomerInvoiceCostService _customerInvoiceCostService;
+        CustomerInvoice customerInvoice;
+        SaleService _saleService;
+        string bol;
+        string bk;
+        int saleID;
         public CustomerInvoiceDetailsForm(int id)
         {
             Init(id);
@@ -19,20 +27,36 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void Init(int id)
         {
             InitializeComponent();
-
+            _saleService = new SaleService();
             _customerInvoiceService = new CustomerInvoiceService();
-            CustomerInvoice customer = await _customerInvoiceService.GetById(id);
+            _customerInvoiceCostService = new CustomerInvoiceCostService();
 
-            CustomerInvoiceIdTxt.Text = customer.CustomerInvoiceId.ToString();
-            InvoiceAmountTxt.Text = customer.InvoiceAmount.ToString();
-            SaleIdTxt.SetText(customer.SaleId.ToString());
-            InvoiceDateDTP.Value = (DateTime)customer.InvoiceDate;
-            StatusCB.Text = customer.Status;
+            customerInvoice = await _customerInvoiceService.GetById(id);
 
-            CustomerInvoiceIdTxt.Enabled = false;
+            textBox1.Text = customerInvoice.CustomerInvoiceCode;
+            InvoiceAmountTxt.Text = customerInvoice.InvoiceAmount.ToString();
+
+            BKCmbxUC.Cmbx.TextChanged -= BKCmbxUC.Cmbx_TextChanged;
+            BoLCmbxUC.Cmbx.TextChanged -= BoLCmbxUC.Cmbx_TextChanged;
+
+            BKCmbxUC.Cmbx.Text = customerInvoice.SaleBookingNumber;
+            BoLCmbxUC.Cmbx.Text = customerInvoice.SaleBoL;
+
+            BKCmbxUC.Cmbx.TextChanged += BKCmbxUC.Cmbx_TextChanged;
+            BoLCmbxUC.Cmbx.TextChanged += BoLCmbxUC.Cmbx_TextChanged;
+
+            InvoiceDateDTP.Value = (DateTime)customerInvoice.InvoiceDate;
+            StatusCB.Text = customerInvoice.Status;
+
+            List<CustomerInvoiceCost> data = (await _customerInvoiceCostService
+                .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = customerInvoice.CustomerInvoiceCode })).ToList();
+            dataGridView1.DataSource = data.ToList();
+
+            textBox1.Enabled = false;
             InvoiceAmountTxt.Enabled = false;
             StatusCB.Enabled = false;
-            SaleIdTxt.Enabled = false;
+            BKCmbxUC.Cmbx.Enabled = false;
+            BoLCmbxUC.Cmbx.Enabled = false;
             InvoiceDateDTP.Enabled = false;
             button1.Enabled = false;
             List<string> authRolesWrite = new List<string>
@@ -51,8 +75,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 checkBox1.Visible = false;
                 button1.Visible = false;
             }
-            //if (!Authorize(authRoles))
-            //    DeleteBtn.Visible = false;
         }
 
         private bool Authorize(List<string> allowedRoles)
@@ -62,16 +84,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            saleID = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
+
             CustomerInvoice si = new CustomerInvoice
             {
-                SaleId = int.Parse(SaleIdTxt.GetText()),
+                SaleId = saleID,
                 Status = StatusCB.Text,
                 InvoiceDate = InvoiceDateDTP.Value,
                 InvoiceAmount = 0
             };
             try
             {
-                await _customerInvoiceService.Update(int.Parse(CustomerInvoiceIdTxt.Text), si);
+                await _customerInvoiceService.Update(customerInvoice.CustomerInvoiceId, si);
                 MessageBox.Show("Customer updated successfully!");
 
                 this.Close();
@@ -81,10 +105,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            StatusCB.Enabled = !StatusCB.Enabled;
-            SaleIdTxt.Enabled = !SaleIdTxt.Enabled;
-            InvoiceDateDTP.Enabled = !InvoiceDateDTP.Enabled;
-            button1.Enabled = !button1.Enabled;
+            textBox1.Enabled = checkBox1.Checked;
+            InvoiceAmountTxt.Enabled = checkBox1.Checked;
+            StatusCB.Enabled = checkBox1.Checked;
+            BKCmbxUC.Cmbx.Enabled = checkBox1.Checked;
+            BoLCmbxUC.Cmbx.Enabled = checkBox1.Checked;
+            InvoiceDateDTP.Enabled = checkBox1.Checked;
         }
 
 
@@ -103,7 +129,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    await _customerInvoiceService.Delete(int.Parse(CustomerInvoiceIdTxt.Text));
+                    await _customerInvoiceService.Delete(customerInvoice.CustomerInvoiceId);
                     MessageBox.Show("Customer Invoice has been deleted.");
                     this.Close();
                 }
@@ -113,6 +139,51 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 MessageBox.Show("Action canceled.");
             }
+        }
+
+        public async Task SetList()
+        {
+
+
+            // Get the current text values from both comboboxes
+            bk = BKCmbxUC.Cmbx.Text;
+            bol = BoLCmbxUC.Cmbx.Text;
+
+            // If both comboboxes are empty, clear the suggestions
+            if (string.IsNullOrEmpty(bk) && string.IsNullOrEmpty(bol))
+            {
+                BKCmbxUC.listItemsDropCmbx = new List<string>();
+                BoLCmbxUC.listItemsDropCmbx = new List<string>();
+                return;
+            }
+
+            // Fetch all sales based on the current filter conditions
+            var listFiltered = await _saleService.GetAll(new SaleFilter()
+            {
+                // Only apply filters if at least one combobox has a value
+                SaleBookingNumber = !string.IsNullOrEmpty(bk) ? bk : null,
+                SaleBoLnumber = !string.IsNullOrEmpty(bol) ? bol : null
+            });
+
+
+
+            // Filter Booking Number suggestions
+            var listItemsBk = listFiltered
+                .Where(x => string.IsNullOrEmpty(bol) || x.BoLnumber == bol)
+                .Select(x => x.BookingNumber)
+                .Distinct()
+                .ToList();
+
+            // Filter BoL Number suggestions
+            var listItemsBol = listFiltered
+                .Where(x => string.IsNullOrEmpty(bk) || x.BookingNumber == bk)
+                .Select(x => x.BoLnumber)
+                .Distinct()
+                .ToList();
+
+            // Update combobox suggestions
+            BKCmbxUC.listItemsDropCmbx = listItemsBk;
+            BoLCmbxUC.listItemsDropCmbx = listItemsBol;
         }
     }
 }

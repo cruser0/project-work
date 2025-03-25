@@ -49,6 +49,7 @@ namespace WinformDotNetFramework
                 // Crea un'istanza del form di tipo T e lo apre
                 T formInstance = (T)Activator.CreateInstance(typeof(T), id);
                 formInstance.MdiParent = mainForm;
+                formInstance.StartPosition = FormStartPosition.CenterScreen;
                 formInstance.Size = formInstance.MinimumSize;
                 formInstance.Text = FormatFormName(typeof(T).Name);
                 formInstance.Resize += ChildForm_Resize;
@@ -75,6 +76,7 @@ namespace WinformDotNetFramework
             // Crea un'istanza del form di tipo T e lo apre
             T formInstance = (T)Activator.CreateInstance(typeof(T), father);
             formInstance.MdiParent = mainForm;
+            formInstance.StartPosition = FormStartPosition.CenterScreen;
             formInstance.Size = formInstance.MinimumSize;
             formInstance.Text = FormatFormName(typeof(T).Name);
             formInstance.Resize += ChildForm_Resize;

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.DetailsForms;
 
 namespace WinformDotNetFramework.Forms.control
 {
@@ -39,17 +34,27 @@ namespace WinformDotNetFramework.Forms.control
                     Cmbx.DroppedDown = false;
                     return;
                 }
-                if(ParentForm is CreateCustomerInvoiceCostForm cicf)
+
+                if (ParentForm is CreateCustomerInvoiceCostForm cicf)
                     await cicf.SetList(currentText);
 
-                if(ParentForm is CreateCustomerInvoiceForm cif)
+                if (ParentForm is CreateCustomerInvoiceForm cif)
                     await cif.SetList();
-                if(ParentForm is CreateSaleForm sf)
+
+                if (ParentForm is CreateSaleForm sf)
                     await sf.SetList();
-                if(ParentForm is CreateSupplierInvoicesForm sif)
+
+                if (ParentForm is CreateSupplierInvoicesForm sif)
                     await sif.SetList();
-                if(ParentForm is CreateSupplierInvoiceCostForm sicf)
+
+                if (ParentForm is CreateSupplierInvoiceCostForm sicf)
                     await sicf.SetList();
+
+                if (ParentForm is CustomerInvoiceDetailsForm cidf)
+                    await cidf.SetList();
+
+                //if (ParentForm is SupplierInvoiceDetailsForm sidf)
+                //    await sidf.SetList();
 
                 if (listItemsDropCmbx.Count > 0)
                 {
@@ -76,7 +81,7 @@ namespace WinformDotNetFramework.Forms.control
             }
         }
 
-        private void Cmbx_TextChanged(object sender, EventArgs e)
+        public void Cmbx_TextChanged(object sender, EventArgs e)
         {
             if (_suppressEvents) return;
             timer.Stop();
