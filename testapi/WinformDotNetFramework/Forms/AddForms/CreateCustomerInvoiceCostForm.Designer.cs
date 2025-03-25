@@ -43,12 +43,12 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.PanelCreateCustomerInvoiceCost = new System.Windows.Forms.Panel();
+            this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CostRegistryLbl = new System.Windows.Forms.Label();
             this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.QuantityTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.CostTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.PanelCreateCustomerInvoiceCost.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,9 +72,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(289, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 15);
+            this.label1.Size = new System.Drawing.Size(130, 15);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Customer Invoice Code *";
+            this.label1.Text = "Supplier Invoice Code *";
             // 
             // label3
             // 
@@ -192,6 +192,15 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.PanelCreateCustomerInvoiceCost.Size = new System.Drawing.Size(750, 427);
             this.PanelCreateCustomerInvoiceCost.TabIndex = 38;
             // 
+            // InvoiceCodeCmbxUC
+            // 
+            this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
+            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
+            this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.InvoiceCodeCmbxUC.Name = "InvoiceCodeCmbxUC";
+            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.InvoiceCodeCmbxUC.TabIndex = 38;
+            // 
             // CostRegistryLbl
             // 
             this.CostRegistryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -205,22 +214,14 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             // CostRegistryCmbx
             // 
-            this.CostRegistryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CostRegistryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CostRegistryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CostRegistryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CostRegistryCmbx.FormattingEnabled = true;
             this.CostRegistryCmbx.Location = new System.Drawing.Point(289, 290);
             this.CostRegistryCmbx.Name = "CostRegistryCmbx";
             this.CostRegistryCmbx.Size = new System.Drawing.Size(200, 23);
             this.CostRegistryCmbx.TabIndex = 35;
-            // 
-            // InvoiceCodeCmbxUC
-            // 
-            this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
-            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
-            this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.InvoiceCodeCmbxUC.Name = "InvoiceCodeCmbxUC";
-            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(200, 23);
-            this.InvoiceCodeCmbxUC.TabIndex = 38;
             // 
             // QuantityTxt
             // 

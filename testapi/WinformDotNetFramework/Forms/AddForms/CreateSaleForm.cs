@@ -13,7 +13,7 @@ namespace WinformDotNetFramework.Forms.AddForms
     {
         SaleService _saleService;
         CustomerService _customerService;
-        int id;
+        int id=-1;
         public CreateSaleForm()
         {
             _customerService = new CustomerService();
@@ -27,6 +27,11 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 MessageBox.Show("Select a date");
                 return;
+            }
+            if (id == -1)
+            {
+                var customer=(await _customerService.GetAll(new CustomerFilter() { CustomerName = NameCmbxUC.Cmbx.Text, CustomerCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault();
+                id = customer.CustomerId;
             }
             Sale sale = new Sale
             {

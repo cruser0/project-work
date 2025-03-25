@@ -46,6 +46,10 @@ namespace WinformDotNetFramework.Forms.control
                     await cif.SetList();
                 if(ParentForm is CreateSaleForm sf)
                     await sf.SetList();
+                if(ParentForm is CreateSupplierInvoicesForm sif)
+                    await sif.SetList();
+                if(ParentForm is CreateSupplierInvoiceCostForm sicf)
+                    await sicf.SetList();
 
                 if (listItemsDropCmbx.Count > 0)
                 {

@@ -32,7 +32,10 @@ namespace WinformDotNetFramework.Forms.AddForms
         {
             this.CreatePanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.SaleIDLbl = new System.Windows.Forms.Label();
+            this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.CostRegistryLbl = new System.Windows.Forms.Label();
+            this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.NameSupplierLbl = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.NameTxt = new System.Windows.Forms.TextBox();
@@ -41,7 +44,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.OpenSupplierInvoice = new System.Windows.Forms.Button();
-            this.SupplierInvoiceIDIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -68,7 +70,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.SaleIDLbl);
+            this.panel1.Controls.Add(this.InvoiceCodeCmbxUC);
+            this.panel1.Controls.Add(this.CostRegistryLbl);
+            this.panel1.Controls.Add(this.CostRegistryCmbx);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.NameSupplierLbl);
             this.panel1.Controls.Add(this.SaveBtn);
             this.panel1.Controls.Add(this.NameTxt);
@@ -77,25 +82,53 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1.Controls.Add(this.SupplierIDLbl);
             this.panel1.Controls.Add(this.CostIntegerTxt);
             this.panel1.Controls.Add(this.OpenSupplierInvoice);
-            this.panel1.Controls.Add(this.SupplierInvoiceIDIntegerTxt);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(17, 17);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 36;
             // 
-            // SaleIDLbl
+            // InvoiceCodeCmbxUC
             // 
-            this.SaleIDLbl.AllowDrop = true;
-            this.SaleIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaleIDLbl.AutoSize = true;
-            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaleIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleIDLbl.Location = new System.Drawing.Point(289, 94);
-            this.SaleIDLbl.Name = "SaleIDLbl";
-            this.SaleIDLbl.Size = new System.Drawing.Size(105, 15);
-            this.SaleIDLbl.TabIndex = 22;
-            this.SaleIDLbl.Text = "Supplier Invoice ID";
+            this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
+            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
+            this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.InvoiceCodeCmbxUC.Name = "InvoiceCodeCmbxUC";
+            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(172, 23);
+            this.InvoiceCodeCmbxUC.TabIndex = 42;
+            // 
+            // CostRegistryLbl
+            // 
+            this.CostRegistryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CostRegistryLbl.AutoSize = true;
+            this.CostRegistryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CostRegistryLbl.Location = new System.Drawing.Point(289, 276);
+            this.CostRegistryLbl.Name = "CostRegistryLbl";
+            this.CostRegistryLbl.Size = new System.Drawing.Size(76, 13);
+            this.CostRegistryLbl.TabIndex = 41;
+            this.CostRegistryLbl.Text = "Cost Registry *";
+            // 
+            // CostRegistryCmbx
+            // 
+            this.CostRegistryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CostRegistryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CostRegistryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CostRegistryCmbx.FormattingEnabled = true;
+            this.CostRegistryCmbx.Location = new System.Drawing.Point(289, 292);
+            this.CostRegistryCmbx.Name = "CostRegistryCmbx";
+            this.CostRegistryCmbx.Size = new System.Drawing.Size(172, 21);
+            this.CostRegistryCmbx.TabIndex = 40;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(289, 98);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Customer Invoice Code *";
             // 
             // NameSupplierLbl
             // 
@@ -114,10 +147,11 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaveBtn.AllowDrop = true;
             this.SaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveBtn.Location = new System.Drawing.Point(319, 279);
+            this.SaveBtn.Location = new System.Drawing.Point(314, 319);
             this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(147, 20);
+            this.SaveBtn.Size = new System.Drawing.Size(147, 23);
             this.SaveBtn.TabIndex = 25;
             this.SaveBtn.Text = "Create Supplier Invoice Cost";
             this.SaveBtn.UseVisualStyleBackColor = false;
@@ -132,7 +166,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.NameTxt.Location = new System.Drawing.Point(289, 250);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(177, 23);
+            this.NameTxt.Size = new System.Drawing.Size(172, 23);
             this.NameTxt.TabIndex = 34;
             // 
             // Quantity
@@ -156,7 +190,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.QuantityIntegerTxt.Location = new System.Drawing.Point(289, 204);
             this.QuantityIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.QuantityIntegerTxt.Name = "QuantityIntegerTxt";
-            this.QuantityIntegerTxt.Size = new System.Drawing.Size(177, 25);
+            this.QuantityIntegerTxt.Size = new System.Drawing.Size(172, 25);
             this.QuantityIntegerTxt.TabIndex = 33;
             // 
             // SupplierIDLbl
@@ -180,7 +214,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.CostIntegerTxt.Location = new System.Drawing.Point(289, 158);
             this.CostIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CostIntegerTxt.Name = "CostIntegerTxt";
-            this.CostIntegerTxt.Size = new System.Drawing.Size(177, 25);
+            this.CostIntegerTxt.Size = new System.Drawing.Size(172, 25);
             this.CostIntegerTxt.TabIndex = 32;
             // 
             // OpenSupplierInvoice
@@ -197,17 +231,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.OpenSupplierInvoice.Text = "Open";
             this.OpenSupplierInvoice.UseVisualStyleBackColor = false;
             this.OpenSupplierInvoice.Click += new System.EventHandler(this.OpenSupplierInvoice_Click);
-            // 
-            // SupplierInvoiceIDIntegerTxt
-            // 
-            this.SupplierInvoiceIDIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierInvoiceIDIntegerTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SupplierInvoiceIDIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierInvoiceIDIntegerTxt.Location = new System.Drawing.Point(289, 112);
-            this.SupplierInvoiceIDIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SupplierInvoiceIDIntegerTxt.Name = "SupplierInvoiceIDIntegerTxt";
-            this.SupplierInvoiceIDIntegerTxt.Size = new System.Drawing.Size(177, 25);
-            this.SupplierInvoiceIDIntegerTxt.TabIndex = 31;
             // 
             // panel4
             // 
@@ -254,6 +277,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CreateSupplierInvoiceCostForm";
             this.Text = "CreateSupplierInvoiceCostForm";
+            this.Load += new System.EventHandler(this.CreateSupplierInvoiceCostForm_Load);
             this.CreatePanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -266,9 +290,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         private Panel CreatePanel;
         private control.IntegerTextBoxUserControl QuantityIntegerTxt;
         private control.IntegerTextBoxUserControl CostIntegerTxt;
-        private control.IntegerTextBoxUserControl SupplierInvoiceIDIntegerTxt;
         private Button OpenSupplierInvoice;
-        private Label SaleIDLbl;
         private Label SupplierIDLbl;
         private Label Quantity;
         private Button SaveBtn;
@@ -279,5 +301,9 @@ namespace WinformDotNetFramework.Forms.AddForms
         private Panel panel3;
         private Panel panel2;
         private Panel panel5;
+        private control.DropDownMenuAutoCompleteUserControl InvoiceCodeCmbxUC;
+        private Label CostRegistryLbl;
+        private ComboBox CostRegistryCmbx;
+        private Label label1;
     }
 }

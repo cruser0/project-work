@@ -135,7 +135,11 @@ namespace WinformDotNetFramework.Forms.GridForms
         public virtual void SupplierDgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView dgv)
+            {
                 _father.SetSupplierID(dgv.CurrentRow.Cells["SupplierID"].Value.ToString());
+                _father.SetSupplierNameCoutnry(dgv.CurrentRow.Cells["SupplierName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
+
+            }
         }
         private void PaginationUserControl_SingleLeftArrowEvent(object sender, EventArgs e)
         {

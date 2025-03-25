@@ -51,7 +51,8 @@ namespace WinformDotNetFramework.Forms.AddForms
             CustomerInvoiceCost customerInvoiceCost = new CustomerInvoiceCost()
             {
                 CustomerInvoiceId = id,
-
+                CostRegistryCode = CostRegistryCmbx.Text,
+                CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
                 Cost = string.IsNullOrEmpty(CostTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostTxt.GetText()),
                 Quantity = string.IsNullOrEmpty(QuantityTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityTxt.GetText()),
                 Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,

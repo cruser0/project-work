@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Services;
@@ -8,29 +10,51 @@ namespace WinformDotNetFramework.Forms.AddForms
     public partial class CreateSupplierForm : Form
     {
         SupplierService _supplierService;
+        UserService _userService;
+        ICollection<string> prefUserPages;
         public CreateSupplierForm()
         {
-            _supplierService = new SupplierService();
-            InitializeComponent();
-            CreateSupplierUserControl.createButton += CreateSupplierUserControl_createButton;
+            Init();
+
         }
 
-        private async void CreateSupplierUserControl_createButton(object sender, Entities.DTO.SupplierCustomerDTO e)
+        private async void Init()
         {
-            if (!string.IsNullOrEmpty(e.Name) || !string.IsNullOrEmpty(e.Country))
+            _userService = new UserService();
+            _supplierService = new SupplierService();
+            InitializeComponent();
+            prefUserPages = await _userService.GetAllPreferredPagesUser();
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+        }
+
+        private async void SaveBtn_Click(object sender, EventArgs e)
+        {
+            Supplier supplier = new Supplier()
             {
-                Supplier supplier = new Supplier { SupplierName = e.Name, Country = e.Country };
+                SupplierName = CreateNameTxt.Text,
+                Country = CountryCmbx.Text
+            };
+            if (supplier.Country.Equals("All"))
+                MessageBox.Show("You Need to Select a country");
+            else
+            {
                 try
                 {
                     await _supplierService.Create(supplier);
-                    MessageBox.Show("Supplier created Successfully!");
-                    this.Close();
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                    MessageBox.Show("Supplier Created Succesfully");
+                    Close();
 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            else
-                MessageBox.Show("Name and Country must not be empty");
+        }
+
+        private void NameTxt_TextChanged(object sender, EventArgs e)
+        {
+            CreateSaveBtn.Enabled = CreateNameTxt.Text.Length > 0 && !CountryCmbx.Text.Equals("All") && !string.IsNullOrEmpty(CountryCmbx.Text);
         }
     }
 }
