@@ -1838,7 +1838,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleCountByCountry</DataSetName>
-            <Top>8.03528cm</Top>
+            <Top>8cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>1</ZIndex>
@@ -2213,7 +2213,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleCountByMargin</DataSetName>
-            <Top>16.03528cm</Top>
+            <Top>16cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>2</ZIndex>
@@ -2589,7 +2589,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SaleProfitSumByDate</DataSetName>
-            <Top>40.03528cm</Top>
+            <Top>40cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>3</ZIndex>
@@ -6040,7 +6040,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByStatus</DataSetName>
-            <Top>104.02646cm</Top>
+            <Top>104cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>12</ZIndex>
@@ -6415,7 +6415,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByCountry</DataSetName>
-            <Top>112.02646cm</Top>
+            <Top>112cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>13</ZIndex>
@@ -6787,7 +6787,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceCountByDate</DataSetName>
-            <Top>120.02646cm</Top>
+            <Top>120cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>14</ZIndex>
@@ -7159,7 +7159,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceTotalSpentSumByDate</DataSetName>
-            <Top>128.02646cm</Top>
+            <Top>128cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>15</ZIndex>
@@ -7530,7 +7530,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SupplierInvoiceTotalSpentSumByCountry</DataSetName>
-            <Top>136.02646cm</Top>
+            <Top>136cm</Top>
             <Height>8cm</Height>
             <Width>18cm</Width>
             <ZIndex>16</ZIndex>
@@ -7636,7 +7636,6 @@
                         <Color>#5c5c5c</Color>
                       </Style>
                     </ChartAxisTitle>
-                    <Interval>=1</Interval>
                     <IntervalType>Months</IntervalType>
                     <ChartMajorGridLines>
                       <Enabled>True</Enabled>
