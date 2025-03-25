@@ -19,10 +19,12 @@ namespace WinformDotNetFramework.Forms.GroupForms
         List<string> costRegistries;
         SaleService _saleService;
         CustomerInvoiceService _customerInvoiceService;
+        CustomerInvoiceCostService _customerInvoiceCostService;
 
         public CustomerInvoiceGroupCreateForm()
         {
-            _customerInvoiceService= new CustomerInvoiceService();
+            _customerInvoiceCostService= new CustomerInvoiceCostService();
+            _customerInvoiceService = new CustomerInvoiceService();
             _saleService = new SaleService();
             InitializeComponent();
         }
@@ -88,9 +90,42 @@ namespace WinformDotNetFramework.Forms.GroupForms
         }
         public override async void SaveBtn_Click(object sender, EventArgs e)
         {
+            CustomerInvoice ci=new CustomerInvoice();
 
-            await Save();
+            try
+            {
+                ci=await Save();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            CustomerInvoicecostDgv.EndEdit();
+            CustomerInvoicecostDgv.CommitEdit(DataGridViewDataErrorContexts.Commit); 
+            MessageBox.Show($"Row count: {CustomerInvoicecostDgv.Rows.Count}");
+            int count = 0;
+            List<CustomerInvoiceCostDTO> listCostsDto = new List<CustomerInvoiceCostDTO>();
+            ci=(await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = ci.CustomerInvoiceCode })).FirstOrDefault();
+            foreach(DataGridViewRow row in CustomerInvoicecostDgv.Rows)
+            {
+                count++;
+                if (count >= CustomerInvoicecostDgv.Rows.Count)
+                    break;
+                CustomerInvoiceCostDTO cicdto = new CustomerInvoiceCostDTO()
+                {
+                    Cost = decimal.Parse(row.Cells["Cost"].Value.ToString()),
+                    CostRegistryCode = row.Cells["CostRegistryCode"].Value.ToString(),
+                    CustomerInvoiceCode = ci.CustomerInvoiceCode,
+                    CustomerInvoiceId = ci.CustomerInvoiceId,
+                    Name = row.Cells["Name"].Value.ToString(),
+                    Quantity = int.Parse(row.Cells["Quantity"].Value.ToString())
+                };
+                listCostsDto.Add(cicdto);
 
+            }
+            try
+            {
+            string message=await _customerInvoiceCostService.MassSave(listCostsDto);
+            MessageBox.Show(message);
+
+            }catch (Exception ex) { MessageBox.Show(ex.Message); }
 
         }
     }

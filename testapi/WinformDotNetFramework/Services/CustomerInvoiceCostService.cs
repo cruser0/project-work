@@ -91,5 +91,11 @@ namespace WinformDotNetFramework.Services
             var returnResult = await MassUpdateWithStringResult(client, $"customer-invoice-cost/mass-update", newEntity);
             return returnResult;
         }
+        public async Task<string> MassSave(List<CustomerInvoiceCostDTO> newEntity)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await MassUpdateWithStringResult(client, $"customer-invoice-cost/mass-save", newEntity);
+            return returnResult;
+        }
     }
 }

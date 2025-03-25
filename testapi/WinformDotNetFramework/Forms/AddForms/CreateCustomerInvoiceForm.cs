@@ -26,14 +26,18 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         public virtual async void SaveBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
             await Save();
+            Close();
+            }catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-        public async Task Save()
+        public async Task<CustomerInvoice> Save()
         {
             if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !dateTimePicker1.Checked)
             {
                 MessageBox.Show("All the fields must be filled");
-                return;
+                return null;
             }
             if (id == -1)
                 id = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
@@ -42,18 +46,13 @@ namespace WinformDotNetFramework.Forms.AddForms
                 SaleId = id,
                 InvoiceDate = dateTimePicker1.Value,
                 Status = "Unpaid",
-                CustomerInvoiceCode = (bk + bol).GetHashCode().ToString(),
+                CustomerInvoiceCode = Guid.NewGuid().ToString("N").Substring(0, 20),
             };
-            try
-            {
+
                 await _customerInvoiceService.Create(customerInvoice);
                 MessageBox.Show("Customer Invoice Created Succesfully");
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            return customerInvoice;
+
         }
         private void OpenSale_Click(object sender, EventArgs e)
         {

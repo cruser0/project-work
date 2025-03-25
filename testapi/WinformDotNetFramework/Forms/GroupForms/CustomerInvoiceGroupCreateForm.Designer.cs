@@ -198,7 +198,6 @@
             this.ClientSize = new System.Drawing.Size(884, 461);
             this.MaximumSize = new System.Drawing.Size(900, 500);
             this.MinimumSize = new System.Drawing.Size(900, 500);
-            this.Name = "CustomerInvoiceGroupCreateForm";
             this.Text = "CustomerInvoiceGroupCreateForm";
             this.Load += new System.EventHandler(this.CustomerInvoiceGroupCreateForm_Load);
             this.panel1.ResumeLayout(false);
