@@ -13,6 +13,7 @@ namespace WinformDotNetFramework.Forms.GridForms
     public partial class ReportGridForm : Form
     {
         public string DialogReport { get; set; }
+        bool subReportHidden;
         ProceduresService _procedureService;
         private bool saleFiltersVisible;
         private bool customerInvoiceFiltersVisible;
@@ -109,6 +110,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void SearchButton_Click(object sender, EventArgs e)
         {
+            subReportHidden = true;
+            button1.Enabled = false;
+            Cursor = Cursors.WaitCursor;
             ReportViewer.LocalReport.DataSources.Clear();
             _saleData = new List<ClassifySalesByProfit>();
             _customerInvoiceData = new List<TotalAmountGainedPerCustomerInvoice>();
@@ -121,14 +125,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             ZoomTSLbl.Text = ReportViewer.ZoomPercent.ToString() + "%";
             if (!PdfTSB.Enabled)
                 EnableTSItems();
+            button1.Enabled = true;
+            Cursor = Cursors.Default;
         }
 
-
-        private void EmptyReportTSB_Click(object sender, EventArgs e)
-        {
-            ReportViewer.Clear();
-            toolStrip2.Enabled = false;
-        }
 
         private void PrintPagePreviewBTS_Click(object sender, EventArgs e)
         {
@@ -217,15 +217,15 @@ namespace WinformDotNetFramework.Forms.GridForms
             AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 2, "SupplierInvoiceCountByDate", _supplierInvoiceData);
             AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 3, "SupplierInvoiceTotalSpentSumByDate", _supplierInvoiceData);
             AddReportDataSource(e, searchSupplierInvoiceReport1.GrapCBL, 4, "SupplierInvoiceTotalSpentSumByCountry", _supplierInvoiceData);
+
         }
 
-        bool subReportHidden = false;
+
         void AddReportDataSource(SubreportProcessingEventArgs e, CheckedListBox checkboxList, int index, string dataSourceName, object data)
         {
             if (IsIndexSelected(checkboxList, index))
             {
                 e.DataSources.Add(new ReportDataSource(dataSourceName, data));
-                if (!subReportHidden) subReportHidden = true;
             }
             else
             {
@@ -256,7 +256,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             ZoomTSB.Enabled = false;
             ExcelTSB.Enabled = false;
             PdfTSB.Enabled = false;
-            EmptyReportTSB.Enabled = false;
             PrintPagePreviewBTS.Enabled = false;
             ZoomTSLbl.Enabled = false;
         }
@@ -266,7 +265,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             ZoomTSB.Enabled = true;
             ExcelTSB.Enabled = true;
             PdfTSB.Enabled = true;
-            EmptyReportTSB.Enabled = true;
             PrintPagePreviewBTS.Enabled = true;
             ZoomTSLbl.Enabled = true;
         }
@@ -288,8 +286,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     Value = _saleData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
-                ReportParameter param = new ReportParameter("SubReportHidden", subReportHidden.ToString());
-                ReportViewer.LocalReport.SetParameters(param);
+                subReportHidden = searchSaleReport1.GrapCBL.CheckedIndices.Count == 0;
             }
 
             if (DialogReport.Equals("CustomerInvoice"))
@@ -301,8 +298,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     Value = _customerInvoiceData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
-                ReportParameter param = new ReportParameter("SubReportHidden", subReportHidden.ToString());
-                ReportViewer.LocalReport.SetParameters(param);
+                subReportHidden = searchCustomerInvoiceReportUserControl1.GrapCBL.CheckedIndices.Count == 0;
             }
 
             if (DialogReport.Equals("SupplierInvoice"))
@@ -314,10 +310,10 @@ namespace WinformDotNetFramework.Forms.GridForms
                     Value = _supplierInvoiceData
                 };
                 ReportViewer.LocalReport.DataSources.Add(mainDataSource);
-                ReportParameter param = new ReportParameter("SubReportHidden", subReportHidden.ToString());
-                ReportViewer.LocalReport.SetParameters(param);
+                subReportHidden = searchSupplierInvoiceReport1.GrapCBL.CheckedIndices.Count == 0;
             }
-
+            ReportParameter param = new ReportParameter("SubReportHidden", subReportHidden.ToString());
+            ReportViewer.LocalReport.SetParameters(param);
         }
 
 
