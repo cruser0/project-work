@@ -8,9 +8,9 @@ using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
 
-namespace WinformDotNetFramework.Forms.FinalForms
+namespace WinformDotNetFramework.Forms.GroupForms
 {
-    public partial class CustomerFinalForm : Form
+    public partial class CustomerGroupForm : Form
     {
         CustomerFilter usedCustomerFilter = null;
         CustomerInvoiceFilter userCustomerInvoiceFilter = null;
@@ -30,7 +30,7 @@ namespace WinformDotNetFramework.Forms.FinalForms
         bool flag;
 
         CustomerGroupDTO valueGroupDTOList = new CustomerGroupDTO();
-        public CustomerFinalForm()
+        public CustomerGroupForm()
         {
             _valueService = new ValueService();
             InitializeComponent();

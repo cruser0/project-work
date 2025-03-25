@@ -14,9 +14,9 @@ namespace WinformDotNetFramework.Forms.AddForms
     {
         CustomerInvoiceService _customerInvoiceService;
         SaleService _saleService;
-        int id=-1;
-        string bol;
-        string bk;
+        public int id { get; set; } = -1;
+        public string bol { get; set; }
+        public string bk { get; set; }
         public CreateCustomerInvoiceForm()
         {
             _saleService = new SaleService();
@@ -24,21 +24,25 @@ namespace WinformDotNetFramework.Forms.AddForms
             InitializeComponent();
         }
 
-        private async void SaveBtn_Click(object sender, EventArgs e)
+        public virtual async void SaveBtn_Click(object sender, EventArgs e)
+        {
+            await Save();
+        }
+        public async Task Save()
         {
             if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !dateTimePicker1.Checked)
             {
                 MessageBox.Show("All the fields must be filled");
                 return;
             }
-            if(id==-1)
-                id=(await _saleService.GetAll(new SaleFilter() { SaleBoLnumber=BoLCmbxUC.Cmbx.Text,SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
+            if (id == -1)
+                id = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
             CustomerInvoice customerInvoice = new CustomerInvoice()
             {
                 SaleId = id,
                 InvoiceDate = dateTimePicker1.Value,
                 Status = "Unpaid",
-                CustomerInvoiceCode = (bk+bol).GetHashCode().ToString(),
+                CustomerInvoiceCode = (bk + bol).GetHashCode().ToString(),
             };
             try
             {
@@ -51,7 +55,6 @@ namespace WinformDotNetFramework.Forms.AddForms
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void OpenSale_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);

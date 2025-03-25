@@ -432,17 +432,23 @@
     <Compile Include="Forms\DetailsForms\UserDetails.Designer.cs">
       <DependentUpon>UserDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FinalForms\CustomerFinalForm.cs">
+    <Compile Include="Forms\GroupForms\CustomerGroupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FinalForms\CustomerFinalForm.Designer.cs">
-      <DependentUpon>CustomerFinalForm.cs</DependentUpon>
+    <Compile Include="Forms\GroupForms\CustomerGroupForm.Designer.cs">
+      <DependentUpon>CustomerGroupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FinalForms\SupplierFinalForm.cs">
+    <Compile Include="Forms\GroupForms\CustomerInvoiceGroupCreateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FinalForms\SupplierFinalForm.Designer.cs">
-      <DependentUpon>SupplierFinalForm.cs</DependentUpon>
+    <Compile Include="Forms\GroupForms\CustomerInvoiceGroupCreateForm.Designer.cs">
+      <DependentUpon>CustomerInvoiceGroupCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GroupForms\SupplierGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GroupForms\SupplierGroupForm.Designer.cs">
+      <DependentUpon>SupplierGroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GridForms\CustomerGridForm.cs">
       <SubType>Form</SubType>
@@ -715,11 +721,14 @@
     <EmbeddedResource Include="Forms\DetailsForms\UserDetails.resx">
       <DependentUpon>UserDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FinalForms\CustomerFinalForm.resx">
-      <DependentUpon>CustomerFinalForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GroupForms\CustomerGroupForm.resx">
+      <DependentUpon>CustomerGroupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FinalForms\SupplierFinalForm.resx">
-      <DependentUpon>SupplierFinalForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GroupForms\CustomerInvoiceGroupCreateForm.resx">
+      <DependentUpon>CustomerInvoiceGroupCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GroupForms\SupplierGroupForm.resx">
+      <DependentUpon>SupplierGroupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridForms\CustomerGridForm.resx">
       <DependentUpon>CustomerGridForm.cs</DependentUpon>
@@ -782,6 +791,7 @@
     <EmbeddedResource Include="Reports\SubReportCharts.rdlc" />
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.CustomerInvoiceCost.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.ClassifySalesByProfit.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountGainedPerCustomerInvoice.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountSpentPerSupplierInvoice.datasource" />
