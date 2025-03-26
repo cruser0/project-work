@@ -120,7 +120,7 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceSupplierDTO> GetSupplierInvoiceById(int id)
         {
-            var si = await _context.SupplierInvoices.Include(x => x.Status).Where(x => x.SupplierInvoiceID == id).FirstOrDefaultAsync();
+            var si = await _context.SupplierInvoices.Include(x => x.Status).Include(x => x.Sale).Where(x => x.SupplierInvoiceID == id).FirstOrDefaultAsync();
             var supplier = await _context.Suppliers.Include(x => x.Country).Where(x => x.SupplierID == si.SupplierID).FirstOrDefaultAsync();
             var result = new SupplierInvoiceSupplierDTO(si, supplier);
             if (si == null || supplier == null)
