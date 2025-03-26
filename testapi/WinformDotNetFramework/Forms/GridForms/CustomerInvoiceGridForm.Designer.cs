@@ -115,6 +115,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.CenterDgv.AllowUserToAddRows = false;
             this.CenterDgv.AllowUserToDeleteRows = false;
+            this.CenterDgv.AllowUserToOrderColumns = true;
             this.CenterDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CenterDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CenterDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

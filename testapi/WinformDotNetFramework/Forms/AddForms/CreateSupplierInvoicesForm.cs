@@ -15,8 +15,8 @@ namespace WinformDotNetFramework.Forms.AddForms
         SupplierInvoiceService _service;
         SaleService _saleService;
         SupplierService _supplierService;
-        int saleId=-1;
-        int supplierId=-1;
+        int saleId = -1;
+        int supplierId = -1;
 
         public CreateSupplierInvoicesForm()
         {
@@ -47,9 +47,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 try
                 {
-                saleId=(await _saleService.GetAll(new SaleFilter() { SaleBoLnumber=BoLCmbxUC.Cmbx.Text,SaleBookingNumber=BKCmbxUC.Cmbx.Text})).FirstOrDefault().SaleId;
+                    saleId = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
 
-                }catch (Exception) { MessageBox.Show("Invalid input for the sale");return; }
+                }
+                catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
 
             }
             if (supplierId == -1)
@@ -57,7 +58,8 @@ namespace WinformDotNetFramework.Forms.AddForms
                 try
                 {
                     supplierId = (await _supplierService.GetAll(new SupplierFilter() { SupplierName = NameCmbxUC.Cmbx.Text, SupplierCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault().SupplierId;
-                }catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
+                }
+                catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
             }
             if (err.Count > 0)
                 MessageBox.Show("Gli attributi : " + string.Join(",", err) + "\n Sono errati!");
@@ -65,7 +67,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 try
                 {
-                    SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = StatusCmbx.Text,SupplierInvoiceCode= Guid.NewGuid().ToString("N").Substring(0, 20), };
+                    SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = StatusCmbx.Text, SupplierInvoiceCode = Guid.NewGuid().ToString("N").Substring(0, 20), };
                     await _service.Create(si);
                     MessageBox.Show("Supplier Invoice created Successfully!");
 
@@ -76,13 +78,13 @@ namespace WinformDotNetFramework.Forms.AddForms
         }
         public void SetSupplierID(string id)
         {
-            supplierId=int.Parse(id);
+            supplierId = int.Parse(id);
         }
         public void SetSaleID(string id)
         {
             saleId = int.Parse(id);
         }
-        public void SetSaleBkBol(string bol,string bk)
+        public void SetSaleBkBol(string bol, string bk)
         {
             BoLCmbxUC.Cmbx.Text = bol;
             BKCmbxUC.Cmbx.Text = bk;
@@ -124,8 +126,8 @@ namespace WinformDotNetFramework.Forms.AddForms
             });
             NameCmbxUC.listItemsDropCmbx = listFilteredSupplier.Select(x => x.SupplierName).ToList();
             CountryCmbxUC.listItemsDropCmbx = listFilteredSupplier.Select(x => x.Country).ToList();
-            BoLCmbxUC.listItemsDropCmbx=listFilteredSale.Select(x=>x.BoLnumber).ToList();
-            BKCmbxUC.listItemsDropCmbx=listFilteredSale.Select(x=>x.BookingNumber).ToList();
+            BoLCmbxUC.listItemsDropCmbx = listFilteredSale.Select(x => x.BoLnumber).ToList();
+            BKCmbxUC.listItemsDropCmbx = listFilteredSale.Select(x => x.BookingNumber).ToList();
         }
     }
 }

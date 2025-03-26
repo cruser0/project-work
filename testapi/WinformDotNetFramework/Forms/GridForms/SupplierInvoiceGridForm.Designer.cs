@@ -127,6 +127,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // SupplierInvoiceDgv
             // 
+            this.SupplierInvoiceDgv.AllowUserToAddRows = false;
+            this.SupplierInvoiceDgv.AllowUserToDeleteRows = false;
+            this.SupplierInvoiceDgv.AllowUserToOrderColumns = true;
             this.SupplierInvoiceDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SupplierInvoiceDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupplierInvoiceDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

@@ -115,6 +115,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // SupplierDgv
             // 
+            this.SupplierDgv.AllowUserToAddRows = false;
+            this.SupplierDgv.AllowUserToDeleteRows = false;
+            this.SupplierDgv.AllowUserToOrderColumns = true;
             this.SupplierDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SupplierDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupplierDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

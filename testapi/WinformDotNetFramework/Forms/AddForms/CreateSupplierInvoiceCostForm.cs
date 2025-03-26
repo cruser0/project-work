@@ -17,15 +17,28 @@ namespace WinformDotNetFramework.Forms.AddForms
         List<string> customerInvoiceCodes;
         private int id = -1;
         bool isSelecting = false;
+        CostRegistry cr;
+        string InvoiceCode;
         List<CostRegistry> list;
         public CreateSupplierInvoiceCostForm()
+        {
+            Init();
+        }
+        public CreateSupplierInvoiceCostForm(object data)
+        {
+            Init();
+            InvoiceCode = data as string;
+            InvoiceCodeCmbxUC.Cmbx.Text = InvoiceCode;
+        }
+
+        private async void Init()
         {
             _supplierInvoiceService = new SupplierInvoiceService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
             InitializeComponent();
         }
 
-            CostRegistry cr;
+
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
@@ -44,16 +57,17 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 try
                 {
-                id=(await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter() { SupplierInvoiceCode=InvoiceCodeCmbxUC.Cmbx.Text})).FirstOrDefault().InvoiceId;
+                    id = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().InvoiceId;
 
-                }catch (Exception ex) { MessageBox.Show("Invalid Invoice Code");return; }
+                }
+                catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
             }
             SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
             {
                 SupplierInvoiceId = id,
-                CostRegistryCode=CostRegistryCmbx.Text,
-                SupplierInvoiceCode=InvoiceCodeCmbxUC.Cmbx.Text,
-                Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText())?cr.CostRegistryPrice: decimal.Parse(CostIntegerTxt.GetText()),
+                CostRegistryCode = CostRegistryCmbx.Text,
+                SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
+                Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
                 Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
                 Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
             };
@@ -80,11 +94,11 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         public void SetSupplierID(string idSup)
         {
-            id=int.Parse(idSup);
+            id = int.Parse(idSup);
         }
         public void SetSupplierCode(string SupCode)
         {
-            InvoiceCodeCmbxUC.Cmbx.Text=SupCode;
+            InvoiceCodeCmbxUC.Cmbx.Text = SupCode;
         }
         public async Task SetList()
         {

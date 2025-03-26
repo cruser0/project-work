@@ -803,9 +803,17 @@
     <EmbeddedResource Include="Reports\SubReportCharts.rdlc" />
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Customer.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.CustomerInvoice.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.CustomerInvoiceCost.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.DTO.SaleCustomerDTO.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.DTO.UserRoleDTO.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Sale.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Supplier.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.SupplierInvoice.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.SupplierInvoiceCost.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.User.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.ClassifySalesByProfit.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountGainedPerCustomerInvoice.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountSpentPerSupplierInvoice.datasource" />

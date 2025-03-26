@@ -53,8 +53,8 @@ namespace WinformDotNetFramework.Forms.control
                 if (ParentForm is CustomerInvoiceDetailsForm cidf)
                     await cidf.SetList();
 
-                //if (ParentForm is SupplierInvoiceDetailsForm sidf)
-                //    await sidf.SetList();
+                if (ParentForm is SupplierInvoiceDetailsForm sidf)
+                    await sidf.SetList();
 
                 if (listItemsDropCmbx.Count > 0)
                 {

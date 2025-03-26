@@ -59,6 +59,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserLastNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserEmailTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.Roles1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -252,6 +254,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.userDgv.AllowUserToAddRows = false;
             this.userDgv.AllowUserToDeleteRows = false;
+            this.userDgv.AllowUserToOrderColumns = true;
             this.userDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.userDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -376,6 +379,18 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserRoleTsmi.Text = "Show Roles";
             this.UserRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // Roles1
+            // 
+            this.Roles1.DataPropertyName = "Roles";
+            this.Roles1.HeaderText = "Roles";
+            this.Roles1.Name = "Roles1";
+            // 
+            // UserID1
+            // 
+            this.UserID1.DataPropertyName = "UserID";
+            this.UserID1.HeaderText = "UserID";
+            this.UserID1.Name = "UserID1";
+            // 
             // UserGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -433,5 +448,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton ToggleEditButton;
+        private DataGridViewTextBoxColumn Roles1;
+        private DataGridViewTextBoxColumn UserID1;
     }
 }

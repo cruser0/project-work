@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿
+
+using System.Windows.Forms;
 
 namespace WinformDotNetFramework.Forms.AddForms
 {
@@ -164,7 +166,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.NameCmbxUC.Location = new System.Drawing.Point(288, 163);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(172, 28);
+            this.NameCmbxUC.Size = new System.Drawing.Size(172, 23);
             this.NameCmbxUC.TabIndex = 47;
             // 
             // SupplierCountryLbl

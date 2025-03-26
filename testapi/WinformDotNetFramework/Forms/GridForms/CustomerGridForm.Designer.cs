@@ -198,12 +198,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // CustomerDgv
             // 
+            this.CustomerDgv.AllowUserToAddRows = false;
+            this.CustomerDgv.AllowUserToDeleteRows = false;
+            this.CustomerDgv.AllowUserToOrderColumns = true;
             this.CustomerDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CustomerDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CustomerDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CustomerDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomerDgv.Location = new System.Drawing.Point(0, 25);
             this.CustomerDgv.Name = "CustomerDgv";
+            this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
             this.CustomerDgv.Size = new System.Drawing.Size(584, 349);
             this.CustomerDgv.TabIndex = 7;

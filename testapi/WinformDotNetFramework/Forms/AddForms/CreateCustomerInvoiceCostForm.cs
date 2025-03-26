@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,11 +14,24 @@ namespace WinformDotNetFramework.Forms.AddForms
     {
         CustomerInvoiceCostService _customerInvoiceCostService;
         CustomerInvoiceService _customerInvoiceService;
-        List<string> customerInvoiceCodes;
-        private int id=0;
-        bool isSelecting=false;
+        private int id = 0;
         List<CostRegistry> list;
+        string InvoiceCode;
+
         public CreateCustomerInvoiceCostForm()
+        {
+            Init();
+        }
+
+        public CreateCustomerInvoiceCostForm(object data)
+        {
+            Init();
+            InvoiceCode = data as string;
+            InvoiceCodeCmbxUC.Cmbx.Text = InvoiceCode;
+
+        }
+
+        private async void Init()
         {
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             _customerInvoiceService = new CustomerInvoiceService();
@@ -33,7 +45,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             CustomerInvoice listItems1;
             if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
             {
-                listItems1= (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode= InvoiceCodeCmbxUC.Cmbx.Text})).FirstOrDefault();
+                listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault();
                 id = listItems1.CustomerInvoiceId;
             }
             else
@@ -42,7 +54,7 @@ namespace WinformDotNetFramework.Forms.AddForms
                 return;
             }
             if (!CostRegistryCmbx.Text.Equals("All"))
-                cr=list.Where(x=>x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text)).FirstOrDefault();
+                cr = list.Where(x => x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text)).FirstOrDefault();
             else
             {
                 MessageBox.Show("You need to select a Cost Registry");
@@ -92,7 +104,7 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         public void SetCustomerInvoiceCode(string code)
         {
-            InvoiceCodeCmbxUC.Cmbx.Text=code;
+            InvoiceCodeCmbxUC.Cmbx.Text = code;
         }
         public void SetCustomerInvoiceID(string idFromForm)
         {
@@ -102,7 +114,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         private async void CreateCustomerInvoiceCostForm_Load(object sender, EventArgs e)
         {
             list = await UtilityFunctions.GetCostRegistry();
-            CostRegistryCmbx.DataSource=list.Select(x=>x.CostRegistryUniqueCode).ToList();
+            CostRegistryCmbx.DataSource = list.Select(x => x.CostRegistryUniqueCode).ToList();
         }
 
         public async Task SetList(string text)
