@@ -105,7 +105,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            textBox1.Enabled = checkBox1.Checked;
             InvoiceAmountTxt.Enabled = checkBox1.Checked;
             StatusCB.Enabled = checkBox1.Checked;
             BKCmbxUC.Cmbx.Enabled = checkBox1.Checked;

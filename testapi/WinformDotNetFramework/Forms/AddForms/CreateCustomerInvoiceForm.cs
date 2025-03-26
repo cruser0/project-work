@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Forms.GridForms;
+using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.AddForms
 {
