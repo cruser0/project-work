@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.CustomerInvoiceDgv = new System.Windows.Forms.DataGridView();
             this.SupplierInvoiceDgv = new System.Windows.Forms.DataGridView();
-            this.supplierInvoiceSupplierDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SupplierNameCmbxDgv = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.SupplierCountryCmbxDgv = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.SaleBookingNumberTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +44,8 @@
             this.InvoiceAmountTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceDateTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusDataCmbxDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceSupplierDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceDgv)).BeginInit();
@@ -137,11 +137,11 @@
             // 
             // CustomerCountryLbl
             // 
-            this.CustomerCountryLbl.Location = new System.Drawing.Point(464, 46);
+            this.CustomerCountryLbl.Location = new System.Drawing.Point(472, 45);
             // 
             // CustomerNameLbl
             // 
-            this.CustomerNameLbl.Location = new System.Drawing.Point(464, 1);
+            this.CustomerNameLbl.Location = new System.Drawing.Point(472, 0);
             // 
             // CountryCmbxUC
             // 
@@ -198,15 +198,7 @@
             this.SupplierInvoiceDgv.Size = new System.Drawing.Size(371, 244);
             this.SupplierInvoiceDgv.TabIndex = 3;
             this.SupplierInvoiceDgv.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.SupplierInvoiceDgv_EditingControlShowing);
-            // 
-            // supplierInvoiceSupplierDTOBindingSource
-            // 
-            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO);
-            // 
-            // timer
-            // 
-            this.timer.Interval = 500;
-            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            this.SupplierInvoiceDgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.SupplierInvoiceDgv_RowsAdded);
             // 
             // SupplierNameCmbxDgv
             // 
@@ -276,9 +268,9 @@
             // InvoiceDateTxtDgv
             // 
             this.InvoiceDateTxtDgv.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.InvoiceDateTxtDgv.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.InvoiceDateTxtDgv.DefaultCellStyle = dataGridViewCellStyle1;
             this.InvoiceDateTxtDgv.HeaderText = "InvoiceDate";
             this.InvoiceDateTxtDgv.Name = "InvoiceDateTxtDgv";
             this.InvoiceDateTxtDgv.ToolTipText = "dd/mm/yyyy";
@@ -288,6 +280,15 @@
             this.StatusDataCmbxDgv.DataPropertyName = "Status";
             this.StatusDataCmbxDgv.HeaderText = "Status";
             this.StatusDataCmbxDgv.Name = "StatusDataCmbxDgv";
+            // 
+            // supplierInvoiceSupplierDTOBindingSource
+            // 
+            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 500;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // SaleGroupCreateForm
             // 

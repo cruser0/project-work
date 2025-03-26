@@ -274,7 +274,7 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Create Sale":
-                    child = new SaleGroupCreateForm();
+                    child = new CreateSaleForm();
                     break;
 
                 case "Create User":

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using WinformDotNetFramework.Entities;
 
@@ -42,7 +43,7 @@ namespace WinformDotNetFramework.Services
         protected async Task<HttpResponseMessage> GetResponsePost<T>(ClientAPI client, string uri, T entity)
         {
             var returnResult = SerializeEntity(entity);
-            HttpResponseMessage response = await client.GetClient().PostAsync(client.GetBaseUri() + uri, returnResult);
+            var response = await client.GetClient().PostAsync(client.GetBaseUri() + uri, returnResult);
             return response;
         }
         private async Task<HttpResponseMessage> GetRepsponsePost(ClientAPI client, string uri)
@@ -156,7 +157,7 @@ namespace WinformDotNetFramework.Services
 
                 return await item;
             }
-            ExceptionHandler(response,error);
+            await ExceptionHandler(response,error);
             return default; 
         }
 
@@ -191,7 +192,7 @@ namespace WinformDotNetFramework.Services
 
                 return await item;
             }
-            ExceptionHandler(response, error);
+            await ExceptionHandler(response, error);
             return default;
         }
         //Post for Registering a User
@@ -203,7 +204,7 @@ namespace WinformDotNetFramework.Services
                 var json = await response.Content.ReadAsStringAsync();
                 return json;
             }
-            ExceptionHandler(response, error);
+            await ExceptionHandler(response, error);
             return default;
         }
         //Post for Logging a User
@@ -227,7 +228,7 @@ namespace WinformDotNetFramework.Services
                 UserAccessInfo.RefreshUserID = items.RefreshUserID;
                 return items;
             }
-            ExceptionHandler(response,error);
+            await ExceptionHandler(response,error);
             return default; 
         }
 
@@ -247,7 +248,7 @@ namespace WinformDotNetFramework.Services
                 UserAccessInfo.Role = items.Role;
                 return;
             }
-            ExceptionHandler(response,error);
+            await ExceptionHandler(response,error);
         }
 
 
@@ -262,7 +263,7 @@ namespace WinformDotNetFramework.Services
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return await items;
             }
-            ExceptionHandler(response, error);
+            await ExceptionHandler(response, error);
             return default;
         }
         //updates an item with string return
@@ -274,7 +275,7 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            ExceptionHandler(response, error);
+            await ExceptionHandler(response, error);
             return default;
         }
 
@@ -290,7 +291,7 @@ namespace WinformDotNetFramework.Services
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return await items;
             }
-            ExceptionHandler(response, error);
+            await ExceptionHandler(response, error);
             return default;
         }
 
@@ -303,7 +304,7 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            ExceptionHandler(response, error);
+            await ExceptionHandler(response, error);
             return default;
         }
 
@@ -315,7 +316,7 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            ExceptionHandler(response, "Mass Delete Error");
+            await ExceptionHandler(response, "Mass Delete Error");
             return default;
         }
 
@@ -327,12 +328,12 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            ExceptionHandler(response, "Mass Update Error");
+            await ExceptionHandler(response, "Mass Update Error");
             return default; 
         }
 
 
-        private async void ExceptionHandler(HttpResponseMessage response,string error)
+        private async Task ExceptionHandler(HttpResponseMessage response,string error)
         {
             var errorJson = await response.Content.ReadAsStringAsync();
             var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(errorJson,

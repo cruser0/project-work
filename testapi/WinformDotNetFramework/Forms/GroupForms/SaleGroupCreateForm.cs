@@ -18,9 +18,11 @@ namespace WinformDotNetFramework.Forms.GroupForms
     public partial class SaleGroupCreateForm : CreateSaleForm
     {
         SupplierInvoiceService _supplierInvoiceService;
+        SupplierService _supplierService;
         public SaleGroupCreateForm()
         {
             _supplierInvoiceService = new SupplierInvoiceService();
+            _supplierService= new SupplierService();
             InitializeComponent();
         }
 
@@ -40,11 +42,13 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
         private void SupplierInvoiceDgv_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (SupplierInvoiceDgv.CurrentCell is DataGridViewComboBoxCell && SupplierInvoiceDgv.CurrentCell.OwningColumn.Name.Equals(SupplierNameCmbxDgv.Name))
+            if (SupplierInvoiceDgv.CurrentCell is DataGridViewComboBoxCell /*&& SupplierInvoiceDgv.CurrentCell.OwningColumn.Name.Equals(SupplierNameCmbxDgv.Name)*/)
             {
                 if (e.Control is ComboBox comboBox)
                 {
                     comboBox.DropDownStyle = ComboBoxStyle.DropDown;
+                    comboBox.AutoCompleteMode = AutoCompleteMode.None;
+                    comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                     comboBox.TextChanged -= Cmbx_TextChanged;
                     comboBox.SelectedIndexChanged -= Cmbx_SelectedIndexChanged;
@@ -64,9 +68,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             {
                 if (_suppressEvents)
                         return;
-                if(comboBox.Name.Equals(SupplierNameCmbxDgv.Name))
+                if (SupplierInvoiceDgv.CurrentCell.OwningColumn.Name.Equals(SupplierNameCmbxDgv.Name))
                     lastTypedTextSupplierName = comboBox.Text;
-                if (comboBox.Name.Equals(SupplierCountryCmbxDgv.Name))
+                if (SupplierInvoiceDgv.CurrentCell.OwningColumn.Name.Equals(SupplierCountryCmbxDgv.Name))
                     lastTypedTextSupplierCountry = comboBox.Text;
                 timer.Stop();
                 timer.Start();
@@ -82,28 +86,47 @@ namespace WinformDotNetFramework.Forms.GroupForms
         {
             if (editingRowIndex < 0 || editingColumnIndex < 0) return;
 
-            var listFiltered = await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter()
+            var listFiltered = await _supplierService.GetAll(new SupplierFilter()
             {
-                SupplierInvoiceSupplierName = !string.IsNullOrEmpty(lastTypedTextSupplierName) ? lastTypedTextSupplierName : null,
-                SupplierInvoiceSupplierCountry = !string.IsNullOrEmpty(lastTypedTextSupplierCountry) ? lastTypedTextSupplierCountry : null
+                SupplierName = !string.IsNullOrEmpty(lastTypedTextSupplierName) ? lastTypedTextSupplierName : null,
+                SupplierCountry = !string.IsNullOrEmpty(lastTypedTextSupplierCountry) ? lastTypedTextSupplierCountry : null
             });
 
-
             var listItemsName = listFiltered
-                .Where(x => string.IsNullOrEmpty(lastTypedTextSupplierName) || x.SupplierName == lastTypedTextSupplierName)
+                .Where(x => string.IsNullOrEmpty(lastTypedTextSupplierName) || x.SupplierName.Contains(lastTypedTextSupplierName))
                 .Select(x => x.SupplierName)
                 .Distinct()
                 .ToList();
 
             var listItemsCountry = listFiltered
-                .Where(x => string.IsNullOrEmpty(lastTypedTextSupplierCountry) || x.Country == lastTypedTextSupplierCountry)
+                .Where(x => string.IsNullOrEmpty(lastTypedTextSupplierCountry) || x.Country.Contains(lastTypedTextSupplierCountry))
                 .Select(x => x.Country)
                 .Distinct()
                 .ToList();
 
-            SupplierNameCmbxDgv.DataSource = listItemsName;
-            SupplierCountryCmbxDgv.DataSource = listItemsCountry;
+            if (SupplierInvoiceDgv.EditingControl is ComboBox comboBox)
+            {
+                comboBox.TextChanged -= Cmbx_TextChanged;
+                _suppressEvents = true;
+
+                string currentText = comboBox.Text;
+                int currentIndex = comboBox.SelectionStart;
+
+                comboBox.DataSource = null;
+                if(SupplierInvoiceDgv.CurrentCell.OwningColumn.Name.Equals(SupplierCountryCmbxDgv.Name))
+                    comboBox.DataSource = listItemsCountry;
+                if (SupplierInvoiceDgv.CurrentCell.OwningColumn.Name.Equals(SupplierNameCmbxDgv.Name))
+                    comboBox.DataSource = listItemsName;
+
+                comboBox.Text = currentText;
+                comboBox.SelectionStart = currentIndex;
+                comboBox.DroppedDown = true;
+                _suppressEvents = false;
+                comboBox.TextChanged += Cmbx_TextChanged;
+
+            }
         }
+
 
         public List<string> listItemsDropCmbx { get; set; }
 
@@ -120,5 +143,15 @@ namespace WinformDotNetFramework.Forms.GroupForms
             timer.Stop();
         }
 
+        private void SupplierInvoiceDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (SupplierInvoiceDgv.CurrentCell is DataGridViewComboBoxCell /*&& SupplierInvoiceDgv.CurrentCell.OwningColumn.Name.Equals(SupplierNameCmbxDgv.Name)*/)
+            {
+                //if (SupplierInvoiceDgv.Rows[e.RowIndex].Cells is DataGridViewCell comboBox)
+                //{
+                    
+                //}
+            }
+        }
     }
 }
