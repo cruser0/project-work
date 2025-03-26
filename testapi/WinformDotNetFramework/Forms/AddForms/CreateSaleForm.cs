@@ -23,6 +23,15 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                await Save();
+                Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        public async Task Save()
+        {
             if (!saleDateDtp.Checked)
             {
                 MessageBox.Show("Select a date");
@@ -30,7 +39,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             }
             if (id == -1)
             {
-                var customer=(await _customerService.GetAll(new CustomerFilter() { CustomerName = NameCmbxUC.Cmbx.Text, CustomerCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault();
+                var customer = (await _customerService.GetAll(new CustomerFilter() { CustomerName = NameCmbxUC.Cmbx.Text, CustomerCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault();
                 id = customer.CustomerId;
             }
             Sale sale = new Sale
@@ -41,14 +50,9 @@ namespace WinformDotNetFramework.Forms.AddForms
                 CustomerId = id,
                 Status = StatusCmbx.Text
             };
-            try
-            {
                 await _saleService.Create(sale);
                 MessageBox.Show("Sale Created successfully!");
 
-                this.Close();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
         private void NameTxt_TextChanged(object sender, EventArgs e)
         {

@@ -157,6 +157,7 @@
     <Compile Include="Entities\Preference\SupplierInvoiceDGV.cs" />
     <Compile Include="Entities\Preference\UserDGV.cs" />
     <Compile Include="Entities\Preference\UserFavouritePage.cs" />
+    <Compile Include="Entities\ProblemDetails.cs" />
     <Compile Include="Entities\RefreshToken.cs" />
     <Compile Include="Entities\Sale.cs" />
     <Compile Include="Entities\Supplier.cs" />
@@ -803,6 +804,8 @@
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.CustomerInvoiceCost.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.SupplierInvoice.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.ClassifySalesByProfit.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountGainedPerCustomerInvoice.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountSpentPerSupplierInvoice.datasource" />

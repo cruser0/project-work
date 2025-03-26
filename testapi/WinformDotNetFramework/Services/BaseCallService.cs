@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -155,8 +156,8 @@ namespace WinformDotNetFramework.Services
 
                 return await item;
             }
-            var errorMessage = await response.Content.ReadAsStreamAsync();
-            throw new Exception($"Error getting {error}: {errorMessage}");
+            ExceptionHandler(response,error);
+            return default; 
         }
 
 
@@ -190,8 +191,8 @@ namespace WinformDotNetFramework.Services
 
                 return await item;
             }
-            var errorMessage = await response.Content.ReadAsStreamAsync();
-            throw new Exception($"Error creating {error}: {errorMessage}");
+            ExceptionHandler(response, error);
+            return default;
         }
         //Post for Registering a User
         protected async Task<string> PostRegister<T>(ClientAPI client, string uri, T entity, string error)
@@ -202,8 +203,8 @@ namespace WinformDotNetFramework.Services
                 var json = await response.Content.ReadAsStringAsync();
                 return json;
             }
-            string errorMessage = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Error creating {error}: {errorMessage}");
+            ExceptionHandler(response, error);
+            return default;
         }
         //Post for Logging a User
         protected async Task<UserAccessTemp> PostLogin<T>(ClientAPI client, string uri, T entity, string error)
@@ -226,8 +227,8 @@ namespace WinformDotNetFramework.Services
                 UserAccessInfo.RefreshUserID = items.RefreshUserID;
                 return items;
             }
-            var errorMessage = await response.Content.ReadAsStreamAsync();
-            throw new Exception($"Error creating {error}: {errorMessage}");
+            ExceptionHandler(response,error);
+            return default; 
         }
 
         //Post for Refersh Token
@@ -246,8 +247,7 @@ namespace WinformDotNetFramework.Services
                 UserAccessInfo.Role = items.Role;
                 return;
             }
-            var errorMessage = await response.Content.ReadAsStreamAsync();
-            throw new Exception($"Error creating {error}: {errorMessage}");
+            ExceptionHandler(response,error);
         }
 
 
@@ -262,8 +262,8 @@ namespace WinformDotNetFramework.Services
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return await items;
             }
-            var errorMessage = response.Content.ReadAsStreamAsync().Result;
-            throw new Exception($"Error updating {error}: {errorMessage}");
+            ExceptionHandler(response, error);
+            return default;
         }
         //updates an item with string return
         protected async Task<string> PutItemWithStringReturn<T>(ClientAPI client, string uri, T entity, string error)
@@ -274,8 +274,8 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            string errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error updating {error}: {errorMessage}");
+            ExceptionHandler(response, error);
+            return default;
         }
 
 
@@ -290,8 +290,8 @@ namespace WinformDotNetFramework.Services
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 return await items;
             }
-            var errorMessage = response.Content.ReadAsStreamAsync().Result;
-            throw new Exception($"Error deleting {error}: {errorMessage}");
+            ExceptionHandler(response, error);
+            return default;
         }
 
         //deletes an item by id with string return
@@ -303,8 +303,8 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            var errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"Error deleting {error}: {errorMessage}");
+            ExceptionHandler(response, error);
+            return default;
         }
 
         protected async Task<string> MassDeleteWithStringResult(ClientAPI client, string uri, List<int> id)
@@ -315,8 +315,8 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            var errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"{errorMessage}");
+            ExceptionHandler(response, "Mass Delete Error");
+            return default;
         }
 
         protected async Task<string> MassUpdateWithStringResult<T>(ClientAPI client, string uri, List<T> newEntities)
@@ -327,12 +327,36 @@ namespace WinformDotNetFramework.Services
                 var json = response.Content.ReadAsStringAsync().Result;
                 return json;
             }
-            var errorMessage = response.Content.ReadAsStringAsync().Result;
-            throw new Exception($"{errorMessage}");
+            ExceptionHandler(response, "Mass Update Error");
+            return default; 
         }
 
 
+        private async void ExceptionHandler(HttpResponseMessage response,string error)
+        {
+            var errorJson = await response.Content.ReadAsStringAsync();
+            var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(errorJson,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
+            if (problemDetails != null)
+            {
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        throw new KeyNotFoundException(problemDetails.Detail);
+                    case HttpStatusCode.Unauthorized:
+                        throw new UnauthorizedAccessException(problemDetails.Detail);
+                    case HttpStatusCode.BadRequest:
+                        throw new InvalidOperationException(problemDetails.Detail);
+                    case HttpStatusCode.InternalServerError:
+                        throw new InvalidOperationException("Server error: " + problemDetails.Detail);
+                    default:
+                        throw new Exception($"Unexpected error: {problemDetails.Detail}");
+                }
+            }
+
+            throw new Exception($"Error getting {error}: {errorJson}");
+        }
 
     }
 }
