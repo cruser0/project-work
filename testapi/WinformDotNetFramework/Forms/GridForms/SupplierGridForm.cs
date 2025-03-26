@@ -8,6 +8,7 @@ using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms
@@ -19,7 +20,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         int pages;
         double itemsPage = 10.0;
         private SupplierService _supplierService;
-        private CreateSupplierInvoicesForm _father;
+        private Form _father;
         Task<ICollection<Supplier>> getAllNotFiltered;
         Task<int> countNotFiltered;
         Task<SupplierDGV> getFav;
@@ -33,7 +34,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             Init();
         }
-        public SupplierGridForm(CreateSupplierInvoicesForm father)
+        public SupplierGridForm(SupplierInvoiceDetailsForm father)
         {
             _father = father;
             Init();
@@ -136,9 +137,11 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             if (sender is DataGridView dgv)
             {
-                _father.SetSupplierID(dgv.CurrentRow.Cells["SupplierID"].Value.ToString());
-                _father.SetSupplierNameCoutnry(dgv.CurrentRow.Cells["SupplierName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
-
+                if(_father is SupplierInvoiceDetailsForm sidf)
+                {
+                    sidf.SetSupplierID(dgv.CurrentRow.Cells["SupplierID"].Value.ToString());
+                    sidf.SetSupplierNameCoutnry(dgv.CurrentRow.Cells["SupplierName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
+                }
             }
         }
         private void PaginationUserControl_SingleLeftArrowEvent(object sender, EventArgs e)

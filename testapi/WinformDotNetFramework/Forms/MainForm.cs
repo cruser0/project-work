@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.control;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GroupForms;
 using WinformDotNetFramework.Services;
 
@@ -262,11 +263,11 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Create Supplier":
-                    child = new CreateSupplierForm();
+                    child = new SupplierDetailsForm();
                     break;
 
                 case "Create Supplier Invoice":
-                    child = new CreateSupplierInvoicesForm();
+                    child = new SupplierInvoiceDetailsForm();
                     break;
 
                 case "Create Supplier Invoice Cost":

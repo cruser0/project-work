@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -14,6 +15,7 @@ namespace WinformDotNetFramework.Forms.AddForms
     {
         SupplierInvoiceCostService _supplierInvoiceCostService;
         SupplierInvoiceService _supplierInvoiceService;
+        Form _father;
         List<string> customerInvoiceCodes;
         private int id = -1;
         bool isSelecting = false;
@@ -26,6 +28,13 @@ namespace WinformDotNetFramework.Forms.AddForms
         }
         public CreateSupplierInvoiceCostForm(object data)
         {
+            Init();
+            InvoiceCode = data as string;
+            InvoiceCodeCmbxUC.Cmbx.Text = InvoiceCode;
+        }
+        public CreateSupplierInvoiceCostForm(SupplierInvoiceDetailsForm father ,object data)
+        {
+            _father=father;
             Init();
             InvoiceCode = data as string;
             InvoiceCodeCmbxUC.Cmbx.Text = InvoiceCode;
@@ -75,7 +84,8 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 await _supplierInvoiceCostService.Create(supplierInvoiceCost);
                 MessageBox.Show("Supplier Invoice Cost created successfully!");
-
+                if (_father is SupplierInvoiceDetailsForm sidf)
+                    await sidf.RefreshDGV();
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }

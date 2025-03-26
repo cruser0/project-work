@@ -16,20 +16,30 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         CustomerInvoiceSummary summary;
         Customer customer;
         int customerId;
+        public CustomerDetailsForm()
+        {
+            Init();
+        }
+
         public CustomerDetailsForm(int id)
         {
             Init(id);
         }
 
-        private async void Init(int id)
+        private async void Init(int? id=null)
         {
             InitializeComponent();
             _customerService = new CustomerService();
             _customerInvoiceService = new CustomerInvoiceService();
             CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).Skip(1).ToList();
-            summary = await _customerInvoiceService.GetSummary(id);
-            customer = await _customerService.GetById(id);
-            customerId = id;
+
+            if (id != null)
+            {
+                int intid = (int)id;
+                summary = await _customerInvoiceService.GetSummary(intid);
+                customer = await _customerService.GetById(intid);
+                customerId = intid;
+            }
             NameCustomerTxt.Text = customer.CustomerName;
             CountryCmbx.Text = customer.Country;
             comboBox1.Text = (bool)customer.Deprecated ? "Deprecated" : "Active";

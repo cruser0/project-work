@@ -9,6 +9,7 @@ using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms
@@ -32,7 +33,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
 
 
-        public SaleGridForm(CreateSupplierInvoicesForm father)
+        public SaleGridForm(SupplierInvoiceDetailsForm father)
         {
             _father = father;
             Init();
@@ -170,7 +171,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             if (sender is DataGridView dgv)
             {
-                if (_father is CreateSupplierInvoicesForm csif)
+                if (_father is SupplierInvoiceDetailsForm csif)
                 {
                     csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
                     csif.SetSaleBkBol(dgv.CurrentRow.Cells["BoLNumber"].Value.ToString(), dgv.CurrentRow.Cells["BookingNumber"].Value.ToString());

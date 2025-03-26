@@ -40,6 +40,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.costRegistryCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,18 +63,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.label2 = new System.Windows.Forms.Label();
-            this.supplierInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.costRegistryCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierInvoiceIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpenSale = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.SupplierInvoiceCostGrbBX = new System.Windows.Forms.GroupBox();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceCostBindingSource)).BeginInit();
+            this.panel6.SuspendLayout();
+            this.SupplierInvoiceCostGrbBX.SuspendLayout();
             this.SuspendLayout();
             // 
             // SaveEditCustomerBtn
@@ -74,11 +78,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveEditCustomerBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveEditCustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditCustomerBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(577, 137);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(666, 137);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
-            this.SaveEditCustomerBtn.Size = new System.Drawing.Size(150, 25);
+            this.SaveEditCustomerBtn.Size = new System.Drawing.Size(61, 25);
             this.SaveEditCustomerBtn.TabIndex = 16;
-            this.SaveEditCustomerBtn.Text = "Save changes";
+            this.SaveEditCustomerBtn.Text = "Save";
             this.SaveEditCustomerBtn.UseVisualStyleBackColor = false;
             this.SaveEditCustomerBtn.Click += new System.EventHandler(this.SaveEditCustomerBtn_Click);
             // 
@@ -143,7 +147,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.panel5.Controls.Add(this.dataGridView1);
+            this.panel5.Controls.Add(this.SupplierInvoiceCostGrbBX);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(17, 17);
@@ -169,14 +173,72 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.supplierInvoiceCodeDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.supplierInvoiceCostBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 187);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(750, 240);
+            this.dataGridView1.Size = new System.Drawing.Size(744, 221);
             this.dataGridView1.TabIndex = 61;
+            // 
+            // costRegistryCodeDataGridViewTextBoxColumn
+            // 
+            this.costRegistryCodeDataGridViewTextBoxColumn.DataPropertyName = "CostRegistryCode";
+            this.costRegistryCodeDataGridViewTextBoxColumn.HeaderText = "CostRegistryCode";
+            this.costRegistryCodeDataGridViewTextBoxColumn.Name = "costRegistryCodeDataGridViewTextBoxColumn";
+            this.costRegistryCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // supplierInvoiceCostsIdDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCostsId";
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCostsId";
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Name = "supplierInvoiceCostsIdDataGridViewTextBoxColumn";
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // supplierInvoiceIdDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceId";
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceId";
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.Name = "supplierInvoiceIdDataGridViewTextBoxColumn";
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // supplierInvoiceCodeDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Name = "supplierInvoiceCodeDataGridViewTextBoxColumn";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // supplierInvoiceCostBindingSource
+            // 
+            this.supplierInvoiceCostBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.SupplierInvoiceCost);
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.button2);
+            this.panel6.Controls.Add(this.OpenSale);
             this.panel6.Controls.Add(this.textBox1);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.SaleBKLbl);
@@ -250,7 +312,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.CountryCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CountryCmbxUC.listItemsDropCmbx = null;
-            this.CountryCmbxUC.Location = new System.Drawing.Point(276, 112);
+            this.CountryCmbxUC.Location = new System.Drawing.Point(281, 110);
             this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CountryCmbxUC.Name = "CountryCmbxUC";
             this.CountryCmbxUC.Size = new System.Drawing.Size(200, 23);
@@ -260,7 +322,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(276, 72);
+            this.NameCmbxUC.Location = new System.Drawing.Point(281, 70);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.NameCmbxUC.Name = "NameCmbxUC";
             this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
@@ -272,7 +334,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SupplierCountryLbl.AutoSize = true;
             this.SupplierCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SupplierCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierCountryLbl.Location = new System.Drawing.Point(276, 94);
+            this.SupplierCountryLbl.Location = new System.Drawing.Point(281, 92);
             this.SupplierCountryLbl.Name = "SupplierCountryLbl";
             this.SupplierCountryLbl.Size = new System.Drawing.Size(101, 15);
             this.SupplierCountryLbl.TabIndex = 56;
@@ -295,7 +357,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SupplierNameLbl.AutoSize = true;
             this.SupplierNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SupplierNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierNameLbl.Location = new System.Drawing.Point(276, 54);
+            this.SupplierNameLbl.Location = new System.Drawing.Point(281, 52);
             this.SupplierNameLbl.Name = "SupplierNameLbl";
             this.SupplierNameLbl.Size = new System.Drawing.Size(90, 15);
             this.SupplierNameLbl.TabIndex = 55;
@@ -362,54 +424,44 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.TabIndex = 52;
             this.label2.Text = "Sale Bill Of Lading*";
             // 
-            // supplierInvoiceCostBindingSource
+            // OpenSale
             // 
-            this.supplierInvoiceCostBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.SupplierInvoiceCost);
+            this.OpenSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.OpenSale.FlatAppearance.BorderSize = 0;
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.OpenSale.Location = new System.Drawing.Point(234, 93);
+            this.OpenSale.Name = "OpenSale";
+            this.OpenSale.Size = new System.Drawing.Size(30, 25);
+            this.OpenSale.TabIndex = 62;
+            this.OpenSale.Text = "->";
+            this.OpenSale.UseVisualStyleBackColor = false;
             // 
-            // costRegistryCodeDataGridViewTextBoxColumn
+            // button2
             // 
-            this.costRegistryCodeDataGridViewTextBoxColumn.DataPropertyName = "CostRegistryCode";
-            this.costRegistryCodeDataGridViewTextBoxColumn.HeaderText = "CostRegistryCode";
-            this.costRegistryCodeDataGridViewTextBoxColumn.Name = "costRegistryCodeDataGridViewTextBoxColumn";
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.button2.Location = new System.Drawing.Point(489, 93);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(30, 25);
+            this.button2.TabIndex = 63;
+            this.button2.Text = "->";
+            this.button2.UseVisualStyleBackColor = false;
             // 
-            // nameDataGridViewTextBoxColumn
+            // SupplierInvoiceCostGrbBX
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            // 
-            // costDataGridViewTextBoxColumn
-            // 
-            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
-            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
-            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
-            // 
-            // supplierInvoiceCostsIdDataGridViewTextBoxColumn
-            // 
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCostsId";
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCostsId";
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Name = "supplierInvoiceCostsIdDataGridViewTextBoxColumn";
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // supplierInvoiceIdDataGridViewTextBoxColumn
-            // 
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceId";
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceId";
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.Name = "supplierInvoiceIdDataGridViewTextBoxColumn";
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // supplierInvoiceCodeDataGridViewTextBoxColumn
-            // 
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCode";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCode";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Name = "supplierInvoiceCodeDataGridViewTextBoxColumn";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Visible = false;
+            this.SupplierInvoiceCostGrbBX.Controls.Add(this.dataGridView1);
+            this.SupplierInvoiceCostGrbBX.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SupplierInvoiceCostGrbBX.Location = new System.Drawing.Point(0, 187);
+            this.SupplierInvoiceCostGrbBX.Name = "SupplierInvoiceCostGrbBX";
+            this.SupplierInvoiceCostGrbBX.Size = new System.Drawing.Size(750, 240);
+            this.SupplierInvoiceCostGrbBX.TabIndex = 64;
+            this.SupplierInvoiceCostGrbBX.TabStop = false;
+            this.SupplierInvoiceCostGrbBX.Text = "Supplier Invoice Costs";
             // 
             // SupplierInvoiceDetailsForm
             // 
@@ -427,9 +479,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Text = "SupplierInvoiceDetailsForm";
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceCostBindingSource)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceCostBindingSource)).EndInit();
+            this.SupplierInvoiceCostGrbBX.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -468,5 +521,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private DataGridViewTextBoxColumn supplierInvoiceIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn supplierInvoiceCodeDataGridViewTextBoxColumn;
         private BindingSource supplierInvoiceCostBindingSource;
+        private Button button2;
+        private Button OpenSale;
+        private GroupBox SupplierInvoiceCostGrbBX;
     }
 }

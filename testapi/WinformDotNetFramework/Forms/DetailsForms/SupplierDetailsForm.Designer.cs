@@ -37,14 +37,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameSupplierLbl = new System.Windows.Forms.Label();
             this.NameSupplierTxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +54,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveEditSupplierBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveEditSupplierBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditSupplierBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveEditSupplierBtn.Location = new System.Drawing.Point(196, 330);
+            this.SaveEditSupplierBtn.Location = new System.Drawing.Point(369, 330);
             this.SaveEditSupplierBtn.Name = "SaveEditSupplierBtn";
             this.SaveEditSupplierBtn.Size = new System.Drawing.Size(92, 25);
             this.SaveEditSupplierBtn.TabIndex = 16;
@@ -68,7 +68,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditSupplierCbx.AutoSize = true;
             this.EditSupplierCbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditSupplierCbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.EditSupplierCbx.Location = new System.Drawing.Point(242, 305);
+            this.EditSupplierCbx.Location = new System.Drawing.Point(415, 305);
             this.EditSupplierCbx.Name = "EditSupplierCbx";
             this.EditSupplierCbx.Size = new System.Drawing.Size(46, 19);
             this.EditSupplierCbx.TabIndex = 15;
@@ -82,7 +82,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountrySupplierLbl.AutoSize = true;
             this.CountrySupplierLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CountrySupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountrySupplierLbl.Location = new System.Drawing.Point(88, 149);
+            this.CountrySupplierLbl.Location = new System.Drawing.Point(261, 149);
             this.CountrySupplierLbl.Name = "CountrySupplierLbl";
             this.CountrySupplierLbl.Size = new System.Drawing.Size(50, 15);
             this.CountrySupplierLbl.TabIndex = 14;
@@ -94,7 +94,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameSupplierLbl.AutoSize = true;
             this.NameSupplierLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameSupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierLbl.Location = new System.Drawing.Point(88, 105);
+            this.NameSupplierLbl.Location = new System.Drawing.Point(261, 105);
             this.NameSupplierLbl.Name = "NameSupplierLbl";
             this.NameSupplierLbl.Size = new System.Drawing.Size(39, 15);
             this.NameSupplierLbl.TabIndex = 13;
@@ -105,7 +105,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameSupplierTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameSupplierTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameSupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierTxt.Location = new System.Drawing.Point(88, 123);
+            this.NameSupplierTxt.Location = new System.Drawing.Point(261, 123);
             this.NameSupplierTxt.MaxLength = 100;
             this.NameSupplierTxt.Name = "NameSupplierTxt";
             this.NameSupplierTxt.Size = new System.Drawing.Size(200, 23);
@@ -129,6 +129,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 19;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Active",
+            "Deprecated"});
+            this.comboBox1.Location = new System.Drawing.Point(261, 209);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(200, 21);
+            this.comboBox1.TabIndex = 32;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(261, 191);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 15);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Status";
+            // 
             // CountryCmbx
             // 
             this.CountryCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -137,7 +163,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountryCmbx.BackColor = System.Drawing.SystemColors.Control;
             this.CountryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CountryCmbx.FormattingEnabled = true;
-            this.CountryCmbx.Location = new System.Drawing.Point(88, 167);
+            this.CountryCmbx.Location = new System.Drawing.Point(261, 167);
             this.CountryCmbx.Name = "CountryCmbx";
             this.CountryCmbx.Size = new System.Drawing.Size(200, 21);
             this.CountryCmbx.TabIndex = 29;
@@ -149,7 +175,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(410, 105);
+            this.chart1.Location = new System.Drawing.Point(494, 105);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(250, 250);
             this.chart1.TabIndex = 17;
@@ -190,32 +216,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(750, 17);
             this.panel5.TabIndex = 23;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Active",
-            "Deprecated"});
-            this.comboBox1.Location = new System.Drawing.Point(88, 209);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 21);
-            this.comboBox1.TabIndex = 32;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(88, 191);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 15);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Status";
             // 
             // SupplierDetailsForm
             // 
