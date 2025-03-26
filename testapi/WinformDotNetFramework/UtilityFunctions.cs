@@ -28,6 +28,32 @@ namespace WinformDotNetFramework
             return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
         }
 
+        public static void CreateFromDetails<T>(object sender, EventArgs e, object data) where T : Form
+        {
+            if (mainForm == null)
+                return;
+
+            // Chiude i form aperti dello stesso tipo
+            CloseOpenForms<T>();
+
+            TableLayoutPanel minimizedPanel = (TableLayoutPanel)mainForm.Controls.Find("minimizedPanel", true)[0];
+            RemoveMinimizedButtons<T>(minimizedPanel);
+
+            // Crea un'istanza del form di tipo T e lo apre
+            T formInstance = (T)Activator.CreateInstance(typeof(T), data);
+            formInstance.MdiParent = mainForm;
+            formInstance.StartPosition = FormStartPosition.CenterScreen;
+            formInstance.Size = formInstance.MinimumSize;
+            formInstance.Text = FormatFormName(typeof(T).Name);
+            formInstance.Resize += ChildForm_Resize;
+            formInstance.FormClosing += ChildForm_Close;
+            formInstance.Activated += FormInstance_Activated;
+
+            formInstance.Show();
+            formInstance.BringToFront();
+            formInstance.Activate();
+
+        }
 
 
         // Apre un form dei dettagli (con ID) del tipo specificato
@@ -90,7 +116,22 @@ namespace WinformDotNetFramework
 
         private static void FormInstance_Activated(object sender, EventArgs e)
         {
-            mainForm.AddFavoriteButton.Visible = false;
+            var latestForm = mainForm.ActiveMdiChild;
+
+            if (latestForm == null || latestForm.Text.Contains("Details"))
+            {
+                mainForm.AddFavoriteButton.Visible = false;
+            }
+            else
+            {
+                if (mainForm.favoriteList.Contains(latestForm.Text))
+                    mainForm.AddFavoriteButton.Image = Properties.Resources.star_yellow_removebg;
+                else
+                    mainForm.AddFavoriteButton.Image = Properties.Resources.star;
+            }
+
+            if (!mainForm.AddFavoriteButton.Visible)
+                mainForm.AddFavoriteButton.Visible = true;
         }
 
         // Chiude i form aperti dello stesso tipo
@@ -179,6 +220,15 @@ namespace WinformDotNetFramework
                 return "";
             if (formName.Contains("Details"))
             {
+                // Capitalizes each word
+                string formattedName = Regex.Replace(formName, "(?<=.)([A-Z])", " $1");
+                formattedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(formattedName.ToLower());
+
+                return formattedName;
+            }
+            if (formName.Contains("Create"))
+            {
+                formName = formName.Substring(0, formName.Length - 4);
                 // Capitalizes each word
                 string formattedName = Regex.Replace(formName, "(?<=.)([A-Z])", " $1");
                 formattedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(formattedName.ToLower());

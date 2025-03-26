@@ -32,22 +32,31 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             this.SaveEditCustomerBtn = new System.Windows.Forms.Button();
             this.EditCbx = new System.Windows.Forms.CheckBox();
-            this.SupplierIDLbl = new System.Windows.Forms.Label();
-            this.SaleIDLbl = new System.Windows.Forms.Label();
-            this.IdSupplierInvoiceLbl = new System.Windows.Forms.Label();
-            this.IdTxt = new System.Windows.Forms.TextBox();
-            this.StatusCmbx = new System.Windows.Forms.ComboBox();
-            this.StatusLbl = new System.Windows.Forms.Label();
             this.DateClnd = new System.Windows.Forms.DateTimePicker();
-            this.SaleIDTxt1 = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.SupplierIDTxt1 = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SaleBKLbl = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.SupplierCountryLbl = new System.Windows.Forms.Label();
             this.DateLbl = new System.Windows.Forms.Label();
+            this.SupplierNameLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // SaveEditCustomerBtn
@@ -55,9 +64,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveEditCustomerBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveEditCustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditCustomerBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(388, 317);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(577, 137);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
-            this.SaveEditCustomerBtn.Size = new System.Drawing.Size(92, 25);
+            this.SaveEditCustomerBtn.Size = new System.Drawing.Size(150, 25);
             this.SaveEditCustomerBtn.TabIndex = 16;
             this.SaveEditCustomerBtn.Text = "Save changes";
             this.SaveEditCustomerBtn.UseVisualStyleBackColor = false;
@@ -68,7 +77,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCbx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditCbx.AutoSize = true;
             this.EditCbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditCbx.Location = new System.Drawing.Point(434, 292);
+            this.EditCbx.Location = new System.Drawing.Point(525, 141);
             this.EditCbx.Name = "EditCbx";
             this.EditCbx.Size = new System.Drawing.Size(46, 19);
             this.EditCbx.TabIndex = 15;
@@ -76,100 +85,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCbx.UseVisualStyleBackColor = true;
             this.EditCbx.CheckedChanged += new System.EventHandler(this.EditCustomerCbx_CheckedChanged);
             // 
-            // SupplierIDLbl
-            // 
-            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierIDLbl.AutoSize = true;
-            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SupplierIDLbl.Location = new System.Drawing.Point(281, 153);
-            this.SupplierIDLbl.Name = "SupplierIDLbl";
-            this.SupplierIDLbl.Size = new System.Drawing.Size(61, 15);
-            this.SupplierIDLbl.TabIndex = 14;
-            this.SupplierIDLbl.Text = "SupplierID";
-            // 
-            // SaleIDLbl
-            // 
-            this.SaleIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaleIDLbl.AutoSize = true;
-            this.SaleIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaleIDLbl.Location = new System.Drawing.Point(281, 106);
-            this.SaleIDLbl.Name = "SaleIDLbl";
-            this.SaleIDLbl.Size = new System.Drawing.Size(39, 15);
-            this.SaleIDLbl.TabIndex = 13;
-            this.SaleIDLbl.Text = "SaleID";
-            // 
-            // IdSupplierInvoiceLbl
-            // 
-            this.IdSupplierInvoiceLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.IdSupplierInvoiceLbl.AutoSize = true;
-            this.IdSupplierInvoiceLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdSupplierInvoiceLbl.Location = new System.Drawing.Point(281, 57);
-            this.IdSupplierInvoiceLbl.Name = "IdSupplierInvoiceLbl";
-            this.IdSupplierInvoiceLbl.Size = new System.Drawing.Size(17, 15);
-            this.IdSupplierInvoiceLbl.TabIndex = 12;
-            this.IdSupplierInvoiceLbl.Text = "Id";
-            // 
-            // IdTxt
-            // 
-            this.IdTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.IdTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdTxt.Location = new System.Drawing.Point(280, 73);
-            this.IdTxt.Name = "IdTxt";
-            this.IdTxt.Size = new System.Drawing.Size(200, 23);
-            this.IdTxt.TabIndex = 9;
-            // 
-            // StatusCmbx
-            // 
-            this.StatusCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusCmbx.FormattingEnabled = true;
-            this.StatusCmbx.Items.AddRange(new object[] {
-            "Approved",
-            "Unapproved"});
-            this.StatusCmbx.Location = new System.Drawing.Point(280, 216);
-            this.StatusCmbx.Name = "StatusCmbx";
-            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
-            this.StatusCmbx.TabIndex = 17;
-            // 
-            // StatusLbl
-            // 
-            this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLbl.Location = new System.Drawing.Point(281, 200);
-            this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
-            this.StatusLbl.TabIndex = 18;
-            this.StatusLbl.Text = "Status";
-            // 
             // DateClnd
             // 
             this.DateClnd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DateClnd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateClnd.Location = new System.Drawing.Point(280, 263);
+            this.DateClnd.Location = new System.Drawing.Point(525, 112);
             this.DateClnd.Name = "DateClnd";
             this.DateClnd.Size = new System.Drawing.Size(200, 23);
             this.DateClnd.TabIndex = 19;
-            // 
-            // SaleIDTxt1
-            // 
-            this.SaleIDTxt1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaleIDTxt1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaleIDTxt1.Location = new System.Drawing.Point(280, 121);
-            this.SaleIDTxt1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SaleIDTxt1.Name = "SaleIDTxt1";
-            this.SaleIDTxt1.Size = new System.Drawing.Size(200, 25);
-            this.SaleIDTxt1.TabIndex = 20;
-            // 
-            // SupplierIDTxt1
-            // 
-            this.SupplierIDTxt1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierIDTxt1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SupplierIDTxt1.Location = new System.Drawing.Point(280, 169);
-            this.SupplierIDTxt1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SupplierIDTxt1.Name = "SupplierIDTxt1";
-            this.SupplierIDTxt1.Size = new System.Drawing.Size(200, 25);
-            this.SupplierIDTxt1.TabIndex = 21;
             // 
             // panel1
             // 
@@ -210,34 +133,210 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.panel5.Controls.Add(this.DateLbl);
-            this.panel5.Controls.Add(this.IdSupplierInvoiceLbl);
-            this.panel5.Controls.Add(this.IdTxt);
-            this.panel5.Controls.Add(this.SaleIDLbl);
-            this.panel5.Controls.Add(this.SupplierIDLbl);
-            this.panel5.Controls.Add(this.EditCbx);
-            this.panel5.Controls.Add(this.SaveEditCustomerBtn);
-            this.panel5.Controls.Add(this.SupplierIDTxt1);
-            this.panel5.Controls.Add(this.StatusCmbx);
-            this.panel5.Controls.Add(this.SaleIDTxt1);
-            this.panel5.Controls.Add(this.StatusLbl);
-            this.panel5.Controls.Add(this.DateClnd);
+            this.panel5.Controls.Add(this.dataGridView1);
+            this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(17, 17);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(750, 427);
             this.panel5.TabIndex = 27;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 187);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(750, 240);
+            this.dataGridView1.TabIndex = 61;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.textBox1);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Controls.Add(this.SaleBKLbl);
+            this.panel6.Controls.Add(this.button1);
+            this.panel6.Controls.Add(this.DateClnd);
+            this.panel6.Controls.Add(this.CountryCmbxUC);
+            this.panel6.Controls.Add(this.SaveEditCustomerBtn);
+            this.panel6.Controls.Add(this.NameCmbxUC);
+            this.panel6.Controls.Add(this.EditCbx);
+            this.panel6.Controls.Add(this.SupplierCountryLbl);
+            this.panel6.Controls.Add(this.DateLbl);
+            this.panel6.Controls.Add(this.SupplierNameLbl);
+            this.panel6.Controls.Add(this.label1);
+            this.panel6.Controls.Add(this.BoLCmbxUC);
+            this.panel6.Controls.Add(this.comboBox1);
+            this.panel6.Controls.Add(this.BKCmbxUC);
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(750, 187);
+            this.panel6.TabIndex = 60;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBox1.Location = new System.Drawing.Point(27, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(200, 23);
+            this.textBox1.TabIndex = 61;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label3.Location = new System.Drawing.Point(27, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 15);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "Supplier Invoice Code";
+            // 
+            // SaleBKLbl
+            // 
+            this.SaleBKLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaleBKLbl.AutoSize = true;
+            this.SaleBKLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaleBKLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaleBKLbl.Location = new System.Drawing.Point(27, 54);
+            this.SaleBKLbl.Name = "SaleBKLbl";
+            this.SaleBKLbl.Size = new System.Drawing.Size(127, 15);
+            this.SaleBKLbl.TabIndex = 51;
+            this.SaleBKLbl.Text = "Sale Booking Number*";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(27, 141);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 25);
+            this.button1.TabIndex = 59;
+            this.button1.Text = "Add Cost";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.AddCostBtn_Click);
+            // 
+            // CountryCmbxUC
+            // 
+            this.CountryCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CountryCmbxUC.listItemsDropCmbx = null;
+            this.CountryCmbxUC.Location = new System.Drawing.Point(276, 112);
+            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.CountryCmbxUC.Name = "CountryCmbxUC";
+            this.CountryCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.CountryCmbxUC.TabIndex = 58;
+            // 
+            // NameCmbxUC
+            // 
+            this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameCmbxUC.listItemsDropCmbx = null;
+            this.NameCmbxUC.Location = new System.Drawing.Point(276, 72);
+            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.NameCmbxUC.Name = "NameCmbxUC";
+            this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.NameCmbxUC.TabIndex = 57;
+            // 
+            // SupplierCountryLbl
+            // 
+            this.SupplierCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierCountryLbl.AutoSize = true;
+            this.SupplierCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SupplierCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierCountryLbl.Location = new System.Drawing.Point(276, 94);
+            this.SupplierCountryLbl.Name = "SupplierCountryLbl";
+            this.SupplierCountryLbl.Size = new System.Drawing.Size(101, 15);
+            this.SupplierCountryLbl.TabIndex = 56;
+            this.SupplierCountryLbl.Text = "Supplier Country*";
+            // 
             // DateLbl
             // 
             this.DateLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DateLbl.AutoSize = true;
             this.DateLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateLbl.Location = new System.Drawing.Point(281, 245);
+            this.DateLbl.Location = new System.Drawing.Point(525, 98);
             this.DateLbl.Name = "DateLbl";
             this.DateLbl.Size = new System.Drawing.Size(31, 15);
             this.DateLbl.TabIndex = 22;
             this.DateLbl.Text = "Date";
+            // 
+            // SupplierNameLbl
+            // 
+            this.SupplierNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierNameLbl.AutoSize = true;
+            this.SupplierNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SupplierNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierNameLbl.Location = new System.Drawing.Point(276, 54);
+            this.SupplierNameLbl.Name = "SupplierNameLbl";
+            this.SupplierNameLbl.Size = new System.Drawing.Size(90, 15);
+            this.SupplierNameLbl.TabIndex = 55;
+            this.SupplierNameLbl.Text = "Supplier Name*";
+            // 
+            // label1
+            // 
+            this.label1.AllowDrop = true;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(525, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 15);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Status*";
+            // 
+            // BoLCmbxUC
+            // 
+            this.BoLCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BoLCmbxUC.listItemsDropCmbx = null;
+            this.BoLCmbxUC.Location = new System.Drawing.Point(27, 112);
+            this.BoLCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BoLCmbxUC.Name = "BoLCmbxUC";
+            this.BoLCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.BoLCmbxUC.TabIndex = 54;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AllowDrop = true;
+            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Approved",
+            "Unapproved"});
+            this.comboBox1.Location = new System.Drawing.Point(525, 72);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(200, 23);
+            this.comboBox1.TabIndex = 49;
+            // 
+            // BKCmbxUC
+            // 
+            this.BKCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BKCmbxUC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.BKCmbxUC.listItemsDropCmbx = null;
+            this.BKCmbxUC.Location = new System.Drawing.Point(27, 72);
+            this.BKCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.BKCmbxUC.Name = "BKCmbxUC";
+            this.BKCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.BKCmbxUC.TabIndex = 53;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label2.Location = new System.Drawing.Point(27, 95);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 15);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "Sale Bill Of Lading*";
             // 
             // SupplierInvoiceDetailsForm
             // 
@@ -254,7 +353,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Name = "SupplierInvoiceDetailsForm";
             this.Text = "SupplierInvoiceDetailsForm";
             this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -263,20 +364,27 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private Button SaveEditCustomerBtn;
         private CheckBox EditCbx;
-        private Label SupplierIDLbl;
-        private Label SaleIDLbl;
-        private Label IdSupplierInvoiceLbl;
-        private TextBox IdTxt;
-        private ComboBox StatusCmbx;
-        private Label StatusLbl;
         private DateTimePicker DateClnd;
-        private control.IntegerTextBoxUserControl SaleIDTxt1;
-        private control.IntegerTextBoxUserControl SupplierIDTxt1;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
         private Label DateLbl;
+        private control.DropDownMenuAutoCompleteUserControl CountryCmbxUC;
+        private control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
+        private Label SupplierCountryLbl;
+        private Label SupplierNameLbl;
+        private control.DropDownMenuAutoCompleteUserControl BoLCmbxUC;
+        private control.DropDownMenuAutoCompleteUserControl BKCmbxUC;
+        private Label label2;
+        private Label SaleBKLbl;
+        private ComboBox comboBox1;
+        private Label label1;
+        private Panel panel6;
+        private Button button1;
+        private Label label3;
+        private TextBox textBox1;
+        private DataGridView dataGridView1;
     }
 }

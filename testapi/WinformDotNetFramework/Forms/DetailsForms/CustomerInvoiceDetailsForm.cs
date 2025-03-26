@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -50,7 +51,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             List<CustomerInvoiceCost> data = (await _customerInvoiceCostService
                 .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = customerInvoice.CustomerInvoiceCode })).ToList();
-            dataGridView1.DataSource = data.ToList();
+            dataGridView1.DataSource = data;
 
             textBox1.Enabled = false;
             InvoiceAmountTxt.Enabled = false;
@@ -183,6 +184,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // Update combobox suggestions
             BKCmbxUC.listItemsDropCmbx = listItemsBk;
             BoLCmbxUC.listItemsDropCmbx = listItemsBol;
+        }
+
+        private void AddCostBtn_Click(object sender, EventArgs e)
+        {
+            UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, customerInvoice.CustomerInvoiceCode);
         }
     }
 }
