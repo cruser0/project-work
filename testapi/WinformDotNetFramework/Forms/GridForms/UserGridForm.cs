@@ -146,9 +146,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             userDgv.Columns["Roles"].Visible = cdgv.ShowRoles;
             userDgv.Columns["UserID"].Visible = cdgv.ShowID;
-            userDgv.Columns["emailColumn"].Visible = cdgv.ShowEmail;
-            userDgv.Columns["nameColumn"].Visible = cdgv.ShowName;
-            userDgv.Columns["lastNameColumn"].Visible = cdgv.ShowLastName;
+            userDgv.Columns["Email"].Visible = cdgv.ShowEmail;
+            userDgv.Columns["Name"].Visible = cdgv.ShowName;
+            userDgv.Columns["LastName"].Visible = cdgv.ShowLastName;
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -245,13 +245,13 @@ namespace WinformDotNetFramework.Forms.GridForms
                         userDgv.Columns["UserID"].Visible = tsmi.Checked;
                         break;
                     case "UserNameTsmi":
-                        userDgv.Columns["nameColumn"].Visible = tsmi.Checked;
+                        userDgv.Columns["Name"].Visible = tsmi.Checked;
                         break;
                     case "UserLastNameTsmi":
-                        userDgv.Columns["lastNameColumn"].Visible = tsmi.Checked;
+                        userDgv.Columns["LastName"].Visible = tsmi.Checked;
                         break;
                     case "UserEmailTsmi":
-                        userDgv.Columns["emailColumn"].Visible = tsmi.Checked;
+                        userDgv.Columns["Email"].Visible = tsmi.Checked;
                         break;
                     case "UserRoleTsmi":
                         userDgv.Columns["Roles"].Visible = tsmi.Checked;

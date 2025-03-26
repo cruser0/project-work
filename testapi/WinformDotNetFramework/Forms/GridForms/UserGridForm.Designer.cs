@@ -48,7 +48,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.paginationControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.userDgv = new System.Windows.Forms.DataGridView();
-            this.userRoleDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -62,18 +61,12 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.Roles1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Roles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.PaginationPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userRoleDTOBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
             this.SuspendLayout();
@@ -262,17 +255,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.userDgv.AllowUserToAddRows = false;
             this.userDgv.AllowUserToDeleteRows = false;
             this.userDgv.AllowUserToOrderColumns = true;
-            this.userDgv.AutoGenerateColumns = false;
             this.userDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.userDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UserID,
-            this.nameColumn,
-            this.lastNameColumn,
-            this.emailColumn,
-            this.Roles});
-            this.userDgv.DataSource = this.userRoleDTOBindingSource;
             this.userDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userDgv.Location = new System.Drawing.Point(0, 25);
             this.userDgv.Name = "userDgv";
@@ -282,10 +267,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.userDgv.TabIndex = 0;
             this.userDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.userDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDgv_RightClick);
-            // 
-            // userRoleDTOBindingSource
-            // 
-            this.userRoleDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.UserRoleDTO);
             // 
             // toolStrip1
             // 
@@ -410,41 +391,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserID1.HeaderText = "UserID";
             this.UserID1.Name = "UserID1";
             // 
-            // UserID
-            // 
-            this.UserID.DataPropertyName = "UserID";
-            this.UserID.HeaderText = "UserID";
-            this.UserID.Name = "UserID";
-            this.UserID.ReadOnly = true;
-            // 
-            // nameColumn
-            // 
-            this.nameColumn.DataPropertyName = "Name";
-            this.nameColumn.HeaderText = "Name";
-            this.nameColumn.Name = "nameColumn";
-            this.nameColumn.ReadOnly = true;
-            // 
-            // lastNameColumn
-            // 
-            this.lastNameColumn.DataPropertyName = "LastName";
-            this.lastNameColumn.HeaderText = "LastName";
-            this.lastNameColumn.Name = "lastNameColumn";
-            this.lastNameColumn.ReadOnly = true;
-            // 
-            // emailColumn
-            // 
-            this.emailColumn.DataPropertyName = "Email";
-            this.emailColumn.HeaderText = "Email";
-            this.emailColumn.Name = "emailColumn";
-            this.emailColumn.ReadOnly = true;
-            // 
-            // Roles
-            // 
-            this.Roles.DataPropertyName = "Roles";
-            this.Roles.HeaderText = "Roles";
-            this.Roles.Name = "Roles";
-            this.Roles.ReadOnly = true;
-            // 
             // UserGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,7 +412,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userRoleDTOBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.RightClickDgv.ResumeLayout(false);
@@ -505,11 +450,5 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton ToggleEditButton;
         private DataGridViewTextBoxColumn Roles1;
         private DataGridViewTextBoxColumn UserID1;
-        private BindingSource userRoleDTOBindingSource;
-        private DataGridViewTextBoxColumn UserID;
-        private DataGridViewTextBoxColumn nameColumn;
-        private DataGridViewTextBoxColumn lastNameColumn;
-        private DataGridViewTextBoxColumn emailColumn;
-        private DataGridViewTextBoxColumn Roles;
     }
 }

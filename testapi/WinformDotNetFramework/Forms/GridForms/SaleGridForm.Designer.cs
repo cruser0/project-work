@@ -38,7 +38,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
-            this.saleCustomerDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.MassSaveTSB = new System.Windows.Forms.ToolStripButton();
@@ -59,20 +58,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleCustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleCustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookingNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BoLnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalRevenue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleCustomerDTOBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -131,21 +120,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleDgv.AllowUserToAddRows = false;
             this.SaleDgv.AllowUserToDeleteRows = false;
             this.SaleDgv.AllowUserToOrderColumns = true;
-            this.SaleDgv.AutoGenerateColumns = false;
             this.SaleDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SaleDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SaleDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SaleDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SaleID,
-            this.BookingNumber,
-            this.BoLnumber,
-            this.Country,
-            this.CustomerName,
-            this.CustomerID,
-            this.TotalRevenue,
-            this.Status,
-            this.SaleDate});
-            this.SaleDgv.DataSource = this.saleCustomerDTOBindingSource;
             this.SaleDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SaleDgv.Location = new System.Drawing.Point(0, 25);
             this.SaleDgv.Name = "SaleDgv";
@@ -156,10 +133,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleDgv.TabIndex = 8;
             this.SaleDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.SaleDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
-            // 
-            // saleCustomerDTOBindingSource
-            // 
-            this.saleCustomerDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SaleCustomerDTO);
             // 
             // toolStrip1
             // 
@@ -360,69 +333,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleTotalRevenueTsmi.Text = "Show Total Revenue";
             this.SaleTotalRevenueTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // SaleID
-            // 
-            this.SaleID.DataPropertyName = "SaleId";
-            this.SaleID.HeaderText = "SaleID";
-            this.SaleID.Name = "SaleID";
-            this.SaleID.ReadOnly = true;
-            // 
-            // BookingNumber
-            // 
-            this.BookingNumber.DataPropertyName = "BookingNumber";
-            this.BookingNumber.HeaderText = "BookingNumber";
-            this.BookingNumber.Name = "BookingNumber";
-            this.BookingNumber.ReadOnly = true;
-            // 
-            // BoLnumber
-            // 
-            this.BoLnumber.DataPropertyName = "BoLnumber";
-            this.BoLnumber.HeaderText = "BoLnumber";
-            this.BoLnumber.Name = "BoLnumber";
-            this.BoLnumber.ReadOnly = true;
-            // 
-            // Country
-            // 
-            this.Country.DataPropertyName = "Country";
-            this.Country.HeaderText = "Country";
-            this.Country.Name = "Country";
-            this.Country.ReadOnly = true;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.DataPropertyName = "CustomerName";
-            this.CustomerName.HeaderText = "CustomerName";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            // 
-            // CustomerID
-            // 
-            this.CustomerID.DataPropertyName = "CustomerId";
-            this.CustomerID.HeaderText = "CustomerID";
-            this.CustomerID.Name = "CustomerID";
-            this.CustomerID.ReadOnly = true;
-            // 
-            // TotalRevenue
-            // 
-            this.TotalRevenue.DataPropertyName = "TotalRevenue";
-            this.TotalRevenue.HeaderText = "TotalRevenue";
-            this.TotalRevenue.Name = "TotalRevenue";
-            this.TotalRevenue.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            // 
-            // SaleDate
-            // 
-            this.SaleDate.DataPropertyName = "SaleDate";
-            this.SaleDate.HeaderText = "SaleDate";
-            this.SaleDate.Name = "SaleDate";
-            this.SaleDate.ReadOnly = true;
-            // 
             // SaleGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,7 +351,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.saleCustomerDTOBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.BottomPanel.ResumeLayout(false);
@@ -479,15 +388,5 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton ToggleEditButton;
         private Panel TextBoxesRightPanel;
         private control.SearchSale searchSale1;
-        private BindingSource saleCustomerDTOBindingSource;
-        private DataGridViewTextBoxColumn SaleID;
-        private DataGridViewTextBoxColumn BookingNumber;
-        private DataGridViewTextBoxColumn BoLnumber;
-        private DataGridViewTextBoxColumn Country;
-        private DataGridViewTextBoxColumn CustomerName;
-        private DataGridViewTextBoxColumn CustomerID;
-        private DataGridViewTextBoxColumn TotalRevenue;
-        private DataGridViewTextBoxColumn Status;
-        private DataGridViewTextBoxColumn SaleDate;
     }
 }
