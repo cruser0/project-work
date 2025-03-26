@@ -1,4 +1,8 @@
-﻿namespace WinformDotNetFramework.Forms.AddForms
+﻿
+
+using System.Windows.Forms;
+
+namespace WinformDotNetFramework.Forms.AddForms
 {
     partial class CreateSupplierInvoicesForm
     {

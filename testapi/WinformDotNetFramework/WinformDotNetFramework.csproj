@@ -806,6 +806,7 @@
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.CustomerInvoiceCost.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.SupplierInvoice.datasource" />
+    <None Include="Properties\DataSources\WinformDotNetFramework.Entities.SupplierInvoiceCost.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.ClassifySalesByProfit.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountGainedPerCustomerInvoice.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Procedures.TotalAmountSpentPerSupplierInvoice.datasource" />
