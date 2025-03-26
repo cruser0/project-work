@@ -325,7 +325,6 @@ namespace WinformDotNetFramework.Forms
             {
                 child.MaximizeBox = false;
                 child.WindowState = FormWindowState.Normal;
-                child.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
 
 
