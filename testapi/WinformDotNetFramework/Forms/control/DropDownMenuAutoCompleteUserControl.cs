@@ -56,6 +56,9 @@ namespace WinformDotNetFramework.Forms.control
                 if (ParentForm is SupplierInvoiceDetailsForm sidf)
                     await sidf.SetList();
 
+                if (ParentForm is SaleDetailsForm sdf)
+                    await sdf.SetList();
+
                 if (listItemsDropCmbx.Count > 0)
                 {
                     Cmbx.BeginUpdate();

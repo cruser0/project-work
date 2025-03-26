@@ -17,6 +17,7 @@ namespace WinformDotNetFramework.Services
             var filters = new Dictionary<string, object>
             {
                 { "SupplierInvoiceCode", filter.SupplierInvoiceCode },
+                { "SupplierInvoiceSaleID", filter.SupplierInvoiceSaleID },
                 { "SupplierInvoiceSaleBoL", filter.SupplierInvoiceSaleBoL },
                 { "SupplierInvoiceSaleBk", filter.SupplierInvoiceSaleBk },
                 { "SupplierInvoiceInvoiceDateFrom", filter.SupplierInvoiceInvoiceDateFrom ?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },

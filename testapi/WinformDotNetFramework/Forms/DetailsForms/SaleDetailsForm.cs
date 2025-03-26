@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.DTO;
+using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -10,6 +13,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
     public partial class SaleDetailsForm : Form
     {
         SaleService _saleService;
+        CustomerInvoiceService _customerInvoiceService;
+        CustomerService _customerService;
+        SupplierInvoiceService _supplierInvoiceService;
+
+        SaleCustomerDTO sale;
+
         public SaleDetailsForm(int id)
         {
             Init(id);
@@ -19,22 +28,49 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             InitializeComponent();
             _saleService = new SaleService();
-            Sale sale = await _saleService.GetById(id);
-            SaleIdtxt.Text = id.ToString();
+            _customerInvoiceService = new CustomerInvoiceService();
+            _supplierInvoiceService = new SupplierInvoiceService();
+            _customerService = new CustomerService();
+            sale = await _saleService.GetById(id);
+
+            List<CustomerInvoice> ci = (await _customerInvoiceService
+                .GetAll(new CustomerInvoiceFilter()
+                {
+                    CustomerInvoiceSaleID = id
+
+                })).ToList();
+            CuInDgv.DataSource = ci;
+
+            List<SupplierInvoiceSupplierDTO> si = (await _supplierInvoiceService
+                .GetAll(new SupplierInvoiceFilter()
+                {
+                    SupplierInvoiceSaleID = id
+                })).ToList();
+            SuInDgv.DataSource = si;
+
+            NameCmbxUC.Cmbx.TextChanged -= NameCmbxUC.Cmbx_TextChanged;
+            CountryCmbxUC.Cmbx.TextChanged -= CountryCmbxUC.Cmbx_TextChanged;
+
+            NameCmbxUC.Cmbx.Text = sale.CustomerName;
+            CountryCmbxUC.Cmbx.Text = sale.Country;
+
+            NameCmbxUC.Cmbx.TextChanged -= NameCmbxUC.Cmbx_TextChanged;
+            CountryCmbxUC.Cmbx.TextChanged -= CountryCmbxUC.Cmbx_TextChanged;
+
             bntxt.Text = sale.BookingNumber;
             boltxt.Text = sale.BoLnumber;
             saleDateDtp.Value = sale.SaleDate.Value;
-            CustomerIdtxt.SetText(sale.CustomerId.ToString());
             RevenueTxt.SetText(sale.TotalRevenue.ToString());
-            StatusTxt.Text = sale.Status.ToString();
+            StatusCmbx.Text = sale.Status.ToString();
 
-            SaleIdtxt.Enabled = false;
+            NameCmbxUC.Cmbx.Enabled = false;
+            CountryCmbxUC.Cmbx.Enabled = false;
             bntxt.Enabled = false;
             boltxt.Enabled = false;
             saleDateDtp.Enabled = false;
-            CustomerIdtxt.Enabled = false;
             RevenueTxt.Enabled = false;
-            StatusTxt.Enabled = false;
+            StatusCmbx.Enabled = false;
+
             saveBtn.Enabled = false;
             List<string> authRolesWrite = new List<string>
             {
@@ -52,8 +88,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 saveBtn.Visible = false;
                 EditCB.Visible = false;
             }
-            //if (!Authorize(authRoles))
-            //    DeleteBtn.Visible = false;
+
         }
 
         private bool Authorize(List<string> allowedRoles)
@@ -63,56 +98,57 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void EditCB_CheckedChanged(object sender, EventArgs e)
         {
-            bntxt.Enabled = !bntxt.Enabled;
-            boltxt.Enabled = !boltxt.Enabled;
-            saleDateDtp.Enabled = !saleDateDtp.Enabled;
-            CustomerIdtxt.Enabled = !CustomerIdtxt.Enabled;
-            StatusTxt.Enabled = !StatusTxt.Enabled;
-            saveBtn.Enabled = !saveBtn.Enabled;
+            NameCmbxUC.Cmbx.Enabled = EditCB.Checked;
+            CountryCmbxUC.Cmbx.Enabled = EditCB.Checked;
+            bntxt.Enabled = EditCB.Checked;
+            boltxt.Enabled = EditCB.Checked;
+            saleDateDtp.Enabled = EditCB.Checked;
+            RevenueTxt.Enabled = EditCB.Checked;
+            StatusCmbx.Enabled = EditCB.Checked;
+            saveBtn.Enabled = EditCB.Checked;
         }
 
         private async void saveBtn_Click(object sender, EventArgs e)
         {
+            int customerId = (await _customerService.GetAll(new CustomerFilter()
+            {
+                CustomerName = NameCmbxUC.Cmbx.Text,
+                CustomerCountry = CountryCmbxUC.Cmbx.Text
+            })).FirstOrDefault().CustomerId;
+
             Sale sale = new Sale
             {
                 BookingNumber = bntxt.Text,
                 BoLnumber = boltxt.Text,
                 SaleDate = saleDateDtp.Value,
-                CustomerId = int.Parse(CustomerIdtxt.GetText()),
-                Status = StatusTxt.Text
+                CustomerId = customerId,
+                Status = StatusCmbx.Text
             };
             try
             {
-                await _saleService.Update(int.Parse(SaleIdtxt.Text), sale);
+                await _saleService.Update(sale.SaleId, sale);
                 MessageBox.Show("Sale updated successfully!");
 
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
-        private async void DeleteBtn_Click(object sender, EventArgs e)
+        string cname;
+        string ccountry;
+        public async Task SetList()
         {
-            var result = MessageBox.Show(
-          "This action is permanent and it will delete all the history bound to this Sale!",
-          "Confirm Deletion?",
-          MessageBoxButtons.YesNo,
-          MessageBoxIcon.Warning);
+            cname = NameCmbxUC.Cmbx.Text;
+            ccountry = CountryCmbxUC.Cmbx.Text;
+            var listFiltered = await _customerService.GetAll(new CustomerFilter()
+            {
+                CustomerName = string.IsNullOrEmpty(cname) ? null : cname,
+                CustomerCountry = string.IsNullOrEmpty(ccountry) ? null : ccountry
+            });
 
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    await _saleService.Delete(int.Parse(SaleIdtxt.Text));
-                    MessageBox.Show("Sale has been deleted.");
-                    this.Close();
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
-            {
-                MessageBox.Show("Action canceled.");
-            }
+            var listItemsName = listFiltered.Select(x => x.CustomerName).ToList();
+            var listItemsCountry = listFiltered.Select(x => x.Country).ToList();
+            NameCmbxUC.listItemsDropCmbx = listItemsName;
+            CountryCmbxUC.listItemsDropCmbx = listItemsCountry;
         }
     }
 }
