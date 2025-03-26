@@ -142,11 +142,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             UserEmailTsmi.Checked = cdgv.ShowEmail;
             UserRoleTsmi.Checked = cdgv.ShowRoles;
             paginationControl.Visible = true;
-            userDgv.Columns["UserID"].Visible = cdgv.ShowID;
-            userDgv.Columns["Name"].Visible = cdgv.ShowName;
-            userDgv.Columns["LastName"].Visible = cdgv.ShowLastName;
-            userDgv.Columns["Email"].Visible = cdgv.ShowEmail;
+
+
             userDgv.Columns["Roles"].Visible = cdgv.ShowRoles;
+            userDgv.Columns["UserID"].Visible = cdgv.ShowID;
+            userDgv.Columns["emailColumn"].Visible = cdgv.ShowEmail;
+            userDgv.Columns["nameColumn"].Visible = cdgv.ShowName;
+            userDgv.Columns["lastNameColumn"].Visible = cdgv.ShowLastName;
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -243,13 +245,13 @@ namespace WinformDotNetFramework.Forms.GridForms
                         userDgv.Columns["UserID"].Visible = tsmi.Checked;
                         break;
                     case "UserNameTsmi":
-                        userDgv.Columns["Name"].Visible = tsmi.Checked;
+                        userDgv.Columns["nameColumn"].Visible = tsmi.Checked;
                         break;
                     case "UserLastNameTsmi":
-                        userDgv.Columns["LastName"].Visible = tsmi.Checked;
+                        userDgv.Columns["lastNameColumn"].Visible = tsmi.Checked;
                         break;
                     case "UserEmailTsmi":
-                        userDgv.Columns["Email"].Visible = tsmi.Checked;
+                        userDgv.Columns["emailColumn"].Visible = tsmi.Checked;
                         break;
                     case "UserRoleTsmi":
                         userDgv.Columns["Roles"].Visible = tsmi.Checked;
@@ -257,6 +259,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     default:
                         break;
                 }
+
                 UserDGV cdgv = new UserDGV
                 {
                     ShowID = UserIDTsmi.Checked,

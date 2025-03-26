@@ -60,11 +60,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserLastNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserEmailTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Roles1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserID1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Roles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -74,7 +76,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             ((System.ComponentModel.ISupportInitialize)(this.userRoleDTOBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -266,10 +267,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.userDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.userDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.userIDDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.lastNameDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn});
+            this.UserID,
+            this.nameColumn,
+            this.lastNameColumn,
+            this.emailColumn,
+            this.Roles});
             this.userDgv.DataSource = this.userRoleDTOBindingSource;
             this.userDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userDgv.Location = new System.Drawing.Point(0, 25);
@@ -396,37 +398,52 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserRoleTsmi.Text = "Show Roles";
             this.UserRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // userBindingSource
+            // Roles1
             // 
-            this.userBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.User);
+            this.Roles1.DataPropertyName = "Roles";
+            this.Roles1.HeaderText = "Roles";
+            this.Roles1.Name = "Roles1";
             // 
-            // userIDDataGridViewTextBoxColumn
+            // UserID1
             // 
-            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
-            this.userIDDataGridViewTextBoxColumn.HeaderText = "UserID";
-            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
-            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.UserID1.DataPropertyName = "UserID";
+            this.UserID1.HeaderText = "UserID";
+            this.UserID1.Name = "UserID1";
             // 
-            // nameDataGridViewTextBoxColumn
+            // UserID
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.UserID.DataPropertyName = "UserID";
+            this.UserID.HeaderText = "UserID";
+            this.UserID.Name = "UserID";
+            this.UserID.ReadOnly = true;
             // 
-            // lastNameDataGridViewTextBoxColumn
+            // nameColumn
             // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameColumn.DataPropertyName = "Name";
+            this.nameColumn.HeaderText = "Name";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
             // 
-            // emailDataGridViewTextBoxColumn
+            // lastNameColumn
             // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lastNameColumn.DataPropertyName = "LastName";
+            this.lastNameColumn.HeaderText = "LastName";
+            this.lastNameColumn.Name = "lastNameColumn";
+            this.lastNameColumn.ReadOnly = true;
+            // 
+            // emailColumn
+            // 
+            this.emailColumn.DataPropertyName = "Email";
+            this.emailColumn.HeaderText = "Email";
+            this.emailColumn.Name = "emailColumn";
+            this.emailColumn.ReadOnly = true;
+            // 
+            // Roles
+            // 
+            this.Roles.DataPropertyName = "Roles";
+            this.Roles.HeaderText = "Roles";
+            this.Roles.Name = "Roles";
+            this.Roles.ReadOnly = true;
             // 
             // UserGridForm
             // 
@@ -453,7 +470,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.RightClickDgv.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -487,11 +503,13 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton ToggleEditButton;
-        private BindingSource userBindingSource;
+        private DataGridViewTextBoxColumn Roles1;
+        private DataGridViewTextBoxColumn UserID1;
         private BindingSource userRoleDTOBindingSource;
-        private DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn UserID;
+        private DataGridViewTextBoxColumn nameColumn;
+        private DataGridViewTextBoxColumn lastNameColumn;
+        private DataGridViewTextBoxColumn emailColumn;
+        private DataGridViewTextBoxColumn Roles;
     }
 }
