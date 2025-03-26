@@ -28,13 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.CustomerInvoiceDgv = new System.Windows.Forms.DataGridView();
             this.SupplierInvoiceDgv = new System.Windows.Forms.DataGridView();
+            this.supplierInvoiceSupplierDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.SupplierNameCmbxDgv = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.SupplierCountryCmbxDgv = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.SaleBookingNumberTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleBoLTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceIdTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleIdTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierInvoiceTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierIdTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceAmountTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceDateTxtDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatusDataCmbxDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // saleDateDtp
@@ -71,7 +87,10 @@
             // 
             // SaveBtn
             // 
-            this.SaveBtn.Location = new System.Drawing.Point(554, 140);
+            this.SaveBtn.Location = new System.Drawing.Point(638, 140);
+            this.SaveBtn.Size = new System.Drawing.Size(116, 23);
+            this.SaveBtn.Text = "Create Sale Group";
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // OpenSale
             // 
@@ -118,11 +137,11 @@
             // 
             // CustomerCountryLbl
             // 
-            this.CustomerCountryLbl.Location = new System.Drawing.Point(448, 48);
+            this.CustomerCountryLbl.Location = new System.Drawing.Point(464, 46);
             // 
             // CustomerNameLbl
             // 
-            this.CustomerNameLbl.Location = new System.Drawing.Point(448, 3);
+            this.CustomerNameLbl.Location = new System.Drawing.Point(464, 1);
             // 
             // CountryCmbxUC
             // 
@@ -158,12 +177,117 @@
             // 
             // SupplierInvoiceDgv
             // 
+            this.SupplierInvoiceDgv.AutoGenerateColumns = false;
             this.SupplierInvoiceDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SupplierInvoiceDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SupplierNameCmbxDgv,
+            this.SupplierCountryCmbxDgv,
+            this.SaleBookingNumberTxtDgv,
+            this.SaleBoLTxtDgv,
+            this.InvoiceIdTxtDgv,
+            this.SaleIdTxtDgv,
+            this.SupplierInvoiceTxtDgv,
+            this.SupplierIdTxtDgv,
+            this.InvoiceAmountTxtDgv,
+            this.InvoiceDateTxtDgv,
+            this.StatusDataCmbxDgv});
+            this.SupplierInvoiceDgv.DataSource = this.supplierInvoiceSupplierDTOBindingSource;
             this.SupplierInvoiceDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupplierInvoiceDgv.Location = new System.Drawing.Point(3, 3);
             this.SupplierInvoiceDgv.Name = "SupplierInvoiceDgv";
             this.SupplierInvoiceDgv.Size = new System.Drawing.Size(371, 244);
             this.SupplierInvoiceDgv.TabIndex = 3;
+            this.SupplierInvoiceDgv.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.SupplierInvoiceDgv_EditingControlShowing);
+            // 
+            // supplierInvoiceSupplierDTOBindingSource
+            // 
+            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO);
+            // 
+            // timer
+            // 
+            this.timer.Interval = 500;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // SupplierNameCmbxDgv
+            // 
+            this.SupplierNameCmbxDgv.DataPropertyName = "SupplierName";
+            this.SupplierNameCmbxDgv.HeaderText = "SupplierName";
+            this.SupplierNameCmbxDgv.Name = "SupplierNameCmbxDgv";
+            this.SupplierNameCmbxDgv.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SupplierNameCmbxDgv.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // SupplierCountryCmbxDgv
+            // 
+            this.SupplierCountryCmbxDgv.DataPropertyName = "Country";
+            this.SupplierCountryCmbxDgv.HeaderText = "Country";
+            this.SupplierCountryCmbxDgv.Name = "SupplierCountryCmbxDgv";
+            this.SupplierCountryCmbxDgv.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SupplierCountryCmbxDgv.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // SaleBookingNumberTxtDgv
+            // 
+            this.SaleBookingNumberTxtDgv.DataPropertyName = "SaleBookingNumber";
+            this.SaleBookingNumberTxtDgv.HeaderText = "SaleBookingNumber";
+            this.SaleBookingNumberTxtDgv.Name = "SaleBookingNumberTxtDgv";
+            this.SaleBookingNumberTxtDgv.Visible = false;
+            // 
+            // SaleBoLTxtDgv
+            // 
+            this.SaleBoLTxtDgv.DataPropertyName = "SaleBoL";
+            this.SaleBoLTxtDgv.HeaderText = "SaleBoL";
+            this.SaleBoLTxtDgv.Name = "SaleBoLTxtDgv";
+            this.SaleBoLTxtDgv.Visible = false;
+            // 
+            // InvoiceIdTxtDgv
+            // 
+            this.InvoiceIdTxtDgv.DataPropertyName = "InvoiceId";
+            this.InvoiceIdTxtDgv.HeaderText = "InvoiceId";
+            this.InvoiceIdTxtDgv.Name = "InvoiceIdTxtDgv";
+            this.InvoiceIdTxtDgv.Visible = false;
+            // 
+            // SaleIdTxtDgv
+            // 
+            this.SaleIdTxtDgv.DataPropertyName = "SaleId";
+            this.SaleIdTxtDgv.HeaderText = "SaleId";
+            this.SaleIdTxtDgv.Name = "SaleIdTxtDgv";
+            this.SaleIdTxtDgv.Visible = false;
+            // 
+            // SupplierInvoiceTxtDgv
+            // 
+            this.SupplierInvoiceTxtDgv.DataPropertyName = "SupplierInvoiceCode";
+            this.SupplierInvoiceTxtDgv.HeaderText = "SupplierInvoiceCode";
+            this.SupplierInvoiceTxtDgv.Name = "SupplierInvoiceTxtDgv";
+            this.SupplierInvoiceTxtDgv.Visible = false;
+            // 
+            // SupplierIdTxtDgv
+            // 
+            this.SupplierIdTxtDgv.DataPropertyName = "SupplierId";
+            this.SupplierIdTxtDgv.HeaderText = "SupplierId";
+            this.SupplierIdTxtDgv.Name = "SupplierIdTxtDgv";
+            this.SupplierIdTxtDgv.Visible = false;
+            // 
+            // InvoiceAmountTxtDgv
+            // 
+            this.InvoiceAmountTxtDgv.DataPropertyName = "InvoiceAmount";
+            this.InvoiceAmountTxtDgv.HeaderText = "InvoiceAmount";
+            this.InvoiceAmountTxtDgv.Name = "InvoiceAmountTxtDgv";
+            this.InvoiceAmountTxtDgv.Visible = false;
+            // 
+            // InvoiceDateTxtDgv
+            // 
+            this.InvoiceDateTxtDgv.DataPropertyName = "InvoiceDate";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.InvoiceDateTxtDgv.DefaultCellStyle = dataGridViewCellStyle3;
+            this.InvoiceDateTxtDgv.HeaderText = "InvoiceDate";
+            this.InvoiceDateTxtDgv.Name = "InvoiceDateTxtDgv";
+            this.InvoiceDateTxtDgv.ToolTipText = "dd/mm/yyyy";
+            // 
+            // StatusDataCmbxDgv
+            // 
+            this.StatusDataCmbxDgv.DataPropertyName = "Status";
+            this.StatusDataCmbxDgv.HeaderText = "Status";
+            this.StatusDataCmbxDgv.Name = "StatusDataCmbxDgv";
             // 
             // SaleGroupCreateForm
             // 
@@ -177,6 +301,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CustomerInvoiceDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierInvoiceDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,5 +311,18 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView CustomerInvoiceDgv;
         private System.Windows.Forms.DataGridView SupplierInvoiceDgv;
+        private System.Windows.Forms.BindingSource supplierInvoiceSupplierDTOBindingSource;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.DataGridViewComboBoxColumn SupplierNameCmbxDgv;
+        private System.Windows.Forms.DataGridViewComboBoxColumn SupplierCountryCmbxDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleBookingNumberTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleBoLTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceIdTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleIdTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierIdTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceAmountTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDateTxtDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatusDataCmbxDgv;
     }
 }

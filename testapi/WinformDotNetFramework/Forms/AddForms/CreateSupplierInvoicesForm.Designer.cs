@@ -65,7 +65,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.StatusCmbx.Items.AddRange(new object[] {
             "Approved",
             "Unapproved"});
-            this.StatusCmbx.Location = new System.Drawing.Point(288, 247);
+            this.StatusCmbx.Location = new System.Drawing.Point(288, 254);
             this.StatusCmbx.Name = "StatusCmbx";
             this.StatusCmbx.Size = new System.Drawing.Size(172, 23);
             this.StatusCmbx.TabIndex = 26;
@@ -77,7 +77,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(289, 229);
+            this.StatusLbl.Location = new System.Drawing.Point(289, 236);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(44, 15);
             this.StatusLbl.TabIndex = 27;
@@ -90,7 +90,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.DateClnd.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateClnd.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DateClnd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateClnd.Location = new System.Drawing.Point(288, 291);
+            this.DateClnd.Location = new System.Drawing.Point(288, 298);
             this.DateClnd.Name = "DateClnd";
             this.DateClnd.Size = new System.Drawing.Size(172, 23);
             this.DateClnd.TabIndex = 28;
@@ -102,7 +102,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaveEditCustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditCustomerBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveEditCustomerBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(325, 320);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(325, 327);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
             this.SaveEditCustomerBtn.Size = new System.Drawing.Size(135, 23);
             this.SaveEditCustomerBtn.TabIndex = 25;
@@ -152,7 +152,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // CountryCmbxUC
             // 
             this.CountryCmbxUC.listItemsDropCmbx = null;
-            this.CountryCmbxUC.Location = new System.Drawing.Point(288, 203);
+            this.CountryCmbxUC.Location = new System.Drawing.Point(288, 210);
             this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.CountryCmbxUC.Name = "CountryCmbxUC";
             this.CountryCmbxUC.Size = new System.Drawing.Size(172, 23);
@@ -164,7 +164,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.NameCmbxUC.Location = new System.Drawing.Point(288, 163);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(172, 22);
+            this.NameCmbxUC.Size = new System.Drawing.Size(172, 28);
             this.NameCmbxUC.TabIndex = 47;
             // 
             // SupplierCountryLbl
@@ -173,7 +173,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SupplierCountryLbl.AutoSize = true;
             this.SupplierCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SupplierCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierCountryLbl.Location = new System.Drawing.Point(288, 185);
+            this.SupplierCountryLbl.Location = new System.Drawing.Point(288, 192);
             this.SupplierCountryLbl.Name = "SupplierCountryLbl";
             this.SupplierCountryLbl.Size = new System.Drawing.Size(101, 15);
             this.SupplierCountryLbl.TabIndex = 46;
@@ -240,7 +240,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(289, 273);
+            this.label1.Location = new System.Drawing.Point(289, 280);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 33;
@@ -253,7 +253,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.OpenSupplier.FlatAppearance.BorderSize = 0;
             this.OpenSupplier.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSupplier.Location = new System.Drawing.Point(465, 185);
+            this.OpenSupplier.Location = new System.Drawing.Point(465, 192);
             this.OpenSupplier.Name = "OpenSupplier";
             this.OpenSupplier.Size = new System.Drawing.Size(55, 25);
             this.OpenSupplier.TabIndex = 30;
