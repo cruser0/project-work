@@ -54,6 +54,11 @@ namespace API.Models.Services
             // Retrieve all customer invoices from the database and map each one to a CustomerInvoiceDTOGet
             var query = _context.CustomerInvoices.Include(x => x.Status).Include(x => x.Sale).AsQueryable();
 
+            if (filter.CustomerInvoiceSaleID != null)
+            {
+                query = query.Where(x => x.SaleID == filter.CustomerInvoiceSaleID);
+            }
+
             if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBoL))
             {
                 query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBoL));
@@ -93,6 +98,10 @@ namespace API.Models.Services
             else if (filter.CustomerInvoiceInvoiceDateTo != null)
             {
                 query = query.Where(s => s.InvoiceDate <= filter.CustomerInvoiceInvoiceDateTo);
+            }
+            if (!string.IsNullOrEmpty(filter.CustomerInvoiceStatus))
+            {
+                query = query.Where(s => s.Status.StatusName == filter.CustomerInvoiceStatus);
             }
             if (filter.CustomerInvoicePage != null)
             {
@@ -170,8 +179,10 @@ namespace API.Models.Services
             // Check if the provided status is valid
             if (!string.IsNullOrEmpty(customerInvoice.Status.StatusName) && !statusList.Contains(customerInvoice.Status.StatusName.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA customer invoice is Paid or Unpaid");
+
             Sale sale = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == ciDB.SaleID).FirstAsync();
             if (sale.Status.StatusName.ToLower().Equals("closed"))
+
                 throw new ErrorInputPropertyException($"The current Sale is already closed");
             // Validate that the invoice amount is greater than zero
             if (customerInvoice.InvoiceAmount <= 0)

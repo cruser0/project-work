@@ -36,19 +36,19 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.StatusLbl = new System.Windows.Forms.Label();
-            this.StatusCmbx = new System.Windows.Forms.ComboBox();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.OpenSale = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.CustomerCountryLbl = new System.Windows.Forms.Label();
-            this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.StatusCmbx = new System.Windows.Forms.ComboBox();
+            this.StatusLbl = new System.Windows.Forms.Label();
+            this.CustomerNameLbl = new System.Windows.Forms.Label();
+            this.CustomerCountryLbl = new System.Windows.Forms.Label();
+            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,35 +119,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label2.TabIndex = 14;
             this.label2.Text = "Booking Number";
             // 
-            // StatusLbl
-            // 
-            this.StatusLbl.AllowDrop = true;
-            this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(428, 177);
-            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
-            this.StatusLbl.TabIndex = 29;
-            this.StatusLbl.Text = "Status";
-            // 
-            // StatusCmbx
-            // 
-            this.StatusCmbx.AllowDrop = true;
-            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusCmbx.FormattingEnabled = true;
-            this.StatusCmbx.Items.AddRange(new object[] {
-            "Active",
-            "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(428, 192);
-            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.StatusCmbx.Name = "StatusCmbx";
-            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
-            this.StatusCmbx.TabIndex = 28;
-            this.StatusCmbx.SelectedIndexChanged += new System.EventHandler(this.NameTxt_TextChanged);
-            // 
             // SaveBtn
             // 
             this.SaveBtn.AllowDrop = true;
@@ -212,48 +183,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel2.Size = new System.Drawing.Size(744, 422);
             this.panel2.TabIndex = 33;
             // 
-            // CountryCmbxUC
-            // 
-            this.CountryCmbxUC.listItemsDropCmbx = null;
-            this.CountryCmbxUC.Location = new System.Drawing.Point(428, 148);
-            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.CountryCmbxUC.Name = "CountryCmbxUC";
-            this.CountryCmbxUC.Size = new System.Drawing.Size(201, 23);
-            this.CountryCmbxUC.TabIndex = 44;
-            // 
-            // NameCmbxUC
-            // 
-            this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(428, 103);
-            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(201, 24);
-            this.NameCmbxUC.TabIndex = 43;
-            // 
-            // CustomerCountryLbl
-            // 
-            this.CustomerCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerCountryLbl.AutoSize = true;
-            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerCountryLbl.Location = new System.Drawing.Point(429, 130);
-            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
-            this.CustomerCountryLbl.Size = new System.Drawing.Size(110, 15);
-            this.CustomerCountryLbl.TabIndex = 42;
-            this.CustomerCountryLbl.Text = "Customer Country*";
-            // 
-            // CustomerNameLbl
-            // 
-            this.CustomerNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerNameLbl.AutoSize = true;
-            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerNameLbl.Location = new System.Drawing.Point(429, 85);
-            this.CustomerNameLbl.Name = "CustomerNameLbl";
-            this.CustomerNameLbl.Size = new System.Drawing.Size(99, 15);
-            this.CustomerNameLbl.TabIndex = 39;
-            this.CustomerNameLbl.Text = "Customer Name*";
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
@@ -284,6 +213,77 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.Size = new System.Drawing.Size(20, 422);
             this.panel5.TabIndex = 36;
             // 
+            // StatusCmbx
+            // 
+            this.StatusCmbx.AllowDrop = true;
+            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusCmbx.FormattingEnabled = true;
+            this.StatusCmbx.Items.AddRange(new object[] {
+            "Active",
+            "Closed"});
+            this.StatusCmbx.Location = new System.Drawing.Point(428, 192);
+            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.StatusCmbx.Name = "StatusCmbx";
+            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
+            this.StatusCmbx.TabIndex = 28;
+            this.StatusCmbx.SelectedIndexChanged += new System.EventHandler(this.NameTxt_TextChanged);
+            // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AllowDrop = true;
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusLbl.Location = new System.Drawing.Point(428, 177);
+            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
+            this.StatusLbl.TabIndex = 29;
+            this.StatusLbl.Text = "Status";
+            // 
+            // CustomerNameLbl
+            // 
+            this.CustomerNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CustomerNameLbl.AutoSize = true;
+            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerNameLbl.Location = new System.Drawing.Point(429, 85);
+            this.CustomerNameLbl.Name = "CustomerNameLbl";
+            this.CustomerNameLbl.Size = new System.Drawing.Size(99, 15);
+            this.CustomerNameLbl.TabIndex = 39;
+            this.CustomerNameLbl.Text = "Customer Name*";
+            // 
+            // CustomerCountryLbl
+            // 
+            this.CustomerCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CustomerCountryLbl.AutoSize = true;
+            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerCountryLbl.Location = new System.Drawing.Point(429, 130);
+            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
+            this.CustomerCountryLbl.Size = new System.Drawing.Size(110, 15);
+            this.CustomerCountryLbl.TabIndex = 42;
+            this.CustomerCountryLbl.Text = "Customer Country*";
+            // 
+            // NameCmbxUC
+            // 
+            this.NameCmbxUC.listItemsDropCmbx = null;
+            this.NameCmbxUC.Location = new System.Drawing.Point(431, 102);
+            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.NameCmbxUC.Name = "NameCmbxUC";
+            this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.NameCmbxUC.TabIndex = 43;
+            // 
+            // CountryCmbxUC
+            // 
+            this.CountryCmbxUC.listItemsDropCmbx = null;
+            this.CountryCmbxUC.Location = new System.Drawing.Point(432, 148);
+            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.CountryCmbxUC.Name = "CountryCmbxUC";
+            this.CountryCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.CountryCmbxUC.TabIndex = 44;
+            // 
             // CreateSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -313,8 +313,6 @@ namespace WinformDotNetFramework.Forms.AddForms
         public Label label4;
         public Label label3;
         public Label label2;
-        public Label StatusLbl;
-        public ComboBox StatusCmbx;
         public Button SaveBtn;
         public Button OpenSale;
         public Panel panel1;
@@ -322,9 +320,11 @@ namespace WinformDotNetFramework.Forms.AddForms
         public Panel panel3;
         public Panel panel4;
         public Panel panel5;
-        public Label CustomerCountryLbl;
-        public Label CustomerNameLbl;
         public control.DropDownMenuAutoCompleteUserControl CountryCmbxUC;
         public control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
+        public Label CustomerCountryLbl;
+        public Label CustomerNameLbl;
+        public Label StatusLbl;
+        public ComboBox StatusCmbx;
     }
 }

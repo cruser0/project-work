@@ -55,6 +55,11 @@ namespace API.Models.Services
                          from supplier in SupplierInvoiceGroup.DefaultIfEmpty()
                          select new { SupplierInvoice = si, Supplier = supplier }).AsQueryable();
 
+            if (filter.SupplierInvoiceSaleID != null)
+            {
+                query = query.Where(x => x.SupplierInvoice.SaleID == filter.SupplierInvoiceSaleID);
+            }
+
             if (!string.IsNullOrEmpty(filter.SupplierInvoiceCode))
             {
                 query = query.Where(x => x.SupplierInvoice.SupplierInvoiceCode.Contains(filter.SupplierInvoiceCode));

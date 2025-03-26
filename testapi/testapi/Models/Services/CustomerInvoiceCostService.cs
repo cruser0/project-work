@@ -25,7 +25,7 @@ namespace API.Models.Services
         private readonly Progetto_FormativoContext _context;
         private readonly ICustomerInvoicesService _serviceCustomerInvoice;
         private readonly CostRegistryService _costRegistry;
-        public CustomerInvoiceCostService(Progetto_FormativoContext ctx, ICustomerInvoicesService service,CostRegistryService cr)
+        public CustomerInvoiceCostService(Progetto_FormativoContext ctx, ICustomerInvoicesService service, CostRegistryService cr)
         {
             _context = ctx;
             _serviceCustomerInvoice = service;
@@ -104,18 +104,23 @@ namespace API.Models.Services
         public async Task<CustomerInvoiceCostDTOGet> CreateCustomerInvoiceCost(CustomerInvoiceCost customerInvoiceCost)
         {
             CustomerInvoice ci;
+
             if (customerInvoiceCost == null)
                 throw new NullPropertyException("Couldn't create customer Invoice Cost,the input was null");
+
             if (customerInvoiceCost.CustomerInvoiceID == null)
                 throw new NullPropertyException("Customer Invoice Id can't be null!");
+
             if (!await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).AnyAsync())
                 throw new ErrorInputPropertyException("Customer Invoice Id not found!");
+
             if (customerInvoiceCost.Cost < 0 || customerInvoiceCost.Quantity < 1 || customerInvoiceCost.Cost == null || customerInvoiceCost.Quantity == null)
                 throw new ErrorInputPropertyException("Values can't be lesser than 1 or null");
+
             if (string.IsNullOrEmpty(customerInvoiceCost.Name))
                 throw new NullPropertyException("Name can't be empty");
 
-            ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).Include(x => x.Status).FirstAsync();
+            ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).Include(x => x.Status).Include(x => x.CustomerInvoiceCosts).FirstAsync();
             if (ci.Status.StatusName.ToLower().Equals("paid"))
                 throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
             var total = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceID == ci.CustomerInvoiceID).SumAsync(x => x.Cost);
@@ -128,10 +133,10 @@ namespace API.Models.Services
             if (customerInvoiceCost.CostRegistryID == null)
                 throw new ErrorInputPropertyException("Cost Registry Code wrong or missing");
 
-            await _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceID, ci);
-
             _context.Add(customerInvoiceCost);
             await _context.SaveChangesAsync();
+
+            await _serviceCustomerInvoice.UpdateCustomerInvoice(ci.CustomerInvoiceID, ci);
             return CustomerInvoiceCostMapper.MapGet(customerInvoiceCost);
         }
 
@@ -377,9 +382,9 @@ namespace API.Models.Services
         {
             int count = 0;
 
-            foreach(CustomerInvoiceCostDTO customerInvoiceCostDto in CustomerInvoiceCostsList)
+            foreach (CustomerInvoiceCostDTO customerInvoiceCostDto in CustomerInvoiceCostsList)
             {
-                CustomerInvoiceCost customerInvoiceCost = Mapper.CustomerInvoiceCostMapper.Map(customerInvoiceCostDto,await _costRegistry.GetCostRegistryByCode(customerInvoiceCostDto.CostRegistryCode),await _serviceCustomerInvoice.GetOnlyCustomerInvoiceById((int)customerInvoiceCostDto.CustomerInvoiceId));
+                CustomerInvoiceCost customerInvoiceCost = Mapper.CustomerInvoiceCostMapper.Map(customerInvoiceCostDto, await _costRegistry.GetCostRegistryByCode(customerInvoiceCostDto.CostRegistryCode), await _serviceCustomerInvoice.GetOnlyCustomerInvoiceById((int)customerInvoiceCostDto.CustomerInvoiceId));
                 CustomerInvoice ci;
                 if (customerInvoiceCost == null)
                     throw new NullPropertyException("Couldn't create customer Invoice Cost,the input was null");
