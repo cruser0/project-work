@@ -38,6 +38,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CenterDgv = new System.Windows.Forms.DataGridView();
+            this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -54,14 +55,25 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CustomerInvoiceCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleBookingNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleBoL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerInvoiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceCostBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // RightPanel
@@ -115,9 +127,21 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.CenterDgv.AllowUserToAddRows = false;
             this.CenterDgv.AllowUserToDeleteRows = false;
+            this.CenterDgv.AllowUserToOrderColumns = true;
+            this.CenterDgv.AutoGenerateColumns = false;
             this.CenterDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CenterDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CenterDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CenterDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CustomerInvoiceCode,
+            this.SaleBookingNumber,
+            this.SaleBoL,
+            this.InvoiceAmount,
+            this.Status,
+            this.InvoiceDate,
+            this.CustomerInvoiceID,
+            this.SaleID});
+            this.CenterDgv.DataSource = this.customerInvoiceBindingSource;
             this.CenterDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterDgv.Location = new System.Drawing.Point(0, 25);
             this.CenterDgv.Name = "CenterDgv";
@@ -127,6 +151,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterDgv.TabIndex = 0;
             this.CenterDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CenterDgv_CellDoubleClick);
             this.CenterDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDhvEvent);
+            // 
+            // customerInvoiceBindingSource
+            // 
+            this.customerInvoiceBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.CustomerInvoice);
             // 
             // toolStrip1
             // 
@@ -285,6 +313,68 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceStatusTsmi.Text = "Show Status";
             this.CustomerInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // customerInvoiceCostBindingSource
+            // 
+            this.customerInvoiceCostBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.CustomerInvoiceCost);
+            // 
+            // CustomerInvoiceCode
+            // 
+            this.CustomerInvoiceCode.DataPropertyName = "CustomerInvoiceCode";
+            this.CustomerInvoiceCode.HeaderText = "CustomerInvoiceCode";
+            this.CustomerInvoiceCode.Name = "CustomerInvoiceCode";
+            this.CustomerInvoiceCode.ReadOnly = true;
+            // 
+            // SaleBookingNumber
+            // 
+            this.SaleBookingNumber.DataPropertyName = "SaleBookingNumber";
+            this.SaleBookingNumber.HeaderText = "SaleBookingNumber";
+            this.SaleBookingNumber.Name = "SaleBookingNumber";
+            this.SaleBookingNumber.ReadOnly = true;
+            // 
+            // SaleBoL
+            // 
+            this.SaleBoL.DataPropertyName = "SaleBoL";
+            this.SaleBoL.HeaderText = "SaleBoL";
+            this.SaleBoL.Name = "SaleBoL";
+            this.SaleBoL.ReadOnly = true;
+            // 
+            // InvoiceAmount
+            // 
+            this.InvoiceAmount.DataPropertyName = "InvoiceAmount";
+            this.InvoiceAmount.HeaderText = "InvoiceAmount";
+            this.InvoiceAmount.Name = "InvoiceAmount";
+            this.InvoiceAmount.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // InvoiceDate
+            // 
+            this.InvoiceDate.DataPropertyName = "InvoiceDate";
+            this.InvoiceDate.HeaderText = "InvoiceDate";
+            this.InvoiceDate.Name = "InvoiceDate";
+            this.InvoiceDate.ReadOnly = true;
+            // 
+            // CustomerInvoiceID
+            // 
+            this.CustomerInvoiceID.DataPropertyName = "CustomerInvoiceId";
+            this.CustomerInvoiceID.HeaderText = "CustomerInvoiceID";
+            this.CustomerInvoiceID.Name = "CustomerInvoiceID";
+            this.CustomerInvoiceID.ReadOnly = true;
+            this.CustomerInvoiceID.Visible = false;
+            // 
+            // SaleID
+            // 
+            this.SaleID.DataPropertyName = "SaleId";
+            this.SaleID.HeaderText = "SaleID";
+            this.SaleID.Name = "SaleID";
+            this.SaleID.ReadOnly = true;
+            this.SaleID.Visible = false;
+            // 
             // CustomerInvoiceGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,12 +393,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CenterPanel.ResumeLayout(false);
             this.CenterPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CenterDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.RightClickDgv.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceCostBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,5 +429,15 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton1;
         private control.SearchCustomerInvoice searchCustomerInvoice1;
         private ToolStripButton ToggleEditButton;
+        private BindingSource customerInvoiceBindingSource;
+        private BindingSource customerInvoiceCostBindingSource;
+        private DataGridViewTextBoxColumn CustomerInvoiceCode;
+        private DataGridViewTextBoxColumn SaleBookingNumber;
+        private DataGridViewTextBoxColumn SaleBoL;
+        private DataGridViewTextBoxColumn InvoiceAmount;
+        private DataGridViewTextBoxColumn Status;
+        private DataGridViewTextBoxColumn InvoiceDate;
+        private DataGridViewTextBoxColumn CustomerInvoiceID;
+        private DataGridViewTextBoxColumn SaleID;
     }
 }

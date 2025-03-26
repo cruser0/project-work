@@ -34,8 +34,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerGridForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
-            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CustomerIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,9 +51,21 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
+            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
+            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
+            this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.saleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.saleCustomerDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Deprecated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OriginalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerGdv)).BeginInit();
@@ -65,6 +75,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleCustomerDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -87,22 +101,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
             this.TextBoxesRightPanel.TabIndex = 6;
-            // 
-            // searchCustomer1
-            // 
-            this.searchCustomer1.Location = new System.Drawing.Point(3, 0);
-            this.searchCustomer1.Name = "searchCustomer1";
-            this.searchCustomer1.Size = new System.Drawing.Size(197, 258);
-            this.searchCustomer1.TabIndex = 15;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
-            this.RightSideBar.TabIndex = 0;
             // 
             // CustomerGdv
             // 
@@ -198,12 +196,25 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             // CustomerDgv
             // 
+            this.CustomerDgv.AllowUserToAddRows = false;
+            this.CustomerDgv.AllowUserToDeleteRows = false;
+            this.CustomerDgv.AllowUserToOrderColumns = true;
+            this.CustomerDgv.AutoGenerateColumns = false;
             this.CustomerDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CustomerDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.CustomerDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CustomerDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CustomerName,
+            this.Country,
+            this.CustomerID,
+            this.Deprecated,
+            this.CreatedAt,
+            this.OriginalID});
+            this.CustomerDgv.DataSource = this.customerBindingSource;
             this.CustomerDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomerDgv.Location = new System.Drawing.Point(0, 25);
             this.CustomerDgv.Name = "CustomerDgv";
+            this.CustomerDgv.ReadOnly = true;
             this.CustomerDgv.RowTemplate.Height = 25;
             this.CustomerDgv.Size = new System.Drawing.Size(584, 349);
             this.CustomerDgv.TabIndex = 7;
@@ -282,14 +293,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel5.Size = new System.Drawing.Size(313, 87);
             this.panel5.TabIndex = 2;
             // 
-            // PaginationUserControl
-            // 
-            this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
-            this.PaginationUserControl.Name = "PaginationUserControl";
-            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
-            this.PaginationUserControl.TabIndex = 0;
-            // 
             // panel4
             // 
             this.panel4.AutoSize = true;
@@ -307,6 +310,91 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(0, 87);
             this.panel3.TabIndex = 0;
+            // 
+            // customerBindingSource
+            // 
+            this.customerBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.Customer);
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
+            this.PaginationUserControl.TabIndex = 0;
+            // 
+            // searchCustomer1
+            // 
+            this.searchCustomer1.Location = new System.Drawing.Point(3, 0);
+            this.searchCustomer1.Name = "searchCustomer1";
+            this.searchCustomer1.Size = new System.Drawing.Size(197, 258);
+            this.searchCustomer1.TabIndex = 15;
+            // 
+            // RightSideBar
+            // 
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
+            this.RightSideBar.TabIndex = 0;
+            // 
+            // supplierBindingSource
+            // 
+            this.supplierBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.Supplier);
+            // 
+            // saleBindingSource
+            // 
+            this.saleBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.Sale);
+            // 
+            // saleCustomerDTOBindingSource
+            // 
+            this.saleCustomerDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SaleCustomerDTO);
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.HeaderText = "CustomerName";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            // 
+            // Country
+            // 
+            this.Country.DataPropertyName = "Country";
+            this.Country.HeaderText = "Country";
+            this.Country.Name = "Country";
+            this.Country.ReadOnly = true;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.DataPropertyName = "CustomerId";
+            this.CustomerID.HeaderText = "CustomerID";
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
+            this.CustomerID.Visible = false;
+            // 
+            // Deprecated
+            // 
+            this.Deprecated.DataPropertyName = "Deprecated";
+            this.Deprecated.HeaderText = "Deprecated";
+            this.Deprecated.Name = "Deprecated";
+            this.Deprecated.ReadOnly = true;
+            // 
+            // CreatedAt
+            // 
+            this.CreatedAt.DataPropertyName = "CreatedAt";
+            this.CreatedAt.HeaderText = "CreatedAt";
+            this.CreatedAt.Name = "CreatedAt";
+            this.CreatedAt.ReadOnly = true;
+            this.CreatedAt.Visible = false;
+            // 
+            // OriginalID
+            // 
+            this.OriginalID.DataPropertyName = "OriginalID";
+            this.OriginalID.HeaderText = "OriginalID";
+            this.OriginalID.Name = "OriginalID";
+            this.OriginalID.ReadOnly = true;
+            this.OriginalID.Visible = false;
             // 
             // CustomerGridForm
             // 
@@ -333,6 +421,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.BottomPanel.ResumeLayout(false);
             this.BottomPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.saleCustomerDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -362,5 +454,15 @@ namespace WinformDotNetFramework.Forms.GridForms
         private control.SearchCustomer searchCustomer1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton ToggleEditButton;
+        private BindingSource customerBindingSource;
+        private BindingSource supplierBindingSource;
+        private BindingSource saleBindingSource;
+        private BindingSource saleCustomerDTOBindingSource;
+        private DataGridViewTextBoxColumn CustomerName;
+        private DataGridViewTextBoxColumn Country;
+        private DataGridViewTextBoxColumn CustomerID;
+        private DataGridViewTextBoxColumn Deprecated;
+        private DataGridViewTextBoxColumn CreatedAt;
+        private DataGridViewTextBoxColumn OriginalID;
     }
 }

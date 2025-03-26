@@ -48,6 +48,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.paginationControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.userDgv = new System.Windows.Forms.DataGridView();
+            this.userRoleDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -59,14 +60,21 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserLastNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserEmailTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.UserRoleTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.PaginationPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userRoleDTOBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.RightClickDgv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -252,9 +260,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.userDgv.AllowUserToAddRows = false;
             this.userDgv.AllowUserToDeleteRows = false;
+            this.userDgv.AllowUserToOrderColumns = true;
+            this.userDgv.AutoGenerateColumns = false;
             this.userDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.userDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.userIDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.lastNameDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn});
+            this.userDgv.DataSource = this.userRoleDTOBindingSource;
             this.userDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userDgv.Location = new System.Drawing.Point(0, 25);
             this.userDgv.Name = "userDgv";
@@ -264,6 +280,10 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.userDgv.TabIndex = 0;
             this.userDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
             this.userDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDgv_RightClick);
+            // 
+            // userRoleDTOBindingSource
+            // 
+            this.userRoleDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.UserRoleDTO);
             // 
             // toolStrip1
             // 
@@ -376,6 +396,38 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.UserRoleTsmi.Text = "Show Roles";
             this.UserRoleTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.User);
+            // 
+            // userIDDataGridViewTextBoxColumn
+            // 
+            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
+            this.userIDDataGridViewTextBoxColumn.HeaderText = "UserID";
+            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
+            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // UserGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,9 +449,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userRoleDTOBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.RightClickDgv.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,5 +487,11 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripButton1;
         private ToolStripButton ToggleEditButton;
+        private BindingSource userBindingSource;
+        private BindingSource userRoleDTOBindingSource;
+        private DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
     }
 }
