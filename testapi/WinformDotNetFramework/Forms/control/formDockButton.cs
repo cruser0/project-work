@@ -27,7 +27,6 @@ namespace WinformDotNetFramework.Forms.control
         {
             _userService = new UserService();
             InitializeComponent();
-            panel1.Width = 2 + buttonShowForm.Width + buttonCloseForm.Width + AddFavoriteButton.Width;
             if (childForm.Text.Contains("Detail"))
             {
                 AddFavoriteButton.Visible = false;
@@ -37,8 +36,8 @@ namespace WinformDotNetFramework.Forms.control
             form = childForm;
             panel = panelFather;
             mainForm = mainform;
-            Dock = DockStyle.Top;
 
+            Width = 2 + buttonShowForm.Width + buttonCloseForm.Width + AddFavoriteButton.Width;
             if (mainform.favoriteList.Contains(buttonName))
             {
                 AddFavoriteButton.Image = Properties.Resources.star_yellow25x25;

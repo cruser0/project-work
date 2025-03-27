@@ -55,7 +55,7 @@ namespace WinformDotNetFramework.Forms.control
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel1.Controls.Add(this.buttonCloseForm);
             this.panel1.Controls.Add(this.AddFavoriteButton);
             this.panel1.Controls.Add(this.buttonShowForm);
@@ -111,9 +111,9 @@ namespace WinformDotNetFramework.Forms.control
         }
 
         #endregion
-        private Panel panel1;
         private Button buttonCloseForm;
         private Button buttonShowForm;
         private Button AddFavoriteButton;
+        public Panel panel1;
     }
 }

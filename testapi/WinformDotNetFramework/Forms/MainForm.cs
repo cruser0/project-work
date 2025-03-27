@@ -386,14 +386,14 @@ namespace WinformDotNetFramework.Forms
             var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, this)
             {
                 Name = childForm.Text,
-                Dock = DockStyle.Top
+                Location = new Point(0, 0)
             };
 
             // Add the button to the table layout panel in the next available column
             minimizedPanel.Controls.Add(minimizedButton, minimizedPanel.ColumnCount - 1, 0);
 
             // Set the column style to make buttons stretch horizontally
-            minimizedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, minimizedButton.Width));
+            minimizedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize, minimizedButton.Width));
 
             // Hide the minimized form in the MDI parent
             childForm.Hide();
