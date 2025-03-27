@@ -282,6 +282,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.FlushCreateBtn.TabIndex = 64;
             this.FlushCreateBtn.Text = "Create New";
             this.FlushCreateBtn.UseVisualStyleBackColor = false;
+            this.FlushCreateBtn.Visible = false;
             this.FlushCreateBtn.Click += new System.EventHandler(this.FlushCreateBtn_Click);
             // 
             // button2

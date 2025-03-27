@@ -35,7 +35,7 @@
             // 
             // Cmbx
             // 
-            this.Cmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Cmbx.CausesValidation = false;
             this.Cmbx.Dock = System.Windows.Forms.DockStyle.Top;
             this.Cmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cmbx.FormattingEnabled = true;
@@ -43,12 +43,12 @@
             this.Cmbx.Name = "Cmbx";
             this.Cmbx.Size = new System.Drawing.Size(172, 23);
             this.Cmbx.TabIndex = 38;
-            this.Cmbx.SelectedIndexChanged += new System.EventHandler(this.Cmbx_SelectedIndexChanged);
-            this.Cmbx.SelectionChangeCommitted += new System.EventHandler(this.Cmbx_SelectionChangeCommitted);
+            this.Cmbx.SelectedValueChanged += new System.EventHandler(this.Cmbx_SelectedValueChanged);
             this.Cmbx.TextChanged += new System.EventHandler(this.Cmbx_TextChanged);
             // 
             // timer
             // 
+            this.timer.Interval = 500;
             this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // DropDownMenuAutoCompleteUserControl

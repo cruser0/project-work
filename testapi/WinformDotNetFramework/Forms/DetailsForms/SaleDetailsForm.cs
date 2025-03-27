@@ -230,7 +230,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void CustomerInvoiceBtn_click(object sender, EventArgs e)
         {
             UtilityFunctions.CreateFromDetails<CustomerInvoiceDetailsForm>(sender, e, this, sale);
-
         }
         private void SupplierInvoiceBtn_click(object sender, EventArgs e)
         {

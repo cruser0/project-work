@@ -137,6 +137,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // MainSplitContainer
             // 
             this.MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.MainSplitContainer.IsSplitterFixed = true;
             this.MainSplitContainer.Location = new System.Drawing.Point(58, 0);
             this.MainSplitContainer.Name = "MainSplitContainer";
             // 
@@ -480,6 +482,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.flowLayoutPanel1.Controls.Add(this.searchSupplierInvoiceCost1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 63);
+            this.flowLayoutPanel1.MaximumSize = new System.Drawing.Size(210, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(210, 398);
             this.flowLayoutPanel1.TabIndex = 0;

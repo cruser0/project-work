@@ -53,6 +53,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.customerInvoiceCostsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.AddCostBtn = new System.Windows.Forms.Button();
             this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
@@ -62,7 +63,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.FlushTxtBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -297,6 +298,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.FlushTxtBtn);
             this.panel6.Controls.Add(this.button2);
             this.panel6.Controls.Add(this.AddCostBtn);
             this.panel6.Controls.Add(this.label1);
@@ -318,6 +320,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(750, 162);
             this.panel6.TabIndex = 43;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.button2.Location = new System.Drawing.Point(491, 42);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(30, 25);
+            this.button2.TabIndex = 64;
+            this.button2.Text = "->";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // AddCostBtn
             // 
@@ -410,20 +427,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(17, 427);
             this.panel5.TabIndex = 36;
             // 
-            // button2
+            // FlushTxtBtn
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.button2.Location = new System.Drawing.Point(491, 42);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 25);
-            this.button2.TabIndex = 64;
-            this.button2.Text = "->";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.FlushTxtBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.FlushTxtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.FlushTxtBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FlushTxtBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.FlushTxtBtn.Location = new System.Drawing.Point(301, 126);
+            this.FlushTxtBtn.Name = "FlushTxtBtn";
+            this.FlushTxtBtn.Size = new System.Drawing.Size(148, 25);
+            this.FlushTxtBtn.TabIndex = 65;
+            this.FlushTxtBtn.Text = "Create New";
+            this.FlushTxtBtn.UseVisualStyleBackColor = false;
             // 
             // CustomerInvoiceDetailsForm
             // 
@@ -482,5 +497,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private DataGridViewTextBoxColumn customerInvoiceIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn customerInvoiceCostsIdDataGridViewTextBoxColumn;
         private Button button2;
+        private Button FlushTxtBtn;
     }
 }

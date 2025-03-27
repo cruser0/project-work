@@ -61,16 +61,13 @@ namespace WinformDotNetFramework.Forms.control
                 if (listItemsDropCmbx.Count > 0)
                 {
                     Cmbx.BeginUpdate();
-                    Cmbx.DataSource = null;
                     Cmbx.DataSource = listItemsDropCmbx;
                     Cmbx.EndUpdate();
+                    Cmbx.DroppedDown = true;
+                    Cmbx.Text = currentText;
+                    Cmbx.SelectionStart = selectionStart;
 
-                    if (!currentText.EndsWith(" "))
-                    {
-                        Cmbx.DroppedDown = true;
-                        Cmbx.Text = currentText;
-                        Cmbx.SelectionStart = selectionStart;
-                    }
+
                 }
                 else
                 {
@@ -88,20 +85,38 @@ namespace WinformDotNetFramework.Forms.control
         }
 
 
+       
+
+        //private void Cmbx_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    timer.Stop();
+        //}
+
+        //public void Cmbx_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (_suppressEvents) return;
+        //    timer.Stop();
+        //    timer.Start();
+        //}
+
+        private void Cmbx_SelectedValueChanged(object sender, EventArgs e)
+        {
+            timer.Stop();
+        }
+
+
+
         public void Cmbx_TextChanged(object sender, EventArgs e)
         {
             if (_suppressEvents) return;
             timer.Stop();
             timer.Start();
-        }
 
-        private void Cmbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            timer.Stop();
         }
-        private void Cmbx_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            timer.Stop();
-        }
+        //private void Cmbx_SelectionChangeCommitted(object sender, EventArgs e)
+        //{
+        //    timer.Stop();
+        //}
+
     }
 }

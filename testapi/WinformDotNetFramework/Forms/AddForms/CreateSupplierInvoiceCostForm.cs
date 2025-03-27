@@ -42,6 +42,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             Init(null);
             InvoiceCode = data as string;
             UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
+            InvoiceCodeCmbxUC.Enabled = false;
+            OpenSupplierInvoice.Enabled = false;
+
         }
         bool detailsOnly=false;
         private async void Init(int? idDetails)

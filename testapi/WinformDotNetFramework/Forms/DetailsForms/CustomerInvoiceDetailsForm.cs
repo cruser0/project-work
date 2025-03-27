@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.GridForms;
@@ -22,9 +23,35 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         string bk;
         int saleID;
         bool detailsOnly = false;
+        Form _father;
         public CustomerInvoiceDetailsForm()
         {
             Init();
+            InitCreate();
+            
+
+        }
+        public CustomerInvoiceDetailsForm(int id)
+        {
+            Init();
+            InitDetails(id);
+            button2.Visible = false;
+
+        }
+        public CustomerInvoiceDetailsForm(SaleDetailsForm father, object sale)
+        {
+            SaleCustomerDTO saleCustomerDTO = (SaleCustomerDTO)sale;
+            _father = father;
+            Init();
+            InitCreate();
+            UtilityFunctions.SetDropdownText(BKCmbxUC, saleCustomerDTO.BookingNumber);
+            UtilityFunctions.SetDropdownText(BoLCmbxUC, saleCustomerDTO.BoLnumber);
+            BKCmbxUC.Enabled = false;
+            BoLCmbxUC.Enabled = false;
+
+        }
+        private async void InitCreate()
+        {
             dataGridView1.DataSource = new CustomerInvoiceCost();
             checkBox1.Visible = false;
             textBox1.Visible = false;
@@ -34,14 +61,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             StatusCB.Visible = false;
             label4.Visible = false;
             AddCostBtn.Enabled = false;
-
-        }
-        public CustomerInvoiceDetailsForm(int id)
-        {
-            Init();
-            InitDetails(id);
-            button2.Visible = false;
-
         }
         private async void InitDetails(int id)
         {

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -42,6 +43,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             BKCmbxUC.Enabled = false;
             BoLCmbxUC.Enabled = false;
             OpenSale.Enabled = false;
+            FlushCreateBtn.Visible = true;
 
         }
         public SupplierInvoiceDetailsForm(int id)
@@ -56,6 +58,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierService = new SupplierService();
             _supplierInvoiceService = new SupplierInvoiceService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
+            comboBox1.SelectedIndex = 1;
             if (id != null)
             {
                 detailsOnly = true;
@@ -171,6 +174,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             NameCmbxUC.Cmbx.Enabled = EditCbx.Checked;
             comboBox1.Enabled = EditCbx.Checked;
             DateClnd.Enabled = EditCbx.Checked;
+            NameCmbxUC.Enabled = EditCbx.Checked;
+            button2.Enabled = EditCbx.Checked;
+
 
             if (!EditCbx.Checked)
             {
@@ -285,7 +291,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                             supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode=code } )).FirstOrDefault();
                             textBox1.Text = code;
                             textBox1.Enabled = false;
-                            await RefreshDGV();
+                            NameCmbxUC.Enabled = false;
+                            comboBox1.Enabled = false;
+                            DateClnd.Enabled = false;
+                            button2.Enabled = false;
+
+                        await RefreshDGV();
                         if (_father != null)
                         {
                             if(_father is SaleDetailsForm sdf)
@@ -312,11 +323,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             int lastIndex = name.LastIndexOf(" - ");
 
-            if (lastIndex != -1 && lastIndex != name.Length - 3)
+            if (lastIndex != -1)
             {
-                country = name.Substring(lastIndex + 3);
+                string possibleCountry = name.Substring(lastIndex + 3);
 
-                name = name.Substring(0, lastIndex);
+                if (!string.IsNullOrWhiteSpace(possibleCountry))
+                {
+                    country = possibleCountry;
+                    name = name.Substring(0, lastIndex);
+                }
+                else
+                {
+                    name = name.Substring(0, lastIndex);
+                }
             }
             bkString = BKCmbxUC.Cmbx.Text;
             bolString = BoLCmbxUC.Cmbx.Text;
@@ -338,14 +357,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 // Only apply filters if at least one combobox has a value
                 SaleBookingNumber = !string.IsNullOrEmpty(bkString) ? bkString : null,
-                SaleBoLnumber = !string.IsNullOrEmpty(bolString) ? bolString : null
+                SaleBoLnumber = !string.IsNullOrEmpty(bolString) ? bolString : null,
+                SaleStatus="Active"
             });
 
             var SupplierListFiltered = await _supplierService.GetAll(new SupplierFilter()
             {
                 // Only apply filters if at least one combobox has a value
                 SupplierName = !string.IsNullOrEmpty(nameString) ? nameString : null,
-                SupplierCountry = !string.IsNullOrEmpty(countryString) ? countryString : null
+                SupplierCountry = !string.IsNullOrEmpty(countryString) ? countryString : null,
+                SupplierDeprecated=false
             });
 
             // Filter Booking Number suggestions
@@ -363,8 +384,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 .ToList();
 
             var listItemsName = SupplierListFiltered
-                .Where(x => string.IsNullOrEmpty(countryString) || x.Country == countryString)
-                .Select(x => (x.SupplierName ?? "") + (string.IsNullOrEmpty(x.Country) ? "" : $" - {x.Country}"))
+                .Where(x => string.IsNullOrEmpty(countryString) || x.Country.StartsWith(countryString))
+                .Select(x => x.SupplierName + $" - {x.Country}")
                 .Distinct()
                 .ToList();
 
@@ -376,7 +397,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void AddCostBtn_Click(object sender, EventArgs e)
         {
-            UtilityFunctions.CreateFromDetails<SaleGridForm>(sender, e, this, supplierInvoice.SupplierInvoiceCode);
+            UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e, this, supplierInvoice.SupplierInvoiceCode);
         }
 
         private void FlushCreateBtn_Click(object sender, EventArgs e)
