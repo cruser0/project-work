@@ -43,6 +43,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.DoubleRight = new System.Windows.Forms.ToolStripButton();
             this.TSLbl1 = new System.Windows.Forms.ToolStripLabel();
             this.SplitContainerDGV2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -51,7 +52,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right2 = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight2 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl2 = new System.Windows.Forms.ToolStripLabel();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -121,13 +121,13 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SplitContainerDGV2.Panel1.SuspendLayout();
             this.SplitContainerDGV2.Panel2.SuspendLayout();
             this.SplitContainerDGV2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.toolStrip2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.toolStrip3.SuspendLayout();
@@ -157,7 +157,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             this.MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.MainSplitContainer.IsSplitterFixed = true;
             this.MainSplitContainer.Location = new System.Drawing.Point(58, 0);
             this.MainSplitContainer.Name = "MainSplitContainer";
             // 
@@ -203,7 +202,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(513, 176);
+            this.groupBox1.Size = new System.Drawing.Size(511, 174);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customers";
@@ -309,6 +308,25 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SplitContainerDGV2.SplitterWidth = 3;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
+            // splitContainer3
+            // 
+            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.groupBox2);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer3.Size = new System.Drawing.Size(513, 151);
+            this.splitContainer3.SplitterDistance = 189;
+            this.splitContainer3.SplitterWidth = 3;
+            this.splitContainer3.TabIndex = 0;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView2);
@@ -316,7 +334,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(513, 151);
+            this.groupBox2.Size = new System.Drawing.Size(187, 149);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sales";
@@ -410,18 +428,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Customer Invoices";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dataGridView3);
-            this.groupBox3.Controls.Add(this.toolStrip3);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(213, 128);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Customer Invoices";
-            // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
@@ -510,7 +516,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(297, 128);
+            this.groupBox4.Size = new System.Drawing.Size(511, 126);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Customer Invoice Costs";
@@ -605,7 +611,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.flowLayoutPanel1.Controls.Add(this.searchCustomerInvoiceCost1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 63);
-            this.flowLayoutPanel1.MaximumSize = new System.Drawing.Size(210, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(210, 398);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -984,15 +989,15 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SplitContainerDGV2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).EndInit();
             this.SplitContainerDGV2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();

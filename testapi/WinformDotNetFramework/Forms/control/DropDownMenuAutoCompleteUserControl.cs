@@ -62,10 +62,10 @@ namespace WinformDotNetFramework.Forms.control
                 {
                     Cmbx.BeginUpdate();
                     Cmbx.DataSource = listItemsDropCmbx;
-                    Cmbx.EndUpdate();
                     Cmbx.DroppedDown = true;
                     Cmbx.Text = currentText;
                     Cmbx.SelectionStart = selectionStart;
+                    Cmbx.EndUpdate();
 
 
                 }
