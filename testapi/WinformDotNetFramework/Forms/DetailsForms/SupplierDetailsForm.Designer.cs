@@ -53,6 +53,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.SaveEditSupplierBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveEditSupplierBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveEditSupplierBtn.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.SaveEditSupplierBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SaveEditSupplierBtn.Location = new System.Drawing.Point(369, 330);
             this.SaveEditSupplierBtn.Name = "SaveEditSupplierBtn";

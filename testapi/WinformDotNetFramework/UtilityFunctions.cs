@@ -28,6 +28,13 @@ namespace WinformDotNetFramework
             return requireAll ? requiredRoles.All(userRoles.Contains) : requiredRoles.Any(userRoles.Contains);
         }
 
+        public static void SetDropdownText(DropDownMenuAutoCompleteUserControl dropdown, string text)
+        {
+            dropdown.Cmbx.TextChanged -= dropdown.Cmbx_TextChanged;
+            dropdown.Cmbx.Text = text;
+            dropdown.Cmbx.TextChanged += dropdown.Cmbx_TextChanged;
+        }
+
         public static void CreateFromDetails<T>(object sender, EventArgs e, object data) where T : Form
         {
             if (mainForm == null)
@@ -54,7 +61,7 @@ namespace WinformDotNetFramework
             formInstance.Activate();
 
         }
-        public static void CreateFromDetails<T>(object sender, EventArgs e,Form father, object data) where T : Form
+        public static void CreateFromDetails<T>(object sender, EventArgs e, Form father, object data) where T : Form
         {
             if (mainForm == null)
                 return;
@@ -66,7 +73,7 @@ namespace WinformDotNetFramework
             RemoveMinimizedButtons<T>(minimizedPanel);
 
             // Crea un'istanza del form di tipo T e lo apre
-            T formInstance = (T)Activator.CreateInstance(typeof(T),father, data);
+            T formInstance = (T)Activator.CreateInstance(typeof(T), father, data);
             formInstance.MdiParent = mainForm;
             formInstance.StartPosition = FormStartPosition.CenterScreen;
             formInstance.Size = formInstance.MinimumSize;

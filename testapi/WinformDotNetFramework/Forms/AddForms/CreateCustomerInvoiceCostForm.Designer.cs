@@ -81,7 +81,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(289, 182);
+            this.label3.Location = new System.Drawing.Point(289, 270);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 15);
             this.label3.TabIndex = 15;
@@ -92,7 +92,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(289, 138);
+            this.label2.Location = new System.Drawing.Point(289, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 15);
             this.label2.TabIndex = 18;
@@ -102,7 +102,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.NameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameTxt.Location = new System.Drawing.Point(289, 244);
+            this.NameTxt.Location = new System.Drawing.Point(289, 200);
             this.NameTxt.Name = "NameTxt";
             this.NameTxt.Size = new System.Drawing.Size(200, 23);
             this.NameTxt.TabIndex = 19;
@@ -112,7 +112,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label4.Location = new System.Drawing.Point(289, 226);
+            this.label4.Location = new System.Drawing.Point(289, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 15);
             this.label4.TabIndex = 20;
@@ -194,6 +194,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             // InvoiceCodeCmbxUC
             // 
+            this.InvoiceCodeCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
             this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
             this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -206,7 +207,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.CostRegistryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CostRegistryLbl.AutoSize = true;
             this.CostRegistryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostRegistryLbl.Location = new System.Drawing.Point(289, 272);
+            this.CostRegistryLbl.Location = new System.Drawing.Point(289, 138);
             this.CostRegistryLbl.Name = "CostRegistryLbl";
             this.CostRegistryLbl.Size = new System.Drawing.Size(84, 15);
             this.CostRegistryLbl.TabIndex = 36;
@@ -214,11 +215,12 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             // CostRegistryCmbx
             // 
+            this.CostRegistryCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CostRegistryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CostRegistryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CostRegistryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CostRegistryCmbx.FormattingEnabled = true;
-            this.CostRegistryCmbx.Location = new System.Drawing.Point(289, 290);
+            this.CostRegistryCmbx.Location = new System.Drawing.Point(289, 156);
             this.CostRegistryCmbx.Name = "CostRegistryCmbx";
             this.CostRegistryCmbx.Size = new System.Drawing.Size(200, 23);
             this.CostRegistryCmbx.TabIndex = 35;
@@ -227,7 +229,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.QuantityTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.QuantityTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.QuantityTxt.Location = new System.Drawing.Point(289, 200);
+            this.QuantityTxt.Location = new System.Drawing.Point(289, 288);
             this.QuantityTxt.Name = "QuantityTxt";
             this.QuantityTxt.Size = new System.Drawing.Size(200, 23);
             this.QuantityTxt.TabIndex = 16;
@@ -236,7 +238,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.CostTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CostTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostTxt.Location = new System.Drawing.Point(289, 156);
+            this.CostTxt.Location = new System.Drawing.Point(289, 244);
             this.CostTxt.Name = "CostTxt";
             this.CostTxt.Size = new System.Drawing.Size(200, 23);
             this.CostTxt.TabIndex = 21;

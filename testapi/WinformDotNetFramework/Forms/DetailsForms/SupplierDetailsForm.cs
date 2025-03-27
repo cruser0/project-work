@@ -16,7 +16,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         SupplierInvoiceSummary summary;
         Supplier supplier;
         int supplierID;
-        bool detailsOnly=false;
+        bool detailsOnly = false;
         public SupplierDetailsForm()
         {
             Init(null);
@@ -45,10 +45,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 NameSupplierTxt.Enabled = false;
                 CountryCmbx.Enabled = false;
                 comboBox1.Enabled = false;
-                detailsOnly=true;
+                detailsOnly = true;
                 CreateDonutChart();
-            }else
-                detailsOnly=false;
+            }
+            else
+                detailsOnly = false;
 
 
             List<string> authRolesWrite = new List<string>
@@ -68,9 +69,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 EditSupplierCbx.Visible = false;
             }
             chart1.Visible = detailsOnly;
-            EditSupplierCbx.Visible=detailsOnly;
-            comboBox1.Visible= detailsOnly;
-            label1.Visible=detailsOnly;
+            EditSupplierCbx.Visible = detailsOnly;
+            comboBox1.Visible = detailsOnly;
+            label1.Visible = detailsOnly;
         }
 
         private void CreateDonutChart()
@@ -163,7 +164,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     return;
                 }
 
-                    Supplier supplier = new Supplier()
+                Supplier supplier = new Supplier()
                 {
                     SupplierName = NameSupplierTxt.Text,
                     Country = CountryCmbx.Text
