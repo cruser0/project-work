@@ -27,6 +27,7 @@ namespace WinformDotNetFramework.Forms.control
         {
             _userService = new UserService();
             InitializeComponent();
+            panel1.Width = 2 + buttonShowForm.Width + buttonCloseForm.Width + AddFavoriteButton.Width;
             if (childForm.Text.Contains("Detail"))
             {
                 AddFavoriteButton.Visible = false;

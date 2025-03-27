@@ -43,6 +43,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.PanelCreateCustomerInvoiceCost = new System.Windows.Forms.Panel();
+            this.SaveQuit = new System.Windows.Forms.Button();
             this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CostRegistryLbl = new System.Windows.Forms.Label();
             this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
@@ -173,6 +174,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.PanelCreateCustomerInvoiceCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.PanelCreateCustomerInvoiceCost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelCreateCustomerInvoiceCost.Controls.Add(this.SaveQuit);
             this.PanelCreateCustomerInvoiceCost.Controls.Add(this.InvoiceCodeCmbxUC);
             this.PanelCreateCustomerInvoiceCost.Controls.Add(this.CostRegistryLbl);
             this.PanelCreateCustomerInvoiceCost.Controls.Add(this.CostRegistryCmbx);
@@ -191,6 +193,19 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.PanelCreateCustomerInvoiceCost.Name = "PanelCreateCustomerInvoiceCost";
             this.PanelCreateCustomerInvoiceCost.Size = new System.Drawing.Size(750, 427);
             this.PanelCreateCustomerInvoiceCost.TabIndex = 38;
+            // 
+            // SaveQuit
+            // 
+            this.SaveQuit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveQuit.Location = new System.Drawing.Point(289, 317);
+            this.SaveQuit.Name = "SaveQuit";
+            this.SaveQuit.Size = new System.Drawing.Size(94, 25);
+            this.SaveQuit.TabIndex = 39;
+            this.SaveQuit.Text = "Save and Quit";
+            this.SaveQuit.UseVisualStyleBackColor = false;
+            this.SaveQuit.Click += new System.EventHandler(this.SaveQuit_Click);
             // 
             // InvoiceCodeCmbxUC
             // 
@@ -230,6 +245,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.QuantityTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.QuantityTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.QuantityTxt.Location = new System.Drawing.Point(289, 288);
+            this.QuantityTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.QuantityTxt.Name = "QuantityTxt";
             this.QuantityTxt.Size = new System.Drawing.Size(200, 23);
             this.QuantityTxt.TabIndex = 16;
@@ -238,7 +254,8 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.CostTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CostTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostTxt.Location = new System.Drawing.Point(289, 244);
+            this.CostTxt.Location = new System.Drawing.Point(289, 243);
+            this.CostTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CostTxt.Name = "CostTxt";
             this.CostTxt.Size = new System.Drawing.Size(200, 23);
             this.CostTxt.TabIndex = 21;
@@ -283,5 +300,6 @@ namespace WinformDotNetFramework.Forms.AddForms
         private ComboBox CostRegistryCmbx;
         private Timer timer;
         private control.DropDownMenuAutoCompleteUserControl InvoiceCodeCmbxUC;
+        private Button SaveQuit;
     }
 }

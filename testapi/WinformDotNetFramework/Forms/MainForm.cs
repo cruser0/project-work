@@ -64,8 +64,9 @@ namespace WinformDotNetFramework.Forms
                 Height = 60,
                 RowCount = 1,
                 AutoScroll = true,
-                BackColor = Color.FromArgb(174, 180, 194)
+                BackColor = Color.FromArgb(174, 180, 194),
             };
+            minimizedPanel.ColumnStyles.Clear();
             this.Controls.Add(minimizedPanel);
         }
 
@@ -392,7 +393,7 @@ namespace WinformDotNetFramework.Forms
             minimizedPanel.Controls.Add(minimizedButton, minimizedPanel.ColumnCount - 1, 0);
 
             // Set the column style to make buttons stretch horizontally
-            minimizedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            minimizedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, minimizedButton.Width));
 
             // Hide the minimized form in the MDI parent
             childForm.Hide();
