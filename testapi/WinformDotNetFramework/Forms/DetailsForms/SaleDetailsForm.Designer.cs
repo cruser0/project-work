@@ -44,26 +44,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CuInDgv = new System.Windows.Forms.DataGridView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.SuInDgv = new System.Windows.Forms.DataGridView();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.CustomerCountryLbl = new System.Windows.Forms.Label();
-            this.CustomerNameLbl = new System.Windows.Forms.Label();
-            this.StatusLbl = new System.Windows.Forms.Label();
-            this.StatusCmbx = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.customerInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SuInDgv = new System.Windows.Forms.DataGridView();
             this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceAmountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,20 +60,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierInvoiceSupplierDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.CustomerCountryLbl = new System.Windows.Forms.Label();
+            this.CustomerNameLbl = new System.Windows.Forms.Label();
+            this.StatusLbl = new System.Windows.Forms.Label();
             this.RevenueTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.StatusCmbx = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.OpenSale = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
             this.panel7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -92,7 +93,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(69, 3);
+            this.label2.Location = new System.Drawing.Point(85, 8);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
@@ -104,7 +105,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(69, 48);
+            this.label3.Location = new System.Drawing.Point(85, 56);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 15);
@@ -116,7 +117,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(69, 89);
+            this.label4.Location = new System.Drawing.Point(85, 97);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
@@ -128,7 +129,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(502, 3);
+            this.label6.Location = new System.Drawing.Point(533, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 15);
@@ -139,7 +140,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.bntxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bntxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntxt.Location = new System.Drawing.Point(69, 21);
+            this.bntxt.Location = new System.Drawing.Point(85, 29);
             this.bntxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bntxt.Name = "bntxt";
             this.bntxt.Size = new System.Drawing.Size(200, 23);
@@ -149,7 +150,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.boltxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.boltxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boltxt.Location = new System.Drawing.Point(69, 65);
+            this.boltxt.Location = new System.Drawing.Point(85, 73);
             this.boltxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.boltxt.Name = "boltxt";
             this.boltxt.Size = new System.Drawing.Size(200, 23);
@@ -159,7 +160,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.saleDateDtp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saleDateDtp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleDateDtp.Location = new System.Drawing.Point(69, 107);
+            this.saleDateDtp.Location = new System.Drawing.Point(85, 115);
             this.saleDateDtp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saleDateDtp.Name = "saleDateDtp";
             this.saleDateDtp.Size = new System.Drawing.Size(200, 23);
@@ -170,7 +171,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditCB.AutoSize = true;
             this.EditCB.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditCB.Location = new System.Drawing.Point(505, 109);
+            this.EditCB.Location = new System.Drawing.Point(690, 93);
             this.EditCB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.EditCB.Name = "EditCB";
             this.EditCB.Size = new System.Drawing.Size(46, 19);
@@ -184,7 +185,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.saveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(559, 106);
+            this.saveBtn.Location = new System.Drawing.Point(593, 118);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(143, 25);
@@ -213,11 +214,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 147);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 163);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 275);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 259);
             this.tableLayoutPanel1.TabIndex = 52;
             // 
             // groupBox1
@@ -227,7 +228,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(366, 269);
+            this.groupBox1.Size = new System.Drawing.Size(366, 253);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer Invoices";
@@ -250,205 +251,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CuInDgv.Location = new System.Drawing.Point(3, 44);
             this.CuInDgv.Name = "CuInDgv";
             this.CuInDgv.ReadOnly = true;
-            this.CuInDgv.Size = new System.Drawing.Size(360, 222);
+            this.CuInDgv.Size = new System.Drawing.Size(360, 206);
             this.CuInDgv.TabIndex = 0;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.button2);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(3, 19);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(360, 25);
-            this.panel7.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 25);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Create Customer Invoice";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.SuInDgv);
-            this.groupBox2.Controls.Add(this.panel8);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(375, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(366, 269);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Supplier Invoices";
-            // 
-            // SuInDgv
-            // 
-            this.SuInDgv.AllowUserToAddRows = false;
-            this.SuInDgv.AllowUserToDeleteRows = false;
-            this.SuInDgv.AllowUserToOrderColumns = true;
-            this.SuInDgv.AutoGenerateColumns = false;
-            this.SuInDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SuInDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SuInDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn,
-            this.invoiceAmountDataGridViewTextBoxColumn1,
-            this.invoiceDateDataGridViewTextBoxColumn1,
-            this.supplierNameDataGridViewTextBoxColumn,
-            this.countryDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn1});
-            this.SuInDgv.DataSource = this.supplierInvoiceSupplierDTOBindingSource;
-            this.SuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SuInDgv.Location = new System.Drawing.Point(3, 44);
-            this.SuInDgv.Name = "SuInDgv";
-            this.SuInDgv.ReadOnly = true;
-            this.SuInDgv.Size = new System.Drawing.Size(360, 222);
-            this.SuInDgv.TabIndex = 0;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.button1);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(3, 19);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(360, 25);
-            this.panel8.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 25);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Create Supplier Invoice";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Controls.Add(this.CountryCmbxUC);
-            this.panel6.Controls.Add(this.bntxt);
-            this.panel6.Controls.Add(this.NameCmbxUC);
-            this.panel6.Controls.Add(this.boltxt);
-            this.panel6.Controls.Add(this.CustomerCountryLbl);
-            this.panel6.Controls.Add(this.saleDateDtp);
-            this.panel6.Controls.Add(this.CustomerNameLbl);
-            this.panel6.Controls.Add(this.label6);
-            this.panel6.Controls.Add(this.StatusLbl);
-            this.panel6.Controls.Add(this.RevenueTxt);
-            this.panel6.Controls.Add(this.StatusCmbx);
-            this.panel6.Controls.Add(this.label4);
-            this.panel6.Controls.Add(this.EditCB);
-            this.panel6.Controls.Add(this.saveBtn);
-            this.panel6.Controls.Add(this.label3);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(744, 147);
-            this.panel6.TabIndex = 51;
-            // 
-            // CustomerCountryLbl
-            // 
-            this.CustomerCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerCountryLbl.AutoSize = true;
-            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerCountryLbl.Location = new System.Drawing.Point(282, 48);
-            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
-            this.CustomerCountryLbl.Size = new System.Drawing.Size(110, 15);
-            this.CustomerCountryLbl.TabIndex = 48;
-            this.CustomerCountryLbl.Text = "Customer Country*";
-            // 
-            // CustomerNameLbl
-            // 
-            this.CustomerNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerNameLbl.AutoSize = true;
-            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerNameLbl.Location = new System.Drawing.Point(282, 3);
-            this.CustomerNameLbl.Name = "CustomerNameLbl";
-            this.CustomerNameLbl.Size = new System.Drawing.Size(99, 15);
-            this.CustomerNameLbl.TabIndex = 47;
-            this.CustomerNameLbl.Text = "Customer Name*";
-            // 
-            // StatusLbl
-            // 
-            this.StatusLbl.AllowDrop = true;
-            this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(502, 48);
-            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
-            this.StatusLbl.TabIndex = 46;
-            this.StatusLbl.Text = "Status";
-            // 
-            // StatusCmbx
-            // 
-            this.StatusCmbx.AllowDrop = true;
-            this.StatusCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusCmbx.FormattingEnabled = true;
-            this.StatusCmbx.Items.AddRange(new object[] {
-            "Active",
-            "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(502, 65);
-            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.StatusCmbx.Name = "StatusCmbx";
-            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
-            this.StatusCmbx.TabIndex = 45;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(20, 462);
-            this.panel2.TabIndex = 21;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(764, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 462);
-            this.panel3.TabIndex = 22;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(20, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(744, 20);
-            this.panel4.TabIndex = 23;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(20, 442);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(744, 20);
-            this.panel5.TabIndex = 24;
             // 
             // customerInvoiceCodeDataGridViewTextBoxColumn
             // 
@@ -481,6 +285,64 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // customerInvoiceBindingSource
             // 
             this.customerInvoiceBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.CustomerInvoice);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.button2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(3, 19);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(360, 25);
+            this.panel7.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(161, 25);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Create Customer Invoice";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.CustomerInvoiceBtn_click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.SuInDgv);
+            this.groupBox2.Controls.Add(this.panel8);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(375, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(366, 253);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Supplier Invoices";
+            // 
+            // SuInDgv
+            // 
+            this.SuInDgv.AllowUserToAddRows = false;
+            this.SuInDgv.AllowUserToDeleteRows = false;
+            this.SuInDgv.AllowUserToOrderColumns = true;
+            this.SuInDgv.AutoGenerateColumns = false;
+            this.SuInDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SuInDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SuInDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn,
+            this.invoiceAmountDataGridViewTextBoxColumn1,
+            this.invoiceDateDataGridViewTextBoxColumn1,
+            this.supplierNameDataGridViewTextBoxColumn,
+            this.countryDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn1});
+            this.SuInDgv.DataSource = this.supplierInvoiceSupplierDTOBindingSource;
+            this.SuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SuInDgv.Location = new System.Drawing.Point(3, 44);
+            this.SuInDgv.Name = "SuInDgv";
+            this.SuInDgv.ReadOnly = true;
+            this.SuInDgv.Size = new System.Drawing.Size(360, 206);
+            this.SuInDgv.TabIndex = 0;
             // 
             // supplierInvoiceCodeDataGridViewTextBoxColumn
             // 
@@ -528,11 +390,59 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO);
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.button1);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(3, 19);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(360, 25);
+            this.panel8.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 25);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Create Supplier Invoice";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.SupplierInvoiceBtn_click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.OpenSale);
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.CountryCmbxUC);
+            this.panel6.Controls.Add(this.bntxt);
+            this.panel6.Controls.Add(this.NameCmbxUC);
+            this.panel6.Controls.Add(this.boltxt);
+            this.panel6.Controls.Add(this.CustomerCountryLbl);
+            this.panel6.Controls.Add(this.saleDateDtp);
+            this.panel6.Controls.Add(this.CustomerNameLbl);
+            this.panel6.Controls.Add(this.label6);
+            this.panel6.Controls.Add(this.StatusLbl);
+            this.panel6.Controls.Add(this.RevenueTxt);
+            this.panel6.Controls.Add(this.StatusCmbx);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Controls.Add(this.EditCB);
+            this.panel6.Controls.Add(this.saveBtn);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(744, 163);
+            this.panel6.TabIndex = 51;
+            // 
             // CountryCmbxUC
             // 
             this.CountryCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CountryCmbxUC.listItemsDropCmbx = null;
-            this.CountryCmbxUC.Location = new System.Drawing.Point(285, 65);
+            this.CountryCmbxUC.Location = new System.Drawing.Point(301, 73);
             this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.CountryCmbxUC.Name = "CountryCmbxUC";
             this.CountryCmbxUC.Size = new System.Drawing.Size(200, 23);
@@ -542,22 +452,132 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(285, 21);
+            this.NameCmbxUC.Location = new System.Drawing.Point(301, 29);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.NameCmbxUC.Name = "NameCmbxUC";
             this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
             this.NameCmbxUC.TabIndex = 49;
+            // 
+            // CustomerCountryLbl
+            // 
+            this.CustomerCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CustomerCountryLbl.AutoSize = true;
+            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerCountryLbl.Location = new System.Drawing.Point(298, 56);
+            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
+            this.CustomerCountryLbl.Size = new System.Drawing.Size(110, 15);
+            this.CustomerCountryLbl.TabIndex = 48;
+            this.CustomerCountryLbl.Text = "Customer Country*";
+            // 
+            // CustomerNameLbl
+            // 
+            this.CustomerNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CustomerNameLbl.AutoSize = true;
+            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerNameLbl.Location = new System.Drawing.Point(298, 8);
+            this.CustomerNameLbl.Name = "CustomerNameLbl";
+            this.CustomerNameLbl.Size = new System.Drawing.Size(99, 15);
+            this.CustomerNameLbl.TabIndex = 47;
+            this.CustomerNameLbl.Text = "Customer Name*";
+            // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AllowDrop = true;
+            this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusLbl.Location = new System.Drawing.Point(301, 99);
+            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
+            this.StatusLbl.TabIndex = 46;
+            this.StatusLbl.Text = "Status";
             // 
             // RevenueTxt
             // 
             this.RevenueTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RevenueTxt.Enabled = false;
             this.RevenueTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RevenueTxt.Location = new System.Drawing.Point(502, 21);
+            this.RevenueTxt.Location = new System.Drawing.Point(536, 29);
             this.RevenueTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RevenueTxt.Name = "RevenueTxt";
             this.RevenueTxt.Size = new System.Drawing.Size(200, 23);
             this.RevenueTxt.TabIndex = 13;
+            // 
+            // StatusCmbx
+            // 
+            this.StatusCmbx.AllowDrop = true;
+            this.StatusCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusCmbx.FormattingEnabled = true;
+            this.StatusCmbx.Items.AddRange(new object[] {
+            "Active",
+            "Closed"});
+            this.StatusCmbx.Location = new System.Drawing.Point(301, 116);
+            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.StatusCmbx.Name = "StatusCmbx";
+            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
+            this.StatusCmbx.TabIndex = 45;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(20, 462);
+            this.panel2.TabIndex = 21;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(764, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(20, 462);
+            this.panel3.TabIndex = 22;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(20, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(744, 20);
+            this.panel4.TabIndex = 23;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(20, 442);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(744, 20);
+            this.panel5.TabIndex = 24;
+            // 
+            // OpenSale
+            // 
+            this.OpenSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.OpenSale.FlatAppearance.BorderSize = 0;
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.OpenSale.Location = new System.Drawing.Point(503, 52);
+            this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.OpenSale.Name = "OpenSale";
+            this.OpenSale.Size = new System.Drawing.Size(29, 23);
+            this.OpenSale.TabIndex = 51;
+            this.OpenSale.Text = "->";
+            this.OpenSale.UseVisualStyleBackColor = false;
+            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
             // 
             // SaleDetailsForm
             // 
@@ -579,14 +599,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
             this.panel7.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -635,5 +655,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Button button2;
         private Panel panel8;
         private Button button1;
+        public Button OpenSale;
     }
 }

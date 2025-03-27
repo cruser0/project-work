@@ -27,12 +27,24 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         string nameString;
         string countryString;
         bool detailsOnly=false;
+        Form _father;
 
         public SupplierInvoiceDetailsForm()
         {
             Init(null);
         }
+        public SupplierInvoiceDetailsForm(SaleDetailsForm father,object sale)
+        {
+            SaleCustomerDTO saleCustomerDTO = (SaleCustomerDTO)sale;
+            _father = father;
+            Init(null);
+            UtilityFunctions.SetDropdownText(BoLCmbxUC, saleCustomerDTO.BoLnumber);
+            UtilityFunctions.SetDropdownText(BKCmbxUC, saleCustomerDTO.BookingNumber);
+            BKCmbxUC.Enabled = false;
+            BoLCmbxUC.Enabled = false;
+            OpenSale.Enabled = false;
 
+        }
         public SupplierInvoiceDetailsForm(int id)
         {
             Init(id);
@@ -268,14 +280,24 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = comboBox1.Text, SupplierInvoiceCode = code, };
                         await _supplierInvoiceService.Create(si);
                         MessageBox.Show("Supplier Invoice created Successfully!");
-                          
-                        detailsOnly = true;
-                        SetVisibility();
-                        supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode=code } )).FirstOrDefault();
-                        textBox1.Text = code;
-                        await RefreshDGV();
+                            detailsOnly = true;
+                            SetVisibility();
+                            supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode=code } )).FirstOrDefault();
+                            textBox1.Text = code;
+                            textBox1.Enabled = false;
+                            await RefreshDGV();
+                        if (_father != null)
+                        {
+                            if(_father is SaleDetailsForm sdf)
+                            {
+                                await sdf.RefreshDgvCustomer();
+                                await sdf.RefreshDgvSupplier();
+                            }
+                            await RefreshDGV();
+                            
+                        }
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); supplierId = -1; }
                 }
 
             }
@@ -355,6 +377,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void AddCostBtn_Click(object sender, EventArgs e)
         {
             UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e,this, supplierInvoice.SupplierInvoiceCode);
+        }
+
+        private void FlushCreateBtn_Click(object sender, EventArgs e)
+        {
+            detailsOnly=false;
+            SetVisibility();
+            SetEnableForTxt();
+            UtilityFunctions.SetDropdownText(NameCmbxUC, "");
+            comboBox1.SelectedIndex = 1;
+            textBox1.Text = "";
+            dataGridView1.DataSource = new List<SupplierInvoiceCost>();
         }
     }
 }

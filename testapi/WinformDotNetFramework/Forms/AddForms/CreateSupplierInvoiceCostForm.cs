@@ -34,6 +34,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             Init(null);
             InvoiceCode = data as string;
             UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
+            InvoiceCodeCmbxUC.Enabled = false;
         }
         public CreateSupplierInvoiceCostForm(SupplierInvoiceDetailsForm father ,object data)
         {
