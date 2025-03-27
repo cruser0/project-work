@@ -32,6 +32,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         {
             this.CreatePanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CostRegistryLbl = new System.Windows.Forms.Label();
             this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
@@ -70,6 +71,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.InvoiceCodeCmbxUC);
             this.panel1.Controls.Add(this.CostRegistryLbl);
             this.panel1.Controls.Add(this.CostRegistryCmbx);
@@ -87,6 +89,20 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 36;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.checkBox1.Location = new System.Drawing.Point(415, 319);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(46, 19);
+            this.checkBox1.TabIndex = 43;
+            this.checkBox1.Text = "Edit";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.EditCB_CheckedChanged);
             // 
             // InvoiceCodeCmbxUC
             // 
@@ -126,9 +142,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(289, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 13);
+            this.label1.Size = new System.Drawing.Size(118, 13);
             this.label1.TabIndex = 39;
-            this.label1.Text = "Customer Invoice Code *";
+            this.label1.Text = "Supplier Invoice Code *";
             // 
             // NameSupplierLbl
             // 
@@ -149,11 +165,11 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveBtn.Location = new System.Drawing.Point(314, 319);
+            this.SaveBtn.Location = new System.Drawing.Point(388, 344);
             this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(147, 23);
+            this.SaveBtn.Size = new System.Drawing.Size(73, 23);
             this.SaveBtn.TabIndex = 25;
-            this.SaveBtn.Text = "Create Supplier Invoice Cost";
+            this.SaveBtn.Text = "Save Cost";
             this.SaveBtn.UseVisualStyleBackColor = false;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
@@ -305,5 +321,6 @@ namespace WinformDotNetFramework.Forms.AddForms
         private Label CostRegistryLbl;
         private ComboBox CostRegistryCmbx;
         private Label label1;
+        private CheckBox checkBox1;
     }
 }

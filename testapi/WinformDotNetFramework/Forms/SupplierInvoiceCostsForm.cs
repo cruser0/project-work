@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 
@@ -20,7 +21,7 @@ namespace WinformDotNetFramework.Forms
                 if (e.RowIndex == -1)
                     return;
 
-                UtilityFunctions.OpenFormDetails<SupplierInvoiceCostDetailsForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["SupplierInvoiceCostId"].Value.ToString()));
+                UtilityFunctions.OpenFormDetails<CreateSupplierInvoiceCostForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["SupplierInvoiceCostsId"].Value.ToString()));
 
             }
         }

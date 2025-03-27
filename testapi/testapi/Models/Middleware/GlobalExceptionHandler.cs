@@ -26,8 +26,8 @@ namespace API.Models.Middleware
                 };
                 string json = JsonSerializer.Serialize(problemDetails);
 
-                await context.Response.WriteAsync(json);
                 context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(json);
             }
             catch (ErrorInputPropertyException ex)
             {
@@ -41,8 +41,8 @@ namespace API.Models.Middleware
                 };
                 string json = JsonSerializer.Serialize(problemDetails);
 
-                await context.Response.WriteAsync(json);
                 context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(json);
             }
             catch (NullPropertyException ex)
             {
@@ -56,8 +56,8 @@ namespace API.Models.Middleware
                 };
                 string json = JsonSerializer.Serialize(problemDetails);
 
-                await context.Response.WriteAsync(json);
                 context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(json);
             }
             catch (NotFoundTokenException ex)
             {
@@ -71,8 +71,8 @@ namespace API.Models.Middleware
                 };
                 string json = JsonSerializer.Serialize(problemDetails);
 
-                await context.Response.WriteAsync(json);
                 context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(json);
             }
             catch (DbUpdateException ex)
             {
@@ -86,8 +86,8 @@ namespace API.Models.Middleware
                 };
                 string json = JsonSerializer.Serialize(problemDetails);
 
-                await context.Response.WriteAsync(json);
                 context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(json);
             }
 
             catch (Exception ex)
@@ -102,8 +102,8 @@ namespace API.Models.Middleware
                 };
                 string json=JsonSerializer.Serialize(problemDetails);
 
-                await context.Response.WriteAsync(json);
                 context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(json);
             }
         }
     }
