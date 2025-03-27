@@ -54,17 +54,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 BKCmbxUC.Cmbx.TextChanged -= BKCmbxUC.Cmbx_TextChanged;
                 BoLCmbxUC.Cmbx.TextChanged -= BoLCmbxUC.Cmbx_TextChanged;
                 NameCmbxUC.Cmbx.TextChanged -= NameCmbxUC.Cmbx_TextChanged;
-                CountryCmbxUC.Cmbx.TextChanged -= CountryCmbxUC.Cmbx_TextChanged;
 
                 BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
                 BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
-                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName;
-                CountryCmbxUC.Cmbx.Text = supplierInvoice.Country;
+                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName+$" - {supplierInvoice.Country}";
 
                 BKCmbxUC.Cmbx.TextChanged += BKCmbxUC.Cmbx_TextChanged;
                 BoLCmbxUC.Cmbx.TextChanged += BoLCmbxUC.Cmbx_TextChanged;
                 NameCmbxUC.Cmbx.TextChanged += NameCmbxUC.Cmbx_TextChanged;
-                CountryCmbxUC.Cmbx.TextChanged += CountryCmbxUC.Cmbx_TextChanged;
                 comboBox1.Text = supplierInvoice.Status;
                 DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
                 List<SupplierInvoiceCost> data = (await _supplierInvoiceCostService
@@ -76,20 +73,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 BKCmbxUC.Cmbx.Enabled = false;
                 BoLCmbxUC.Cmbx.Enabled = false;
                 NameCmbxUC.Cmbx.Enabled = false;
-                CountryCmbxUC.Cmbx.Enabled = false;
                 comboBox1.Enabled = false;
                 DateClnd.Enabled = false;
             }else
                 detailsOnly = false;
 
-
-
-
-
-
-
             SetVisibility();
-            SetVisibilityForTxt();
+            SetEnableForTxt();
             List<string> authRolesWrite = new List<string>
             {
                 "SupplierInvoiceWrite",
@@ -112,14 +102,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             button1.Visible = detailsOnly;
             label3.Visible = detailsOnly;
             EditCbx.Visible = detailsOnly;
+            textBox1.Visible = detailsOnly;
+
         }
-        private void SetVisibilityForTxt()
+        private void SetEnableForTxt()
         {
             textBox1.Enabled = !detailsOnly;
             BKCmbxUC.Cmbx.Enabled = !detailsOnly;
             BoLCmbxUC.Cmbx.Enabled = !detailsOnly;
             NameCmbxUC.Cmbx.Enabled = !detailsOnly;
-            CountryCmbxUC.Cmbx.Enabled = !detailsOnly;
             comboBox1.Enabled = !detailsOnly;
             DateClnd.Enabled = !detailsOnly;
         }
@@ -146,7 +137,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public void SetSupplierNameCoutnry(string name, string country)
         {
-            NameCmbxUC.Cmbx.Text = name+$"({country})";
+            NameCmbxUC.Cmbx.Text = name+$" - {country}";
         }
         private void SupplierFillBtn_Click(object sender, EventArgs e)
         {
@@ -166,7 +157,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             BKCmbxUC.Cmbx.Enabled = EditCbx.Checked;
             BoLCmbxUC.Cmbx.Enabled = EditCbx.Checked;
             NameCmbxUC.Cmbx.Enabled = EditCbx.Checked;
-            CountryCmbxUC.Cmbx.Enabled = EditCbx.Checked;
             comboBox1.Enabled = EditCbx.Checked;
             DateClnd.Enabled = EditCbx.Checked;
 
@@ -174,8 +164,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
                 BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
-                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName;
-                CountryCmbxUC.Cmbx.Text = supplierInvoice.Country;
+                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName+$" - {supplierInvoice.Country}";
                 comboBox1.Text = supplierInvoice.Status;
                 DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
             }
@@ -189,12 +178,23 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             
                 try
                 {
+                    string name = NameCmbxUC.Cmbx.Text;
+                    string country = "";
+
+                    int lastIndex = name.LastIndexOf(" - ");
+
+                    if (lastIndex != -1 && lastIndex != name.Length - 3)
+                    {
+                        country = name.Substring(lastIndex + 3);
+
+                        name = name.Substring(0, lastIndex);
+                    }
                     saleId = (await _saleService
                     .GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
                     .FirstOrDefault().SaleId;
 
                     supplierId = (await _supplierService
-                        .GetAll(new SupplierFilter() { SupplierName = NameCmbxUC.Cmbx.Text, SupplierCountry = CountryCmbxUC.Cmbx.Text }))
+                        .GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country }))
                         .FirstOrDefault().SupplierId;
 
                     SupplierInvoice si = new SupplierInvoice
@@ -224,8 +224,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     err.Add("BookingNumber");
                 if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text))
                     err.Add("SupplierName");
-                if (string.IsNullOrEmpty(CountryCmbxUC.Cmbx.Text))
-                    err.Add("SupplierCountry");
                 if (string.IsNullOrEmpty(comboBox1.Text))
                     err.Add("Status");
                 if (DateClnd.Value == null)
@@ -244,7 +242,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     try
                     {
-                        supplierId = (await _supplierService.GetAll(new SupplierFilter() { SupplierName = NameCmbxUC.Cmbx.Text, SupplierCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault().SupplierId;
+                        string name = NameCmbxUC.Cmbx.Text;
+                        string country = "";
+
+                        int lastIndex = name.LastIndexOf(" - ");
+
+                        if (lastIndex != -1 && lastIndex != name.Length - 3)
+                        {
+                            country = name.Substring(lastIndex + 3);
+
+                            name = name.Substring(0, lastIndex);
+                        }
+
+                        supplierId = (await _supplierService.GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry =country })).FirstOrDefault().SupplierId;
                     }
                     catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
                 }
@@ -263,7 +273,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         SetVisibility();
                         supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode=code } )).FirstOrDefault();
                         textBox1.Text = code;
-                        RefreshDGV();
+                        await RefreshDGV();
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message); }
                 }
@@ -275,10 +285,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         public async Task SetList()
         {
+            string name = NameCmbxUC.Cmbx.Text;
+            string country = "";
+
+            int lastIndex = name.LastIndexOf(" - ");
+
+            if (lastIndex != -1 && lastIndex != name.Length - 3)
+            {
+                country = name.Substring(lastIndex + 3);
+
+                name = name.Substring(0, lastIndex);
+            }
             bkString = BKCmbxUC.Cmbx.Text;
             bolString = BoLCmbxUC.Cmbx.Text;
-            nameString = NameCmbxUC.Cmbx.Text;
-            countryString = CountryCmbxUC.Cmbx.Text;
+            nameString = name;
+            countryString = country;
 
 
             if (string.IsNullOrEmpty(bkString) && string.IsNullOrEmpty(bolString) &&
@@ -287,7 +308,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 BKCmbxUC.listItemsDropCmbx = new List<string>();
                 BoLCmbxUC.listItemsDropCmbx = new List<string>();
                 NameCmbxUC.listItemsDropCmbx = new List<string>();
-                CountryCmbxUC.listItemsDropCmbx = new List<string>();
                 return;
             }
 
@@ -322,13 +342,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             var listItemsName = SupplierListFiltered
                 .Where(x => string.IsNullOrEmpty(countryString) || x.Country == countryString)
-                .Select(x => x.SupplierName)
-                .Distinct()
-                .ToList();
-
-            var listItemsCountry = SupplierListFiltered
-                .Where(x => string.IsNullOrEmpty(nameString) || x.SupplierName == nameString)
-                .Select(x => x.Country)
+                .Select(x => (x.SupplierName ?? "") + (string.IsNullOrEmpty(x.Country) ? "" : $" - {x.Country}"))
                 .Distinct()
                 .ToList();
 
@@ -336,7 +350,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             BKCmbxUC.listItemsDropCmbx = listItemsBk;
             BoLCmbxUC.listItemsDropCmbx = listItemsBol;
             NameCmbxUC.listItemsDropCmbx = listItemsName;
-            CountryCmbxUC.listItemsDropCmbx = listItemsCountry;
         }
 
         private void AddCostBtn_Click(object sender, EventArgs e)
