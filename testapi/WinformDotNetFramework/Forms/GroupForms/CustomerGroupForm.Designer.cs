@@ -156,6 +156,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // MainSplitContainer
             // 
             this.MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.MainSplitContainer.Location = new System.Drawing.Point(58, 0);
             this.MainSplitContainer.Name = "MainSplitContainer";
             // 
@@ -176,6 +177,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SpliContainerDGV
             // 
+            this.SpliContainerDGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SpliContainerDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SpliContainerDGV.Location = new System.Drawing.Point(0, 0);
             this.SpliContainerDGV.Name = "SpliContainerDGV";
@@ -200,7 +202,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(513, 176);
+            this.groupBox1.Size = new System.Drawing.Size(511, 174);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customers";
@@ -218,7 +220,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(507, 132);
+            this.dataGridView1.Size = new System.Drawing.Size(505, 130);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDbClickLoadSale);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -234,9 +236,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.toolStrip.Location = new System.Drawing.Point(3, 148);
+            this.toolStrip.Location = new System.Drawing.Point(3, 146);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(507, 25);
+            this.toolStrip.Size = new System.Drawing.Size(505, 25);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip2";
             // 
@@ -288,6 +290,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SplitContainerDGV2
             // 
+            this.SplitContainerDGV2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SplitContainerDGV2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainerDGV2.Location = new System.Drawing.Point(0, 0);
             this.SplitContainerDGV2.Name = "SplitContainerDGV2";
@@ -307,6 +310,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // splitContainer3
             // 
+            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
@@ -319,7 +323,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer3.Size = new System.Drawing.Size(513, 151);
-            this.splitContainer3.SplitterDistance = 230;
+            this.splitContainer3.SplitterDistance = 189;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -330,7 +334,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(230, 151);
+            this.groupBox2.Size = new System.Drawing.Size(187, 149);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sales";
@@ -344,7 +348,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.dataGridView2.Location = new System.Drawing.Point(3, 16);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(224, 107);
+            this.dataGridView2.Size = new System.Drawing.Size(181, 105);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SaleDBClickLoadCustomerInvoice);
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -360,9 +364,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 123);
+            this.toolStrip2.Location = new System.Drawing.Point(3, 121);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(224, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(181, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip1";
             // 
@@ -419,7 +423,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(280, 151);
+            this.groupBox3.Size = new System.Drawing.Size(319, 149);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Customer Invoices";
@@ -437,7 +441,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(274, 107);
+            this.dataGridView3.Size = new System.Drawing.Size(313, 105);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerInvoiceDBClickLoadCustomerInvoiceCost);
             this.dataGridView3.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -453,9 +457,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 123);
+            this.toolStrip3.Location = new System.Drawing.Point(3, 121);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(274, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(313, 25);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -512,7 +516,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(513, 128);
+            this.groupBox4.Size = new System.Drawing.Size(511, 126);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Customer Invoice Costs";
@@ -530,7 +534,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(507, 84);
+            this.dataGridView4.Size = new System.Drawing.Size(505, 82);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
@@ -545,9 +549,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right4,
             this.DoubleRight5,
             this.TSLbl4});
-            this.toolStrip4.Location = new System.Drawing.Point(3, 100);
+            this.toolStrip4.Location = new System.Drawing.Point(3, 98);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(507, 25);
+            this.toolStrip4.Size = new System.Drawing.Size(505, 25);
             this.toolStrip4.TabIndex = 2;
             this.toolStrip4.Text = "toolStrip4";
             // 

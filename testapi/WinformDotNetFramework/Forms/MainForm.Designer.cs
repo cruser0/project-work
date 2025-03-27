@@ -109,10 +109,10 @@ namespace WinformDotNetFramework.Forms
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.HotTrack = true;
-            this.tabControl.Location = new System.Drawing.Point(0, 22);
+            this.tabControl.Location = new System.Drawing.Point(0, 23);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1077, 65);
+            this.tabControl.Size = new System.Drawing.Size(1077, 64);
             this.tabControl.TabIndex = 0;
             // 
             // ShowTP
@@ -122,7 +122,7 @@ namespace WinformDotNetFramework.Forms
             this.ShowTP.Location = new System.Drawing.Point(4, 24);
             this.ShowTP.Name = "ShowTP";
             this.ShowTP.Padding = new System.Windows.Forms.Padding(3);
-            this.ShowTP.Size = new System.Drawing.Size(1069, 37);
+            this.ShowTP.Size = new System.Drawing.Size(1069, 36);
             this.ShowTP.TabIndex = 0;
             this.ShowTP.Text = "Show";
             // 
@@ -144,7 +144,7 @@ namespace WinformDotNetFramework.Forms
             this.UserShowTS});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
-            this.Show.Size = new System.Drawing.Size(1063, 31);
+            this.Show.Size = new System.Drawing.Size(1063, 30);
             this.Show.TabIndex = 0;
             this.Show.Text = "Show";
             // 
@@ -242,7 +242,7 @@ namespace WinformDotNetFramework.Forms
             this.AddTP.Location = new System.Drawing.Point(4, 24);
             this.AddTP.Name = "AddTP";
             this.AddTP.Padding = new System.Windows.Forms.Padding(3);
-            this.AddTP.Size = new System.Drawing.Size(1069, 37);
+            this.AddTP.Size = new System.Drawing.Size(1069, 36);
             this.AddTP.TabIndex = 2;
             this.AddTP.Text = "Create";
             // 
@@ -264,7 +264,7 @@ namespace WinformDotNetFramework.Forms
             this.UserCreateTS});
             this.Create.Location = new System.Drawing.Point(3, 3);
             this.Create.Name = "Create";
-            this.Create.Size = new System.Drawing.Size(1063, 31);
+            this.Create.Size = new System.Drawing.Size(1063, 30);
             this.Create.TabIndex = 1;
             this.Create.Text = "Show";
             // 
@@ -362,7 +362,7 @@ namespace WinformDotNetFramework.Forms
             this.GroupTP.Location = new System.Drawing.Point(4, 24);
             this.GroupTP.Name = "GroupTP";
             this.GroupTP.Padding = new System.Windows.Forms.Padding(3);
-            this.GroupTP.Size = new System.Drawing.Size(1069, 37);
+            this.GroupTP.Size = new System.Drawing.Size(1069, 36);
             this.GroupTP.TabIndex = 3;
             this.GroupTP.Text = "Group";
             // 
@@ -378,7 +378,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierGroupTS});
             this.Group.Location = new System.Drawing.Point(3, 3);
             this.Group.Name = "Group";
-            this.Group.Size = new System.Drawing.Size(1063, 31);
+            this.Group.Size = new System.Drawing.Size(1063, 30);
             this.Group.TabIndex = 1;
             this.Group.Text = "Customer";
             // 
@@ -413,14 +413,14 @@ namespace WinformDotNetFramework.Forms
             // 
             // ReportTP
             // 
+            this.ReportTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(237)))));
             this.ReportTP.Controls.Add(this.Report);
             this.ReportTP.Location = new System.Drawing.Point(4, 24);
             this.ReportTP.Name = "ReportTP";
             this.ReportTP.Padding = new System.Windows.Forms.Padding(3);
-            this.ReportTP.Size = new System.Drawing.Size(1069, 37);
+            this.ReportTP.Size = new System.Drawing.Size(1069, 36);
             this.ReportTP.TabIndex = 4;
             this.ReportTP.Text = "Report";
-            this.ReportTP.UseVisualStyleBackColor = true;
             // 
             // Report
             // 
@@ -436,7 +436,7 @@ namespace WinformDotNetFramework.Forms
             this.SaleReportTS});
             this.Report.Location = new System.Drawing.Point(3, 3);
             this.Report.Name = "Report";
-            this.Report.Size = new System.Drawing.Size(1063, 31);
+            this.Report.Size = new System.Drawing.Size(1063, 30);
             this.Report.TabIndex = 3;
             this.Report.Text = "Customer";
             // 
@@ -501,7 +501,7 @@ namespace WinformDotNetFramework.Forms
             this.OpenFormDropDown});
             this.TS.Location = new System.Drawing.Point(0, 0);
             this.TS.Name = "TS";
-            this.TS.Size = new System.Drawing.Size(1077, 22);
+            this.TS.Size = new System.Drawing.Size(1077, 23);
             this.TS.TabIndex = 0;
             this.TS.Text = "toolStrip1";
             // 
