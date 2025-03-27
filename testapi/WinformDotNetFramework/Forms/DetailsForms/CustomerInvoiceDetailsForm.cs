@@ -20,31 +20,36 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         string bol;
         string bk;
         int saleID;
-        public CustomerInvoiceDetailsForm(int id)
+        bool detailsOnly = false;
+        public CustomerInvoiceDetailsForm()
         {
-            Init(id);
+            Init();
+            dataGridView1.DataSource = new CustomerInvoiceCost();
+            checkBox1.Visible = false;
+            textBox1.Visible = false;
+            label1.Visible = false;
+            InvoiceAmountTxt.Visible = false;
+            label5.Visible = false;
+            StatusCB.Visible = false;
+            label4.Visible = false;
+            AddCostBtn.Enabled = false;
 
         }
-        private async void Init(int id)
+        public CustomerInvoiceDetailsForm(int id)
         {
-            InitializeComponent();
-            _saleService = new SaleService();
-            _customerInvoiceService = new CustomerInvoiceService();
-            _customerInvoiceCostService = new CustomerInvoiceCostService();
+            Init();
+            InitDetails(id);
 
+        }
+        private async void InitDetails(int id)
+        {
             customerInvoice = await _customerInvoiceService.GetById(id);
 
             textBox1.Text = customerInvoice.CustomerInvoiceCode;
             InvoiceAmountTxt.Text = customerInvoice.InvoiceAmount.ToString();
 
-            BKCmbxUC.Cmbx.TextChanged -= BKCmbxUC.Cmbx_TextChanged;
-            BoLCmbxUC.Cmbx.TextChanged -= BoLCmbxUC.Cmbx_TextChanged;
-
-            BKCmbxUC.Cmbx.Text = customerInvoice.SaleBookingNumber;
-            BoLCmbxUC.Cmbx.Text = customerInvoice.SaleBoL;
-
-            BKCmbxUC.Cmbx.TextChanged += BKCmbxUC.Cmbx_TextChanged;
-            BoLCmbxUC.Cmbx.TextChanged += BoLCmbxUC.Cmbx_TextChanged;
+            UtilityFunctions.SetDropdownText(BKCmbxUC, customerInvoice.SaleBookingNumber);
+            UtilityFunctions.SetDropdownText(BoLCmbxUC, customerInvoice.SaleBoL);
 
             InvoiceDateDTP.Value = (DateTime)customerInvoice.InvoiceDate;
             StatusCB.Text = customerInvoice.Status;
@@ -52,14 +57,22 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             List<CustomerInvoiceCost> data = (await _customerInvoiceCostService
                 .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = customerInvoice.CustomerInvoiceCode })).ToList();
             dataGridView1.DataSource = data;
-
-            textBox1.Enabled = false;
             InvoiceAmountTxt.Enabled = false;
+            textBox1.Enabled = false;
             StatusCB.Enabled = false;
             BKCmbxUC.Cmbx.Enabled = false;
             BoLCmbxUC.Cmbx.Enabled = false;
             InvoiceDateDTP.Enabled = false;
             button1.Enabled = false;
+            detailsOnly = true;
+        }
+        private async void Init()
+        {
+            InitializeComponent();
+            _saleService = new SaleService();
+            _customerInvoiceService = new CustomerInvoiceService();
+            _customerInvoiceCostService = new CustomerInvoiceCostService();
+
             List<string> authRolesWrite = new List<string>
             {
                 "CustomerInvoiceWrite",
@@ -82,65 +95,103 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
-
+        string code;
         private async void button1_Click(object sender, EventArgs e)
         {
-            saleID = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
+            saleID = (await _saleService
+                .GetAll(new SaleFilter()
+                {
+                    SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
+                    SaleBookingNumber = BKCmbxUC.Cmbx.Text
+                }
+                )).FirstOrDefault().SaleId;
 
-            CustomerInvoice si = new CustomerInvoice
+            if (detailsOnly)
             {
-                SaleId = saleID,
-                Status = StatusCB.Text,
-                InvoiceDate = InvoiceDateDTP.Value,
-                InvoiceAmount = 0
-            };
-            try
-            {
-                await _customerInvoiceService.Update(customerInvoice.CustomerInvoiceId, si);
-                MessageBox.Show("Customer updated successfully!");
 
-                this.Close();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            InvoiceAmountTxt.Enabled = checkBox1.Checked;
-            StatusCB.Enabled = checkBox1.Checked;
-            BKCmbxUC.Cmbx.Enabled = checkBox1.Checked;
-            BoLCmbxUC.Cmbx.Enabled = checkBox1.Checked;
-            InvoiceDateDTP.Enabled = checkBox1.Checked;
-        }
-
-
-
-
-
-        private async void DeleteBtn_Click_1(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-           "This action is permanent and it will delete all the history bound to this Customer Invoice!",
-           "Confirm Deletion?",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
+                CustomerInvoice invoice = new CustomerInvoice
+                {
+                    SaleId = saleID,
+                    Status = StatusCB.Text,
+                    InvoiceDate = InvoiceDateDTP.Value,
+                    InvoiceAmount = 0
+                };
                 try
                 {
-                    await _customerInvoiceService.Delete(customerInvoice.CustomerInvoiceId);
-                    MessageBox.Show("Customer Invoice has been deleted.");
+                    await _customerInvoiceService.Update(customerInvoice.CustomerInvoiceId, invoice);
+                    MessageBox.Show("Customer Invoice Updated successfully!");
+
                     this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
             else
             {
-                MessageBox.Show("Action canceled.");
+                if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !InvoiceDateDTP.Checked)
+                {
+                    MessageBox.Show("All the fields must be filled");
+                    return;
+                }
+                code = Guid.NewGuid().ToString("N").Substring(0, 20);
+                button1.Enabled = false;
+                CustomerInvoice invoice = new CustomerInvoice
+                {
+                    SaleId = saleID,
+                    InvoiceDate = InvoiceDateDTP.Value,
+                    Status = "Unpaid",
+                    CustomerInvoiceCode = code
+                };
+
+                try
+                {
+                    await _customerInvoiceService.Create(invoice);
+                    MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
+
+                    AddCostBtn.Enabled = true;
+                    InvoiceAmountTxt.Text = "0,0";
+                    InvoiceAmountTxt.Visible = true;
+                    label5.Visible = true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    button1.Enabled = true;
+                }
+
             }
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            StatusCB.Enabled = checkBox1.Checked;
+            BKCmbxUC.Cmbx.Enabled = checkBox1.Checked;
+            BoLCmbxUC.Cmbx.Enabled = checkBox1.Checked;
+            InvoiceDateDTP.Enabled = checkBox1.Checked;
+            button1.Enabled = checkBox1.Checked;
+
+            if (!checkBox1.Checked)
+            {
+                textBox1.Text = customerInvoice.CustomerInvoiceCode;
+                InvoiceAmountTxt.Text = customerInvoice.InvoiceAmount.ToString();
+
+                UtilityFunctions.SetDropdownText(BKCmbxUC, customerInvoice.SaleBookingNumber);
+                UtilityFunctions.SetDropdownText(BoLCmbxUC, customerInvoice.SaleBoL);
+
+                InvoiceDateDTP.Value = (DateTime)customerInvoice.InvoiceDate;
+                StatusCB.Text = customerInvoice.Status;
+            }
+        }
+
+        public async void UpdateDgv(string code)
+        {
+            List<CustomerInvoiceCost> data = (await _customerInvoiceCostService
+                .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = code })).ToList();
+            dataGridView1.DataSource = data;
+
+            InvoiceAmountTxt.Text = data.Select(x => x.Quantity * x.Cost).Sum().ToString();
+        }
         public async Task SetList()
         {
 
@@ -188,7 +239,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void AddCostBtn_Click(object sender, EventArgs e)
         {
-            UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, customerInvoice.CustomerInvoiceCode);
+            if (detailsOnly)
+                UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, this, customerInvoice.CustomerInvoiceCode);
+            else
+                UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, this, code);
+
         }
     }
 }

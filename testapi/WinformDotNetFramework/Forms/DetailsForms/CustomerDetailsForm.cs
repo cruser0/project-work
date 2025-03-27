@@ -16,36 +16,44 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         CustomerInvoiceSummary summary;
         Customer customer;
         int customerId;
+        bool detailsOnly = false;
         public CustomerDetailsForm()
         {
             Init();
+            chart1.Visible = false;
+            EditCustomerCbx.Visible = false;
+            comboBox1.Visible = false;
+            label1.Visible = false;
         }
 
         public CustomerDetailsForm(int id)
         {
-            Init(id);
+            Init();
+            InitDetails(id);
         }
-
-        private async void Init(int? id=null)
+        private async void InitDetails(int intid)
         {
-            InitializeComponent();
-            _customerService = new CustomerService();
-            _customerInvoiceService = new CustomerInvoiceService();
-            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).Skip(1).ToList();
+            summary = await _customerInvoiceService.GetSummary(intid);
+            customer = await _customerService.GetById(intid);
+            customerId = intid;
 
-            if (id != null)
-            {
-                int intid = (int)id;
-                summary = await _customerInvoiceService.GetSummary(intid);
-                customer = await _customerService.GetById(intid);
-                customerId = intid;
-            }
             NameCustomerTxt.Text = customer.CustomerName;
             CountryCmbx.Text = customer.Country;
             comboBox1.Text = (bool)customer.Deprecated ? "Deprecated" : "Active";
             NameCustomerTxt.Enabled = false;
             CountryCmbx.Enabled = false;
             comboBox1.Enabled = false;
+            SaveEditCustomerBtn.Enabled = false;
+            detailsOnly = true;
+
+            CreateDonutChart();
+        }
+        private async void Init()
+        {
+            InitializeComponent();
+            _customerService = new CustomerService();
+            _customerInvoiceService = new CustomerInvoiceService();
+            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).Skip(1).ToList();
 
             List<string> authRolesWrite = new List<string>
             {
@@ -63,8 +71,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 EditCustomerCbx.Visible = false;
                 SaveEditCustomerBtn.Visible = false;
             }
-            CreateDonutChart();
         }
+
 
         private void CreateDonutChart()
         {
@@ -111,6 +119,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             NameCustomerTxt.Enabled = EditCustomerCbx.Checked;
             CountryCmbx.Enabled = EditCustomerCbx.Checked;
             comboBox1.Enabled = EditCustomerCbx.Checked;
+            SaveEditCustomerBtn.Enabled = EditCustomerCbx.Checked;
 
             if (!EditCustomerCbx.Checked)
             {
@@ -120,59 +129,63 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
 
         }
-        bool enabled;
         private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
-
-
-            switch (comboBox1.Text)
+            if (detailsOnly)
             {
-                case "Active":
-                    enabled = false;
-                    break;
+                bool enabled;
 
-                case "Deprecated":
-                    enabled = true;
-                    break;
-            };
+                switch (comboBox1.Text)
+                {
+                    case "Active":
+                        enabled = false;
+                        break;
 
-            Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
-            try
-            {
-                await _customerService.Update(customerId, customer);
-                MessageBox.Show("Customer updated successfully!");
+                    case "Deprecated":
+                        enabled = true;
+                        break;
 
-                this.Close();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
+                    default:
+                        enabled = false;
+                        break;
+                };
 
-        private void CountryCustomerLbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-           "This action is permanent and it will delete all the history bound to this Customer!",
-           "Confirm Deletion?",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
+                Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
                 try
                 {
-                    await _customerService.Delete(customerId);
-                    MessageBox.Show("Customer has been deleted.");
+                    await _customerService.Update(customerId, customer);
+                    MessageBox.Show("Customer updated successfully!");
+
                     this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
             else
             {
-                MessageBox.Show("Action canceled.");
+                if (NameCustomerTxt.Text.Length < 1 || string.IsNullOrEmpty(CountryCmbx.Text))
+                {
+                    MessageBox.Show("Input data error!");
+                    return;
+                }
+
+                Customer customer = new Customer()
+                {
+                    CustomerName = NameCustomerTxt.Text,
+                    Country = CountryCmbx.Text
+                };
+
+                try
+                {
+                    await _customerService.Create(customer);
+                    MessageBox.Show("Customer Created Succesfully");
+                    Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
             }
         }
     }

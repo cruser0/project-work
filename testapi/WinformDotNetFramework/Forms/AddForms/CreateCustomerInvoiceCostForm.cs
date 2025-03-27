@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -30,8 +31,17 @@ namespace WinformDotNetFramework.Forms.AddForms
             InvoiceCodeCmbxUC.Cmbx.Text = InvoiceCode;
 
         }
+        Form _father;
+        public CreateCustomerInvoiceCostForm(Form father, object data)
+        {
+            Init();
+            _father = father;
+            InvoiceCode = data as string;
 
-        private async void Init()
+            UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
+        }
+
+        private void Init()
         {
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             _customerInvoiceService = new CustomerInvoiceService();
@@ -89,6 +99,10 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 await _customerInvoiceCostService.Create(customerInvoiceCost);
                 MessageBox.Show("Customer Invoice Cost Created Succesfully");
+
+                CustomerInvoiceDetailsForm form = (CustomerInvoiceDetailsForm)_father;
+                form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.Text);
+
                 Close();
             }
             catch (Exception ex)
