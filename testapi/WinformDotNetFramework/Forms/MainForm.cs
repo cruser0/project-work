@@ -151,6 +151,11 @@ namespace WinformDotNetFramework.Forms
                 if (tabControl.SelectedTab.Text.Equals("Favorite"))
                 {
                     formName = (string)menuItem.Tag;
+
+                    if (formName == "User Area")
+                    {
+                        formName = "TS UserProfile";
+                    }
                 }
             }
 
@@ -621,15 +626,15 @@ namespace WinformDotNetFramework.Forms
                     if (buttonMap.ContainsKey(favorite))
                     {
                         ToolStripButton btn = buttonMap[favorite];
-
+                        string t = btn == UserProfile ? "User Area" : btn.Text;
                         // Crea una nuova istanza del bottone
                         ToolStripButton clonedButton = new ToolStripButton
                         {
                             AutoSize = true,
                             Margin = btn.Margin,
                             BackColor = Color.Transparent,
-                            Text = $"{btn.GetCurrentParent().Parent.Text} {btn.Text}",
-                            Image = btn.Image,
+                            Text = $"{btn.GetCurrentParent().Parent.Text} {t}",
+                            Image = null,
                             ToolTipText = btn.ToolTipText,
                             Tag = favorite,
                             DisplayStyle = btn.DisplayStyle,
