@@ -43,13 +43,13 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.PanelCreateCustomerInvoiceCost = new System.Windows.Forms.Panel();
+            this.CostTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
             this.SaveQuit = new System.Windows.Forms.Button();
+            this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CostRegistryLbl = new System.Windows.Forms.Label();
             this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.CostTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
-            this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.QuantityTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.PanelCreateCustomerInvoiceCost.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,6 +194,15 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.PanelCreateCustomerInvoiceCost.Size = new System.Drawing.Size(750, 427);
             this.PanelCreateCustomerInvoiceCost.TabIndex = 38;
             // 
+            // CostTxt
+            // 
+            this.CostTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CostTxt.Location = new System.Drawing.Point(289, 244);
+            this.CostTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.CostTxt.Name = "CostTxt";
+            this.CostTxt.Size = new System.Drawing.Size(200, 23);
+            this.CostTxt.TabIndex = 40;
+            // 
             // SaveQuit
             // 
             this.SaveQuit.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -206,6 +215,16 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaveQuit.Text = "Save and Quit";
             this.SaveQuit.UseVisualStyleBackColor = false;
             this.SaveQuit.Click += new System.EventHandler(this.SaveQuit_Click);
+            // 
+            // InvoiceCodeCmbxUC
+            // 
+            this.InvoiceCodeCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
+            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
+            this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.InvoiceCodeCmbxUC.Name = "InvoiceCodeCmbxUC";
+            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.InvoiceCodeCmbxUC.TabIndex = 38;
             // 
             // CostRegistryLbl
             // 
@@ -228,24 +247,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.CostRegistryCmbx.Name = "CostRegistryCmbx";
             this.CostRegistryCmbx.Size = new System.Drawing.Size(200, 23);
             this.CostRegistryCmbx.TabIndex = 35;
-            // 
-            // CostTxt
-            // 
-            this.CostTxt.Location = new System.Drawing.Point(289, 244);
-            this.CostTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.CostTxt.Name = "CostTxt";
-            this.CostTxt.Size = new System.Drawing.Size(200, 23);
-            this.CostTxt.TabIndex = 40;
-            // 
-            // InvoiceCodeCmbxUC
-            // 
-            this.InvoiceCodeCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
-            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
-            this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.InvoiceCodeCmbxUC.Name = "InvoiceCodeCmbxUC";
-            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(200, 23);
-            this.InvoiceCodeCmbxUC.TabIndex = 38;
             // 
             // QuantityTxt
             // 

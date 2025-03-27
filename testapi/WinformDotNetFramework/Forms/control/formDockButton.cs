@@ -75,6 +75,22 @@ namespace WinformDotNetFramework.Forms.control
 
         private void buttonCloseForm_Click(object sender, EventArgs e)
         {
+
+            // Cerca il ToolStripButton corrispondente al nome del form
+            ToolStripItem buttonToRemove = mainForm.OpenFormDropDown.DropDownItems
+                .Cast<ToolStripItem>()
+                .FirstOrDefault(item => item.Text == form.Text);
+
+            if (buttonToRemove != null)
+            {
+                // Rimuovi il ToolStripButton dagli items del dropdown
+                mainForm.OpenFormDropDown.DropDownItems.Remove(buttonToRemove);
+            }
+
+            if (mainForm.MdiChildren.Count() == 1)
+                mainForm.OpenFormDropDown.Enabled = false;
+
+
             form.Close();
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
             panel.Controls.Remove(this);

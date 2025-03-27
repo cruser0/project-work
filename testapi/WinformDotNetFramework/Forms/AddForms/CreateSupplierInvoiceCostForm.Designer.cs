@@ -32,6 +32,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         {
             this.CreatePanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CostRegistryLbl = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
             this.CreatePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +89,16 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 36;
+            // 
+            // CostIntegerTxt
+            // 
+            this.CostIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CostIntegerTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.CostIntegerTxt.Location = new System.Drawing.Point(289, 158);
+            this.CostIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.CostIntegerTxt.Name = "CostIntegerTxt";
+            this.CostIntegerTxt.Size = new System.Drawing.Size(172, 25);
+            this.CostIntegerTxt.TabIndex = 44;
             // 
             // checkBox1
             // 
@@ -274,15 +284,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 40;
-            // 
-            // CostIntegerTxt
-            // 
-            this.CostIntegerTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CostIntegerTxt.Location = new System.Drawing.Point(289, 158);
-            this.CostIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.CostIntegerTxt.Name = "CostIntegerTxt";
-            this.CostIntegerTxt.Size = new System.Drawing.Size(172, 25);
-            this.CostIntegerTxt.TabIndex = 44;
             // 
             // CreateSupplierInvoiceCostForm
             // 

@@ -111,9 +111,9 @@ namespace WinformDotNetFramework.Forms.control
         }
 
         #endregion
-        private Button buttonCloseForm;
         private Button buttonShowForm;
         private Button AddFavoriteButton;
         public Panel panel1;
+        public Button buttonCloseForm;
     }
 }

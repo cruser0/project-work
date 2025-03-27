@@ -74,6 +74,8 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpenFormDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -494,7 +496,9 @@ namespace WinformDotNetFramework.Forms
             this.AddFavoriteButton,
             this.toolStripButton2,
             this.toolStripSeparator3,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripSeparator6,
+            this.OpenFormDropDown});
             this.TS.Location = new System.Drawing.Point(0, 0);
             this.TS.Name = "TS";
             this.TS.Size = new System.Drawing.Size(1077, 22);
@@ -561,6 +565,19 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3.Text = "Hide All Forms";
             this.toolStripButton3.ToolTipText = "Hide All";
             this.toolStripButton3.Click += new System.EventHandler(this.MinimizeAll_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 22);
+            // 
+            // OpenFormDropDown
+            // 
+            this.OpenFormDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.OpenFormDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpenFormDropDown.Name = "OpenFormDropDown";
+            this.OpenFormDropDown.Size = new System.Drawing.Size(134, 19);
+            this.OpenFormDropDown.Text = "Show All Open Forms";
             // 
             // MainForm
             // 
@@ -640,5 +657,7 @@ namespace WinformDotNetFramework.Forms
         private ToolStripSeparator toolStripSeparator5;
         public ToolStripButton SaleReportTS;
         private ToolStripSeparator toolStripSeparator3;
+        private ToolStripSeparator toolStripSeparator6;
+        public ToolStripDropDownButton OpenFormDropDown;
     }
 }
