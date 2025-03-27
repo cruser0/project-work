@@ -106,6 +106,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             // InvoiceCodeCmbxUC
             // 
+            this.InvoiceCodeCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
             this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
             this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -126,6 +127,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             // CostRegistryCmbx
             // 
+            this.CostRegistryCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CostRegistryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CostRegistryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CostRegistryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
