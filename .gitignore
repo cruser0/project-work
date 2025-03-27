@@ -23,3 +23,5 @@ appsettings.json
 
 **/**/Debug/
 **/**/v17/
+
+.vs/

@@ -34,7 +34,6 @@ namespace WinformDotNetFramework.Forms.control
                     Cmbx.DroppedDown = false;
                     return;
                 }
-
                 if (ParentForm is CreateCustomerInvoiceCostForm cicf)
                     await cicf.SetList(currentText);
 
@@ -65,9 +64,13 @@ namespace WinformDotNetFramework.Forms.control
                     Cmbx.DataSource = null;
                     Cmbx.DataSource = listItemsDropCmbx;
                     Cmbx.EndUpdate();
-                    Cmbx.DroppedDown = true;
-                    Cmbx.Text = currentText;
-                    Cmbx.SelectionStart = selectionStart;
+
+                    if (!currentText.EndsWith(" "))
+                    {
+                        Cmbx.DroppedDown = true;
+                        Cmbx.Text = currentText;
+                        Cmbx.SelectionStart = selectionStart;
+                    }
                 }
                 else
                 {
@@ -83,6 +86,7 @@ namespace WinformDotNetFramework.Forms.control
                 _suppressEvents = false;
             }
         }
+
 
         public void Cmbx_TextChanged(object sender, EventArgs e)
         {
