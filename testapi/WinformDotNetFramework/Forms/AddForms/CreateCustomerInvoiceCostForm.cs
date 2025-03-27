@@ -18,6 +18,7 @@ namespace WinformDotNetFramework.Forms.AddForms
         private int id = 0;
         List<CostRegistry> list;
         string InvoiceCode;
+        CustomerInvoiceCost _updateCost;
 
         public CreateCustomerInvoiceCostForm()
         {
@@ -32,6 +33,19 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         }
         Form _father;
+        public CreateCustomerInvoiceCostForm(Form father, CustomerInvoiceCost data)
+        {
+            Init();
+            _father = father;
+            _updateCost = data;
+            UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, _updateCost.CustomerInvoiceCode);
+            CostRegistryCmbx.Text = _updateCost.CostRegistryCode;
+            NameTxt.Text = _updateCost.Name;
+            CostTxt.SetText(_updateCost.Cost.ToString());
+            QuantityTxt.SetText(_updateCost.Quantity.ToString());
+            SaveBtn.Visible = false;
+
+        }
         public CreateCustomerInvoiceCostForm(Form father, object data)
         {
             Init();
@@ -97,8 +111,17 @@ namespace WinformDotNetFramework.Forms.AddForms
 
             try
             {
-                await _customerInvoiceCostService.Create(customerInvoiceCost);
-                MessageBox.Show("Customer Invoice Cost Created Succesfully");
+                if (_updateCost != null)
+                {
+                    await _customerInvoiceCostService.Update(_updateCost.CustomerInvoiceCostsId, customerInvoiceCost);
+                    MessageBox.Show("Customer Invoice Cost Updated Succesfully");
+
+                }
+                else
+                {
+                    await _customerInvoiceCostService.Create(customerInvoiceCost);
+                    MessageBox.Show("Customer Invoice Cost Created Succesfully");
+                }
 
                 CustomerInvoiceDetailsForm form = (CustomerInvoiceDetailsForm)_father;
                 form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.Text);

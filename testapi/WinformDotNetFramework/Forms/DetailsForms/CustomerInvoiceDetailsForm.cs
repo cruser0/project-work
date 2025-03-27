@@ -262,5 +262,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (sender is DataGridView dgv)
+            {
+                if (e.RowIndex == -1)
+                    return;
+
+                UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
+
+            }
+        }
     }
 }

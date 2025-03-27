@@ -43,12 +43,12 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.Quantity = new System.Windows.Forms.Label();
             this.QuantityIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.SupplierIDLbl = new System.Windows.Forms.Label();
-            this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.OpenSupplierInvoice = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
             this.CreatePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.CostIntegerTxt);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.InvoiceCodeCmbxUC);
             this.panel1.Controls.Add(this.CostRegistryLbl);
@@ -82,7 +83,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel1.Controls.Add(this.Quantity);
             this.panel1.Controls.Add(this.QuantityIntegerTxt);
             this.panel1.Controls.Add(this.SupplierIDLbl);
-            this.panel1.Controls.Add(this.CostIntegerTxt);
             this.panel1.Controls.Add(this.OpenSupplierInvoice);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(17, 17);
@@ -224,17 +224,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SupplierIDLbl.TabIndex = 23;
             this.SupplierIDLbl.Text = "Cost";
             // 
-            // CostIntegerTxt
-            // 
-            this.CostIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CostIntegerTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CostIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostIntegerTxt.Location = new System.Drawing.Point(289, 158);
-            this.CostIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.CostIntegerTxt.Name = "CostIntegerTxt";
-            this.CostIntegerTxt.Size = new System.Drawing.Size(172, 25);
-            this.CostIntegerTxt.TabIndex = 32;
-            // 
             // OpenSupplierInvoice
             // 
             this.OpenSupplierInvoice.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -286,6 +275,15 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 40;
             // 
+            // CostIntegerTxt
+            // 
+            this.CostIntegerTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.CostIntegerTxt.Location = new System.Drawing.Point(289, 158);
+            this.CostIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.CostIntegerTxt.Name = "CostIntegerTxt";
+            this.CostIntegerTxt.Size = new System.Drawing.Size(172, 25);
+            this.CostIntegerTxt.TabIndex = 44;
+            // 
             // CreateSupplierInvoiceCostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,7 +305,6 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         private Panel CreatePanel;
         private control.IntegerTextBoxUserControl QuantityIntegerTxt;
-        private control.IntegerTextBoxUserControl CostIntegerTxt;
         private Button OpenSupplierInvoice;
         private Label SupplierIDLbl;
         private Label Quantity;
@@ -324,5 +321,6 @@ namespace WinformDotNetFramework.Forms.AddForms
         private ComboBox CostRegistryCmbx;
         private Label label1;
         private CheckBox checkBox1;
+        private control.DecimalTextBoxUserControl CostIntegerTxt;
     }
 }

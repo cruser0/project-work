@@ -63,6 +63,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel8 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.OpenSale = new System.Windows.Forms.Button();
             this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CustomerCountryLbl = new System.Windows.Forms.Label();
@@ -74,7 +75,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.OpenSale = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -253,6 +253,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CuInDgv.ReadOnly = true;
             this.CuInDgv.Size = new System.Drawing.Size(360, 206);
             this.CuInDgv.TabIndex = 0;
+            this.CuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellDoubleClick);
             // 
             // customerInvoiceCodeDataGridViewTextBoxColumn
             // 
@@ -343,6 +344,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SuInDgv.ReadOnly = true;
             this.SuInDgv.Size = new System.Drawing.Size(360, 206);
             this.SuInDgv.TabIndex = 0;
+            this.SuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SuInDgv_CellDoubleClick);
             // 
             // supplierInvoiceCodeDataGridViewTextBoxColumn
             // 
@@ -437,6 +439,22 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(744, 163);
             this.panel6.TabIndex = 51;
+            // 
+            // OpenSale
+            // 
+            this.OpenSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.OpenSale.FlatAppearance.BorderSize = 0;
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.OpenSale.Location = new System.Drawing.Point(503, 52);
+            this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.OpenSale.Name = "OpenSale";
+            this.OpenSale.Size = new System.Drawing.Size(29, 23);
+            this.OpenSale.TabIndex = 51;
+            this.OpenSale.Text = "->";
+            this.OpenSale.UseVisualStyleBackColor = false;
+            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
             // 
             // CountryCmbxUC
             // 
@@ -562,22 +580,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
-            // 
-            // OpenSale
-            // 
-            this.OpenSale.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
-            this.OpenSale.FlatAppearance.BorderSize = 0;
-            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSale.Location = new System.Drawing.Point(503, 52);
-            this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.OpenSale.Name = "OpenSale";
-            this.OpenSale.Size = new System.Drawing.Size(29, 23);
-            this.OpenSale.TabIndex = 51;
-            this.OpenSale.Text = "->";
-            this.OpenSale.UseVisualStyleBackColor = false;
-            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
             // 
             // SaleDetailsForm
             // 

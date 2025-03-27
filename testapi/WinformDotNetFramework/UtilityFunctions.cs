@@ -88,7 +88,6 @@ namespace WinformDotNetFramework
 
         }
 
-
         // Apre un form dei dettagli (con ID) del tipo specificato
         public static void OpenFormDetails<T>(object sender, DataGridViewCellEventArgs e, int id) where T : Form
         {
