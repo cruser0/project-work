@@ -37,11 +37,9 @@ namespace WinformDotNetFramework.Forms
             this.Show = new System.Windows.Forms.ToolStrip();
             this.CustomerShowTS = new System.Windows.Forms.ToolStripButton();
             this.CustomerInvoiceShowTS = new System.Windows.Forms.ToolStripButton();
-            this.CustomerInvoiceCostShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierShowTS = new System.Windows.Forms.ToolStripButton();
             this.SupplierInvoiceShowTS = new System.Windows.Forms.ToolStripButton();
-            this.SupplierInvoiceCostShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SaleShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
@@ -50,11 +48,9 @@ namespace WinformDotNetFramework.Forms
             this.Create = new System.Windows.Forms.ToolStrip();
             this.CustomerCreateTS = new System.Windows.Forms.ToolStripButton();
             this.CustomerInvoiceCreateTS = new System.Windows.Forms.ToolStripButton();
-            this.CustomerInvoiceCostCreateTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.SupplierCreateTS = new System.Windows.Forms.ToolStripButton();
             this.SupplierInvoiceCreateTS = new System.Windows.Forms.ToolStripButton();
-            this.SupplierInvoiceCostCreateTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.SaleCreateTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -76,8 +72,8 @@ namespace WinformDotNetFramework.Forms
             this.UserProfile = new System.Windows.Forms.ToolStripButton();
             this.AddFavoriteButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -137,11 +133,9 @@ namespace WinformDotNetFramework.Forms
             this.Show.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerShowTS,
             this.CustomerInvoiceShowTS,
-            this.CustomerInvoiceCostShowTS,
             this.toolStripSeparator1,
             this.SupplierShowTS,
             this.SupplierInvoiceShowTS,
-            this.SupplierInvoiceCostShowTS,
             this.toolStripSeparator2,
             this.SaleShowTS,
             this.toolStripSeparator13,
@@ -176,18 +170,6 @@ namespace WinformDotNetFramework.Forms
             this.CustomerInvoiceShowTS.Text = "Customer Invoice";
             this.CustomerInvoiceShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // CustomerInvoiceCostShowTS
-            // 
-            this.CustomerInvoiceCostShowTS.AutoSize = false;
-            this.CustomerInvoiceCostShowTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CustomerInvoiceCostShowTS.Image = ((System.Drawing.Image)(resources.GetObject("CustomerInvoiceCostShowTS.Image")));
-            this.CustomerInvoiceCostShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CustomerInvoiceCostShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.CustomerInvoiceCostShowTS.Name = "CustomerInvoiceCostShowTS";
-            this.CustomerInvoiceCostShowTS.Size = new System.Drawing.Size(125, 27);
-            this.CustomerInvoiceCostShowTS.Text = "Customer Invoice Cost";
-            this.CustomerInvoiceCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -216,18 +198,6 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceShowTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierInvoiceShowTS.Text = "Supplier Invoice";
             this.SupplierInvoiceShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
-            // SupplierInvoiceCostShowTS
-            // 
-            this.SupplierInvoiceCostShowTS.AutoSize = false;
-            this.SupplierInvoiceCostShowTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SupplierInvoiceCostShowTS.Image = ((System.Drawing.Image)(resources.GetObject("SupplierInvoiceCostShowTS.Image")));
-            this.SupplierInvoiceCostShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SupplierInvoiceCostShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.SupplierInvoiceCostShowTS.Name = "SupplierInvoiceCostShowTS";
-            this.SupplierInvoiceCostShowTS.Size = new System.Drawing.Size(125, 27);
-            this.SupplierInvoiceCostShowTS.Text = "Supplier Invoice Cost";
-            this.SupplierInvoiceCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator2
             // 
@@ -283,11 +253,9 @@ namespace WinformDotNetFramework.Forms
             this.Create.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CustomerCreateTS,
             this.CustomerInvoiceCreateTS,
-            this.CustomerInvoiceCostCreateTS,
             this.toolStripSeparator7,
             this.SupplierCreateTS,
             this.SupplierInvoiceCreateTS,
-            this.SupplierInvoiceCostCreateTS,
             this.toolStripSeparator8,
             this.SaleCreateTS,
             this.toolStripSeparator9,
@@ -322,18 +290,6 @@ namespace WinformDotNetFramework.Forms
             this.CustomerInvoiceCreateTS.Text = "Customer Invoice";
             this.CustomerInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
-            // CustomerInvoiceCostCreateTS
-            // 
-            this.CustomerInvoiceCostCreateTS.AutoSize = false;
-            this.CustomerInvoiceCostCreateTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CustomerInvoiceCostCreateTS.Image = ((System.Drawing.Image)(resources.GetObject("CustomerInvoiceCostCreateTS.Image")));
-            this.CustomerInvoiceCostCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CustomerInvoiceCostCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.CustomerInvoiceCostCreateTS.Name = "CustomerInvoiceCostCreateTS";
-            this.CustomerInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 27);
-            this.CustomerInvoiceCostCreateTS.Text = "Customer Invoice Cost";
-            this.CustomerInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
@@ -362,18 +318,6 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCreateTS.Size = new System.Drawing.Size(100, 27);
             this.SupplierInvoiceCreateTS.Text = "Supplier Invoice";
             this.SupplierInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
-            // 
-            // SupplierInvoiceCostCreateTS
-            // 
-            this.SupplierInvoiceCostCreateTS.AutoSize = false;
-            this.SupplierInvoiceCostCreateTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SupplierInvoiceCostCreateTS.Image = ((System.Drawing.Image)(resources.GetObject("SupplierInvoiceCostCreateTS.Image")));
-            this.SupplierInvoiceCostCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SupplierInvoiceCostCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.SupplierInvoiceCostCreateTS.Name = "SupplierInvoiceCostCreateTS";
-            this.SupplierInvoiceCostCreateTS.Size = new System.Drawing.Size(125, 27);
-            this.SupplierInvoiceCostCreateTS.Text = "Supplier Invoice Cost";
-            this.SupplierInvoiceCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator8
             // 
@@ -602,6 +546,11 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2.Text = "Close All Forms";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 22);
+            // 
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -612,11 +561,6 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3.Text = "Hide All Forms";
             this.toolStripButton3.ToolTipText = "Hide All";
             this.toolStripButton3.Click += new System.EventHandler(this.MinimizeAll_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 22);
             // 
             // MainForm
             // 
@@ -670,10 +614,8 @@ namespace WinformDotNetFramework.Forms
         public ToolStrip Create;
         public ToolStripButton CustomerCreateTS;
         public ToolStripButton CustomerInvoiceCreateTS;
-        public ToolStripButton CustomerInvoiceCostCreateTS;
         public ToolStripButton SupplierCreateTS;
         public ToolStripButton SupplierInvoiceCreateTS;
-        public ToolStripButton SupplierInvoiceCostCreateTS;
         public ToolStripButton SaleCreateTS;
         public ToolStripButton UserCreateTS;
         public ToolStrip Group;
@@ -684,11 +626,9 @@ namespace WinformDotNetFramework.Forms
         public ToolStrip Show;
         public ToolStripButton CustomerShowTS;
         public ToolStripButton CustomerInvoiceShowTS;
-        public ToolStripButton CustomerInvoiceCostShowTS;
         private ToolStripSeparator toolStripSeparator1;
         public ToolStripButton SupplierShowTS;
         public ToolStripButton SupplierInvoiceShowTS;
-        public ToolStripButton SupplierInvoiceCostShowTS;
         private ToolStripSeparator toolStripSeparator2;
         public ToolStripButton SaleShowTS;
         private ToolStripSeparator toolStripSeparator13;

@@ -34,6 +34,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.LeftPane = new System.Windows.Forms.Panel();
             this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.SpliContainerDGV = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SupplierDgv = new System.Windows.Forms.DataGridView();
             this.SupplierToolStrip = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft = new System.Windows.Forms.ToolStripButton();
@@ -42,6 +43,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.DoubleRight = new System.Windows.Forms.ToolStripButton();
             this.TSLbl1 = new System.Windows.Forms.ToolStripLabel();
             this.SplitContainerDGV2 = new System.Windows.Forms.SplitContainer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SupInvoiceDgv = new System.Windows.Forms.DataGridView();
             this.InvoiceToolStrip = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft2 = new System.Windows.Forms.ToolStripButton();
@@ -49,6 +51,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right2 = new System.Windows.Forms.ToolStripButton();
             this.DoubleRight2 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl2 = new System.Windows.Forms.ToolStripLabel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SupInvoiceCostDgv = new System.Windows.Forms.DataGridView();
             this.CostToolStrip = new System.Windows.Forms.ToolStrip();
             this.DoubleLeft3 = new System.Windows.Forms.ToolStripButton();
@@ -97,14 +100,17 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SpliContainerDGV.Panel1.SuspendLayout();
             this.SpliContainerDGV.Panel2.SuspendLayout();
             this.SpliContainerDGV.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).BeginInit();
             this.SupplierToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).BeginInit();
             this.SplitContainerDGV2.Panel1.SuspendLayout();
             this.SplitContainerDGV2.Panel2.SuspendLayout();
             this.SplitContainerDGV2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceDgv)).BeginInit();
             this.InvoiceToolStrip.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceCostDgv)).BeginInit();
             this.CostToolStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -137,6 +143,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // MainSplitContainer.Panel1
             // 
             this.MainSplitContainer.Panel1.Controls.Add(this.SpliContainerDGV);
+            this.MainSplitContainer.Panel1MinSize = 513;
             // 
             // MainSplitContainer.Panel2
             // 
@@ -144,7 +151,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Size = new System.Drawing.Size(726, 461);
-            this.MainSplitContainer.SplitterDistance = 520;
+            this.MainSplitContainer.SplitterDistance = 513;
             this.MainSplitContainer.SplitterWidth = 3;
             this.MainSplitContainer.TabIndex = 1;
             // 
@@ -157,27 +164,42 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SpliContainerDGV.Panel1
             // 
-            this.SpliContainerDGV.Panel1.Controls.Add(this.SupplierDgv);
-            this.SpliContainerDGV.Panel1.Controls.Add(this.SupplierToolStrip);
+            this.SpliContainerDGV.Panel1.Controls.Add(this.groupBox1);
             // 
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(520, 461);
-            this.SpliContainerDGV.SplitterDistance = 300;
+            this.SpliContainerDGV.Size = new System.Drawing.Size(513, 461);
+            this.SpliContainerDGV.SplitterDistance = 240;
             this.SpliContainerDGV.SplitterWidth = 3;
             this.SpliContainerDGV.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.SupplierDgv);
+            this.groupBox1.Controls.Add(this.SupplierToolStrip);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(513, 240);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Suppliers";
+            // 
             // SupplierDgv
             // 
+            this.SupplierDgv.AllowUserToAddRows = false;
+            this.SupplierDgv.AllowUserToDeleteRows = false;
+            this.SupplierDgv.AllowUserToOrderColumns = true;
             this.SupplierDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SupplierDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupplierDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupplierDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SupplierDgv.Location = new System.Drawing.Point(0, 0);
+            this.SupplierDgv.Location = new System.Drawing.Point(3, 16);
             this.SupplierDgv.Name = "SupplierDgv";
+            this.SupplierDgv.ReadOnly = true;
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(520, 275);
+            this.SupplierDgv.Size = new System.Drawing.Size(507, 196);
             this.SupplierDgv.TabIndex = 0;
             this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellClick);
             this.SupplierDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -193,9 +215,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.SupplierToolStrip.Location = new System.Drawing.Point(0, 275);
+            this.SupplierToolStrip.Location = new System.Drawing.Point(3, 212);
             this.SupplierToolStrip.Name = "SupplierToolStrip";
-            this.SupplierToolStrip.Size = new System.Drawing.Size(520, 25);
+            this.SupplierToolStrip.Size = new System.Drawing.Size(507, 25);
             this.SupplierToolStrip.TabIndex = 2;
             this.SupplierToolStrip.Text = "toolStrip2";
             // 
@@ -212,6 +234,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // Left
             // 
             this.Left.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Left.Enabled = false;
             this.Left.Image = global::WinformDotNetFramework.Properties.Resources.single_left_resize;
             this.Left.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Left.Name = "Left";
@@ -253,28 +276,42 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SplitContainerDGV2.Panel1
             // 
-            this.SplitContainerDGV2.Panel1.Controls.Add(this.SupInvoiceDgv);
-            this.SplitContainerDGV2.Panel1.Controls.Add(this.InvoiceToolStrip);
+            this.SplitContainerDGV2.Panel1.Controls.Add(this.groupBox2);
             // 
             // SplitContainerDGV2.Panel2
             // 
-            this.SplitContainerDGV2.Panel2.Controls.Add(this.SupInvoiceCostDgv);
-            this.SplitContainerDGV2.Panel2.Controls.Add(this.CostToolStrip);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(520, 158);
-            this.SplitContainerDGV2.SplitterDistance = 224;
+            this.SplitContainerDGV2.Panel2.Controls.Add(this.groupBox3);
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(513, 218);
+            this.SplitContainerDGV2.SplitterDistance = 244;
             this.SplitContainerDGV2.SplitterWidth = 3;
             this.SplitContainerDGV2.TabIndex = 0;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.SupInvoiceDgv);
+            this.groupBox2.Controls.Add(this.InvoiceToolStrip);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(244, 218);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Supplier Invoices";
+            // 
             // SupInvoiceDgv
             // 
+            this.SupInvoiceDgv.AllowUserToAddRows = false;
+            this.SupInvoiceDgv.AllowUserToDeleteRows = false;
+            this.SupInvoiceDgv.AllowUserToOrderColumns = true;
             this.SupInvoiceDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SupInvoiceDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupInvoiceDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupInvoiceDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SupInvoiceDgv.Location = new System.Drawing.Point(0, 0);
+            this.SupInvoiceDgv.Location = new System.Drawing.Point(3, 16);
             this.SupInvoiceDgv.Name = "SupInvoiceDgv";
+            this.SupInvoiceDgv.ReadOnly = true;
             this.SupInvoiceDgv.RowTemplate.Height = 25;
-            this.SupInvoiceDgv.Size = new System.Drawing.Size(224, 133);
+            this.SupInvoiceDgv.Size = new System.Drawing.Size(238, 174);
             this.SupInvoiceDgv.TabIndex = 3;
             this.SupInvoiceDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupInvoiceDgv_CellClick);
             this.SupInvoiceDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -290,9 +327,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.InvoiceToolStrip.Location = new System.Drawing.Point(0, 133);
+            this.InvoiceToolStrip.Location = new System.Drawing.Point(3, 190);
             this.InvoiceToolStrip.Name = "InvoiceToolStrip";
-            this.InvoiceToolStrip.Size = new System.Drawing.Size(224, 25);
+            this.InvoiceToolStrip.Size = new System.Drawing.Size(238, 25);
             this.InvoiceToolStrip.TabIndex = 5;
             this.InvoiceToolStrip.Text = "toolStrip4";
             // 
@@ -342,16 +379,32 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.TSLbl2.Size = new System.Drawing.Size(86, 22);
             this.TSLbl2.Text = "toolStripLabel2";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.SupInvoiceCostDgv);
+            this.groupBox3.Controls.Add(this.CostToolStrip);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(266, 218);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Supplier Invoice Costs";
+            // 
             // SupInvoiceCostDgv
             // 
+            this.SupInvoiceCostDgv.AllowUserToAddRows = false;
+            this.SupInvoiceCostDgv.AllowUserToDeleteRows = false;
+            this.SupInvoiceCostDgv.AllowUserToOrderColumns = true;
             this.SupInvoiceCostDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SupInvoiceCostDgv.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.SupInvoiceCostDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SupInvoiceCostDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SupInvoiceCostDgv.Location = new System.Drawing.Point(0, 0);
+            this.SupInvoiceCostDgv.Location = new System.Drawing.Point(3, 16);
             this.SupInvoiceCostDgv.Name = "SupInvoiceCostDgv";
+            this.SupInvoiceCostDgv.ReadOnly = true;
             this.SupInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(293, 133);
+            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(260, 174);
             this.SupInvoiceCostDgv.TabIndex = 4;
             this.SupInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
@@ -366,9 +419,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.CostToolStrip.Location = new System.Drawing.Point(0, 133);
+            this.CostToolStrip.Location = new System.Drawing.Point(3, 190);
             this.CostToolStrip.Name = "CostToolStrip";
-            this.CostToolStrip.Size = new System.Drawing.Size(293, 25);
+            this.CostToolStrip.Size = new System.Drawing.Size(260, 25);
             this.CostToolStrip.TabIndex = 6;
             this.CostToolStrip.Text = "toolStrip3";
             // 
@@ -428,28 +481,28 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 63);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(203, 398);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(210, 398);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // searchSupplier1
             // 
             this.searchSupplier1.Location = new System.Drawing.Point(3, 3);
             this.searchSupplier1.Name = "searchSupplier1";
-            this.searchSupplier1.Size = new System.Drawing.Size(166, 268);
+            this.searchSupplier1.Size = new System.Drawing.Size(186, 268);
             this.searchSupplier1.TabIndex = 0;
             // 
             // searchSupplierInvoice1
             // 
             this.searchSupplierInvoice1.Location = new System.Drawing.Point(3, 277);
             this.searchSupplierInvoice1.Name = "searchSupplierInvoice1";
-            this.searchSupplierInvoice1.Size = new System.Drawing.Size(166, 334);
+            this.searchSupplierInvoice1.Size = new System.Drawing.Size(186, 446);
             this.searchSupplierInvoice1.TabIndex = 1;
             // 
             // searchSupplierInvoiceCost1
             // 
-            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(3, 617);
+            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(3, 729);
             this.searchSupplierInvoiceCost1.Name = "searchSupplierInvoiceCost1";
-            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(171, 216);
+            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(186, 264);
             this.searchSupplierInvoiceCost1.TabIndex = 2;
             // 
             // SearchPanel
@@ -459,7 +512,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.SearchPanel.Location = new System.Drawing.Point(0, 20);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(203, 43);
+            this.SearchPanel.Size = new System.Drawing.Size(210, 43);
             this.SearchPanel.TabIndex = 5;
             // 
             // button1
@@ -482,7 +535,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(203, 20);
+            this.panel1.Size = new System.Drawing.Size(210, 20);
             this.panel1.TabIndex = 4;
             // 
             // DockButton
@@ -701,7 +754,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.showSupplierIDToolStripMenuItem.Text = "Show Supplier ID";
             this.showSupplierIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
             // 
-            // SupplierFinalForm
+            // SupplierGroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -709,7 +762,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.LeftPane);
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "SupplierFinalForm";
+            this.Name = "SupplierGroupForm";
             this.Text = "SupplierFinalForm";
             this.Load += new System.EventHandler(this.SupplierFinalForm_Load);
             this.SizeChanged += new System.EventHandler(this.SupplierFinalForm_ResizeEnd);
@@ -719,22 +772,25 @@ namespace WinformDotNetFramework.Forms.GroupForms
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).EndInit();
             this.MainSplitContainer.ResumeLayout(false);
             this.SpliContainerDGV.Panel1.ResumeLayout(false);
-            this.SpliContainerDGV.Panel1.PerformLayout();
             this.SpliContainerDGV.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SpliContainerDGV)).EndInit();
             this.SpliContainerDGV.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierDgv)).EndInit();
             this.SupplierToolStrip.ResumeLayout(false);
             this.SupplierToolStrip.PerformLayout();
             this.SplitContainerDGV2.Panel1.ResumeLayout(false);
-            this.SplitContainerDGV2.Panel1.PerformLayout();
             this.SplitContainerDGV2.Panel2.ResumeLayout(false);
-            this.SplitContainerDGV2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).EndInit();
             this.SplitContainerDGV2.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceDgv)).EndInit();
             this.InvoiceToolStrip.ResumeLayout(false);
             this.InvoiceToolStrip.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupInvoiceCostDgv)).EndInit();
             this.CostToolStrip.ResumeLayout(false);
             this.CostToolStrip.PerformLayout();
@@ -810,5 +866,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
         private ToolStripMenuItem showInvoiceDateToolStripMenuItem;
         private ToolStripMenuItem showStatusToolStripMenuItem1;
         private ToolStripMenuItem showSupplierIDToolStripMenuItem;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
     }
 }

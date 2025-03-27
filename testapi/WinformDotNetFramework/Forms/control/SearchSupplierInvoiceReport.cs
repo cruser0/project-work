@@ -9,7 +9,7 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplierInvoiceReport()
         {
             InitializeComponent();
-            
+
             Init();
         }
         public async void Init()
@@ -38,6 +38,17 @@ namespace WinformDotNetFramework.Forms.control
             }
             else
                 filter.SupplierCountry = null;
+
+            if (!string.IsNullOrEmpty(comboBox1.Text))
+            {
+                if (comboBox1.Text.Equals("All"))
+                    filter.CountryRegion = null;
+                else
+                    filter.CountryRegion = comboBox1.Text.Split(' ')[0];
+            }
+            else
+                filter.CountryRegion = null;
+
             if (DateFromClnd.Checked)
                 filter.DateFrom = DateFromClnd.Value;
             else

@@ -32,10 +32,20 @@ namespace WinformDotNetFramework.Forms.control
                 if (CountryCmbx.Text.Equals("All"))
                     filter.CustomerCountry = null;
                 else
-                    filter.CustomerCountry=CountryCmbx.Text;
+                    filter.CustomerCountry = CountryCmbx.Text;
             }
             else
                 filter.CustomerCountry = null;
+
+            if (!string.IsNullOrEmpty(comboBox1.Text))
+            {
+                if (comboBox1.Text.Equals("All"))
+                    filter.CountryRegion = null;
+                else
+                    filter.CountryRegion = comboBox1.Text.Split(' ')[0];
+            }
+            else
+                filter.CountryRegion = null;
 
             if (DateFromClnd.Checked)
                 filter.DateFrom = DateFromClnd.Value;

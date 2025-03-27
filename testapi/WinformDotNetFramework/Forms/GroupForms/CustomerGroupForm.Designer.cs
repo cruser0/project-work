@@ -65,10 +65,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.DoubleRight5 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl4 = new System.Windows.Forms.ToolStripLabel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
-            this.searchCustomerInvoice1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoice();
-            this.searchSale1 = new WinformDotNetFramework.Forms.control.SearchSale();
-            this.searchCustomerInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceCost();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -101,6 +97,14 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.CustomerInvoiceCostCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceCostNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.searchCustomer1 = new WinformDotNetFramework.Forms.control.SearchCustomer();
+            this.searchCustomerInvoice1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoice();
+            this.searchSale1 = new WinformDotNetFramework.Forms.control.SearchSale();
+            this.searchCustomerInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoiceCost();
             this.LeftPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -133,6 +137,10 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.RightClickDgvSale.SuspendLayout();
             this.RightClickDgvCustomerInvoice.SuspendLayout();
             this.RightClickDgvCustomerInvoiceCost.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // LeftPane
@@ -154,6 +162,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // MainSplitContainer.Panel1
             // 
             this.MainSplitContainer.Panel1.Controls.Add(this.SpliContainerDGV);
+            this.MainSplitContainer.Panel1MinSize = 513;
             // 
             // MainSplitContainer.Panel2
             // 
@@ -161,7 +170,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Size = new System.Drawing.Size(726, 461);
-            this.MainSplitContainer.SplitterDistance = 520;
+            this.MainSplitContainer.SplitterDistance = 513;
             this.MainSplitContainer.SplitterWidth = 3;
             this.MainSplitContainer.TabIndex = 1;
             // 
@@ -174,27 +183,30 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SpliContainerDGV.Panel1
             // 
-            this.SpliContainerDGV.Panel1.Controls.Add(this.dataGridView1);
-            this.SpliContainerDGV.Panel1.Controls.Add(this.toolStrip);
+            this.SpliContainerDGV.Panel1.Controls.Add(this.groupBox1);
             // 
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(520, 461);
+            this.SpliContainerDGV.Size = new System.Drawing.Size(513, 461);
             this.SpliContainerDGV.SplitterDistance = 176;
             this.SpliContainerDGV.SplitterWidth = 3;
             this.SpliContainerDGV.TabIndex = 0;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(520, 151);
+            this.dataGridView1.Size = new System.Drawing.Size(507, 132);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerDbClickLoadSale);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -210,9 +222,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.toolStrip.Location = new System.Drawing.Point(0, 151);
+            this.toolStrip.Location = new System.Drawing.Point(3, 148);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(520, 25);
+            this.toolStrip.Size = new System.Drawing.Size(507, 25);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip2";
             // 
@@ -271,13 +283,12 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SplitContainerDGV2.Panel1
             // 
-            this.SplitContainerDGV2.Panel1.Controls.Add(this.dataGridView2);
-            this.SplitContainerDGV2.Panel1.Controls.Add(this.toolStrip2);
+            this.SplitContainerDGV2.Panel1.Controls.Add(this.groupBox2);
             // 
             // SplitContainerDGV2.Panel2
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.splitContainer3);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(520, 282);
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(513, 282);
             this.SplitContainerDGV2.SplitterDistance = 151;
             this.SplitContainerDGV2.SplitterWidth = 3;
             this.SplitContainerDGV2.TabIndex = 0;
@@ -288,10 +299,10 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 16);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(520, 126);
+            this.dataGridView2.Size = new System.Drawing.Size(507, 107);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SaleDBClickLoadCustomerInvoice);
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -307,9 +318,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 126);
+            this.toolStrip2.Location = new System.Drawing.Point(3, 123);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(520, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(507, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip1";
             // 
@@ -367,28 +378,30 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.dataGridView3);
-            this.splitContainer3.Panel1.Controls.Add(this.toolStrip3);
+            this.splitContainer3.Panel1.Controls.Add(this.groupBox3);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.dataGridView4);
-            this.splitContainer3.Panel2.Controls.Add(this.toolStrip4);
-            this.splitContainer3.Size = new System.Drawing.Size(520, 128);
-            this.splitContainer3.SplitterDistance = 216;
+            this.splitContainer3.Panel2.Controls.Add(this.groupBox4);
+            this.splitContainer3.Size = new System.Drawing.Size(513, 128);
+            this.splitContainer3.SplitterDistance = 213;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 0;
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AllowUserToOrderColumns = true;
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView3.Location = new System.Drawing.Point(3, 16);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(216, 103);
+            this.dataGridView3.Size = new System.Drawing.Size(207, 84);
             this.dataGridView3.TabIndex = 0;
             this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomerInvoiceDBClickLoadCustomerInvoiceCost);
             this.dataGridView3.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
@@ -404,9 +417,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.toolStrip3.Location = new System.Drawing.Point(0, 103);
+            this.toolStrip3.Location = new System.Drawing.Point(3, 100);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(216, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(207, 25);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -458,14 +471,18 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // dataGridView4
             // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.AllowUserToOrderColumns = true;
             this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView4.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView4.Location = new System.Drawing.Point(3, 16);
             this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(301, 103);
+            this.dataGridView4.Size = new System.Drawing.Size(291, 84);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CustomerRightClick);
             // 
@@ -480,9 +497,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right4,
             this.DoubleRight5,
             this.TSLbl4});
-            this.toolStrip4.Location = new System.Drawing.Point(0, 103);
+            this.toolStrip4.Location = new System.Drawing.Point(3, 100);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(301, 25);
+            this.toolStrip4.Size = new System.Drawing.Size(291, 25);
             this.toolStrip4.TabIndex = 2;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -543,36 +560,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 63);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(203, 398);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(210, 398);
             this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // searchCustomer1
-            // 
-            this.searchCustomer1.Location = new System.Drawing.Point(3, 3);
-            this.searchCustomer1.Name = "searchCustomer1";
-            this.searchCustomer1.Size = new System.Drawing.Size(161, 264);
-            this.searchCustomer1.TabIndex = 0;
-            // 
-            // searchCustomerInvoice1
-            // 
-            this.searchCustomerInvoice1.Location = new System.Drawing.Point(3, 273);
-            this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
-            this.searchCustomerInvoice1.Size = new System.Drawing.Size(161, 242);
-            this.searchCustomerInvoice1.TabIndex = 1;
-            // 
-            // searchSale1
-            // 
-            this.searchSale1.Location = new System.Drawing.Point(3, 521);
-            this.searchSale1.Name = "searchSale1";
-            this.searchSale1.Size = new System.Drawing.Size(171, 321);
-            this.searchSale1.TabIndex = 2;
-            // 
-            // searchCustomerInvoiceCost1
-            // 
-            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 848);
-            this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
-            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(178, 167);
-            this.searchCustomerInvoiceCost1.TabIndex = 3;
             // 
             // SearchPanel
             // 
@@ -581,7 +570,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.SearchPanel.Location = new System.Drawing.Point(0, 20);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(203, 43);
+            this.SearchPanel.Size = new System.Drawing.Size(210, 43);
             this.SearchPanel.TabIndex = 6;
             // 
             // button1
@@ -589,7 +578,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.button1.Location = new System.Drawing.Point(39, 3);
+            this.button1.Location = new System.Drawing.Point(51, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 37);
             this.button1.TabIndex = 0;
@@ -604,7 +593,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(203, 20);
+            this.panel1.Size = new System.Drawing.Size(210, 20);
             this.panel1.TabIndex = 5;
             // 
             // DockButton
@@ -889,7 +878,84 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.CustomerInvoiceCostNameTsmi.Text = "Show Description Name";
             this.CustomerInvoiceCostNameTsmi.CheckedChanged += new System.EventHandler(this.CustomerInvoiceCostContextMenuStripCheckEvent);
             // 
-            // CustomerFinalForm
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.toolStrip);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(513, 176);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Customers";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridView2);
+            this.groupBox2.Controls.Add(this.toolStrip2);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(513, 151);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Sales";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView3);
+            this.groupBox3.Controls.Add(this.toolStrip3);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(213, 128);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Customer Invoices";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.dataGridView4);
+            this.groupBox4.Controls.Add(this.toolStrip4);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(297, 128);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Customer Invoice Costs";
+            // 
+            // searchCustomer1
+            // 
+            this.searchCustomer1.Location = new System.Drawing.Point(3, 3);
+            this.searchCustomer1.Name = "searchCustomer1";
+            this.searchCustomer1.Size = new System.Drawing.Size(187, 264);
+            this.searchCustomer1.TabIndex = 0;
+            // 
+            // searchCustomerInvoice1
+            // 
+            this.searchCustomerInvoice1.Location = new System.Drawing.Point(3, 273);
+            this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(187, 382);
+            this.searchCustomerInvoice1.TabIndex = 1;
+            // 
+            // searchSale1
+            // 
+            this.searchSale1.Location = new System.Drawing.Point(3, 661);
+            this.searchSale1.Name = "searchSale1";
+            this.searchSale1.Size = new System.Drawing.Size(187, 397);
+            this.searchSale1.TabIndex = 2;
+            // 
+            // searchCustomerInvoiceCost1
+            // 
+            this.searchCustomerInvoiceCost1.AutoScroll = true;
+            this.searchCustomerInvoiceCost1.Location = new System.Drawing.Point(3, 1064);
+            this.searchCustomerInvoiceCost1.Name = "searchCustomerInvoiceCost1";
+            this.searchCustomerInvoiceCost1.Size = new System.Drawing.Size(187, 257);
+            this.searchCustomerInvoiceCost1.TabIndex = 3;
+            // 
+            // CustomerGroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -897,7 +963,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.LeftPane);
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "CustomerFinalForm";
+            this.Name = "CustomerGroupForm";
             this.Text = "CustomerFinalForm";
             this.Load += new System.EventHandler(this.SearchBtn_Click);
             this.SizeChanged += new System.EventHandler(this.SupplierFinalForm_ResizeEnd);
@@ -907,7 +973,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).EndInit();
             this.MainSplitContainer.ResumeLayout(false);
             this.SpliContainerDGV.Panel1.ResumeLayout(false);
-            this.SpliContainerDGV.Panel1.PerformLayout();
             this.SpliContainerDGV.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SpliContainerDGV)).EndInit();
             this.SpliContainerDGV.ResumeLayout(false);
@@ -915,7 +980,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.SplitContainerDGV2.Panel1.ResumeLayout(false);
-            this.SplitContainerDGV2.Panel1.PerformLayout();
             this.SplitContainerDGV2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerDGV2)).EndInit();
             this.SplitContainerDGV2.ResumeLayout(false);
@@ -923,9 +987,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
-            this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -941,6 +1003,14 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.RightClickDgvSale.ResumeLayout(false);
             this.RightClickDgvCustomerInvoice.ResumeLayout(false);
             this.RightClickDgvCustomerInvoiceCost.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1017,5 +1087,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
         private ToolStripMenuItem CustomerInvoiceCostCostTsmi;
         private ToolStripMenuItem CustomerInvoiceCostQuantityTsmi;
         private ToolStripMenuItem CustomerInvoiceCostNameTsmi;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private GroupBox groupBox4;
     }
 }

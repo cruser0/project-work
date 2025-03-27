@@ -63,7 +63,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
         private async void SupplierFinalForm_Load(object sender, EventArgs e)
         {
-            int minSize = searchSupplier1.Width + 30;
+            int minSize = 230;
             MainSplitContainer.Panel2MinSize = minSize;
             MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
             panel1.Width = flowLayoutPanel1.Width;
@@ -485,7 +485,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
             if (DockButton.Text == ">")
             {
-                int minSize = searchSupplier1.Width + 30;
+                int minSize = 230;
                 MainSplitContainer.Panel2MinSize = minSize;
                 MainSplitContainer.SplitterDistance = MainSplitContainer.Width - minSize;
                 panel1.Width = flowLayoutPanel1.Width;

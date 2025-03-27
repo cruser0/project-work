@@ -72,7 +72,7 @@ namespace WinformDotNetFramework.Forms.control
             this.InvoiceCodeTxt.BackColor = System.Drawing.SystemColors.Window;
             this.InvoiceCodeTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.InvoiceCodeTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceCodeTxt.Location = new System.Drawing.Point(0, 41);
+            this.InvoiceCodeTxt.Location = new System.Drawing.Point(3, 40);
             this.InvoiceCodeTxt.MaxLength = 100;
             this.InvoiceCodeTxt.Name = "InvoiceCodeTxt";
             this.InvoiceCodeTxt.Size = new System.Drawing.Size(180, 20);
@@ -83,7 +83,7 @@ namespace WinformDotNetFramework.Forms.control
             this.InvoiceCodeLbl.AutoSize = true;
             this.InvoiceCodeLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.InvoiceCodeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.InvoiceCodeLbl.Location = new System.Drawing.Point(3, 21);
+            this.InvoiceCodeLbl.Location = new System.Drawing.Point(3, 20);
             this.InvoiceCodeLbl.Name = "InvoiceCodeLbl";
             this.InvoiceCodeLbl.Size = new System.Drawing.Size(142, 17);
             this.InvoiceCodeLbl.TabIndex = 28;
@@ -94,7 +94,7 @@ namespace WinformDotNetFramework.Forms.control
             this.CostRegistryLbl.AutoSize = true;
             this.CostRegistryLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.CostRegistryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostRegistryLbl.Location = new System.Drawing.Point(3, 201);
+            this.CostRegistryLbl.Location = new System.Drawing.Point(3, 192);
             this.CostRegistryLbl.Name = "CostRegistryLbl";
             this.CostRegistryLbl.Size = new System.Drawing.Size(125, 17);
             this.CostRegistryLbl.TabIndex = 26;
@@ -105,7 +105,7 @@ namespace WinformDotNetFramework.Forms.control
             this.CostRegistryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.CostRegistryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CostRegistryCmbx.FormattingEnabled = true;
-            this.CostRegistryCmbx.Location = new System.Drawing.Point(0, 221);
+            this.CostRegistryCmbx.Location = new System.Drawing.Point(3, 212);
             this.CostRegistryCmbx.Name = "CostRegistryCmbx";
             this.CostRegistryCmbx.Size = new System.Drawing.Size(180, 21);
             this.CostRegistryCmbx.TabIndex = 25;
@@ -115,7 +115,7 @@ namespace WinformDotNetFramework.Forms.control
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 17);
             this.label2.TabIndex = 17;
@@ -126,7 +126,7 @@ namespace WinformDotNetFramework.Forms.control
             this.NameTxt.BackColor = System.Drawing.SystemColors.Window;
             this.NameTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameTxt.Location = new System.Drawing.Point(0, 174);
+            this.NameTxt.Location = new System.Drawing.Point(3, 169);
             this.NameTxt.MaxLength = 100;
             this.NameTxt.Name = "NameTxt";
             this.NameTxt.Size = new System.Drawing.Size(180, 20);
@@ -137,7 +137,7 @@ namespace WinformDotNetFramework.Forms.control
             this.NameLbl.AutoSize = true;
             this.NameLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.NameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameLbl.Location = new System.Drawing.Point(3, 156);
+            this.NameLbl.Location = new System.Drawing.Point(3, 149);
             this.NameLbl.Name = "NameLbl";
             this.NameLbl.Size = new System.Drawing.Size(119, 17);
             this.NameLbl.TabIndex = 16;
@@ -147,7 +147,7 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.CostToTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostToTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostToTxt.Location = new System.Drawing.Point(0, 129);
+            this.CostToTxt.Location = new System.Drawing.Point(3, 126);
             this.CostToTxt.Name = "CostToTxt";
             this.CostToTxt.Size = new System.Drawing.Size(180, 20);
             this.CostToTxt.TabIndex = 14;
@@ -157,7 +157,7 @@ namespace WinformDotNetFramework.Forms.control
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(3, 111);
+            this.label1.Location = new System.Drawing.Point(3, 106);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 13;
@@ -167,7 +167,7 @@ namespace WinformDotNetFramework.Forms.control
             // 
             this.CostFromTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CostFromTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostFromTxt.Location = new System.Drawing.Point(0, 82);
+            this.CostFromTxt.Location = new System.Drawing.Point(3, 83);
             this.CostFromTxt.Name = "CostFromTxt";
             this.CostFromTxt.Size = new System.Drawing.Size(180, 20);
             this.CostFromTxt.TabIndex = 12;
@@ -177,7 +177,7 @@ namespace WinformDotNetFramework.Forms.control
             this.CostLbl.AutoSize = true;
             this.CostLbl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.CostLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostLbl.Location = new System.Drawing.Point(2, 64);
+            this.CostLbl.Location = new System.Drawing.Point(3, 63);
             this.CostLbl.Name = "CostLbl";
             this.CostLbl.Size = new System.Drawing.Size(71, 17);
             this.CostLbl.TabIndex = 4;
