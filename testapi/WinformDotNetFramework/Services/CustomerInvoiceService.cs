@@ -15,6 +15,7 @@ namespace WinformDotNetFramework.Services
 
             var filters = new Dictionary<string, object>
             {
+                { "CustomerInvoiceSaleID", filter.CustomerInvoiceSaleID },
                 { "CustomerInvoiceSaleBoL", filter.CustomerInvoiceSaleBoL },
                 { "CustomerInvoiceSaleBk", filter.CustomerInvoiceSaleBk },
                 { "CustomerInvoiceCode", filter.CustomerInvoiceCode },
@@ -24,7 +25,7 @@ namespace WinformDotNetFramework.Services
                 { "CustomerInvoiceInvoiceDateTo", filter.CustomerInvoiceInvoiceDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "CustomerInvoiceStatus", filter.CustomerInvoiceStatus?.ToLower() != "all" ? filter.CustomerInvoiceStatus : null },
                 { "CustomerInvoicePage", filter.CustomerInvoicePage }
-            };
+        };
 
             foreach (var kvp in filters)
             {

@@ -2,6 +2,7 @@
 {
     public class SupplierInvoiceFilter
     {
+        public int? SupplierInvoiceSaleID { get; set; }
         public string? SupplierInvoiceSaleBoL { get; set; }
         public string? SupplierInvoiceSaleBk { get; set; }
         public string? SupplierInvoiceCode { get; set; }

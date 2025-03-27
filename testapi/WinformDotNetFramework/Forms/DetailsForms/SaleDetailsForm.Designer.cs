@@ -30,48 +30,69 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.SaleIdtxt = new System.Windows.Forms.TextBox();
             this.bntxt = new System.Windows.Forms.TextBox();
             this.boltxt = new System.Windows.Forms.TextBox();
             this.saleDateDtp = new System.Windows.Forms.DateTimePicker();
-            this.CustomerIdtxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.StatusTxt = new System.Windows.Forms.TextBox();
-            this.RevenueTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.EditCB = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CuInDgv = new System.Windows.Forms.DataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SuInDgv = new System.Windows.Forms.DataGridView();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.CustomerCountryLbl = new System.Windows.Forms.Label();
+            this.CustomerNameLbl = new System.Windows.Forms.Label();
+            this.StatusLbl = new System.Windows.Forms.Label();
+            this.StatusCmbx = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.customerInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceAmountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceSupplierDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.RevenueTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).BeginInit();
+            this.panel7.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).BeginInit();
+            this.panel8.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(173, 47);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SaleId";
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(173, 91);
+            this.label2.Location = new System.Drawing.Point(69, 3);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
@@ -83,7 +104,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(173, 135);
+            this.label3.Location = new System.Drawing.Point(69, 48);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 15);
@@ -95,65 +116,30 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(173, 177);
+            this.label4.Location = new System.Drawing.Point(69, 89);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Sale Date";
             // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(396, 47);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 15);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Customer Id";
-            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(396, 91);
+            this.label6.Location = new System.Drawing.Point(502, 3);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 15);
             this.label6.TabIndex = 5;
             this.label6.Text = "Total Revenue";
             // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(396, 135);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 15);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Status";
-            // 
-            // SaleIdtxt
-            // 
-            this.SaleIdtxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaleIdtxt.Enabled = false;
-            this.SaleIdtxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaleIdtxt.Location = new System.Drawing.Point(173, 65);
-            this.SaleIdtxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SaleIdtxt.Name = "SaleIdtxt";
-            this.SaleIdtxt.Size = new System.Drawing.Size(200, 23);
-            this.SaleIdtxt.TabIndex = 7;
-            // 
             // bntxt
             // 
             this.bntxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bntxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntxt.Location = new System.Drawing.Point(173, 109);
+            this.bntxt.Location = new System.Drawing.Point(69, 21);
             this.bntxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bntxt.Name = "bntxt";
             this.bntxt.Size = new System.Drawing.Size(200, 23);
@@ -163,7 +149,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.boltxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.boltxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boltxt.Location = new System.Drawing.Point(173, 151);
+            this.boltxt.Location = new System.Drawing.Point(69, 65);
             this.boltxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.boltxt.Name = "boltxt";
             this.boltxt.Size = new System.Drawing.Size(200, 23);
@@ -173,49 +159,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.saleDateDtp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saleDateDtp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleDateDtp.Location = new System.Drawing.Point(173, 195);
+            this.saleDateDtp.Location = new System.Drawing.Point(69, 107);
             this.saleDateDtp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saleDateDtp.Name = "saleDateDtp";
             this.saleDateDtp.Size = new System.Drawing.Size(200, 23);
             this.saleDateDtp.TabIndex = 10;
-            // 
-            // CustomerIdtxt
-            // 
-            this.CustomerIdtxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerIdtxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerIdtxt.Location = new System.Drawing.Point(396, 65);
-            this.CustomerIdtxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.CustomerIdtxt.Name = "CustomerIdtxt";
-            this.CustomerIdtxt.Size = new System.Drawing.Size(200, 23);
-            this.CustomerIdtxt.TabIndex = 11;
-            // 
-            // StatusTxt
-            // 
-            this.StatusTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StatusTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusTxt.Location = new System.Drawing.Point(396, 153);
-            this.StatusTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.StatusTxt.Name = "StatusTxt";
-            this.StatusTxt.Size = new System.Drawing.Size(200, 23);
-            this.StatusTxt.TabIndex = 12;
-            // 
-            // RevenueTxt
-            // 
-            this.RevenueTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RevenueTxt.Enabled = false;
-            this.RevenueTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RevenueTxt.Location = new System.Drawing.Point(396, 109);
-            this.RevenueTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RevenueTxt.Name = "RevenueTxt";
-            this.RevenueTxt.Size = new System.Drawing.Size(200, 23);
-            this.RevenueTxt.TabIndex = 13;
             // 
             // EditCB
             // 
             this.EditCB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditCB.AutoSize = true;
             this.EditCB.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditCB.Location = new System.Drawing.Point(550, 224);
+            this.EditCB.Location = new System.Drawing.Point(505, 109);
             this.EditCB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.EditCB.Name = "EditCB";
             this.EditCB.Size = new System.Drawing.Size(46, 19);
@@ -229,40 +184,231 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.saveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(521, 249);
+            this.saveBtn.Location = new System.Drawing.Point(559, 106);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(75, 25);
+            this.saveBtn.Size = new System.Drawing.Size(143, 25);
             this.saveBtn.TabIndex = 15;
-            this.saveBtn.Text = "Save";
+            this.saveBtn.Text = "Save Changes";
             this.saveBtn.UseVisualStyleBackColor = false;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.saveBtn);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.EditCB);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.RevenueTxt);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.StatusTxt);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.CustomerIdtxt);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.saleDateDtp);
-            this.panel1.Controls.Add(this.SaleIdtxt);
-            this.panel1.Controls.Add(this.boltxt);
-            this.panel1.Controls.Add(this.bntxt);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Controls.Add(this.panel6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(20, 20);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(744, 422);
             this.panel1.TabIndex = 20;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 147);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 275);
+            this.tableLayoutPanel1.TabIndex = 52;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.CuInDgv);
+            this.groupBox1.Controls.Add(this.panel7);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(366, 269);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Customer Invoices";
+            // 
+            // CuInDgv
+            // 
+            this.CuInDgv.AllowUserToAddRows = false;
+            this.CuInDgv.AllowUserToDeleteRows = false;
+            this.CuInDgv.AllowUserToOrderColumns = true;
+            this.CuInDgv.AutoGenerateColumns = false;
+            this.CuInDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CuInDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CuInDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.customerInvoiceCodeDataGridViewTextBoxColumn,
+            this.invoiceAmountDataGridViewTextBoxColumn,
+            this.invoiceDateDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn});
+            this.CuInDgv.DataSource = this.customerInvoiceBindingSource;
+            this.CuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CuInDgv.Location = new System.Drawing.Point(3, 44);
+            this.CuInDgv.Name = "CuInDgv";
+            this.CuInDgv.ReadOnly = true;
+            this.CuInDgv.Size = new System.Drawing.Size(360, 222);
+            this.CuInDgv.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.button2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(3, 19);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(360, 25);
+            this.panel7.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(161, 25);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Create Customer Invoice";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.SuInDgv);
+            this.groupBox2.Controls.Add(this.panel8);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(375, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(366, 269);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Supplier Invoices";
+            // 
+            // SuInDgv
+            // 
+            this.SuInDgv.AllowUserToAddRows = false;
+            this.SuInDgv.AllowUserToDeleteRows = false;
+            this.SuInDgv.AllowUserToOrderColumns = true;
+            this.SuInDgv.AutoGenerateColumns = false;
+            this.SuInDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SuInDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SuInDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn,
+            this.invoiceAmountDataGridViewTextBoxColumn1,
+            this.invoiceDateDataGridViewTextBoxColumn1,
+            this.supplierNameDataGridViewTextBoxColumn,
+            this.countryDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn1});
+            this.SuInDgv.DataSource = this.supplierInvoiceSupplierDTOBindingSource;
+            this.SuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SuInDgv.Location = new System.Drawing.Point(3, 44);
+            this.SuInDgv.Name = "SuInDgv";
+            this.SuInDgv.ReadOnly = true;
+            this.SuInDgv.Size = new System.Drawing.Size(360, 222);
+            this.SuInDgv.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.button1);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(3, 19);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(360, 25);
+            this.panel8.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 25);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Create Supplier Invoice";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.CountryCmbxUC);
+            this.panel6.Controls.Add(this.bntxt);
+            this.panel6.Controls.Add(this.NameCmbxUC);
+            this.panel6.Controls.Add(this.boltxt);
+            this.panel6.Controls.Add(this.CustomerCountryLbl);
+            this.panel6.Controls.Add(this.saleDateDtp);
+            this.panel6.Controls.Add(this.CustomerNameLbl);
+            this.panel6.Controls.Add(this.label6);
+            this.panel6.Controls.Add(this.StatusLbl);
+            this.panel6.Controls.Add(this.RevenueTxt);
+            this.panel6.Controls.Add(this.StatusCmbx);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Controls.Add(this.EditCB);
+            this.panel6.Controls.Add(this.saveBtn);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(744, 147);
+            this.panel6.TabIndex = 51;
+            // 
+            // CustomerCountryLbl
+            // 
+            this.CustomerCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CustomerCountryLbl.AutoSize = true;
+            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerCountryLbl.Location = new System.Drawing.Point(282, 48);
+            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
+            this.CustomerCountryLbl.Size = new System.Drawing.Size(110, 15);
+            this.CustomerCountryLbl.TabIndex = 48;
+            this.CustomerCountryLbl.Text = "Customer Country*";
+            // 
+            // CustomerNameLbl
+            // 
+            this.CustomerNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CustomerNameLbl.AutoSize = true;
+            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.CustomerNameLbl.Location = new System.Drawing.Point(282, 3);
+            this.CustomerNameLbl.Name = "CustomerNameLbl";
+            this.CustomerNameLbl.Size = new System.Drawing.Size(99, 15);
+            this.CustomerNameLbl.TabIndex = 47;
+            this.CustomerNameLbl.Text = "Customer Name*";
+            // 
+            // StatusLbl
+            // 
+            this.StatusLbl.AllowDrop = true;
+            this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusLbl.Location = new System.Drawing.Point(502, 48);
+            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
+            this.StatusLbl.TabIndex = 46;
+            this.StatusLbl.Text = "Status";
+            // 
+            // StatusCmbx
+            // 
+            this.StatusCmbx.AllowDrop = true;
+            this.StatusCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusCmbx.FormattingEnabled = true;
+            this.StatusCmbx.Items.AddRange(new object[] {
+            "Active",
+            "Closed"});
+            this.StatusCmbx.Location = new System.Drawing.Point(502, 65);
+            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.StatusCmbx.Name = "StatusCmbx";
+            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
+            this.StatusCmbx.TabIndex = 45;
             // 
             // panel2
             // 
@@ -304,6 +450,115 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
+            // customerInvoiceCodeDataGridViewTextBoxColumn
+            // 
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "CustomerInvoiceCode";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "CustomerInvoiceCode";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.Name = "customerInvoiceCodeDataGridViewTextBoxColumn";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceAmountDataGridViewTextBoxColumn
+            // 
+            this.invoiceAmountDataGridViewTextBoxColumn.DataPropertyName = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn.HeaderText = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn.Name = "invoiceAmountDataGridViewTextBoxColumn";
+            this.invoiceAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceDateDataGridViewTextBoxColumn
+            // 
+            this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn.Name = "invoiceDateDataGridViewTextBoxColumn";
+            this.invoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerInvoiceBindingSource
+            // 
+            this.customerInvoiceBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.CustomerInvoice);
+            // 
+            // supplierInvoiceCodeDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Name = "supplierInvoiceCodeDataGridViewTextBoxColumn";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceAmountDataGridViewTextBoxColumn1
+            // 
+            this.invoiceAmountDataGridViewTextBoxColumn1.DataPropertyName = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn1.HeaderText = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn1.Name = "invoiceAmountDataGridViewTextBoxColumn1";
+            this.invoiceAmountDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // invoiceDateDataGridViewTextBoxColumn1
+            // 
+            this.invoiceDateDataGridViewTextBoxColumn1.DataPropertyName = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn1.HeaderText = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn1.Name = "invoiceDateDataGridViewTextBoxColumn1";
+            this.invoiceDateDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // supplierNameDataGridViewTextBoxColumn
+            // 
+            this.supplierNameDataGridViewTextBoxColumn.DataPropertyName = "SupplierName";
+            this.supplierNameDataGridViewTextBoxColumn.HeaderText = "SupplierName";
+            this.supplierNameDataGridViewTextBoxColumn.Name = "supplierNameDataGridViewTextBoxColumn";
+            this.supplierNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // countryDataGridViewTextBoxColumn
+            // 
+            this.countryDataGridViewTextBoxColumn.DataPropertyName = "Country";
+            this.countryDataGridViewTextBoxColumn.HeaderText = "Country";
+            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
+            this.countryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn1
+            // 
+            this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn1.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
+            this.statusDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // supplierInvoiceSupplierDTOBindingSource
+            // 
+            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO);
+            // 
+            // CountryCmbxUC
+            // 
+            this.CountryCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CountryCmbxUC.listItemsDropCmbx = null;
+            this.CountryCmbxUC.Location = new System.Drawing.Point(285, 65);
+            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.CountryCmbxUC.Name = "CountryCmbxUC";
+            this.CountryCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.CountryCmbxUC.TabIndex = 50;
+            // 
+            // NameCmbxUC
+            // 
+            this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameCmbxUC.listItemsDropCmbx = null;
+            this.NameCmbxUC.Location = new System.Drawing.Point(285, 21);
+            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.NameCmbxUC.Name = "NameCmbxUC";
+            this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.NameCmbxUC.TabIndex = 49;
+            // 
+            // RevenueTxt
+            // 
+            this.RevenueTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RevenueTxt.Enabled = false;
+            this.RevenueTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RevenueTxt.Location = new System.Drawing.Point(502, 21);
+            this.RevenueTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RevenueTxt.Name = "RevenueTxt";
+            this.RevenueTxt.Size = new System.Drawing.Size(200, 23);
+            this.RevenueTxt.TabIndex = 13;
+            // 
             // SaleDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -321,26 +576,29 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Name = "SaleDetailsForm";
             this.Text = "SaleDetailsForm";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
-        private Label label5;
         private Label label6;
-        private Label label7;
-        private TextBox SaleIdtxt;
         private TextBox bntxt;
         private TextBox boltxt;
         private DateTimePicker saleDateDtp;
-        private control.IntegerTextBoxUserControl CustomerIdtxt;
-        private TextBox StatusTxt;
         private control.IntegerTextBoxUserControl RevenueTxt;
         private CheckBox EditCB;
         private Button saveBtn;
@@ -349,5 +607,33 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private Panel panel6;
+        public control.DropDownMenuAutoCompleteUserControl CountryCmbxUC;
+        public control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
+        public Label CustomerCountryLbl;
+        public Label CustomerNameLbl;
+        public Label StatusLbl;
+        public ComboBox StatusCmbx;
+        private TableLayoutPanel tableLayoutPanel1;
+        private GroupBox groupBox1;
+        private DataGridView CuInDgv;
+        private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private BindingSource customerInvoiceBindingSource;
+        private GroupBox groupBox2;
+        private DataGridView SuInDgv;
+        private DataGridViewTextBoxColumn supplierInvoiceCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn supplierNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn countryDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn1;
+        private BindingSource supplierInvoiceSupplierDTOBindingSource;
+        private Panel panel7;
+        private Button button2;
+        private Panel panel8;
+        private Button button1;
     }
 }

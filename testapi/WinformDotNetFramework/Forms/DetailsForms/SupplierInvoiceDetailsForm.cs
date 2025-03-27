@@ -7,6 +7,7 @@ using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -25,56 +26,70 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         string bolString;
         string nameString;
         string countryString;
+        bool detailsOnly=false;
+
+        public SupplierInvoiceDetailsForm()
+        {
+            Init(null);
+        }
 
         public SupplierInvoiceDetailsForm(int id)
         {
             Init(id);
         }
 
-        private async void Init(int id)
+        private async void Init(int? id)
         {
             InitializeComponent();
             _saleService = new SaleService();
             _supplierService = new SupplierService();
             _supplierInvoiceService = new SupplierInvoiceService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
-            supplierInvoice = await _supplierInvoiceService.GetById(id);
+            if(id != null)
+            {
+                detailsOnly = true;
+                int idInt = (int)id;
+                supplierInvoice = await _supplierInvoiceService.GetById(idInt);
+                textBox1.Text = supplierInvoice.SupplierInvoiceCode;
+                BKCmbxUC.Cmbx.TextChanged -= BKCmbxUC.Cmbx_TextChanged;
+                BoLCmbxUC.Cmbx.TextChanged -= BoLCmbxUC.Cmbx_TextChanged;
+                NameCmbxUC.Cmbx.TextChanged -= NameCmbxUC.Cmbx_TextChanged;
+                CountryCmbxUC.Cmbx.TextChanged -= CountryCmbxUC.Cmbx_TextChanged;
 
-            textBox1.Text = supplierInvoice.SupplierInvoiceCode;
+                BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
+                BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
+                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName;
+                CountryCmbxUC.Cmbx.Text = supplierInvoice.Country;
 
-            BKCmbxUC.Cmbx.TextChanged -= BKCmbxUC.Cmbx_TextChanged;
-            BoLCmbxUC.Cmbx.TextChanged -= BoLCmbxUC.Cmbx_TextChanged;
-            NameCmbxUC.Cmbx.TextChanged -= NameCmbxUC.Cmbx_TextChanged;
-            CountryCmbxUC.Cmbx.TextChanged -= CountryCmbxUC.Cmbx_TextChanged;
+                BKCmbxUC.Cmbx.TextChanged += BKCmbxUC.Cmbx_TextChanged;
+                BoLCmbxUC.Cmbx.TextChanged += BoLCmbxUC.Cmbx_TextChanged;
+                NameCmbxUC.Cmbx.TextChanged += NameCmbxUC.Cmbx_TextChanged;
+                CountryCmbxUC.Cmbx.TextChanged += CountryCmbxUC.Cmbx_TextChanged;
+                comboBox1.Text = supplierInvoice.Status;
+                DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
+                List<SupplierInvoiceCost> data = (await _supplierInvoiceCostService
+                    .GetAll(new SupplierInvoiceCostFilter()
+                    { SupplierInvoiceCostSupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode }))
+                    .ToList();
+                dataGridView1.DataSource = data;
+                textBox1.Enabled = false;
+                BKCmbxUC.Cmbx.Enabled = false;
+                BoLCmbxUC.Cmbx.Enabled = false;
+                NameCmbxUC.Cmbx.Enabled = false;
+                CountryCmbxUC.Cmbx.Enabled = false;
+                comboBox1.Enabled = false;
+                DateClnd.Enabled = false;
+            }else
+                detailsOnly = false;
 
-            BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
-            BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
-            NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName;
-            CountryCmbxUC.Cmbx.Text = supplierInvoice.Country;
 
-            BKCmbxUC.Cmbx.TextChanged += BKCmbxUC.Cmbx_TextChanged;
-            BoLCmbxUC.Cmbx.TextChanged += BoLCmbxUC.Cmbx_TextChanged;
-            NameCmbxUC.Cmbx.TextChanged += NameCmbxUC.Cmbx_TextChanged;
-            CountryCmbxUC.Cmbx.TextChanged += CountryCmbxUC.Cmbx_TextChanged;
 
-            comboBox1.Text = supplierInvoice.Status;
-            DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
 
-            List<SupplierInvoiceCost> data = (await _supplierInvoiceCostService
-                .GetAll(new SupplierInvoiceCostFilter()
-                { SupplierInvoiceCostSupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode }))
-                .ToList();
 
-            dataGridView1.DataSource = data;
 
-            textBox1.Enabled = false;
-            BKCmbxUC.Cmbx.Enabled = false;
-            BoLCmbxUC.Cmbx.Enabled = false;
-            NameCmbxUC.Cmbx.Enabled = false;
-            CountryCmbxUC.Cmbx.Enabled = false;
-            comboBox1.Enabled = false;
-            DateClnd.Enabled = false;
 
+            SetVisibility();
+            SetVisibilityForTxt();
             List<string> authRolesWrite = new List<string>
             {
                 "SupplierInvoiceWrite",
@@ -92,7 +107,55 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 EditCbx.Visible = false;
             }
         }
-
+        private void SetVisibility()
+        {
+            button1.Visible = detailsOnly;
+            label3.Visible = detailsOnly;
+            EditCbx.Visible = detailsOnly;
+        }
+        private void SetVisibilityForTxt()
+        {
+            textBox1.Enabled = !detailsOnly;
+            BKCmbxUC.Cmbx.Enabled = !detailsOnly;
+            BoLCmbxUC.Cmbx.Enabled = !detailsOnly;
+            NameCmbxUC.Cmbx.Enabled = !detailsOnly;
+            CountryCmbxUC.Cmbx.Enabled = !detailsOnly;
+            comboBox1.Enabled = !detailsOnly;
+            DateClnd.Enabled = !detailsOnly;
+        }
+        public async Task RefreshDGV()
+        {
+            List<SupplierInvoiceCost> data = (await _supplierInvoiceCostService
+                .GetAll(new SupplierInvoiceCostFilter()
+                { SupplierInvoiceCostSupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode }))
+                .ToList();
+            dataGridView1.DataSource = data;
+        }
+        public void SetSupplierID(string id)
+        {
+            supplierId = int.Parse(id);
+        }
+        public void SetSaleID(string id)
+        {
+            saleId = int.Parse(id);
+        }
+        public void SetSaleBkBol(string bol, string bk)
+        {
+            BoLCmbxUC.Cmbx.Text = bol;
+            BKCmbxUC.Cmbx.Text = bk;
+        }
+        public void SetSupplierNameCoutnry(string name, string country)
+        {
+            NameCmbxUC.Cmbx.Text = name+$"({country})";
+        }
+        private void SupplierFillBtn_Click(object sender, EventArgs e)
+        {
+            UtilityFunctions.OpenFormDetails<SupplierGridForm>(sender, e, this);
+        }
+        private void SaleFillBtn_Click(object sender, EventArgs e)
+        {
+            UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);
+        }
         private bool Authorize(List<string> allowedRoles)
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
@@ -120,58 +183,95 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
-            try
+            if (detailsOnly)
             {
-                saleId = (await _saleService
-                .GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
-                .FirstOrDefault().SaleId;
 
-                supplierId = (await _supplierService
-                    .GetAll(new SupplierFilter() { SupplierName = NameCmbxUC.Cmbx.Text, SupplierCountry = CountryCmbxUC.Cmbx.Text }))
-                    .FirstOrDefault().SupplierId;
-
-                SupplierInvoice si = new SupplierInvoice
-                {
-                    SaleId = saleId,
-                    Status = comboBox1.Text,
-                    InvoiceDate = DateClnd.Value,
-                    SupplierId = supplierId,
-                    InvoiceAmount = 0
-                };
-
-                await _supplierInvoiceService.Update(supplierInvoice.InvoiceId, si);
-                MessageBox.Show("Customer updated successfully!");
-
-                //FORSE DA TOGLIERE
-                Close();
-                //FORSE DA TOGLIERE
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-        private async void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-           "This action is permanent and it will delete all the history bound to this Supplier Invoice!",
-           "Confirm Deletion?",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
+            
                 try
                 {
-                    await _supplierInvoiceService.Delete(supplierInvoice.InvoiceId);
-                    MessageBox.Show("Supplier Invoice has been deleted.");
-                    this.Close();
+                    saleId = (await _saleService
+                    .GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
+                    .FirstOrDefault().SaleId;
+
+                    supplierId = (await _supplierService
+                        .GetAll(new SupplierFilter() { SupplierName = NameCmbxUC.Cmbx.Text, SupplierCountry = CountryCmbxUC.Cmbx.Text }))
+                        .FirstOrDefault().SupplierId;
+
+                    SupplierInvoice si = new SupplierInvoice
+                    {
+                        SaleId = saleId,
+                        Status = comboBox1.Text,
+                        InvoiceDate = DateClnd.Value,
+                        SupplierId = supplierId,
+                        InvoiceAmount = 0
+                    };
+
+                    await _supplierInvoiceService.Update(supplierInvoice.InvoiceId, si);
+                    MessageBox.Show("Customer updated successfully!");
+
+                    //FORSE DA TOGLIERE
+                    Close();
+                    //FORSE DA TOGLIERE
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
             else
             {
-                MessageBox.Show("Action canceled.");
+                List<string> err = new List<string>();
+                if (string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text))
+                    err.Add("BookingNumber");
+                if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text))
+                    err.Add("BookingNumber");
+                if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text))
+                    err.Add("SupplierName");
+                if (string.IsNullOrEmpty(CountryCmbxUC.Cmbx.Text))
+                    err.Add("SupplierCountry");
+                if (string.IsNullOrEmpty(comboBox1.Text))
+                    err.Add("Status");
+                if (DateClnd.Value == null)
+                    err.Add("Date");
+                if (saleId == -1)
+                {
+                    try
+                    {
+                        saleId = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
+
+                    }
+                    catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
+
+                }
+                if (supplierId == -1)
+                {
+                    try
+                    {
+                        supplierId = (await _supplierService.GetAll(new SupplierFilter() { SupplierName = NameCmbxUC.Cmbx.Text, SupplierCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault().SupplierId;
+                    }
+                    catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
+                }
+                if (err.Count > 0)
+                    MessageBox.Show("Gli attributi : " + string.Join(",", err) + "\n Sono errati!");
+                else
+                {
+                    try
+                    {
+                        var code = Guid.NewGuid().ToString("N").Substring(0, 20);
+                        SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = comboBox1.Text, SupplierInvoiceCode = code, };
+                        await _supplierInvoiceService.Create(si);
+                        MessageBox.Show("Supplier Invoice created Successfully!");
+                          
+                        detailsOnly = true;
+                        SetVisibility();
+                        supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode=code } )).FirstOrDefault();
+                        textBox1.Text = code;
+                        RefreshDGV();
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                }
+
             }
         }
+
+       
 
         public async Task SetList()
         {
@@ -241,7 +341,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void AddCostBtn_Click(object sender, EventArgs e)
         {
-            UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e, supplierInvoice.SupplierInvoiceCode);
+            UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e,this, supplierInvoice.SupplierInvoiceCode);
         }
     }
 }

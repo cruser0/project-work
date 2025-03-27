@@ -98,6 +98,11 @@ namespace API.Models.Services
 
             if (filter != null)
             {
+                if (filter.CustomerInvoiceSaleID != null)
+                {
+                    query = query.Where(x => x.SaleID == filter.CustomerInvoiceSaleID);
+                }
+
                 if (!string.IsNullOrEmpty(filter.CustomerInvoiceSaleBoL))
                 {
                     query = query.Where(x => x.Sale.BoLnumber.Contains(filter.CustomerInvoiceSaleBoL));
@@ -324,6 +329,11 @@ namespace API.Models.Services
 
             if (filter != null)
             {
+                if (filter.SupplierInvoiceSaleID != null)
+                {
+                    query = query.Where(x => x.SaleID == filter.SupplierInvoiceSaleID);
+                }
+
                 if (!string.IsNullOrEmpty(filter.SupplierInvoiceCode))
                 {
                     query = query.Where(x => x.SupplierInvoiceCode.Contains(filter.SupplierInvoiceCode));

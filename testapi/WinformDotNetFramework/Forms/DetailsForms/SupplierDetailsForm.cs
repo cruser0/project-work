@@ -16,27 +16,40 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         SupplierInvoiceSummary summary;
         Supplier supplier;
         int supplierID;
+        bool detailsOnly=false;
+        public SupplierDetailsForm()
+        {
+            Init(null);
+        }
         public SupplierDetailsForm(int id)
         {
             Init(id);
         }
 
-        private async void Init(int id)
+        private async void Init(int? id)
         {
             InitializeComponent();
             _supplierService = new SupplierService();
             _supplierInvoiceService = new SupplierInvoiceService();
-            summary = await _supplierInvoiceService.GetSummary(id);
-            supplier = await _supplierService.GetById(id);
+            _supplierService = new SupplierService();
             CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).Skip(1).ToList();
-            supplierID = id;
-            NameSupplierTxt.Text = supplier.SupplierName;
-            CountryCmbx.Text = supplier.Country;
-            comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
+            if (id != null)
+            {
+                int idInt = (int)id;
+                summary = await _supplierInvoiceService.GetSummary(idInt);
+                supplier = await _supplierService.GetById(idInt);
+                supplierID = idInt;
+                NameSupplierTxt.Text = supplier.SupplierName;
+                CountryCmbx.Text = supplier.Country;
+                comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
+                NameSupplierTxt.Enabled = false;
+                CountryCmbx.Enabled = false;
+                comboBox1.Enabled = false;
+                detailsOnly=true;
+                CreateDonutChart();
+            }else
+                detailsOnly=false;
 
-            NameSupplierTxt.Enabled = false;
-            CountryCmbx.Enabled = false;
-            comboBox1.Enabled = false;
 
             List<string> authRolesWrite = new List<string>
             {
@@ -54,7 +67,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 SaveEditSupplierBtn.Visible = false;
                 EditSupplierCbx.Visible = false;
             }
-            CreateDonutChart();
+            chart1.Visible = detailsOnly;
+            EditSupplierCbx.Visible=detailsOnly;
+            comboBox1.Visible= detailsOnly;
+            label1.Visible=detailsOnly;
         }
 
         private void CreateDonutChart()
@@ -115,75 +131,62 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         bool enabled;
         private async void SaveEditSupplierBtn_Click(object sender, EventArgs e)
         {
-            switch (comboBox1.Text)
+            if (detailsOnly)
             {
-                case "Active":
-                    enabled = false;
-                    break;
 
-                case "Deprecated":
-                    enabled = true;
-                    break;
-            };
-
-            Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
-            try
-            {
-                await _supplierService.Update(supplierID, supplier);
-                MessageBox.Show("Supplier updated successfully!");
-
-                this.Close();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
-        private void SupplierGetInvoiceBtn_Click(object sender, EventArgs e)
-        {
-            /*
-            // Close all existing MDI child forms
-            var mainForm = Application.OpenForms["MainForm"] as MainForm;
-            foreach (Control ctrl in mainForm.CenterPanel.Controls)
-            {
-                if (ctrl is Form existingForm)
+                switch (comboBox1.Text)
                 {
-                    existingForm.Close();
-                    existingForm.Dispose();
-                }
-            }
-            SupplierInvoiceGridForm child = new SupplierInvoiceGridForm(IdSupplierTxt.Text);
-            // Set the new form as an MDI child
-            mainForm.CenterPanel.Controls.Clear();
+                    case "Active":
+                        enabled = false;
+                        break;
 
-            child.TopLevel = false;
-            child.FormBorderStyle = FormBorderStyle.None;
-            child.Dock = DockStyle.Fill;
+                    case "Deprecated":
+                        enabled = true;
+                        break;
+                };
 
-            mainForm.CenterPanel.Controls.Add(child);
-            child.Show();*/
-        }
-
-        private async void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-           "This action is permanent and it will delete all the history bound to this Supplier!",
-           "Confirm Deletion?",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
+                Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
                 try
                 {
-                    await _supplierService.Delete(supplierID);
-                    MessageBox.Show("Supplier has been deleted.");
+                    await _supplierService.Update(supplierID, supplier);
+                    MessageBox.Show("Supplier updated successfully!");
+
                     this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
             else
             {
-                MessageBox.Show("Action canceled.");
+                if (NameSupplierTxt.Text.Length < 1 || CountryCmbx.Text.Equals("All") || string.IsNullOrEmpty(CountryCmbx.Text))
+                {
+                    MessageBox.Show("Input data error!");
+                    return;
+                }
+
+                    Supplier supplier = new Supplier()
+                {
+                    SupplierName = NameSupplierTxt.Text,
+                    Country = CountryCmbx.Text
+                };
+                if (supplier.Country.Equals("All"))
+                    MessageBox.Show("You Need to Select a country");
+                else
+                {
+                    try
+                    {
+                        await _supplierService.Create(supplier);
+                        MessageBox.Show("Supplier Created Succesfully");
+                        Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                }
             }
         }
+
     }
 }

@@ -61,8 +61,8 @@ namespace WinformDotNetFramework.Services
         public async Task<CustomerInvoiceCost> Create(CustomerInvoiceCost entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = PostItem(client, $"customer-invoice-cost", entity, "Customer Invoice Cost");
-            return await returnResult;
+            var returnResult = await PostItem(client, $"customer-invoice-cost", entity, "Customer Invoice Cost");
+            return  returnResult;
         }
 
         public async Task<CustomerInvoiceCost> Update(int id, CustomerInvoiceCost entity)

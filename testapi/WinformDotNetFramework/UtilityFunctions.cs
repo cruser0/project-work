@@ -54,6 +54,32 @@ namespace WinformDotNetFramework
             formInstance.Activate();
 
         }
+        public static void CreateFromDetails<T>(object sender, EventArgs e,Form father, object data) where T : Form
+        {
+            if (mainForm == null)
+                return;
+
+            // Chiude i form aperti dello stesso tipo
+            CloseOpenForms<T>();
+
+            TableLayoutPanel minimizedPanel = (TableLayoutPanel)mainForm.Controls.Find("minimizedPanel", true)[0];
+            RemoveMinimizedButtons<T>(minimizedPanel);
+
+            // Crea un'istanza del form di tipo T e lo apre
+            T formInstance = (T)Activator.CreateInstance(typeof(T),father, data);
+            formInstance.MdiParent = mainForm;
+            formInstance.StartPosition = FormStartPosition.CenterScreen;
+            formInstance.Size = formInstance.MinimumSize;
+            formInstance.Text = FormatFormName(typeof(T).Name);
+            formInstance.Resize += ChildForm_Resize;
+            formInstance.FormClosing += ChildForm_Close;
+            formInstance.Activated += FormInstance_Activated;
+
+            formInstance.Show();
+            formInstance.BringToFront();
+            formInstance.Activate();
+
+        }
 
 
         // Apre un form dei dettagli (con ID) del tipo specificato
