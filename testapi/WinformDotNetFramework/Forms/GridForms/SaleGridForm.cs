@@ -8,7 +8,6 @@ using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Entities.Preference;
-using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
@@ -39,10 +38,11 @@ namespace WinformDotNetFramework.Forms.GridForms
             Init();
             toolStrip1.Visible = false;
         }
-        public SaleGridForm(CreateCustomerInvoiceForm father)
+        public SaleGridForm(CustomerInvoiceDetailsForm father)
         {
             _father = father;
             Init();
+
             toolStrip1.Visible = false;
         }
 
@@ -52,7 +52,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             _saleService = new SaleService();
 
             InitializeComponent();
-            pages = (int)Math.Ceiling(await _saleService.Count(new SaleFilter()) / itemsPage);
+            pages = (int)Math.Ceiling(await _saleService.Count(new SaleFilter() { SaleStatus = _father != null ? "Active" : null }) / itemsPage);
+
+
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -176,7 +178,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
                     csif.SetSaleBkBol(dgv.CurrentRow.Cells["BoLNumber"].Value.ToString(), dgv.CurrentRow.Cells["BookingNumber"].Value.ToString());
                 }
-                if (_father is CreateCustomerInvoiceForm ccif)
+                if (_father is CustomerInvoiceDetailsForm ccif)
                 {
                     ccif.SetSaleBkBol(dgv.CurrentRow.Cells["BookingNumber"].Value.ToString(), dgv.CurrentRow.Cells["BoLNumber"].Value.ToString());
                     ccif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
@@ -267,8 +269,14 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void SaleGridForm_Load(object sender, EventArgs e)
         {
-            getAllNotFiltered = _saleService.GetAll(new SaleFilter() { SalePage = 1 });
-            countNotFiltered = _saleService.Count(new SaleFilter());
+            if (_father != null)
+                searchSale1.StatusCB.Text = "Active";
+
+            SaleFilter f = searchSale1.GetFilter();
+
+            countNotFiltered = _saleService.Count(f);
+            f.SalePage = 1;
+            getAllNotFiltered = _saleService.GetAll(f);
             getFav = _userService.GetSaleDGV();
             await SetCheckBoxes();
         }

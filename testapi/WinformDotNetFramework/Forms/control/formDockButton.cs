@@ -36,8 +36,8 @@ namespace WinformDotNetFramework.Forms.control
             form = childForm;
             panel = panelFather;
             mainForm = mainform;
-            Dock = DockStyle.Top;
 
+            Width = 2 + buttonShowForm.Width + buttonCloseForm.Width + AddFavoriteButton.Width;
             if (mainform.favoriteList.Contains(buttonName))
             {
                 AddFavoriteButton.Image = Properties.Resources.star_yellow25x25;
@@ -169,18 +169,14 @@ namespace WinformDotNetFramework.Forms.control
                         { "User Area", mainForm.UserProfile },
                         { "Show Customer", mainForm.CustomerShowTS },
                         { "Show Customer Invoice", mainForm.CustomerInvoiceShowTS },
-                        { "Show Customer Invoice Cost", mainForm.CustomerInvoiceCostShowTS },
                         { "Show Supplier", mainForm.SupplierShowTS },
                         { "Show Supplier Invoice", mainForm.SupplierInvoiceShowTS },
-                        { "Show Supplier Invoice Cost", mainForm.SupplierInvoiceCostShowTS },
                         { "Show Sale", mainForm.SaleShowTS },
                         { "Show User", mainForm.UserShowTS },
                         { "Create Customer", mainForm.CustomerCreateTS },
                         { "Create Customer Invoice", mainForm.CustomerInvoiceCreateTS },
-                        { "Create Customer Invoice Cost", mainForm.CustomerInvoiceCostCreateTS },
                         { "Create Supplier", mainForm.SupplierCreateTS },
                         { "Create Supplier Invoice", mainForm.SupplierInvoiceCreateTS },
-                        { "Create Supplier Invoice Cost", mainForm.SupplierInvoiceCostCreateTS },
                         { "Create Sale", mainForm.SaleCreateTS },
                         { "Create User", mainForm.UserCreateTS },
                         { "Group Supplier", mainForm.SupplierGroupTS },

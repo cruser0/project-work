@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -57,7 +56,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierService = new SupplierService();
             _supplierInvoiceService = new SupplierInvoiceService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
-            if(id != null)
+            if (id != null)
             {
                 detailsOnly = true;
                 int idInt = (int)id;
@@ -69,7 +68,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
                 BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
-                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName+$" - {supplierInvoice.Country}";
+                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName + $" - {supplierInvoice.Country}";
 
                 BKCmbxUC.Cmbx.TextChanged += BKCmbxUC.Cmbx_TextChanged;
                 BoLCmbxUC.Cmbx.TextChanged += BoLCmbxUC.Cmbx_TextChanged;
@@ -87,7 +86,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 NameCmbxUC.Cmbx.Enabled = false;
                 comboBox1.Enabled = false;
                 DateClnd.Enabled = false;
-            }else
+            }
+            else
                 detailsOnly = false;
 
             SetVisibility();
@@ -147,9 +147,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             BoLCmbxUC.Cmbx.Text = bol;
             BKCmbxUC.Cmbx.Text = bk;
         }
-        public void SetSupplierNameCoutnry(string name, string country)
+        public void SetSupplierNameCountry(string name, string country)
         {
-            NameCmbxUC.Cmbx.Text = name+$" - {country}";
+            NameCmbxUC.Cmbx.Text = name + $" - {country}";
         }
         private void SupplierFillBtn_Click(object sender, EventArgs e)
         {
@@ -176,7 +176,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
                 BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
-                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName+$" - {supplierInvoice.Country}";
+                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName + $" - {supplierInvoice.Country}";
                 comboBox1.Text = supplierInvoice.Status;
                 DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
             }
@@ -187,7 +187,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             if (detailsOnly)
             {
 
-            
+
                 try
                 {
                     string name = NameCmbxUC.Cmbx.Text;
@@ -266,7 +266,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                             name = name.Substring(0, lastIndex);
                         }
 
-                        supplierId = (await _supplierService.GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry =country })).FirstOrDefault().SupplierId;
+                        supplierId = (await _supplierService.GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country })).FirstOrDefault().SupplierId;
                     }
                     catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
                 }
@@ -303,7 +303,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
-       
+
 
         public async Task SetList()
         {
@@ -376,7 +376,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void AddCostBtn_Click(object sender, EventArgs e)
         {
-            UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e,this, supplierInvoice.SupplierInvoiceCode);
+            UtilityFunctions.CreateFromDetails<SaleGridForm>(sender, e, this, supplierInvoice.SupplierInvoiceCode);
         }
 
         private void FlushCreateBtn_Click(object sender, EventArgs e)

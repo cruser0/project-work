@@ -140,7 +140,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 if(_father is SupplierInvoiceDetailsForm sidf)
                 {
                     sidf.SetSupplierID(dgv.CurrentRow.Cells["SupplierID"].Value.ToString());
-                    sidf.SetSupplierNameCoutnry(dgv.CurrentRow.Cells["SupplierName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
+                    sidf.SetSupplierNameCountry(dgv.CurrentRow.Cells["SupplierName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
                 }
             }
         }

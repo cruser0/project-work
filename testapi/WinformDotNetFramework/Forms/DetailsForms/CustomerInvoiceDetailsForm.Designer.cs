@@ -62,6 +62,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -296,6 +297,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.button2);
             this.panel6.Controls.Add(this.AddCostBtn);
             this.panel6.Controls.Add(this.label1);
             this.panel6.Controls.Add(this.BoLCmbxUC);
@@ -408,6 +410,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(17, 427);
             this.panel5.TabIndex = 36;
             // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.button2.Location = new System.Drawing.Point(491, 42);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(30, 25);
+            this.button2.TabIndex = 64;
+            this.button2.Text = "->";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // CustomerInvoiceDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,5 +481,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn customerInvoiceIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn customerInvoiceCostsIdDataGridViewTextBoxColumn;
+        private Button button2;
     }
 }

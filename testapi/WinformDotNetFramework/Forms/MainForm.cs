@@ -64,8 +64,9 @@ namespace WinformDotNetFramework.Forms
                 Height = 60,
                 RowCount = 1,
                 AutoScroll = true,
-                BackColor = Color.FromArgb(174, 180, 194)
+                BackColor = Color.FromArgb(174, 180, 194),
             };
+            minimizedPanel.ColumnStyles.Clear();
             this.Controls.Add(minimizedPanel);
         }
 
@@ -102,17 +103,11 @@ namespace WinformDotNetFramework.Forms
             CustomerInvoiceShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceRead", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
             CustomerInvoiceCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceWrite", "CustomerInvoiceAdmin" });
 
-            CustomerInvoiceCostShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceCostRead", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
-            CustomerInvoiceCostCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "CustomerInvoiceCostWrite", "CustomerInvoiceCostAdmin" });
-
             SupplierShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierRead", "SupplierWrite", "SupplierAdmin" });
             SupplierCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierWrite", "SupplierAdmin" });
 
             SupplierInvoiceShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceRead", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
             SupplierInvoiceCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceWrite", "SupplierInvoiceAdmin" });
-
-            SupplierInvoiceCostShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceCostRead", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
-            SupplierInvoiceCostCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SupplierInvoiceCostWrite", "SupplierInvoiceCostAdmin" });
 
             SaleShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
             SaleCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleWrite", "SaleAdmin" });
@@ -296,7 +291,7 @@ namespace WinformDotNetFramework.Forms
             }
 
 
-            child.StartPosition = FormStartPosition.CenterScreen;
+            child.StartPosition = FormStartPosition.CenterParent;
 
             child.Text = formName.Equals("TS UserProfile") ? "User Area" : formName;
             child.MdiParent = this;
@@ -391,14 +386,14 @@ namespace WinformDotNetFramework.Forms
             var minimizedButton = new formDockButton(childForm.Text, childForm, minimizedPanel, this)
             {
                 Name = childForm.Text,
-                Dock = DockStyle.Top
+                Location = new Point(0, 0)
             };
 
             // Add the button to the table layout panel in the next available column
             minimizedPanel.Controls.Add(minimizedButton, minimizedPanel.ColumnCount - 1, 0);
 
             // Set the column style to make buttons stretch horizontally
-            minimizedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            minimizedPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize, minimizedButton.Width));
 
             // Hide the minimized form in the MDI parent
             childForm.Hide();
@@ -539,22 +534,17 @@ namespace WinformDotNetFramework.Forms
                     { "User Area", UserProfile },
                     { "Show Customer", CustomerShowTS },
                     { "Show Customer Invoice", CustomerInvoiceShowTS },
-                    { "Show Customer Invoice Cost", CustomerInvoiceCostShowTS },
                     { "Show Supplier", SupplierShowTS },
                     { "Show Supplier Invoice", SupplierInvoiceShowTS },
-                    { "Show Supplier Invoice Cost", SupplierInvoiceCostShowTS },
                     { "Show Sale", SaleShowTS },
                     { "Show User", UserShowTS },
                     { "Report Customer Invoice",CustomerInvoiceReportTS },
                     { "Report Supplier Invoice",SupplierInvoiceReportTS },
                     { "Report Sale",SaleReportTS },
-                   // {"Show Chart", ShowChartbutton},
                     { "Create Customer", CustomerCreateTS },
                     { "Create Customer Invoice", CustomerInvoiceCreateTS },
-                    { "Create Customer Invoice Cost", CustomerInvoiceCostCreateTS },
                     { "Create Supplier", SupplierCreateTS },
                     { "Create Supplier Invoice", SupplierInvoiceCreateTS },
-                    { "Create Supplier Invoice Cost", SupplierInvoiceCostCreateTS },
                     { "Create Sale", SaleCreateTS },
                     { "Create User", UserCreateTS },
                     { "Group Supplier", SupplierGroupTS },
