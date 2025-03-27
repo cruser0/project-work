@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -39,6 +40,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             Init();
             InitDetails(id);
+            button2.Visible = false;
 
         }
         private async void InitDetails(int id)
@@ -162,6 +164,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
+        public void SetSaleID(string id)
+        {
+            saleID = int.Parse(id);
+        }
+        public void SetSaleBkBol(string bol, string bk)
+        {
+            BoLCmbxUC.Cmbx.Text = bol;
+            BKCmbxUC.Cmbx.Text = bk;
+        }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -244,6 +256,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             else
                 UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, this, code);
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);
         }
     }
 }
