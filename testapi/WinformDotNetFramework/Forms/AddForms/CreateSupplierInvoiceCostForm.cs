@@ -21,6 +21,8 @@ namespace WinformDotNetFramework.Forms.AddForms
         CostRegistry cr;
         string InvoiceCode;
         List<CostRegistry> list;
+        SupplierInvoiceCost _updateCost;
+
         public CreateSupplierInvoiceCostForm()
         {
             Init(null);
@@ -36,17 +38,31 @@ namespace WinformDotNetFramework.Forms.AddForms
             UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
             InvoiceCodeCmbxUC.Enabled = false;
         }
-        public CreateSupplierInvoiceCostForm(SupplierInvoiceDetailsForm father ,object data)
+        public CreateSupplierInvoiceCostForm(SupplierInvoiceDetailsForm father, object data)
         {
-            _father=father;
             Init(null);
-            InvoiceCode = data as string;
-            UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
-            InvoiceCodeCmbxUC.Enabled = false;
-            OpenSupplierInvoice.Enabled = false;
+            _father = father;
+            // Handle the generic object data appropriately
+            if (data is SupplierInvoiceCost supplierInvoiceCost)
+            {
+                // Populate form with supplierInvoiceCost data
+                _updateCost = supplierInvoiceCost;
+                UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, _updateCost.SupplierInvoiceCode);
+                CostRegistryCmbx.Text = _updateCost.CostRegistryCode;
+                NameTxt.Text = _updateCost.Name;
+                CostIntegerTxt.SetText(_updateCost.Cost.ToString());
+                QuantityIntegerTxt.SetText(_updateCost.Quantity.ToString());
 
+            }
+            else if (data is string invoiceCode)
+            {
+                // Handle string invoice code scenario
+                InvoiceCode = invoiceCode;
+                UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
+            }
         }
-        bool detailsOnly=false;
+
+        bool detailsOnly = false;
         private async void Init(int? idDetails)
         {
             _supplierInvoiceService = new SupplierInvoiceService();
@@ -146,7 +162,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
 
 
-                
+
                 SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
                 {
                     SupplierInvoiceId = id,
@@ -158,8 +174,18 @@ namespace WinformDotNetFramework.Forms.AddForms
                 };
                 try
                 {
-                    await _supplierInvoiceCostService.Create(supplierInvoiceCost);
-                    MessageBox.Show("Supplier Invoice Cost created successfully!");
+                    if (_updateCost != null)
+                    {
+                        await _supplierInvoiceCostService.Update(_updateCost.SupplierInvoiceCostsId, supplierInvoiceCost);
+                        MessageBox.Show("Supplier Invoice Cost Updated Succesfully");
+
+                    }
+                    else
+                    {
+                        await _supplierInvoiceCostService.Create(supplierInvoiceCost);
+                        MessageBox.Show("Supplier Invoice Cost created successfully!");
+                    }
+
                     if (_father is SupplierInvoiceDetailsForm sidf)
                         await sidf.RefreshDGV();
                     detailsOnly = true;
@@ -170,7 +196,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             }
             else
             {
-                
+
                 SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
                 {
                     SupplierInvoiceId = id,

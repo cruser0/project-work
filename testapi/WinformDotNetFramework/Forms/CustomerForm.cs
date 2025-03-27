@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
+﻿using System.Windows.Forms;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 

@@ -33,6 +33,7 @@ namespace WinformDotNetFramework.Forms
             _userService = new UserService();
 
             InitializeComponent();
+            OpenFormDropDown.Enabled = false;
             AddFavoriteButton.Visible = false;
             IsMdiContainer = true; // Set the MDI container
             WindowState = FormWindowState.Maximized;
@@ -150,6 +151,11 @@ namespace WinformDotNetFramework.Forms
                 if (tabControl.SelectedTab.Text.Equals("Favorite"))
                 {
                     formName = (string)menuItem.Tag;
+
+                    if (formName == "User Area")
+                    {
+                        formName = "TS UserProfile";
+                    }
                 }
             }
 
@@ -330,10 +336,55 @@ namespace WinformDotNetFramework.Forms
             child.Activate();
             child.Focus(); // Aggiunto per garantire il focus
             child.TopMost = true;
-            child.TopMost = false; // Reset per evitare problemi di persistenza
+            child.TopMost = false;
 
             LayoutMdi(MdiLayout.ArrangeIcons);
+
+            ToolStripButton childToolStripButton = new ToolStripButton()
+            {
+                Text = child.Text,
+                AutoSize = true,
+                DisplayStyle = ToolStripItemDisplayStyle.Text,
+                TextDirection = ToolStripTextDirection.Horizontal,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Dock = DockStyle.Fill,
+                Width = TextRenderer.MeasureText(child.Text, OpenFormDropDown.Font).Width
+            };
+
+            childToolStripButton.Click += childToolStripButton_Click;
+
+            OpenFormDropDown.DropDownItems.Add(childToolStripButton);
+
+            if (!OpenFormDropDown.Enabled)
+                OpenFormDropDown.Enabled = true;
+
             Cursor.Current = Cursors.Default;
+        }
+
+        private void childToolStripButton_Click(object sender, EventArgs e)
+        {
+            ToolStripButton btn = (ToolStripButton)sender;
+            Form existingForm = MdiChildren.FirstOrDefault(f => f.Text == btn.Text);
+
+            if (existingForm.WindowState != FormWindowState.Minimized)
+            {
+                existingForm.BringToFront();
+                existingForm.Activate();
+                existingForm.Focus();
+                existingForm.TopMost = true;
+                existingForm.TopMost = false;
+            }
+            else
+            {
+                var showBtn = minimizedPanel.Controls
+                .OfType<formDockButton>()
+                .Where(b => b.Name == btn.Text)
+                .Select(b => b.ButtonShowForm)
+                .FirstOrDefault();
+
+                showBtn.PerformClick();
+            }
+
         }
 
         private void ChildForm_Activate(object sender, EventArgs e)
@@ -360,6 +411,25 @@ namespace WinformDotNetFramework.Forms
 
         public void ChildForm_Close(object sender, FormClosingEventArgs e)
         {
+            Form closingForm = sender as Form;
+
+            if (closingForm != null)
+            {
+                // Cerca il ToolStripButton corrispondente al nome del form
+                ToolStripItem buttonToRemove = OpenFormDropDown.DropDownItems
+                    .Cast<ToolStripItem>()
+                    .FirstOrDefault(item => item.Text == closingForm.Text);
+
+                if (buttonToRemove != null)
+                {
+                    // Rimuovi il ToolStripButton dagli items del dropdown
+                    OpenFormDropDown.DropDownItems.Remove(buttonToRemove);
+                }
+            }
+
+            if (MdiChildren.Count() == 1)
+                OpenFormDropDown.Enabled = false;
+
             BeginInvoke(new Action(UpdateMdiLayout));
         }
 
@@ -556,15 +626,15 @@ namespace WinformDotNetFramework.Forms
                     if (buttonMap.ContainsKey(favorite))
                     {
                         ToolStripButton btn = buttonMap[favorite];
-
+                        string t = btn == UserProfile ? "User Area" : btn.Text;
                         // Crea una nuova istanza del bottone
                         ToolStripButton clonedButton = new ToolStripButton
                         {
                             AutoSize = true,
                             Margin = btn.Margin,
                             BackColor = Color.Transparent,
-                            Text = $"{btn.GetCurrentParent().Parent.Text} {btn.Text}",
-                            Image = btn.Image,
+                            Text = $"{btn.GetCurrentParent().Parent.Text} {t}",
+                            Image = null,
                             ToolTipText = btn.ToolTipText,
                             Tag = favorite,
                             DisplayStyle = btn.DisplayStyle,
@@ -619,11 +689,47 @@ namespace WinformDotNetFramework.Forms
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            MdiChildren
-                .ToList()
-                .ForEach(form => form.Close());
+            // Crea una copia della lista dei form MDI per evitare modifiche durante l'iterazione
+            var mdiChildrenToClose = MdiChildren.ToList();
 
-            minimizedPanel.Controls.Clear();
+            // Crea una copia dei bottoni di chiusura
+            var closeButtons = minimizedPanel.Controls
+                .OfType<formDockButton>()
+                .Select(btn => btn.buttonCloseForm)
+                .ToList();
+
+            // Chiudi prima tutti i form MDI
+            foreach (Form form in mdiChildrenToClose)
+            {
+                if (!form.IsDisposed)
+                {
+                    form.Close();
+                }
+            }
+
+            // Poi simula i click sui bottoni di chiusura
+            foreach (Button closeButton in closeButtons)
+            {
+                if (closeButton != null && !closeButton.IsDisposed)
+                {
+                    try
+                    {
+                        // Usa Invoke per assicurare l'esecuzione sul thread principale
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            closeButton.PerformClick();
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log dell'eccezione se necessario
+                        Console.WriteLine($"Errore durante la chiusura: {ex.Message}");
+                    }
+                }
+            }
+
+            // Attendi un breve momento per assicurare la completa chiusura
+            Application.DoEvents();
         }
     }
 }

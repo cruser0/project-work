@@ -159,6 +159,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SpliContainerDGV
             // 
+            this.SpliContainerDGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SpliContainerDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SpliContainerDGV.Location = new System.Drawing.Point(0, 0);
             this.SpliContainerDGV.Name = "SpliContainerDGV";
@@ -183,7 +184,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(513, 240);
+            this.groupBox1.Size = new System.Drawing.Size(511, 238);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Suppliers";
@@ -201,7 +202,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SupplierDgv.Name = "SupplierDgv";
             this.SupplierDgv.ReadOnly = true;
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(507, 196);
+            this.SupplierDgv.Size = new System.Drawing.Size(505, 194);
             this.SupplierDgv.TabIndex = 0;
             this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellClick);
             this.SupplierDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -217,9 +218,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right,
             this.DoubleRight,
             this.TSLbl1});
-            this.SupplierToolStrip.Location = new System.Drawing.Point(3, 212);
+            this.SupplierToolStrip.Location = new System.Drawing.Point(3, 210);
             this.SupplierToolStrip.Name = "SupplierToolStrip";
-            this.SupplierToolStrip.Size = new System.Drawing.Size(507, 25);
+            this.SupplierToolStrip.Size = new System.Drawing.Size(505, 25);
             this.SupplierToolStrip.TabIndex = 2;
             this.SupplierToolStrip.Text = "toolStrip2";
             // 
@@ -272,6 +273,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // 
             // SplitContainerDGV2
             // 
+            this.SplitContainerDGV2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SplitContainerDGV2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainerDGV2.Location = new System.Drawing.Point(0, 0);
             this.SplitContainerDGV2.Name = "SplitContainerDGV2";
@@ -295,7 +297,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(244, 218);
+            this.groupBox2.Size = new System.Drawing.Size(242, 216);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Invoices";
@@ -313,7 +315,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SupInvoiceDgv.Name = "SupInvoiceDgv";
             this.SupInvoiceDgv.ReadOnly = true;
             this.SupInvoiceDgv.RowTemplate.Height = 25;
-            this.SupInvoiceDgv.Size = new System.Drawing.Size(238, 174);
+            this.SupInvoiceDgv.Size = new System.Drawing.Size(236, 172);
             this.SupInvoiceDgv.TabIndex = 3;
             this.SupInvoiceDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupInvoiceDgv_CellClick);
             this.SupInvoiceDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -329,9 +331,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right2,
             this.DoubleRight2,
             this.TSLbl2});
-            this.InvoiceToolStrip.Location = new System.Drawing.Point(3, 190);
+            this.InvoiceToolStrip.Location = new System.Drawing.Point(3, 188);
             this.InvoiceToolStrip.Name = "InvoiceToolStrip";
-            this.InvoiceToolStrip.Size = new System.Drawing.Size(238, 25);
+            this.InvoiceToolStrip.Size = new System.Drawing.Size(236, 25);
             this.InvoiceToolStrip.TabIndex = 5;
             this.InvoiceToolStrip.Text = "toolStrip4";
             // 
@@ -388,7 +390,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(266, 218);
+            this.groupBox3.Size = new System.Drawing.Size(264, 216);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Supplier Invoice Costs";
@@ -406,7 +408,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SupInvoiceCostDgv.Name = "SupInvoiceCostDgv";
             this.SupInvoiceCostDgv.ReadOnly = true;
             this.SupInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(260, 174);
+            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(258, 172);
             this.SupInvoiceCostDgv.TabIndex = 4;
             this.SupInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
@@ -421,9 +423,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.Right3,
             this.DoubleRight3,
             this.TSLbl3});
-            this.CostToolStrip.Location = new System.Drawing.Point(3, 190);
+            this.CostToolStrip.Location = new System.Drawing.Point(3, 188);
             this.CostToolStrip.Name = "CostToolStrip";
-            this.CostToolStrip.Size = new System.Drawing.Size(260, 25);
+            this.CostToolStrip.Size = new System.Drawing.Size(258, 25);
             this.CostToolStrip.TabIndex = 6;
             this.CostToolStrip.Text = "toolStrip3";
             // 

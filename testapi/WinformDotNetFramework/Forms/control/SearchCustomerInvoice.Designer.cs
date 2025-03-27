@@ -53,7 +53,6 @@ namespace WinformDotNetFramework.Forms.control
             // 
             // TextBoxesRightPanel
             // 
-            this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.CustomerInvoiceCodeTxt);
@@ -76,7 +75,7 @@ namespace WinformDotNetFramework.Forms.control
             this.TextBoxesRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 0);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 366);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 353);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
             // CustomerInvoiceCodeTxt
@@ -269,7 +268,7 @@ namespace WinformDotNetFramework.Forms.control
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoice";
-            this.Size = new System.Drawing.Size(200, 366);
+            this.Size = new System.Drawing.Size(200, 353);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

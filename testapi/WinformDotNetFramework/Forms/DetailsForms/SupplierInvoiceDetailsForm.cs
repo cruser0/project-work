@@ -26,14 +26,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         string bolString;
         string nameString;
         string countryString;
-        bool detailsOnly=false;
+        bool detailsOnly = false;
         Form _father;
 
         public SupplierInvoiceDetailsForm()
         {
             Init(null);
         }
-        public SupplierInvoiceDetailsForm(SaleDetailsForm father,object sale)
+        public SupplierInvoiceDetailsForm(SaleDetailsForm father, object sale)
         {
             SaleCustomerDTO saleCustomerDTO = (SaleCustomerDTO)sale;
             _father = father;
@@ -64,18 +64,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 detailsOnly = true;
                 int idInt = (int)id;
                 supplierInvoice = await _supplierInvoiceService.GetById(idInt);
+
+                if (supplierInvoice.Status == "Approved")
+                    dataGridView1.CellDoubleClick -= dataGridView1_CellDoubleClick;
+
                 textBox1.Text = supplierInvoice.SupplierInvoiceCode;
-                BKCmbxUC.Cmbx.TextChanged -= BKCmbxUC.Cmbx_TextChanged;
-                BoLCmbxUC.Cmbx.TextChanged -= BoLCmbxUC.Cmbx_TextChanged;
-                NameCmbxUC.Cmbx.TextChanged -= NameCmbxUC.Cmbx_TextChanged;
 
-                BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
-                BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
-                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName + $" - {supplierInvoice.Country}";
+                UtilityFunctions.SetDropdownText(BKCmbxUC, supplierInvoice.SaleBookingNumber);
+                UtilityFunctions.SetDropdownText(BoLCmbxUC, supplierInvoice.SaleBoL);
+                UtilityFunctions.SetDropdownText(NameCmbxUC, supplierInvoice.SupplierName + $" - {supplierInvoice.Country}");
 
-                BKCmbxUC.Cmbx.TextChanged += BKCmbxUC.Cmbx_TextChanged;
-                BoLCmbxUC.Cmbx.TextChanged += BoLCmbxUC.Cmbx_TextChanged;
-                NameCmbxUC.Cmbx.TextChanged += NameCmbxUC.Cmbx_TextChanged;
                 comboBox1.Text = supplierInvoice.Status;
                 DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
                 List<SupplierInvoiceCost> data = (await _supplierInvoiceCostService
@@ -180,9 +178,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             if (!EditCbx.Checked)
             {
-                BKCmbxUC.Cmbx.Text = supplierInvoice.SaleBookingNumber;
-                BoLCmbxUC.Cmbx.Text = supplierInvoice.SaleBoL;
-                NameCmbxUC.Cmbx.Text = supplierInvoice.SupplierName + $" - {supplierInvoice.Country}";
+                UtilityFunctions.SetDropdownText(BKCmbxUC, supplierInvoice.SaleBookingNumber);
+                UtilityFunctions.SetDropdownText(BoLCmbxUC, supplierInvoice.SaleBoL);
+                UtilityFunctions.SetDropdownText(NameCmbxUC, supplierInvoice.SupplierName + $" - {supplierInvoice.Country}");
                 comboBox1.Text = supplierInvoice.Status;
                 DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
             }
@@ -299,13 +297,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         await RefreshDGV();
                         if (_father != null)
                         {
-                            if(_father is SaleDetailsForm sdf)
+                            if (_father is SaleDetailsForm sdf)
                             {
                                 await sdf.RefreshDgvCustomer();
                                 await sdf.RefreshDgvSupplier();
                             }
                             await RefreshDGV();
-                            
+
                         }
                     }
                     catch (Exception ex) { MessageBox.Show(ex.Message); supplierId = -1; }
@@ -402,13 +400,25 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void FlushCreateBtn_Click(object sender, EventArgs e)
         {
-            detailsOnly=false;
+            detailsOnly = false;
             SetVisibility();
             SetEnableForTxt();
             UtilityFunctions.SetDropdownText(NameCmbxUC, "");
             comboBox1.SelectedIndex = 1;
             textBox1.Text = "";
             dataGridView1.DataSource = new List<SupplierInvoiceCost>();
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (sender is DataGridView dgv)
+            {
+                if (e.RowIndex == -1)
+                    return;
+
+                UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
+
+            }
         }
     }
 }

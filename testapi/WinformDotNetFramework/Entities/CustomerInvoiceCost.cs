@@ -1,6 +1,6 @@
 ﻿namespace WinformDotNetFramework.Entities
 {
-    internal class CustomerInvoiceCost
+    public class CustomerInvoiceCost
     {
         public int CustomerInvoiceCostsId { get; set; }
         public int? CustomerInvoiceId { get; set; }

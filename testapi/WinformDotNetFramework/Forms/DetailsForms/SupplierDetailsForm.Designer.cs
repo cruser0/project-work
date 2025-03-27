@@ -133,8 +133,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // comboBox1
             // 
             this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Active",
@@ -161,8 +160,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountryCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.CountryCmbx.BackColor = System.Drawing.SystemColors.Control;
-            this.CountryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CountryCmbx.BackColor = System.Drawing.SystemColors.Window;
             this.CountryCmbx.FormattingEnabled = true;
             this.CountryCmbx.Location = new System.Drawing.Point(261, 167);
             this.CountryCmbx.Name = "CountryCmbx";

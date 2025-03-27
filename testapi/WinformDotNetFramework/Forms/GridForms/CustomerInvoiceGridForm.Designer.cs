@@ -77,19 +77,19 @@ namespace WinformDotNetFramework.Forms.GridForms
             // TextBoxesRightPanel
             // 
             this.TextBoxesRightPanel.AutoScroll = true;
-            this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.TextBoxesRightPanel.Controls.Add(this.searchCustomerInvoice1);
             this.TextBoxesRightPanel.Location = new System.Drawing.Point(0, 89);
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
-            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 409);
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 387);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
             // searchCustomerInvoice1
             // 
+            this.searchCustomerInvoice1.Dock = System.Windows.Forms.DockStyle.Top;
             this.searchCustomerInvoice1.Location = new System.Drawing.Point(0, 0);
             this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
-            this.searchCustomerInvoice1.Size = new System.Drawing.Size(197, 385);
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(200, 372);
             this.searchCustomerInvoice1.TabIndex = 0;
             // 
             // RightSideBar
