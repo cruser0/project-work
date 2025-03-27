@@ -95,7 +95,7 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceCostDTOGet> GetSupplierInvoiceCostById(int id)
         {
-            var data = await _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
+            var data = await _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Include(x=>x.SupplierInvoice).Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new NotFoundException("Supplier Invoice Cost not found!");

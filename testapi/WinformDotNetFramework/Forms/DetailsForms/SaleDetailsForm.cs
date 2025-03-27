@@ -54,8 +54,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             NameCmbxUC.Cmbx.Text = sale.CustomerName;
             CountryCmbxUC.Cmbx.Text = sale.Country;
 
-            NameCmbxUC.Cmbx.TextChanged -= NameCmbxUC.Cmbx_TextChanged;
-            CountryCmbxUC.Cmbx.TextChanged -= CountryCmbxUC.Cmbx_TextChanged;
+            NameCmbxUC.Cmbx.TextChanged += NameCmbxUC.Cmbx_TextChanged;
+            CountryCmbxUC.Cmbx.TextChanged += CountryCmbxUC.Cmbx_TextChanged;
 
             bntxt.Text = sale.BookingNumber;
             boltxt.Text = sale.BoLnumber;
