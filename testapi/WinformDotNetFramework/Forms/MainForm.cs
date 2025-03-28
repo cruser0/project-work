@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.control;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;

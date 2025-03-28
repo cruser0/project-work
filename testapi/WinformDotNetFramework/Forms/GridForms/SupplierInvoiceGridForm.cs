@@ -8,7 +8,7 @@ using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Entities.Preference;
-using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms

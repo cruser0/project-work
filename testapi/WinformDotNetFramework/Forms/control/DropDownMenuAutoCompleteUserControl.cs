@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.DetailsForms;
 
 namespace WinformDotNetFramework.Forms.control

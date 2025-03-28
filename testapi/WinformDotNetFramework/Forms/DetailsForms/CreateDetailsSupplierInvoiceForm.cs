@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Forms.AddForms;
+using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 

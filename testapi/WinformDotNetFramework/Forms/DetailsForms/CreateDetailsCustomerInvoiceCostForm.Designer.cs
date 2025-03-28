@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace WinformDotNetFramework.Forms.AddForms
+namespace WinformDotNetFramework.Forms.DetailsForms
 {
     partial class CreateDetailsCustomerInvoiceCostForm
     {

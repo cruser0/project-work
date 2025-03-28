@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Services;
 
-namespace WinformDotNetFramework.Forms.AddForms
+namespace WinformDotNetFramework.Forms.DetailsForms
 {
     public partial class CreateUserForm : Form
     {
