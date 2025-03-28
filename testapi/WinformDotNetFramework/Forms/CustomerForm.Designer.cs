@@ -177,7 +177,6 @@ namespace WinformDotNetFramework.Forms
         #endregion
 
         private Panel panel2;
-        private Label CustomerLbl;
         private control.LeftSideBarUSerControl leftSideBaruSerControl1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;

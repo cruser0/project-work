@@ -25,8 +25,8 @@ namespace API.Models.Services
     public class SupplierInvoiceCostServices : ISupplierInvoiceCostService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly CostRegistryService _costRegistryService;
-        public SupplierInvoiceCostServices(Progetto_FormativoContext ctx, CostRegistryService costRegistryService)
+        private readonly ICostRegistryService _costRegistryService;
+        public SupplierInvoiceCostServices(Progetto_FormativoContext ctx, ICostRegistryService costRegistryService)
         {
             _context = ctx;
             _costRegistryService = costRegistryService;
@@ -95,7 +95,7 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceCostDTOGet> GetSupplierInvoiceCostById(int id)
         {
-            var data = await _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Include(x=>x.SupplierInvoice).Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
+            var data = await _context.SupplierInvoiceCosts.Include(x => x.CostRegistry).Include(x => x.SupplierInvoice).Where(x => x.SupplierInvoiceCostsId == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new NotFoundException("Supplier Invoice Cost not found!");

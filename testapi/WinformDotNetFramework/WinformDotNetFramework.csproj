@@ -645,6 +645,9 @@
     <EmbeddedResource Include="Forms\control\StarUserControl.resx">
       <DependentUpon>StarUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CostRegistryForm.resx">
+      <DependentUpon>CostRegistryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomDialogs\ChooseReportDialog.resx">
       <DependentUpon>ChooseReportDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -657,6 +660,9 @@
     <EmbeddedResource Include="Forms\CustomerInvoiceForm.resx">
       <DependentUpon>CustomerInvoiceForm.cs</DependentUpon>
     </EmbeddedResource>
+	  <EmbeddedResource Include="Forms\DetailsForms\CostRegistryDetailsForm.resx">
+		  <DependentUpon>CostRegistryDetailsForm.cs</DependentUpon>
+	  </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetailsForms\CreateDetailsCustomerForm.resx">
       <DependentUpon>CreateDetailsCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -674,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetailsForms\UserDetails.resx">
       <DependentUpon>UserDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridForms\CostRegistyGridForm.resx">
+      <DependentUpon>CostRegistyGridForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GroupForms\CustomerGroupForm.resx">
       <DependentUpon>CustomerGroupForm.cs</DependentUpon>

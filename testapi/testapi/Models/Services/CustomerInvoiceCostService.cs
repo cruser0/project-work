@@ -24,8 +24,8 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ICustomerInvoicesService _serviceCustomerInvoice;
-        private readonly CostRegistryService _costRegistry;
-        public CustomerInvoiceCostService(Progetto_FormativoContext ctx, ICustomerInvoicesService service, CostRegistryService cr)
+        private readonly ICostRegistryService _costRegistry;
+        public CustomerInvoiceCostService(Progetto_FormativoContext ctx, ICustomerInvoicesService service, ICostRegistryService cr)
         {
             _context = ctx;
             _serviceCustomerInvoice = service;

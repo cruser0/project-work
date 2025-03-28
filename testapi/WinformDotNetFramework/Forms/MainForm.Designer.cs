@@ -43,6 +43,8 @@ namespace WinformDotNetFramework.Forms
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SaleShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.RegistryCostShowTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripSeparator();
             this.UserShowTS = new System.Windows.Forms.ToolStripButton();
             this.AddTP = new System.Windows.Forms.TabPage();
             this.Create = new System.Windows.Forms.ToolStrip();
@@ -53,6 +55,8 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCreateTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.SaleCreateTS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.RegistryCostCreateTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.UserCreateTS = new System.Windows.Forms.ToolStripButton();
             this.GroupTP = new System.Windows.Forms.TabPage();
@@ -141,6 +145,8 @@ namespace WinformDotNetFramework.Forms
             this.toolStripSeparator2,
             this.SaleShowTS,
             this.toolStripSeparator13,
+            this.RegistryCostShowTS,
+            this.toolStripButton1,
             this.UserShowTS});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
@@ -175,7 +181,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 30);
             // 
             // SupplierShowTS
             // 
@@ -204,7 +210,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 30);
             // 
             // SaleShowTS
             // 
@@ -221,7 +227,24 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 30);
+            // 
+            // RegistryCostShowTS
+            // 
+            this.RegistryCostShowTS.AutoSize = false;
+            this.RegistryCostShowTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RegistryCostShowTS.Image = ((System.Drawing.Image)(resources.GetObject("RegistryCostShowTS.Image")));
+            this.RegistryCostShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RegistryCostShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.RegistryCostShowTS.Name = "RegistryCostShowTS";
+            this.RegistryCostShowTS.Size = new System.Drawing.Size(100, 27);
+            this.RegistryCostShowTS.Text = "Registry Cost";
+            this.RegistryCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(6, 30);
             // 
             // UserShowTS
             // 
@@ -260,6 +283,8 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCreateTS,
             this.toolStripSeparator8,
             this.SaleCreateTS,
+            this.toolStripSeparator10,
+            this.RegistryCostCreateTS,
             this.toolStripSeparator9,
             this.UserCreateTS});
             this.Create.Location = new System.Drawing.Point(3, 3);
@@ -295,7 +320,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 30);
             // 
             // SupplierCreateTS
             // 
@@ -324,7 +349,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 30);
             // 
             // SaleCreateTS
             // 
@@ -338,10 +363,27 @@ namespace WinformDotNetFramework.Forms
             this.SaleCreateTS.Text = "Sale";
             this.SaleCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 30);
+            // 
+            // RegistryCostCreateTS
+            // 
+            this.RegistryCostCreateTS.AutoSize = false;
+            this.RegistryCostCreateTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RegistryCostCreateTS.Image = ((System.Drawing.Image)(resources.GetObject("RegistryCostCreateTS.Image")));
+            this.RegistryCostCreateTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RegistryCostCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.RegistryCostCreateTS.Name = "RegistryCostCreateTS";
+            this.RegistryCostCreateTS.Size = new System.Drawing.Size(100, 27);
+            this.RegistryCostCreateTS.Text = "Registry Cost";
+            this.RegistryCostCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 30);
             // 
             // UserCreateTS
             // 
@@ -397,7 +439,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 30);
             // 
             // SupplierGroupTS
             // 
@@ -455,7 +497,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 30);
             // 
             // SupplierInvoiceReportTS
             // 
@@ -472,7 +514,7 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 30);
             // 
             // SaleReportTS
             // 
@@ -512,7 +554,7 @@ namespace WinformDotNetFramework.Forms
             this.Logout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Logout.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.Logout.Name = "Logout";
-            this.Logout.Size = new System.Drawing.Size(49, 19);
+            this.Logout.Size = new System.Drawing.Size(49, 20);
             this.Logout.Text = "Logout";
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
@@ -523,7 +565,7 @@ namespace WinformDotNetFramework.Forms
             this.UserProfile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UserProfile.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.UserProfile.Name = "UserProfile";
-            this.UserProfile.Size = new System.Drawing.Size(114, 19);
+            this.UserProfile.Size = new System.Drawing.Size(114, 20);
             this.UserProfile.Text = "toolStripButton4";
             this.UserProfile.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
@@ -546,14 +588,14 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(93, 19);
+            this.toolStripButton2.Size = new System.Drawing.Size(93, 20);
             this.toolStripButton2.Text = "Close All Forms";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 22);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripButton3
             // 
@@ -561,7 +603,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(89, 19);
+            this.toolStripButton3.Size = new System.Drawing.Size(89, 20);
             this.toolStripButton3.Text = "Hide All Forms";
             this.toolStripButton3.ToolTipText = "Hide All";
             this.toolStripButton3.Click += new System.EventHandler(this.MinimizeAll_Click);
@@ -569,14 +611,14 @@ namespace WinformDotNetFramework.Forms
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 22);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
             // 
             // OpenFormDropDown
             // 
             this.OpenFormDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.OpenFormDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenFormDropDown.Name = "OpenFormDropDown";
-            this.OpenFormDropDown.Size = new System.Drawing.Size(134, 19);
+            this.OpenFormDropDown.Size = new System.Drawing.Size(134, 20);
             this.OpenFormDropDown.Text = "Show All Open Forms";
             // 
             // MainForm
@@ -659,5 +701,9 @@ namespace WinformDotNetFramework.Forms
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripSeparator toolStripSeparator6;
         public ToolStripDropDownButton OpenFormDropDown;
+        public ToolStripButton RegistryCostShowTS;
+        private ToolStripSeparator toolStripButton1;
+        private ToolStripSeparator toolStripSeparator10;
+        public ToolStripButton RegistryCostCreateTS;
     }
 }

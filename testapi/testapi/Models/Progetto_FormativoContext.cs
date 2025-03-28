@@ -774,7 +774,7 @@ namespace API.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CostRegistryUniqueCode)
+                entity.Property(e => e.CostRegistryName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
