@@ -21,7 +21,7 @@ namespace WinformDotNetFramework.Forms
                 if (e.RowIndex == -1)
                     return;
 
-                UtilityFunctions.OpenFormDetails<CustomerDetailsForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["CustomerId"].Value.ToString()));
+                UtilityFunctions.OpenFormDetails<CreateDetailsCustomerForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["CustomerId"].Value.ToString()));
 
             }
         }

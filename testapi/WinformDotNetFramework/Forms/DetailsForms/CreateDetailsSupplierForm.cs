@@ -9,7 +9,7 @@ using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
 {
-    public partial class SupplierDetailsForm : Form
+    public partial class CreateDetailsSupplierForm : Form
     {
         SupplierService _supplierService;
         SupplierInvoiceService _supplierInvoiceService;
@@ -17,11 +17,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         Supplier supplier;
         int supplierID;
         bool detailsOnly = false;
-        public SupplierDetailsForm()
+        public CreateDetailsSupplierForm()
         {
             Init(null);
         }
-        public SupplierDetailsForm(int id)
+        public CreateDetailsSupplierForm(int id)
         {
             Init(id);
         }

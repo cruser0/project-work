@@ -34,28 +34,28 @@ namespace WinformDotNetFramework.Forms.control
                     Cmbx.DroppedDown = false;
                     return;
                 }
-                if (ParentForm is CreateCustomerInvoiceCostForm cicf)
+                if (ParentForm is CreateDetailsCustomerInvoiceCostForm cicf)
                     await cicf.SetList(currentText);
 
-                if (ParentForm is CreateCustomerInvoiceForm cif)
+                if (ParentForm is CreateDetailsCustomerInvoiceForm cif)
                     await cif.SetList();
 
-                if (ParentForm is CreateSaleForm sf)
+                if (ParentForm is CreateDetailsSaleForm sf)
                     await sf.SetList();
 
-                if (ParentForm is CreateSupplierInvoicesForm sif)
+                if (ParentForm is CreateDetailsSupplierInvoiceForm sif)
                     await sif.SetList();
 
-                if (ParentForm is CreateSupplierInvoiceCostForm sicf)
+                if (ParentForm is CreateDetailsSupplierInvoiceCostForm sicf)
                     await sicf.SetList();
 
-                if (ParentForm is CustomerInvoiceDetailsForm cidf)
+                if (ParentForm is CreateDetailsCustomerInvoiceForm cidf)
                     await cidf.SetList();
 
-                if (ParentForm is SupplierInvoiceDetailsForm sidf)
+                if (ParentForm is CreateDetailsSupplierInvoiceForm sidf)
                     await sidf.SetList();
 
-                if (ParentForm is SaleDetailsForm sdf)
+                if (ParentForm is CreateDetailsSaleForm sdf)
                     await sdf.SetList();
 
                 if (listItemsDropCmbx.Count > 0)

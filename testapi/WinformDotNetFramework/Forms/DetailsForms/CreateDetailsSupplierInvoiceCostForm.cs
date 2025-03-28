@@ -11,7 +11,7 @@ using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.AddForms
 {
-    public partial class CreateSupplierInvoiceCostForm : Form
+    public partial class CreateDetailsSupplierInvoiceCostForm : Form
     {
         SupplierInvoiceCostService _supplierInvoiceCostService;
         SupplierInvoiceService _supplierInvoiceService;
@@ -23,22 +23,22 @@ namespace WinformDotNetFramework.Forms.AddForms
         List<CostRegistry> list;
         SupplierInvoiceCost _updateCost;
 
-        public CreateSupplierInvoiceCostForm()
+        public CreateDetailsSupplierInvoiceCostForm()
         {
             Init(null);
         }
-        public CreateSupplierInvoiceCostForm(int idDetails)
+        public CreateDetailsSupplierInvoiceCostForm(int idDetails)
         {
             Init(idDetails);
         }
-        public CreateSupplierInvoiceCostForm(object data)
+        public CreateDetailsSupplierInvoiceCostForm(object data)
         {
             Init(null);
             InvoiceCode = data as string;
             UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
             InvoiceCodeCmbxUC.Enabled = false;
         }
-        public CreateSupplierInvoiceCostForm(SupplierInvoiceDetailsForm father, object data)
+        public CreateDetailsSupplierInvoiceCostForm(CreateDetailsSupplierInvoiceForm father, object data)
         {
             Init(null);
             _father = father;
@@ -186,7 +186,7 @@ namespace WinformDotNetFramework.Forms.AddForms
                         MessageBox.Show("Supplier Invoice Cost created successfully!");
                     }
 
-                    if (_father is SupplierInvoiceDetailsForm sidf)
+                    if (_father is CreateDetailsSupplierInvoiceForm sidf)
                         await sidf.RefreshDGV();
                     detailsOnly = true;
 

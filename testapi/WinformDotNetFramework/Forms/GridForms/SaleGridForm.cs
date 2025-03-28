@@ -32,13 +32,13 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
 
 
-        public SaleGridForm(SupplierInvoiceDetailsForm father)
+        public SaleGridForm(CreateDetailsSupplierInvoiceForm father)
         {
             _father = father;
             Init();
             toolStrip1.Visible = false;
         }
-        public SaleGridForm(CustomerInvoiceDetailsForm father)
+        public SaleGridForm(CreateDetailsCustomerInvoiceForm father)
         {
             _father = father;
             Init();
@@ -173,12 +173,12 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             if (sender is DataGridView dgv)
             {
-                if (_father is SupplierInvoiceDetailsForm csif)
+                if (_father is CreateDetailsSupplierInvoiceForm csif)
                 {
                     csif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
                     csif.SetSaleBkBol(dgv.CurrentRow.Cells["BoLNumber"].Value.ToString(), dgv.CurrentRow.Cells["BookingNumber"].Value.ToString());
                 }
-                if (_father is CustomerInvoiceDetailsForm ccif)
+                if (_father is CreateDetailsCustomerInvoiceForm ccif)
                 {
                     ccif.SetSaleBkBol(dgv.CurrentRow.Cells["BookingNumber"].Value.ToString(), dgv.CurrentRow.Cells["BoLNumber"].Value.ToString());
                     ccif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());

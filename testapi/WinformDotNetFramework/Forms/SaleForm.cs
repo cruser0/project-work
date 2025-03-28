@@ -19,7 +19,7 @@ namespace WinformDotNetFramework.Forms
                 if (e.RowIndex == -1)
                     return;
 
-                UtilityFunctions.OpenFormDetails<SaleDetailsForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["SaleId"].Value.ToString()));
+                UtilityFunctions.OpenFormDetails<CreateDetailsSaleForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["SaleId"].Value.ToString()));
 
             }
         }
