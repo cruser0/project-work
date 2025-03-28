@@ -308,7 +308,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "CostRegistryGridForm";
             this.Text = "CostRegistryGridForm";
-            this.Load += new System.EventHandler(this.CostRegistryGridForm_Load);
             this.panel5.ResumeLayout(false);
             this.CenterPanel.ResumeLayout(false);
             this.CenterPanel.PerformLayout();

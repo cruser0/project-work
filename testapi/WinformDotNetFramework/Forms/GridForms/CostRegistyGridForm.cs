@@ -1,5 +1,11 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
+using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms
 {
@@ -7,36 +13,30 @@ namespace WinformDotNetFramework.Forms.GridForms
     {
         CostRegistryFilter filter = new CostRegistryFilter() { CostRegistryPage = 1 };
 
-        private CostRegistryService _customerService;
+        private CostRegistryService _costRegistryService;
         int pages;
         double itemsPage = 10.0;
         Form _father;
-        Task<ICollection<Customer>> getAllNotFiltered;
+        Task<ICollection<CostRegistry>> getAllNotFiltered;
         Task<int> countNotFiltered;
-        Task<CustomerDGV> getFav;
+        //Task<CostRegistryDGV> getFav;
 
         private UserService _userService;
         public CostRegistryGridForm()
         {
             InitializeComponent();
-        }
-
-        public CostRegistryGridForm(CreateDetailsSaleForm father)
-        {
-            InitializeComponent();
-            _father = father;
-            toolStrip1.Visible = false;
+            Init();
         }
 
         private async void Init()
         {
-            _customerService = new CustomerService();
+            _costRegistryService = new CostRegistryService();
             _userService = new UserService();
 
 
-            CustomerDgv.ReadOnly = true;
+            CostRegistryDgv.ReadOnly = true;
 
-            pages = (int)Math.Ceiling(await _customerService.Count(new CustomerFilter() { CustomerDeprecated = false }) / itemsPage);
+            pages = (int)Math.Ceiling(await _costRegistryService.Count(new CostRegistryFilter()) / itemsPage);
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
             PaginationUserControl.SingleRightArrowEvent += PaginationUserControl_SingleRightArrowEvent;
@@ -44,72 +44,71 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
 
-            searchCustomer1.comboBox1.SelectedIndex = 1;
             PaginationUserControl.Visible = false;
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-            CustomerDgv.ContextMenuStrip = RightClickDgv;
-            if (!UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "Admin" }))
-            {
-                CustomerIDTsmi.Visible = false;
-                CustomerOriginalIDTsmi.Visible = false;
-            }
+            CostRegistryDgv.ContextMenuStrip = RightClickDgv;
+            //if (!UtilityFunctions.IsAuthorized(new HashSet<string>() { "CostRegistryAdmin", "Admin" }))
+            //{
+            //    CostRegistryIDTsmi.Visible = false;
+            //    CostRegistryOriginalIDTsmi.Visible = false;
+            //}
         }
 
         private async void MyControl_ButtonClicked(object sender, EventArgs e)
         {
             PaginationUserControl.CurrentPage = 1;
 
-            filter = searchCustomer1.GetFilter();
-            filter.CustomerPage = PaginationUserControl.CurrentPage;
-            CustomerFilter filterPage = searchCustomer1.GetFilter();
+            filter = searchCostRegistry1.GetFilter();
+            filter.CostRegistryPage = PaginationUserControl.CurrentPage;
+            CostRegistryFilter filterPage = searchCostRegistry1.GetFilter();
 
-            var query = _customerService.GetAll(filter);
-            var totalCount = _customerService.Count(filterPage);
+            var query = _costRegistryService.GetAll(filter);
+            var totalCount = _costRegistryService.Count(filterPage);
             await Task.WhenAll(query, totalCount);
-            IEnumerable<Customer> query1 = await query;
+            IEnumerable<CostRegistry> query1 = await query;
 
-            CustomerDgv.DataSource = query1.ToList();
+            CostRegistryDgv.DataSource = query1.ToList();
 
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await totalCount / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
         }
 
-        private async Task SetCheckBoxes()
-        {
-            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
-            IEnumerable<Customer> query = await getAllNotFiltered;
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
-            if (mPage <= 0)
-                mPage = 1;
+        //private async Task SetCheckBoxes()
+        //{
+        //    await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+        //    IEnumerable<CostRegistry> query = await getAllNotFiltered;
+        //    int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+        //    if (mPage <= 0)
+        //        mPage = 1;
 
-            PaginationUserControl.maxPage = mPage.ToString();
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+        //    PaginationUserControl.maxPage = mPage.ToString();
+        //    PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-            CustomerDgv.DataSource = query.ToList();
+        //    CostRegistryDgv.DataSource = query.ToList();
 
-            CustomerDGV cdgv = await getFav;
-            CustomerCountryTsmi.Checked = cdgv.ShowCountry;
-            CustomerDateTsmi.Checked = cdgv.ShowDate;
-            CustomerIDTsmi.Checked = cdgv.ShowID;
-            CustomerStatusTsmi.Checked = cdgv.ShowStatus;
-            CustomerOriginalIDTsmi.Checked = cdgv.ShowOriginalID;
-            CustomerNameTsmi.Checked = cdgv.ShowName;
-            PaginationUserControl.Visible = true;
-            CustomerDgv.Columns["CustomerName"].Visible = cdgv.ShowName;
-            CustomerDgv.Columns["Country"].Visible = cdgv.ShowCountry;
-            CustomerDgv.Columns["CreatedAt"].Visible = cdgv.ShowDate;
-            CustomerDgv.Columns["OriginalID"].Visible = cdgv.ShowOriginalID;
-            CustomerDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
-            CustomerDgv.Columns["CustomerID"].Visible = CustomerIDTsmi.Checked;
-        }
+        //    CostRegistryDGV cdgv = await getFav;
+        //    CostRegistryCountryTsmi.Checked = cdgv.ShowCountry;
+        //    CostRegistryDateTsmi.Checked = cdgv.ShowDate;
+        //    CostRegistryIDTsmi.Checked = cdgv.ShowID;
+        //    CostRegistryStatusTsmi.Checked = cdgv.ShowStatus;
+        //    CostRegistryOriginalIDTsmi.Checked = cdgv.ShowOriginalID;
+        //    CostRegistryNameTsmi.Checked = cdgv.ShowName;
+        //    PaginationUserControl.Visible = true;
+        //    CostRegistryDgv.Columns["CostRegistryName"].Visible = cdgv.ShowName;
+        //    CostRegistryDgv.Columns["Country"].Visible = cdgv.ShowCountry;
+        //    CostRegistryDgv.Columns["CreatedAt"].Visible = cdgv.ShowDate;
+        //    CostRegistryDgv.Columns["OriginalID"].Visible = cdgv.ShowOriginalID;
+        //    CostRegistryDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
+        //    CostRegistryDgv.Columns["CostRegistryID"].Visible = CostRegistryIDTsmi.Checked;
+        //}
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
-            filter.CustomerPage = PaginationUserControl.CurrentPage;
-            IEnumerable<Customer> query = await _customerService.GetAll(filter);
-            CustomerDgv.DataSource = query.ToList();
+            filter.CostRegistryPage = PaginationUserControl.CurrentPage;
+            IEnumerable<CostRegistry> query = await _costRegistryService.GetAll(filter);
+            CostRegistryDgv.DataSource = query.ToList();
         }
 
         private void PaginationUserControl_SingleLeftArrowEvent(object sender, EventArgs e)
@@ -151,17 +150,17 @@ namespace WinformDotNetFramework.Forms.GridForms
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (sender is DataGridView dgv)
-            {
-                if (_father is CreateDetailsSaleForm csf)
-                {
-                    csf.SetCustomerID(dgv.CurrentRow.Cells["CustomerID"].Value.ToString());
-                    csf.SetCustomerNameCountry(dgv.CurrentRow.Cells["CustomerName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
-                }
-            }
+            //if (sender is DataGridView dgv)
+            //{
+            //    if (_father is CreateDetailsSaleForm csf)
+            //    {
+            //        csf.SetCostRegistryID(dgv.CurrentRow.Cells["CostRegistryID"].Value.ToString());
+            //        csf.SetCostRegistryNameCountry(dgv.CurrentRow.Cells["CostRegistryName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
+            //    }
+            //}
         }
 
-        public void CustomerGridForm_Resize(object sender, EventArgs e)
+        public void CostRegistryGridForm_Resize(object sender, EventArgs e)
         {
 
             panel5.Location = new System.Drawing.Point((Width - panel5.Width) / 2, 0);
@@ -174,75 +173,76 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         }
 
-        private void CustomerDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void CostRegistryDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                var hitTest = CustomerDgv.HitTest(e.X, e.Y);
+                var hitTest = CostRegistryDgv.HitTest(e.X, e.Y);
                 if (hitTest.RowIndex >= 0)
                 {
-                    RightClickDgv.Show(CustomerDgv, e.Location);
+                    RightClickDgv.Show(CostRegistryDgv, e.Location);
                 }
             }
         }
 
         private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
-            if (sender is ToolStripMenuItem tsmi)
-            {
-                string name = tsmi.Name;
-                switch (name)
-                {
-                    case "CustomerIDTsmi":
-                        CustomerDgv.Columns["CustomerID"].Visible = tsmi.Checked;
-                        break;
-                    case "CustomerNameTsmi":
-                        CustomerDgv.Columns["CustomerName"].Visible = tsmi.Checked;
-                        break;
-                    case "CustomerCountryTsmi":
-                        CustomerDgv.Columns["Country"].Visible = tsmi.Checked;
-                        break;
-                    case "CustomerDateTsmi":
-                        CustomerDgv.Columns["CreatedAt"].Visible = tsmi.Checked;
-                        break;
-                    case "CustomerOriginalIDTsmi":
-                        CustomerDgv.Columns["OriginalID"].Visible = tsmi.Checked;
-                        break;
-                    case "CustomerStatusTsmi":
-                        CustomerDgv.Columns["Deprecated"].Visible = tsmi.Checked;
-                        break;
-                    default:
-                        break;
-                }
-                CustomerDGV cdgv = new CustomerDGV
-                {
-                    ShowDate = CustomerDateTsmi.Checked,
-                    ShowID = CustomerIDTsmi.Checked,
-                    ShowStatus = CustomerStatusTsmi.Checked,
-                    ShowOriginalID = CustomerOriginalIDTsmi.Checked,
-                    ShowCountry = CustomerCountryTsmi.Checked,
-                    ShowName = CustomerNameTsmi.Checked,
-                    UserID = UserAccessInfo.RefreshUserID
-                };
-                await _userService.PostCustomerDGV(cdgv);
+            //if (sender is ToolStripMenuItem tsmi)
+            //{
+            //    string name = tsmi.Name;
+            //    switch (name)
+            //    {
+            //        case "CostRegistryIDTsmi":
+            //            CostRegistryDgv.Columns["CostRegistryID"].Visible = tsmi.Checked;
+            //            break;
+            //        case "CostRegistryNameTsmi":
+            //            CostRegistryDgv.Columns["CostRegistryName"].Visible = tsmi.Checked;
+            //            break;
+            //        case "CostRegistryCountryTsmi":
+            //            CostRegistryDgv.Columns["Country"].Visible = tsmi.Checked;
+            //            break;
+            //        case "CostRegistryDateTsmi":
+            //            CostRegistryDgv.Columns["CreatedAt"].Visible = tsmi.Checked;
+            //            break;
+            //        case "CostRegistryOriginalIDTsmi":
+            //            CostRegistryDgv.Columns["OriginalID"].Visible = tsmi.Checked;
+            //            break;
+            //        case "CostRegistryStatusTsmi":
+            //            CostRegistryDgv.Columns["Deprecated"].Visible = tsmi.Checked;
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //    CostRegistryDGV cdgv = new CostRegistryDGV
+            //    {
+            //        ShowDate = CostRegistryDateTsmi.Checked,
+            //        ShowID = CostRegistryIDTsmi.Checked,
+            //        ShowStatus = CostRegistryStatusTsmi.Checked,
+            //        ShowOriginalID = CostRegistryOriginalIDTsmi.Checked,
+            //        ShowCountry = CostRegistryCountryTsmi.Checked,
+            //        ShowName = CostRegistryNameTsmi.Checked,
+            //        UserID = UserAccessInfo.RefreshUserID
+            //    };
+            //    await _userService.PostCostRegistryDGV(cdgv);
 
-            }
+            //}
         }
 
-        private async void CustomerGridForm_Load(object sender, EventArgs e)
+        private async void CostRegistryGridForm_Load(object sender, EventArgs e)
         {
             Init();
-            getAllNotFiltered = _customerService.GetAll(filter);
-            countNotFiltered = _customerService.Count(new CustomerFilter() { CustomerDeprecated = false });
-            getFav = _userService.GetCustomerDGV();
-            await SetCheckBoxes();
+            getAllNotFiltered = _costRegistryService.GetAll(filter);
+            countNotFiltered = _costRegistryService.Count(new CostRegistryFilter());
+            
+            //getFav = _userService.GetCostRegistryDGV();
+            //await SetCheckBoxes();
         }
 
 
         private async void MassDeleteTSB_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
-          "This action is permanent and it will delete all the history bound to this Customers!",
+          "This action is permanent and it will delete all the history bound to this CostRegistrys!",
           "Confirm Deletion?",
           MessageBoxButtons.YesNo,
           MessageBoxIcon.Warning);
@@ -255,19 +255,19 @@ namespace WinformDotNetFramework.Forms.GridForms
 
 
                     HashSet<int> ids = new HashSet<int>();
-                    foreach (DataGridViewCell cell in CustomerDgv.SelectedCells)
+                    foreach (DataGridViewCell cell in CostRegistryDgv.SelectedCells)
                     {
                         ids.Add(cell.RowIndex);
                     }
                     foreach (var rowid in ids)
                     {
-                        if (CustomerDgv.Rows[rowid].DataBoundItem is Customer customer)
-                            id.Add(customer.CustomerId);
+                        if (CostRegistryDgv.Rows[rowid].DataBoundItem is CostRegistryDTOPut costRegistry)
+                            id.Add((int)costRegistry.CostRegistryID);
                     }
 
                     if (id.Count > 0)
                     {
-                        string message = await _customerService.MassDelete(id);
+                        string message = await _costRegistryService.MassDelete(id);
                         MessageBox.Show(message);
                     }
                     else
@@ -287,7 +287,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private HashSet<int> modifiedRows = new HashSet<int>();
 
-        private void CustomerDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void CostRegistryDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -311,12 +311,12 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             try
             {
-                List<Customer> modifiedEntities = new List<Customer>();
+                List<CostRegistryDTOPut> modifiedEntities = new List<CostRegistryDTOPut>();
 
                 // Itera solo sulle righe che sono state modificate
                 foreach (int rowIndex in modifiedRows)
                 {
-                    if (CustomerDgv.Rows[rowIndex].DataBoundItem is Customer entity)
+                    if (CostRegistryDgv.Rows[rowIndex].DataBoundItem is CostRegistryDTOPut entity)
                     {
                         modifiedEntities.Add(entity);
                     }
@@ -324,7 +324,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
                 if (modifiedEntities.Count > 0)
                 {
-                    string message = await _customerService.MassUpdate(modifiedEntities);
+                    string message = await _costRegistryService.MassUpdate(modifiedEntities);
                     MessageBox.Show(message);
 
                     // Resetta le righe modificate dopo l'update
@@ -346,9 +346,9 @@ namespace WinformDotNetFramework.Forms.GridForms
         private void ToggleEditButton_Click(object sender, EventArgs e)
         {
             // Inverti lo stato ReadOnly
-            CustomerDgv.ReadOnly = !CustomerDgv.ReadOnly;
+            CostRegistryDgv.ReadOnly = !CostRegistryDgv.ReadOnly;
 
-            if (CustomerDgv.ReadOnly) // Modalità visualizzazione
+            if (CostRegistryDgv.ReadOnly) // Modalità visualizzazione
             {
                 if (modifiedRows.Count > 0)
                 {
@@ -361,7 +361,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     if (result == DialogResult.No)
                     {
                         // Se l'utente sceglie "No", torna in modalità modifica
-                        CustomerDgv.ReadOnly = false;
+                        CostRegistryDgv.ReadOnly = false;
                         return;
                     }
 
@@ -371,15 +371,15 @@ namespace WinformDotNetFramework.Forms.GridForms
                 }
 
                 // Ripristina modalità visualizzazione
-                CustomerDgv.Cursor = Cursors.Default;
-                CustomerDgv.CellDoubleClick += MyControl_OpenDetails_Clicked;
-                CustomerDgv.CellValueChanged -= CustomerDgv_CellValueChanged;
+                CostRegistryDgv.Cursor = Cursors.Default;
+                CostRegistryDgv.CellDoubleClick += MyControl_OpenDetails_Clicked;
+                CostRegistryDgv.CellValueChanged -= CostRegistryDgv_CellValueChanged;
             }
             else // Modalità modifica attivata
             {
-                CustomerDgv.Cursor = Cursors.IBeam; // Migliore per l'editing di testo
-                CustomerDgv.CellDoubleClick -= MyControl_OpenDetails_Clicked;
-                CustomerDgv.CellValueChanged += CustomerDgv_CellValueChanged;
+                CostRegistryDgv.Cursor = Cursors.IBeam; // Migliore per l'editing di testo
+                CostRegistryDgv.CellDoubleClick -= MyControl_OpenDetails_Clicked;
+                CostRegistryDgv.CellValueChanged += CostRegistryDgv_CellValueChanged;
             }
         }
     }
