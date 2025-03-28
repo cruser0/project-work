@@ -293,7 +293,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.button2.Location = new System.Drawing.Point(626, 32);
+            this.button2.Location = new System.Drawing.Point(626, 72);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(30, 25);
             this.button2.TabIndex = 63;
@@ -320,7 +320,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBox1.Location = new System.Drawing.Point(132, 32);
+            this.textBox1.Location = new System.Drawing.Point(132, 28);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 23);
             this.textBox1.TabIndex = 61;
@@ -331,7 +331,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(132, 13);
+            this.label3.Location = new System.Drawing.Point(132, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 15);
             this.label3.TabIndex = 60;
@@ -366,7 +366,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(418, 32);
+            this.NameCmbxUC.Location = new System.Drawing.Point(418, 72);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.NameCmbxUC.Name = "NameCmbxUC";
             this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
@@ -389,7 +389,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SupplierNameLbl.AutoSize = true;
             this.SupplierNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SupplierNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierNameLbl.Location = new System.Drawing.Point(418, 14);
+            this.SupplierNameLbl.Location = new System.Drawing.Point(418, 54);
             this.SupplierNameLbl.Name = "SupplierNameLbl";
             this.SupplierNameLbl.Size = new System.Drawing.Size(90, 15);
             this.SupplierNameLbl.TabIndex = 55;
@@ -402,7 +402,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(418, 54);
+            this.label1.Location = new System.Drawing.Point(420, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 15);
             this.label1.TabIndex = 50;
@@ -428,7 +428,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.comboBox1.Items.AddRange(new object[] {
             "Approved",
             "Unapproved"});
-            this.comboBox1.Location = new System.Drawing.Point(418, 72);
+            this.comboBox1.Location = new System.Drawing.Point(418, 28);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(200, 23);
             this.comboBox1.TabIndex = 49;
@@ -456,7 +456,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.TabIndex = 52;
             this.label2.Text = "Sale Bill Of Lading*";
             // 
-            // SupplierInvoiceDetailsForm
+            // CreateDetailsSupplierInvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -468,7 +468,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "SupplierInvoiceDetailsForm";
+            this.Name = "CreateDetailsSupplierInvoiceForm";
             this.Text = "SupplierInvoiceDetailsForm";
             this.panel5.ResumeLayout(false);
             this.SupplierInvoiceCostGrbBX.ResumeLayout(false);

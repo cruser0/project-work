@@ -116,7 +116,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
-        string code;
         private async void button1_Click(object sender, EventArgs e)
         {
             saleID = (await _saleService
@@ -153,19 +152,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     MessageBox.Show("All the fields must be filled");
                     return;
                 }
-                code = Guid.NewGuid().ToString("N").Substring(0, 20);
                 button1.Enabled = false;
                 CustomerInvoice invoice = new CustomerInvoice
                 {
                     SaleId = saleID,
                     InvoiceDate = InvoiceDateDTP.Value,
                     Status = "Unpaid",
-                    CustomerInvoiceCode = code
                 };
 
                 try
                 {
-                    await _customerInvoiceService.Create(invoice);
+                    customerInvoice=await _customerInvoiceService.Create(invoice);
                     MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
 
                     AddCostBtn.Enabled = true;
@@ -273,7 +270,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             if (detailsOnly)
                 UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceCostForm>(sender, e, this, customerInvoice.CustomerInvoiceCode);
             else
-                UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceCostForm>(sender, e, this, code);
+                UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceCostForm>(sender, e, this, customerInvoice.CustomerInvoiceCode);
 
         }
 

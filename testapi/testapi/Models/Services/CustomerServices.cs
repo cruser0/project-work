@@ -17,8 +17,7 @@ namespace API.Models.Services
         Task<int> CountCustomers(CustomerFilter filter);
         Task<string> MassDeleteCustomer(List<int> customerId);
         Task<string> MassUpdateCustomer(List<CustomerDTOGet> newCustomers);
-
-
+        Task<List<string>> GetAllCustomersNameCountry(string? filter);
     }
     public class CustomerServices : ICustomerService
     {
@@ -351,6 +350,22 @@ namespace API.Models.Services
                 await transaction.RollbackAsync();
                 throw new Exception("Database update error occurred", ex);
             }
+        }
+
+        public async Task<List<string>> GetAllCustomersNameCountry(string? filter)
+        {
+            var query = _context.Customers
+                .Include(x => x.Country)
+                .Select(x => new { x.CustomerName, CountryName = x.Country.CountryName });
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                query = query.Where(x => (x.CustomerName + " - " + x.CountryName).StartsWith(filter));
+            }
+
+            return await query
+                .Select(x => x.CountryName + " - " + x.CountryName)
+                .ToListAsync();
         }
     }
 }
