@@ -45,6 +45,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -115,6 +116,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.SaveQuitButton);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.CountryCmbx);
@@ -216,7 +218,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(750, 17);
             this.panel5.TabIndex = 23;
             // 
-            // SupplierDetailsForm
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveQuitButton.Location = new System.Drawing.Point(261, 330);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(92, 25);
+            this.SaveQuitButton.TabIndex = 33;
+            this.SaveQuitButton.Text = "Save and Quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
+            // 
+            // CreateDetailsSupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -227,7 +243,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "SupplierDetailsForm";
+            this.Name = "CreateDetailsSupplierForm";
             this.Text = "SupplierDetailsForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -252,5 +268,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private ComboBox CountryCmbx;
         private ComboBox comboBox1;
         private Label label1;
+        private Button SaveQuitButton;
     }
 }

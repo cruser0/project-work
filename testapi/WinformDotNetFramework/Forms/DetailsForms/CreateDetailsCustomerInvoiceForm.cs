@@ -116,75 +116,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
-        private async void Savebutton_Click(object sender, EventArgs e)
-        {
-            SaleFilter sf = new SaleFilter()
-            {
-                SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
-                SaleBookingNumber = BKCmbxUC.Cmbx.Text
-            };
 
-            saleID = (await _saleService
-                .GetAll(sf)).FirstOrDefault().SaleId;
-
-            if (detailsOnly)
-            {
-
-                CustomerInvoice invoice = new CustomerInvoice
-                {
-                    SaleId = saleID,
-                    Status = StatusCB.Text,
-                    InvoiceDate = InvoiceDateDTP.Value
-                };
-                try
-                {
-                    await _customerInvoiceService.Update(customerInvoice.CustomerInvoiceId, invoice);
-                    MessageBox.Show("Customer Invoice Updated successfully!");
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !InvoiceDateDTP.Checked)
-                {
-                    MessageBox.Show("All the fields must be filled");
-                    return;
-                }
-                SaveBtn.Enabled = false;
-                CustomerInvoice invoice = new CustomerInvoice
-                {
-                    SaleId = saleID,
-                    InvoiceDate = InvoiceDateDTP.Value,
-                    Status = "Unpaid",
-                };
-
-                try
-                {
-                    customerInvoice = await _customerInvoiceService.Create(invoice);
-                    MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
-
-                    InitDetails(customerInvoice.CustomerInvoiceId);
-
-                    AddCostBtn.Enabled = true;
-                    label5.Visible = true;
-                    checkBox1.Visible = true;
-                    textBox1.Visible = true;
-                    label1.Visible = true;
-                    StatusCB.Visible = true;
-                    label4.Visible = true;
-                    InvoiceAmountTxt.Visible = true;
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    SaveBtn.Enabled = true;
-                }
-
-            }
-        }
 
         public void SetSaleID(string id)
         {
@@ -294,6 +226,106 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
 
+            }
+        }
+
+        private async Task UpdateClick(bool quit = false)
+        {
+            CustomerInvoice invoice = new CustomerInvoice
+            {
+                SaleId = saleID,
+                Status = StatusCB.Text,
+                InvoiceDate = InvoiceDateDTP.Value
+            };
+            try
+            {
+                await _customerInvoiceService.Update(customerInvoice.CustomerInvoiceId, invoice);
+                MessageBox.Show("Customer Invoice Updated successfully!");
+                if (quit) Close();
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        private async Task CreateClick(bool quit = false)
+        {
+            if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !InvoiceDateDTP.Checked)
+            {
+                MessageBox.Show("All the fields must be filled");
+                return;
+            }
+            SaveBtn.Enabled = false;
+            CustomerInvoice invoice = new CustomerInvoice
+            {
+                SaleId = saleID,
+                InvoiceDate = InvoiceDateDTP.Value,
+                Status = "Unpaid",
+            };
+
+            try
+            {
+                customerInvoice = await _customerInvoiceService.Create(invoice);
+                MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
+                if (quit) Close();
+
+                InitDetails(customerInvoice.CustomerInvoiceId);
+
+                AddCostBtn.Enabled = true;
+                label5.Visible = true;
+                checkBox1.Visible = true;
+                textBox1.Visible = true;
+                label1.Visible = true;
+                StatusCB.Visible = true;
+                label4.Visible = true;
+                InvoiceAmountTxt.Visible = true;
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                SaveBtn.Enabled = true;
+            }
+        }
+
+        private async void Savebutton_Click(object sender, EventArgs e)
+        {
+            SaleFilter sf = new SaleFilter()
+            {
+                SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
+                SaleBookingNumber = BKCmbxUC.Cmbx.Text
+            };
+
+            saleID = (await _saleService
+                .GetAll(sf)).FirstOrDefault().SaleId;
+
+            if (detailsOnly)
+            {
+                await UpdateClick();
+            }
+            else
+            {
+                await CreateClick();
+            }
+        }
+
+        private async void SaveQuitButton_Click(object sender, EventArgs e)
+        {
+            SaleFilter sf = new SaleFilter()
+            {
+                SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
+                SaleBookingNumber = BKCmbxUC.Cmbx.Text
+            };
+
+            saleID = (await _saleService
+                .GetAll(sf)).FirstOrDefault().SaleId;
+
+            if (detailsOnly)
+            {
+                await UpdateClick(true);
+            }
+            else
+            {
+                await CreateClick(true);
             }
         }
     }

@@ -49,6 +49,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.CreatePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +72,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.SaveQuitButton);
             this.panel1.Controls.Add(this.CostIntegerTxt);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.InvoiceCodeCmbxUC);
@@ -106,7 +108,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.checkBox1.Location = new System.Drawing.Point(415, 319);
+            this.checkBox1.Location = new System.Drawing.Point(578, 238);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(46, 19);
             this.checkBox1.TabIndex = 43;
@@ -177,9 +179,9 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveBtn.Location = new System.Drawing.Point(388, 344);
+            this.SaveBtn.Location = new System.Drawing.Point(526, 263);
             this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(73, 23);
+            this.SaveBtn.Size = new System.Drawing.Size(98, 23);
             this.SaveBtn.TabIndex = 25;
             this.SaveBtn.Text = "Save Cost";
             this.SaveBtn.UseVisualStyleBackColor = false;
@@ -285,14 +287,29 @@ namespace WinformDotNetFramework.Forms.AddForms
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 40;
             // 
-            // CreateSupplierInvoiceCostForm
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.AllowDrop = true;
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveQuitButton.Location = new System.Drawing.Point(526, 292);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(98, 23);
+            this.SaveQuitButton.TabIndex = 45;
+            this.SaveQuitButton.Text = "Save and quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
+            // 
+            // CreateDetailsSupplierInvoiceCostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.CreatePanel);
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "CreateSupplierInvoiceCostForm";
+            this.Name = "CreateDetailsSupplierInvoiceCostForm";
             this.Text = "CreateSupplierInvoiceCostForm";
             this.Load += new System.EventHandler(this.CreateSupplierInvoiceCostForm_Load);
             this.CreatePanel.ResumeLayout(false);
@@ -323,5 +340,6 @@ namespace WinformDotNetFramework.Forms.AddForms
         private Label label1;
         private CheckBox checkBox1;
         private control.DecimalTextBoxUserControl CostIntegerTxt;
+        private Button SaveQuitButton;
     }
 }

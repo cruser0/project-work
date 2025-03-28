@@ -127,104 +127,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             saveBtn.Enabled = EditCB.Checked;
         }
 
-        private async void saveBtn_Click(object sender, EventArgs e)
-        {
-            if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
-                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) ||
-                string.IsNullOrEmpty(StatusCmbx.Text))
-            {
-                MessageBox.Show("Every field must be filled");
-                return;
-            }
-            if (detailsOnly)
-            {
-                string name = NameCmbxUC.Cmbx.Text;
-                string country = "";
 
-                int lastIndex = name.LastIndexOf(" - ");
-
-                if (lastIndex != -1 && lastIndex != name.Length - 3)
-                {
-                    country = name.Substring(lastIndex + 3);
-
-                    name = name.Substring(0, lastIndex);
-                }
-
-
-                int customerId = (await _customerService.GetAll(new CustomerFilter()
-                {
-                    CustomerName = name,
-                    CustomerCountry = country
-                })).FirstOrDefault().CustomerId;
-
-                Sale sale = new Sale
-                {
-                    BookingNumber = bntxt.Text,
-                    BoLnumber = boltxt.Text,
-                    SaleDate = saleDateDtp.Value,
-                    CustomerId = customerId,
-                    Status = StatusCmbx.Text
-                };
-                try
-                {
-                    await _saleService.Update(_saleId, sale);
-                    MessageBox.Show("Sale updated successfully!");
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
-            {
-                try
-                {
-                    if (!saleDateDtp.Checked)
-                    {
-                        MessageBox.Show("Select a date");
-                        return;
-                    }
-                    if (_id == -1)
-                    {
-                        string name = NameCmbxUC.Cmbx.Text;
-                        string country = "";
-
-                        int lastIndex = name.LastIndexOf(" - ");
-
-                        if (lastIndex != -1 && lastIndex != name.Length - 3)
-                        {
-                            country = name.Substring(lastIndex + 3);
-
-                            name = name.Substring(0, lastIndex);
-                        }
-
-
-                        int customerId = (await _customerService.GetAll(new CustomerFilter()
-                        {
-                            CustomerName = name,
-                            CustomerCountry = country
-                        })).FirstOrDefault().CustomerId;
-
-                        _id = customerId;
-                    }
-                    Sale sale1 = new Sale
-                    {
-                        BookingNumber = bntxt.Text,
-                        BoLnumber = boltxt.Text,
-                        SaleDate = saleDateDtp.Value,
-                        CustomerId = _id,
-                        Status = StatusCmbx.Text
-                    };
-                    Sale saleReturn = await _saleService.Create(sale1);
-                    _saleId = saleReturn.SaleId;
-                    MessageBox.Show("Sale Created successfully!");
-                    sale = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = boltxt.Text, SaleBookingNumber = bntxt.Text })).FirstOrDefault();
-                    detailsOnly = true;
-                    SetVisibility();
-                    RevenueTxt.Text = saleReturn.TotalRevenue.ToString();
-                    RevenueTxt.Enabled = false;
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-        }
         private void OpenSale_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<CustomerGridForm>(sender, e, this);
@@ -297,6 +200,136 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, customerInvoice.CustomerInvoiceId);
 
+            }
+        }
+
+        private async Task UpdateClick(bool quit = false)
+        {
+            string name = NameCmbxUC.Cmbx.Text;
+            string country = "";
+
+            int lastIndex = name.LastIndexOf(" - ");
+
+            if (lastIndex != -1 && lastIndex != name.Length - 3)
+            {
+                country = name.Substring(lastIndex + 3);
+
+                name = name.Substring(0, lastIndex);
+            }
+
+
+            int customerId = (await _customerService.GetAll(new CustomerFilter()
+            {
+                CustomerName = name,
+                CustomerCountry = country
+            })).FirstOrDefault().CustomerId;
+
+            Sale sale = new Sale
+            {
+                BookingNumber = bntxt.Text,
+                BoLnumber = boltxt.Text,
+                SaleDate = saleDateDtp.Value,
+                CustomerId = customerId,
+                Status = StatusCmbx.Text
+            };
+            try
+            {
+                await _saleService.Update(_saleId, sale);
+                MessageBox.Show("Sale updated successfully!");
+                if (quit) Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private async Task CreateClick(bool quit = false)
+        {
+            try
+            {
+                if (!saleDateDtp.Checked)
+                {
+                    MessageBox.Show("Select a date");
+                    return;
+                }
+                if (_id == -1)
+                {
+                    string name = NameCmbxUC.Cmbx.Text;
+                    string country = "";
+
+                    int lastIndex = name.LastIndexOf(" - ");
+
+                    if (lastIndex != -1 && lastIndex != name.Length - 3)
+                    {
+                        country = name.Substring(lastIndex + 3);
+
+                        name = name.Substring(0, lastIndex);
+                    }
+
+
+                    int customerId = (await _customerService.GetAll(new CustomerFilter()
+                    {
+                        CustomerName = name,
+                        CustomerCountry = country
+                    })).FirstOrDefault().CustomerId;
+
+                    _id = customerId;
+                }
+                Sale sale1 = new Sale
+                {
+                    BookingNumber = bntxt.Text,
+                    BoLnumber = boltxt.Text,
+                    SaleDate = saleDateDtp.Value,
+                    CustomerId = _id,
+                    Status = StatusCmbx.Text
+                };
+                Sale saleReturn = await _saleService.Create(sale1);
+                _saleId = saleReturn.SaleId;
+                MessageBox.Show("Sale Created successfully!");
+                if (quit) Close();
+
+                sale = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = boltxt.Text, SaleBookingNumber = bntxt.Text })).FirstOrDefault();
+                detailsOnly = true;
+                SetVisibility();
+                RevenueTxt.Text = saleReturn.TotalRevenue.ToString();
+                RevenueTxt.Enabled = false;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private async void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
+                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) ||
+                string.IsNullOrEmpty(StatusCmbx.Text))
+            {
+                MessageBox.Show("Every field must be filled");
+                return;
+            }
+            if (detailsOnly)
+            {
+                await UpdateClick();
+            }
+            else
+            {
+                await CreateClick();
+            }
+        }
+
+        private async void SaveQuitButton_Click(object sender, EventArgs e)
+        {
+            if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
+                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) ||
+                string.IsNullOrEmpty(StatusCmbx.Text))
+            {
+                MessageBox.Show("Every field must be filled");
+                return;
+            }
+            if (detailsOnly)
+            {
+                await UpdateClick(true);
+            }
+            else
+            {
+                await CreateClick(true);
             }
         }
     }

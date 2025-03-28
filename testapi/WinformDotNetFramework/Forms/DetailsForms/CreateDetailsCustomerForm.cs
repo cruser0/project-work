@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using WinformDotNetFramework.Entities;
@@ -129,61 +130,83 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
 
         }
+
+        private async Task UpdateClick(bool quit = false)
+        {
+            bool enabled;
+
+            switch (comboBox1.Text)
+            {
+                case "Active":
+                    enabled = false;
+                    break;
+
+                case "Deprecated":
+                    enabled = true;
+                    break;
+
+                default:
+                    enabled = false;
+                    break;
+            };
+
+            Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
+            try
+            {
+                await _customerService.Update(customerId, customer);
+                MessageBox.Show("Customer updated successfully!");
+                if (quit) Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+        private async Task CreateClick(bool quit = false)
+        {
+            if (NameCustomerTxt.Text.Length < 1 || string.IsNullOrEmpty(CountryCmbx.Text))
+            {
+                MessageBox.Show("Input data error!");
+                return;
+            }
+
+            Customer customer = new Customer()
+            {
+                CustomerName = NameCustomerTxt.Text,
+                Country = CountryCmbx.Text
+            };
+
+            try
+            {
+                await _customerService.Create(customer);
+                MessageBox.Show("Customer Created Succesfully");
+                if (quit) Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+
         private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {
             if (detailsOnly)
             {
-                bool enabled;
-
-                switch (comboBox1.Text)
-                {
-                    case "Active":
-                        enabled = false;
-                        break;
-
-                    case "Deprecated":
-                        enabled = true;
-                        break;
-
-                    default:
-                        enabled = false;
-                        break;
-                };
-
-                Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
-                try
-                {
-                    await _customerService.Update(customerId, customer);
-                    MessageBox.Show("Customer updated successfully!");
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
+                await UpdateClick();
             }
             else
             {
-                if (NameCustomerTxt.Text.Length < 1 || string.IsNullOrEmpty(CountryCmbx.Text))
-                {
-                    MessageBox.Show("Input data error!");
-                    return;
-                }
+                await CreateClick();
+            }
+        }
 
-                Customer customer = new Customer()
-                {
-                    CustomerName = NameCustomerTxt.Text,
-                    Country = CountryCmbx.Text
-                };
-
-                try
-                {
-                    await _customerService.Create(customer);
-                    MessageBox.Show("Customer Created Succesfully");
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-
-                }
+        private async void SaveQuitButton_Click(object sender, EventArgs e)
+        {
+            if (detailsOnly)
+            {
+                await UpdateClick(true);
+            }
+            else
+            {
+                await CreateClick(true);
             }
         }
     }
