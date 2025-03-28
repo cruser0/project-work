@@ -247,6 +247,10 @@ namespace WinformDotNetFramework.Forms
                     child = new SaleForm();
                     break;
 
+                case "Show Registry Cost":
+                    child = new CostRegistryForm();
+                    break;
+
                 case "Show User":
                     child = new UserForm();
                     break;
@@ -277,6 +281,10 @@ namespace WinformDotNetFramework.Forms
 
                 case "Create Sale":
                     child = new SaleDetailsForm();
+                    break;
+
+                case "Create Registry Cost":
+                    child = new CostRegistryDetailsForm();
                     break;
 
                 case "Create User":

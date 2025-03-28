@@ -2,7 +2,7 @@
 
 namespace WinformDotNetFramework.Forms
 {
-    public partial class CostRegistryForm : CostRegistyGridForm
+    public partial class CostRegistryForm : CostRegistryGridForm
     {
         public CostRegistryForm()
         {
