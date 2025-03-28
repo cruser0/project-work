@@ -17,7 +17,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         int pages;
         double itemsPage = 10.0;
         Form _father;
-        Task<ICollection<CostRegistry>> getAllNotFiltered;
+        Task<ICollection<CostRegistryDTOPut>> getAllNotFiltered;
         Task<int> countNotFiltered;
         //Task<CostRegistryDGV> getFav;
 
@@ -67,7 +67,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             var query = _costRegistryService.GetAll(filter);
             var totalCount = _costRegistryService.Count(filterPage);
             await Task.WhenAll(query, totalCount);
-            IEnumerable<CostRegistry> query1 = await query;
+            IEnumerable<CostRegistryDTOPut> query1 = await query;
 
             CostRegistryDgv.DataSource = query1.ToList();
 
@@ -107,7 +107,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             filter.CostRegistryPage = PaginationUserControl.CurrentPage;
-            IEnumerable<CostRegistry> query = await _costRegistryService.GetAll(filter);
+            IEnumerable<CostRegistryDTOPut> query = await _costRegistryService.GetAll(filter);
             CostRegistryDgv.DataSource = query.ToList();
         }
 
@@ -241,7 +241,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             // DA TOGLIERE DOPO !!!
             await Task.WhenAll(/*getFav,*/ countNotFiltered, getAllNotFiltered);
-            IEnumerable<CostRegistry> query = await getAllNotFiltered;
+            IEnumerable<CostRegistryDTOPut> query = await getAllNotFiltered;
             int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;

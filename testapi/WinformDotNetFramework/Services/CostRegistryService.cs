@@ -34,12 +34,12 @@ namespace WinformDotNetFramework.Services
         }
 
 
-        public async Task<ICollection<CostRegistry>> GetAll(CostRegistryFilter filter)
+        public async Task<ICollection<CostRegistryDTOPut>> GetAll(CostRegistryFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
-            var returnResult = await GetList<CostRegistry>(client, "cost-registry", queryString);
+            var returnResult = await GetList<CostRegistryDTOPut>(client, "cost-registry", queryString);
             return returnResult;
         }
 
