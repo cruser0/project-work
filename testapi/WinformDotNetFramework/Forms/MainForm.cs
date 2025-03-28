@@ -284,7 +284,7 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Create Registry Cost":
-                    child = new CostRegistryDetailsForm();
+                    child = new CreateDetailsCostRegistryForm();
                     break;
 
                 case "Create User":

@@ -1,0 +1,15 @@
+﻿namespace Entity_Valdidator.Entity.Filters
+{
+    public class SupplierInvoiceCostFilter
+    {
+        public string SupplierInvoiceCostSupplierInvoiceCode { get; set; }
+
+        public int? SupplierInvoiceCostCostFrom { get; set; }
+        public int? SupplierInvoiceCostCostTo { get; set; }
+        public int? SupplierInvoiceCostQuantity { get; set; }
+        public string SupplierInvoiceCostName { get; set; }
+        public string SupplierInvoiceCostRegistryCode { get; set; }
+
+        public int? SupplierInvoiceCostPage { get; set; }
+    }
+}

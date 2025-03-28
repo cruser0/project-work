@@ -52,7 +52,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            var data = await _costRegistryService.GetCostRegistryByCode(id);
+            var data = await _costRegistryService.GetCostRegistryById(int.Parse(id));
             if (data == null)
                 throw new NotFoundException("CostRegistry not found!");
             return Ok(data);

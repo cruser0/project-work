@@ -23,4 +23,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Entity_Valdidator\Entity_Valdidator.csproj" />
+  </ItemGroup>
+
 </Project>

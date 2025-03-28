@@ -21,8 +21,7 @@ namespace API.Models.Services
         Task<string> MassDeleteCostRegistry(List<int> costRegistryId);
 
         Task<string> MassUpdateCostRegistry(List<CostRegistryDTOGet> newCostRegistries);
-
-
+        Task<CostRegistry> GetCostRegistryById(int id);
     }
     public class CostRegistryService : ICostRegistryService
     {
@@ -293,6 +292,11 @@ namespace API.Models.Services
                 await transaction.RollbackAsync();
                 throw;
             }
+        }
+
+        public async Task<CostRegistry> GetCostRegistryById(int id)
+        {
+            return await _context.CostRegistries.Where(x => x.CostRegistryID == id).FirstOrDefaultAsync();
         }
     }
 }
