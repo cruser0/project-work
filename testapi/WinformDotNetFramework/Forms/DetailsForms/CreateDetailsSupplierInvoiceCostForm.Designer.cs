@@ -2,7 +2,7 @@
 
 namespace WinformDotNetFramework.Forms.AddForms
 {
-    partial class CreateSupplierInvoiceCostForm
+    partial class CreateDetailsSupplierInvoiceCostForm
     {
         /// <summary>
         /// Required designer variable.

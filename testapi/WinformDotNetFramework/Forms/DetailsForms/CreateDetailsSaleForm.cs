@@ -11,7 +11,7 @@ using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
 {
-    public partial class SaleDetailsForm : Form
+    public partial class CreateDetailsSaleForm : Form
     {
         SaleService _saleService;
         CustomerInvoiceService _customerInvoiceService;
@@ -21,11 +21,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         SaleCustomerDTO sale;
         bool detailsOnly = false;
-        public SaleDetailsForm()
+        public CreateDetailsSaleForm()
         {
             Init(null);
         }
-        public SaleDetailsForm(int id)
+        public CreateDetailsSaleForm(int id)
         {
             Init(id);
         }
@@ -228,11 +228,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void CustomerInvoiceBtn_click(object sender, EventArgs e)
         {
-            UtilityFunctions.CreateFromDetails<CustomerInvoiceDetailsForm>(sender, e, this, sale);
+            UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceForm>(sender, e, this, sale);
         }
         private void SupplierInvoiceBtn_click(object sender, EventArgs e)
         {
-            UtilityFunctions.CreateFromDetails<SupplierInvoiceDetailsForm>(sender, e, this, sale);
+            UtilityFunctions.CreateFromDetails<CreateDetailsSupplierInvoiceForm>(sender, e, this, sale);
 
         }
         public async Task RefreshDgvCustomer()
@@ -261,7 +261,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 SupplierInvoice supplierInvoice = (SupplierInvoice)dgv.CurrentRow.DataBoundItem;
 
-                UtilityFunctions.OpenFormDetails<SupplierInvoiceDetailsForm>(sender, e, supplierInvoice.InvoiceId);
+                UtilityFunctions.OpenFormDetails<CreateDetailsSupplierInvoiceForm>(sender, e, supplierInvoice.InvoiceId);
 
             }
         }
@@ -274,7 +274,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     return;
                 CustomerInvoice customerInvoice = (CustomerInvoice)dgv.CurrentRow.DataBoundItem;
 
-                UtilityFunctions.OpenFormDetails<CustomerInvoiceDetailsForm>(sender, e, customerInvoice.CustomerInvoiceId);
+                UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, customerInvoice.CustomerInvoiceId);
 
             }
         }

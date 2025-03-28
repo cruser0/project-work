@@ -9,7 +9,7 @@ using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
 {
-    public partial class CustomerDetailsForm : Form
+    public partial class CreateDetailsCustomerForm : Form
     {
         CustomerService _customerService;
         CustomerInvoiceService _customerInvoiceService;
@@ -17,7 +17,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         Customer customer;
         int customerId;
         bool detailsOnly = false;
-        public CustomerDetailsForm()
+        public CreateDetailsCustomerForm()
         {
             Init();
             chart1.Visible = false;
@@ -26,7 +26,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             label1.Visible = false;
         }
 
-        public CustomerDetailsForm(int id)
+        public CreateDetailsCustomerForm(int id)
         {
             Init();
             InitDetails(id);
