@@ -295,9 +295,9 @@ namespace WinformDotNetFramework
         public static async Task<List<CostRegistry>> GetCostRegistry()
         {
             if (mainForm == null)
-                return new List<CostRegistry>() { new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } };
+                return new List<CostRegistry>() { new CostRegistryDTOPut() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } };
 
-            return new List<CostRegistry>() { new CostRegistry() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } }
+            return new List<CostRegistry>() { new CostRegistryDTOPut() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } }
                 .Concat(await mainForm.CostRegistryList)
                 .ToList();
         }

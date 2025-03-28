@@ -7,7 +7,7 @@
         public decimal? CostRegistryPrice { get; set; }
         public int? CostRegistryQuantity { get; set; }
     }
-    public class CostRegistryDTOPut
+    public class CostRegistryDTOPut :CostRegistry
     {
         public int? CostRegistryID { get; set; }
     }
