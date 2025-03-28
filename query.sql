@@ -1,3 +1,15 @@
+-- Assign Variables
+DECLARE @SupplierAmount int = 500;
+DECLARE @CustomerAmount int = 250;
+DECLARE @SaleAmount int = 2500;
+DECLARE @MaxSupplierInvoicePerSale int = 3;
+DECLARE @MaxCustomerInvoicePerSale int = 5;
+DECLARE @MaxCostPerSupplierInvoice int = 8;
+DECLARE @MaxCostPerCustomerInvoice int = 8;
+DECLARE @PercentageClosedSupplierInvoices int = 70;
+DECLARE @PercentageClosedCustomerInvoices int = 50;
+DECLARE @PercentageClosedSales int = 35;
+
 -- Delete existing data
 DELETE FROM CustomerInvoiceCosts;
 DELETE FROM SupplierInvoiceCosts;
@@ -18,7 +30,7 @@ DBCC CHECKIDENT ('SupplierInvoiceCosts', RESEED, 0);
 
 -- Insert Suppliers
 INSERT INTO Suppliers (SupplierName, CountryID, Deprecated, CreatedAt, OriginalID)
-SELECT TOP 500
+SELECT TOP (@SupplierAmount)
     CONCAT('Supplier', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
     FLOOR(RAND(CHECKSUM(NEWID())) * 195) + 1,
     0,
@@ -28,7 +40,7 @@ FROM master.dbo.spt_values v1;
 
 -- Insert Customers
 INSERT INTO Customers (CustomerName, CountryID, Deprecated, CreatedAt, OriginalID)
-SELECT TOP 250
+SELECT TOP (@CustomerAmount)
     CONCAT('Customer', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))), 
     FLOOR(RAND(CHECKSUM(NEWID())) * 195) + 1,
     0,
@@ -38,11 +50,11 @@ FROM master.dbo.spt_values v1;
 
 -- Insert Sales with 0 amount and open/unapproved status
 INSERT INTO Sales (BookingNumber, BoLNumber, SaleDate, CustomerID, TotalRevenue, StatusID)
-SELECT TOP 2500
+SELECT TOP (@SaleAmount)
     CONCAT('BN-', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
     CONCAT('BoL-', Floor(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) /2)),
     DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()),
-    (ABS(CHECKSUM(NEWID())) % 250) + 1,
+    (ABS(CHECKSUM(NEWID())) % (@CustomerAmount)) + 1,
     0,  -- Set TotalRevenue to 0
     1   -- Open status (1)
 FROM master.dbo.spt_values v1;
@@ -52,7 +64,7 @@ WITH CustomerInvoiceGeneration AS (
     SELECT 
         S.SaleID, 
         S.SaleDate,
-        (ABS(CHECKSUM(NEWID()) + S.SaleID) % 5) + 1 AS InvoiceCount
+        (ABS(CHECKSUM(NEWID()) + S.SaleID) % (@MaxCustomerInvoicePerSale)) + 1 AS InvoiceCount
     FROM Sales S
 )
 
@@ -78,7 +90,7 @@ WITH SupplierInvoiceGeneration AS (
     SELECT 
         S.SaleID, 
         S.SaleDate,
-        (ABS(CHECKSUM(NEWID()) + S.SaleID) % 3) + 1 AS InvoiceCount
+        (ABS(CHECKSUM(NEWID()) + S.SaleID) % (@MaxSupplierInvoicePerSale)) + 1 AS InvoiceCount
     FROM Sales S
 )
 
@@ -93,7 +105,7 @@ SELECT
     ),
     4,  -- Unapproved status
     CONCAT('SINV-', IG.SaleID, '-', RN),
-    (ABS(CHECKSUM(NEWID()) + IG.SaleID * RN) % 500) + 1
+    (ABS(CHECKSUM(NEWID()) + IG.SaleID * RN) % (@SupplierAmount)) + 1
 FROM SupplierInvoiceGeneration IG
 CROSS APPLY (
     SELECT TOP (IG.InvoiceCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
@@ -111,7 +123,7 @@ END;
 WITH CustomerInvoiceCostGeneration AS (
     SELECT 
         CI.CustomerInvoiceID, 
-        (ABS(CHECKSUM(NEWID()) + CI.CustomerInvoiceID) % 8) + 1 AS CostCount
+        (ABS(CHECKSUM(NEWID()) + CI.CustomerInvoiceID) % (@MaxCostPerCustomerInvoice)) + 1 AS CostCount
     FROM CustomerInvoices CI
 )
 
@@ -132,7 +144,7 @@ CROSS APPLY (
 WITH SupplierInvoiceCostGeneration AS (
     SELECT 
         SI.SupplierInvoiceID, 
-        (ABS(CHECKSUM(NEWID()) + SI.SupplierInvoiceID) % 8) + 1 AS CostCount
+        (ABS(CHECKSUM(NEWID()) + SI.SupplierInvoiceID) % (@MaxCostPerSupplierInvoice)) + 1 AS CostCount
     FROM SupplierInvoices SI
 )
 
@@ -180,7 +192,7 @@ FROM Sales S;
 UPDATE Sales
 SET StatusID = 2
 WHERE SaleID IN (
-    SELECT TOP 35 PERCENT SaleID 
+    SELECT TOP (@PercentageClosedSales) PERCENT SaleID 
     FROM Sales 
     ORDER BY NEWID()
 );
@@ -189,7 +201,7 @@ WHERE SaleID IN (
 UPDATE SupplierInvoices
 SET StatusID = 3
 WHERE SupplierInvoiceID IN (
-    SELECT TOP 70 PERCENT SupplierInvoiceID 
+    SELECT TOP (@PercentageClosedSupplierInvoices) PERCENT SupplierInvoiceID 
     FROM SupplierInvoices 
     ORDER BY NEWID()
 );
@@ -198,7 +210,7 @@ WHERE SupplierInvoiceID IN (
 UPDATE CustomerInvoices
 SET StatusID = 5
 WHERE CustomerInvoiceID IN (
-    SELECT TOP 50 PERCENT CustomerInvoiceID 
+    SELECT TOP (@PercentageClosedCustomerInvoices) PERCENT CustomerInvoiceID 
     FROM CustomerInvoices 
     ORDER BY NEWID()
 );
