@@ -134,7 +134,7 @@ namespace WinformDotNetFramework.Forms
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
         }
 
-        public async void buttonOpenChild_Click(object sender, EventArgs e)
+        public void buttonOpenChild_Click(object sender, EventArgs e)
         {
             var menuItem = sender as ToolStripButton;
 
