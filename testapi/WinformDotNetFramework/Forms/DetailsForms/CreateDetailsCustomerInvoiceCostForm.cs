@@ -11,7 +11,7 @@ using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.AddForms
 {
-    public partial class CreateCustomerInvoiceCostForm : Form
+    public partial class CreateDetailsCustomerInvoiceCostForm : Form
     {
         CustomerInvoiceCostService _customerInvoiceCostService;
         CustomerInvoiceService _customerInvoiceService;
@@ -20,12 +20,12 @@ namespace WinformDotNetFramework.Forms.AddForms
         string InvoiceCode;
         CustomerInvoiceCost _updateCost;
 
-        public CreateCustomerInvoiceCostForm()
+        public CreateDetailsCustomerInvoiceCostForm()
         {
             Init();
         }
 
-        public CreateCustomerInvoiceCostForm(object data)
+        public CreateDetailsCustomerInvoiceCostForm(object data)
         {
             Init();
             InvoiceCode = data as string;
@@ -33,7 +33,7 @@ namespace WinformDotNetFramework.Forms.AddForms
 
         }
         Form _father;
-        public CreateCustomerInvoiceCostForm(Form father, CustomerInvoiceCost data)
+        public CreateDetailsCustomerInvoiceCostForm(Form father, CustomerInvoiceCost data)
         {
             Init();
             _father = father;
@@ -46,7 +46,7 @@ namespace WinformDotNetFramework.Forms.AddForms
             SaveBtn.Visible = false;
 
         }
-        public CreateCustomerInvoiceCostForm(Form father, object data)
+        public CreateDetailsCustomerInvoiceCostForm(Form father, object data)
         {
             Init();
             _father = father;
@@ -123,7 +123,7 @@ namespace WinformDotNetFramework.Forms.AddForms
                     MessageBox.Show("Customer Invoice Cost Created Succesfully");
                 }
 
-                CustomerInvoiceDetailsForm form = (CustomerInvoiceDetailsForm)_father;
+                CreateDetailsCustomerInvoiceForm form = (CreateDetailsCustomerInvoiceForm)_father;
                 form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.Text);
 
                 Close();
@@ -185,7 +185,7 @@ namespace WinformDotNetFramework.Forms.AddForms
                 await _customerInvoiceCostService.Create(customerInvoiceCost);
                 MessageBox.Show("Customer Invoice Cost Created Succesfully");
 
-                CustomerInvoiceDetailsForm form = (CustomerInvoiceDetailsForm)_father;
+                CreateDetailsCustomerInvoiceForm form = (CreateDetailsCustomerInvoiceForm)_father;
                 form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.Text);
 
                 CostRegistryCmbx.Text = "All";

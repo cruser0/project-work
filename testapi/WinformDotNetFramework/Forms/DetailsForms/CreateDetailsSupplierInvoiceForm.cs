@@ -12,7 +12,7 @@ using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
 {
-    public partial class SupplierInvoiceDetailsForm : Form
+    public partial class CreateDetailsSupplierInvoiceForm : Form
     {
         SupplierInvoiceService _supplierInvoiceService;
         SupplierInvoiceCostService _supplierInvoiceCostService;
@@ -29,11 +29,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         bool detailsOnly = false;
         Form _father;
 
-        public SupplierInvoiceDetailsForm()
+        public CreateDetailsSupplierInvoiceForm()
         {
             Init(null);
         }
-        public SupplierInvoiceDetailsForm(SaleDetailsForm father, object sale)
+        public CreateDetailsSupplierInvoiceForm(CreateDetailsSaleForm father, object sale)
         {
             SaleCustomerDTO saleCustomerDTO = (SaleCustomerDTO)sale;
             _father = father;
@@ -46,7 +46,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             FlushCreateBtn.Visible = true;
 
         }
-        public SupplierInvoiceDetailsForm(int id)
+        public CreateDetailsSupplierInvoiceForm(int id)
         {
             Init(id);
         }
@@ -297,7 +297,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         await RefreshDGV();
                         if (_father != null)
                         {
-                            if (_father is SaleDetailsForm sdf)
+                            if (_father is CreateDetailsSaleForm sdf)
                             {
                                 await sdf.RefreshDgvCustomer();
                                 await sdf.RefreshDgvSupplier();
@@ -395,7 +395,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void AddCostBtn_Click(object sender, EventArgs e)
         {
-            UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e, this, supplierInvoice.SupplierInvoiceCode);
+            UtilityFunctions.CreateFromDetails<CreateDetailsSupplierInvoiceCostForm>(sender, e, this, supplierInvoice.SupplierInvoiceCode);
         }
 
         private void FlushCreateBtn_Click(object sender, EventArgs e)
@@ -416,7 +416,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 if (e.RowIndex == -1)
                     return;
 
-                UtilityFunctions.CreateFromDetails<CreateSupplierInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
+                UtilityFunctions.CreateFromDetails<CreateDetailsSupplierInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
 
             }
         }

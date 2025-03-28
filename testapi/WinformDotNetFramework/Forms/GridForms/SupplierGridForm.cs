@@ -34,7 +34,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             Init();
         }
-        public SupplierGridForm(SupplierInvoiceDetailsForm father)
+        public SupplierGridForm(CreateDetailsSupplierInvoiceForm father)
         {
             _father = father;
             Init();
@@ -137,7 +137,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             if (sender is DataGridView dgv)
             {
-                if(_father is SupplierInvoiceDetailsForm sidf)
+                if(_father is CreateDetailsSupplierInvoiceForm sidf)
                 {
                     sidf.SetSupplierID(dgv.CurrentRow.Cells["SupplierID"].Value.ToString());
                     sidf.SetSupplierNameCountry(dgv.CurrentRow.Cells["SupplierName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());

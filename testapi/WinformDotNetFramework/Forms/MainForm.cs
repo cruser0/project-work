@@ -252,31 +252,31 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Create Customer":
-                    child = new CustomerDetailsForm();
+                    child = new CreateDetailsCustomerForm();
                     break;
 
                 case "Create Customer Invoice":
-                    child = new CustomerInvoiceDetailsForm();
+                    child = new CreateDetailsCustomerInvoiceForm();
                     break;
 
                 case "Create Customer Invoice Cost":
-                    child = new CreateCustomerInvoiceCostForm();
+                    child = new CreateDetailsCustomerInvoiceCostForm();
                     break;
 
                 case "Create Supplier":
-                    child = new SupplierDetailsForm();
+                    child = new CreateDetailsSupplierForm();
                     break;
 
                 case "Create Supplier Invoice":
-                    child = new SupplierInvoiceDetailsForm();
+                    child = new CreateDetailsSupplierInvoiceForm();
                     break;
 
                 case "Create Supplier Invoice Cost":
-                    child = new CreateSupplierInvoiceCostForm();
+                    child = new CreateDetailsSupplierInvoiceCostForm();
                     break;
 
                 case "Create Sale":
-                    child = new SaleDetailsForm();
+                    child = new CreateDetailsSaleForm();
                     break;
 
                 case "Create User":
