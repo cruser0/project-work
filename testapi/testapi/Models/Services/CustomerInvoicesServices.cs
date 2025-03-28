@@ -112,24 +112,21 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoiceDTOGet> CreateCustomerInvoice(CustomerInvoice customerInvoice)
         {
-            // Check if the customerInvoice parameter is null
             if (customerInvoice == null)
                 throw new NullPropertyException("Couldn't create customer invoice,data is null");
 
             var nullFields = new List<string>();
 
-            // Check if any required fields in the customerInvoice object are null or empty
             if (customerInvoice.SaleID == null) nullFields.Add("SaleID");
             if (customerInvoice.InvoiceDate == null) nullFields.Add("Date");
             if (string.IsNullOrEmpty(customerInvoice.Status.StatusName)) nullFields.Add("Status");
 
-            // If any fields are null, throw an exception with the list of missing fields
             if (nullFields.Any())
                 throw new ErrorInputPropertyException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
-            // Check if the provided status is valid
+
             if (!statusList.Contains(customerInvoice.Status.StatusName.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA customer invoice is Paid or Unpaid");
-            // Check if a sale exists with the provided SaleId
+
             var sale = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == customerInvoice.SaleID).FirstOrDefaultAsync();
             if (sale == null)
                 throw new NotFoundException($"There is no sale with id {customerInvoice.SaleID}");
@@ -137,19 +134,15 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException($"The Sale is already closed");
 
             customerInvoice.InvoiceAmount = 0;
-            // Add the customerInvoice to the database and save the changes
             _context.Add(customerInvoice);
             await _context.SaveChangesAsync();
 
-            // Calculate the total revenue for the sale using a stored procedure
             var Total = await _context.CustomerInvoices.Where(x => x.SaleID == customerInvoice.SaleID).SumAsync(x => x.InvoiceAmount);
 
-            // Update the sale record with the new total revenue
             sale.TotalRevenue = Total;
             _context.Sales.Update(sale);
             await _context.SaveChangesAsync();
 
-            // Map the customerInvoice to a DTO and return the result
             return CustomerInvoiceMapper.MapGet(customerInvoice);
         }
 

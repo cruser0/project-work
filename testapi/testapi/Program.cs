@@ -23,7 +23,7 @@ builder.Services.AddTransient<GlobalExceptionHandler>();
 builder.Services.AddScoped<ICustomerService, CustomerServices>();
 builder.Services.AddScoped<CountryService>();
 builder.Services.AddScoped<StatusService>();
-builder.Services.AddScoped<CostRegistryService>();
+builder.Services.AddScoped<ICostRegistryService, CostRegistryService>();
 builder.Services.AddScoped<ICustomerInvoicesService, CustomerInvoicesServices>();
 builder.Services.AddScoped<ISalesService, SaleServices>();
 builder.Services.AddScoped<ISupplierInvoiceCostService, SupplierInvoiceCostServices>();
@@ -92,7 +92,7 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 static void ApplyMigration<TDbContext>(IServiceScope services)
-    where TDbContext:DbContext
+    where TDbContext : DbContext
 {
     using TDbContext context = services.ServiceProvider.GetRequiredService<TDbContext>();
     context.Database.Migrate();
@@ -100,7 +100,7 @@ static void ApplyMigration<TDbContext>(IServiceScope services)
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    using IServiceScope scope=app.Services.CreateScope();
+    using IServiceScope scope = app.Services.CreateScope();
     ApplyMigration<Progetto_FormativoContext>(scope);
     app.UseSwagger();
     app.UseSwaggerUI();

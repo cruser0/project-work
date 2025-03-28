@@ -9,9 +9,9 @@ namespace API.Controllers
     [ApiController]
     public class UtilityController : ControllerBase
     {
-        private readonly CostRegistryService _costRegistryService;
+        private readonly ICostRegistryService _costRegistryService;
         private readonly CountryService _countryService;
-        public UtilityController(CostRegistryService crs, CountryService cs)
+        public UtilityController(ICostRegistryService crs, CountryService cs)
         {
             _costRegistryService = crs;
             _countryService = cs;
@@ -36,6 +36,13 @@ namespace API.Controllers
                 return Ok(data);
             }
             else return Ok(new List<CountryDTOGet>());
+        }
+
+        [HttpDelete("mass-delete")]
+        public async Task<IActionResult> MassDelete([FromQuery] List<int> id)
+        {
+            var data = await _costRegistryService.MassDeleteCostRegistry(id);
+            return Ok(data);
         }
     }
 }

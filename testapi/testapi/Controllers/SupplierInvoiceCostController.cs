@@ -16,8 +16,8 @@ namespace API.Controllers
     {
         private readonly ISupplierInvoiceCostService _supplierInvoiceCostService;
         private readonly ISupplierInvoiceService _supplierInvoiceService;
-        private readonly CostRegistryService _costRegistryService;
-        public SupplierInvoiceCostController(ISupplierInvoiceCostService supplierInvoiceCostService, CostRegistryService costRegistryService, ISupplierInvoiceService supplierInvoiceService)
+        private readonly ICostRegistryService _costRegistryService;
+        public SupplierInvoiceCostController(ISupplierInvoiceCostService supplierInvoiceCostService, ICostRegistryService costRegistryService, ISupplierInvoiceService supplierInvoiceService)
         {
             _supplierInvoiceCostService = supplierInvoiceCostService;
             _costRegistryService = costRegistryService;

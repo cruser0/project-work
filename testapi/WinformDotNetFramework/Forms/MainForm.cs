@@ -333,7 +333,6 @@ namespace WinformDotNetFramework.Forms
             }
             else if (child.Text.Contains("Create") || child.Text.Contains("Details"))
             {
-                child.MaximizeBox = false;
                 child.WindowState = FormWindowState.Normal;
             }
 
