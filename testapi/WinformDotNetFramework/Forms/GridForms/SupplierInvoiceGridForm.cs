@@ -33,13 +33,13 @@ namespace WinformDotNetFramework.Forms.GridForms
             };
         public SupplierInvoiceGridForm()
         {
-            Init();
+            InitializeComponent();
         }
         public SupplierInvoiceGridForm(Form father)
         {
             _father = father;
 
-            Init();
+            InitializeComponent();
             toolStrip1.Visible = false;
         }
         public SupplierInvoiceGridForm(string id)
@@ -52,11 +52,12 @@ namespace WinformDotNetFramework.Forms.GridForms
             }
         }
 
-        private async void Init()
+        private async Task Init()
         {
+            if (DesignMode)
+                return;
             _userService = new UserService();
             _supplierInvoiceService = new SupplierInvoiceService();
-            InitializeComponent();
             pages = (int)Math.Ceiling(await _supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
@@ -267,6 +268,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void SupplierInvoiceGridForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+            await Init();
             getAllNotFiltered = _supplierInvoiceService.GetAll(new SupplierInvoiceFilter() { SupplierInvoicePage = 1 });
             countNotFiltered = _supplierInvoiceService.Count(new SupplierInvoiceFilter());
             getFav = _userService.GetSupplierInvoiceDGV();

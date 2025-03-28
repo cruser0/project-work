@@ -11,7 +11,6 @@ namespace WinformDotNetFramework.Forms
         {
             InitializeComponent();
         }
-
         public override void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView dgv)
@@ -23,5 +22,6 @@ namespace WinformDotNetFramework.Forms
 
             }
         }
+
     }
 }

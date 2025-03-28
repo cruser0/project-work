@@ -32,20 +32,23 @@ namespace WinformDotNetFramework.Forms.GridForms
         UserService _userService;
         public SupplierGridForm()
         {
-            Init();
+            InitializeComponent();
+
         }
         public SupplierGridForm(CreateDetailsSupplierInvoiceForm father)
         {
             _father = father;
-            Init();
+            InitializeComponent();
+
             toolStrip1.Visible = false;
         }
 
-        private async void Init()
+        private async Task Init()
         {
+            if (DesignMode)
+                return;
             _supplierService = new SupplierService();
             _userService = new UserService();
-            InitializeComponent();
             pages = (int)Math.Ceiling(await _supplierService.Count(new SupplierFilter()) / itemsPage);
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
@@ -247,6 +250,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void SupplierGridForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+            await Init();
             getAllNotFiltered = _supplierService.GetAll(new SupplierFilter() { SupplierPage = 1 });
             countNotFiltered = _supplierService.Count(new SupplierFilter());
             getFav = _userService.GetSupplierDGV();

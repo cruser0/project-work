@@ -25,13 +25,13 @@ namespace WinformDotNetFramework.Forms.GridForms
         public CostRegistryGridForm()
         {
             InitializeComponent();
-            Init();
-        }
-
-        private async void Init()
-        {
             _costRegistryService = new CostRegistryService();
             _userService = new UserService();
+           
+        }
+
+        private async Task Init()
+        {
 
 
             CostRegistryDgv.ReadOnly = true;
@@ -175,14 +175,14 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private void CostRegistryDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                var hitTest = CostRegistryDgv.HitTest(e.X, e.Y);
-                if (hitTest.RowIndex >= 0)
-                {
-                    RightClickDgv.Show(CostRegistryDgv, e.Location);
-                }
-            }
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    var hitTest = CostRegistryDgv.HitTest(e.X, e.Y);
+            //    if (hitTest.RowIndex >= 0)
+            //    {
+            //        RightClickDgv.Show(CostRegistryDgv, e.Location);
+            //    }
+            //}
         }
 
         private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
@@ -230,10 +230,10 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void CostRegistryGridForm_Load(object sender, EventArgs e)
         {
-            Init();
+            await Init();
             getAllNotFiltered = _costRegistryService.GetAll(filter);
             countNotFiltered = _costRegistryService.Count(new CostRegistryFilter());
-            
+
             //getFav = _userService.GetCostRegistryDGV();
             //await SetCheckBoxes();
         }

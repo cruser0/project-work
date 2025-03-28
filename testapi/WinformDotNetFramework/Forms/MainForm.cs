@@ -8,6 +8,7 @@ using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.control;
 using WinformDotNetFramework.Forms.DetailsForms;
+using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Forms.GroupForms;
 using WinformDotNetFramework.Services;
 
@@ -228,7 +229,7 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Show Customer Invoice Cost":
-                    child = new CustomerInvoiceCostForm();
+                    child = new CostRegistryGridForm();
                     break;
 
                 case "Show Supplier":

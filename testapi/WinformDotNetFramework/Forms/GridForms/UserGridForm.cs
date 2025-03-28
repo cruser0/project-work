@@ -27,13 +27,14 @@ namespace WinformDotNetFramework.Forms.GridForms
         Task<UserDGV> getFav;
         public UserGridForm()
         {
-            Init();
+            InitializeComponent();
         }
 
-        private async void Init()
+        private async Task Init()
         {
+            if (DesignMode)
+                return;
             _userService = new UserService();
-            InitializeComponent();
             pages = (int)Math.Ceiling((await _userService.Count(new UserFilter())) / itemsPage);
 
 
@@ -322,6 +323,9 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
 
 
+            if (DesignMode)
+                return;
+            await Init();
             getAllNotFiltered = _userService.GetAll(new UserFilter() { UserPage = 1 });
             countNotFiltered = _userService.Count(new UserFilter());
             getFav = _userService.GetUserDGV();

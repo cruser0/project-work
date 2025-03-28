@@ -36,6 +36,9 @@
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CostRegistryDgv = new System.Windows.Forms.DataGridView();
             this.CostRegistryTS = new System.Windows.Forms.ToolStrip();
+            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
             this.CustomerStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerOriginalIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,12 +51,9 @@
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
-            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.searchCostRegistry1 = new WinformDotNetFramework.Forms.control.SearchCostRegistry();
+            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.panel5.SuspendLayout();
             this.CenterPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CostRegistryDgv)).BeginInit();
@@ -127,6 +127,36 @@
             this.CostRegistryTS.Size = new System.Drawing.Size(600, 25);
             this.CostRegistryTS.TabIndex = 10;
             this.CostRegistryTS.Text = "toolStrip1";
+            // 
+            // ToggleEditButton
+            // 
+            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
+            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToggleEditButton.Name = "ToggleEditButton";
+            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
+            this.ToggleEditButton.Text = "Toggle Edit";
+            this.ToggleEditButton.ToolTipText = "Toggle Edit Mode";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::WinformDotNetFramework.Properties.Resources.save;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "toolStripButton1";
+            this.toolStripButton2.ToolTipText = "Save Changes";
+            // 
+            // MassDeleteTSB
+            // 
+            this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.MassDeleteTSB.Image = global::WinformDotNetFramework.Properties.Resources.trash;
+            this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MassDeleteTSB.Name = "MassDeleteTSB";
+            this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
+            this.MassDeleteTSB.Text = "toolStripButton4";
+            this.MassDeleteTSB.ToolTipText = "Delete Selected Items";
             // 
             // CustomerGdv
             // 
@@ -244,36 +274,6 @@
             this.panel1.Size = new System.Drawing.Size(200, 450);
             this.panel1.TabIndex = 10;
             // 
-            // ToggleEditButton
-            // 
-            this.ToggleEditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ToggleEditButton.Image = ((System.Drawing.Image)(resources.GetObject("ToggleEditButton.Image")));
-            this.ToggleEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToggleEditButton.Name = "ToggleEditButton";
-            this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
-            this.ToggleEditButton.Text = "Toggle Edit";
-            this.ToggleEditButton.ToolTipText = "Toggle Edit Mode";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::WinformDotNetFramework.Properties.Resources.save;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton1";
-            this.toolStripButton2.ToolTipText = "Save Changes";
-            // 
-            // MassDeleteTSB
-            // 
-            this.MassDeleteTSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.MassDeleteTSB.Image = global::WinformDotNetFramework.Properties.Resources.trash;
-            this.MassDeleteTSB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MassDeleteTSB.Name = "MassDeleteTSB";
-            this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
-            this.MassDeleteTSB.Text = "toolStripButton4";
-            this.MassDeleteTSB.ToolTipText = "Delete Selected Items";
-            // 
             // PaginationUserControl
             // 
             this.PaginationUserControl.CurrentPage = 0;
@@ -281,6 +281,13 @@
             this.PaginationUserControl.Name = "PaginationUserControl";
             this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
             this.PaginationUserControl.TabIndex = 0;
+            // 
+            // searchCostRegistry1
+            // 
+            this.searchCostRegistry1.Location = new System.Drawing.Point(3, 3);
+            this.searchCostRegistry1.Name = "searchCostRegistry1";
+            this.searchCostRegistry1.Size = new System.Drawing.Size(187, 125);
+            this.searchCostRegistry1.TabIndex = 0;
             // 
             // RightSideBar
             // 
@@ -290,13 +297,6 @@
             this.RightSideBar.Name = "RightSideBar";
             this.RightSideBar.Size = new System.Drawing.Size(200, 450);
             this.RightSideBar.TabIndex = 0;
-            // 
-            // searchCostRegistry1
-            // 
-            this.searchCostRegistry1.Location = new System.Drawing.Point(3, 3);
-            this.searchCostRegistry1.Name = "searchCostRegistry1";
-            this.searchCostRegistry1.Size = new System.Drawing.Size(187, 125);
-            this.searchCostRegistry1.TabIndex = 0;
             // 
             // CostRegistryGridForm
             // 
@@ -325,30 +325,29 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel3;
-        private control.PaginationUserControl PaginationUserControl;
         public System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.ToolStripButton MassDeleteTSB;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton ToggleEditButton;
         public System.Windows.Forms.Panel CenterPanel;
         public System.Windows.Forms.DataGridView CostRegistryDgv;
         public System.Windows.Forms.ToolStrip CostRegistryTS;
-        private System.Windows.Forms.DataGridView CustomerGdv;
-        private System.Windows.Forms.ToolStripMenuItem CustomerStatusTsmi;
-        private System.Windows.Forms.ToolStripMenuItem CustomerOriginalIDTsmi;
-        private System.Windows.Forms.ToolStripMenuItem CustomerDateTsmi;
-        private System.Windows.Forms.ToolStripMenuItem CustomerCountryTsmi;
-        private System.Windows.Forms.ToolStripMenuItem CustomerNameTsmi;
-        private System.Windows.Forms.ToolStripMenuItem CustomerIDTsmi;
-        private System.Windows.Forms.ContextMenuStrip RightClickDgv;
-        private control.RightSideBarUserControl RightSideBar;
-        private System.Windows.Forms.Panel TextBoxesRightPanel;
-        private System.Windows.Forms.Panel BottomPanel;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel1;
-        private control.SearchCostRegistry searchCostRegistry1;
+        public System.Windows.Forms.Panel panel3;
+        public control.PaginationUserControl PaginationUserControl;
+        public System.Windows.Forms.ToolStripButton MassDeleteTSB;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        public System.Windows.Forms.ToolStripButton toolStripButton2;
+        public System.Windows.Forms.ToolStripButton ToggleEditButton;
+        public System.Windows.Forms.DataGridView CustomerGdv;
+        public System.Windows.Forms.ToolStripMenuItem CustomerStatusTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CustomerOriginalIDTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CustomerDateTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CustomerCountryTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CustomerNameTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CustomerIDTsmi;
+        public System.Windows.Forms.ContextMenuStrip RightClickDgv;
+        public control.RightSideBarUserControl RightSideBar;
+        public System.Windows.Forms.Panel TextBoxesRightPanel;
+        public System.Windows.Forms.Panel BottomPanel;
+        public System.Windows.Forms.Panel panel4;
+        public System.Windows.Forms.Panel panel1;
+        public control.SearchCostRegistry searchCostRegistry1;
     }
 }

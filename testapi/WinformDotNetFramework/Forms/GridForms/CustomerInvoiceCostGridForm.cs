@@ -23,16 +23,20 @@ namespace WinformDotNetFramework.Forms.GridForms
         Task<CustomerInvoiceCostDGV> getFav;
         public CustomerInvoiceCostGridForm()
         {
-            Init();
+            ConstructInit();
 
         }
-
-        private async void Init()
+        public void ConstructInit()
         {
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             InitializeComponent();
             _userService = new UserService();
 
+        }
+        private async Task Init()
+        {
+            if (DesignMode)
+                return;
             pages = (int)Math.Ceiling(await _customerInvoiceCostService.Count(new CustomerInvoiceCostFilter()) / itemsPage);
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
@@ -215,6 +219,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void CustomerInvoiceCostGridForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+            await Init();
             getAllNotFiltered = _customerInvoiceCostService.GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostPage = 1 });
             countNotFiltered = _customerInvoiceCostService.Count(new CustomerInvoiceCostFilter());
             getFav = _userService.GetCustomerInvoiceCostDGV();

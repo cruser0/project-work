@@ -31,21 +31,25 @@ namespace WinformDotNetFramework.Forms.GridForms
         UserService _userService;
         public CustomerInvoiceGridForm()
         {
-            Init();
+            ConstructInit();
         }
         public CustomerInvoiceGridForm(CreateDetailsCustomerInvoiceCostForm father)
         {
             _father = father;
-            Init();
+            ConstructInit();
             toolStrip1.Visible = false;
         }
-
-        private async void Init()
+        public void ConstructInit()
         {
             _userService = new UserService();
             _customerInvoiceService = new CustomerInvoiceService();
             InitializeComponent();
 
+        }
+        private async Task Init()
+        {
+            if (DesignMode)
+                return;
             pages = (int)Math.Ceiling(await _customerInvoiceService.Count(new CustomerInvoiceFilter()) / itemsPage);
 
             PaginationUserControl.CurrentPage = 1;
@@ -240,6 +244,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void CustomerInvoiceGridForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+            await Init();
             getAllNotFiltered = _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoicePage = 1 });
             countNotFiltered = _customerInvoiceService.Count(new CustomerInvoiceFilter());
             getFav = _userService.GetCustomerInvoiceDGV();

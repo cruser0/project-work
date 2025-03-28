@@ -36,7 +36,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
             this.searchSale1 = new WinformDotNetFramework.Forms.control.SearchSale();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.SaleDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToggleEditButton = new System.Windows.Forms.ToolStripButton();
@@ -60,7 +60,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SaleTotalRevenueTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
@@ -105,15 +105,15 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 1;
             // 
-            // panel1
+            // MainPanel
             // 
-            this.panel1.Controls.Add(this.SaleDgv);
-            this.panel1.Controls.Add(this.toolStrip1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(584, 374);
-            this.panel1.TabIndex = 17;
+            this.MainPanel.Controls.Add(this.SaleDgv);
+            this.MainPanel.Controls.Add(this.toolStrip1);
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 0);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(584, 374);
+            this.MainPanel.TabIndex = 17;
             // 
             // SaleDgv
             // 
@@ -338,7 +338,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.RigtPanel);
             this.MinimumSize = new System.Drawing.Size(800, 500);
@@ -348,8 +348,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.Resize += new System.EventHandler(this.CustomerGridForm_Resize);
             this.RigtPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.MainPanel.ResumeLayout(false);
+            this.MainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SaleDgv)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -362,31 +362,31 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
 
         #endregion
-        private Panel RigtPanel;
-        private control.RightSideBarUserControl RightSideBar;
-        public Panel panel1;
-        private Panel BottomPanel;
-        private Panel panel5;
-        private control.PaginationUserControl PaginationUserControl;
-        private Panel panel4;
-        private Panel panel3;
-        private ContextMenuStrip RightClickDgv;
-        private ToolStripMenuItem SaleIDTsmi;
-        private ToolStripMenuItem SaleBkNumberTsmi;
-        private ToolStripMenuItem SaleBoLNumberTsmi;
-        private ToolStripMenuItem SaleDateTsmi;
-        private ToolStripMenuItem SaleCustomerIDTsmi;
-        private ToolStripMenuItem SaleStatusTsmi;
-        private ToolStripMenuItem SaleCustomerNameTsmi;
-        private ToolStripMenuItem SaleCustomerCountryTsmi;
-        private ToolStripMenuItem SaleTotalRevenueTsmi;
-        private DataGridView SaleDgv;
+        public Panel MainPanel;
         public ToolStrip toolStrip1;
-        private ToolStripButton MassSaveTSB;
-        private ToolStripButton MassDeleteTSB;
-        private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton ToggleEditButton;
-        private Panel TextBoxesRightPanel;
-        private control.SearchSale searchSale1;
+        public Panel RigtPanel;
+        public control.RightSideBarUserControl RightSideBar;
+        public Panel BottomPanel;
+        public Panel panel5;
+        public control.PaginationUserControl PaginationUserControl;
+        public Panel panel4;
+        public Panel panel3;
+        public ContextMenuStrip RightClickDgv;
+        public ToolStripMenuItem SaleIDTsmi;
+        public ToolStripMenuItem SaleBkNumberTsmi;
+        public ToolStripMenuItem SaleBoLNumberTsmi;
+        public ToolStripMenuItem SaleDateTsmi;
+        public ToolStripMenuItem SaleCustomerIDTsmi;
+        public ToolStripMenuItem SaleStatusTsmi;
+        public ToolStripMenuItem SaleCustomerNameTsmi;
+        public ToolStripMenuItem SaleCustomerCountryTsmi;
+        public ToolStripMenuItem SaleTotalRevenueTsmi;
+        public DataGridView SaleDgv;
+        public ToolStripButton MassSaveTSB;
+        public ToolStripButton MassDeleteTSB;
+        public ToolStripSeparator toolStripSeparator1;
+        public ToolStripButton ToggleEditButton;
+        public Panel TextBoxesRightPanel;
+        public control.SearchSale searchSale1;
     }
 }

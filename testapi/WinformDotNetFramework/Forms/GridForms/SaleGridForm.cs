@@ -28,30 +28,31 @@ namespace WinformDotNetFramework.Forms.GridForms
         UserService _userService;
         public SaleGridForm()
         {
-            Init();
+            InitializeComponent();
         }
 
 
         public SaleGridForm(CreateDetailsSupplierInvoiceForm father)
         {
             _father = father;
-            Init();
+            InitializeComponent();
             toolStrip1.Visible = false;
         }
         public SaleGridForm(CreateDetailsCustomerInvoiceForm father)
         {
             _father = father;
-            Init();
+            InitializeComponent();
 
             toolStrip1.Visible = false;
         }
 
-        private async void Init()
+        private async Task Init()
         {
+            if (DesignMode)
+                return;
             _userService = new UserService();
             _saleService = new SaleService();
 
-            InitializeComponent();
             pages = (int)Math.Ceiling(await _saleService.Count(new SaleFilter() { SaleStatus = _father != null ? "Active" : null }) / itemsPage);
 
 
@@ -269,6 +270,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void SaleGridForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+            await Init(); 
             if (_father != null)
                 searchSale1.StatusCB.Text = "Active";
 

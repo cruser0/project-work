@@ -31,14 +31,15 @@ namespace WinformDotNetFramework.Forms.GridForms
         Task<SupplierInvoiceCostDGV> getFav;
         public SupplierInvoiceCostGridForm()
         {
-            Init();
+            InitializeComponent();
         }
 
-        private async void Init()
+        private async Task Init()
         {
+            if (DesignMode)
+                return;
             _userService = new UserService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
-            InitializeComponent();
             pages = (int)Math.Ceiling(await _supplierInvoiceCostService.Count(new SupplierInvoiceCostFilter()) / itemsPage);
 
 
@@ -226,6 +227,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void SupplierInvoiceCostGridForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+            await Init();
             getAllNotFiltered = _supplierInvoiceCostService.GetAll(new SupplierInvoiceCostFilter() { SupplierInvoiceCostPage = 1 });
             countNotFiltered = _supplierInvoiceCostService.Count(new SupplierInvoiceCostFilter());
             getFav = _userService.GetSupplierInvoiceCostDGV();

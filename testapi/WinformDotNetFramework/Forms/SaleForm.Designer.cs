@@ -39,15 +39,49 @@ namespace WinformDotNetFramework.Forms
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LeftPanel = new System.Windows.Forms.Panel();
-            this.leftSideBaruSerControl1 = new WinformDotNetFramework.Forms.control.LeftSideBarUSerControl();
-            this.LeftPanel.SuspendLayout();
+            this.leftSideBarUSerControl1 = new WinformDotNetFramework.Forms.control.LeftSideBarUSerControl();
+            this.RigtPanel.SuspendLayout();
+            this.BottomPanel.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // MainPanel
             // 
-            this.panel1.Location = new System.Drawing.Point(200, 0);
-            this.panel1.Size = new System.Drawing.Size(384, 361);
+            this.MainPanel.Location = new System.Drawing.Point(171, 0);
+            this.MainPanel.Size = new System.Drawing.Size(413, 374);
+            // 
+            // RigtPanel
+            // 
+            this.RigtPanel.Size = new System.Drawing.Size(200, 374);
+            // 
+            // RightSideBar
+            // 
+            this.RightSideBar.Size = new System.Drawing.Size(200, 374);
+            // 
+            // BottomPanel
+            // 
+            this.BottomPanel.Size = new System.Drawing.Size(784, 87);
+            // 
+            // panel5
+            // 
+            this.panel5.Location = new System.Drawing.Point(243, 0);
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.Location = new System.Drawing.Point(24, 24);
+            // 
+            // panel4
+            // 
+            this.panel4.Location = new System.Drawing.Point(784, 0);
+            // 
+            // TextBoxesRightPanel
+            // 
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 369);
+            // 
+            // searchSale1
+            // 
+            this.searchSale1.Size = new System.Drawing.Size(200, 369);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -112,42 +146,37 @@ namespace WinformDotNetFramework.Forms
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
-            // LeftPanel
+            // leftSideBarUSerControl1
             // 
-            this.LeftPanel.Controls.Add(this.leftSideBaruSerControl1);
-            this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LeftPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(200, 461);
-            this.LeftPanel.TabIndex = 18;
-            // 
-            // leftSideBaruSerControl1
-            // 
-            this.leftSideBaruSerControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.leftSideBaruSerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leftSideBaruSerControl1.Location = new System.Drawing.Point(0, 0);
-            this.leftSideBaruSerControl1.Name = "leftSideBaruSerControl1";
-            this.leftSideBaruSerControl1.Size = new System.Drawing.Size(200, 461);
-            this.leftSideBaruSerControl1.TabIndex = 0;
+            this.leftSideBarUSerControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.leftSideBarUSerControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftSideBarUSerControl1.Location = new System.Drawing.Point(0, 0);
+            this.leftSideBarUSerControl1.Name = "leftSideBarUSerControl1";
+            this.leftSideBarUSerControl1.Size = new System.Drawing.Size(171, 374);
+            this.leftSideBarUSerControl1.TabIndex = 20;
             // 
             // SaleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.LeftPanel);
+            this.Controls.Add(this.leftSideBarUSerControl1);
+            this.MinimumSize = new System.Drawing.Size(688, 439);
             this.Name = "SaleForm";
-            this.Controls.SetChildIndex(this.LeftPanel, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.LeftPanel.ResumeLayout(false);
+            this.Controls.SetChildIndex(this.BottomPanel, 0);
+            this.Controls.SetChildIndex(this.leftSideBarUSerControl1, 0);
+            this.Controls.SetChildIndex(this.RigtPanel, 0);
+            this.Controls.SetChildIndex(this.MainPanel, 0);
+            this.RigtPanel.ResumeLayout(false);
+            this.BottomPanel.ResumeLayout(false);
+            this.BottomPanel.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.TextBoxesRightPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Panel LeftPanel;
-        private control.LeftSideBarUSerControl leftSideBaruSerControl1;
         private Label SaleLbl;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -158,5 +187,6 @@ namespace WinformDotNetFramework.Forms
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private control.LeftSideBarUSerControl leftSideBarUSerControl1;
     }
 }
