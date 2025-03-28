@@ -30,7 +30,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             InitializeComponent();
         }
 
-        public CustomerGridForm(SaleDetailsForm father)
+        public CustomerGridForm(CreateDetailsSaleForm father)
         {
             InitializeComponent();
             _father = father;
@@ -162,7 +162,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             if (sender is DataGridView dgv)
             {
-                if (_father is SaleDetailsForm csf)
+                if (_father is CreateDetailsSaleForm csf)
                 {
                     csf.SetCustomerID(dgv.CurrentRow.Cells["CustomerID"].Value.ToString());
                     csf.SetCustomerNameCountry(dgv.CurrentRow.Cells["CustomerName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());

@@ -12,7 +12,7 @@ using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
 {
-    public partial class CustomerInvoiceDetailsForm : Form
+    public partial class CreateDetailsCustomerInvoiceForm : Form
     {
 
         CustomerInvoiceService _customerInvoiceService;
@@ -24,21 +24,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         int saleID;
         bool detailsOnly = false;
         Form _father;
-        public CustomerInvoiceDetailsForm()
+        public CreateDetailsCustomerInvoiceForm()
         {
             Init();
             InitCreate();
             
 
         }
-        public CustomerInvoiceDetailsForm(int id)
+        public CreateDetailsCustomerInvoiceForm(int id)
         {
             Init();
             InitDetails(id);
             button2.Visible = false;
 
         }
-        public CustomerInvoiceDetailsForm(SaleDetailsForm father, object sale)
+        public CreateDetailsCustomerInvoiceForm(CreateDetailsSaleForm father, object sale)
         {
             SaleCustomerDTO saleCustomerDTO = (SaleCustomerDTO)sale;
             _father = father;
@@ -271,9 +271,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void AddCostBtn_Click(object sender, EventArgs e)
         {
             if (detailsOnly)
-                UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, this, customerInvoice.CustomerInvoiceCode);
+                UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceCostForm>(sender, e, this, customerInvoice.CustomerInvoiceCode);
             else
-                UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, this, code);
+                UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceCostForm>(sender, e, this, code);
 
         }
 
@@ -289,7 +289,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 if (e.RowIndex == -1)
                     return;
 
-                UtilityFunctions.CreateFromDetails<CreateCustomerInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
+                UtilityFunctions.CreateFromDetails<CreateDetailsCustomerInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
 
             }
         }

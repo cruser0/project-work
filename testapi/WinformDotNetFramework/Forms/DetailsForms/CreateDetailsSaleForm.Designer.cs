@@ -2,7 +2,7 @@
 
 namespace WinformDotNetFramework.Forms.DetailsForms
 {
-    partial class SaleDetailsForm
+    partial class CreateDetailsSaleForm
     {
         /// <summary>
         /// Required designer variable.

@@ -33,7 +33,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             Init();
         }
-        public CustomerInvoiceGridForm(CreateCustomerInvoiceCostForm father)
+        public CustomerInvoiceGridForm(CreateDetailsCustomerInvoiceCostForm father)
         {
             _father = father;
             Init();
@@ -135,7 +135,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             if (sender is DataGridView dgv)
             {
-                if (_father is CreateCustomerInvoiceCostForm csif)
+                if (_father is CreateDetailsCustomerInvoiceCostForm csif)
                 {
                     csif.SetCustomerInvoiceID(dgv.CurrentRow.Cells["CustomerInvoiceId"].Value.ToString());
                     csif.SetCustomerInvoiceCode(dgv.CurrentRow.Cells["CustomerInvoiceCode"].Value.ToString());
