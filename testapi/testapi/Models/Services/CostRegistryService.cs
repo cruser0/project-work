@@ -59,27 +59,20 @@ namespace API.Models.Services
         }
         private IQueryable<CostRegistryDTOGet> ApplyFilter(CostRegistryFilter filter)
         {
+            int itemsPage = 10;
             var query = _context.CostRegistries.Include(x => x.SupplierInvoiceCosts).Include(x => x.CustomerInvoiceCosts).AsQueryable();
 
-            if (!string.IsNullOrEmpty(filter.CostRegistryUniqueCode))
+            if (!string.IsNullOrEmpty(filter.CostRegistryCode))
             {
-                query = query.Where(x => x.CostRegistryUniqueCode.StartsWith(filter.CostRegistryUniqueCode));
+                query = query.Where(x => x.CostRegistryUniqueCode.StartsWith(filter.CostRegistryCode));
             }
             if (!string.IsNullOrEmpty(filter.CostRegistryName))
             {
                 query = query.Where(x => x.CostRegistryName.StartsWith(filter.CostRegistryName));
             }
-            if (filter.CostRegistryPriceTo != null && filter.CostRegistryPriceFrom != null)
+            if (filter.CostRegistryPage != null)
             {
-                query = query.Where(x => x.CostRegistryPrice >= filter.CostRegistryPriceFrom && x.CostRegistryPrice <= filter.CostRegistryPriceTo);
-            }
-            else if (filter.CostRegistryPriceTo != null)
-            {
-                query = query.Where(x => x.CostRegistryPrice <= filter.CostRegistryPriceTo);
-            }
-            else if (filter.CostRegistryPriceFrom != null)
-            {
-                query = query.Where(x => x.CostRegistryPrice >= filter.CostRegistryPriceFrom);
+                query = query.Skip(((int)filter.CostRegistryPage - 1) * itemsPage).Take(itemsPage);
             }
 
             return query.Select(x => CostRegistryMapper.MapGet(x));
@@ -94,7 +87,7 @@ namespace API.Models.Services
         public async Task<CostRegistryDTOGet> CreateCostRegistry(CostRegistry costRegistry)
         {
             if (costRegistry == null)
-                throw new NullPropertyException("Couldn't create customer");
+                throw new NullPropertyException("Couldn't create Cost Registry");
 
             var nullFields = new List<string>();
 
@@ -153,7 +146,7 @@ namespace API.Models.Services
             }
             catch
             {
-                throw;
+                throw new UpdateException("Couldn't update");
             }
         }
 

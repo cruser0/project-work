@@ -3,7 +3,7 @@ using API.Models.Entities;
 
 namespace API.Models.Mapper
 {
-    public class CustomerInvoiceMapper
+    public static class CustomerInvoiceMapper
     {
         public static CustomerInvoiceDTO Map(CustomerInvoice customerInvoice)
         {

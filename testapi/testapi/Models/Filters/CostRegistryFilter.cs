@@ -2,9 +2,8 @@
 {
     public class CostRegistryFilter
     {
-        public string? CostRegistryUniqueCode { get; set; }
         public string? CostRegistryName { get; set; }
-        public int? CostRegistryPriceFrom { get; set; }
-        public int? CostRegistryPriceTo { get; set; }
+        public string? CostRegistryCode { get; set; }
+        public int? CostRegistryPage { get; set; }
     }
 }

@@ -135,6 +135,7 @@
     <Compile Include="Entities\DTO\SupplierInvoiceSupplierDTO.cs" />
     <Compile Include="Entities\DTO\UserDTO.cs" />
     <Compile Include="Entities\Filters\ClassifySalesByProfitFilter.cs" />
+    <Compile Include="Entities\Filters\CostRegistryFilter.cs" />
     <Compile Include="Entities\Filters\CustomerFilter.cs" />
     <Compile Include="Entities\Filters\CustomerInvoiceCostFilter.cs" />
     <Compile Include="Entities\Filters\CustomerInvoiceFilter.cs" />
@@ -165,6 +166,12 @@
     <Compile Include="Entities\SupplierInvoiceCost.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserAccessTemp.cs" />
+    <Compile Include="Forms\control\SearchCostRegistry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\SearchCostRegistry.Designer.cs">
+      <DependentUpon>SearchCostRegistry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DetailsForms\CreateDetailsCustomerInvoiceCostForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,7 +370,6 @@
     <Compile Include="Forms\CustomerInvoiceReportForm.Designer.cs">
       <DependentUpon>CustomerInvoiceReportForm.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Forms\DetailsForms\CostRegistryDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,7 +377,6 @@
       <DependentUpon>CostRegistryDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DetailsForms\CreateDetailsCustomerForm.cs">
-
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\DetailsForms\CreateDetailsCustomerForm.Designer.cs">
@@ -551,6 +556,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\BaseCallService.cs" />
+    <Compile Include="Services\CostRegistryService.cs" />
     <Compile Include="Services\UtilityService.cs" />
     <Compile Include="Services\CustomerInvoiceCostService.cs" />
     <Compile Include="Services\CustomerInvoiceService.cs" />
@@ -564,6 +570,9 @@
     <Compile Include="Services\ValueService.cs" />
     <Compile Include="UserAccessInfo.cs" />
     <Compile Include="UtilityFunctions.cs" />
+    <EmbeddedResource Include="Forms\control\SearchCostRegistry.resx">
+      <DependentUpon>SearchCostRegistry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetailsForms\CreateDetailsCustomerInvoiceCostForm.resx">
       <DependentUpon>CreateDetailsCustomerInvoiceCostForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -660,9 +669,9 @@
     <EmbeddedResource Include="Forms\CustomerInvoiceForm.resx">
       <DependentUpon>CustomerInvoiceForm.cs</DependentUpon>
     </EmbeddedResource>
-	  <EmbeddedResource Include="Forms\DetailsForms\CostRegistryDetailsForm.resx">
-		  <DependentUpon>CostRegistryDetailsForm.cs</DependentUpon>
-	  </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetailsForms\CostRegistryDetailsForm.resx">
+      <DependentUpon>CostRegistryDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetailsForms\CreateDetailsCustomerForm.resx">
       <DependentUpon>CreateDetailsCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
