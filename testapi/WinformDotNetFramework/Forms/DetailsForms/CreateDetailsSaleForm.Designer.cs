@@ -73,6 +73,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -91,7 +92,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(85, 8);
+            this.label2.Location = new System.Drawing.Point(8, 3);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
@@ -103,7 +104,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(85, 56);
+            this.label3.Location = new System.Drawing.Point(8, 51);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 15);
@@ -115,7 +116,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(85, 97);
+            this.label4.Location = new System.Drawing.Point(8, 92);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
@@ -127,7 +128,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(295, 97);
+            this.label6.Location = new System.Drawing.Point(218, 92);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 15);
@@ -138,7 +139,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.bntxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bntxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntxt.Location = new System.Drawing.Point(85, 29);
+            this.bntxt.Location = new System.Drawing.Point(8, 24);
             this.bntxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bntxt.Name = "bntxt";
             this.bntxt.Size = new System.Drawing.Size(200, 23);
@@ -148,7 +149,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.boltxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.boltxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boltxt.Location = new System.Drawing.Point(85, 73);
+            this.boltxt.Location = new System.Drawing.Point(8, 68);
             this.boltxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.boltxt.Name = "boltxt";
             this.boltxt.Size = new System.Drawing.Size(200, 23);
@@ -158,7 +159,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.saleDateDtp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saleDateDtp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleDateDtp.Location = new System.Drawing.Point(85, 115);
+            this.saleDateDtp.Location = new System.Drawing.Point(8, 110);
             this.saleDateDtp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saleDateDtp.Name = "saleDateDtp";
             this.saleDateDtp.Size = new System.Drawing.Size(200, 23);
@@ -169,7 +170,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditCB.AutoSize = true;
             this.EditCB.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditCB.Location = new System.Drawing.Point(690, 93);
+            this.EditCB.Location = new System.Drawing.Point(539, 122);
             this.EditCB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.EditCB.Name = "EditCB";
             this.EditCB.Size = new System.Drawing.Size(46, 19);
@@ -183,7 +184,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.saveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(593, 118);
+            this.saveBtn.Location = new System.Drawing.Point(593, 80);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(143, 25);
@@ -415,6 +416,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.SaveQuitButton);
             this.panel6.Controls.Add(this.OpenSale);
             this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.bntxt);
@@ -443,7 +445,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSale.FlatAppearance.BorderSize = 0;
             this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSale.Location = new System.Drawing.Point(503, 52);
+            this.OpenSale.Location = new System.Drawing.Point(426, 47);
             this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.OpenSale.Name = "OpenSale";
             this.OpenSale.Size = new System.Drawing.Size(29, 23);
@@ -456,7 +458,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(301, 29);
+            this.NameCmbxUC.Location = new System.Drawing.Point(224, 24);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.NameCmbxUC.Name = "NameCmbxUC";
             this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
@@ -468,7 +470,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CustomerNameLbl.AutoSize = true;
             this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerNameLbl.Location = new System.Drawing.Point(298, 8);
+            this.CustomerNameLbl.Location = new System.Drawing.Point(221, 3);
             this.CustomerNameLbl.Name = "CustomerNameLbl";
             this.CustomerNameLbl.Size = new System.Drawing.Size(99, 15);
             this.CustomerNameLbl.TabIndex = 47;
@@ -481,7 +483,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(298, 56);
+            this.StatusLbl.Location = new System.Drawing.Point(221, 51);
             this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
@@ -493,7 +495,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.RevenueTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RevenueTxt.Enabled = false;
             this.RevenueTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RevenueTxt.Location = new System.Drawing.Point(298, 115);
+            this.RevenueTxt.Location = new System.Drawing.Point(221, 110);
             this.RevenueTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RevenueTxt.Name = "RevenueTxt";
             this.RevenueTxt.Size = new System.Drawing.Size(200, 23);
@@ -509,7 +511,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusCmbx.Items.AddRange(new object[] {
             "Active",
             "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(298, 73);
+            this.StatusCmbx.Location = new System.Drawing.Point(221, 68);
             this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.StatusCmbx.Name = "StatusCmbx";
             this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
@@ -554,6 +556,20 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
+            // 
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitButton.Location = new System.Drawing.Point(593, 111);
+            this.SaveQuitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(143, 25);
+            this.SaveQuitButton.TabIndex = 52;
+            this.SaveQuitButton.Text = "Save and Quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // CreateDetailsSaleForm
             // 
@@ -630,5 +646,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel8;
         private Button button1;
         public Button OpenSale;
+        private Button SaveQuitButton;
     }
 }

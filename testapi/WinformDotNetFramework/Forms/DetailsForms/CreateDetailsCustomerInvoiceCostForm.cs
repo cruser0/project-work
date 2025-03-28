@@ -63,6 +63,43 @@ namespace WinformDotNetFramework.Forms.AddForms
             timer.Interval = 500;
         }
 
+
+
+        private void OpenSale_Click(object sender, EventArgs e)
+        {
+            UtilityFunctions.OpenFormDetails<CustomerInvoiceGridForm>(sender, e, this);
+        }
+
+        public void SetCustomerInvoiceCode(string code)
+        {
+            InvoiceCodeCmbxUC.Cmbx.Text = code;
+        }
+        public void SetCustomerInvoiceID(string idFromForm)
+        {
+            id = int.Parse(idFromForm);
+        }
+
+        private async void CreateCustomerInvoiceCostForm_Load(object sender, EventArgs e)
+        {
+            list = await UtilityFunctions.GetCostRegistry();
+            CostRegistryCmbx.DataSource = list.Select(x => x.CostRegistryUniqueCode).ToList();
+        }
+
+        public async Task SetList(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                InvoiceCodeCmbxUC.Cmbx.DroppedDown = false;
+                return;
+            }
+            var listFiltered = await _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
+            {
+                CustomerInvoiceCode = text
+            });
+
+            var listItems = listFiltered.Select(x => x.CustomerInvoiceCode).ToList();
+            InvoiceCodeCmbxUC.listItemsDropCmbx = listItems;
+        }
         private async void SaveQuit_Click(object sender, EventArgs e)
         {
             CostRegistry cr;
@@ -198,43 +235,6 @@ namespace WinformDotNetFramework.Forms.AddForms
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void OpenSale_Click(object sender, EventArgs e)
-        {
-            UtilityFunctions.OpenFormDetails<CustomerInvoiceGridForm>(sender, e, this);
-        }
-
-        public void SetCustomerInvoiceCode(string code)
-        {
-            InvoiceCodeCmbxUC.Cmbx.Text = code;
-        }
-        public void SetCustomerInvoiceID(string idFromForm)
-        {
-            id = int.Parse(idFromForm);
-        }
-
-        private async void CreateCustomerInvoiceCostForm_Load(object sender, EventArgs e)
-        {
-            list = await UtilityFunctions.GetCostRegistry();
-            CostRegistryCmbx.DataSource = list.Select(x => x.CostRegistryUniqueCode).ToList();
-        }
-
-        public async Task SetList(string text)
-        {
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                InvoiceCodeCmbxUC.Cmbx.DroppedDown = false;
-                return;
-            }
-            var listFiltered = await _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
-            {
-                CustomerInvoiceCode = text
-            });
-
-            var listItems = listFiltered.Select(x => x.CustomerInvoiceCode).ToList();
-            InvoiceCodeCmbxUC.listItemsDropCmbx = listItems;
-        }
-
 
     }
 }

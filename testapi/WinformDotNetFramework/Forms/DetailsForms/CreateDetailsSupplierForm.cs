@@ -187,5 +187,63 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
+        private async void SaveQuitButton_Click(object sender, EventArgs e)
+        {
+            if (detailsOnly)
+            {
+
+                switch (comboBox1.Text)
+                {
+                    case "Active":
+                        enabled = false;
+                        break;
+
+                    case "Deprecated":
+                        enabled = true;
+                        break;
+                };
+
+                Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
+                try
+                {
+                    await _supplierService.Update(supplierID, supplier);
+                    MessageBox.Show("Supplier updated successfully!");
+                    Close();
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                if (NameSupplierTxt.Text.Length < 1 || CountryCmbx.Text.Equals("All") || string.IsNullOrEmpty(CountryCmbx.Text))
+                {
+                    MessageBox.Show("Input data error!");
+                    return;
+                }
+
+                Supplier supplier = new Supplier()
+                {
+                    SupplierName = NameSupplierTxt.Text,
+                    Country = CountryCmbx.Text
+                };
+                if (supplier.Country.Equals("All"))
+                    MessageBox.Show("You Need to Select a country");
+                else
+                {
+                    try
+                    {
+                        await _supplierService.Create(supplier);
+                        MessageBox.Show("Supplier Created Succesfully");
+                        Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                }
+            }
+        }
     }
 }

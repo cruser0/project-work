@@ -187,133 +187,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
-        private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
-        {
-            if (detailsOnly)
-            {
-
-
-                try
-                {
-                    string name = NameCmbxUC.Cmbx.Text;
-                    string country = "";
-
-                    int lastIndex = name.LastIndexOf(" - ");
-
-                    if (lastIndex != -1 && lastIndex != name.Length - 3)
-                    {
-                        country = name.Substring(lastIndex + 3);
-
-                        name = name.Substring(0, lastIndex);
-                    }
-                    saleId = (await _saleService
-                    .GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
-                    .FirstOrDefault().SaleId;
-
-                    supplierId = (await _supplierService
-                        .GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country }))
-                        .FirstOrDefault().SupplierId;
-
-                    SupplierInvoice si = new SupplierInvoice
-                    {
-                        SaleId = saleId,
-                        Status = comboBox1.Text,
-                        InvoiceDate = DateClnd.Value,
-                        SupplierId = supplierId,
-                        InvoiceAmount = 0
-                    };
-
-                    await _supplierInvoiceService.Update(supplierInvoice.InvoiceId, si);
-                    MessageBox.Show("Customer updated successfully!");
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
-            {
-                List<string> err = new List<string>();
-                if (string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text))
-                    err.Add("BookingNumber");
-                if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text))
-                    err.Add("BookingNumber");
-                if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text))
-                    err.Add("SupplierName");
-                if (string.IsNullOrEmpty(comboBox1.Text))
-                    err.Add("Status");
-                if (DateClnd.Value == null)
-                    err.Add("Date");
-                if (saleId == -1)
-                {
-                    try
-                    {
-                        saleId = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text })).FirstOrDefault().SaleId;
-
-                    }
-                    catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
-
-                }
-                if (supplierId == -1)
-                {
-                    try
-                    {
-                        string name = NameCmbxUC.Cmbx.Text;
-                        string country = "";
-
-                        int lastIndex = name.LastIndexOf(" - ");
-
-                        if (lastIndex != -1 && lastIndex != name.Length - 3)
-                        {
-                            country = name.Substring(lastIndex + 3);
-
-                            name = name.Substring(0, lastIndex);
-                        }
-
-                        supplierId = (await _supplierService.GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country })).FirstOrDefault().SupplierId;
-                    }
-                    catch (Exception) { MessageBox.Show("Invalid input for the sale"); return; }
-                }
-                if (err.Count > 0)
-                    MessageBox.Show("Gli attributi : " + string.Join(",", err) + "\n Sono errati!");
-                else
-                {
-                    try
-                    {
-                        SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = comboBox1.Text };
-                        SupplierInvoice newSI = await _supplierInvoiceService.Create(si);
-                        MessageBox.Show("Supplier Invoice created Successfully!");
-                        detailsOnly = true;
-                        SetVisibility();
-                        supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter { SupplierInvoiceCode = newSI.SupplierInvoiceCode })).FirstOrDefault();
-                        textBox1.Text = supplierInvoice.SupplierInvoiceCode;
-                        textBox1.Enabled = false;
-                        NameCmbxUC.Enabled = false;
-                        comboBox1.Enabled = false;
-                        DateClnd.Enabled = false;
-                        button2.Enabled = false;
-                        BoLCmbxUC.Enabled = false;
-                        BKCmbxUC.Enabled = false;
-                        OpenSale.Enabled = false;
-
-                        await RefreshDGV();
-                        if (_father != null)
-                        {
-                            if (_father is CreateDetailsSaleForm sdf)
-                            {
-                                await sdf.RefreshDgvCustomer();
-                                await sdf.RefreshDgvSupplier();
-                            }
-                            await RefreshDGV();
-
-                        }
-                    }
-                    catch (Exception ex) { MessageBox.Show(ex.Message); supplierId = -1; }
-                }
-
-            }
-        }
-
-
-
         public async Task SetList()
         {
             string nameInput = NameCmbxUC.Cmbx.Text;
@@ -383,6 +256,189 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 UtilityFunctions.CreateFromDetails<CreateDetailsSupplierInvoiceCostForm>(sender, e, this, dgv.CurrentRow.DataBoundItem);
 
+            }
+        }
+        private async Task UpdateExistingSupplierInvoice(bool quit = false)
+        {
+            try
+            {
+                string name = NameCmbxUC.Cmbx.Text;
+                string country = "";
+
+                int lastIndex = name.LastIndexOf(" - ");
+
+                if (lastIndex != -1 && lastIndex != name.Length - 3)
+                {
+                    country = name.Substring(lastIndex + 3);
+                    name = name.Substring(0, lastIndex);
+                }
+
+                saleId = (await _saleService
+                    .GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
+                    .FirstOrDefault().SaleId;
+
+                supplierId = (await _supplierService
+                    .GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country }))
+                    .FirstOrDefault().SupplierId;
+
+                SupplierInvoice si = new SupplierInvoice
+                {
+                    SaleId = saleId,
+                    Status = comboBox1.Text,
+                    InvoiceDate = DateClnd.Value,
+                    SupplierId = supplierId,
+                    InvoiceAmount = 0
+                };
+
+                await _supplierInvoiceService.Update(supplierInvoice.InvoiceId, si);
+                MessageBox.Show("Customer updated successfully!");
+                if (quit) Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async Task CreateNewSupplierInvoice(bool quit = false)
+        {
+            List<string> err = new List<string>();
+
+            if (string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text))
+                err.Add("BookingNumber");
+            if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text))
+                err.Add("BookingNumber");
+            if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text))
+                err.Add("SupplierName");
+            if (string.IsNullOrEmpty(comboBox1.Text))
+                err.Add("Status");
+            if (DateClnd.Value == null)
+                err.Add("Date");
+
+            if (saleId == -1)
+            {
+                try
+                {
+                    saleId = (await _saleService.GetAll(new SaleFilter()
+                    {
+                        SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
+                        SaleBookingNumber = BKCmbxUC.Cmbx.Text
+                    })).FirstOrDefault().SaleId;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Invalid input for the sale");
+                    return;
+                }
+            }
+
+            if (supplierId == -1)
+            {
+                try
+                {
+                    string name = NameCmbxUC.Cmbx.Text;
+                    string country = "";
+
+                    int lastIndex = name.LastIndexOf(" - ");
+
+                    if (lastIndex != -1 && lastIndex != name.Length - 3)
+                    {
+                        country = name.Substring(lastIndex + 3);
+                        name = name.Substring(0, lastIndex);
+                    }
+
+                    supplierId = (await _supplierService.GetAll(new SupplierFilter()
+                    {
+                        SupplierName = name,
+                        SupplierCountry = country
+                    })).FirstOrDefault().SupplierId;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Invalid input for the sale");
+                    return;
+                }
+            }
+
+            if (err.Count > 0)
+            {
+                MessageBox.Show("Gli attributi : " + string.Join(",", err) + "\n Sono errati!");
+                return;
+            }
+
+            try
+            {
+                SupplierInvoice si = new SupplierInvoice
+                {
+                    InvoiceDate = DateClnd.Value,
+                    SaleId = saleId,
+                    SupplierId = supplierId,
+                    Status = comboBox1.Text
+                };
+
+                SupplierInvoice newSI = await _supplierInvoiceService.Create(si);
+                MessageBox.Show("Supplier Invoice created Successfully!");
+                if (quit) Close();
+
+                detailsOnly = true;
+                SetVisibility();
+
+                supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter
+                {
+                    SupplierInvoiceCode = newSI.SupplierInvoiceCode
+                })).FirstOrDefault();
+
+                textBox1.Text = supplierInvoice.SupplierInvoiceCode;
+                textBox1.Enabled = false;
+                NameCmbxUC.Enabled = false;
+                comboBox1.Enabled = false;
+                DateClnd.Enabled = false;
+                button2.Enabled = false;
+                BoLCmbxUC.Enabled = false;
+                BKCmbxUC.Enabled = false;
+                OpenSale.Enabled = false;
+
+                await RefreshDGV();
+
+                if (_father != null)
+                {
+                    if (_father is CreateDetailsSaleForm sdf)
+                    {
+                        await sdf.RefreshDgvCustomer();
+                        await sdf.RefreshDgvSupplier();
+                    }
+                    await RefreshDGV();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                supplierId = -1;
+            }
+        }
+
+        private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
+        {
+            if (detailsOnly)
+            {
+                await UpdateExistingSupplierInvoice();
+            }
+            else
+            {
+                await CreateNewSupplierInvoice();
+            }
+        }
+
+
+        private async void SaveQuitBtn_Click(object sender, EventArgs e)
+        {
+            if (detailsOnly)
+            {
+                await UpdateExistingSupplierInvoice(true);
+            }
+            else
+            {
+                await CreateNewSupplierInvoice(true);
             }
         }
     }
