@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -52,8 +51,8 @@ namespace API.Migrations
                     { 36, "China", "CN" },
                     { 37, "Colombia", "CO" },
                     { 38, "Comoros", "KM" },
-                    { 39, "Congo (Congo-Brazzaville)", "CG" },
-                    { 40, "Congo (Congo-Kinshasa)", "CD" },
+                    { 39, "Congo Brazzaville", "CG" },
+                    { 40, "Congo Kinshasa", "CD" },
                     { 41, "Costa Rica", "CR" },
                     { 42, "Croatia", "HR" }
                 });
@@ -116,8 +115,8 @@ namespace API.Migrations
                     { 86, "Kazakhstan", "KZ" },
                     { 87, "Kenya", "KE" },
                     { 88, "Kiribati", "KI" },
-                    { 89, "Korea, North", "KP" },
-                    { 90, "Korea, South", "KR" },
+                    { 89, "Korea North", "KP" },
+                    { 90, "Korea South", "KR" },
                     { 91, "Kuwait", "KW" },
                     { 92, "Kyrgyzstan", "KG" },
                     { 93, "Laos", "LA" },
@@ -215,7 +214,7 @@ namespace API.Migrations
                     { 171, "Tajikistan", "TJ" },
                     { 172, "Tanzania", "TZ" },
                     { 173, "Thailand", "TH" },
-                    { 174, "Timor-Leste", "TL" },
+                    { 174, "Timor Leste", "TL" },
                     { 175, "Togo", "TG" },
                     { 176, "Tonga", "TO" },
                     { 177, "Trinidad and Tobago", "TT" },

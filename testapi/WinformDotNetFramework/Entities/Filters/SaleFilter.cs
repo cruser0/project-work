@@ -4,8 +4,8 @@ namespace WinformDotNetFramework.Entities.Filters
 {
     public class SaleFilter
     {
-        public string SaleBookingNumber { get; set; }
         public string SaleBoLnumber { get; set; }
+        public string SaleBookingNumber { get; set; }
         public DateTime? SaleDateFrom { get; set; }
         public DateTime? SaleDateTo { get; set; }
 

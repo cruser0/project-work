@@ -143,7 +143,7 @@ namespace API.Models.Services
                     break;
             }
             // Add the customerInvoice to the database and save the changes
-
+            customerInvoice.CustomerInvoiceCode = code;
             _context.Add(customerInvoice);
             await _context.SaveChangesAsync();
 

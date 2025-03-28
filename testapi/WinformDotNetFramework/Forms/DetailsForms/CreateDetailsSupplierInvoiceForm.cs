@@ -24,8 +24,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         string bkString;
         string bolString;
-        string nameString;
-        string countryString;
         bool detailsOnly = false;
         Form _father;
 
@@ -175,7 +173,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 BKCmbxUC.Enabled = EditCbx.Checked;
                 BoLCmbxUC.Enabled = EditCbx.Checked;
-                OpenSale.Enabled=EditCbx.Checked;
+                OpenSale.Enabled = EditCbx.Checked;
             }
 
 
@@ -228,9 +226,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     await _supplierInvoiceService.Update(supplierInvoice.InvoiceId, si);
                     MessageBox.Show("Customer updated successfully!");
 
-                    //FORSE DA TOGLIERE
-                    Close();
-                    //FORSE DA TOGLIERE
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
@@ -286,18 +281,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = comboBox1.Text };
                         SupplierInvoice newSI = await _supplierInvoiceService.Create(si);
                         MessageBox.Show("Supplier Invoice created Successfully!");
-                            detailsOnly = true;
-                            SetVisibility();
-                            supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode= newSI.SupplierInvoiceCode } )).FirstOrDefault();
-                            textBox1.Text = supplierInvoice.SupplierInvoiceCode;
-                            textBox1.Enabled = false;
-                            NameCmbxUC.Enabled = false;
-                            comboBox1.Enabled = false;
-                            DateClnd.Enabled = false;
-                            button2.Enabled = false;
-                            BoLCmbxUC.Enabled = false;
-                            BKCmbxUC.Enabled = false;
-                            OpenSale.Enabled = false;
+                        detailsOnly = true;
+                        SetVisibility();
+                        supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter { SupplierInvoiceCode = newSI.SupplierInvoiceCode })).FirstOrDefault();
+                        textBox1.Text = supplierInvoice.SupplierInvoiceCode;
+                        textBox1.Enabled = false;
+                        NameCmbxUC.Enabled = false;
+                        comboBox1.Enabled = false;
+                        DateClnd.Enabled = false;
+                        button2.Enabled = false;
+                        BoLCmbxUC.Enabled = false;
+                        BKCmbxUC.Enabled = false;
+                        OpenSale.Enabled = false;
 
                         await RefreshDGV();
                         if (_father != null)
@@ -322,7 +317,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         public async Task SetList()
         {
             string nameInput = NameCmbxUC.Cmbx.Text;
-            
+
 
             bkString = BKCmbxUC.Cmbx.Text;
             bolString = BoLCmbxUC.Cmbx.Text;

@@ -21,7 +21,7 @@ namespace WinformDotNetFramework.Services
                 { "CustomerCreatedDateFrom", filter.CustomerCreatedDateFrom?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty  },
                 { "CustomerCreatedDateTo", filter.CustomerCreatedDateTo?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty },
                 { "CustomerOriginalID", filter.CustomerOriginalID },
-                
+
 
             };
             foreach (var kvp in filters)
@@ -34,7 +34,13 @@ namespace WinformDotNetFramework.Services
             return queryString;
         }
 
+        public async Task<ICollection<string>> GetAllCountryName(string filter)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
 
+            var returnResult = await GetList<string>(client, "customer/get-all-customer-name-country", $"?filter={filter}");
+            return returnResult;
+        }
         public async Task<ICollection<Customer>> GetAll(CustomerFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);

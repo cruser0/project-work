@@ -17,7 +17,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         CustomerInvoiceService _customerInvoiceService;
         CustomerService _customerService;
         SupplierInvoiceService _supplierInvoiceService;
-        int id = -1;
+        int _id = -1;
+        int _saleId;
 
         SaleCustomerDTO sale;
         bool detailsOnly = false;
@@ -39,6 +40,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             InitializeComponent();
             if (id != null)
             {
+                _saleId = (int)id;
                 detailsOnly = true;
                 int intId = (int)id;
                 sale = await _saleService.GetById(intId);
@@ -56,8 +58,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         SupplierInvoiceSaleID = intId
                     })).ToList();
                 SuInDgv.DataSource = si;
-                UtilityFunctions.SetDropdownText(NameCmbxUC, sale.CustomerName);
-                UtilityFunctions.SetDropdownText(CountryCmbxUC, sale.Country);
+                UtilityFunctions.SetDropdownText(NameCmbxUC, sale.CustomerName + $" - {sale.Country}");
                 bntxt.Text = sale.BookingNumber;
                 boltxt.Text = sale.BoLnumber;
                 saleDateDtp.Value = sale.SaleDate.Value;
@@ -104,7 +105,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             saveBtn.Enabled = !detailsOnly;
             NameCmbxUC.Cmbx.Enabled = !detailsOnly;
-            CountryCmbxUC.Cmbx.Enabled = !detailsOnly;
             bntxt.Enabled = !detailsOnly;
             boltxt.Enabled = !detailsOnly;
             saleDateDtp.Enabled = !detailsOnly;
@@ -119,7 +119,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void EditCB_CheckedChanged(object sender, EventArgs e)
         {
             NameCmbxUC.Cmbx.Enabled = EditCB.Checked;
-            CountryCmbxUC.Cmbx.Enabled = EditCB.Checked;
             bntxt.Enabled = EditCB.Checked;
             boltxt.Enabled = EditCB.Checked;
             saleDateDtp.Enabled = EditCB.Checked;
@@ -130,18 +129,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void saveBtn_Click(object sender, EventArgs e)
         {
-            if (boltxt.TextLength < 1 || bntxt.TextLength < 1 || !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(CountryCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(StatusCmbx.Text))
+            if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
+                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) ||
+                string.IsNullOrEmpty(StatusCmbx.Text))
             {
                 MessageBox.Show("Every field must be filled");
                 return;
             }
             if (detailsOnly)
             {
+                string name = NameCmbxUC.Cmbx.Text;
+                string country = "";
+
+                int lastIndex = name.LastIndexOf(" - ");
+
+                if (lastIndex != -1 && lastIndex != name.Length - 3)
+                {
+                    country = name.Substring(lastIndex + 3);
+
+                    name = name.Substring(0, lastIndex);
+                }
+
 
                 int customerId = (await _customerService.GetAll(new CustomerFilter()
                 {
-                    CustomerName = NameCmbxUC.Cmbx.Text,
-                    CustomerCountry = CountryCmbxUC.Cmbx.Text
+                    CustomerName = name,
+                    CustomerCountry = country
                 })).FirstOrDefault().CustomerId;
 
                 Sale sale = new Sale
@@ -154,10 +167,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 };
                 try
                 {
-                    await _saleService.Update(sale.SaleId, sale);
+                    await _saleService.Update(_saleId, sale);
                     MessageBox.Show("Sale updated successfully!");
 
-                    this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
@@ -170,20 +182,39 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         MessageBox.Show("Select a date");
                         return;
                     }
-                    if (id == -1)
+                    if (_id == -1)
                     {
-                        var customer = (await _customerService.GetAll(new CustomerFilter() { CustomerName = NameCmbxUC.Cmbx.Text, CustomerCountry = CountryCmbxUC.Cmbx.Text })).FirstOrDefault();
-                        id = customer.CustomerId;
+                        string name = NameCmbxUC.Cmbx.Text;
+                        string country = "";
+
+                        int lastIndex = name.LastIndexOf(" - ");
+
+                        if (lastIndex != -1 && lastIndex != name.Length - 3)
+                        {
+                            country = name.Substring(lastIndex + 3);
+
+                            name = name.Substring(0, lastIndex);
+                        }
+
+
+                        int customerId = (await _customerService.GetAll(new CustomerFilter()
+                        {
+                            CustomerName = name,
+                            CustomerCountry = country
+                        })).FirstOrDefault().CustomerId;
+
+                        _id = customerId;
                     }
                     Sale sale1 = new Sale
                     {
                         BookingNumber = bntxt.Text,
                         BoLnumber = boltxt.Text,
                         SaleDate = saleDateDtp.Value,
-                        CustomerId = id,
+                        CustomerId = _id,
                         Status = StatusCmbx.Text
                     };
                     Sale saleReturn = await _saleService.Create(sale1);
+                    _saleId = saleReturn.SaleId;
                     MessageBox.Show("Sale Created successfully!");
                     sale = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = boltxt.Text, SaleBookingNumber = bntxt.Text })).FirstOrDefault();
                     detailsOnly = true;
@@ -201,29 +232,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public void SetCustomerID(string idCustomer)
         {
-            id = int.Parse(idCustomer);
+            _id = int.Parse(idCustomer);
         }
         public void SetCustomerNameCountry(string name, string country)
         {
-            UtilityFunctions.SetDropdownText(NameCmbxUC, name);
-            UtilityFunctions.SetDropdownText(CountryCmbxUC, country);
+            UtilityFunctions.SetDropdownText(NameCmbxUC, name + $" - {country}");
         }
         string cname;
-        string ccountry;
         public async Task SetList()
         {
             cname = NameCmbxUC.Cmbx.Text;
-            ccountry = CountryCmbxUC.Cmbx.Text;
-            var listFiltered = await _customerService.GetAll(new CustomerFilter()
-            {
-                CustomerName = string.IsNullOrEmpty(cname) ? null : cname,
-                CustomerCountry = string.IsNullOrEmpty(ccountry) ? null : ccountry
-            });
+            var CustomerListFiltered = await _customerService.GetAllCountryName(cname);
+            NameCmbxUC.listItemsDropCmbx = CustomerListFiltered.ToList();
 
-            var listItemsName = listFiltered.Select(x => x.CustomerName).ToList();
-            var listItemsCountry = listFiltered.Select(x => x.Country).ToList();
-            NameCmbxUC.listItemsDropCmbx = listItemsName;
-            CountryCmbxUC.listItemsDropCmbx = listItemsCountry;
         }
 
         private void CustomerInvoiceBtn_click(object sender, EventArgs e)

@@ -156,7 +156,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     await _customerService.Update(customerId, customer);
                     MessageBox.Show("Customer updated successfully!");
 
-                    this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
@@ -178,7 +177,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     await _customerService.Create(customer);
                     MessageBox.Show("Customer Created Succesfully");
-                    Close();
 
                 }
                 catch (Exception ex)

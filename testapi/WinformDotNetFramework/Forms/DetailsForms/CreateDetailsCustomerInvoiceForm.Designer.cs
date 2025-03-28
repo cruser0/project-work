@@ -40,7 +40,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label5 = new System.Windows.Forms.Label();
             this.InvoiceAmountTxt = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SaveBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -53,7 +53,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.customerInvoiceCostsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ButtonOpenSales = new System.Windows.Forms.Button();
             this.AddCostBtn = new System.Windows.Forms.Button();
             this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
@@ -180,19 +180,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // button1
+            // SaveBtn
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.button1.Location = new System.Drawing.Point(587, 156);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 25);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Save Changes";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.SaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveBtn.Location = new System.Drawing.Point(587, 156);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(148, 25);
+            this.SaveBtn.TabIndex = 31;
+            this.SaveBtn.Text = "Save Changes";
+            this.SaveBtn.UseVisualStyleBackColor = false;
+            this.SaveBtn.Click += new System.EventHandler(this.Savebutton_Click);
             // 
             // panel1
             // 
@@ -298,7 +298,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.button2);
+            this.panel6.Controls.Add(this.ButtonOpenSales);
             this.panel6.Controls.Add(this.AddCostBtn);
             this.panel6.Controls.Add(this.label1);
             this.panel6.Controls.Add(this.BoLCmbxUC);
@@ -311,7 +311,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.InvoiceDateDTP);
             this.panel6.Controls.Add(this.InvoiceAmountTxt);
-            this.panel6.Controls.Add(this.button1);
+            this.panel6.Controls.Add(this.SaveBtn);
             this.panel6.Controls.Add(this.label5);
             this.panel6.Controls.Add(this.checkBox1);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
@@ -320,20 +320,20 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(750, 222);
             this.panel6.TabIndex = 43;
             // 
-            // button2
+            // ButtonOpenSales
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.button2.Location = new System.Drawing.Point(491, 72);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 25);
-            this.button2.TabIndex = 64;
-            this.button2.Text = "->";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ButtonOpenSales.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ButtonOpenSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.ButtonOpenSales.FlatAppearance.BorderSize = 0;
+            this.ButtonOpenSales.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ButtonOpenSales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.ButtonOpenSales.Location = new System.Drawing.Point(491, 72);
+            this.ButtonOpenSales.Name = "ButtonOpenSales";
+            this.ButtonOpenSales.Size = new System.Drawing.Size(30, 25);
+            this.ButtonOpenSales.TabIndex = 64;
+            this.ButtonOpenSales.Text = "->";
+            this.ButtonOpenSales.UseVisualStyleBackColor = false;
+            this.ButtonOpenSales.Click += new System.EventHandler(this.OpenSaleButton_Click);
             // 
             // AddCostBtn
             // 
@@ -460,7 +460,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Label label5;
         private TextBox InvoiceAmountTxt;
         private CheckBox checkBox1;
-        private Button button1;
+        private Button SaveBtn;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
@@ -482,7 +482,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn customerInvoiceIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn customerInvoiceCostsIdDataGridViewTextBoxColumn;
-        private Button button2;
+        private Button ButtonOpenSales;
         private Button FlushTxtBtn;
     }
 }

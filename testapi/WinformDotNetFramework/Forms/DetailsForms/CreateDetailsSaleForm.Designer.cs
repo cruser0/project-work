@@ -64,9 +64,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.button1 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.OpenSale = new System.Windows.Forms.Button();
-            this.CountryCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.CustomerCountryLbl = new System.Windows.Forms.Label();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.RevenueTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
@@ -129,7 +127,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(533, 11);
+            this.label6.Location = new System.Drawing.Point(295, 97);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 15);
@@ -419,11 +417,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.panel6.Controls.Add(this.OpenSale);
             this.panel6.Controls.Add(this.label2);
-            this.panel6.Controls.Add(this.CountryCmbxUC);
             this.panel6.Controls.Add(this.bntxt);
             this.panel6.Controls.Add(this.NameCmbxUC);
             this.panel6.Controls.Add(this.boltxt);
-            this.panel6.Controls.Add(this.CustomerCountryLbl);
             this.panel6.Controls.Add(this.saleDateDtp);
             this.panel6.Controls.Add(this.CustomerNameLbl);
             this.panel6.Controls.Add(this.label6);
@@ -456,16 +452,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSale.UseVisualStyleBackColor = false;
             this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
             // 
-            // CountryCmbxUC
-            // 
-            this.CountryCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CountryCmbxUC.listItemsDropCmbx = null;
-            this.CountryCmbxUC.Location = new System.Drawing.Point(301, 73);
-            this.CountryCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
-            this.CountryCmbxUC.Name = "CountryCmbxUC";
-            this.CountryCmbxUC.Size = new System.Drawing.Size(200, 23);
-            this.CountryCmbxUC.TabIndex = 50;
-            // 
             // NameCmbxUC
             // 
             this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -475,18 +461,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameCmbxUC.Name = "NameCmbxUC";
             this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
             this.NameCmbxUC.TabIndex = 49;
-            // 
-            // CustomerCountryLbl
-            // 
-            this.CustomerCountryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerCountryLbl.AutoSize = true;
-            this.CustomerCountryLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerCountryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerCountryLbl.Location = new System.Drawing.Point(298, 56);
-            this.CustomerCountryLbl.Name = "CustomerCountryLbl";
-            this.CustomerCountryLbl.Size = new System.Drawing.Size(110, 15);
-            this.CustomerCountryLbl.TabIndex = 48;
-            this.CustomerCountryLbl.Text = "Customer Country*";
             // 
             // CustomerNameLbl
             // 
@@ -507,7 +481,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(301, 99);
+            this.StatusLbl.Location = new System.Drawing.Point(298, 56);
             this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
@@ -519,7 +493,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.RevenueTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RevenueTxt.Enabled = false;
             this.RevenueTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RevenueTxt.Location = new System.Drawing.Point(536, 29);
+            this.RevenueTxt.Location = new System.Drawing.Point(298, 115);
             this.RevenueTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RevenueTxt.Name = "RevenueTxt";
             this.RevenueTxt.Size = new System.Drawing.Size(200, 23);
@@ -535,7 +509,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusCmbx.Items.AddRange(new object[] {
             "Active",
             "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(301, 116);
+            this.StatusCmbx.Location = new System.Drawing.Point(298, 73);
             this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.StatusCmbx.Name = "StatusCmbx";
             this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
@@ -581,7 +555,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
-            // SaleDetailsForm
+            // CreateDetailsSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -595,7 +569,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "SaleDetailsForm";
+            this.Name = "CreateDetailsSaleForm";
             this.Text = "SaleDetailsForm";
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -630,9 +604,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel4;
         private Panel panel5;
         private Panel panel6;
-        public control.DropDownMenuAutoCompleteUserControl CountryCmbxUC;
         public control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
-        public Label CustomerCountryLbl;
         public Label CustomerNameLbl;
         public Label StatusLbl;
         public ComboBox StatusCmbx;

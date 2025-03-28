@@ -28,14 +28,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             Init();
             InitCreate();
-            
+
 
         }
         public CreateDetailsCustomerInvoiceForm(int id)
         {
             Init();
             InitDetails(id);
-            button2.Visible = false;
+            ButtonOpenSales.Visible = false;
 
         }
         public CreateDetailsCustomerInvoiceForm(CreateDetailsSaleForm father, object sale)
@@ -84,7 +84,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             BKCmbxUC.Cmbx.Enabled = false;
             BoLCmbxUC.Cmbx.Enabled = false;
             InvoiceDateDTP.Enabled = false;
-            button1.Enabled = false;
+            SaveBtn.Enabled = false;
             detailsOnly = true;
         }
         private async void Init()
@@ -108,7 +108,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             if (!Authorize(authRolesWrite))
             {
                 checkBox1.Visible = false;
-                button1.Visible = false;
+                SaveBtn.Visible = false;
             }
         }
 
@@ -116,15 +116,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             return allowedRoles.Any(role => UserAccessInfo.Role.Contains(role));
         }
-        private async void button1_Click(object sender, EventArgs e)
+        private async void Savebutton_Click(object sender, EventArgs e)
         {
+            SaleFilter sf = new SaleFilter()
+            {
+                SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
+                SaleBookingNumber = BKCmbxUC.Cmbx.Text
+            };
+
             saleID = (await _saleService
-                .GetAll(new SaleFilter()
-                {
-                    SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
-                    SaleBookingNumber = BKCmbxUC.Cmbx.Text
-                }
-                )).FirstOrDefault().SaleId;
+                .GetAll(sf)).FirstOrDefault().SaleId;
 
             if (detailsOnly)
             {
@@ -133,15 +134,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     SaleId = saleID,
                     Status = StatusCB.Text,
-                    InvoiceDate = InvoiceDateDTP.Value,
-                    InvoiceAmount = 0
+                    InvoiceDate = InvoiceDateDTP.Value
                 };
                 try
                 {
                     await _customerInvoiceService.Update(customerInvoice.CustomerInvoiceId, invoice);
                     MessageBox.Show("Customer Invoice Updated successfully!");
 
-                    this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
@@ -152,7 +151,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     MessageBox.Show("All the fields must be filled");
                     return;
                 }
-                button1.Enabled = false;
+                SaveBtn.Enabled = false;
                 CustomerInvoice invoice = new CustomerInvoice
                 {
                     SaleId = saleID,
@@ -162,19 +161,26 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 try
                 {
-                    customerInvoice=await _customerInvoiceService.Create(invoice);
+                    customerInvoice = await _customerInvoiceService.Create(invoice);
                     MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
 
+                    InitDetails(customerInvoice.CustomerInvoiceId);
+
                     AddCostBtn.Enabled = true;
-                    InvoiceAmountTxt.Text = "0,0";
-                    InvoiceAmountTxt.Visible = true;
                     label5.Visible = true;
+                    checkBox1.Visible = true;
+                    textBox1.Visible = true;
+                    label1.Visible = true;
+                    StatusCB.Visible = true;
+                    label4.Visible = true;
+                    InvoiceAmountTxt.Visible = true;
+
 
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    button1.Enabled = true;
+                    SaveBtn.Enabled = true;
                 }
 
             }
@@ -197,7 +203,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             BKCmbxUC.Cmbx.Enabled = checkBox1.Checked;
             BoLCmbxUC.Cmbx.Enabled = checkBox1.Checked;
             InvoiceDateDTP.Enabled = checkBox1.Checked;
-            button1.Enabled = checkBox1.Checked;
+            SaveBtn.Enabled = checkBox1.Checked;
 
             if (!checkBox1.Checked)
             {
@@ -274,7 +280,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void OpenSaleButton_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<SaleGridForm>(sender, e, this);
         }

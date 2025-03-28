@@ -180,7 +180,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 }
                 if (_father is CreateDetailsCustomerInvoiceForm ccif)
                 {
-                    ccif.SetSaleBkBol(dgv.CurrentRow.Cells["BookingNumber"].Value.ToString(), dgv.CurrentRow.Cells["BoLNumber"].Value.ToString());
+                    ccif.SetSaleBkBol(dgv.CurrentRow.Cells["BoLNumber"].Value.ToString(), dgv.CurrentRow.Cells["BookingNumber"].Value.ToString());
                     ccif.SetSaleID(dgv.CurrentRow.Cells["SaleID"].Value.ToString());
                 }
             }

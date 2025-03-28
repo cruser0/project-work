@@ -190,7 +190,6 @@ namespace WinformDotNetFramework.Forms.AddForms
                         await sidf.RefreshDGV();
                     detailsOnly = true;
 
-                    this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
@@ -211,7 +210,6 @@ namespace WinformDotNetFramework.Forms.AddForms
                     await _supplierInvoiceCostService.Update(detailsSupplierInvoiceCost.SupplierInvoiceCostsId, supplierInvoiceCost);
                     MessageBox.Show("Supplier Invoice Cost updated successfully!");
 
-                    this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }

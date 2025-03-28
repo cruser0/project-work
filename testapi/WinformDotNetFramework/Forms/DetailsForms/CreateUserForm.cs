@@ -62,7 +62,6 @@ namespace WinformDotNetFramework.Forms.AddForms
             {
                 await _userService.Register(user);
                 MessageBox.Show("User Created Succesfully");
-                Close();
 
             }
             catch (Exception ex)

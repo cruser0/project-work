@@ -152,7 +152,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     await _supplierService.Update(supplierID, supplier);
                     MessageBox.Show("Supplier updated successfully!");
 
-                    this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
@@ -177,7 +176,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     {
                         await _supplierService.Create(supplier);
                         MessageBox.Show("Supplier Created Succesfully");
-                        Close();
 
                     }
                     catch (Exception ex)

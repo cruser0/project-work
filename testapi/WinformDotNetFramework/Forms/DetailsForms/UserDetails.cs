@@ -120,7 +120,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 await _userService.EditUserRoles(ar);
                 MessageBox.Show("User updated successfully!");
 
-                this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
