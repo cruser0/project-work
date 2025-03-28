@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
+using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
 {
@@ -18,12 +19,38 @@ namespace WinformDotNetFramework.Forms.control
             InitializeComponent();
             Init();
         }
-        private async void Init()
+        public async void Init()
         {
             List<CostRegistry> list = (await UtilityFunctions.GetCostRegistry()).ToList();
             NameCmbx.DataSource =list.Select(x=>x.CostRegistryName).ToList() ;
             CodeCmbx.DataSource =list.Select(x=>x.CostRegistryUniqueCode).ToList() ;
 
+        }
+        public CostRegistryFilter GetFilter()
+        {
+            CostRegistryFilter costRegistryfilter = new CostRegistryFilter();
+
+            if (!string.IsNullOrEmpty(NameCmbx.Text))
+            {
+                if (NameCmbx.Text.Equals("All"))
+                    costRegistryfilter.CostRegistryName = null;
+                else
+                    costRegistryfilter.CostRegistryName = NameCmbx.Text;
+            }
+            else
+                costRegistryfilter.CostRegistryName = null;
+            
+            if (!string.IsNullOrEmpty(CodeCmbx.Text))
+            {
+                if (CodeCmbx.Text.Equals("All"))
+                    costRegistryfilter.CostRegistryCode = null;
+                else
+                    costRegistryfilter.CostRegistryCode = CodeCmbx.Text;
+            }
+            else
+                costRegistryfilter.CostRegistryCode = null;
+
+            return costRegistryfilter;
         }
     }
 }
