@@ -184,12 +184,6 @@
     <Compile Include="Forms\DetailsForms\CreateDetailsSupplierInvoiceCostForm.Designer.cs">
       <DependentUpon>CreateDetailsSupplierInvoiceCostForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DetailsForms\CreateUserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DetailsForms\CreateUserForm.Designer.cs">
-      <DependentUpon>CreateUserForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\control\BaseGridUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -406,11 +400,11 @@
     <Compile Include="Forms\DetailsForms\CreateDetailsSupplierInvoiceForm.Designer.cs">
       <DependentUpon>CreateDetailsSupplierInvoiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DetailsForms\UserDetails.cs">
+    <Compile Include="Forms\DetailsForms\CreateDetailsUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DetailsForms\UserDetails.Designer.cs">
-      <DependentUpon>UserDetails.cs</DependentUpon>
+    <Compile Include="Forms\DetailsForms\CreateDetailsUserForm.Designer.cs">
+      <DependentUpon>CreateDetailsUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GridForms\CostRegistyGridForm.cs">
       <SubType>Form</SubType>
@@ -579,9 +573,6 @@
     <EmbeddedResource Include="Forms\DetailsForms\CreateDetailsSupplierInvoiceCostForm.resx">
       <DependentUpon>CreateDetailsSupplierInvoiceCostForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DetailsForms\CreateUserForm.resx">
-      <DependentUpon>CreateUserForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\BaseGridUserControl.resx">
       <DependentUpon>BaseGridUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -687,8 +678,8 @@
     <EmbeddedResource Include="Forms\DetailsForms\CreateDetailsSupplierInvoiceForm.resx">
       <DependentUpon>CreateDetailsSupplierInvoiceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DetailsForms\UserDetails.resx">
-      <DependentUpon>UserDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DetailsForms\CreateDetailsUserForm.resx">
+      <DependentUpon>CreateDetailsUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridForms\CostRegistyGridForm.resx">
       <DependentUpon>CostRegistyGridForm.cs</DependentUpon>

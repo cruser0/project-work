@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.control;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
@@ -289,7 +288,7 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Create User":
-                    child = new CreateUserForm();
+                    child = new CreateDetailsUserForm();
                     break;
 
                 case "Group Supplier":

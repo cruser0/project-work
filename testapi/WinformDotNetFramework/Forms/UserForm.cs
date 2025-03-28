@@ -22,7 +22,7 @@ namespace WinformDotNetFramework.Forms
                 if (e.RowIndex == -1)
                     return;
 
-                UtilityFunctions.OpenFormDetails<UserDetailsForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["UserID"].Value.ToString()));
+                UtilityFunctions.OpenFormDetails<CreateDetailsUserForm>(sender, e, int.Parse(dgv.CurrentRow.Cells["UserID"].Value.ToString()));
 
             }
         }
@@ -31,13 +31,13 @@ namespace WinformDotNetFramework.Forms
             Form MainForm = Application.OpenForms.OfType<MainForm>().First();
             TableLayoutPanel minimizedPanel = (TableLayoutPanel)MainForm.Controls.Find("minimizedPanel", true)[0];
 
-            var form = Application.OpenForms.OfType<UserDetailsForm>().FirstOrDefault();
+            var form = Application.OpenForms.OfType<CreateDetailsUserForm>().FirstOrDefault();
 
             foreach (var button in minimizedPanel.Controls)
             {
                 if (button is formDockButton btn)
                 {
-                    if (btn.getForm() is UserDetailsForm f)
+                    if (btn.getForm() is CreateDetailsUserForm f)
                     {
                         f.Close();
                         minimizedPanel.Controls.Remove(btn);
