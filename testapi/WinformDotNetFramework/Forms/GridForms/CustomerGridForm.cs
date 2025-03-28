@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Entities.Preference;
-using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
@@ -48,6 +47,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 return;
             CustomerDgv.ReadOnly = true;
 
+
             pages = (int)Math.Ceiling(await _customerService.Count(new CustomerFilter() { CustomerDeprecated = false }) / itemsPage);
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
@@ -84,7 +84,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             CustomerDgv.DataSource = query1.ToList();
 
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await totalCount / itemsPage)).ToString();
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await totalCount / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
         }
@@ -93,7 +93,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<Customer> query = await getAllNotFiltered;
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 

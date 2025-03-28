@@ -35,14 +35,26 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panel5
+            // 
+            this.panel5.Location = new System.Drawing.Point(251, 0);
+            // 
             // CenterPanel
             // 
-            this.CenterPanel.Location = new System.Drawing.Point(100, 0);
-            this.CenterPanel.Size = new System.Drawing.Size(500, 363);
+            this.CenterPanel.Location = new System.Drawing.Point(200, 0);
+            this.CenterPanel.Size = new System.Drawing.Size(400, 374);
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.Location = new System.Drawing.Point(24, 24);
             // 
             // RightSideBar
             // 
-            this.RightSideBar.Size = new System.Drawing.Size(200, 363);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 374);
+            // 
+            // TextBoxesRightPanel
+            // 
+            this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 369);
             // 
             // BottomPanel
             // 
@@ -54,7 +66,8 @@
             // 
             // panel1
             // 
-            this.panel1.Size = new System.Drawing.Size(200, 363);
+            this.panel1.Location = new System.Drawing.Point(600, 0);
+            this.panel1.Size = new System.Drawing.Size(200, 374);
             // 
             // leftSideBarUSerControl1
             // 
@@ -62,14 +75,14 @@
             this.leftSideBarUSerControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftSideBarUSerControl1.Location = new System.Drawing.Point(0, 0);
             this.leftSideBarUSerControl1.Name = "leftSideBarUSerControl1";
-            this.leftSideBarUSerControl1.Size = new System.Drawing.Size(100, 363);
+            this.leftSideBarUSerControl1.Size = new System.Drawing.Size(200, 374);
             this.leftSideBarUSerControl1.TabIndex = 14;
             // 
             // CostRegistryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.leftSideBarUSerControl1);
             this.Name = "CostRegistryForm";
             this.Text = "CostRegistryForm";

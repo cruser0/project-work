@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.NameCmbx = new System.Windows.Forms.ComboBox();
+            this.CodeCmbx = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.CountryLvl = new System.Windows.Forms.Label();
-            this.CodeCmbx = new System.Windows.Forms.ComboBox();
-            this.NameCmbx = new System.Windows.Forms.ComboBox();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,28 @@
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(210, 125);
             this.TextBoxesRightPanel.TabIndex = 8;
+            // 
+            // NameCmbx
+            // 
+            this.NameCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.NameCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.NameCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.NameCmbx.FormattingEnabled = true;
+            this.NameCmbx.Location = new System.Drawing.Point(3, 40);
+            this.NameCmbx.Name = "NameCmbx";
+            this.NameCmbx.Size = new System.Drawing.Size(180, 21);
+            this.NameCmbx.TabIndex = 25;
+            // 
+            // CodeCmbx
+            // 
+            this.CodeCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CodeCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CodeCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CodeCmbx.FormattingEnabled = true;
+            this.CodeCmbx.Location = new System.Drawing.Point(3, 84);
+            this.CodeCmbx.Name = "CodeCmbx";
+            this.CodeCmbx.Size = new System.Drawing.Size(180, 21);
+            this.CodeCmbx.TabIndex = 24;
             // 
             // label4
             // 
@@ -85,26 +107,6 @@
             this.CountryLvl.Size = new System.Drawing.Size(121, 17);
             this.CountryLvl.TabIndex = 4;
             this.CountryLvl.Text = "Cost RegistryCode";
-            // 
-            // CodeCmbx
-            // 
-            this.CodeCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.CodeCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.CodeCmbx.FormattingEnabled = true;
-            this.CodeCmbx.Location = new System.Drawing.Point(3, 84);
-            this.CodeCmbx.Name = "CodeCmbx";
-            this.CodeCmbx.Size = new System.Drawing.Size(180, 21);
-            this.CodeCmbx.TabIndex = 24;
-            // 
-            // NameCmbx
-            // 
-            this.NameCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.NameCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.NameCmbx.FormattingEnabled = true;
-            this.NameCmbx.Location = new System.Drawing.Point(3, 40);
-            this.NameCmbx.Name = "NameCmbx";
-            this.NameCmbx.Size = new System.Drawing.Size(180, 21);
-            this.NameCmbx.TabIndex = 25;
             // 
             // SearchCostRegistry
             // 

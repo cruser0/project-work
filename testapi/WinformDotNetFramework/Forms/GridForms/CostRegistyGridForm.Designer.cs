@@ -95,7 +95,7 @@
             this.CenterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CenterPanel.Location = new System.Drawing.Point(0, 0);
             this.CenterPanel.Name = "CenterPanel";
-            this.CenterPanel.Size = new System.Drawing.Size(600, 363);
+            this.CenterPanel.Size = new System.Drawing.Size(584, 374);
             this.CenterPanel.TabIndex = 12;
             // 
             // CostRegistryDgv
@@ -111,8 +111,10 @@
             this.CostRegistryDgv.Name = "CostRegistryDgv";
             this.CostRegistryDgv.ReadOnly = true;
             this.CostRegistryDgv.RowTemplate.Height = 25;
-            this.CostRegistryDgv.Size = new System.Drawing.Size(600, 338);
+            this.CostRegistryDgv.Size = new System.Drawing.Size(584, 349);
             this.CostRegistryDgv.TabIndex = 7;
+            this.CostRegistryDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MyControl_OpenDetails_Clicked);
+            this.CostRegistryDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.CostRegistryDgv_RightClick);
             // 
             // CostRegistryTS
             // 
@@ -124,7 +126,7 @@
             this.MassDeleteTSB});
             this.CostRegistryTS.Location = new System.Drawing.Point(0, 0);
             this.CostRegistryTS.Name = "CostRegistryTS";
-            this.CostRegistryTS.Size = new System.Drawing.Size(600, 25);
+            this.CostRegistryTS.Size = new System.Drawing.Size(584, 25);
             this.CostRegistryTS.TabIndex = 10;
             this.CostRegistryTS.Text = "toolStrip1";
             // 
@@ -137,6 +139,7 @@
             this.ToggleEditButton.Size = new System.Drawing.Size(69, 22);
             this.ToggleEditButton.Text = "Toggle Edit";
             this.ToggleEditButton.ToolTipText = "Toggle Edit Mode";
+            this.ToggleEditButton.Click += new System.EventHandler(this.ToggleEditButton_Click);
             // 
             // toolStripButton2
             // 
@@ -147,6 +150,7 @@
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton1";
             this.toolStripButton2.ToolTipText = "Save Changes";
+            this.toolStripButton2.Click += new System.EventHandler(this.MassUpdateTSB_Click);
             // 
             // MassDeleteTSB
             // 
@@ -157,6 +161,7 @@
             this.MassDeleteTSB.Size = new System.Drawing.Size(23, 22);
             this.MassDeleteTSB.Text = "toolStripButton4";
             this.MassDeleteTSB.ToolTipText = "Delete Selected Items";
+            this.MassDeleteTSB.Click += new System.EventHandler(this.MassDeleteTSB_Click);
             // 
             // CustomerGdv
             // 
@@ -167,7 +172,7 @@
             this.CustomerGdv.Location = new System.Drawing.Point(0, 0);
             this.CustomerGdv.Name = "CustomerGdv";
             this.CustomerGdv.RowTemplate.Height = 25;
-            this.CustomerGdv.Size = new System.Drawing.Size(600, 363);
+            this.CustomerGdv.Size = new System.Drawing.Size(584, 374);
             this.CustomerGdv.TabIndex = 6;
             // 
             // CustomerStatusTsmi
@@ -178,6 +183,7 @@
             this.CustomerStatusTsmi.Name = "CustomerStatusTsmi";
             this.CustomerStatusTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerStatusTsmi.Text = "Show Status";
+            this.CustomerStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerOriginalIDTsmi
             // 
@@ -185,6 +191,7 @@
             this.CustomerOriginalIDTsmi.Name = "CustomerOriginalIDTsmi";
             this.CustomerOriginalIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerOriginalIDTsmi.Text = "Show Original ID";
+            this.CustomerOriginalIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerDateTsmi
             // 
@@ -194,6 +201,7 @@
             this.CustomerDateTsmi.Name = "CustomerDateTsmi";
             this.CustomerDateTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerDateTsmi.Text = "Show Date";
+            this.CustomerDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerCountryTsmi
             // 
@@ -203,6 +211,7 @@
             this.CustomerCountryTsmi.Name = "CustomerCountryTsmi";
             this.CustomerCountryTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerCountryTsmi.Text = "Show Country";
+            this.CustomerCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerNameTsmi
             // 
@@ -212,6 +221,7 @@
             this.CustomerNameTsmi.Name = "CustomerNameTsmi";
             this.CustomerNameTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerNameTsmi.Text = "Show Name";
+            this.CustomerNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CustomerIDTsmi
             // 
@@ -219,6 +229,7 @@
             this.CustomerIDTsmi.Name = "CustomerIDTsmi";
             this.CustomerIDTsmi.Size = new System.Drawing.Size(162, 22);
             this.CustomerIDTsmi.Text = "Show ID";
+            this.CustomerIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // RightClickDgv
             // 
@@ -250,16 +261,16 @@
             this.BottomPanel.Controls.Add(this.panel4);
             this.BottomPanel.Controls.Add(this.panel3);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BottomPanel.Location = new System.Drawing.Point(0, 363);
+            this.BottomPanel.Location = new System.Drawing.Point(0, 374);
             this.BottomPanel.Name = "BottomPanel";
-            this.BottomPanel.Size = new System.Drawing.Size(600, 87);
+            this.BottomPanel.Size = new System.Drawing.Size(584, 87);
             this.BottomPanel.TabIndex = 11;
             // 
             // panel4
             // 
             this.panel4.AutoSize = true;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(600, 0);
+            this.panel4.Location = new System.Drawing.Point(584, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(0, 87);
             this.panel4.TabIndex = 1;
@@ -269,9 +280,9 @@
             this.panel1.Controls.Add(this.TextBoxesRightPanel);
             this.panel1.Controls.Add(this.RightSideBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(600, 0);
+            this.panel1.Location = new System.Drawing.Point(584, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 450);
+            this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 10;
             // 
             // PaginationUserControl
@@ -295,19 +306,22 @@
             this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightSideBar.Location = new System.Drawing.Point(0, 0);
             this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 450);
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
             this.RightSideBar.TabIndex = 0;
             // 
             // CostRegistryGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.CenterPanel);
             this.Controls.Add(this.BottomPanel);
             this.Controls.Add(this.panel1);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CostRegistryGridForm";
             this.Text = "CostRegistryGridForm";
+            this.Load += new System.EventHandler(this.CostRegistryGridForm_Load);
+            this.Resize += new System.EventHandler(this.CostRegistryGridForm_Resize);
             this.panel5.ResumeLayout(false);
             this.CenterPanel.ResumeLayout(false);
             this.CenterPanel.PerformLayout();

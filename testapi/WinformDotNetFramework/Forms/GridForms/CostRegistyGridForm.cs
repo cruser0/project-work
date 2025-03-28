@@ -27,7 +27,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             InitializeComponent();
             _costRegistryService = new CostRegistryService();
             _userService = new UserService();
-           
+
         }
 
         private async Task Init()
@@ -71,7 +71,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             CostRegistryDgv.DataSource = query1.ToList();
 
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await totalCount / itemsPage)).ToString();
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await totalCount / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
         }
@@ -230,10 +230,27 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async void CostRegistryGridForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+                return;
+
             await Init();
             getAllNotFiltered = _costRegistryService.GetAll(filter);
             countNotFiltered = _costRegistryService.Count(new CostRegistryFilter());
 
+
+
+            // DA TOGLIERE DOPO !!!
+            await Task.WhenAll(/*getFav,*/ countNotFiltered, getAllNotFiltered);
+            IEnumerable<CostRegistry> query = await getAllNotFiltered;
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
+            if (mPage <= 0)
+                mPage = 1;
+
+            PaginationUserControl.maxPage = mPage.ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+
+            CostRegistryDgv.DataSource = query.ToList();
+            PaginationUserControl.Visible = true;
             //getFav = _userService.GetCostRegistryDGV();
             //await SetCheckBoxes();
         }
