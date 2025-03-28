@@ -42,6 +42,13 @@ namespace WinformDotNetFramework.Services
             var returnResult = await GetList<Supplier>(client, "supplier", queryString);
             return returnResult;
         }
+        public async Task<ICollection<string>> GetAllCountryName(string filter)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+
+            var returnResult = await GetList<string>(client, "supplier/get-all-supplier-name-country", $"?filter={filter}");
+            return returnResult;
+        }
 
         public async Task<Supplier> GetById(int id)
         {

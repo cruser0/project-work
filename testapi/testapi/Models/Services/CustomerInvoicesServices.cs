@@ -134,6 +134,16 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException($"The Sale is already closed");
 
             customerInvoice.InvoiceAmount = 0;
+
+            string code;
+            while (true)
+            {
+                code = "CINV-" + Guid.NewGuid().ToString("N").Substring(0, 20);
+                if (!await _context.CustomerInvoices.AnyAsync(x => x.CustomerInvoiceCode.Equals(code)))
+                    break;
+            }
+            // Add the customerInvoice to the database and save the changes
+
             _context.Add(customerInvoice);
             await _context.SaveChangesAsync();
 

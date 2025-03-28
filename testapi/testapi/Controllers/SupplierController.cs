@@ -1,4 +1,5 @@
 ﻿using API.Models.DTO;
+using API.Models.Entities;
 using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
@@ -33,6 +34,20 @@ namespace API.Controllers
                 return Ok(data);
             }
             else return Ok(new List<SupplierDTOGet>());
+
+        }
+        // GET: api/<SupplierController>
+        [Authorize(Roles = "Admin,SupplierRead,SupplierWrite,SupplierAdmin")]
+        [HttpGet("get-all-supplier-name-country")]
+        public async Task<IActionResult> GetNameCountry([FromQuery] string? filter)
+        {
+
+            List<string> data = await _supplierService.GetAllSuppliersNameCountry(filter);
+            if (data.Any())
+            {
+                return Ok(data);
+            }
+            else return Ok(new List<string>());
 
         }
 

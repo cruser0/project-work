@@ -39,6 +39,19 @@ namespace API.Controllers
             }
             else return Ok(new List<CustomerDTOGet>());
         }
+        // GET: api/<CustomerController>
+
+        [Authorize(Roles = "Admin,CustomerRead,CustomerWrite,CustomerAdmin,SaleWrite,SaleAdmin")]
+        [HttpGet("get-all-customer-name-country")]
+        public async Task<IActionResult> GetCustomerNameCountry([FromQuery] string? filter)
+        {
+            List<string> data = await _customerService.GetAllCustomersNameCountry(filter);
+            if (data.Any())
+            {
+                return Ok(data);
+            }
+            else return Ok(new List<string>());
+        }
 
 
 

@@ -167,13 +167,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void EditCustomerCbx_CheckedChanged(object sender, EventArgs e)
         {
-            BKCmbxUC.Cmbx.Enabled = EditCbx.Checked;
-            BoLCmbxUC.Cmbx.Enabled = EditCbx.Checked;
-            NameCmbxUC.Cmbx.Enabled = EditCbx.Checked;
+            NameCmbxUC.Enabled = EditCbx.Checked;
             comboBox1.Enabled = EditCbx.Checked;
             DateClnd.Enabled = EditCbx.Checked;
-            NameCmbxUC.Enabled = EditCbx.Checked;
             button2.Enabled = EditCbx.Checked;
+            if (_father == null)
+            {
+                BKCmbxUC.Enabled = EditCbx.Checked;
+                BoLCmbxUC.Enabled = EditCbx.Checked;
+                OpenSale.Enabled=EditCbx.Checked;
+            }
 
 
             if (!EditCbx.Checked)
@@ -280,19 +283,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     try
                     {
-                        var code = Guid.NewGuid().ToString("N").Substring(0, 20);
-                        SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = comboBox1.Text, SupplierInvoiceCode = code, };
-                        await _supplierInvoiceService.Create(si);
+                        SupplierInvoice si = new SupplierInvoice { InvoiceDate = DateClnd.Value, SaleId = saleId, SupplierId = supplierId, Status = comboBox1.Text };
+                        SupplierInvoice newSI = await _supplierInvoiceService.Create(si);
                         MessageBox.Show("Supplier Invoice created Successfully!");
                             detailsOnly = true;
                             SetVisibility();
-                            supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode=code } )).FirstOrDefault();
-                            textBox1.Text = code;
+                            supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter {SupplierInvoiceCode= newSI.SupplierInvoiceCode } )).FirstOrDefault();
+                            textBox1.Text = supplierInvoice.SupplierInvoiceCode;
                             textBox1.Enabled = false;
                             NameCmbxUC.Enabled = false;
                             comboBox1.Enabled = false;
                             DateClnd.Enabled = false;
                             button2.Enabled = false;
+                            BoLCmbxUC.Enabled = false;
+                            BKCmbxUC.Enabled = false;
+                            OpenSale.Enabled = false;
 
                         await RefreshDGV();
                         if (_father != null)
@@ -316,33 +321,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         public async Task SetList()
         {
-            string name = NameCmbxUC.Cmbx.Text;
-            string country = "";
+            string nameInput = NameCmbxUC.Cmbx.Text;
+            
 
-            int lastIndex = name.LastIndexOf(" - ");
-
-            if (lastIndex != -1)
-            {
-                string possibleCountry = name.Substring(lastIndex + 3);
-
-                if (!string.IsNullOrWhiteSpace(possibleCountry))
-                {
-                    country = possibleCountry;
-                    name = name.Substring(0, lastIndex);
-                }
-                else
-                {
-                    name = name.Substring(0, lastIndex);
-                }
-            }
             bkString = BKCmbxUC.Cmbx.Text;
             bolString = BoLCmbxUC.Cmbx.Text;
-            nameString = name;
-            countryString = country;
-
-
             if (string.IsNullOrEmpty(bkString) && string.IsNullOrEmpty(bolString) &&
-                string.IsNullOrEmpty(nameString) && string.IsNullOrEmpty(countryString))
+                string.IsNullOrEmpty(nameInput))
             {
                 BKCmbxUC.listItemsDropCmbx = new List<string>();
                 BoLCmbxUC.listItemsDropCmbx = new List<string>();
@@ -350,48 +335,33 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 return;
             }
 
-            // Fetch all sales based on the current filter conditions
             var SaleListFiltered = await _saleService.GetAll(new SaleFilter()
             {
-                // Only apply filters if at least one combobox has a value
                 SaleBookingNumber = !string.IsNullOrEmpty(bkString) ? bkString : null,
                 SaleBoLnumber = !string.IsNullOrEmpty(bolString) ? bolString : null,
-                SaleStatus="Active"
+                SaleStatus = "Active"
             });
 
-            var SupplierListFiltered = await _supplierService.GetAll(new SupplierFilter()
-            {
-                // Only apply filters if at least one combobox has a value
-                SupplierName = !string.IsNullOrEmpty(nameString) ? nameString : null,
-                SupplierCountry = !string.IsNullOrEmpty(countryString) ? countryString : null,
-                SupplierDeprecated=false
-            });
+            var SupplierListFiltered = await _supplierService.GetAllCountryName(nameInput);
 
-            // Filter Booking Number suggestions
             var listItemsBk = SaleListFiltered
                 .Where(x => string.IsNullOrEmpty(bolString) || x.BoLnumber == bolString)
                 .Select(x => x.BookingNumber)
                 .Distinct()
                 .ToList();
 
-            // Filter BoL Number suggestions
             var listItemsBol = SaleListFiltered
                 .Where(x => string.IsNullOrEmpty(bkString) || x.BookingNumber == bkString)
                 .Select(x => x.BoLnumber)
                 .Distinct()
                 .ToList();
 
-            var listItemsName = SupplierListFiltered
-                .Where(x => string.IsNullOrEmpty(countryString) || x.Country.StartsWith(countryString))
-                .Select(x => x.SupplierName + $" - {x.Country}")
-                .Distinct()
-                .ToList();
 
-            // Update combobox suggestions
             BKCmbxUC.listItemsDropCmbx = listItemsBk;
             BoLCmbxUC.listItemsDropCmbx = listItemsBol;
-            NameCmbxUC.listItemsDropCmbx = listItemsName;
+            NameCmbxUC.listItemsDropCmbx = SupplierListFiltered.ToList();
         }
+
 
         private void AddCostBtn_Click(object sender, EventArgs e)
         {

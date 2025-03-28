@@ -161,6 +161,14 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException("Status is not valid");
             if (supplierInvoice.InvoiceDate == null || supplierInvoice.InvoiceDate > DateTime.Now)
                 throw new ErrorInputPropertyException("Date is not valid");
+            string code;
+            while (true)
+            {
+            code ="SINV-"+Guid.NewGuid().ToString("N").Substring(0, 20);
+            if(!await _context.SupplierInvoices.AnyAsync(x=>x.SupplierInvoiceCode.Equals(code)))
+                    break;
+            }
+            supplierInvoice.SupplierInvoiceCode = code;
 
             supplierInvoice.InvoiceAmount = 0;
             _context.Add(supplierInvoice);

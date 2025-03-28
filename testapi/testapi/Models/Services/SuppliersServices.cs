@@ -18,8 +18,7 @@ namespace API.Models.Services
         Task<int> CountSuppliers(SupplierFilter filter);
         Task<string> MassDeleteSupplier(List<int> supplierId);
         Task<string> MassUpdateSupplier(List<SupplierDTOGet> newSuppliers);
-
-
+        Task<List<string>> GetAllSuppliersNameCountry(string? filter);
     }
     public class SupplierService : ISupplierService
     {
@@ -312,7 +311,21 @@ namespace API.Models.Services
             }
         }
 
+        public async Task<List<string>> GetAllSuppliersNameCountry(string? filter)
+        {
+            var query = _context.Suppliers
+                .Include(x => x.Country)
+                .Select(x => new { x.SupplierName, CountryName = x.Country.CountryName });
 
+            if (!string.IsNullOrEmpty(filter))
+            {
+                query = query.Where(x => (x.SupplierName + " - " + x.CountryName).StartsWith(filter));
+            }
+
+            return await query
+                .Select(x => x.SupplierName + " - " + x.CountryName)
+                .ToListAsync();
+        }
 
     }
 }
