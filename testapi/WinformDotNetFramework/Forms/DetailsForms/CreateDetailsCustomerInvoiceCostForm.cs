@@ -9,7 +9,7 @@ using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
-namespace WinformDotNetFramework.Forms.AddForms
+namespace WinformDotNetFramework.Forms.DetailsForms
 {
     public partial class CreateDetailsCustomerInvoiceCostForm : Form
     {

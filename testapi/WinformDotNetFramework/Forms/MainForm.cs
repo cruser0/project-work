@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Forms.AddForms;
 using WinformDotNetFramework.Forms.control;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
@@ -135,7 +134,7 @@ namespace WinformDotNetFramework.Forms
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
         }
 
-        public async void buttonOpenChild_Click(object sender, EventArgs e)
+        public void buttonOpenChild_Click(object sender, EventArgs e)
         {
             var menuItem = sender as ToolStripButton;
 
@@ -289,7 +288,7 @@ namespace WinformDotNetFramework.Forms
                     break;
 
                 case "Create User":
-                    child = new CreateUserForm();
+                    child = new CreateDetailsUserForm();
                     break;
 
                 case "Group Supplier":
