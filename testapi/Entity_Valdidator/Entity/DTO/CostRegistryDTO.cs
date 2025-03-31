@@ -17,7 +17,7 @@ namespace Entity_Validator.Entity.DTO
         public decimal? CostRegistryPrice { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [Range(0, int.MaxValue, ErrorMessage = "{0} must be grater than 0."))]
+        [Range(1, int.MaxValue, ErrorMessage = "{0} must be grater than 0."))]
         public int? CostRegistryQuantity { get; set; }
 
 
