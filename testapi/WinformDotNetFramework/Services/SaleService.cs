@@ -1,17 +1,17 @@
 ﻿
 
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
+
 
 namespace WinformDotNetFramework.Services
 {
     internal class SaleService : BaseCallService
     {
-        private string BuildQueryParams(SaleFilter filter)
+        private string BuildQueryParams(SaleCustomerFilter filter)
         {
             var queryParameters = new List<string>();
 
@@ -37,7 +37,7 @@ namespace WinformDotNetFramework.Services
             return queryString;
         }
 
-        public async Task<ICollection<SaleCustomerDTO>> GetAll(SaleFilter filter)
+        public async Task<ICollection<SaleCustomerDTO>> GetAll(SaleCustomerFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
@@ -52,7 +52,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<int> Count(SaleFilter filter)
+        public async Task<int> Count(SaleCustomerFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);

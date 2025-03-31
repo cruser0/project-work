@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Entity_Validator.Entity.Filters;
+using Entity_Validator.Entity.Procedures;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Procedures;
 
 namespace WinformDotNetFramework.Services
 {

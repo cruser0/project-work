@@ -1,9 +1,9 @@
 ﻿
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Services
 {
@@ -62,7 +62,7 @@ namespace WinformDotNetFramework.Services
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await PostItem(client, $"customer-invoice-cost", entity, "Customer Invoice Cost");
-            return  returnResult;
+            return returnResult;
         }
 
         public async Task<CustomerInvoiceCostDTOGet> Update(int id, CustomerInvoiceCostDTOGet entity)
