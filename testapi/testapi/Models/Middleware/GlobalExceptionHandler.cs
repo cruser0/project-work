@@ -89,6 +89,21 @@ namespace API.Models.Middleware
                 context.Response.ContentType = "application/json";
                 await context.Response.WriteAsync(json);
             }
+            catch (ValidateException ex)
+            {
+                context.Response.StatusCode = 422;
+                ProblemDetails problemDetails = new ProblemDetails
+                {
+                    Detail = ex.Message,
+                    Status = 422,
+                    Title = "Unprocessable Entity",
+                    Type = "Server Error"
+                };
+                string json = JsonSerializer.Serialize(problemDetails);
+
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(json);
+            }
 
             catch (Exception ex)
             {
@@ -97,14 +112,15 @@ namespace API.Models.Middleware
                 {
                     Detail = ex.Message,
                     Status = 500,
-                    Title="Internal Server Error",
-                    Type ="Server Error"
+                    Title = "Internal Server Error",
+                    Type = "Server Error"
                 };
-                string json=JsonSerializer.Serialize(problemDetails);
+                string json = JsonSerializer.Serialize(problemDetails);
 
                 context.Response.ContentType = "application/json";
                 await context.Response.WriteAsync(json);
             }
+
         }
     }
 }
