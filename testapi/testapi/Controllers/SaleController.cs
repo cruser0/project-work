@@ -3,6 +3,8 @@ using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
