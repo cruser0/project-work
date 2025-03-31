@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Reflection;
@@ -124,16 +125,18 @@ namespace Entity_Validator
             if (!this.IsInverted && object.Equals(otherValue, this.OtherPropertyValue) ||
                 this.IsInverted && !object.Equals(otherValue, this.OtherPropertyValue))
             {
+
+
                 if (value == null)
                 {
-                    return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
+                    return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName), new List<string> { validationContext.DisplayName });
                 }
 
                 // additional check for strings so they're not empty
                 string val = value as string;
                 if (val != null && val.Trim().Length == 0)
                 {
-                    return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
+                    return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName), new List<string> { validationContext.DisplayName });
                 }
             }
 

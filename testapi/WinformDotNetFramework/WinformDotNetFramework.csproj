@@ -507,6 +507,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RedTextBox.Designer.cs">
+      <DependentUpon>RedTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\BaseCallService.cs" />
     <Compile Include="Services\CostRegistryService.cs" />
     <Compile Include="Services\UtilityService.cs" />
@@ -791,7 +797,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Exceptions\" />
     <Folder Include="Properties\Resources\Charts\" />
   </ItemGroup>
   <ItemGroup>

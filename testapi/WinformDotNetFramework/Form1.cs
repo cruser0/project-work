@@ -9,6 +9,7 @@ namespace WinformDotNetFramework
 {
     public partial class Form1 : Form
     {
+        public bool validated;
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +34,8 @@ namespace WinformDotNetFramework
             {
                 results += item.ToString() + "\n";
             }
+            validated = validationResults.Count == 0;
+
             if (validationResults.Count == 0)
                 results = "validato";
             MessageBox.Show(results);
@@ -48,7 +51,7 @@ namespace WinformDotNetFramework
             {
                 results += item.ErrorMessage + "\n";
             }
-
+            validated = validationResults.Count == 0;
             if (validationResults.Count == 0)
                 results = "validato";
 
