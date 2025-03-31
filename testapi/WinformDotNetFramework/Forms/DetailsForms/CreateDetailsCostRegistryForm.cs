@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -108,21 +103,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
             else
             {
-                if (DescriptionTxt.Text.Length < 1 || string.IsNullOrEmpty(DefaultQuantityIntegerTxt.GetText()) || string.IsNullOrEmpty(DefaultCostDecimalTxt.GetText()) ||UniqueCodeTxt.TextLength<1)
+                if (DescriptionTxt.Text.Length < 1 || string.IsNullOrEmpty(DefaultQuantityIntegerTxt.GetText()) || string.IsNullOrEmpty(DefaultCostDecimalTxt.GetText()) || UniqueCodeTxt.TextLength < 1)
                 {
                     MessageBox.Show("Input data error!");
                     return;
                 }
-                if(decimal.Parse(DefaultCostDecimalTxt.GetText())<0)
+                if (decimal.Parse(DefaultCostDecimalTxt.GetText()) < 0)
                     MessageBox.Show("Input data error!");
                 if (int.Parse(DefaultQuantityIntegerTxt.GetText()) < 0)
                     MessageBox.Show("Input data error!");
                 CostRegistryDTO costRegistry = new CostRegistryDTO()
                 {
                     CostRegistryName = DescriptionTxt.Text,
-                    CostRegistryPrice= decimal.Parse(DefaultCostDecimalTxt.GetText()),
+                    CostRegistryPrice = decimal.Parse(DefaultCostDecimalTxt.GetText()),
                     CostRegistryQuantity = int.Parse(DefaultQuantityIntegerTxt.GetText()),
-                    CostRegistryUniqueCode=UniqueCodeTxt.Text,
+                    CostRegistryUniqueCode = UniqueCodeTxt.Text,
                 };
 
                 try
@@ -136,7 +131,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     MessageBox.Show(ex.Message);
 
                 }
-                
+
             }
         }
 

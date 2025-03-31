@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -175,7 +173,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
 
             // Fetch all sales based on the current filter conditions
-            var listFiltered = await _saleService.GetAll(new SaleFilter()
+            var listFiltered = await _saleService.GetAll(new SaleCustomerFilter()
             {
                 // Only apply filters if at least one combobox has a value
                 SaleBookingNumber = !string.IsNullOrEmpty(bk) ? bk : null,
@@ -233,13 +231,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
-                SaleId = saleID,
+                SaleID = saleID,
                 Status = StatusCB.Text,
                 InvoiceDate = InvoiceDateDTP.Value
             };
             try
             {
-                await _customerInvoiceService.Update(customerInvoice.CustomerInvoiceId, invoice);
+                await _customerInvoiceService.Update((int)customerInvoice.CustomerInvoiceId, invoice);
                 MessageBox.Show("Customer Invoice Updated successfully!");
                 if (quit) Close();
 
@@ -256,7 +254,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             SaveBtn.Enabled = false;
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
-                SaleId = saleID,
+                SaleID = saleID,
                 InvoiceDate = InvoiceDateDTP.Value,
                 Status = "Unpaid",
             };
@@ -267,7 +265,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
                 if (quit) Close();
 
-                InitDetails(customerInvoice.CustomerInvoiceId);
+                InitDetails((int)customerInvoice.CustomerInvoiceId);
 
                 AddCostBtn.Enabled = true;
                 label5.Visible = true;
@@ -289,13 +287,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void Savebutton_Click(object sender, EventArgs e)
         {
-            SaleFilter sf = new SaleFilter()
+            SaleCustomerFilter sf = new SaleCustomerFilter()
             {
                 SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
                 SaleBookingNumber = BKCmbxUC.Cmbx.Text
             };
 
-            saleID = (await _saleService
+            saleID = (int)(await _saleService
                 .GetAll(sf)).FirstOrDefault().SaleId;
 
             if (detailsOnly)
@@ -310,13 +308,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveQuitButton_Click(object sender, EventArgs e)
         {
-            SaleFilter sf = new SaleFilter()
+            SaleCustomerFilter sf = new SaleCustomerFilter()
             {
                 SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
                 SaleBookingNumber = BKCmbxUC.Cmbx.Text
             };
 
-            saleID = (await _saleService
+            saleID = (int)(await _saleService
                 .GetAll(sf)).FirstOrDefault().SaleId;
 
             if (detailsOnly)

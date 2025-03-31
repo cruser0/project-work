@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -163,7 +162,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 InvoiceCodeCmbxUC.Cmbx.DroppedDown = false;
                 return;
             }
-            var listFiltered = await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter()
+            var listFiltered = await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter()
             {
 
                 SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text
@@ -191,7 +190,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    id = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().InvoiceId;
+                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().InvoiceId;
 
                 }
                 catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
@@ -211,7 +210,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     if (_updateCost != null)
                     {
-                        await _supplierInvoiceCostService.Update(_updateCost.SupplierInvoiceCostsId, supplierInvoiceCost);
+                        await _supplierInvoiceCostService.Update((int)_updateCost.SupplierInvoiceCostsId, supplierInvoiceCost);
                         MessageBox.Show("Supplier Invoice Cost Updated Succesfully");
 
                     }
@@ -242,7 +241,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 };
                 try
                 {
-                    await _supplierInvoiceCostService.Update(detailsSupplierInvoiceCost.SupplierInvoiceCostsId, supplierInvoiceCost);
+                    await _supplierInvoiceCostService.Update((int)detailsSupplierInvoiceCost.SupplierInvoiceCostsId, supplierInvoiceCost);
                     MessageBox.Show("Supplier Invoice Cost updated successfully!");
 
                 }
@@ -268,7 +267,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    id = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().InvoiceId;
+                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().InvoiceId;
 
                 }
                 catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
@@ -288,7 +287,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     if (_updateCost != null)
                     {
-                        await _supplierInvoiceCostService.Update(_updateCost.SupplierInvoiceCostsId, supplierInvoiceCost);
+                        await _supplierInvoiceCostService.Update((int)_updateCost.SupplierInvoiceCostsId, supplierInvoiceCost);
                         MessageBox.Show("Supplier Invoice Cost Updated Succesfully");
 
                     }
@@ -320,7 +319,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 };
                 try
                 {
-                    await _supplierInvoiceCostService.Update(detailsSupplierInvoiceCost.SupplierInvoiceCostsId, supplierInvoiceCost);
+                    await _supplierInvoiceCostService.Update((int)detailsSupplierInvoiceCost.SupplierInvoiceCostsId, supplierInvoiceCost);
                     MessageBox.Show("Supplier Invoice Cost updated successfully!");
                     Close();
 
