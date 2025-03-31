@@ -77,7 +77,7 @@ namespace API.Controllers
         [HttpPut("user/assign-roles")]
         public async Task<ActionResult<string>> AssignRoles(AssignRoleDTO assignRole)
         {
-            request.IsPost = false;
+            assignRole.IsPost = false;
             var result = ValidatorEntity.Validate(supplierInvoiceCost);
             if (result.Any())
             {

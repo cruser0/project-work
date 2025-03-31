@@ -67,6 +67,7 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost", true)]
 
         public List<string> Roles { get; set; }
+        public bool IsPost { get; set; }
     }
 
 
