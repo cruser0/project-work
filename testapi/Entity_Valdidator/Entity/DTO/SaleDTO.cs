@@ -1,27 +1,42 @@
 ﻿
 using Entity_Validator.Entity.Entities;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entity_Validator.Entity.DTO
 {
     public class SaleDTO
     {
-
+        [RequiredIf("IsPost",true)]
+        [MaxLength(50)]
         public string BookingNumber { get; set; }
+        [RequiredIf("IsPost", true)]
+        [MaxLength(50)]
         public string BoLnumber { get; set; }
+        [RequiredIf("IsPost", true)]
         public DateTime? SaleDate { get; set; }
+        [RequiredIf("IsPost", true)]
         public int? CustomerId { get; set; }
+        [RequiredIf("IsPost", true)]
         public decimal? TotalRevenue { get; set; }
+        [RequiredIf("IsPost", true)]
         public string Status { get; set; } //active/closed
+        public bool IsPost { get; set; }
     }
 
     public class SaleDTOGet : SaleDTO
     {
+        [RequiredIf("IsPost", true)]
         public int? SaleId { get; set; }
     }
     public class SaleCustomerDTO : SaleDTOGet
     {
+        [RequiredIf("IsPost", true)]
+        [MaxLength(100)]
         public string CustomerName { get; set; }
+        [RequiredIf("IsPost", true)]
+        [MaxLength(50)]
+        [RegularExpression("^[A-Za-z ]+$", ErrorMessage = "Only alphabetical characters and spaces are allowed.")]
         public string Country { get; set; }
         public SaleCustomerDTO(Sale sale, Customer customer)
         {
