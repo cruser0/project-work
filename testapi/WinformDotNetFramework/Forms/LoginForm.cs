@@ -46,9 +46,13 @@ namespace WinformDotNetFramework.Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
+            try
+            {
             var ret = await _userService.Login(new UserDTO() { Email = "Admin@admin.com", Password = "Admin" });
             DialogResult = DialogResult.OK;
             Close();
+
+            }catch (Exception ex) { MessageBox.Show(ex.Message);}
         }
 
         private void EmailTxt_TextChanged(object sender, EventArgs e)
