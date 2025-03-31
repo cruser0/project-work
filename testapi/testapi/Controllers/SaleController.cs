@@ -1,8 +1,7 @@
-﻿using API.Models.DTO;
-using API.Models.Exceptions;
-using API.Models.Filters;
+﻿using API.Models.Exceptions;
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator;
 using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
@@ -60,6 +59,12 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SaleDTO sale)
         {
+            sale.IsPost = true;
+            var result =ValidatorEntity.Validate(sale);
+            if (result.Any())
+            {
+                throw new Exception(result.First().ToString());
+            }
             var data = await _saleService.CreateSale(SaleMapper.Map(sale, await _statusService.GetStatusByName(sale.Status!)));
             if (data == null)
                 throw new NotFoundException("Couldn't create sale");
@@ -71,6 +76,12 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SaleDTO sale)
         {
+            sale.IsPost = false;
+            var result = ValidatorEntity.Validate(sale);
+            if (result.Any())
+            {
+                throw new Exception(result.First().ToString());
+            }
             var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale, await _statusService.GetStatusByName(sale.Status!)));
             if (data == null)
                 throw new NotFoundException("Couldn't update sale");

@@ -1,8 +1,9 @@
-﻿using API.Models.DTO;
-using API.Models.Entities;
+﻿
 using API.Models.Exceptions;
-using API.Models.Filters;
 using API.Models.Mapper;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities;
+using Entity_Validator.Entity.Filters;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
