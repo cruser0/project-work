@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
@@ -109,7 +107,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             var query = _supplierInvoiceService.GetAll(filter);
             var count = _supplierInvoiceService.Count(filterPage);
             await Task.WhenAll(count, query);
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
             IEnumerable<SupplierInvoiceSupplierDTO> query1 = await query;
@@ -120,7 +118,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<SupplierInvoiceSupplierDTO> query = await getAllNotFiltered;
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 
@@ -348,14 +346,14 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             try
             {
-                List<SupplierInvoice> modifiedEntities = new List<SupplierInvoice>();
+                List<SupplierInvoiceDTOGet> modifiedEntities = new List<SupplierInvoiceDTOGet>();
 
                 // Itera solo sulle righe che sono state modificate
                 foreach (int rowIndex in modifiedRows)
                 {
                     if (SupplierInvoiceDgv.Rows[rowIndex].DataBoundItem is SupplierInvoiceSupplierDTO entity)
                     {
-                        modifiedEntities.Add((SupplierInvoice)(object)entity);
+                        modifiedEntities.Add((SupplierInvoiceDTOGet)(object)entity);
                     }
                 }
 

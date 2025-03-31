@@ -7,16 +7,10 @@ namespace Entity_Validator.Entity.DTO
 {
     public class UserAccessInfoDTO
     {
-        public string Token { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public List<string> Role { get; set; }
-        public int RefreshTokenID { get; set; }
-        public int RefreshUserID { get; set; }
-        public string RefreshToken { get; set; }
-        public DateTime? RefreshCreated { get; set; }
-        public DateTime? RefreshExpires { get; set; }
+        public UserAccessInfoDTO()
+        {
+
+        }
         public UserAccessInfoDTO(UserRoleDTO user, string token, RefreshToken refreshToken)
         {
             Token = token;
@@ -30,5 +24,15 @@ namespace Entity_Validator.Entity.DTO
             RefreshToken = refreshToken.Token;
             RefreshTokenID = refreshToken.TokenID;
         }
+        public string Token { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public List<string> Role { get; set; }
+        public int RefreshTokenID { get; set; }
+        public int RefreshUserID { get; set; }
+        public string RefreshToken { get; set; }
+        public DateTime? RefreshCreated { get; set; }
+        public DateTime? RefreshExpires { get; set; }
     }
 }

@@ -34,12 +34,12 @@ namespace WinformDotNetFramework.Services
             return queryString;
         }
 
-        public async Task<ICollection<Supplier>> GetAll(SupplierFilter filter)
+        public async Task<ICollection<SupplierDTOGet>> GetAll(SupplierFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
-            var returnResult = await GetList<Supplier>(client, "supplier", queryString);
+            var returnResult = await GetList<SupplierDTOGet>(client, "supplier", queryString);
             return returnResult;
         }
         public async Task<ICollection<string>> GetAllCountryName(string filter)
@@ -50,10 +50,10 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<Supplier> GetById(int id)
+        public async Task<SupplierDTOGet> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await GetItem<Supplier>(client, $"supplier/{id}", "Supplier");
+            var returnResult = await GetItem<SupplierDTOGet>(client, $"supplier/{id}", "Supplier");
             return returnResult;
         }
 
@@ -65,24 +65,24 @@ namespace WinformDotNetFramework.Services
             return reutnResult;
         }
 
-        public async Task<Supplier> Create(Supplier entity)
+        public async Task<SupplierDTOGet> Create(SupplierDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnRestult = await PostItem(client, $"supplier", entity, "Supplier");
             return returnRestult;
         }
 
-        public async Task<Supplier> Update(int id, Supplier entity)
+        public async Task<SupplierDTOGet> Update(int id, SupplierDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await PutItem(client, $"supplier/{id}", entity, "Supplier");
             return returnResult;
         }
 
-        public async Task<Supplier> Delete(int id)
+        public async Task<SupplierDTOGet> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await DeleteItem<Supplier>(client, $"supplier/{id}", "Supplier");
+            var returnResult = await DeleteItem<SupplierDTOGet>(client, $"supplier/{id}", "Supplier");
             return returnResult;
         }
         public async Task<string> MassDelete(List<int> id)
@@ -92,7 +92,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<Supplier> newEntity)
+        public async Task<string> MassUpdate(List<SupplierDTOGet> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"supplier/mass-update", newEntity);

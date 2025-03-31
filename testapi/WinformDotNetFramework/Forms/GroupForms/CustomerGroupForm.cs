@@ -147,9 +147,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 }
                 else
                 {
-                    dataGridView2.DataSource = new List<Sale>();
-                    dataGridView3.DataSource = new List<CustomerInvoice>();
-                    dataGridView4.DataSource = new List<CustomerInvoiceCost>();
+                    dataGridView2.DataSource = new List<SaleDTOGet>();
+                    dataGridView3.DataSource = new List<CustomerInvoiceDTOGet>();
+                    dataGridView4.DataSource = new List<CustomerInvoiceCostDTOGet>();
                     TSLbl3.Text = "N/A";
                     TSLbl4.Text = "N/A";
                     TSLbl2.Text = "N/A";
@@ -157,9 +157,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
             }
             else
             {
-                dataGridView2.DataSource = new List<Sale>();
-                dataGridView3.DataSource = new List<CustomerInvoice>();
-                dataGridView4.DataSource = new List<CustomerInvoiceCost>();
+                dataGridView2.DataSource = new List<SaleDTOGet>();
+                dataGridView3.DataSource = new List<CustomerInvoiceDTOGet>();
+                dataGridView4.DataSource = new List<CustomerInvoiceCostDTOGet>();
                 TSLbl3.Text = "N/A";
                 TSLbl4.Text = "N/A";
                 TSLbl2.Text = "N/A";
@@ -183,16 +183,16 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 }
                 else
                 {
-                    dataGridView3.DataSource = new List<CustomerInvoice>();
-                    dataGridView4.DataSource = new List<CustomerInvoiceCost>();
+                    dataGridView3.DataSource = new List<CustomerInvoiceDTOGet>();
+                    dataGridView4.DataSource = new List<CustomerInvoiceCostDTOGet>();
                     TSLbl3.Text = "N/A";
                     TSLbl4.Text = "N/A";
                 }
             }
             else
             {
-                dataGridView3.DataSource = new List<CustomerInvoice>();
-                dataGridView4.DataSource = new List<CustomerInvoiceCost>();
+                dataGridView3.DataSource = new List<CustomerInvoiceDTOGet>();
+                dataGridView4.DataSource = new List<CustomerInvoiceCostDTOGet>();
                 TSLbl4.Text = "N/A";
                 TSLbl3.Text = "N/A";
             }
@@ -211,7 +211,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             }
             else
             {
-                dataGridView4.DataSource = new List<CustomerInvoiceCost>();
+                dataGridView4.DataSource = new List<CustomerInvoiceCostDTOGet>();
                 TSLbl4.Text = "N/A";
             }
         }

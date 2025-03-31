@@ -21,7 +21,7 @@ namespace WinformDotNetFramework.Forms.control
         }
         public async void Init()
         {
-            List<CostRegistry> list = (await UtilityFunctions.GetCostRegistry()).ToList();
+            List<CostRegistryDTO> list = (await UtilityFunctions.GetCostRegistry()).ToList();
             NameCmbx.DataSource =list.Select(x=>x.CostRegistryName).ToList() ;
             CodeCmbx.DataSource =list.Select(x=>x.CostRegistryUniqueCode).ToList() ;
 

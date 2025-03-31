@@ -355,14 +355,14 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             try
             {
-                List<Sale> modifiedEntities = new List<Sale>();
+                List<SaleDTOGet> modifiedEntities = new List<SaleDTOGet>();
 
                 // Itera solo sulle righe che sono state modificate
                 foreach (int rowIndex in modifiedRows)
                 {
                     if (SaleDgv.Rows[rowIndex].DataBoundItem is SaleCustomerDTO entity)
                     {
-                        modifiedEntities.Add((Sale)(object)entity);
+                        modifiedEntities.Add((SaleDTOGet)(object)entity);
                     }
                 }
 

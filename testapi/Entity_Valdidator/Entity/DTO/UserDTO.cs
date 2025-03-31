@@ -19,7 +19,7 @@ namespace Entity_Validator.Entity.DTO
 
     public class UserDTOEdit : UserDTO
     {
-        [RequiredIf("IsPost",true)]
+        [RequiredIf("IsPost", true)]
         [MaxLength(100)]
         public string Name { get; set; }
 
@@ -30,7 +30,7 @@ namespace Entity_Validator.Entity.DTO
 
     public class UserDTOCreate : UserDTOEdit
     {
-        [RequiredIf("IsPost",true)]
+        [RequiredIf("IsPost", true)]
         public List<string> Role { get; set; } = new List<string>();
     }
 
@@ -55,11 +55,10 @@ namespace Entity_Validator.Entity.DTO
 
     public class UserRoleDTO : UserDTOGet
     {
-        [RequiredIf("IsPost", true)]
+        public UserRoleDTO()
+        {
 
-        public List<string> Role { get; set; }
-
-
+        }
         public UserRoleDTO(User user, List<string> list)
         {
             UserID = user.UserID;
@@ -68,7 +67,19 @@ namespace Entity_Validator.Entity.DTO
             LastName = user.LastName;
             Role = list;
         }
+
+        [RequiredIf("IsPost", true)]
+        public List<string> Role { get; set; }
+
+        public string Roles
+        {
+            get
+            {
+                return string.Join(", ", Role); // Converts the list to a comma-separated string
+            }
+        }
     }
+
     public class AssignRoleDTO
     {
         [RequiredIf("IsPost", true)]

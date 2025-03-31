@@ -16,9 +16,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         CustomerInvoiceCostService _customerInvoiceCostService;
         CustomerInvoiceService _customerInvoiceService;
         private int id = 0;
-        List<CostRegistry> list;
+        List<CostRegistryDTO> list;
         string InvoiceCode;
-        CustomerInvoiceCost _updateCost;
+        CustomerInvoiceCostDTOGet _updateCost;
 
         public CreateDetailsCustomerInvoiceCostForm()
         {
@@ -33,7 +33,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         }
         Form _father;
-        public CreateDetailsCustomerInvoiceCostForm(Form father, CustomerInvoiceCost data)
+        public CreateDetailsCustomerInvoiceCostForm(Form father, CustomerInvoiceCostDTOGet data)
         {
             Init();
             _father = father;
@@ -102,8 +102,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private async void SaveQuit_Click(object sender, EventArgs e)
         {
-            CostRegistry cr;
-            CustomerInvoice listItems1;
+            CostRegistryDTO cr;
+            CustomerInvoiceDTOGet listItems1;
             if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
             {
                 listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault();
@@ -121,7 +121,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 MessageBox.Show("You need to select a Cost Registry");
                 return;
             }
-            CustomerInvoiceCost customerInvoiceCost = new CustomerInvoiceCost()
+            CustomerInvoiceCostDTOGet customerInvoiceCost = new CustomerInvoiceCostDTOGet()
             {
                 CustomerInvoiceId = id,
                 CostRegistryCode = CostRegistryCmbx.Text,
@@ -173,8 +173,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
-            CostRegistry cr;
-            CustomerInvoice listItems1;
+            CostRegistryDTO cr;
+            CustomerInvoiceDTOGet listItems1;
             if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
             {
                 listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault();
@@ -192,7 +192,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 MessageBox.Show("You need to select a Cost Registry");
                 return;
             }
-            CustomerInvoiceCost customerInvoiceCost = new CustomerInvoiceCost()
+            CustomerInvoiceCostDTOGet customerInvoiceCost = new CustomerInvoiceCostDTOGet()
             {
                 CustomerInvoiceId = id,
                 CostRegistryCode = CostRegistryCmbx.Text,

@@ -208,13 +208,13 @@ namespace WinformDotNetFramework.Services
             return default;
         }
         //Post for Logging a User
-        protected async Task<UserAccessTemp> PostLogin<T>(ClientAPI client, string uri, T entity, string error)
+        protected async Task<UserAccessInfoDTO> PostLogin<T>(ClientAPI client, string uri, T entity, string error)
         {
             HttpResponseMessage response = await GetResponsePost(client, uri, entity);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStreamAsync();
-                var items = await JsonSerializer.DeserializeAsync<UserAccessTemp>(json,
+                var items = await JsonSerializer.DeserializeAsync<UserAccessInfoDTO>(json,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 UserAccessInfo.Email = items.Email;
                 UserAccessInfo.Name = items.Name;
@@ -239,7 +239,7 @@ namespace WinformDotNetFramework.Services
             if (response.IsSuccessStatusCode)
             {
                 var json = response.Content.ReadAsStreamAsync().Result;
-                var items = await JsonSerializer.DeserializeAsync<UserAccessTemp>(json,
+                var items = await JsonSerializer.DeserializeAsync<UserAccessInfoDTO>(json,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 UserAccessInfo.Email = items.Email;
                 UserAccessInfo.Name = items.Name;

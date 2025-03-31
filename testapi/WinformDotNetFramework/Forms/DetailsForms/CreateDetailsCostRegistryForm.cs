@@ -15,7 +15,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
     public partial class CreateDetailsCostRegistryForm : Form
     {
         CostRegistryService _costRegistryService;
-        CostRegistry _costRegistry;
+        CostRegistryDTO _costRegistry;
         int costRegistryID;
         bool detailsOnly = false;
         public CreateDetailsCostRegistryForm()
@@ -97,7 +97,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
 
 
-                CostRegistryDTOPut costRegistry = new CostRegistryDTOPut { CostRegistryName = DescriptionTxt.Text, CostRegistryQuantity = int.Parse(DefaultQuantityIntegerTxt.GetText()), CostRegistryPrice = decimal.Parse(DefaultCostDecimalTxt.GetText()) };
+                CostRegistryDTOGet costRegistry = new CostRegistryDTOGet { CostRegistryName = DescriptionTxt.Text, CostRegistryQuantity = int.Parse(DefaultQuantityIntegerTxt.GetText()), CostRegistryPrice = decimal.Parse(DefaultCostDecimalTxt.GetText()) };
                 try
                 {
                     await _costRegistryService.Update(costRegistryID, costRegistry);
@@ -117,7 +117,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     MessageBox.Show("Input data error!");
                 if (int.Parse(DefaultQuantityIntegerTxt.GetText()) < 0)
                     MessageBox.Show("Input data error!");
-                CostRegistry costRegistry = new CostRegistry()
+                CostRegistryDTO costRegistry = new CostRegistryDTO()
                 {
                     CostRegistryName = DescriptionTxt.Text,
                     CostRegistryPrice= decimal.Parse(DefaultCostDecimalTxt.GetText()),

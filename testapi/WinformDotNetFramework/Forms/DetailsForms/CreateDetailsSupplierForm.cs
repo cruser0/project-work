@@ -14,7 +14,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         SupplierService _supplierService;
         SupplierInvoiceService _supplierInvoiceService;
         SupplierInvoiceSummary summary;
-        Supplier supplier;
+        SupplierDTOGet supplier;
         int supplierID;
         bool detailsOnly = false;
         public CreateDetailsSupplierForm()
@@ -146,7 +146,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         break;
                 };
 
-                Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
+                SupplierDTOGet supplier = new SupplierDTOGet { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
                 try
                 {
                     await _supplierService.Update(supplierID, supplier);
@@ -163,7 +163,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     return;
                 }
 
-                Supplier supplier = new Supplier()
+                SupplierDTOGet supplier = new SupplierDTOGet()
                 {
                     SupplierName = NameSupplierTxt.Text,
                     Country = CountryCmbx.Text
@@ -203,7 +203,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         break;
                 };
 
-                Supplier supplier = new Supplier { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
+                SupplierDTOGet supplier = new SupplierDTOGet { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
                 try
                 {
                     await _supplierService.Update(supplierID, supplier);
@@ -221,7 +221,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     return;
                 }
 
-                Supplier supplier = new Supplier()
+                SupplierDTOGet supplier = new SupplierDTOGet()
                 {
                     SupplierName = NameSupplierTxt.Text,
                     Country = CountryCmbx.Text

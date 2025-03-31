@@ -11,7 +11,7 @@ namespace WinformDotNetFramework.Forms.control
     public partial class SearchSupplierInvoiceCost : UserControl
     {
         UtilityService _costRegistryService;
-        ICollection<CostRegistry> list = new List<CostRegistry>();
+        ICollection<CostRegistryDTO> list = new List<CostRegistryDTO>();
 
         public SearchSupplierInvoiceCost()
         {

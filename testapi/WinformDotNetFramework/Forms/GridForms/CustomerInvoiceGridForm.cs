@@ -20,7 +20,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         int pages;
         CustomerInvoiceService _customerInvoiceService;
         Form _father;
-        Task<ICollection<CustomerInvoice>> getAllNotFiltered;
+        Task<ICollection<CustomerInvoiceDTOGet>> getAllNotFiltered;
         Task<int> countNotFiltered;
         Task<CustomerInvoiceDGV> getFav;
         List<string> authRoles = new List<string>
@@ -87,7 +87,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             await Task.WhenAll(count, query);
 
 
-            IEnumerable<CustomerInvoice> query1 = await query;
+            IEnumerable<CustomerInvoiceDTOGet> query1 = await query;
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CenterDgv.DataSource = query1.ToList();
@@ -101,7 +101,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async Task SetCheckBoxes()
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
-            IEnumerable<CustomerInvoice> query = await getAllNotFiltered;
+            IEnumerable<CustomerInvoiceDTOGet> query = await getAllNotFiltered;
             int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
@@ -130,7 +130,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             filter.CustomerInvoicePage = PaginationUserControl.CurrentPage;
 
 
-            IEnumerable<CustomerInvoice> query = await _customerInvoiceService.GetAll(filter);
+            IEnumerable<CustomerInvoiceDTOGet> query = await _customerInvoiceService.GetAll(filter);
             CenterDgv.DataSource = query.ToList();
         }
 
@@ -274,7 +274,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     }
                     foreach (var rowid in ids)
                     {
-                        if (CenterDgv.Rows[rowid].DataBoundItem is CustomerInvoice customer)
+                        if (CenterDgv.Rows[rowid].DataBoundItem is CustomerInvoiceDTOGet customer)
                             id.Add(customer.CustomerInvoiceId);
                     }
 
@@ -323,12 +323,12 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             try
             {
-                List<CustomerInvoice> modifiedEntities = new List<CustomerInvoice>();
+                List<CustomerInvoiceDTOGet> modifiedEntities = new List<CustomerInvoiceDTOGet>();
 
                 // Itera solo sulle righe che sono state modificate
                 foreach (int rowIndex in modifiedRows)
                 {
-                    if (CenterDgv.Rows[rowIndex].DataBoundItem is CustomerInvoice entity)
+                    if (CenterDgv.Rows[rowIndex].DataBoundItem is CustomerInvoiceDTOGet entity)
                     {
                         modifiedEntities.Add(entity);
                     }

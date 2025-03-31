@@ -8,11 +8,11 @@ namespace Entity_Validator.Entity.DTO
         public int? CustomerInvoiceId { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [Range(0.0, double.MaxValue, ErrorMessage = "{0} must be grater than 0."))]
+        [Range(0.0, double.MaxValue, ErrorMessage = "{0} must be grater than 0.")]
         public decimal? Cost { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [Range(0, int.MaxValue, ErrorMessage = "{0} must be grater than 0."))]
+        [Range(0, int.MaxValue, ErrorMessage = "{0} must be grater than 0.")]
         public int? Quantity { get; set; }
 
         [RequiredIf("IsPost", true)]

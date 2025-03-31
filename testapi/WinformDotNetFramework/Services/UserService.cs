@@ -23,7 +23,7 @@ namespace WinformDotNetFramework.Services
 
 
 
-        public async Task<UserAccessTemp> Login(UserDTO entity)
+        public async Task<UserAccessInfoDTO> Login(UserDTO entity)
         {
             ClientAPI client = new ClientAPI();
             var reuturnResult = await PostLogin(client, $"login", entity, "User");
@@ -62,7 +62,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<UserDtoID> newEntity)
+        public async Task<string> MassUpdate(List<UserDTOGet> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"user/mass-update", newEntity);

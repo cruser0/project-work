@@ -220,7 +220,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<supplierGroupDTO> GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceFilter sifilter, SupplierInvoiceCostFilter sicfilter)
+        public async Task<SupplierGroupDTO> GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceFilter sifilter, SupplierInvoiceCostFilter sicfilter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString1 = BuildQueryParamsSupplier(sfilter);
@@ -231,7 +231,7 @@ namespace WinformDotNetFramework.Services
             string queryString = queryString1 + "&" + queryString2 + "&" + queryString3;
             if (queryString.Length > 0) queryString = "?" + queryString;
 
-            var returnResult = await GetItem<supplierGroupDTO>(client, "Values/suppliers" + queryString, "Supplier Tables");
+            var returnResult = await GetItem<SupplierGroupDTO>(client, "Values/suppliers" + queryString, "Supplier Tables");
             return returnResult;
         }
     }

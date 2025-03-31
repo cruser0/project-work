@@ -44,7 +44,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 detailsOnly = true;
                 int intId = (int)id;
                 sale = await _saleService.GetById(intId);
-                List<CustomerInvoice> ci = (await _customerInvoiceService
+                List<CustomerInvoiceDTOGet> ci = (await _customerInvoiceService
                     .GetAll(new CustomerInvoiceFilter()
                     {
                         CustomerInvoiceSaleID = intId
@@ -161,7 +161,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public async Task RefreshDgvCustomer()
         {
-            List<CustomerInvoice> data = (await _customerInvoiceService
+            List<CustomerInvoiceDTOGet> data = (await _customerInvoiceService
                .GetAll(new CustomerInvoiceFilter()
                { CustomerInvoiceSaleBoL = sale.BoLnumber, CustomerInvoiceSaleBk = sale.BookingNumber }))
                .ToList();
@@ -183,7 +183,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 if (e.RowIndex == -1)
                     return;
 
-                SupplierInvoice supplierInvoice = (SupplierInvoice)dgv.CurrentRow.DataBoundItem;
+                SupplierInvoiceDTOGet supplierInvoice = (SupplierInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
                 UtilityFunctions.OpenFormDetails<CreateDetailsSupplierInvoiceForm>(sender, e, supplierInvoice.InvoiceId);
 
@@ -196,7 +196,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 if (e.RowIndex == -1)
                     return;
-                CustomerInvoice customerInvoice = (CustomerInvoice)dgv.CurrentRow.DataBoundItem;
+                CustomerInvoiceDTOGet customerInvoice = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
                 UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, customerInvoice.CustomerInvoiceId);
 
@@ -224,7 +224,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 CustomerCountry = country
             })).FirstOrDefault().CustomerId;
 
-            Sale sale = new Sale
+            SaleDTOGet sale = new SaleDTOGet
             {
                 BookingNumber = bntxt.Text,
                 BoLnumber = boltxt.Text,
@@ -273,7 +273,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                     _id = customerId;
                 }
-                Sale sale1 = new Sale
+                SaleDTOGet sale1 = new SaleDTOGet
                 {
                     BookingNumber = bntxt.Text,
                     BoLnumber = boltxt.Text,
@@ -281,7 +281,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     CustomerId = _id,
                     Status = StatusCmbx.Text
                 };
-                Sale saleReturn = await _saleService.Create(sale1);
+                SaleDTOGet saleReturn = await _saleService.Create(sale1);
                 _saleId = saleReturn.SaleId;
                 MessageBox.Show("Sale Created successfully!");
                 if (quit) Close();

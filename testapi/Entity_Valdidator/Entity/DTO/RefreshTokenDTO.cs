@@ -5,11 +5,10 @@ namespace Entity_Validator.Entity.DTO
 {
     public class RefreshTokenDTO
     {
-        public int TokenID { get; set; }
-        public int UserID { get; set; }
-        public string Token { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Expires { get; set; }
+        public RefreshTokenDTO()
+        {
+
+        }
         public RefreshTokenDTO(RefreshToken tk)
         {
             TokenID = tk.TokenID;
@@ -18,5 +17,10 @@ namespace Entity_Validator.Entity.DTO
             Created = (DateTime)tk.Created;
             Expires = (DateTime)tk.Expires;
         }
+        public int TokenID { get; set; }
+        public int UserID { get; set; }
+        public string Token { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Expires { get; set; }
     }
 }

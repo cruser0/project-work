@@ -15,7 +15,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         CustomerService _customerService;
         CustomerInvoiceService _customerInvoiceService;
         CustomerInvoiceSummary summary;
-        Customer customer;
+        CustomerDTOGet customer;
         int customerId;
         bool detailsOnly = false;
         public CreateDetailsCustomerForm()
@@ -150,7 +150,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     break;
             };
 
-            Customer customer = new Customer { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
+            CustomerDTOGet customer = new CustomerDTOGet { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
             try
             {
                 await _customerService.Update(customerId, customer);
@@ -167,7 +167,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 return;
             }
 
-            Customer customer = new Customer()
+            CustomerDTOGet customer = new CustomerDTOGet()
             {
                 CustomerName = NameCustomerTxt.Text,
                 Country = CountryCmbx.Text

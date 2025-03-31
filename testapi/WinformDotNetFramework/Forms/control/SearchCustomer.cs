@@ -10,7 +10,7 @@ namespace WinformDotNetFramework.Forms.control
     public partial class SearchCustomer : UserControl
     {
         readonly UtilityService utilityService;
-        ICollection<Country> list = new List<Country>();
+        ICollection<CountryDTOGet> list = new List<CountryDTOGet>();
         public SearchCustomer()
         {
             utilityService = new UtilityService();

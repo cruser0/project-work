@@ -34,18 +34,18 @@ namespace WinformDotNetFramework.Services
 
             return queryString;
         }
-        public async Task<ICollection<SupplierInvoiceCost>> GetAll(SupplierInvoiceCostFilter filter)
+        public async Task<ICollection<SupplierInvoiceCostDTOGet>> GetAll(SupplierInvoiceCostFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
-            var returnItems = GetList<SupplierInvoiceCost>(client, "supplier-invoice-cost", queryString);
+            var returnItems = GetList<SupplierInvoiceCostDTOGet>(client, "supplier-invoice-cost", queryString);
             return await returnItems;
         }
 
-        public async Task<SupplierInvoiceCost> GetById(int id)
+        public async Task<SupplierInvoiceCostDTOGet> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnItem = GetItem<SupplierInvoiceCost>(client, $"supplier-invoice-cost/{id}", "Supplier Invoice Cost");
+            var returnItem = GetItem<SupplierInvoiceCostDTOGet>(client, $"supplier-invoice-cost/{id}", "Supplier Invoice Cost");
             return await returnItem;
         }
 
@@ -57,24 +57,24 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<SupplierInvoiceCost> Create(SupplierInvoiceCost entity)
+        public async Task<SupplierInvoiceCostDTOGet> Create(SupplierInvoiceCostDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = PostItem(client, $"supplier-invoice-cost", entity, "Supplier Invoice Cost");
             return await returnResult;
         }
 
-        public async Task<SupplierInvoiceCost> Update(int id, SupplierInvoiceCost entity)
+        public async Task<SupplierInvoiceCostDTOGet> Update(int id, SupplierInvoiceCostDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = PutItem(client, $"supplier-invoice-cost/{id}", entity, "Supplier Invoice Cost");
             return await returnResult;
         }
 
-        public async Task<SupplierInvoiceCost> Delete(int id)
+        public async Task<SupplierInvoiceCostDTOGet> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await DeleteItem<SupplierInvoiceCost>(client, $"supplier-invoice-cost/{id}", "Supplier Invoice Cost");
+            var returnResult = await DeleteItem<SupplierInvoiceCostDTOGet>(client, $"supplier-invoice-cost/{id}", "Supplier Invoice Cost");
             return returnResult;
         }
         public async Task<string> MassDelete(List<int> id)
@@ -84,7 +84,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<SupplierInvoiceCost> newEntity)
+        public async Task<string> MassUpdate(List<SupplierInvoiceCostDTOGet> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"supplier-invoice-cost/mass-update", newEntity);

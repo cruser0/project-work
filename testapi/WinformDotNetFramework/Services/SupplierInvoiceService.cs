@@ -69,24 +69,24 @@ namespace WinformDotNetFramework.Services
             return reutnResult;
         }
 
-        public async Task<SupplierInvoice> Create(SupplierInvoice entity)
+        public async Task<SupplierInvoiceDTOGet> Create(SupplierInvoiceDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnRestult = await PostItem(client, "supplier-invoice", entity, "Supplier Invoice");
             return returnRestult;
         }
 
-        public async Task<SupplierInvoice> Update(int id, SupplierInvoice entity)
+        public async Task<SupplierInvoiceDTOGet> Update(int id, SupplierInvoiceDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await PutItem(client, $"supplier-invoice/{id}", entity, "Supplier Invoice");
             return returnResult;
         }
 
-        public async Task<SupplierInvoice> Delete(int id)
+        public async Task<SupplierInvoiceDTOGet> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await DeleteItem<SupplierInvoice>(client, $"supplier-invoice/{id}", "Supplier Invoice");
+            var returnResult = await DeleteItem<SupplierInvoiceDTOGet>(client, $"supplier-invoice/{id}", "Supplier Invoice");
             return returnResult;
         }
         public async Task<string> MassDelete(List<int> id)
@@ -96,7 +96,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<SupplierInvoice> newEntity)
+        public async Task<string> MassUpdate(List<SupplierInvoiceDTOGet> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"supplier-invoice/mass-update", newEntity);

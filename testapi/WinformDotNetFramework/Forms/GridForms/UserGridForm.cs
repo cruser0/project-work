@@ -404,14 +404,14 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             try
             {
-                List<UserDtoID> modifiedEntities = new List<UserDtoID>();
+                List<UserDTOGet> modifiedEntities = new List<UserDTOGet>();
 
                 // Itera solo sulle righe che sono state modificate
                 foreach (int rowIndex in modifiedRows)
                 {
                     if (userDgv.Rows[rowIndex].DataBoundItem is UserRoleDTO entity)
                     {
-                        modifiedEntities.Add((UserDtoID)(object)entity);
+                        modifiedEntities.Add((UserDTOGet)(object)entity);
                     }
                 }
 

@@ -122,54 +122,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientAPI.cs" />
-    <Compile Include="Entities\Charts\SaleCountryTotalDTO.cs" />
-    <Compile Include="Entities\Charts\SaleDateTotalDTO.cs" />
-    <Compile Include="Entities\Charts\SaleListChartDTO.cs" />
-    <Compile Include="Entities\CostRegistry.cs" />
-    <Compile Include="Entities\Country.cs" />
-    <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\CustomerInvoice.cs" />
-    <Compile Include="Entities\CustomerInvoiceCost.cs" />
-    <Compile Include="Entities\DTO\CustomerGroupDTO.cs" />
-    <Compile Include="Entities\DTO\CustomerInvoiceSummary.cs" />
-    <Compile Include="Entities\DTO\SaleCustomerDTO.cs" />
-    <Compile Include="Entities\DTO\SupplierCustomerDTO.cs" />
-    <Compile Include="Entities\DTO\supplierGroupDTO.cs" />
-    <Compile Include="Entities\DTO\SupplierInvoiceSummary.cs" />
-    <Compile Include="Entities\DTO\SupplierInvoiceSupplierDTO.cs" />
-    <Compile Include="Entities\DTO\UserDTO.cs" />
-    <Compile Include="Entities\Filters\ClassifySalesByProfitFilter.cs" />
-    <Compile Include="Entities\Filters\CostRegistryFilter.cs" />
-    <Compile Include="Entities\Filters\CustomerFilter.cs" />
-    <Compile Include="Entities\Filters\CustomerInvoiceCostFilter.cs" />
-    <Compile Include="Entities\Filters\CustomerInvoiceFilter.cs" />
-    <Compile Include="Entities\Filters\SaleFilter.cs" />
-    <Compile Include="Entities\Filters\SupplierFilter.cs" />
-    <Compile Include="Entities\Filters\SupplierInvoiceCostFilter.cs" />
-    <Compile Include="Entities\Filters\SupplierInvoiceFilter.cs" />
-    <Compile Include="Entities\Filters\TotalAmountGainedPerCustomerInvoiceFilter.cs" />
-    <Compile Include="Entities\Filters\TotalAmountSpentPerSupplierInvoiceFilter.cs" />
-    <Compile Include="Entities\Filters\UserFilter.cs" />
-    <Compile Include="Entities\Preference\CustomerDGV.cs" />
-    <Compile Include="Entities\Preference\CustomerGroupSplit.cs" />
-    <Compile Include="Entities\Preference\CustomerInvoiceCostDGV.cs" />
-    <Compile Include="Entities\Preference\CustomerInvoiceDGV.cs" />
-    <Compile Include="Entities\Preference\FavouritePages.cs" />
-    <Compile Include="Entities\Preference\SaleDGV.cs" />
-    <Compile Include="Entities\Preference\SupplierDGV.cs" />
-    <Compile Include="Entities\Preference\SupplierGroupSplit.cs" />
-    <Compile Include="Entities\Preference\SupplierInvoiceCostDGV.cs" />
-    <Compile Include="Entities\Preference\SupplierInvoiceDGV.cs" />
-    <Compile Include="Entities\Preference\UserDGV.cs" />
-    <Compile Include="Entities\Preference\UserFavouritePage.cs" />
-    <Compile Include="Entities\ProblemDetails.cs" />
-    <Compile Include="Entities\RefreshToken.cs" />
-    <Compile Include="Entities\Sale.cs" />
-    <Compile Include="Entities\Supplier.cs" />
-    <Compile Include="Entities\SupplierInvoice.cs" />
-    <Compile Include="Entities\SupplierInvoiceCost.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserAccessTemp.cs" />
+    <Compile Include="Exceptions\SupplierCustomerDTO.cs" />
+    <Compile Include="Exceptions\ProblemDetails.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

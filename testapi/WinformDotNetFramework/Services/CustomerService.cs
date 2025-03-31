@@ -41,19 +41,19 @@ namespace WinformDotNetFramework.Services
             var returnResult = await GetList<string>(client, "customer/get-all-customer-name-country", $"?filter={filter}");
             return returnResult;
         }
-        public async Task<ICollection<Customer>> GetAll(CustomerFilter filter)
+        public async Task<ICollection<CustomerDTOGet>> GetAll(CustomerFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
-            var returnResult = await GetList<Customer>(client, "customer", queryString);
+            var returnResult = await GetList<CustomerDTOGet>(client, "customer", queryString);
             return returnResult;
         }
 
-        public async Task<Customer> GetById(int id)
+        public async Task<CustomerDTOGet> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await GetItem<Customer>(client, $"customer/{id}", "Customer");
+            var returnResult = await GetItem<CustomerDTOGet>(client, $"customer/{id}", "Customer");
             return returnResult;
         }
 
@@ -65,24 +65,24 @@ namespace WinformDotNetFramework.Services
             return reutnResult;
         }
 
-        public async Task<Customer> Create(Customer entity)
+        public async Task<CustomerDTOGet> Create(CustomerDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnRestult = await PostItem(client, $"customer", entity, "Customer");
             return returnRestult;
         }
 
-        public async Task<Customer> Update(int id, Customer entity)
+        public async Task<CustomerDTOGet> Update(int id, CustomerDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await PutItem(client, $"customer/{id}", entity, "Customer");
             return returnResult;
         }
 
-        public async Task<Customer> Delete(int id)
+        public async Task<CustomerDTOGet> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await DeleteItem<Customer>(client, $"customer/{id}", "Customer");
+            var returnResult = await DeleteItem<CustomerDTOGet>(client, $"customer/{id}", "Customer");
             return returnResult;
         }
         public async Task<string> MassDelete(List<int> id)
@@ -92,7 +92,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<Customer> newEntity)
+        public async Task<string> MassUpdate(List<CustomerDTOGet> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"customer/mass-update", newEntity);

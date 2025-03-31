@@ -2,9 +2,13 @@
 
 namespace Entity_Validator.Entity.DTO
 {
-    public class TabelleCustomerDto
+    public class CustomerGroupDTO
     {
-        public TabelleCustomerDto(List<CustomerDTOGet> c, List<SaleDTOGet> s, List<CustomerInvoiceDTOGet> ci, List<CustomerInvoiceCostDTOGet> cic)
+        public CustomerGroupDTO()
+        {
+
+        }
+        public CustomerGroupDTO(List<CustomerDTOGet> c, List<SaleDTOGet> s, List<CustomerInvoiceDTOGet> ci, List<CustomerInvoiceCostDTOGet> cic)
         {
             customers = c;
             sales = s;
@@ -20,9 +24,13 @@ namespace Entity_Validator.Entity.DTO
 
     }
 
-    public class TabelleSupplierDto
+    public class SupplierGroupDTO
     {
-        public TabelleSupplierDto(List<SupplierDTOGet> c, List<SupplierInvoiceDTOGet> ci, List<SupplierInvoiceCostDTOGet> cic)
+        public SupplierGroupDTO()
+        {
+
+        }
+        public SupplierGroupDTO(List<SupplierDTOGet> c, List<SupplierInvoiceDTOGet> ci, List<SupplierInvoiceCostDTOGet> cic)
         {
             suppliers = c;
             invoices = ci;

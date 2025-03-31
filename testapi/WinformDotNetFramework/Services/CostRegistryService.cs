@@ -34,19 +34,19 @@ namespace WinformDotNetFramework.Services
         }
 
 
-        public async Task<ICollection<CostRegistryDTOPut>> GetAll(CostRegistryFilter filter)
+        public async Task<ICollection<CostRegistryDTOGet>> GetAll(CostRegistryFilter filter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString = BuildQueryParams(filter);
 
-            var returnResult = await GetList<CostRegistryDTOPut>(client, "cost-registry", queryString);
+            var returnResult = await GetList<CostRegistryDTOGet>(client, "cost-registry", queryString);
             return returnResult;
         }
 
-        public async Task<CostRegistry> GetById(int id)
+        public async Task<CostRegistryDTO> GetById(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await GetItem<CostRegistry>(client, $"cost-registry/{id}", "CostRegistry");
+            var returnResult = await GetItem<CostRegistryDTO>(client, $"cost-registry/{id}", "CostRegistry");
             return returnResult;
         }
 
@@ -58,24 +58,24 @@ namespace WinformDotNetFramework.Services
             return reutnResult;
         }
 
-        public async Task<CostRegistry> Create(CostRegistry entity)
+        public async Task<CostRegistryDTO> Create(CostRegistryDTO entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnRestult = await PostItem(client, $"cost-registry", entity, "CostRegistry");
             return returnRestult;
         }
 
-        public async Task<CostRegistryDTOPut> Update(int id, CostRegistryDTOPut entity)
+        public async Task<CostRegistryDTOGet> Update(int id, CostRegistryDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await PutItem(client, $"cost-registry/{id}", entity, "CostRegistry");
             return returnResult;
         }
 
-        public async Task<CostRegistry> Delete(int id)
+        public async Task<CostRegistryDTO> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await DeleteItem<CostRegistry>(client, $"cost-registry/{id}", "CostRegistry");
+            var returnResult = await DeleteItem<CostRegistryDTO>(client, $"cost-registry/{id}", "CostRegistry");
             return returnResult;
         }
         public async Task<string> MassDelete(List<int> id)
@@ -85,7 +85,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<CostRegistryDTOPut> newEntity)
+        public async Task<string> MassUpdate(List<CostRegistryDTOGet> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"cost-registry/mass-update", newEntity);

@@ -17,7 +17,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         CustomerInvoiceService _customerInvoiceService;
         CustomerInvoiceCostService _customerInvoiceCostService;
-        CustomerInvoice customerInvoice;
+        CustomerInvoiceDTOGet customerInvoice;
         SaleService _saleService;
         string bol;
         string bk;
@@ -52,7 +52,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private async void InitCreate()
         {
-            dataGridView1.DataSource = new CustomerInvoiceCost();
+            dataGridView1.DataSource = new CustomerInvoiceCostDTOGet();
             checkBox1.Visible = false;
             textBox1.Visible = false;
             label1.Visible = false;
@@ -75,7 +75,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             InvoiceDateDTP.Value = (DateTime)customerInvoice.InvoiceDate;
             StatusCB.Text = customerInvoice.Status;
 
-            List<CustomerInvoiceCost> data = (await _customerInvoiceCostService
+            List<CustomerInvoiceCostDTOGet> data = (await _customerInvoiceCostService
                 .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = customerInvoice.CustomerInvoiceCode })).ToList();
             dataGridView1.DataSource = data;
             InvoiceAmountTxt.Enabled = false;
@@ -152,7 +152,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         public async void UpdateDgv(string code)
         {
-            List<CustomerInvoiceCost> data = (await _customerInvoiceCostService
+            List<CustomerInvoiceCostDTOGet> data = (await _customerInvoiceCostService
                 .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = code })).ToList();
             dataGridView1.DataSource = data;
 
@@ -231,7 +231,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async Task UpdateClick(bool quit = false)
         {
-            CustomerInvoice invoice = new CustomerInvoice
+            CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
                 SaleId = saleID,
                 Status = StatusCB.Text,
@@ -254,7 +254,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 return;
             }
             SaveBtn.Enabled = false;
-            CustomerInvoice invoice = new CustomerInvoice
+            CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
                 SaleId = saleID,
                 InvoiceDate = InvoiceDateDTP.Value,

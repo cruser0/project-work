@@ -281,23 +281,23 @@ namespace WinformDotNetFramework
                 return formattedName;
             }
         }
-        public static async Task<List<Country>> GetCountries()
+        public static async Task<List<CountryDTOGet>> GetCountries()
         {
 
             if (mainForm == null)
-                return new List<Country>() { new Country() { CountryID = 0, CountryName = "All", ISOCountry = "All" } };
+                return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All" } };
 
-            return new List<Country>() { new Country() { CountryID = 0, CountryName = "All", ISOCountry = "All" } }
+            return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All" } }
                 .Concat(await mainForm.CountriesList)
                 .ToList();
         }
 
-        public static async Task<List<CostRegistry>> GetCostRegistry()
+        public static async Task<List<CostRegistryDTO>> GetCostRegistry()
         {
             if (mainForm == null)
-                return new List<CostRegistry>() { new CostRegistryDTOPut() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } };
+                return new List<CostRegistryDTO>() { new CostRegistryDTOGet() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } };
 
-            return new List<CostRegistry>() { new CostRegistryDTOPut() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } }
+            return new List<CostRegistryDTO>() { new CostRegistryDTOGet() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } }
                 .Concat(await mainForm.CostRegistryList)
                 .ToList();
         }

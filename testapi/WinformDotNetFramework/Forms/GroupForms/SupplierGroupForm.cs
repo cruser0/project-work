@@ -17,28 +17,28 @@ namespace WinformDotNetFramework.Forms.GroupForms
         SupplierInvoiceFilter supplierInvoiceFilter;
         SupplierInvoiceCostFilter supplierInvoiceCostFilter;
 
-        supplierGroupDTO data;
+        SupplierGroupDTO data;
 
         // Dictionary for quicker lookup of related data
-        private Dictionary<int, List<SupplierInvoice>> supplierInvoicesMap;
-        private Dictionary<int, List<SupplierInvoiceCost>> invoiceCostsMap;
+        private Dictionary<int, List<SupplierInvoiceDTOGet>> supplierInvoicesMap;
+        private Dictionary<int, List<SupplierInvoiceCostDTOGet>> invoiceCostsMap;
 
         private int pageSize = 10; // Numero di righe per pagina
 
         private int supplierCurrentPage = 1;
         private int supplierTotalRecords;
         private int supplierTotalPages;
-        private List<Supplier> allSuppliers = new List<Supplier>(); // Lista completa dei supplier
+        private List<SupplierDTOGet> allSuppliers = new List<SupplierDTOGet>(); // Lista completa dei supplier
 
         private int supplierInvoiceCurrentPage = 1;
         private int supplierInvoiceTotalRecords;
         private int supplierInvoiceTotalPages;
-        private List<SupplierInvoice> allSupplierInvoices = new List<SupplierInvoice>(); // Lista completa dei supplier inv
+        private List<SupplierInvoiceDTOGet> allSupplierInvoices = new List<SupplierInvoiceDTOGet>(); // Lista completa dei supplier inv
 
         private int supplierInvoiceCostCurrentPage = 1;
         private int supplierInvoiceCostTotalRecords;
         private int supplierInvoiceCostTotalPages;
-        private List<SupplierInvoiceCost> allSupplierInvoiceCosts = new List<SupplierInvoiceCost>(); // Lista completa dei supplier inv cost
+        private List<SupplierInvoiceCostDTOGet> allSupplierInvoiceCosts = new List<SupplierInvoiceCostDTOGet>(); // Lista completa dei supplier inv cost
 
         public SupplierGroupForm()
         {
@@ -99,11 +99,11 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     int firstSupplierId = allSuppliers.First().SupplierId;
                     allSupplierInvoices = supplierInvoicesMap.ContainsKey(firstSupplierId)
                         ? supplierInvoicesMap[firstSupplierId]
-                        : new List<SupplierInvoice>();
+                        : new List<SupplierInvoiceDTOGet>();
                 }
                 else
                 {
-                    allSupplierInvoices = new List<SupplierInvoice>();
+                    allSupplierInvoices = new List<SupplierInvoiceDTOGet>();
                 }
                 supplierInvoiceTotalRecords = allSupplierInvoices.Count;
 
@@ -113,11 +113,11 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     int firstInvoiceId = allSupplierInvoices.First().InvoiceId;
                     allSupplierInvoiceCosts = invoiceCostsMap.ContainsKey(firstInvoiceId)
                         ? invoiceCostsMap[firstInvoiceId]
-                        : new List<SupplierInvoiceCost>();
+                        : new List<SupplierInvoiceCostDTOGet>();
                 }
                 else
                 {
-                    allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                    allSupplierInvoiceCosts = new List<SupplierInvoiceCostDTOGet>();
                 }
                 supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
 
@@ -134,8 +134,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
         private void PreprocessData()
         {
             // Create lookup dictionaries for faster access
-            supplierInvoicesMap = new Dictionary<int, List<SupplierInvoice>>();
-            invoiceCostsMap = new Dictionary<int, List<SupplierInvoiceCost>>();
+            supplierInvoicesMap = new Dictionary<int, List<SupplierInvoiceDTOGet>>();
+            invoiceCostsMap = new Dictionary<int, List<SupplierInvoiceCostDTOGet>>();
 
             // Group invoices by supplier ID
             foreach (var invoice in data.invoices)
@@ -145,7 +145,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     int supplierId = invoice.SupplierId.Value;
                     if (!supplierInvoicesMap.ContainsKey(supplierId))
                     {
-                        supplierInvoicesMap[supplierId] = new List<SupplierInvoice>();
+                        supplierInvoicesMap[supplierId] = new List<SupplierInvoiceDTOGet>();
                     }
                     supplierInvoicesMap[supplierId].Add(invoice);
                 }
@@ -156,7 +156,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             {
                 if (!invoiceCostsMap.ContainsKey((int)cost.SupplierInvoiceId))
                 {
-                    invoiceCostsMap[(int)cost.SupplierInvoiceId] = new List<SupplierInvoiceCost>();
+                    invoiceCostsMap[(int)cost.SupplierInvoiceId] = new List<SupplierInvoiceCostDTOGet>();
                 }
                 invoiceCostsMap[(int)cost.SupplierInvoiceId].Add(cost);
             }
@@ -373,7 +373,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 }
                 else
                 {
-                    allSupplierInvoices = new List<SupplierInvoice>();
+                    allSupplierInvoices = new List<SupplierInvoiceDTOGet>();
                 }
 
                 supplierInvoiceTotalRecords = allSupplierInvoices.Count;
@@ -389,12 +389,12 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     }
                     else
                     {
-                        allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                        allSupplierInvoiceCosts = new List<SupplierInvoiceCostDTOGet>();
                     }
                 }
                 else
                 {
-                    allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                    allSupplierInvoiceCosts = new List<SupplierInvoiceCostDTOGet>();
                 }
 
                 supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;
@@ -432,7 +432,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 }
                 else
                 {
-                    allSupplierInvoiceCosts = new List<SupplierInvoiceCost>();
+                    allSupplierInvoiceCosts = new List<SupplierInvoiceCostDTOGet>();
                 }
 
                 supplierInvoiceCostTotalRecords = allSupplierInvoiceCosts.Count;

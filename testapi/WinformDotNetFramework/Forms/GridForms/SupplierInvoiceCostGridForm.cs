@@ -26,7 +26,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             };
         UserService _userService;
 
-        Task<ICollection<SupplierInvoiceCost>> getAllNotFiltered;
+        Task<ICollection<SupplierInvoiceCostDTOGet>> getAllNotFiltered;
         Task<int> countNotFiltered;
         Task<SupplierInvoiceCostDGV> getFav;
         public SupplierInvoiceCostGridForm()
@@ -89,14 +89,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-            IEnumerable<SupplierInvoiceCost> query1 = await query;
+            IEnumerable<SupplierInvoiceCostDTOGet> query1 = await query;
             SupplierInvoiceCostDgv.DataSource = query1.ToList();
 
         }
         private async Task SetCheckBoxes()
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
-            IEnumerable<SupplierInvoiceCost> query = await getAllNotFiltered;
+            IEnumerable<SupplierInvoiceCostDTOGet> query = await getAllNotFiltered;
             int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
@@ -124,7 +124,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             filter.SupplierInvoiceCostPage = PaginationUserControl.CurrentPage;
 
-            IEnumerable<SupplierInvoiceCost> query = await _supplierInvoiceCostService.GetAll(filter);
+            IEnumerable<SupplierInvoiceCostDTOGet> query = await _supplierInvoiceCostService.GetAll(filter);
             SupplierInvoiceCostDgv.DataSource = query.ToList();
         }
 
@@ -258,7 +258,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     }
                     foreach (var rowid in ids)
                     {
-                        if (SupplierInvoiceCostDgv.Rows[rowid].DataBoundItem is SupplierInvoiceCost customer)
+                        if (SupplierInvoiceCostDgv.Rows[rowid].DataBoundItem is SupplierInvoiceCostDTOGet customer)
                             id.Add(customer.SupplierInvoiceCostsId);
                     }
 
@@ -307,12 +307,12 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             try
             {
-                List<SupplierInvoiceCost> modifiedEntities = new List<SupplierInvoiceCost>();
+                List<SupplierInvoiceCostDTOGet> modifiedEntities = new List<SupplierInvoiceCostDTOGet>();
 
                 // Itera solo sulle righe che sono state modificate
                 foreach (int rowIndex in modifiedRows)
                 {
-                    if (SupplierInvoiceCostDgv.Rows[rowIndex].DataBoundItem is SupplierInvoiceCost entity)
+                    if (SupplierInvoiceCostDgv.Rows[rowIndex].DataBoundItem is SupplierInvoiceCostDTOGet entity)
                     {
                         modifiedEntities.Add(entity);
                     }

@@ -60,24 +60,24 @@ namespace WinformDotNetFramework.Services
             return reutnResult;
         }
 
-        public async Task<Sale> Create(Sale entity)
+        public async Task<SaleDTOGet> Create(SaleDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnRestult = await PostItem(client, $"sale", entity, "Sale");
             return returnRestult;
         }
 
-        public async Task<Sale> Update(int id, Sale entity)
+        public async Task<SaleDTOGet> Update(int id, SaleDTOGet entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await PutItem(client, $"sale/{id}", entity, "Sale");
             return returnResult;
         }
 
-        public async Task<Sale> Delete(int id)
+        public async Task<SaleDTOGet> Delete(int id)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await DeleteItem<Sale>(client, $"sale/{id}", "Sale");
+            var returnResult = await DeleteItem<SaleDTOGet>(client, $"sale/{id}", "Sale");
             return returnResult;
         }
         public async Task<string> MassDelete(List<int> id)
@@ -87,7 +87,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<string> MassUpdate(List<Sale> newEntity)
+        public async Task<string> MassUpdate(List<SaleDTOGet> newEntity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             var returnResult = await MassUpdateWithStringResult(client, $"sale/mass-update", newEntity);

@@ -24,8 +24,8 @@ namespace WinformDotNetFramework.Forms
         private static readonly HashSet<string> WriteRoles = new HashSet<string>() { "Admin", "CustomerWrite", "CustomerInvoiceWrite", "CustomerInvoiceCostWrite", "SaleWrite", "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite", "UserWrite" };
         private static readonly HashSet<string> ReadRoles = new HashSet<string>() { "Admin", "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead", "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "UserRead" };
         private static readonly HashSet<string> AdminGroupRoles = new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin", "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "UserAdmin" };
-        public Task<ICollection<Country>> CountriesList { get; set; }
-        public Task<ICollection<CostRegistry>> CostRegistryList { get; set; }
+        public Task<ICollection<CountryDTOGet>> CountriesList { get; set; }
+        public Task<ICollection<CostRegistryDTO>> CostRegistryList { get; set; }
 
         public MainForm()
         {

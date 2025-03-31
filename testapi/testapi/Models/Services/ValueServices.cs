@@ -21,7 +21,7 @@ namespace API.Models.Services
             _context = ctx;
         }
 
-        public async Task<TabelleCustomerDto> GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
+        public async Task<CustomerGroupDTO> GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
                                                 CustomerInvoiceFilter? invoiceFilter,
                                                 SaleCustomerFilter? saleFilter,
                                                 CustomerFilter? customerFilter)
@@ -32,11 +32,11 @@ namespace API.Models.Services
             var sales = await ApplyFilter(saleFilter).ToListAsync();
 
 
-            return new TabelleCustomerDto(customers, sales, customerInvoices, customerInvoiceCosts);
+            return new CustomerGroupDTO(customers, sales, customerInvoices, customerInvoiceCosts);
         }
 
 
-        public async Task<TabelleSupplierDto> GetSupplierInvoiceCosts(SupplierInvoiceCostFilter? costFilter,
+        public async Task<SupplierGroupDTO> GetSupplierInvoiceCosts(SupplierInvoiceCostFilter? costFilter,
                                                 SupplierInvoiceFilter? invoiceFilter,
                                                 SupplierFilter? supplierFilter)
         {
@@ -44,7 +44,7 @@ namespace API.Models.Services
             var supplierInvoices = await ApplyFilter(invoiceFilter).ToListAsync();
             var suppliers = await ApplyFilter(supplierFilter).ToListAsync();
 
-            return new TabelleSupplierDto(suppliers, supplierInvoices, supplierInvoiceCosts);
+            return new SupplierGroupDTO(suppliers, supplierInvoices, supplierInvoiceCosts);
         }
 
         private IQueryable<CustomerInvoiceCostDTOGet> ApplyFilter(CustomerInvoiceCostFilter? filter)

@@ -13,11 +13,11 @@ namespace Entity_Validator.Entity.DTO
         public string CostRegistryName { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [Range(0.0, double.MaxValue,ErrorMessage ="{0} must be grater than 0.")]
+        [Range(0.0, double.MaxValue, ErrorMessage = "{0} must be grater than 0.")]
         public decimal? CostRegistryPrice { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [Range(0, int.MaxValue, ErrorMessage = "{0} must be grater than 0."))]
+        [Range(0, int.MaxValue, ErrorMessage = "{0} must be grater than 0.")]
         public int? CostRegistryQuantity { get; set; }
 
 

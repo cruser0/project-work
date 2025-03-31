@@ -245,7 +245,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // supplierInvoiceCostBindingSource
             // 
-            this.supplierInvoiceCostBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.SupplierInvoiceCost);
+            this.supplierInvoiceCostBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.SupplierInvoiceCostDTOGet);
             // 
             // panel6
             // 

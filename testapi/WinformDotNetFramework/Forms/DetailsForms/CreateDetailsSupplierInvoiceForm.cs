@@ -74,7 +74,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 comboBox1.Text = supplierInvoice.Status;
                 DateClnd.Value = (DateTime)supplierInvoice.InvoiceDate;
-                List<SupplierInvoiceCost> data = (await _supplierInvoiceCostService
+                List<SupplierInvoiceCostDTOGet> data = (await _supplierInvoiceCostService
                     .GetAll(new SupplierInvoiceCostFilter()
                     { SupplierInvoiceCostSupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode }))
                     .ToList();
@@ -127,7 +127,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public async Task RefreshDGV()
         {
-            List<SupplierInvoiceCost> data = (await _supplierInvoiceCostService
+            List<SupplierInvoiceCostDTOGet> data = (await _supplierInvoiceCostService
                 .GetAll(new SupplierInvoiceCostFilter()
                 { SupplierInvoiceCostSupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode }))
                 .ToList();
@@ -244,7 +244,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             UtilityFunctions.SetDropdownText(NameCmbxUC, "");
             comboBox1.SelectedIndex = 1;
             textBox1.Text = "";
-            dataGridView1.DataSource = new List<SupplierInvoiceCost>();
+            dataGridView1.DataSource = new List<SupplierInvoiceCostDTOGet>();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -281,7 +281,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     .GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country }))
                     .FirstOrDefault().SupplierId;
 
-                SupplierInvoice si = new SupplierInvoice
+                SupplierInvoiceDTOGet si = new SupplierInvoiceDTOGet
                 {
                     SaleId = saleId,
                     Status = comboBox1.Text,
@@ -367,7 +367,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             try
             {
-                SupplierInvoice si = new SupplierInvoice
+                SupplierInvoiceDTOGet si = new SupplierInvoiceDTOGet
                 {
                     InvoiceDate = DateClnd.Value,
                     SaleId = saleId,
@@ -375,7 +375,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     Status = comboBox1.Text
                 };
 
-                SupplierInvoice newSI = await _supplierInvoiceService.Create(si);
+                SupplierInvoiceDTOGet newSI = await _supplierInvoiceService.Create(si);
                 MessageBox.Show("Supplier Invoice created Successfully!");
                 if (quit) Close();
 

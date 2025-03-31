@@ -16,12 +16,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         SupplierInvoiceCostService _supplierInvoiceCostService;
         SupplierInvoiceService _supplierInvoiceService;
         Form _father;
-        SupplierInvoiceCost detailsSupplierInvoiceCost;
+        SupplierInvoiceCostDTOGet detailsSupplierInvoiceCost;
         private int id = -1;
-        CostRegistry cr;
+        CostRegistryDTO cr;
         string InvoiceCode;
-        List<CostRegistry> list;
-        SupplierInvoiceCost _updateCost;
+        List<CostRegistryDTO> list;
+        SupplierInvoiceCostDTOGet _updateCost;
 
         public CreateDetailsSupplierInvoiceCostForm()
         {
@@ -43,7 +43,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             Init(null);
             _father = father;
             // Handle the generic object data appropriately
-            if (data is SupplierInvoiceCost supplierInvoiceCost)
+            if (data is SupplierInvoiceCostDTOGet supplierInvoiceCost)
             {
                 // Populate form with supplierInvoiceCost data
                 _updateCost = supplierInvoiceCost;
@@ -72,7 +72,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 detailsOnly = true;
                 int idInt = (int)idDetails;
-                SupplierInvoiceCost supplierInvoiceCost = await _supplierInvoiceCostService.GetById(idInt);
+                SupplierInvoiceCostDTOGet supplierInvoiceCost = await _supplierInvoiceCostService.GetById(idInt);
                 UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, supplierInvoiceCost.SupplierInvoiceCode);
                 QuantityIntegerTxt.SetText(supplierInvoiceCost.Quantity.ToString());
                 CostIntegerTxt.SetText(supplierInvoiceCost.Cost.ToString());
@@ -198,7 +198,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
             if (!detailsOnly)
             {
-                SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
+                SupplierInvoiceCostDTOGet supplierInvoiceCost = new SupplierInvoiceCostDTOGet
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
@@ -231,7 +231,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             else
             {
 
-                SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
+                SupplierInvoiceCostDTOGet supplierInvoiceCost = new SupplierInvoiceCostDTOGet
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
@@ -275,7 +275,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
             if (!detailsOnly)
             {
-                SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
+                SupplierInvoiceCostDTOGet supplierInvoiceCost = new SupplierInvoiceCostDTOGet
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
@@ -309,7 +309,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             else
             {
 
-                SupplierInvoiceCost supplierInvoiceCost = new SupplierInvoiceCost
+                SupplierInvoiceCostDTOGet supplierInvoiceCost = new SupplierInvoiceCostDTOGet
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,

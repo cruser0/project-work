@@ -17,7 +17,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         int pages;
         double itemsPage = 10.0;
         Form _father;
-        Task<ICollection<CostRegistryDTOPut>> getAllNotFiltered;
+        Task<ICollection<CostRegistryDTOGet>> getAllNotFiltered;
         Task<int> countNotFiltered;
         //Task<CostRegistryDGV> getFav;
 
@@ -67,7 +67,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             var query = _costRegistryService.GetAll(filter);
             var totalCount = _costRegistryService.Count(filterPage);
             await Task.WhenAll(query, totalCount);
-            IEnumerable<CostRegistryDTOPut> query1 = await query;
+            IEnumerable<CostRegistryDTOGet> query1 = await query;
 
             CostRegistryDgv.DataSource = query1.ToList();
 
@@ -107,7 +107,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             filter.CostRegistryPage = PaginationUserControl.CurrentPage;
-            IEnumerable<CostRegistryDTOPut> query = await _costRegistryService.GetAll(filter);
+            IEnumerable<CostRegistryDTOGet> query = await _costRegistryService.GetAll(filter);
             CostRegistryDgv.DataSource = query.ToList();
         }
 
@@ -241,7 +241,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             // DA TOGLIERE DOPO !!!
             await Task.WhenAll(/*getFav,*/ countNotFiltered, getAllNotFiltered);
-            IEnumerable<CostRegistryDTOPut> query = await getAllNotFiltered;
+            IEnumerable<CostRegistryDTOGet> query = await getAllNotFiltered;
             int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
@@ -278,7 +278,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     }
                     foreach (var rowid in ids)
                     {
-                        if (CostRegistryDgv.Rows[rowid].DataBoundItem is CostRegistryDTOPut costRegistry)
+                        if (CostRegistryDgv.Rows[rowid].DataBoundItem is CostRegistryDTOGet costRegistry)
                             id.Add((int)costRegistry.CostRegistryID);
                     }
 
@@ -328,12 +328,12 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             try
             {
-                List<CostRegistryDTOPut> modifiedEntities = new List<CostRegistryDTOPut>();
+                List<CostRegistryDTOGet> modifiedEntities = new List<CostRegistryDTOGet>();
 
                 // Itera solo sulle righe che sono state modificate
                 foreach (int rowIndex in modifiedRows)
                 {
-                    if (CostRegistryDgv.Rows[rowIndex].DataBoundItem is CostRegistryDTOPut entity)
+                    if (CostRegistryDgv.Rows[rowIndex].DataBoundItem is CostRegistryDTOGet entity)
                     {
                         modifiedEntities.Add(entity);
                     }
