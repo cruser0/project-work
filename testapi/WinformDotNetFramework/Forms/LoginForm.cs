@@ -46,7 +46,7 @@ namespace WinformDotNetFramework.Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            var ret = await _userService.Login(new UserDTO() { Email = "Admin", Password = "Admin" });
+            var ret = await _userService.Login(new UserDTO() { Email = "Admin@admin.com", Password = "Admin" });
             DialogResult = DialogResult.OK;
             Close();
         }
