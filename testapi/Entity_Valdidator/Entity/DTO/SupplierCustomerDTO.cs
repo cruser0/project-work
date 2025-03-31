@@ -1,4 +1,4 @@
-﻿namespace WinformDotNetFramework.Entities.DTO
+﻿namespace Entity_Validator.Entity.DTO
 {
     public class SupplierCustomerDTO
     {

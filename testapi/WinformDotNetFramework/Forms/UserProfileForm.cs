@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms
@@ -189,13 +188,13 @@ namespace WinformDotNetFramework.Forms
             CreateTsb.Visible = UtilityFunctions.IsAuthorized(WriteRoles) || UtilityFunctions.IsAuthorized(AdminGroupRoles);
             ReportTsb.Visible = UtilityFunctions.IsAuthorized(AdminRoles) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead", "SaleRead" }, requireAll: true) ||
-                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "SaleAdmin" }, requireAll: true)||
+                                      UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin", "SaleAdmin" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerRead", "CustomerInvoiceRead", "CustomerInvoiceCostRead", "SaleRead" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "CustomerAdmin", "CustomerInvoiceAdmin", "CustomerInvoiceCostAdmin", "SaleAdmin" }, requireAll: true);
-            GroupTsb.Visible= UtilityFunctions.IsAuthorized(ReadRoles, requireAll: true) ||
+            GroupTsb.Visible = UtilityFunctions.IsAuthorized(ReadRoles, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(WriteRoles, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(AdminGroupRoles, requireAll: true) ||
-                                      UtilityFunctions.IsAuthorized(AdminRoles)||
+                                      UtilityFunctions.IsAuthorized(AdminRoles) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierRead", "SupplierInvoiceRead", "SupplierInvoiceCostRead" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierWrite", "SupplierInvoiceWrite", "SupplierInvoiceCostWrite" }, requireAll: true) ||
                                       UtilityFunctions.IsAuthorized(new HashSet<string>() { "SupplierAdmin", "SupplierInvoiceAdmin", "SupplierInvoiceCostAdmin" }, requireAll: true);

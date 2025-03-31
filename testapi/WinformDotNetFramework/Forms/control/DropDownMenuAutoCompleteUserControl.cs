@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using WinformDotNetFramework.Forms.DetailsForms;
-using WinformDotNetFramework.Forms.DetailsForms;
 
 namespace WinformDotNetFramework.Forms.control
 {
@@ -85,7 +84,7 @@ namespace WinformDotNetFramework.Forms.control
         }
 
 
-       
+
 
         //private void Cmbx_SelectedIndexChanged(object sender, EventArgs e)
         //{
