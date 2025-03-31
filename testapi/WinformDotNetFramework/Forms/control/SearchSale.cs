@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using Entity_Validator.Entity.Filters;
+using System.Linq;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
 {
@@ -16,9 +16,9 @@ namespace WinformDotNetFramework.Forms.control
             StatusCB.SelectedIndex = 0;
             CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
         }
-        public SaleFilter GetFilter()
+        public SaleCustomerFilter GetFilter()
         {
-            SaleFilter saleFilter = new SaleFilter
+            SaleCustomerFilter saleFilter = new SaleCustomerFilter
             {
                 SaleBookingNumber = string.IsNullOrEmpty(BNTextBox.Text)?null: BNTextBox.Text,
                 SaleBoLnumber = string.IsNullOrEmpty(BoLTextBox.Text) ? null : BoLTextBox.Text

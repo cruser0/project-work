@@ -1,5 +1,5 @@
-﻿using System.Windows.Forms;
-using WinformDotNetFramework.Entities.Filters;
+﻿using Entity_Validator.Entity.Filters;
+using System.Windows.Forms;
 
 namespace WinformDotNetFramework.Forms.control
 {

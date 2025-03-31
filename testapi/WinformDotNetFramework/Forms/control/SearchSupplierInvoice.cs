@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using Entity_Validator.Entity.Filters;
+using System.Linq;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities.Filters;
 
 namespace WinformDotNetFramework.Forms.control
 {
@@ -17,9 +17,9 @@ namespace WinformDotNetFramework.Forms.control
             StatusCmb.SelectedIndex = 0;
             CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
         }
-        public SupplierInvoiceFilter GetFilter()
+        public SupplierInvoiceSupplierFilter GetFilter()
         {
-            SupplierInvoiceFilter filter = new SupplierInvoiceFilter();
+            SupplierInvoiceSupplierFilter filter = new SupplierInvoiceSupplierFilter();
             filter.SupplierInvoiceStatus = StatusCmb.Text;
             filter.SupplierInvoiceCode = string.IsNullOrEmpty(SupplierInvoiceCodeTxt.Text) ? null: SupplierInvoiceCodeTxt.Text;
             filter.SupplierInvoiceSaleBoL = string.IsNullOrEmpty(SaleBoLTxt.Text) ? null: SaleBoLTxt.Text;
