@@ -285,7 +285,7 @@ namespace WinformDotNetFramework.Services
         public async Task<string> AddUserFavouritePage(List<string> value)
         {
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = await GetResponsePost(client, $"preference/add-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
+            HttpResponseMessage response = await PostResponse(client, $"preference/add-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
             if (response.IsSuccessStatusCode)
             {
                 return await StatusOKStringReturn(response);
@@ -296,7 +296,7 @@ namespace WinformDotNetFramework.Services
         public async Task<string> RemoveUserFavouritePage(List<string> value)
         {
             ClientAPI client = new ClientAPI();
-            HttpResponseMessage response = await GetResponseDelete(client, $"preference/remove-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
+            HttpResponseMessage response = await DeleteResponse(client, $"preference/remove-user-favourite-page/{UserAccessInfo.RefreshUserID}", value);
             if (response.IsSuccessStatusCode)
             {
                 return await StatusOKStringReturn(response);
