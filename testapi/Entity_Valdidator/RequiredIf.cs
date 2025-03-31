@@ -69,7 +69,7 @@ namespace Entity_Validator
         /// <param name="otherProperty">The other property.</param>
         /// <param name="otherPropertyValue">The other property value.</param>
         public RequiredIfAttribute(string otherProperty, object otherPropertyValue)
-            : base("'{0}' is required because '{1}' has a value {3}'{2}'.")
+            : base("'{0}' is required.")
         {
             this.OtherProperty = otherProperty;
             this.OtherPropertyValue = otherPropertyValue;

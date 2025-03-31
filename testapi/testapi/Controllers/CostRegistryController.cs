@@ -1,9 +1,9 @@
-﻿using API.Models.DTO;
-using API.Models.Exceptions;
+﻿using API.Models.Exceptions;
 using API.Models.Mapper;
-using API.Models.Filters;
 using API.Models.Services;
-using Microsoft.AspNetCore.Authorization;
+using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -66,10 +66,15 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CostRegistryDTO costRegistry)
         {
+            costRegistry.IsPost = true;
+            var results = ValidatorEntity.Validate(costRegistry);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
 
             var data = await _costRegistryService.CreateCostRegistry(CostRegistryMapper.Map(costRegistry));
             if (data == null)
                 throw new NotFoundException("Data can't be null!");
+
             return Ok(data);
         }
 
@@ -81,6 +86,11 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CostRegistryDTOGet costRegistry)
         {
+            costRegistry.IsPost = false;
+            var results = ValidatorEntity.Validate(costRegistry);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
+
             var data = await _costRegistryService.UpdateCostRegistry(id, CostRegistryMapper.MapGet(costRegistry));
             if (data == null)
                 throw new NotFoundException("CostRegistry not found!");
@@ -117,9 +127,9 @@ namespace API.Controllers
 
         //[Authorize(Roles = "Admin,CostRegistryAdmin")]
         [HttpPut("mass-update")]
-        public async Task<IActionResult> MassUpdate([FromBody] List<CostRegistryDTOGet> newCostRegistrys)
+        public async Task<IActionResult> MassUpdate([FromBody] List<CostRegistryDTOGet> newCostRegistries)
         {
-            var data = await _costRegistryService.MassUpdateCostRegistry(newCostRegistrys);
+            var data = await _costRegistryService.MassUpdateCostRegistry(newCostRegistries);
             return Ok(data);
         }
     }

@@ -1,22 +1,35 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entity_Validator.Entity.DTO
 {
 
-public class CustomerInvoiceDTO
-{
-    public string CustomerInvoiceCode { get; set; }
-    public int? SaleID { get; set; }
-    public string SaleBookingNumber { get; set; }
-    public string SaleBoL { get; set; }
-    public decimal? InvoiceAmount { get; set; }
-    public DateTime? InvoiceDate { get; set; }
-    public string Status { get; set; }
+    public class CustomerInvoiceDTO
+    {
+        [RequiredIf("IsPost", true)]
+        public string CustomerInvoiceCode { get; set; }
+        [RequiredIf("IsPost", true)]
+        public int? SaleID { get; set; }
+        [RequiredIf("IsPost", true)]
+        [MaxLength(50)]
+        public string SaleBookingNumber { get; set; }
+        [RequiredIf("IsPost", true)]
+        [MaxLength(50)]
+        public string SaleBoL { get; set; }
+        [RequiredIf("IsPost", true)]
+        [Range(0.0, double.MaxValue)]
+        public decimal? InvoiceAmount { get; set; }
+        [RequiredIf("IsPost", true)]
+        public DateTime? InvoiceDate { get; set; }
+        [RequiredIf("IsPost", true)]
+        public string Status { get; set; }
+        public bool IsPost { get; set; }
 
-}
-public class CustomerInvoiceDTOGet : CustomerInvoiceDTO
-{
-    public int? CustomerInvoiceId { get; set; }
-}
+    }
+    public class CustomerInvoiceDTOGet : CustomerInvoiceDTO
+    {
+        [RequiredIf("IsPost", true)]
+        public int? CustomerInvoiceId { get; set; }
+    }
 }
 

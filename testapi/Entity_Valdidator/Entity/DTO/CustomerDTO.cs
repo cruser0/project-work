@@ -9,12 +9,12 @@ namespace Entity_Validator.Entity.DTO
         [MaxLength(100)]
         public string CustomerName { get; set; }
         [RequiredIf("IsPost", true)]
+        [MaxLength(100)]
         public string Country { get; set; }
         [RequiredIf("IsPost", true)]
         public bool? Deprecated { get; set; }
         [RequiredIf("IsPost", true)]
         public DateTime? CreatedAt { get; set; }
-
         public bool IsPost { get; set; }
 
     }

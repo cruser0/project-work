@@ -101,7 +101,7 @@ namespace API.Migrations
                     CostRegistryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CostRegistryUniqueCode = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
-                    CostRegistryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CostRegistryName = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     CostRegistryPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CostRegistryQuantity = table.Column<int>(type: "int", nullable: true)
                 },
