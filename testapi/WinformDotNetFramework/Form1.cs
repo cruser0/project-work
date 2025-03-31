@@ -16,8 +16,17 @@ namespace WinformDotNetFramework
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CustomerDTOGet c = new CustomerDTOGet() { IsPost = true };
-            List<ValidationResult> validationResults = ValidatorEntity.Validate(c);
+            var invoiceCost = new CustomerInvoiceCostDTO
+            {
+                CustomerInvoiceId = 1, // Un esempio di ID della fattura
+                Cost = -100.50m, // Valore negativo per il costo
+                Quantity = -10, // Esempio di quantità
+                Name = "Prodotto Esempio", // Nome del prodotto
+                CostRegistryCode = "COST123", // Codice di registrazione del costo
+                IsPost = true // Indica che si tratta di un'inserimento (Post)
+            };
+
+            List<ValidationResult> validationResults = ValidatorEntity.Validate(invoiceCost);
 
             string results = "";
             foreach (var item in validationResults)
