@@ -162,7 +162,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             };
             try
             {
-                await _userService.Update(user.UserID, si);
+                await _userService.Update((int)user.UserID, si);
                 await _userService.EditUserRoles(ar);
                 MessageBox.Show("User updated successfully!");
                 if (quit) Close();
@@ -190,7 +190,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 if (quit) Close();
 
                 _detailsOnly = true;
-                int id = (await _userService.GetAll(new UserFilter()
+                int id = (int)(await _userService.GetAll(new UserFilter()
                 {
                     UserName = UserNameTxt.Text,
                     UserLastName = UserLastNameTxt.Text,

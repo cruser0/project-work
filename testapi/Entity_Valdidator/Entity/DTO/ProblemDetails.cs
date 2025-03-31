@@ -1,6 +1,6 @@
 ﻿namespace Entity_Validator.Entity.DTO
 {
-    internal class ProblemDetails
+    public class ProblemDetails
     {
         public string Detail { get; set; }
         public int Status { get; set; }

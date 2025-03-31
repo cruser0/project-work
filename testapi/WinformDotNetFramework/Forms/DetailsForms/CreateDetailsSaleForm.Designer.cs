@@ -284,7 +284,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // customerInvoiceBindingSource
             // 
-            this.customerInvoiceBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.CustomerInvoiceDTOGet);
+            this.customerInvoiceBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.CustomerInvoiceDTOGet);
             // 
             // panel7
             // 
@@ -389,7 +389,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // supplierInvoiceSupplierDTOBindingSource
             // 
-            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(WinformDotNetFramework.Entities.DTO.SupplierInvoiceSupplierDTO);
+            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.SupplierInvoiceSupplierDTO);
             // 
             // panel8
             // 

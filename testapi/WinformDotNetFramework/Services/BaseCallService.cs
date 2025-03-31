@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,7 +8,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using WinformDotNetFramework.Entities;
 
 namespace WinformDotNetFramework.Services
 {
@@ -222,8 +222,8 @@ namespace WinformDotNetFramework.Services
                 UserAccessInfo.LastName = items.LastName;
                 UserAccessInfo.Role = items.Role;
                 UserAccessInfo.RefreshToken = items.RefreshToken;
-                UserAccessInfo.RefreshCreated = items.RefreshCreated;
-                UserAccessInfo.RefreshExpires = items.RefreshExpires;
+                UserAccessInfo.RefreshCreated = (DateTime)items.RefreshCreated;
+                UserAccessInfo.RefreshExpires = (DateTime)items.RefreshExpires;
                 UserAccessInfo.RefreshTokenID = items.RefreshTokenID;
                 UserAccessInfo.RefreshUserID = items.RefreshUserID;
                 return items;

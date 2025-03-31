@@ -8,8 +8,6 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.DTO;
 
 
 namespace WinformDotNetFramework.Services
