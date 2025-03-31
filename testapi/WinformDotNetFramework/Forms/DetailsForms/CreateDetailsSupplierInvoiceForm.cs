@@ -287,7 +287,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     Status = comboBox1.Text,
                     InvoiceDate = DateClnd.Value,
                     SupplierId = supplierId,
-                    InvoiceAmount = 0
                 };
 
                 await _supplierInvoiceService.Update(supplierInvoice.InvoiceId, si);

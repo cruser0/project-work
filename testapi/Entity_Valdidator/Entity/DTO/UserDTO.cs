@@ -6,9 +6,14 @@ namespace Entity_Validator.Entity.DTO
 {
     public class UserDTO
     {
+        [RequiredIf("IsPost", true)]
         [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", ErrorMessage = "Email is Invalid.")]
+        [MaxLength(100)]
         public string Email { get; set; }
+
+        [RequiredIf("IsPost", true)]
         public string Password { get; set; }
+
         public bool IsPost { get; set; }
     }
 
@@ -17,6 +22,7 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost",true)]
         [MaxLength(100)]
         public string Name { get; set; }
+
         [RequiredIf("IsPost", true)]
         [MaxLength(100)]
         public string LastName { get; set; }
@@ -32,12 +38,16 @@ namespace Entity_Validator.Entity.DTO
     {
         [RequiredIf("IsPost", true)]
         public int? UserID { get; set; }
+
         [RequiredIf("IsPost", true)]
         [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", ErrorMessage = "Email is Invalid.")]
+        [MaxLength(100)]
         public string Email { get; set; }
+
         [RequiredIf("IsPost", true)]
         [MaxLength(100)]
         public string Name { get; set; }
+
         [RequiredIf("IsPost", true)]
         [MaxLength(100)]
         public string LastName { get; set; }
@@ -62,11 +72,11 @@ namespace Entity_Validator.Entity.DTO
     public class AssignRoleDTO
     {
         [RequiredIf("IsPost", true)]
-
         public int? UserID { get; set; }
-        [RequiredIf("IsPost", true)]
 
+        [RequiredIf("IsPost", true)]
         public List<string> Roles { get; set; }
+
         public bool IsPost { get; set; }
     }
 

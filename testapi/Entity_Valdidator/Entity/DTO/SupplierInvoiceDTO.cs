@@ -8,25 +8,32 @@ namespace Entity_Validator.Entity.DTO
     public class SupplierInvoiceDTO
     {
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(50)]
         public string SupplierInvoiceCode { get; set; }
+
         [RequiredIf("IsPost", true)]
         public int? SaleId { get; set; }
+
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(50)]
         public string SaleBookingNumber { get; set; }
+
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(50)]
         public string SaleBoL { get; set; }
+
         [RequiredIf("IsPost", true)]
         public int? SupplierId { get; set; }
-        [RequiredIf("IsPost", true)]
-        [Range(0.0,double.MaxValue)]
+
+        [Range(0.0, 0.0, ErrorMessage = "{0} must be equal to 0.")]
         public decimal? InvoiceAmount { get; set; }
+
         [RequiredIf("IsPost", true)]
         public DateTime? InvoiceDate { get; set; }
+
         [RequiredIf("IsPost", true)]
         public string Status { get; set; }
+
         public bool IsPost { get; set; }
     }
 
@@ -41,8 +48,9 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost", true)]
         [MaxLength(100)]
         public string SupplierName { get; set; }
+
         [RequiredIf("IsPost", true)]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [RegularExpression("^[A-Za-z ]+$", ErrorMessage = "Only alphabetical characters and spaces are allowed.")]
         public string Country { get; set; }
         public SupplierInvoiceSupplierDTO(SupplierInvoice si, Supplier s)

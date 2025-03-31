@@ -10,17 +10,23 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost",true)]
         [MaxLength(50)]
         public string BookingNumber { get; set; }
+
         [RequiredIf("IsPost", true)]
         [MaxLength(50)]
         public string BoLnumber { get; set; }
+
         [RequiredIf("IsPost", true)]
         public DateTime? SaleDate { get; set; }
+
         [RequiredIf("IsPost", true)]
         public int? CustomerId { get; set; }
-        [RequiredIf("IsPost", true)]
+
+        [Range(0.0, 0.0, ErrorMessage = "{0} must be equal to 0.")]
         public decimal? TotalRevenue { get; set; }
+
         [RequiredIf("IsPost", true)]
         public string Status { get; set; } //active/closed
+
         public bool IsPost { get; set; }
     }
 
@@ -34,10 +40,12 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost", true)]
         [MaxLength(100)]
         public string CustomerName { get; set; }
+
         [RequiredIf("IsPost", true)]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [RegularExpression("^[A-Za-z ]+$", ErrorMessage = "Only alphabetical characters and spaces are allowed.")]
         public string Country { get; set; }
+
         public SaleCustomerDTO(Sale sale, Customer customer)
         {
             SaleId = sale.SaleID;

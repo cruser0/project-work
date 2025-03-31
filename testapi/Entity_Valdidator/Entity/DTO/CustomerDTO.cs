@@ -8,12 +8,14 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost", true)]
         [MaxLength(100)]
         public string CustomerName { get; set; }
+
         [RequiredIf("IsPost", true)]
         [MaxLength(100)]
+        [RegularExpression("^[A-Za-z]+$", ErrorMessage = "Only alphabetical characters are allowed.")]
         public string Country { get; set; }
+
         [RequiredIf("IsPost", true)]
         public bool? Deprecated { get; set; }
-        [RequiredIf("IsPost", true)]
         public DateTime? CreatedAt { get; set; }
         public bool IsPost { get; set; }
 
@@ -23,6 +25,7 @@ namespace Entity_Validator.Entity.DTO
     {
         [RequiredIf("IsPost", true)]
         public int? CustomerId { get; set; }
+
         [RequiredIf("IsPost", true)]
         public int? OriginalID { get; set; }
     }

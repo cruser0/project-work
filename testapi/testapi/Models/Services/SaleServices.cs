@@ -151,28 +151,6 @@ namespace API.Models.Services
 
         public async Task<SaleDTOGet> CreateSale(Sale sale)
         {
-            // Check if the sale parameter is null
-            if (sale == null)
-                throw new NullPropertyException("Couldn't create sale");
-
-            var nullFields = new List<string>();
-
-            // Check if any required fields in the sale object are null or empty
-            if (string.IsNullOrEmpty(sale.BookingNumber)) nullFields.Add("BN");
-            if (string.IsNullOrEmpty(sale.BoLnumber)) nullFields.Add("BOL");
-            if (sale.SaleDate == null) nullFields.Add("Date");
-            if (sale.CustomerID == null) nullFields.Add("CustomerID");
-            if (string.IsNullOrEmpty(sale.Status.StatusName)) nullFields.Add("Status");
-
-            // If any fields are null, throw an exception with the list of missing fields
-            if (nullFields.Any())
-                throw new NullPropertyException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
-
-            if (sale.BookingNumber.Length > 50)
-                throw new ErrorInputPropertyException("Booking Number is too long");
-
-            if (sale.BoLnumber.Length > 50)
-                throw new ErrorInputPropertyException("BoL Number is too long");
 
             // Check if the provided status is valid
             if (!statusList.Contains(sale.Status.StatusName.ToLower()))
