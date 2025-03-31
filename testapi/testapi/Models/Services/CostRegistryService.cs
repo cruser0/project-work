@@ -78,34 +78,9 @@ namespace API.Models.Services
 
             return query.Select(x => CostRegistryMapper.MapGet(x));
         }
-        /*
-        public int CostRegistryID { get; set; }
-        public string? CostRegistryUniqueCode { get; set; }
-        public string? CostRegistryName { get; set; }
-        public decimal? CostRegistryPrice { get; set; }
-        public int? CostRegistryQuantity { get; set; }
-         */
+
         public async Task<CostRegistryDTOGet> CreateCostRegistry(CostRegistry costRegistry)
         {
-            if (costRegistry == null)
-                throw new NullPropertyException("Couldn't create Cost Registry");
-
-            var nullFields = new List<string>();
-
-            if (string.IsNullOrEmpty(costRegistry.CostRegistryUniqueCode)) nullFields.Add("CostRegistryUniqueCode");
-            if (string.IsNullOrEmpty(costRegistry.CostRegistryName)) nullFields.Add("CostRegistryName");
-            if (costRegistry.CostRegistryPrice == null) nullFields.Add("CostRegistryPrice");
-            if (costRegistry.CostRegistryQuantity == null) nullFields.Add("CostRegistryQuantity");
-
-            if (nullFields.Any())
-                throw new NullPropertyException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
-
-            if (costRegistry.CostRegistryUniqueCode!.Length > 100)
-                throw new ErrorInputPropertyException("Code is too long");
-
-            if (costRegistry.CostRegistryName!.Length > 100)
-                throw new ErrorInputPropertyException("Name is too long");
-
             _context.CostRegistries.Add(costRegistry);
             await _context.SaveChangesAsync();
             return CostRegistryMapper.MapGet(costRegistry);
@@ -115,29 +90,9 @@ namespace API.Models.Services
         {
             var cr = await _context.CostRegistries.Where(x => x.CostRegistryID == id).FirstOrDefaultAsync();
 
-            if (cr == null)
-                throw new NotFoundException("Cost Registry not found");
-
-            if (!string.IsNullOrEmpty(costRegistry.CostRegistryName))
-            {
-                if (costRegistry.CostRegistryName!.Length > 100)
-                    throw new ErrorInputPropertyException("Name is too long");
-                cr.CostRegistryName = costRegistry.CostRegistryName;
-            }
-
-            if (costRegistry.CostRegistryPrice != null)
-            {
-                if (costRegistry.CostRegistryPrice <= 0)
-                    throw new ErrorInputPropertyException("cost cannot be zero or less");
-                cr.CostRegistryPrice = costRegistry.CostRegistryPrice;
-            }
-
-            if (costRegistry.CostRegistryQuantity != null)
-            {
-                if (costRegistry.CostRegistryQuantity <= 0)
-                    throw new ErrorInputPropertyException("quantity cannot be zero or less");
-                cr.CostRegistryQuantity = costRegistry.CostRegistryQuantity;
-            }
+            cr.CostRegistryName = costRegistry.CostRegistryName;
+            cr.CostRegistryPrice = costRegistry.CostRegistryPrice;
+            cr.CostRegistryQuantity = costRegistry.CostRegistryQuantity;
 
             try
             {

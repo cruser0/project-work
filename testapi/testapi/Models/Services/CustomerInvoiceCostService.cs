@@ -105,33 +105,20 @@ namespace API.Models.Services
         {
             CustomerInvoice ci;
 
-            if (customerInvoiceCost == null)
-                throw new NullPropertyException("Couldn't create customer Invoice Cost,the input was null");
-
-            if (customerInvoiceCost.CustomerInvoiceID == null)
-                throw new NullPropertyException("Customer Invoice Id can't be null!");
-
             if (!await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).AnyAsync())
                 throw new ErrorInputPropertyException("Customer Invoice Id not found!");
 
-            if (customerInvoiceCost.Cost < 0 || customerInvoiceCost.Quantity < 1 || customerInvoiceCost.Cost == null || customerInvoiceCost.Quantity == null)
-                throw new ErrorInputPropertyException("Values can't be lesser than 1 or null");
-
-            if (string.IsNullOrEmpty(customerInvoiceCost.Name))
-                throw new NullPropertyException("Name can't be empty");
 
             ci = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoiceCost.CustomerInvoiceID).Include(x => x.Status).Include(x => x.CustomerInvoiceCosts).FirstAsync();
             if (ci.Status.StatusName.ToLower().Equals("paid"))
                 throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
+
             var total = await _context.CustomerInvoiceCosts.Where(x => x.CustomerInvoiceID == ci.CustomerInvoiceID).SumAsync(x => x.Cost);
             if (total != null)
                 ci.InvoiceAmount = total + customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
             else
                 ci.InvoiceAmount = customerInvoiceCost.Cost * customerInvoiceCost.Quantity;
-            //_context.CustomerInvoices.Update(ci);
 
-            if (customerInvoiceCost.CostRegistryID == null)
-                throw new ErrorInputPropertyException("Cost Registry Code wrong or missing");
 
             _context.Add(customerInvoiceCost);
             await _context.SaveChangesAsync();
@@ -142,40 +129,31 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoiceCostDTOGet> UpdateCustomerInvoiceCost(int id, CustomerInvoiceCost newCustomerInvCost)
         {
-            // Declare a variable to hold the new related CustomerInvoice
             CustomerInvoice? newCustomerInvoice;
 
-            // Fetch the existing CustomerInvoiceCost record from the database based on the provided ID
             var oldCustomerInvCost = await _context.CustomerInvoiceCosts
                 .Where(x => x.CustomerInvoiceCostsID == id).Include(x => x.CostRegistry)
                 .FirstOrDefaultAsync();
 
-            // Fetch the related CustomerInvoice for the existing cost record
             var oldCustomerInvoice = await _context.CustomerInvoices
                 .Where(x => x.CustomerInvoiceID == oldCustomerInvCost.CustomerInvoiceID).Include(x => x.Status)
                 .FirstOrDefaultAsync();
 
-            // Subtract the old cost amount from the associated invoice before updating
             oldCustomerInvoice.InvoiceAmount -= (oldCustomerInvCost.Cost * oldCustomerInvCost.Quantity);
 
-            // Ensure the cost record exists and the provided ID is valid
             if (oldCustomerInvCost != null && id >= 0)
             {
 
-                // If a new CustomerInvoiceId is provided, update it
                 if (newCustomerInvCost.CustomerInvoiceID != null)
                     oldCustomerInvCost.CustomerInvoiceID = newCustomerInvCost.CustomerInvoiceID;
 
-                // Ensure the new CustomerInvoiceId exists in the database, otherwise throw an exception
                 if (newCustomerInvCost.CustomerInvoiceID != null)
                     if (!await _context.CustomerInvoices.AnyAsync(x => x.CustomerInvoiceID == newCustomerInvCost.CustomerInvoiceID))
                         throw new NotFoundException("Customer Invoice not Found");
 
-                // If a new quantity is provided and greater than 0, update the record
                 if (newCustomerInvCost.Quantity > 0)
                     oldCustomerInvCost.Quantity = newCustomerInvCost.Quantity ?? oldCustomerInvCost.Quantity;
 
-                // If a new cost is provided and greater than 0, update the record
                 if (newCustomerInvCost.Cost > 0)
                     oldCustomerInvCost.Cost = newCustomerInvCost.Cost ?? oldCustomerInvCost.Cost;
                 if (newCustomerInvCost.CostRegistryID != null)
@@ -183,45 +161,33 @@ namespace API.Models.Services
                 if (newCustomerInvCost.CostRegistry != null)
                     oldCustomerInvCost.CostRegistry = newCustomerInvCost.CostRegistry ?? oldCustomerInvCost.CostRegistry;
 
-                // Fetch the updated CustomerInvoice associated with the cost
                 newCustomerInvoice = await _context.CustomerInvoices
                     .Where(x => x.CustomerInvoiceID == oldCustomerInvCost.CustomerInvoiceID).Include(x => x.Status)
                     .FirstOrDefaultAsync();
 
-                // Prevent modifications if the invoice is already marked as "paid"
                 if (newCustomerInvoice.Status.StatusName.ToLower().Equals("paid"))
                     throw new ErrorInputPropertyException("Cannot add cost to a paid invoice");
 
-                // Update the name field if a new value is provided
                 oldCustomerInvCost.Name = newCustomerInvCost.Name ?? oldCustomerInvCost.Name;
 
-                // Mark the updated cost record for database update
                 _context.CustomerInvoiceCosts.Update(oldCustomerInvCost);
 
-                // Save changes to the database
                 await _context.SaveChangesAsync();
 
-                // If the cost and quantity are valid, recalculate the invoice amount
                 if (oldCustomerInvCost.Cost > 0 && oldCustomerInvCost.Quantity > 0)
                 {
-                    // Calculate the new total cost for the updated invoice
                     var total = oldCustomerInvCost.Cost * oldCustomerInvCost.Quantity;
 
-                    // Update the invoice's total amount
                     newCustomerInvoice.InvoiceAmount += total;
 
-                    // Call the external service to update the invoice
                     await _serviceCustomerInvoice.UpdateCustomerInvoice(newCustomerInvoice.CustomerInvoiceID, newCustomerInvoice);
 
-                    // Update the old invoice (which had its amount subtracted earlier)
                     await _serviceCustomerInvoice.UpdateCustomerInvoice(oldCustomerInvoice.CustomerInvoiceID, oldCustomerInvoice);
                 }
 
-                // Return the updated CustomerInvoiceCost as a DTO
                 return CustomerInvoiceCostMapper.MapGet(oldCustomerInvCost);
             }
 
-            // If the cost record was not found, throw an exception
             throw new NotFoundException("Customer Invoice Cost not found");
         }
 

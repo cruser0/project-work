@@ -33,7 +33,6 @@ namespace API.Models.Services
 
         public async Task<ICollection<CustomerDTOGet>> GetAllCustomers(CustomerFilter filter)
         {
-            // Retrieve all customers from the database and map them to DTOs
             return await ApplyFilter(filter).ToListAsync();
         }
 
@@ -47,19 +46,16 @@ namespace API.Models.Services
             int itemsPerPage = 10;
             var query = _context.Customers.Include(x => x.Country).AsQueryable();
 
-            // Filtra per OriginalID se specificato
             if (filter.CustomerOriginalID != null)
             {
                 query = query.Where(x => x.OriginalID == filter.CustomerOriginalID);
             }
 
-            // Filtra per nome se specificato
             if (!string.IsNullOrEmpty(filter.CustomerName))
             {
                 query = query.Where(x => x.CustomerName.Contains(filter.CustomerName));
             }
 
-            // Filtra per data di creazione
             if (filter.CustomerCreatedDateFrom != null || filter.CustomerCreatedDateTo != null)
             {
                 if (filter.CustomerCreatedDateFrom != null)
@@ -72,19 +68,16 @@ namespace API.Models.Services
                 }
             }
 
-            // Filtra per paese se specificato
             if (!string.IsNullOrEmpty(filter.CustomerCountry))
             {
                 query = query.Where(x => x.Country.CountryName.Contains(filter.CustomerCountry));
             }
 
-            // Filtra per stato di deprecazione se specificato
             if (filter.CustomerDeprecated != null)
             {
                 query = query.Where(x => x.Deprecated == filter.CustomerDeprecated);
             }
 
-            // Applica paginazione se specificata
             if (filter.CustomerPage != null && filter.CustomerPage > 0)
             {
                 query = query.Skip(((int)filter.CustomerPage - 1) * itemsPerPage).Take(itemsPerPage);
@@ -95,32 +88,17 @@ namespace API.Models.Services
 
         public async Task<CustomerDTOGet> GetCustomerById(int id)
         {
-            // Retrieve the customer from the database based on the provided ID
             var data = await _context.Customers.Include(x => x.Country).Where(x => x.CustomerID == id).FirstOrDefaultAsync();
             if (data == null)
             {
                 throw new NotFoundException("Customer not found!");
             }
-            // Map and return the customer as a DTO
+
             return CustomerMapper.MapGet(data);
         }
 
         public async Task<CustomerDTOGet> CreateCustomer(Customer customer)
         {
-            // Check if the provided customer object is null
-            if (customer == null)
-                throw new NullPropertyException("Couldn't create customer");
-
-            // List to track missing required fields
-            var nullFields = new List<string>();
-
-            // Check if required fields are null or empty
-            if (string.IsNullOrEmpty(customer.CustomerName)) nullFields.Add("CustomerName");
-            if (string.IsNullOrEmpty(customer.Country.CountryName)) nullFields.Add("Country");
-
-            // If any required field is missing, throw an exception with details
-            if (nullFields.Any())
-                throw new NullPropertyException($"{string.Join(", ", nullFields)} {(nullFields.Count > 1 ? "are" : "is")} null");
 
             if (customer.Deprecated != null)
                 if ((bool)customer.Deprecated)
@@ -132,15 +110,7 @@ namespace API.Models.Services
 
             customer.CreatedAt = DateTime.Now;
 
-            if (customer.CustomerName.Length > 100)
-                throw new ErrorInputPropertyException("Customer name is too long");
-
-            if (customer.Country.CountryName.Length > 50)
-                throw new ErrorInputPropertyException("Country is too long");
-
-
             _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
             customer.OriginalID = customer.CustomerID;
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
@@ -152,30 +122,13 @@ namespace API.Models.Services
         public async Task<CustomerDTOGet> UpdateCustomer(int id, Customer customer)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
-            // Retrieve the customer from the database based on the provided ID
-            var cDB = await _context.Customers.Where(x => x.CustomerID == id).Include(x => x.Country).FirstOrDefaultAsync();
 
+            var cDB = await _context.Customers.Where(x => x.CustomerID == id).Include(x => x.Country).FirstOrDefaultAsync();
 
             try
             {
-                // If the customer does not exist, throw an exception
-                if (cDB == null)
-                    throw new NotFoundException("Customer not found");
-
-                if ((bool)cDB.Deprecated)
+                if ((bool)cDB!.Deprecated!)
                     throw new ErrorInputPropertyException("Can't update deprecated customer");
-
-                if (customer.CustomerName != null)
-                    if (customer.CustomerName.Length > 100)
-                        throw new ErrorInputPropertyException("Customer name is too long");
-                if (customer.Country != null)
-                {
-                    if (customer.Country.CountryName.Length > 50)
-                        throw new ErrorInputPropertyException("Country is too long");
-
-                }
-
-
 
                 Customer newCustomer = new Customer
                 {
@@ -188,12 +141,12 @@ namespace API.Models.Services
                 };
 
                 cDB.Deprecated = true;
-                // Save the changes to the database
+
                 _context.Customers.Update(cDB);
                 _context.Customers.Add(newCustomer);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
-                // Map and return the updated customer as a DTO
+
                 return CustomerMapper.MapGet(newCustomer);
             }
             catch
@@ -209,27 +162,19 @@ namespace API.Models.Services
             var data = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
             try
             {
-                // Retrieve the customer from the database based on the provided ID
-
-                // If the customer does not exist, throw an exception
                 if (data == null)
                     throw new NotFoundException("Customer not found!");
 
-                // Retrieve all sales associated with this customer
                 var sales = await _context.Sales.Where(s => s.CustomerID == id).ToListAsync();
 
-                // If there are any sales, delete them
                 if (sales.Count > 0)
                 {
-
                     foreach (var sale in sales)
                     {
                         await _sService.DeleteSale(sale.SaleID);
-
                     }
                 }
 
-                // Remove the customer from the database
                 _context.Customers.Remove(data);
                 await _context.SaveChangesAsync();
             }
@@ -240,36 +185,28 @@ namespace API.Models.Services
             }
             await transaction.CommitAsync();
 
-            // Map the deleted customer to DTO and return it
             return CustomerMapper.MapGet(data);
         }
 
         public async Task<string> MassDeleteCustomer(List<int> customerId)
         {
             int count = 0;
-            // Retrieve the customer from the database based on the provided ID
             foreach (var id in customerId)
             {
                 await using var transaction = await _context.Database.BeginTransactionAsync();
                 var data = await _context.Customers.Where(x => x.CustomerID == id).FirstOrDefaultAsync();
                 try
                 {
-
-                    // If the customer does not exist, continues with the loop
                     if (data == null)
                         continue;
 
-                    // Retrieve all sales associated with this customer
                     var sales = await _context.Sales.Where(s => s.CustomerID == id).ToListAsync();
-
-                    // If there are any sales, delete them
-
 
                     foreach (var sale in sales)
                     {
                         await _sService.DeleteSale(sale.SaleID);
                     }
-                    // Remove the customer from the database
+
                     _context.Customers.Remove(data);
                     await _context.SaveChangesAsync();
                 }
@@ -282,7 +219,6 @@ namespace API.Models.Services
                 count++;
             }
 
-            // Map the deleted customer to DTO and return it
             return $"{count} Customers were deleted out of {customerId.Count}";
         }
 
@@ -299,7 +235,7 @@ namespace API.Models.Services
                     if (c == null)
                         throw new NotFoundException("Customer not found");
 
-                    if ((bool)c.Deprecated)
+                    if ((bool)c!.Deprecated!)
                         throw new ErrorInputPropertyException("Can't update deprecated customer");
 
                     if (customer.CustomerName != null)
@@ -314,7 +250,7 @@ namespace API.Models.Services
                             throw new ErrorInputPropertyException("Country is too long");
 
                     }
-                    Customer customerMapped = Mapper.CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.CustomerName));
+                    Customer customerMapped = CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.CustomerName));
                     Customer newCustomer = new Customer
                     {
                         CustomerName = customerMapped.CustomerName ?? c.CustomerName,
