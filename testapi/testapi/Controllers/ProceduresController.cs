@@ -1,10 +1,7 @@
-﻿using API.Models;
-using API.Models.Filters;
-using API.Models.Procedures;
-using API.Models.Services;
+﻿using API.Models.Services;
+using Entity_Validator.Entity.Filters;
+using Entity_Validator.Entity.Procedures;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace API.Controllers
@@ -24,7 +21,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetClassifySalesByProfit([FromQuery] ClassifySalesByProfitFilter filter)
         {
             var profit = await _procedureService.FilterSalesByProfit(filter);
-            if(profit!=null)
+            if (profit != null)
                 return Ok(profit);
             return Ok(new List<ClassifySalesByProfit>());
 

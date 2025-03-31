@@ -1,5 +1,5 @@
-﻿using API.Models.Filters;
-using API.Models.Procedures;
+﻿using Entity_Validator.Entity.Filters;
+using Entity_Validator.Entity.Procedures;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,8 +49,8 @@ namespace API.Models.Services
                     new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
                     new SqlParameter("@CountryRegion", filter.CountryRegion ?? (object)DBNull.Value),
                     new SqlParameter("@SaleID", filter.SaleID ?? (object)DBNull.Value),
-                    new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : (object)DBNull.Value),
-                    new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo.Value.Date : (object)DBNull.Value));
+                    new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : DBNull.Value),
+                    new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo.Value.Date : DBNull.Value));
 
             return await sql.ToListAsync();
         }
@@ -71,8 +71,8 @@ namespace API.Models.Services
                 new SqlParameter("@customerInvoiceID", filter.customerInvoiceID ?? (object)DBNull.Value),
                 new SqlParameter("@TotalGainedFrom", filter.TotalGainedFrom ?? (object)DBNull.Value),
                 new SqlParameter("@TotalGainedTo", filter.TotalGainedTo ?? (object)DBNull.Value),
-                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : (object)DBNull.Value),
-                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo : DBNull.Value),
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerName", filter.CustomerName ?? (object)DBNull.Value),
                 new SqlParameter("@CustomerCountry", filter.CustomerCountry ?? (object)DBNull.Value),
@@ -96,8 +96,8 @@ namespace API.Models.Services
                 new SqlParameter("@SupplierInvoiceID", filter.SupplierInvoiceID ?? (object)DBNull.Value),
                 new SqlParameter("@TotalSpentFrom", filter.TotalSpentFrom ?? (object)DBNull.Value),
                 new SqlParameter("@TotalSpentTo", filter.TotalSpentTo ?? (object)DBNull.Value),
-                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : (object)DBNull.Value),
-                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo.Value.Date : (object)DBNull.Value),
+                new SqlParameter("@DateFrom", filter.DateFrom.HasValue ? filter.DateFrom.Value.Date : DBNull.Value),
+                new SqlParameter("@DateTo", filter.DateTo.HasValue ? filter.DateTo.Value.Date : DBNull.Value),
                 new SqlParameter("@Status", filter.Status ?? (object)DBNull.Value),
                 new SqlParameter("@SupplierName", filter.SupplierName ?? (object)DBNull.Value),
                 new SqlParameter("@SupplierCountry", filter.SupplierCountry ?? (object)DBNull.Value),

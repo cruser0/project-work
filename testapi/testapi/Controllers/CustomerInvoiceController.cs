@@ -1,8 +1,10 @@
-﻿using API.Models.DTO;
+﻿
 using API.Models.Exceptions;
-using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -75,6 +77,11 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceDTO customerInvoice)
         {
+            customerInvoice.IsPost = true;
+            var results = ValidatorEntity.Validate(customerInvoice);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
+
             var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                     await _statusService.GetStatusByName(customerInvoice.Status),
                                                                                                     await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));
@@ -90,6 +97,11 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceDTO customerInvoice)
         {
+            customerInvoice.IsPost = false;
+            var results = ValidatorEntity.Validate(customerInvoice);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
+
             var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                    await _statusService.GetStatusByName(customerInvoice.Status),
                                                                                                     await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));

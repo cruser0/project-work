@@ -1,8 +1,9 @@
-﻿using API.Models.DTO;
-using API.Models.Exceptions;
-using API.Models.Filters;
+﻿using API.Models.Exceptions;
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -67,6 +68,11 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CustomerInvoiceCostDTO customerInvoiceCost)
         {
+            customerInvoiceCost.IsPost = true;
+            var results = ValidatorEntity.Validate(customerInvoiceCost);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
+
             var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost,
                                                                                                                     await _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),
                                                                                                                     await _customerInvoiceService.GetOnlyCustomerInvoiceById((int)customerInvoiceCost.CustomerInvoiceId!)));
@@ -80,6 +86,11 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerInvoiceCostDTO customerInvoiceCost)
         {
+            customerInvoiceCost.IsPost = false;
+            var results = ValidatorEntity.Validate(customerInvoiceCost);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
+
             var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost,
                                                                                                                     await _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),
                                                                                                                     await _customerInvoiceService.GetOnlyCustomerInvoiceById((int)customerInvoiceCost.CustomerInvoiceId!)));
