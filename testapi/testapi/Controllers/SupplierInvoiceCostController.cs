@@ -3,6 +3,9 @@ using API.Models.Exceptions;
 using API.Models.Filters;
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,7 +68,12 @@ namespace API.Controllers
         public async Task<IActionResult> Post(SupplierInvoiceCostDTO supplierInvoiceCost)
         {
 
-
+            supplierInvoiceCost.IsPost = true;
+            var result = ValidatorEntity.Validate(supplierInvoiceCost);
+            if (result.Any())
+            {
+                throw new ValidateException(result[0].ToString());
+            }
 
             var data = await _supplierInvoiceCostService.CreateSupplierInvoiceCost(SupplierInvoiceCostMapper.Map(supplierInvoiceCost,
                                                                                                                     await _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
@@ -82,7 +90,12 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceCostDTO supplierInvoiceCost)
         {
-
+            supplierInvoiceCost.IsPost = false;
+            var result = ValidatorEntity.Validate(supplierInvoiceCost);
+            if (result.Any())
+            {
+                throw new ValidateException(result[0].ToString());
+            }
             var data = await _supplierInvoiceCostService.UpdateSupplierInvoiceCost(id, SupplierInvoiceCostMapper.Map(supplierInvoiceCost,
                                                                                                                     await _costRegistryService.GetCostRegistryByCode(supplierInvoiceCost.CostRegistryCode!),
                                                                                                                     await _supplierInvoiceService.GetOnlySupplierInvoiceById((int)supplierInvoiceCost.SupplierInvoiceId!)));

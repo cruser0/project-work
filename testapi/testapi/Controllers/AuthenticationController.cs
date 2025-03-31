@@ -1,8 +1,9 @@
-﻿using API.Models.DTO;
-using API.Models.Entities;
-using API.Models.Exceptions;
-using API.Models.Filters;
+﻿using API.Models.Exceptions;
 using API.Models.Services;
+using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities;
+using Entity_Validator.Entity.Procedures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,8 @@ namespace API.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly UserService _authenticationService;
+        private object supplierInvoiceCost;
+
         public AuthenticationController(UserService auth)
         {
             _authenticationService = auth;
@@ -33,6 +36,12 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserAccessInfoDTO>> Login(UserDTO request)
         {
+            request.IsPost = true;
+            var result = ValidatorEntity.Validate(supplierInvoiceCost);
+            if (result.Any())
+            {
+                throw new ValidateException(result[0].ToString());
+            }
             User user = await _authenticationService.GetUserByEmail(request.Email);
             if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
                 return Unauthorized("Wrong Password!");
@@ -68,6 +77,12 @@ namespace API.Controllers
         [HttpPut("user/assign-roles")]
         public async Task<ActionResult<string>> AssignRoles(AssignRoleDTO assignRole)
         {
+            request.IsPost = false;
+            var result = ValidatorEntity.Validate(supplierInvoiceCost);
+            if (result.Any())
+            {
+                throw new ValidateException(result[0].ToString());
+            }
             if (assignRole.UserID != null)
                 await _authenticationService.EditRoles(assignRole.UserID, assignRole.Roles);
             return Ok("User Role Updated");

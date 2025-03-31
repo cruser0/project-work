@@ -1,8 +1,9 @@
-﻿using API.Models.DTO;
-using API.Models.Exceptions;
-using API.Models.Filters;
+﻿using API.Models.Exceptions;
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -64,6 +65,12 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SupplierInvoiceDTO supplierInvoice)
         {
+            supplierInvoice.IsPost = true;
+            var result = ValidatorEntity.Validate(supplierInvoice);
+            if (result.Any())
+            {
+                throw new ValidateException(result[0].ToString());
+            }
             var data = await _supplierInvoiceService.CreateSupplierInvoice(SupplierInvoiceMapper.Map(supplierInvoice,
                                                                                                     await _statusService.GetStatusByName(supplierInvoice.Status!),
                                                                                                     await _saleService.GetOnlySaleById((int)supplierInvoice.SaleId!)));
@@ -79,6 +86,12 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SupplierInvoiceDTO supplierInvoice)
         {
+            supplierInvoice.IsPost = false;
+            var result = ValidatorEntity.Validate(supplierInvoice);
+            if (result.Any())
+            {
+                throw new ValidateException(result[0].ToString());
+            }
             var data = await _supplierInvoiceService.UpdateSupplierInvoice(id, SupplierInvoiceMapper.Map(supplierInvoice,
                                                                                                     await _statusService.GetStatusByName(supplierInvoice.Status!),
                                                                                                     await _saleService.GetOnlySaleById((int)supplierInvoice.SaleId!)));

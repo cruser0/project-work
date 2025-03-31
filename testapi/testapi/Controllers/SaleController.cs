@@ -63,7 +63,7 @@ namespace API.Controllers
             var result =ValidatorEntity.Validate(sale);
             if (result.Any())
             {
-                throw new Exception(result.First().ToString());
+                throw new ValidateException(result.First().ToString());
             }
             var data = await _saleService.CreateSale(SaleMapper.Map(sale, await _statusService.GetStatusByName(sale.Status!)));
             if (data == null)
@@ -80,7 +80,7 @@ namespace API.Controllers
             var result = ValidatorEntity.Validate(sale);
             if (result.Any())
             {
-                throw new Exception(result.First().ToString());
+                throw new ValidateException(result.First().ToString());
             }
             var data = await _saleService.UpdateSale(id, SaleMapper.Map(sale, await _statusService.GetStatusByName(sale.Status!)));
             if (data == null)

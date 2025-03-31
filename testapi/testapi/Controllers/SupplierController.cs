@@ -1,9 +1,9 @@
-﻿using API.Models.DTO;
-using API.Models.Entities;
-using API.Models.Exceptions;
-using API.Models.Filters;
+﻿using API.Models.Exceptions;
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -77,7 +77,12 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SupplierDTO supplier)
         {
-
+            supplier.IsPost = true;
+            var result = ValidatorEntity.Validate(supplier);
+            if (result.Any())
+            {
+                throw new ValidateException(result.First().ToString());
+            }
             var data = await _supplierService.CreateSupplier(SupplierMapper.Map(supplier, await _countryService.GetCountryByName(supplier.Country!)));
             if (data == null)
                 throw new NotFoundException("Data can't be null!");
@@ -89,7 +94,12 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] SupplierDTO supplier)
         {
-
+            supplier.IsPost = false;
+            var result = ValidatorEntity.Validate(supplier);
+            if (result.Any())
+            {
+                throw new ValidateException(result.First().ToString());
+            }
             var data = await _supplierService.UpdateSupplier(id, SupplierMapper.Map(supplier, await _countryService.GetCountryByName(supplier.Country!)));
             if (data == null)
                 throw new NotFoundException("Supplier not found!");
