@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Entity_Validator.Entity.Entities
 {
@@ -10,10 +9,8 @@ namespace Entity_Validator.Entity.Entities
         {
             Sales = new HashSet<Sale>();
         }
-
         public int CustomerID { get; set; }
 
-        [StringLength(100, ErrorMessage = "Customer name cannot exceed 100 characters.")]
         public string CustomerName { get; set; }
 
         public int? CountryID { get; set; }

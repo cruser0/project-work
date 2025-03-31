@@ -1,10 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entity_Validator
 {
     public class ValidatorEntity
     {
-        public Dictionary<string,bool> Tests { get; set; }
-        public bool Valid { get; set; }
+        public static List<ValidationResult> Validate<T>(T entity)
+        {
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(entity);
+            Validator.TryValidateObject(entity, context, results, true);
+            return results;
+        }
     }
 }
+
