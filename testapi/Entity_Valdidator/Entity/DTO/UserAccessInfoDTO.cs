@@ -12,7 +12,6 @@ namespace Entity_Validator.Entity.DTO
         public string LastName { get; set; }
         public string Email { get; set; }
         public List<string> Role { get; set; }
-        public Dictionary<string, string> Preferences { get; set; }
         public int RefreshTokenID { get; set; }
         public int RefreshUserID { get; set; }
         public string RefreshToken { get; set; }
@@ -25,7 +24,6 @@ namespace Entity_Validator.Entity.DTO
             LastName = user.LastName;
             Email = user.Email;
             Role = user.Role;
-            Preferences = user.Preferences;
             RefreshUserID = refreshToken.UserID;
             RefreshExpires = refreshToken.Expires;
             RefreshCreated = refreshToken.Created;
