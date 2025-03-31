@@ -40,7 +40,7 @@ namespace Entity_Validator.Entity.DTO
     public class SupplierInvoiceDTOGet : SupplierInvoiceDTO
     {
         [RequiredIf("IsPost", true)]
-        public int? InvoiceId { get; set; }
+        public int? SupplierInvoiceId { get; set; }
     }
 
     public class SupplierInvoiceSupplierDTO : SupplierInvoiceDTOGet
@@ -56,7 +56,7 @@ namespace Entity_Validator.Entity.DTO
         public SupplierInvoiceSupplierDTO(SupplierInvoice si, Supplier s)
         {
             SupplierInvoiceCode = si.SupplierInvoiceCode;
-            InvoiceId = si.SupplierInvoiceID;
+            SupplierInvoiceId = si.SupplierInvoiceID;
             InvoiceDate = si.InvoiceDate;
             SupplierName = s.SupplierName;
             Country = s.Country.CountryName;

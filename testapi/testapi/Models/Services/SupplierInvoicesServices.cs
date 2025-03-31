@@ -288,7 +288,7 @@ namespace API.Models.Services
             {
                 foreach (SupplierInvoiceDTOGet supplierInvoice in newSupplierInvoices)
                 {
-                    var siDB = await _context.SupplierInvoices.Include(x => x.Status).FirstOrDefaultAsync(x => x.SupplierInvoiceID == supplierInvoice.InvoiceId);
+                    var siDB = await _context.SupplierInvoices.Include(x => x.Status).FirstOrDefaultAsync(x => x.SupplierInvoiceID == supplierInvoice.SupplierInvoiceId);
 
                     if (siDB == null)
                     {

@@ -298,7 +298,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (SupplierInvoiceDgv.Rows[rowid].DataBoundItem is SupplierInvoiceSupplierDTO customer)
-                            id.Add((int)customer.InvoiceId);
+                            id.Add((int)customer.SupplierInvoiceId);
                     }
 
                     if (id.Count > 0)

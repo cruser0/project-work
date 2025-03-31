@@ -287,7 +287,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     SupplierId = supplierId,
                 };
 
-                await _supplierInvoiceService.Update((int)supplierInvoice.InvoiceId, si);
+                await _supplierInvoiceService.Update((int)supplierInvoice.SupplierInvoiceId, si);
                 MessageBox.Show("Customer updated successfully!");
                 if (quit) Close();
             }

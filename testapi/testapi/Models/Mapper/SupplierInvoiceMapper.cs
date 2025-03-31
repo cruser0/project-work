@@ -43,7 +43,7 @@ namespace API.Models.Mapper
             return new SupplierInvoiceDTOGet()
             {
 
-                InvoiceId = supplierInvoice.SupplierInvoiceID,
+                SupplierInvoiceId = supplierInvoice.SupplierInvoiceID,
                 SaleId = supplierInvoice.SaleID,
                 SaleBoL = supplierInvoice.Sale.BoLnumber,
                 SaleBookingNumber = supplierInvoice.Sale.BookingNumber,
@@ -60,7 +60,7 @@ namespace API.Models.Mapper
             return new SupplierInvoice()
             {
 
-                SupplierInvoiceID = (int)supplierInvoice.InvoiceId!,
+                SupplierInvoiceID = (int)supplierInvoice.SupplierInvoiceId!,
                 SaleID = supplierInvoice.SaleId,
                 SupplierID = supplierInvoice.SupplierId,
                 InvoiceAmount = supplierInvoice.InvoiceAmount,
