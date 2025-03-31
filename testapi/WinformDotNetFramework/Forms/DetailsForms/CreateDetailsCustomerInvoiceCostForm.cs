@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -149,12 +150,37 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 if (_updateCost != null)
                 {
+                    customerInvoiceCost.IsPost = false;
+                    var result = ValidatorEntity.Validate(customerInvoiceCost);
+                    if (result.Any())
+                    {
+                        string err = "";
+                        foreach (var item in result)
+                        {
+                            err += item.ErrorMessage + "\n";
+                        }
+                        MessageBox.Show(err);
+                        return;
+                    }
+
                     await _customerInvoiceCostService.Update((int)_updateCost.CustomerInvoiceCostsId, customerInvoiceCost);
                     MessageBox.Show("Customer Invoice Cost Updated Succesfully");
 
                 }
                 else
                 {
+                    customerInvoiceCost.IsPost = true;
+                    var result = ValidatorEntity.Validate(customerInvoiceCost);
+                    if (result.Any())
+                    {
+                        string err = "";
+                        foreach (var item in result)
+                        {
+                            err += item.ErrorMessage + "\n";
+                        }
+                        MessageBox.Show(err);
+                        return;
+                    }
                     await _customerInvoiceCostService.Create(customerInvoiceCost);
                     MessageBox.Show("Customer Invoice Cost Created Succesfully");
                 }
@@ -218,6 +244,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             try
             {
+                customerInvoiceCost.IsPost = true;
+                var result = ValidatorEntity.Validate(customerInvoiceCost);
+                if (result.Any())
+                {
+                    string err = "";
+                    foreach (var item in result)
+                    {
+                        err += item.ErrorMessage + "\n";
+                    }
+                    MessageBox.Show(err);
+                    return;
+                }
                 await _customerInvoiceCostService.Create(customerInvoiceCost);
                 MessageBox.Show("Customer Invoice Cost Created Succesfully");
 

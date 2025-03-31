@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,6 +96,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 CostRegistryDTOGet costRegistry = new CostRegistryDTOGet { CostRegistryName = DescriptionTxt.Text, CostRegistryQuantity = int.Parse(DefaultQuantityIntegerTxt.GetText()), CostRegistryPrice = decimal.Parse(DefaultCostDecimalTxt.GetText()) };
                 try
                 {
+                    costRegistry.IsPost = false;
+                    var result = ValidatorEntity.Validate(costRegistry);
+                    if (result.Any())
+                    {
+                        string err = "";
+                        foreach (var item in result)
+                        {
+                            err += item.ErrorMessage + "\n";
+                        }
+                        MessageBox.Show(err);
+                        return;
+                    }
+
                     await _costRegistryService.Update(costRegistryID, costRegistry);
                     MessageBox.Show("CostRegistry updated successfully!");
 
@@ -122,6 +136,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 try
                 {
+                    costRegistry.IsPost = true;
+                    var result = ValidatorEntity.Validate(costRegistry);
+                    if (result.Any())
+                    {
+                        string err = "";
+                        foreach (var item in result)
+                        {
+                            err += item.ErrorMessage + "\n";
+                        }
+                        MessageBox.Show(err);
+                        return;
+                    }
+
                     await _costRegistryService.Create(costRegistry);
                     MessageBox.Show("CostRegistry Created Succesfully");
                     detailsOnly = true;

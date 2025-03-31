@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -237,6 +238,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             };
             try
             {
+                invoice.IsPost = false;
+                var result = ValidatorEntity.Validate(invoice);
+                if (result.Any())
+                {
+                    string err = "";
+                    foreach (var item in result)
+                    {
+                        err += item.ErrorMessage + "\n";
+                    }
+                    MessageBox.Show(err);
+                    return;
+                }
                 await _customerInvoiceService.Update((int)customerInvoice.CustomerInvoiceId, invoice);
                 MessageBox.Show("Customer Invoice Updated successfully!");
                 if (quit) Close();
@@ -261,6 +274,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             try
             {
+                invoice.IsPost = true;
+                var result = ValidatorEntity.Validate(invoice);
+                if (result.Any())
+                {
+                    string err = "";
+                    foreach (var item in result)
+                    {
+                        err += item.ErrorMessage + "\n";
+                    }
+                    MessageBox.Show(err);
+                    return;
+                }
                 customerInvoice = await _customerInvoiceService.Create(invoice);
                 MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
                 if (quit) Close();

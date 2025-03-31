@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -233,6 +234,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             };
             try
             {
+                sale.IsPost = false;
+                var result = ValidatorEntity.Validate(sale);
+                if (result.Any())
+                {
+                    string err = "";
+                    foreach (var item in result)
+                    {
+                        err += item.ErrorMessage + "\n";
+                    }
+                    MessageBox.Show(err);
+                    return;
+                }
+
                 await _saleService.Update(_saleId, sale);
                 MessageBox.Show("Sale updated successfully!");
                 if (quit) Close();
@@ -280,6 +294,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     CustomerId = _id,
                     Status = StatusCmbx.Text
                 };
+
+                sale1.IsPost = true;
+                var result = ValidatorEntity.Validate(sale1);
+                if (result.Any())
+                {
+                    string err = "";
+                    foreach (var item in result)
+                    {
+                        err += item.ErrorMessage + "\n";
+                    }
+                    MessageBox.Show(err);
+                    return;
+                }
+
+
                 SaleDTOGet saleReturn = await _saleService.Create(sale1);
                 _saleId = (int)saleReturn.SaleId;
                 MessageBox.Show("Sale Created successfully!");
