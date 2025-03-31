@@ -197,7 +197,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     return;
                 CustomerInvoiceDTOGet customerInvoice = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
-                UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, customerInvoice.CustomerInvoiceId);
+                UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, (int)customerInvoice.CustomerInvoiceId);
 
             }
         }
@@ -217,7 +217,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
 
 
-            int customerId = (await _customerService.GetAll(new CustomerFilter()
+            int customerId = (int)(await _customerService.GetAll(new CustomerFilter()
             {
                 CustomerName = name,
                 CustomerCountry = country
@@ -264,7 +264,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     }
 
 
-                    int customerId = (await _customerService.GetAll(new CustomerFilter()
+                    int customerId = (int)(await _customerService.GetAll(new CustomerFilter()
                     {
                         CustomerName = name,
                         CustomerCountry = country
@@ -281,11 +281,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     Status = StatusCmbx.Text
                 };
                 SaleDTOGet saleReturn = await _saleService.Create(sale1);
-                _saleId = saleReturn.SaleId;
+                _saleId = (int)saleReturn.SaleId;
                 MessageBox.Show("Sale Created successfully!");
                 if (quit) Close();
 
-                sale = (await _saleService.GetAll(new SaleFilter() { SaleBoLnumber = boltxt.Text, SaleBookingNumber = bntxt.Text })).FirstOrDefault();
+                sale = (await _saleService.GetAll(new SaleCustomerFilter() { SaleBoLnumber = boltxt.Text, SaleBookingNumber = bntxt.Text })).FirstOrDefault();
                 detailsOnly = true;
                 SetVisibility();
                 RevenueTxt.Text = saleReturn.TotalRevenue.ToString();

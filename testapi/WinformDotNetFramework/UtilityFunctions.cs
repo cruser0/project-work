@@ -1,16 +1,11 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using System;
 using System.Collections.Generic;
-//using ClosedXML.Excel;
-//using iText.Kernel.Geom;
-//using iText.Kernel.Pdf;
-//using iText.Layout;
-//using iText.Layout.Element;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Forms;
 using WinformDotNetFramework.Forms.control;
 

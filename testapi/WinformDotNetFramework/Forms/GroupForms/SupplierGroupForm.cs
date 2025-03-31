@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GroupForms
@@ -14,7 +13,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
         private ValueService _valueService;
 
         SupplierFilter supplierFilter;
-        SupplierInvoiceFilter supplierInvoiceFilter;
+        SupplierInvoiceSupplierFilter supplierInvoiceFilter;
         SupplierInvoiceCostFilter supplierInvoiceCostFilter;
 
         SupplierGroupDTO data;
@@ -96,7 +95,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 // Initialize related data
                 if (allSuppliers.Any())
                 {
-                    int firstSupplierId = allSuppliers.First().SupplierId;
+                    int firstSupplierId = (int)allSuppliers.First().SupplierId;
                     allSupplierInvoices = supplierInvoicesMap.ContainsKey(firstSupplierId)
                         ? supplierInvoicesMap[firstSupplierId]
                         : new List<SupplierInvoiceDTOGet>();
@@ -110,7 +109,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 // Initialize invoice costs
                 if (allSupplierInvoices.Any())
                 {
-                    int firstInvoiceId = allSupplierInvoices.First().InvoiceId;
+                    int firstInvoiceId = (int)allSupplierInvoices.First().InvoiceId;
                     allSupplierInvoiceCosts = invoiceCostsMap.ContainsKey(firstInvoiceId)
                         ? invoiceCostsMap[firstInvoiceId]
                         : new List<SupplierInvoiceCostDTOGet>();
@@ -382,7 +381,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 // Reset and update invoice costs based on first invoice if available
                 if (allSupplierInvoices.Any())
                 {
-                    int firstInvoiceId = allSupplierInvoices.First().InvoiceId;
+                    int firstInvoiceId = (int)allSupplierInvoices.First().InvoiceId;
                     if (invoiceCostsMap.ContainsKey(firstInvoiceId))
                     {
                         allSupplierInvoiceCosts = invoiceCostsMap[firstInvoiceId];

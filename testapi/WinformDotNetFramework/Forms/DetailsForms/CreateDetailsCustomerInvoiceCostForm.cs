@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Services;
 
@@ -107,7 +106,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
             {
                 listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault();
-                id = listItems1.CustomerInvoiceId;
+                id = (int)listItems1.CustomerInvoiceId;
             }
             else
             {
@@ -150,7 +149,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 if (_updateCost != null)
                 {
-                    await _customerInvoiceCostService.Update(_updateCost.CustomerInvoiceCostsId, customerInvoiceCost);
+                    await _customerInvoiceCostService.Update((int)_updateCost.CustomerInvoiceCostsId, customerInvoiceCost);
                     MessageBox.Show("Customer Invoice Cost Updated Succesfully");
 
                 }
@@ -178,7 +177,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
             {
                 listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault();
-                id = listItems1.CustomerInvoiceId;
+                id = (int)listItems1.CustomerInvoiceId;
             }
             else
             {

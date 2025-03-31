@@ -201,7 +201,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 return;
             }
 
-            var SaleListFiltered = await _saleService.GetAll(new SaleFilter()
+            var SaleListFiltered = await _saleService.GetAll(new SaleCustomerFilter()
             {
                 SaleBookingNumber = !string.IsNullOrEmpty(bkString) ? bkString : null,
                 SaleBoLnumber = !string.IsNullOrEmpty(bolString) ? bolString : null,
@@ -271,11 +271,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     name = name.Substring(0, lastIndex);
                 }
 
-                saleId = (await _saleService
-                    .GetAll(new SaleFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
+                saleId = (int)(await _saleService
+                    .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
                     .FirstOrDefault().SaleId;
 
-                supplierId = (await _supplierService
+                supplierId = (int)(await _supplierService
                     .GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country }))
                     .FirstOrDefault().SupplierId;
 
@@ -287,7 +287,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     SupplierId = supplierId,
                 };
 
-                await _supplierInvoiceService.Update(supplierInvoice.InvoiceId, si);
+                await _supplierInvoiceService.Update((int)supplierInvoice.InvoiceId, si);
                 MessageBox.Show("Customer updated successfully!");
                 if (quit) Close();
             }
@@ -316,7 +316,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    saleId = (await _saleService.GetAll(new SaleFilter()
+                    saleId = (int)(await _saleService.GetAll(new SaleCustomerFilter()
                     {
                         SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
                         SaleBookingNumber = BKCmbxUC.Cmbx.Text
@@ -344,7 +344,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         name = name.Substring(0, lastIndex);
                     }
 
-                    supplierId = (await _supplierService.GetAll(new SupplierFilter()
+                    supplierId = (int)(await _supplierService.GetAll(new SupplierFilter()
                     {
                         SupplierName = name,
                         SupplierCountry = country
@@ -380,7 +380,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 detailsOnly = true;
                 SetVisibility();
 
-                supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceFilter
+                supplierInvoice = (await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter
                 {
                     SupplierInvoiceCode = newSI.SupplierInvoiceCode
                 })).FirstOrDefault();
