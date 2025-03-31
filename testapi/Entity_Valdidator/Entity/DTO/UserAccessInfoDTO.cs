@@ -1,9 +1,9 @@
 ﻿
-using Entity_Valdidator.Entity.Entities;
+using Entity_Validator.Entity.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace Entity_Valdidator.Entity.DTO
+namespace Entity_Validator.Entity.DTO
 {
     public class UserAccessInfoDTO
     {

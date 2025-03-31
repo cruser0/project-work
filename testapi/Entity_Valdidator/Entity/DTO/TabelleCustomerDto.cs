@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Entity_Valdidator.Entity.DTO
+namespace Entity_Validator.Entity.DTO
 {
     public class TabelleCustomerDto
     {

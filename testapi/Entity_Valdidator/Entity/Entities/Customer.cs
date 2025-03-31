@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Entity_Valdidator.Entity.Entities
+namespace Entity_Validator.Entity.Entities
 {
     public partial class Customer
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entity_Valdidator.Entity.Filters
+namespace Entity_Validator.Entity.Filters
 {
     public class TotalAmountGainedPerCustomerInvoiceFilter
     {

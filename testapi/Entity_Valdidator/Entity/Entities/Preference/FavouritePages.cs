@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Entity_Valdidator.Entity.Entities.Preference
+namespace Entity_Validator.Entity.Entities.Preference
 {
     public class FavouritePages
     {

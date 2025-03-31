@@ -1,8 +1,8 @@
 ﻿
-using Entity_Valdidator.Entity.Entities;
+using Entity_Validator.Entity.Entities;
 using System;
 
-namespace Entity_Valdidator.Entity.DTO
+namespace Entity_Validator.Entity.DTO
 {
     public class SaleDTO
     {

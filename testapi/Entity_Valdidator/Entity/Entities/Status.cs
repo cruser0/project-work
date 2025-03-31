@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Entity_Valdidator.Entity.Entities
+namespace Entity_Validator.Entity.Entities
 {
     public class Status
     {

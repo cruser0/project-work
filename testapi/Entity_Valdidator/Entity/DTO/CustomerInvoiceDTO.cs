@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entity_Valdidator.Entity.DTO
+namespace Entity_Validator.Entity.DTO
 {
 
 public class CustomerInvoiceDTO

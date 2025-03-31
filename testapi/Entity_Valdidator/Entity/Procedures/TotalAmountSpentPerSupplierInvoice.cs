@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entity_Valdidator.Entity.Procedures
+namespace Entity_Validator.Entity.Procedures
 {
     public class TotalAmountSpentPerSupplierInvoice
     {

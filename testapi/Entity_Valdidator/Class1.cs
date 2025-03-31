@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entity_Valdidator
+﻿namespace Entity_Validator
 {
     public class Class1
     {

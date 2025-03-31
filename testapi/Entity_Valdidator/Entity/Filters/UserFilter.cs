@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Entity_Valdidator.Entity.Procedures
+namespace Entity_Validator.Entity.Procedures
 {
     public class UserFilter
     {
