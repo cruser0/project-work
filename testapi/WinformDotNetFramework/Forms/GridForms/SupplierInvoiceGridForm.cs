@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
@@ -14,7 +15,7 @@ namespace WinformDotNetFramework.Forms.GridForms
     public partial class SupplierInvoiceGridForm : Form
     {
 
-        SupplierInvoiceFilter filter = new SupplierInvoiceFilter() { SupplierInvoicePage = 1 };
+        SupplierInvoiceSupplierFilter filter = new SupplierInvoiceSupplierFilter() { SupplierInvoicePage = 1 };
 
         Form _father;
         UserService _userService;
@@ -56,7 +57,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 return;
             _userService = new UserService();
             _supplierInvoiceService = new SupplierInvoiceService();
-            pages = (int)Math.Ceiling(await _supplierInvoiceService.Count(new SupplierInvoiceFilter()) / itemsPage);
+            pages = (int)Math.Ceiling(await _supplierInvoiceService.Count(new SupplierInvoiceSupplierFilter()) / itemsPage);
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
 
@@ -102,7 +103,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             filter = searchSupplierInvoice1.GetFilter();
             filter.SupplierInvoicePage = PaginationUserControl.CurrentPage;
 
-            SupplierInvoiceFilter filterPage = searchSupplierInvoice1.GetFilter();
+            SupplierInvoiceSupplierFilter filterPage = searchSupplierInvoice1.GetFilter();
 
             var query = _supplierInvoiceService.GetAll(filter);
             var count = _supplierInvoiceService.Count(filterPage);
@@ -127,23 +128,23 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceDgv.DataSource = query.ToList();
             SupplierInvoiceDGV cdgv = await getFav;
 
-            SupplierInvoiceIDTsmi.Checked = cdgv.ShowID;
-            SupplierInvoiceSaleIDTsmi.Checked = cdgv.ShowSaleID;
-            SupplierInvoiceInvoiceAmountTsmi.Checked = cdgv.ShowInvoiceAmount;
-            SupplierInvoiceDateTsmi.Checked = cdgv.ShowInvoiceDate;
-            SupplierInvoiceStatusTsmi.Checked = cdgv.ShowStatus;
-            SupplierInvoiceSupplierNameTsmi.Checked = cdgv.ShowSupplierName;
-            SupplierInvoiceCountryTsmi.Checked = cdgv.ShowCountry;
-            SupplierInvoiceSupplierIDTsmi.Checked = cdgv.ShowSupplierID;
+            SupplierInvoiceIDTsmi.Checked = (bool)cdgv.ShowID;
+            SupplierInvoiceSaleIDTsmi.Checked = (bool)cdgv.ShowSaleID;
+            SupplierInvoiceInvoiceAmountTsmi.Checked = (bool)cdgv.ShowInvoiceAmount;
+            SupplierInvoiceDateTsmi.Checked = (bool)cdgv.ShowInvoiceDate;
+            SupplierInvoiceStatusTsmi.Checked = (bool)cdgv.ShowStatus;
+            SupplierInvoiceSupplierNameTsmi.Checked = (bool)cdgv.ShowSupplierName;
+            SupplierInvoiceCountryTsmi.Checked = (bool)cdgv.ShowCountry;
+            SupplierInvoiceSupplierIDTsmi.Checked = (bool)cdgv.ShowSupplierID;
 
-            SupplierInvoiceDgv.Columns["InvoiceID"].Visible = cdgv.ShowID;
-            SupplierInvoiceDgv.Columns["SaleID"].Visible = cdgv.ShowSaleID;
-            SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = cdgv.ShowInvoiceAmount;
-            SupplierInvoiceDgv.Columns["InvoiceDate"].Visible = cdgv.ShowInvoiceDate;
-            SupplierInvoiceDgv.Columns["Status"].Visible = cdgv.ShowStatus;
-            SupplierInvoiceDgv.Columns["SupplierName"].Visible = cdgv.ShowSupplierName;
-            SupplierInvoiceDgv.Columns["Country"].Visible = cdgv.ShowCountry;
-            SupplierInvoiceDgv.Columns["SupplierID"].Visible = cdgv.ShowSupplierID;
+            SupplierInvoiceDgv.Columns["InvoiceID"].Visible = (bool)cdgv.ShowID;
+            SupplierInvoiceDgv.Columns["SaleID"].Visible = (bool)cdgv.ShowSaleID;
+            SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = (bool)cdgv.ShowInvoiceAmount;
+            SupplierInvoiceDgv.Columns["InvoiceDate"].Visible = (bool)cdgv.ShowInvoiceDate;
+            SupplierInvoiceDgv.Columns["Status"].Visible = (bool)cdgv.ShowStatus;
+            SupplierInvoiceDgv.Columns["SupplierName"].Visible = (bool)cdgv.ShowSupplierName;
+            SupplierInvoiceDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
+            SupplierInvoiceDgv.Columns["SupplierID"].Visible = (bool)cdgv.ShowSupplierID;
 
             PaginationUserControl.Visible = true;
 
@@ -269,8 +270,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             if (DesignMode)
                 return;
             await Init();
-            getAllNotFiltered = _supplierInvoiceService.GetAll(new SupplierInvoiceFilter() { SupplierInvoicePage = 1 });
-            countNotFiltered = _supplierInvoiceService.Count(new SupplierInvoiceFilter());
+            getAllNotFiltered = _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoicePage = 1 });
+            countNotFiltered = _supplierInvoiceService.Count(new SupplierInvoiceSupplierFilter());
             getFav = _userService.GetSupplierInvoiceDGV();
             await SetCheckBoxes();
         }
@@ -297,7 +298,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (SupplierInvoiceDgv.Rows[rowid].DataBoundItem is SupplierInvoiceSupplierDTO customer)
-                            id.Add(customer.InvoiceId);
+                            id.Add((int)customer.InvoiceId);
                     }
 
                     if (id.Count > 0)

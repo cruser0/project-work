@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GroupForms
@@ -68,7 +67,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
         {
 
             CustomerFilter customerfilter = searchCustomer1.GetFilter();
-            SaleFilter saleFilter = searchSale1.GetFilter();
+            SaleCustomerFilter saleFilter = searchSale1.GetFilter();
             CustomerInvoiceFilter customerInvoiceFilter = searchCustomerInvoice1.GetFilter();
             CustomerInvoiceCostFilter customerInvoiceCostfilter = searchCustomerInvoiceCost1.GetFilter();
 
@@ -171,14 +170,14 @@ namespace WinformDotNetFramework.Forms.GroupForms
             var saleId = dataGridView2.CurrentRow.Cells["SaleId"].Value;
             if (saleId != null)
             {
-                dataGridView3.DataSource = valueGroupDTOList.invoices.Where(x => x.SaleId.ToString() == saleId.ToString()).Skip((customerInvoicePage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
+                dataGridView3.DataSource = valueGroupDTOList.invoices.Where(x => x.SaleID.ToString() == saleId.ToString()).Skip((customerInvoicePage - 1) * (int)itemsPage).Take((int)itemsPage).ToList();
 
                 if (dataGridView3.RowCount > 0)
                 {
 
                     CustomerInvoiceCostPage = 1;
                     LoadCustomerInvoicesCost();
-                    maxPageCustomerInvoice = (int)Math.Ceiling(valueGroupDTOList.invoices.Where(x => x.SaleId.ToString() == saleId.ToString()).Count() / itemsPage);
+                    maxPageCustomerInvoice = (int)Math.Ceiling(valueGroupDTOList.invoices.Where(x => x.SaleID.ToString() == saleId.ToString()).Count() / itemsPage);
                     TSLbl3.Text = customerInvoicePage.ToString() + "/" + maxPageCustomerInvoice.ToString();
                 }
                 else

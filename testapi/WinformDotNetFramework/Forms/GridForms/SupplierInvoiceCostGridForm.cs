@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms
@@ -106,16 +106,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceCostDgv.DataSource = query.ToList();
             SupplierInvoiceCostDGV cdgv = await getFav;
 
-            SupplierInvoiceCostCostTsmi.Checked = cdgv.ShowCost;
-            SupplierInvoiceCostSupplierInvoiceIDTsmi.Checked = cdgv.ShowSupplierInvoiceID;
-            SupplierInvoiceCostIDTsmi.Checked = cdgv.ShowID;
-            SupplierInvoiceCostNameTsmi.Checked = cdgv.ShowName;
-            SupplierInvoiceCostQuantityTsmi.Checked = cdgv.ShowQuantity;
-            SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = cdgv.ShowID;
-            SupplierInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = cdgv.ShowSupplierInvoiceID;
-            SupplierInvoiceCostDgv.Columns["Cost"].Visible = cdgv.ShowCost;
-            SupplierInvoiceCostDgv.Columns["Quantity"].Visible = cdgv.ShowQuantity;
-            SupplierInvoiceCostDgv.Columns["Name"].Visible = cdgv.ShowName;
+            SupplierInvoiceCostCostTsmi.Checked = (bool)cdgv.ShowCost;
+            SupplierInvoiceCostSupplierInvoiceIDTsmi.Checked = (bool)cdgv.ShowSupplierInvoiceID;
+            SupplierInvoiceCostIDTsmi.Checked = (bool)cdgv.ShowID;
+            SupplierInvoiceCostNameTsmi.Checked = (bool)cdgv.ShowName;
+            SupplierInvoiceCostQuantityTsmi.Checked = (bool)cdgv.ShowQuantity;
+            SupplierInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = (bool)cdgv.ShowID;
+            SupplierInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = (bool)cdgv.ShowSupplierInvoiceID;
+            SupplierInvoiceCostDgv.Columns["Cost"].Visible = (bool)cdgv.ShowCost;
+            SupplierInvoiceCostDgv.Columns["Quantity"].Visible = (bool)cdgv.ShowQuantity;
+            SupplierInvoiceCostDgv.Columns["Name"].Visible = (bool)cdgv.ShowName;
             PaginationUserControl.Visible = true;
 
         }
@@ -259,7 +259,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (SupplierInvoiceCostDgv.Rows[rowid].DataBoundItem is SupplierInvoiceCostDTOGet customer)
-                            id.Add(customer.SupplierInvoiceCostsId);
+                            id.Add((int)customer.SupplierInvoiceCostsId);
                     }
 
                     if (id.Count > 0)

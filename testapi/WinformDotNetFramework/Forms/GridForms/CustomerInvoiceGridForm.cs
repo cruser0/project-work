@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
@@ -111,16 +111,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             CenterDgv.DataSource = query.ToList();
             CustomerInvoiceDGV cdgv = await getFav;
 
-            CustomerInvoiceDateTsmi.Checked = cdgv.ShowDate;
-            CustomerInvoiceIDTsmi.Checked = cdgv.ShowID;
-            CustomerInvoiceInvoiceAmountTsmi.Checked = cdgv.ShowInvoiceAmount;
-            CustomerInvoiceSaleIDTsmi.Checked = cdgv.ShowSaleID;
-            CustomerInvoiceStatusTsmi.Checked = cdgv.ShowStatus;
-            CenterDgv.Columns["CustomerInvoiceID"].Visible = cdgv.ShowID;
-            CenterDgv.Columns["SaleID"].Visible = cdgv.ShowSaleID;
-            CenterDgv.Columns["InvoiceAmount"].Visible = cdgv.ShowInvoiceAmount;
-            CenterDgv.Columns["InvoiceDate"].Visible = cdgv.ShowDate;
-            CenterDgv.Columns["Status"].Visible = cdgv.ShowStatus;
+            CustomerInvoiceDateTsmi.Checked = (bool)cdgv.ShowDate;
+            CustomerInvoiceIDTsmi.Checked = (bool)cdgv.ShowID;
+            CustomerInvoiceInvoiceAmountTsmi.Checked = (bool)cdgv.ShowInvoiceAmount;
+            CustomerInvoiceSaleIDTsmi.Checked = (bool)cdgv.ShowSaleID;
+            CustomerInvoiceStatusTsmi.Checked = (bool)cdgv.ShowStatus;
+            CenterDgv.Columns["CustomerInvoiceID"].Visible = (bool)cdgv.ShowID;
+            CenterDgv.Columns["SaleID"].Visible = (bool)cdgv.ShowSaleID;
+            CenterDgv.Columns["InvoiceAmount"].Visible = (bool)cdgv.ShowInvoiceAmount;
+            CenterDgv.Columns["InvoiceDate"].Visible = (bool)cdgv.ShowDate;
+            CenterDgv.Columns["Status"].Visible = (bool)cdgv.ShowStatus;
             PaginationUserControl.Visible = true;
 
         }
@@ -275,7 +275,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (CenterDgv.Rows[rowid].DataBoundItem is CustomerInvoiceDTOGet customer)
-                            id.Add(customer.CustomerInvoiceId);
+                            id.Add((int)customer.CustomerInvoiceId);
                     }
 
                     if (id.Count > 0)

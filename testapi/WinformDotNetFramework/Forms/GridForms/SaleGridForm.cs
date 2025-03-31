@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
@@ -16,7 +15,7 @@ namespace WinformDotNetFramework.Forms.GridForms
     public partial class SaleGridForm : Form
     {
 
-        SaleFilter filter = new SaleFilter() { SalePage = 1 };
+        SaleCustomerFilter filter = new SaleCustomerFilter() { SalePage = 1 };
 
         int pages;
         double itemsPage = 10.0;
@@ -53,7 +52,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             _userService = new UserService();
             _saleService = new SaleService();
 
-            pages = (int)Math.Ceiling(await _saleService.Count(new SaleFilter() { SaleStatus = _father != null ? "Active" : null }) / itemsPage);
+            pages = (int)Math.Ceiling(await _saleService.Count(new SaleCustomerFilter() { SaleStatus = _father != null ? "Active" : null }) / itemsPage);
 
 
             RightSideBar.searchBtnEvent += MyControl_ButtonClicked;
@@ -82,7 +81,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             filter = searchSale1.GetFilter();
             filter.SalePage = PaginationUserControl.CurrentPage;
 
-            SaleFilter filterPage = searchSale1.GetFilter();
+            SaleCustomerFilter filterPage = searchSale1.GetFilter();
 
             var query = _saleService.GetAll(filter);
             var count = _saleService.Count(filterPage);
@@ -107,25 +106,25 @@ namespace WinformDotNetFramework.Forms.GridForms
             SaleDgv.DataSource = query.ToList();
             SaleDGV cdgv = await getFav;
 
-            SaleIDTsmi.Checked = cdgv.ShowID;
-            SaleBkNumberTsmi.Checked = cdgv.ShowBKNumber;
-            SaleCustomerCountryTsmi.Checked = cdgv.ShowCustomerCountry;
-            SaleCustomerNameTsmi.Checked = cdgv.ShowCustomerName;
-            SaleBoLNumberTsmi.Checked = cdgv.ShowBoL;
-            SaleCustomerIDTsmi.Checked = cdgv.ShowCustomerID;
-            SaleTotalRevenueTsmi.Checked = cdgv.ShowTotalRevenue;
-            SaleStatusTsmi.Checked = cdgv.ShowStatus;
-            SaleDateTsmi.Checked = cdgv.ShowDate;
+            SaleIDTsmi.Checked = (bool)cdgv.ShowID;
+            SaleBkNumberTsmi.Checked = (bool)cdgv.ShowBKNumber;
+            SaleCustomerCountryTsmi.Checked = (bool)cdgv.ShowCustomerCountry;
+            SaleCustomerNameTsmi.Checked = (bool)cdgv.ShowCustomerName;
+            SaleBoLNumberTsmi.Checked = (bool)cdgv.ShowBoL;
+            SaleCustomerIDTsmi.Checked = (bool)cdgv.ShowCustomerID;
+            SaleTotalRevenueTsmi.Checked = (bool)cdgv.ShowTotalRevenue;
+            SaleStatusTsmi.Checked = (bool)cdgv.ShowStatus;
+            SaleDateTsmi.Checked = (bool)cdgv.ShowDate;
 
-            SaleDgv.Columns["SaleID"].Visible = cdgv.ShowID;
-            SaleDgv.Columns["BookingNumber"].Visible = cdgv.ShowBKNumber;
-            SaleDgv.Columns["Country"].Visible = cdgv.ShowCustomerCountry;
-            SaleDgv.Columns["CustomerName"].Visible = cdgv.ShowCustomerName;
-            SaleDgv.Columns["BoLNumber"].Visible = cdgv.ShowBoL;
-            SaleDgv.Columns["CustomerID"].Visible = cdgv.ShowCustomerID;
-            SaleDgv.Columns["TotalRevenue"].Visible = cdgv.ShowTotalRevenue;
-            SaleDgv.Columns["Status"].Visible = cdgv.ShowStatus;
-            SaleDgv.Columns["SaleDate"].Visible = cdgv.ShowDate;
+            SaleDgv.Columns["SaleID"].Visible = (bool)cdgv.ShowID;
+            SaleDgv.Columns["BookingNumber"].Visible = (bool)cdgv.ShowBKNumber;
+            SaleDgv.Columns["Country"].Visible = (bool)cdgv.ShowCustomerCountry;
+            SaleDgv.Columns["CustomerName"].Visible = (bool)cdgv.ShowCustomerName;
+            SaleDgv.Columns["BoLNumber"].Visible = (bool)cdgv.ShowBoL;
+            SaleDgv.Columns["CustomerID"].Visible = (bool)cdgv.ShowCustomerID;
+            SaleDgv.Columns["TotalRevenue"].Visible = (bool)cdgv.ShowTotalRevenue;
+            SaleDgv.Columns["Status"].Visible = (bool)cdgv.ShowStatus;
+            SaleDgv.Columns["SaleDate"].Visible = (bool)cdgv.ShowDate;
 
             PaginationUserControl.Visible = true;
         }
@@ -276,7 +275,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             if (_father != null)
                 searchSale1.StatusCB.Text = "Active";
 
-            SaleFilter f = searchSale1.GetFilter();
+            SaleCustomerFilter f = searchSale1.GetFilter();
 
             countNotFiltered = _saleService.Count(f);
             f.SalePage = 1;
@@ -307,7 +306,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (SaleDgv.Rows[rowid].DataBoundItem is SaleCustomerDTO customer)
-                            id.Add(customer.SaleId);
+                            id.Add((int)customer.SaleId);
                     }
 
                     if (id.Count > 0)

@@ -1,11 +1,11 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using Entity_Validator.Entity.Filters;
+using Entity_Validator.Entity.Procedures;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Procedures;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms

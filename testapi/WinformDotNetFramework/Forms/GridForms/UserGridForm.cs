@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Procedures;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms
@@ -137,19 +137,19 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             UserDGV cdgv = await getFav;
 
-            UserIDTsmi.Checked = cdgv.ShowID;
-            UserNameTsmi.Checked = cdgv.ShowName;
-            UserLastNameTsmi.Checked = cdgv.ShowLastName;
-            UserEmailTsmi.Checked = cdgv.ShowEmail;
-            UserRoleTsmi.Checked = cdgv.ShowRoles;
+            UserIDTsmi.Checked = (bool)cdgv.ShowID;
+            UserNameTsmi.Checked = (bool)cdgv.ShowName;
+            UserLastNameTsmi.Checked = (bool)cdgv.ShowLastName;
+            UserEmailTsmi.Checked = (bool)cdgv.ShowEmail;
+            UserRoleTsmi.Checked = (bool)cdgv.ShowRoles;
             paginationControl.Visible = true;
 
 
-            userDgv.Columns["Roles"].Visible = cdgv.ShowRoles;
-            userDgv.Columns["UserID"].Visible = cdgv.ShowID;
-            userDgv.Columns["Email"].Visible = cdgv.ShowEmail;
-            userDgv.Columns["Name"].Visible = cdgv.ShowName;
-            userDgv.Columns["LastName"].Visible = cdgv.ShowLastName;
+            userDgv.Columns["Roles"].Visible = (bool)cdgv.ShowRoles;
+            userDgv.Columns["UserID"].Visible = (bool)cdgv.ShowID;
+            userDgv.Columns["Email"].Visible = (bool)cdgv.ShowEmail;
+            userDgv.Columns["Name"].Visible = (bool)cdgv.ShowName;
+            userDgv.Columns["LastName"].Visible = (bool)cdgv.ShowLastName;
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -354,7 +354,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (userDgv.Rows[rowid].DataBoundItem is UserRoleDTO customer)
-                            id.Add(customer.UserID);
+                            id.Add((int)customer.UserID);
                     }
 
                     if (id.Count > 0)

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.GridForms
@@ -98,16 +99,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             CustomerInvoiceCostDgv.DataSource = query.ToList();
             CustomerInvoiceCostDGV cdgv = await getFav;
 
-            CustomerInvoiceCostCostTsmi.Checked = cdgv.ShowCost;
-            CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked = cdgv.ShowInvoiceID;
-            CustomerInvoiceCostIDTsmi.Checked = cdgv.ShowID;
-            CustomerInvoiceCostNameTsmi.Checked = cdgv.ShowName;
-            CustomerInvoiceCostQuantityTsmi.Checked = cdgv.ShowQuantity;
-            CustomerInvoiceCostDgv.Columns["CustomerInvoiceCostsID"].Visible = cdgv.ShowID;
-            CustomerInvoiceCostDgv.Columns["CustomerInvoiceID"].Visible = cdgv.ShowInvoiceID;
-            CustomerInvoiceCostDgv.Columns["Cost"].Visible = cdgv.ShowCost;
-            CustomerInvoiceCostDgv.Columns["Quantity"].Visible = cdgv.ShowQuantity;
-            CustomerInvoiceCostDgv.Columns["Name"].Visible = cdgv.ShowName;
+            CustomerInvoiceCostCostTsmi.Checked = (bool)cdgv.ShowCost;
+            CustomerInvoiceCostCustomerInvoiceIDTsmi.Checked = (bool)cdgv.ShowInvoiceID;
+            CustomerInvoiceCostIDTsmi.Checked = (bool)cdgv.ShowID;
+            CustomerInvoiceCostNameTsmi.Checked = (bool)cdgv.ShowName;
+            CustomerInvoiceCostQuantityTsmi.Checked = (bool)cdgv.ShowQuantity;
+            CustomerInvoiceCostDgv.Columns["CustomerInvoiceCostsID"].Visible = (bool)cdgv.ShowID;
+            CustomerInvoiceCostDgv.Columns["CustomerInvoiceID"].Visible = (bool)cdgv.ShowInvoiceID;
+            CustomerInvoiceCostDgv.Columns["Cost"].Visible = (bool)cdgv.ShowCost;
+            CustomerInvoiceCostDgv.Columns["Quantity"].Visible = (bool)cdgv.ShowQuantity;
+            CustomerInvoiceCostDgv.Columns["Name"].Visible = (bool)cdgv.ShowName;
             PaginationUserControl.Visible = true;
 
         }
@@ -250,7 +251,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (CustomerInvoiceCostDgv.Rows[rowid].DataBoundItem is CustomerInvoiceCostDTOGet customer)
-                            id.Add(customer.CustomerInvoiceCostsId);
+                            id.Add((int)customer.CustomerInvoiceCostsId);
                     }
 
                     if (id.Count > 0)

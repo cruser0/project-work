@@ -106,18 +106,18 @@ namespace WinformDotNetFramework.Forms.GridForms
             CustomerDgv.DataSource = query.ToList();
 
             CustomerDGV cdgv = await getFav;
-            CustomerCountryTsmi.Checked = cdgv.ShowCountry;
-            CustomerDateTsmi.Checked = cdgv.ShowDate;
-            CustomerIDTsmi.Checked = cdgv.ShowID;
-            CustomerStatusTsmi.Checked = cdgv.ShowStatus;
-            CustomerOriginalIDTsmi.Checked = cdgv.ShowOriginalID;
-            CustomerNameTsmi.Checked = cdgv.ShowName;
+            CustomerCountryTsmi.Checked = (bool)cdgv.ShowCountry;
+            CustomerDateTsmi.Checked = (bool)cdgv.ShowDate;
+            CustomerIDTsmi.Checked = (bool)cdgv.ShowID;
+            CustomerStatusTsmi.Checked = (bool)cdgv.ShowStatus;
+            CustomerOriginalIDTsmi.Checked = (bool)cdgv.ShowOriginalID;
+            CustomerNameTsmi.Checked = (bool)cdgv.ShowName;
             PaginationUserControl.Visible = true;
-            CustomerDgv.Columns["CustomerName"].Visible = cdgv.ShowName;
-            CustomerDgv.Columns["Country"].Visible = cdgv.ShowCountry;
-            CustomerDgv.Columns["CreatedAt"].Visible = cdgv.ShowDate;
-            CustomerDgv.Columns["OriginalID"].Visible = cdgv.ShowOriginalID;
-            CustomerDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
+            CustomerDgv.Columns["CustomerName"].Visible = (bool)cdgv.ShowName;
+            CustomerDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
+            CustomerDgv.Columns["CreatedAt"].Visible = (bool)cdgv.ShowDate;
+            CustomerDgv.Columns["OriginalID"].Visible = (bool)cdgv.ShowOriginalID;
+            CustomerDgv.Columns["Deprecated"].Visible = (bool)cdgv.ShowStatus;
             CustomerDgv.Columns["CustomerID"].Visible = CustomerIDTsmi.Checked;
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
@@ -279,7 +279,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (CustomerDgv.Rows[rowid].DataBoundItem is CustomerDTOGet customer)
-                            id.Add(customer.CustomerId);
+                            id.Add((int)customer.CustomerId);
                     }
 
                     if (id.Count > 0)

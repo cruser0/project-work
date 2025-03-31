@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Forms.control;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.GridForms;

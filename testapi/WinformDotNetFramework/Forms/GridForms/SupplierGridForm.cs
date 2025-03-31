@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
-using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Forms.DetailsForms;
 using WinformDotNetFramework.Services;
 
@@ -114,17 +113,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierDgv.DataSource = query.ToList();
             SupplierDGV cdgv = await getFav;
-            SupplierCountryTsmi.Checked = cdgv.ShowCountry;
-            SupplierDateTsmi.Checked = cdgv.ShowDate;
-            SupplierIDTsmi.Checked = cdgv.ShowID;
-            SupplierStatusTsmi.Checked = cdgv.ShowStatus;
-            SupplierOriginalIDTsmi.Checked = cdgv.ShowOriginalID;
-            SupplierNameTsmi.Checked = cdgv.ShowName;
-            SupplierDgv.Columns["SupplierName"].Visible = cdgv.ShowName;
-            SupplierDgv.Columns["Country"].Visible = cdgv.ShowCountry;
-            SupplierDgv.Columns["CreatedAt"].Visible = cdgv.ShowDate;
-            SupplierDgv.Columns["OriginalID"].Visible = cdgv.ShowOriginalID;
-            SupplierDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
+            SupplierCountryTsmi.Checked = (bool)cdgv.ShowCountry;
+            SupplierDateTsmi.Checked = (bool)cdgv.ShowDate;
+            SupplierIDTsmi.Checked = (bool)cdgv.ShowID;
+            SupplierStatusTsmi.Checked = (bool)cdgv.ShowStatus;
+            SupplierOriginalIDTsmi.Checked = (bool)cdgv.ShowOriginalID;
+            SupplierNameTsmi.Checked = (bool)cdgv.ShowName;
+            SupplierDgv.Columns["SupplierName"].Visible = (bool)cdgv.ShowName;
+            SupplierDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
+            SupplierDgv.Columns["CreatedAt"].Visible = (bool)cdgv.ShowDate;
+            SupplierDgv.Columns["OriginalID"].Visible = (bool)cdgv.ShowOriginalID;
+            SupplierDgv.Columns["Deprecated"].Visible = (bool)cdgv.ShowStatus;
             SupplierDgv.Columns["SupplierID"].Visible = SupplierIDTsmi.Checked;
             PaginationUserControl.Visible = true;
         }
@@ -282,7 +281,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                     foreach (var rowid in ids)
                     {
                         if (SupplierDgv.Rows[rowid].DataBoundItem is SupplierDTOGet customer)
-                            id.Add(customer.SupplierId);
+                            id.Add((int)customer.SupplierId);
                     }
 
                     if (id.Count > 0)

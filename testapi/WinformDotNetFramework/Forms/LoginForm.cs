@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using System;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities.DTO;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms
