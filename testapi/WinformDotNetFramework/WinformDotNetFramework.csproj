@@ -122,8 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientAPI.cs" />
-    <Compile Include="Exceptions\SupplierCustomerDTO.cs" />
-    <Compile Include="Exceptions\ProblemDetails.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -793,6 +791,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Exceptions\" />
     <Folder Include="Properties\Resources\Charts\" />
   </ItemGroup>
   <ItemGroup>

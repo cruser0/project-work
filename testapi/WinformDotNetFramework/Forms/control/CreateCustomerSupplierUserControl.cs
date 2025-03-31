@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using WinformDotNetFramework.Entities.DTO;
 
 namespace WinformDotNetFramework.Forms.control
 {
