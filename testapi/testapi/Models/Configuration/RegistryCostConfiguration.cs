@@ -1,4 +1,4 @@
-﻿using API.Models.Entities;
+﻿using Entity_Validator.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

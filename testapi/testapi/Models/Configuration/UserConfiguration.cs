@@ -1,5 +1,6 @@
-﻿using API.Models.Entities;
-using API.Models.Entities.Preference;
+﻿
+using Entity_Validator.Entity.Entities;
+using Entity_Validator.Entity.Entities.Preference;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
