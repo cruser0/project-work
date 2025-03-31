@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entity_Valdidator\Entity_Valdidator.csproj" />
+    <ProjectReference Include="..\Entity_Valdidator\Entity_Validator.csproj" />
   </ItemGroup>
 
 </Project>

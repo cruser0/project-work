@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Winform", "Winform\Winform.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinformDotNetFramework", "WinformDotNetFramework\WinformDotNetFramework.csproj", "{C7599BDE-4562-4E19-948F-EF170B7CDC00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity_Valdidator", "Entity_Valdidator\Entity_Valdidator.csproj", "{B5C524FA-78A4-4423-9534-B44E75F8AAF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity_Validator", "Entity_Valdidator\Entity_Validator.csproj", "{B5C524FA-78A4-4423-9534-B44E75F8AAF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -836,9 +836,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entity_Valdidator\Entity_Valdidator.csproj">
+    <ProjectReference Include="..\Entity_Valdidator\Entity_Validator.csproj">
       <Project>{b5c524fa-78a4-4423-9534-b44e75f8aaf0}</Project>
-      <Name>Entity_Valdidator</Name>
+      <Name>Entity_Validator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
