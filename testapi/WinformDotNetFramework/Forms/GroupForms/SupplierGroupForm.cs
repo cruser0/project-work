@@ -109,7 +109,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 // Initialize invoice costs
                 if (allSupplierInvoices.Any())
                 {
-                    int firstInvoiceId = (int)allSupplierInvoices.First().InvoiceId;
+                    int firstInvoiceId = (int)allSupplierInvoices.First().SupplierInvoiceId;
                     allSupplierInvoiceCosts = invoiceCostsMap.ContainsKey(firstInvoiceId)
                         ? invoiceCostsMap[firstInvoiceId]
                         : new List<SupplierInvoiceCostDTOGet>();
@@ -381,7 +381,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 // Reset and update invoice costs based on first invoice if available
                 if (allSupplierInvoices.Any())
                 {
-                    int firstInvoiceId = (int)allSupplierInvoices.First().InvoiceId;
+                    int firstInvoiceId = (int)allSupplierInvoices.First().SupplierInvoiceId;
                     if (invoiceCostsMap.ContainsKey(firstInvoiceId))
                     {
                         allSupplierInvoiceCosts = invoiceCostsMap[firstInvoiceId];

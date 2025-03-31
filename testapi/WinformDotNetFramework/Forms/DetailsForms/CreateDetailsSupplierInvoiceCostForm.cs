@@ -190,7 +190,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().InvoiceId;
+                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().SupplierInvoiceId;
 
                 }
                 catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
@@ -267,7 +267,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().InvoiceId;
+                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().SupplierInvoiceId;
 
                 }
                 catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }

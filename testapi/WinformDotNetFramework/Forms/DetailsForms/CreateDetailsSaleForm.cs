@@ -184,7 +184,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 SupplierInvoiceDTOGet supplierInvoice = (SupplierInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
-                UtilityFunctions.OpenFormDetails<CreateDetailsSupplierInvoiceForm>(sender, e, (int)supplierInvoice.InvoiceId);
+                UtilityFunctions.OpenFormDetails<CreateDetailsSupplierInvoiceForm>(sender, e, (int)supplierInvoice.SupplierInvoiceId);
 
             }
         }
