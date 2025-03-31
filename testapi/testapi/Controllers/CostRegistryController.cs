@@ -69,7 +69,7 @@ namespace API.Controllers
             costRegistry.IsPost = true;
             var results = ValidatorEntity.Validate(costRegistry);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _costRegistryService.CreateCostRegistry(CostRegistryMapper.Map(costRegistry));
             if (data == null)
@@ -89,7 +89,7 @@ namespace API.Controllers
             costRegistry.IsPost = false;
             var results = ValidatorEntity.Validate(costRegistry);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _costRegistryService.UpdateCostRegistry(id, CostRegistryMapper.MapGet(costRegistry));
             if (data == null)

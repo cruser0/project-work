@@ -91,7 +91,7 @@ namespace API.Controllers
             customer.IsPost = true;
             var results = ValidatorEntity.Validate(customer);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.Country!)));
             if (data == null)
@@ -110,7 +110,7 @@ namespace API.Controllers
             customer.IsPost = false;
             var results = ValidatorEntity.Validate(customer);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.Country)));
             if (data == null)
