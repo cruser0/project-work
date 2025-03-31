@@ -1,6 +1,6 @@
 ﻿using API.Models.Exceptions;
-using API.Models.Filters;
 using API.Models.Services;
+using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
