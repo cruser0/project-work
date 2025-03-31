@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using WinformDotNetFramework.Entities;
-using WinformDotNetFramework.Entities.Filters;
+
 
 namespace WinformDotNetFramework.Services
 {
-    internal class CostRegistryService:BaseCallService
+    internal class CostRegistryService : BaseCallService
     {
         private string BuildQueryParams(CostRegistryFilter filter)
         {
@@ -19,7 +18,7 @@ namespace WinformDotNetFramework.Services
                 { "CostRegistryName", filter.CostRegistryName },
                 { "CostRegistryCode", filter.CostRegistryCode },
                 { "CostRegistryPage", filter.CostRegistryPage },
-               
+
 
 
             };

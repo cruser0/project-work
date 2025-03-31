@@ -1,4 +1,5 @@
 ﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 CuInDgv.DataSource = ci;
 
                 List<SupplierInvoiceSupplierDTO> si = (await _supplierInvoiceService
-                    .GetAll(new SupplierInvoiceFilter()
+                    .GetAll(new SupplierInvoiceSupplierFilter()
                     {
                         SupplierInvoiceSaleID = intId
                     })).ToList();
@@ -168,7 +169,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         public async Task RefreshDgvSupplier()
         {
             List<SupplierInvoiceSupplierDTO> data = (await _supplierInvoiceService
-               .GetAll(new SupplierInvoiceFilter()
+               .GetAll(new SupplierInvoiceSupplierFilter()
                { SupplierInvoiceSaleBoL = sale.BoLnumber, SupplierInvoiceSaleBk = sale.BookingNumber }))
                .ToList();
             SuInDgv.DataSource = data;
@@ -183,7 +184,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 SupplierInvoiceDTOGet supplierInvoice = (SupplierInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
-                UtilityFunctions.OpenFormDetails<CreateDetailsSupplierInvoiceForm>(sender, e, supplierInvoice.InvoiceId);
+                UtilityFunctions.OpenFormDetails<CreateDetailsSupplierInvoiceForm>(sender, e, (int)supplierInvoice.InvoiceId);
 
             }
         }
