@@ -1,5 +1,5 @@
-﻿using API.Models.DTO;
-using API.Models.Entities;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities;
 
 namespace API.Models.Mapper
 {

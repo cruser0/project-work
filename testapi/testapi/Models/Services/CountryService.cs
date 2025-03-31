@@ -1,5 +1,5 @@
-﻿using API.Models.DTO;
-using API.Models.Entities;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
@@ -20,7 +20,7 @@ namespace API.Models.Services
         {
             var list = await _context.Countries.ToListAsync();
             if (list.Any())
-                return list.Select(x => new CountryDTOGet() {CountryID=x.CountryID,CountryName=x.CountryName,ISOCountry=x.ISOCode }).ToList();
+                return list.Select(x => new CountryDTOGet() { CountryID = x.CountryID, CountryName = x.CountryName, ISOCountry = x.ISOCode }).ToList();
             return new List<CountryDTOGet>();
         }
     }

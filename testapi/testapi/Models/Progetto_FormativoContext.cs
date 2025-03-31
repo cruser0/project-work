@@ -1,7 +1,7 @@
 ﻿using API.Models.Configuration;
-using API.Models.Procedures;
 using Entity_Validator.Entity.Entities;
 using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Procedures;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Models

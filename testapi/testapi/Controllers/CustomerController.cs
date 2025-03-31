@@ -3,6 +3,7 @@ using API.Models.Exceptions;
 
 using API.Models.Mapper;
 using API.Models.Services;
+using Entity_Validator;
 using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Authorization;
@@ -87,6 +88,11 @@ namespace API.Controllers
         public async Task<IActionResult> Post(CustomerDTO customer)
         {
 
+            customer.IsPost = true;
+            var results = ValidatorEntity.Validate(customer);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
+
             var data = await _customerService.CreateCustomer(CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.Country!)));
             if (data == null)
                 throw new NotFoundException("Data can't be null!");
@@ -101,6 +107,11 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerDTO customer)
         {
+            customer.IsPost = false;
+            var results = ValidatorEntity.Validate(customer);
+            if (results.Count > 0)
+                throw new Exception(results.First().ErrorMessage);
+
             var data = await _customerService.UpdateCustomer(id, CustomerMapper.Map(customer, await _countryService.GetCountryByName(customer.Country)));
             if (data == null)
                 throw new NotFoundException("Customer not found!");
