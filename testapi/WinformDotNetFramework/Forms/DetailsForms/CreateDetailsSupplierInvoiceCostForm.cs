@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -287,12 +288,38 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     if (_updateCost != null)
                     {
+                        supplierInvoiceCost.IsPost = false;
+                        var result = ValidatorEntity.Validate(supplierInvoiceCost);
+                        if (result.Any())
+                        {
+                            string err = "";
+                            foreach (var item in result)
+                            {
+                                err += item.ErrorMessage + "\n";
+                            }
+                            MessageBox.Show(err);
+                            return;
+                        }
+
                         await _supplierInvoiceCostService.Update((int)_updateCost.SupplierInvoiceCostsId, supplierInvoiceCost);
                         MessageBox.Show("Supplier Invoice Cost Updated Succesfully");
 
                     }
                     else
                     {
+                        supplierInvoiceCost.IsPost = true;
+                        var result = ValidatorEntity.Validate(supplierInvoiceCost);
+                        if (result.Any())
+                        {
+                            string err = "";
+                            foreach (var item in result)
+                            {
+                                err += item.ErrorMessage + "\n";
+                            }
+                            MessageBox.Show(err);
+                            return;
+                        }
+
                         await _supplierInvoiceCostService.Create(supplierInvoiceCost);
                         MessageBox.Show("Supplier Invoice Cost created successfully!");
                     }
@@ -319,6 +346,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 };
                 try
                 {
+                    supplierInvoiceCost.IsPost = true;
+                    var result = ValidatorEntity.Validate(supplierInvoiceCost);
+                    if (result.Any())
+                    {
+                        string err = "";
+                        foreach (var item in result)
+                        {
+                            err += item.ErrorMessage + "\n";
+                        }
+                        MessageBox.Show(err);
+                        return;
+                    }
+
                     await _supplierInvoiceCostService.Update((int)detailsSupplierInvoiceCost.SupplierInvoiceCostsId, supplierInvoiceCost);
                     MessageBox.Show("Supplier Invoice Cost updated successfully!");
                     Close();

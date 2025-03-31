@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -148,6 +149,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 SupplierDTOGet supplier = new SupplierDTOGet { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
                 try
                 {
+                    supplier.IsPost = false;
+                    var result = ValidatorEntity.Validate(supplier);
+                    if (result.Any())
+                    {
+                        string err = "";
+                        foreach (var item in result)
+                        {
+                            err += item.ErrorMessage + "\n";
+                        }
+                        MessageBox.Show(err);
+                        return;
+                    }
+
                     await _supplierService.Update(supplierID, supplier);
                     MessageBox.Show("Supplier updated successfully!");
 
@@ -173,6 +187,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     try
                     {
+                        supplier.IsPost = true;
+                        var result = ValidatorEntity.Validate(supplier);
+                        if (result.Any())
+                        {
+                            string err = "";
+                            foreach (var item in result)
+                            {
+                                err += item.ErrorMessage + "\n";
+                            }
+                            MessageBox.Show(err);
+                            return;
+                        }
+
                         await _supplierService.Create(supplier);
                         MessageBox.Show("Supplier Created Succesfully");
 
@@ -205,6 +232,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 SupplierDTOGet supplier = new SupplierDTOGet { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
                 try
                 {
+                    supplier.IsPost = false;
+                    var result = ValidatorEntity.Validate(supplier);
+                    if (result.Any())
+                    {
+                        string err = "";
+                        foreach (var item in result)
+                        {
+                            err += item.ErrorMessage + "\n";
+                        }
+                        MessageBox.Show(err);
+                        return;
+                    }
+
                     await _supplierService.Update(supplierID, supplier);
                     MessageBox.Show("Supplier updated successfully!");
                     Close();
@@ -231,6 +271,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     try
                     {
+                        supplier.IsPost = true;
+                        var result = ValidatorEntity.Validate(supplier);
+                        if (result.Any())
+                        {
+                            string err = "";
+                            foreach (var item in result)
+                            {
+                                err += item.ErrorMessage + "\n";
+                            }
+                            MessageBox.Show(err);
+                            return;
+                        }
+
                         await _supplierService.Create(supplier);
                         MessageBox.Show("Supplier Created Succesfully");
                         Close();

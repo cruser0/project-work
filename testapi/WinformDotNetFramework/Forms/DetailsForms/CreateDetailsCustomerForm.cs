@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -152,6 +153,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             CustomerDTOGet customer = new CustomerDTOGet { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
             try
             {
+                customer.IsPost = false;
+                var result = ValidatorEntity.Validate(customer);
+                if (result.Any())
+                {
+                    string err = "";
+                    foreach (var item in result)
+                    {
+                        err += item.ErrorMessage + "\n";
+                    }
+                    MessageBox.Show(err);
+                    return;
+                }
                 await _customerService.Update(customerId, customer);
                 MessageBox.Show("Customer updated successfully!");
                 if (quit) Close();
@@ -174,6 +187,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             try
             {
+                customer.IsPost = true;
+                var result = ValidatorEntity.Validate(customer);
+                if (result.Any())
+                {
+                    string err = "";
+                    foreach (var item in result)
+                    {
+                        err += item.ErrorMessage + "\n";
+                    }
+                    MessageBox.Show(err);
+                    return;
+                }
                 await _customerService.Create(customer);
                 MessageBox.Show("Customer Created Succesfully");
                 if (quit) Close();
