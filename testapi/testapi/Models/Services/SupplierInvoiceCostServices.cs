@@ -106,23 +106,10 @@ namespace API.Models.Services
         public async Task<SupplierInvoiceCostDTOGet> CreateSupplierInvoiceCost(SupplierInvoiceCost supplierInvoiceCost)
         {
             SupplierInvoice si;
-            if (supplierInvoiceCost == null)
-                throw new NullPropertyException("Couldn't create supplier Invoice Cost,data is null");
-
-            if (supplierInvoiceCost.SupplierInvoiceId == null)
-                throw new NullPropertyException("Supplier Invoice Id can't be null!");
 
             if (!await _context.SupplierInvoices.Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).AnyAsync())
                 throw new NotFoundException("Supplier Invoice Id not found!");
 
-            if (supplierInvoiceCost.Cost < 0 || supplierInvoiceCost.Quantity < 1 || supplierInvoiceCost.Cost == null || supplierInvoiceCost.Quantity == null)
-                throw new ErrorInputPropertyException("Values can't be lesser than 1 or null");
-
-            if (string.IsNullOrEmpty(supplierInvoiceCost.Name))
-                throw new NullPropertyException("Name can't be empty");
-
-            if (supplierInvoiceCost.CostRegistryID == null)
-                throw new ErrorInputPropertyException("Cost Registry Code wrong or missing");
 
             si = await _context.SupplierInvoices.Include(x => x.Status).Where(x => x.SupplierInvoiceID == supplierInvoiceCost.SupplierInvoiceId).FirstAsync();
 

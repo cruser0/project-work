@@ -28,7 +28,6 @@ namespace API.Models.Services
         private readonly ICustomerInvoicesService _ciService;
         private readonly ISupplierInvoiceService _siService;
         private readonly StatusService _statusService;
-        // List of valid sale statuses
         List<string> statusList = new() { "active", "closed" };
         public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIservice, ISupplierInvoiceService SIservice, StatusService statusService)
         {
@@ -41,13 +40,11 @@ namespace API.Models.Services
 
         public async Task<ICollection<SaleCustomerDTO>> GetAllSales(SaleCustomerFilter filter)
         {
-            // Retrieve all sales from the database and map each one to a SaleDTOGet
             return await ApplyFilter(filter).ToListAsync();
         }
 
         public async Task<int> CountSales(SaleCustomerFilter filter)
         {
-            // Retrieve all sales from the database and map each one to a SaleDTOGet
             return await ApplyFilter(filter).CountAsync();
         }
 
@@ -129,7 +126,6 @@ namespace API.Models.Services
 
         public async Task<SaleCustomerDTO> GetSaleById(int id)
         {
-            // Retrieve the sale from the database using the provided ID
             var sale = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == id).FirstOrDefaultAsync();
             var customer = await _context.Customers.Include(x => x.Country).Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
             var result = new SaleCustomerDTO(sale, customer);
@@ -138,13 +134,11 @@ namespace API.Models.Services
             if (result == null || sale == null)
                 throw new NotFoundException("Sale not found!");
 
-            // Map the sale entity to a DTO and return the result
             return result;
         }
 
         public async Task<Sale?> GetOnlySaleById(int id)
         {
-            // Retrieve the sale from the database using the provided ID
             var sale = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == id).FirstOrDefaultAsync();
             return sale;
         }
@@ -152,57 +146,39 @@ namespace API.Models.Services
         public async Task<SaleDTOGet> CreateSale(Sale sale)
         {
 
-            // Check if the provided status is valid
             if (!statusList.Contains(sale.Status.StatusName.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
-            // Check if a customer exists with the provided CustomerId
             var customers = await _context.Customers.Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
             if (customers == null)
                 throw new NotFoundException($"There is no customer with ID {sale.CustomerID}");
             else if ((bool)customers.Deprecated)
                 throw new ErrorInputPropertyException($"The customer {sale.CustomerID} is deprecated");
 
-            // Set the initial TotalRevenue to 0
             sale.TotalRevenue = 0;
 
-            // Add the sale to the database and save the changes
             _context.Add(sale);
             await _context.SaveChangesAsync();
 
-            // Map the sale to a DTO and return the result
             return SaleMapper.MapGet(sale);
         }
 
         public async Task<SaleDTOGet> UpdateSale(int id, Sale sale)
         {
-            // Retrieve the existing sale from the database
             var sDB = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
 
-            // Check if the sale exists
-            if (sDB == null)
-                throw new NotFoundException($"There is no sale with id {id}");
 
-            // Update sale fields only if new values are provided
+
             sDB.BoLnumber = sale.BoLnumber ?? sDB.BoLnumber;
             sDB.StatusID = sale.StatusID ?? sDB.StatusID;
             sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
             sDB.SaleDate = sale.SaleDate ?? sDB.SaleDate;
             sDB.CustomerID = sale.CustomerID ?? sDB.CustomerID;
 
-            if (sale.BookingNumber != null)
-                if (sale.BookingNumber.Length > 50)
-                    throw new ErrorInputPropertyException("Booking Number is too long");
 
-            if (sale.BoLnumber != null)
-                if (sale.BoLnumber.Length > 50)
-                    throw new ErrorInputPropertyException("BoL Number is too long");
-
-            // Check if the provided status is valid
             if (!string.IsNullOrEmpty(sale.Status.StatusName) && !statusList.Contains(sale.Status.StatusName.ToLower()))
                 throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
-            // If a new CustomerId is provided, check if the customer exists
             if (sale.CustomerID != null)
             {
                 var customers = await _context.Customers.Where(x => x.CustomerID == sale.CustomerID).FirstOrDefaultAsync();
@@ -212,20 +188,16 @@ namespace API.Models.Services
                     throw new ErrorInputPropertyException($"The customer {sale.CustomerID} is deprecated");
             }
 
-            // Update the sale in the database
             _context.Sales.Update(sDB);
             await _context.SaveChangesAsync();
 
-            // Return the updated sale mapped to DTO
             return SaleMapper.MapGet(sDB);
         }
 
         public async Task<SaleDTOGet> DeleteSale(int id)
         {
-            // Retrieve the sale from the database using the provided ID
             var data = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == id).FirstOrDefaultAsync();
 
-            // Check if we're already in a transaction
             bool isInTransaction = _context.Database.CurrentTransaction != null;
             IDbContextTransaction? transaction = null;
 
@@ -236,15 +208,12 @@ namespace API.Models.Services
 
             try
             {
-                // Check if the sale exists
                 if (data == null)
                     throw new NotFoundException("Sale not found!");
                 if (data.Status.StatusName.ToLower().Equals("closed"))
                     throw new ErrorInputPropertyException("Sale is closed,can't delete!");
 
-                // Retrieve all customer invoices associated with the sale
                 var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleID == id).ToListAsync();
-                // If there are any customer invoices, delete them
                 if (customerInvoices.Count > 0)
                 {
                     foreach (var invoice in customerInvoices)
@@ -253,9 +222,7 @@ namespace API.Models.Services
                     }
                 }
 
-                // Retrieve all supplier invoices associated with the sale
                 var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleID == id).ToListAsync();
-                // If there are any supplier invoices, delete them
                 if (supplierInvoices.Count > 0)
                 {
                     foreach (var invoice in supplierInvoices)
@@ -264,12 +231,9 @@ namespace API.Models.Services
                     }
                 }
 
-                // Remove the sale from the database
                 _context.Sales.Remove(data);
-                // Save the changes to commit the deletion
                 await _context.SaveChangesAsync();
 
-                // Only commit if we started the transaction
                 if (!isInTransaction && transaction != null)
                 {
                     await transaction.CommitAsync();
@@ -277,7 +241,6 @@ namespace API.Models.Services
             }
             catch (Exception ex)
             {
-                // Only rollback if we started the transaction
                 if (!isInTransaction && transaction != null)
                 {
                     await transaction.RollbackAsync();
@@ -289,7 +252,6 @@ namespace API.Models.Services
                     throw new Exception($"Error deleting sale: {ex.Message}", ex);
             }
 
-            // Map the deleted sale to a DTO and return the result
             return SaleMapper.MapGet(data);
         }
 
@@ -300,20 +262,16 @@ namespace API.Models.Services
             foreach (int id in saleId)
             {
 
-                // Retrieve the sale from the database using the provided ID
                 var data = await _context.Sales.Where(x => x.SaleID == id).FirstOrDefaultAsync();
 
-                // Check if the sale exists
                 if (data == null)
                     continue;
 
 
-                // Retrieve all customer invoices associated with the sale
                 var customerInvoices = await _context.CustomerInvoices.Where(x => x.SaleID == id).ToListAsync();
                 await using var transaction = await _context.Database.BeginTransactionAsync();
                 try
                 {
-                    // If there are any customer invoices, delete them
                     if (customerInvoices.Count > 0)
                     {
                         foreach (var invoice in customerInvoices)
@@ -324,10 +282,8 @@ namespace API.Models.Services
                         }
                     }
 
-                    // Retrieve all supplier invoices associated with the sale
                     var supplierInvoices = await _context.SupplierInvoices.Where(x => x.SaleID == id).ToListAsync();
 
-                    // If there are any supplier invoices, delete them
                     if (supplierInvoices.Count > 0)
                     {
 
@@ -348,15 +304,12 @@ namespace API.Models.Services
                     continue;
                 }
 
-                // Remove the sale from the database
                 _context.Sales.Remove(data);
 
-                // Save the changes to commit the deletion
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 count++;
             }
-            // Map the deleted sale to a DTO and return the result
             return $"{count} Sales were deleted out of {saleId.Count} ";
         }
 
@@ -368,11 +321,9 @@ namespace API.Models.Services
             {
                 var sDB = await _context.Sales.Include(x => x.Status).Where(x => x.SaleID == sale.SaleId).FirstOrDefaultAsync();
 
-                // Check if the sale exists
                 if (sDB == null)
                     throw new NotFoundException($"There is no sale with id {sale.SaleId}");
 
-                // Update sale fields only if new values are provided
                 sDB.BoLnumber = sale.BoLnumber ?? sDB.BoLnumber;
                 sDB.StatusID = (await _statusService.GetStatusByName(sale.Status))?.StatusID ?? sDB.StatusID;
                 sDB.BookingNumber = sale.BookingNumber ?? sDB.BookingNumber;
@@ -387,12 +338,10 @@ namespace API.Models.Services
                     if (sale.BoLnumber.Length > 50)
                         throw new ErrorInputPropertyException("BoL Number is too long");
 
-                // Check if the provided status is valid
                 string stat = (await _statusService.GetStatusByName(sale.Status)).StatusName;
                 if (!string.IsNullOrEmpty(stat) && !statusList.Contains(stat.ToLower()))
                     throw new ErrorInputPropertyException("Incorrect status\nA sale is Active or Closed");
 
-                // If a new CustomerId is provided, check if the customer exists
                 if (sale.CustomerId != null)
                 {
                     var customers = await _context.Customers.Where(x => x.CustomerID == sale.CustomerId).FirstOrDefaultAsync();
@@ -402,7 +351,6 @@ namespace API.Models.Services
                         throw new ErrorInputPropertyException($"The customer {sale.CustomerId} is deprecated");
                 }
 
-                // Update the sale in the database
                 _context.Sales.Update(sDB);
                 await _context.SaveChangesAsync();
 
