@@ -71,7 +71,7 @@ namespace API.Controllers
             customerInvoiceCost.IsPost = true;
             var results = ValidatorEntity.Validate(customerInvoiceCost);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _customerInvoiceCostService.CreateCustomerInvoiceCost(CustomerInvoiceCostMapper.Map(customerInvoiceCost,
                                                                                                                     await _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),
@@ -89,7 +89,7 @@ namespace API.Controllers
             customerInvoiceCost.IsPost = false;
             var results = ValidatorEntity.Validate(customerInvoiceCost);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _customerInvoiceCostService.UpdateCustomerInvoiceCost(id, CustomerInvoiceCostMapper.Map(customerInvoiceCost,
                                                                                                                     await _costRegistryService.GetCostRegistryByCode(customerInvoiceCost.CostRegistryCode),

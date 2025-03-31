@@ -80,7 +80,7 @@ namespace API.Controllers
             customerInvoice.IsPost = true;
             var results = ValidatorEntity.Validate(customerInvoice);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                     await _statusService.GetStatusByName(customerInvoice.Status),
@@ -100,7 +100,7 @@ namespace API.Controllers
             customerInvoice.IsPost = false;
             var results = ValidatorEntity.Validate(customerInvoice);
             if (results.Count > 0)
-                throw new Exception(results.First().ErrorMessage);
+                throw new ValidateException(results.First().ErrorMessage);
 
             var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                    await _statusService.GetStatusByName(customerInvoice.Status),
