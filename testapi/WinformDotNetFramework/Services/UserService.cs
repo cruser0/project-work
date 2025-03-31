@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Procedures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -7,8 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WinformDotNetFramework.Entities;
 using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
-using WinformDotNetFramework.Entities.Preference;
+
 
 namespace WinformDotNetFramework.Services
 {

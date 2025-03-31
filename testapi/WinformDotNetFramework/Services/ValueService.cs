@@ -1,9 +1,10 @@
 ﻿
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WinformDotNetFramework.Entities.DTO;
-using WinformDotNetFramework.Entities.Filters;
 
 
 //http://localhost:5069/api/Values/customer-invoice-costs
@@ -38,7 +39,7 @@ namespace WinformDotNetFramework.Services
             return queryString;
         }
 
-        private string BuildQueryParamsSale(SaleFilter filter)
+        private string BuildQueryParamsSale(SaleCustomerFilter filter)
         {
             var queryParameters = new List<string>();
 
@@ -149,7 +150,7 @@ namespace WinformDotNetFramework.Services
             return queryString;
         }
 
-        private string BuildQueryParamsSupplierInvoice(SupplierInvoiceFilter filter)
+        private string BuildQueryParamsSupplierInvoice(SupplierInvoiceSupplierFilter filter)
         {
             List<string> queryParameters = new List<string>();
 
@@ -205,7 +206,7 @@ namespace WinformDotNetFramework.Services
             return queryString;
         }
 
-        public async Task<CustomerGroupDTO> GetTables(CustomerFilter cfilter, SaleFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
+        public async Task<CustomerGroupDTO> GetTables(CustomerFilter cfilter, SaleCustomerFilter sfilter, CustomerInvoiceFilter cifilter, CustomerInvoiceCostFilter cicfilter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString1 = BuildQueryParamsCustomer(cfilter);
@@ -220,7 +221,7 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
-        public async Task<SupplierGroupDTO> GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceFilter sifilter, SupplierInvoiceCostFilter sicfilter)
+        public async Task<SupplierGroupDTO> GetSupplierTables(SupplierFilter sfilter, SupplierInvoiceSupplierFilter sifilter, SupplierInvoiceCostFilter sicfilter)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
             string queryString1 = BuildQueryParamsSupplier(sfilter);
