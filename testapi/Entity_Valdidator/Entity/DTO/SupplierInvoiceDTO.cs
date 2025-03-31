@@ -53,6 +53,10 @@ namespace Entity_Validator.Entity.DTO
         [MaxLength(100)]
         [RegularExpression("^[A-Za-z ]+$", ErrorMessage = "Only alphabetical characters and spaces are allowed.")]
         public string Country { get; set; }
+        public SupplierInvoiceSupplierDTO()
+        {
+
+        }
         public SupplierInvoiceSupplierDTO(SupplierInvoice si, Supplier s)
         {
             SupplierInvoiceCode = si.SupplierInvoiceCode;

@@ -7,7 +7,7 @@ namespace Entity_Validator.Entity.DTO
 {
     public class SaleDTO
     {
-        [RequiredIf("IsPost",true)]
+        [RequiredIf("IsPost", true)]
         [MaxLength(50)]
         public string BookingNumber { get; set; }
 
@@ -46,6 +46,10 @@ namespace Entity_Validator.Entity.DTO
         [RegularExpression("^[A-Za-z ]+$", ErrorMessage = "Only alphabetical characters and spaces are allowed.")]
         public string Country { get; set; }
 
+        public SaleCustomerDTO()
+        {
+
+        }
         public SaleCustomerDTO(Sale sale, Customer customer)
         {
             SaleId = sale.SaleID;
