@@ -39,7 +39,6 @@ namespace API.Models.Services
 
         public async Task<ICollection<SupplierInvoiceSupplierDTO>> GetAllSupplierInvoices(SupplierInvoiceSupplierFilter filter)
         {
-            // Retrieve all suppliers from the database and map them to DTOs
             return await ApplyFilter(filter).ToListAsync();
         }
 
@@ -145,9 +144,6 @@ namespace API.Models.Services
 
         public async Task<SupplierInvoiceDTOGet> CreateSupplierInvoice(SupplierInvoice supplierInvoice)
         {
-            if (supplierInvoice == null)
-                throw new NullPropertyException("Couldn't create supplier Invoice,data is null");
-
             var supplier = await _context.Suppliers.Where(x => x.SupplierID == supplierInvoice.SupplierID).FirstOrDefaultAsync();
             if (supplier == null)
                 throw new NotFoundException("Supplier not found");
@@ -165,9 +161,9 @@ namespace API.Models.Services
             string code;
             while (true)
             {
-            code ="SINV-"+Guid.NewGuid().ToString("N").Substring(0, 20);
-            if(!await _context.SupplierInvoices.AnyAsync(x=>x.SupplierInvoiceCode.Equals(code)))
-                    break;
+                code ="SINV-"+Guid.NewGuid().ToString("N").Substring(0, 20);
+                if(!await _context.SupplierInvoices.AnyAsync(x=>x.SupplierInvoiceCode.Equals(code)))
+                        break;
             }
             supplierInvoice.SupplierInvoiceCode = code;
 
@@ -378,7 +374,7 @@ namespace API.Models.Services
                 .Include(x => x.Supplier)
                 .Include(x => x.Status)
                 .Where(x => x.Supplier.SupplierID == id)
-                .GroupBy(x => x.Status.StatusName)  // Accessing the StatusName from the related Status entity
+                .GroupBy(x => x.Status.StatusName)
                 .Select(g => new
                 {
                     Status = g.Key,

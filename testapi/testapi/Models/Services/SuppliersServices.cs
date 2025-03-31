@@ -94,13 +94,7 @@ namespace API.Models.Services
         }
 
         public async Task<SupplierDTOGet> CreateSupplier(Supplier supplier)
-        {
-            if (supplier == null)
-                throw new NullPropertyException("Couldn't create supplier,data is null");
-            if (string.IsNullOrEmpty(supplier.Country.CountryName))
-                throw new NullPropertyException("Country can't be null");
-            if (string.IsNullOrEmpty(supplier.SupplierName))
-                throw new NullPropertyException("Supplier name can't be null");
+        {           
 
             if (supplier.Deprecated != null)
                 if ((bool)supplier.Deprecated)
@@ -111,13 +105,6 @@ namespace API.Models.Services
                 supplier.Deprecated = false;
 
             supplier.CreatedAt = DateTime.Now;
-
-            if (supplier.SupplierName.Length > 100)
-                throw new ErrorInputPropertyException("Supplier name is too long");
-
-            if (supplier.Country.CountryName.Length > 50)
-                throw new ErrorInputPropertyException("Country is too long");
-
 
             _context.Add(supplier);
             await _context.SaveChangesAsync();
@@ -138,16 +125,6 @@ namespace API.Models.Services
                     if ((bool)cDB.Deprecated!)
                         throw new ErrorInputPropertyException("Can't update deprecated supplier");
 
-                    if (supplier.SupplierName != null)
-                        if (supplier.SupplierName.Length > 100)
-                            throw new ErrorInputPropertyException("Supplier name is too long");
-
-                    if (supplier.Country.CountryName != null)
-                    {
-                        if (supplier.Country.CountryName.Length > 50)
-                            throw new ErrorInputPropertyException("Country is too long");
-
-                    }
 
                     Supplier newSupplier = new Supplier
                     {
