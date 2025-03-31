@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Procedures;
 using System;
 using System.Collections.Generic;
@@ -162,6 +163,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             };
             try
             {
+                si.IsPost = false;
+                var validated = ValidatorEntity.Validate(user);
+                if (validated.Any())
+                {
+                    var err = "";
+                    foreach (var error in validated)
+                        err += error+"\n";
+                    MessageBox.Show($"{err}");
+                    return;
+                }
                 await _userService.Update((int)user.UserID, si);
                 await _userService.EditUserRoles(ar);
                 MessageBox.Show("User updated successfully!");
@@ -182,7 +193,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 Password = PasswordTxt.Text,
                 Role = roles
             };
-
+            user.IsPost = true;
+            var validated = ValidatorEntity.Validate(user);
+            if (validated.Any())
+            {
+                var err = "";
+                foreach (var error in validated)
+                    err += error+"\n";
+                MessageBox.Show($"{err}");
+                return;
+            }
             try
             {
                 await _userService.Register(user);

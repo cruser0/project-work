@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -287,6 +288,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     SupplierId = supplierId,
                 };
 
+                si.IsPost = false;
+                var validated = ValidatorEntity.Validate(si);
+                if (validated.Any())
+                {
+                    var err = "";
+                    foreach (var error in validated)
+                        err += error + "\n";
+                    MessageBox.Show($"{err}");
+                    return;
+                }
                 await _supplierInvoiceService.Update((int)supplierInvoice.SupplierInvoiceId, si);
                 MessageBox.Show("Customer updated successfully!");
                 if (quit) Close();
@@ -299,18 +310,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async Task CreateNewSupplierInvoice(bool quit = false)
         {
-            List<string> err = new List<string>();
-
-            if (string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text))
-                err.Add("BookingNumber");
-            if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text))
-                err.Add("BookingNumber");
-            if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text))
-                err.Add("SupplierName");
-            if (string.IsNullOrEmpty(comboBox1.Text))
-                err.Add("Status");
-            if (DateClnd.Value == null)
-                err.Add("Date");
 
             if (saleId == -1)
             {
@@ -357,11 +356,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 }
             }
 
-            if (err.Count > 0)
-            {
-                MessageBox.Show("Gli attributi : " + string.Join(",", err) + "\n Sono errati!");
-                return;
-            }
 
             try
             {
@@ -372,6 +366,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     SupplierId = supplierId,
                     Status = comboBox1.Text
                 };
+                si.IsPost = true;
+                var validated = ValidatorEntity.Validate(si);
+                if (validated.Any())
+                {
+                    var err = "";
+                    foreach (var error in validated)
+                        err += error + "\n";
+                    MessageBox.Show($"{err}");
+                    return;
+                }
 
                 SupplierInvoiceDTOGet newSI = await _supplierInvoiceService.Create(si);
                 MessageBox.Show("Supplier Invoice created Successfully!");
