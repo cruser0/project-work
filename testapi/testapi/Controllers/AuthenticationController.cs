@@ -14,8 +14,6 @@ namespace API.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly UserService _authenticationService;
-        private object supplierInvoiceCost;
-
         public AuthenticationController(UserService auth)
         {
             _authenticationService = auth;
@@ -37,7 +35,7 @@ namespace API.Controllers
         public async Task<ActionResult<UserAccessInfoDTO>> Login(UserDTO request)
         {
             request.IsPost = true;
-            var result = ValidatorEntity.Validate(supplierInvoiceCost);
+            var result = ValidatorEntity.Validate(request);
             if (result.Any())
             {
                 throw new ValidateException(result[0].ToString());
@@ -78,7 +76,7 @@ namespace API.Controllers
         public async Task<ActionResult<string>> AssignRoles(AssignRoleDTO assignRole)
         {
             assignRole.IsPost = false;
-            var result = ValidatorEntity.Validate(supplierInvoiceCost);
+            var result = ValidatorEntity.Validate(assignRole);
             if (result.Any())
             {
                 throw new ValidateException(result[0].ToString());
