@@ -90,7 +90,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             {
                 if (_father is CreateDetailsSupplierInvoiceCostForm sigf)
                 {
-                    sigf.SetSupplierID(dgv.CurrentRow.Cells["InvoiceID"].Value.ToString());
+                    sigf.SetSupplierID(dgv.CurrentRow.Cells["SupplierInvoiceID"].Value.ToString());
                     sigf.SetSupplierCode(dgv.CurrentRow.Cells["SupplierInvoiceCode"].Value.ToString());
 
                 }
@@ -137,7 +137,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceCountryTsmi.Checked = (bool)cdgv.ShowCountry;
             SupplierInvoiceSupplierIDTsmi.Checked = (bool)cdgv.ShowSupplierID;
 
-            SupplierInvoiceDgv.Columns["InvoiceID"].Visible = (bool)cdgv.ShowID;
+            SupplierInvoiceDgv.Columns["SupplierInvoiceID"].Visible = (bool)cdgv.ShowID;
             SupplierInvoiceDgv.Columns["SaleID"].Visible = (bool)cdgv.ShowSaleID;
             SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = (bool)cdgv.ShowInvoiceAmount;
             SupplierInvoiceDgv.Columns["InvoiceDate"].Visible = (bool)cdgv.ShowInvoiceDate;
@@ -222,7 +222,7 @@ namespace WinformDotNetFramework.Forms.GridForms
                 switch (name)
                 {
                     case "SupplierInvoiceIDTsmi":
-                        SupplierInvoiceDgv.Columns["InvoiceID"].Visible = tsmi.Checked;
+                        SupplierInvoiceDgv.Columns["SupplierInvoiceID"].Visible = tsmi.Checked;
                         break;
                     case "SupplierInvoiceSaleIDTsmi":
                         SupplierInvoiceDgv.Columns["SaleID"].Visible = tsmi.Checked;
