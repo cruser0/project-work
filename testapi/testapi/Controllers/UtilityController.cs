@@ -1,5 +1,5 @@
-﻿using API.Models.DTO;
-using API.Models.Services;
+﻿using API.Models.Services;
+using Entity_Validator.Entity.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

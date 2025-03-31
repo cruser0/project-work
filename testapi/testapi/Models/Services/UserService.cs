@@ -1,8 +1,8 @@
-﻿using API.Models.DTO;
-using API.Models.Entities;
-using API.Models.Entities.Preference;
-using API.Models.Exceptions;
-using API.Models.Filters;
+﻿using API.Models.Exceptions;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities;
+using Entity_Validator.Entity.Entities.Preference;
+using Entity_Validator.Entity.Procedures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
