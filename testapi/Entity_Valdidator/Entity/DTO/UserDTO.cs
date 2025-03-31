@@ -1,5 +1,4 @@
-﻿using API.Models.Entities;
-using Entity_Validator.Entity.Entities;
+﻿using Entity_Validator.Entity.Entities;
 using System.Collections.Generic;
 
 namespace Entity_Validator.Entity.DTO

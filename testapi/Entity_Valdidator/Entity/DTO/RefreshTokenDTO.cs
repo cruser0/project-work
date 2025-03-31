@@ -1,4 +1,4 @@
-﻿
+﻿using Entity_Validator.Entity.Entities;
 using System;
 
 namespace Entity_Validator.Entity.DTO
@@ -12,11 +12,11 @@ namespace Entity_Validator.Entity.DTO
         public DateTime Expires { get; set; }
         public RefreshTokenDTO(RefreshToken tk)
         {
-            TokenID=tk.TokenID;
-            UserID=tk.UserID;
+            TokenID = tk.TokenID;
+            UserID = tk.UserID;
             Token = tk.Token;
-            Created = tk.Created;
-            Expires = tk.Expires;
+            Created = (DateTime)tk.Created;
+            Expires = (DateTime)tk.Expires;
         }
     }
 }

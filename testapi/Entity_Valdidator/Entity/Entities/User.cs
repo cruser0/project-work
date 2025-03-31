@@ -1,4 +1,5 @@
 ﻿
+using Entity_Validator.Entity.Entities.Preference;
 using System.Collections.Generic;
 
 namespace Entity_Validator.Entity.Entities
@@ -7,7 +8,7 @@ namespace Entity_Validator.Entity.Entities
     {
         public User()
         {
-            UserRoles= new HashSet<UserRole>();
+            UserRoles = new HashSet<UserRole>();
             UserFavouritePages = new HashSet<UserFavouritePage>();
         }
         public int UserID { get; set; }

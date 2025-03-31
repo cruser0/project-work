@@ -9,9 +9,10 @@ namespace Entity_Validator
         {
             var results = new List<ValidationResult>();
             var context = new ValidationContext(entity);
+
             Validator.TryValidateObject(entity, context, results, true);
+
             return results;
         }
     }
 }
-

@@ -12,8 +12,4 @@ namespace Entity_Validator.Entity.Procedures
         public int? OriginalID { get; set; }
         public decimal? TotalAmountInvoiced { get; set; }
     }
-    public TotalAmountSpentPerSuppliers Validate(TotalAmountSpentPerSuppliers validate)
-    {
-
-    }
 }
