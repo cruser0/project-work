@@ -19,7 +19,7 @@ namespace WinformDotNetFramework.Forms.control
         public void SetPropName(string name)
         {
             _name = name;
-            PropTxt.propName = _name;
+            PropTxt.PropName = _name;
             PropLbl.Text = _name;
         }
 
@@ -30,16 +30,16 @@ namespace WinformDotNetFramework.Forms.control
 
         internal void SetBorderColor(List<ValidationResult> validationResults)
         {
-            PropTxt.isNotValid = false;
+            PropTxt.IsNotValid = false;
             PropTxt.ValidateProperty(validationResults);
 
-            if (PropTxt.isNotValid)
+            if (PropTxt.IsNotValid)
             {
                 PropLbl.ForeColor = Color.Red;
 
                 Errorlbl.Visible = true;
                 Errorlbl.ForeColor = Color.Red;
-                Errorlbl.Text = PropTxt.errorMessage;
+                Errorlbl.Text = PropTxt.ErrorMessage;
 
             }
             else
