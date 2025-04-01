@@ -8,7 +8,7 @@ namespace Entity_Validator.Entity.DTO
     {
         [RequiredIf("IsPost", true)]
         [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", ErrorMessage = "Email is Invalid.")]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string Email { get; set; }
 
         [RequiredIf("IsPost", true)]
@@ -20,11 +20,11 @@ namespace Entity_Validator.Entity.DTO
     public class UserDTOEdit : UserDTO
     {
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string Name { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string LastName { get; set; }
     }
 
@@ -41,15 +41,15 @@ namespace Entity_Validator.Entity.DTO
 
         [RequiredIf("IsPost", true)]
         [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", ErrorMessage = "Email is Invalid.")]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string Email { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string Name { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string LastName { get; set; }
     }
 

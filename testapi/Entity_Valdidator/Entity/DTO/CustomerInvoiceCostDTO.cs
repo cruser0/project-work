@@ -16,15 +16,15 @@ namespace Entity_Validator.Entity.DTO
         public int? Quantity { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string Name { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string CostRegistryCode { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Must be at most {1} characters.")]
         public string CustomerInvoiceCode { get; set; }
 
         public bool IsPost { get; set; }
