@@ -203,8 +203,12 @@ namespace WinformDotNetFramework.Forms
 
             switch (formName)
             {
-                case "Show Test TextBox":
+                case "Show Test TextBox1":
                     child = new Form1();
+                    break;
+
+                case "Show Test TextBox2":
+                    child = new Form2();
                     break;
 
                 case "TS UserProfile":

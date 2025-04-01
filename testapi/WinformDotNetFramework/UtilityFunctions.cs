@@ -1,6 +1,9 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -295,6 +298,34 @@ namespace WinformDotNetFramework
             return new List<CostRegistryDTO>() { new CostRegistryDTOGet() { CostRegistryID = 0, CostRegistryName = "All", CostRegistryPrice = 1, CostRegistryQuantity = 1, CostRegistryUniqueCode = "All" } }
                 .Concat(await mainForm.CostRegistryList)
                 .ToList();
+        }
+
+        public static void ValidateTextBoxes<T>(Form form, T entity)
+        {
+            // valida oggetto
+            List<ValidationResult> validationResults = ValidatorEntity.Validate(entity);
+
+
+            // valida singole textbox
+            foreach (RedTextBox rtb in form.Controls.OfType<RedTextBox>())
+            {
+                rtb.isNotValid = false;
+                rtb.ValidateProperty(validationResults);
+
+                if (rtb.isNotValid)
+                {
+                    Label lbl = form.Controls.OfType<Label>()
+                        .FirstOrDefault(x => x.Name.Substring(0, x.Name.Length - 3) == rtb.Name.Substring(0, rtb.Name.Length - 3));
+                    lbl.ForeColor = Color.Red;
+                }
+            }
+
+            // forza redraw del form
+            form.Refresh();
+
+            // scrivi messaggi di errore
+            string result = string.Join(Environment.NewLine + Environment.NewLine, validationResults.Select(x => x.ErrorMessage));
+            MessageBox.Show(string.IsNullOrEmpty(result) ? "Valid" : result);
         }
     }
 }

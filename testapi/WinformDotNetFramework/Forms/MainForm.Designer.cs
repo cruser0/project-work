@@ -45,6 +45,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.RegistryCostShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.Form1ShowTS = new System.Windows.Forms.ToolStripButton();
             this.AddTP = new System.Windows.Forms.TabPage();
             this.Create = new System.Windows.Forms.ToolStrip();
@@ -80,7 +81,8 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.OpenFormDropDown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -149,6 +151,8 @@ namespace WinformDotNetFramework.Forms
             this.RegistryCostShowTS,
             this.toolStripButton1,
             this.toolStripButton4,
+            this.toolStripSeparator11,
+            this.toolStripButton5,
             this.Form1ShowTS});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
@@ -248,6 +252,17 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(6, 30);
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.AutoSize = false;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(100, 27);
+            this.toolStripButton4.Text = "User";
+            // 
             // Form1ShowTS
             // 
             this.Form1ShowTS.AutoSize = false;
@@ -257,7 +272,7 @@ namespace WinformDotNetFramework.Forms
             this.Form1ShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.Form1ShowTS.Name = "Form1ShowTS";
             this.Form1ShowTS.Size = new System.Drawing.Size(100, 27);
-            this.Form1ShowTS.Text = "Test TextBox";
+            this.Form1ShowTS.Text = "Test TextBox2";
             this.Form1ShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // AddTP
@@ -623,16 +638,22 @@ namespace WinformDotNetFramework.Forms
             this.OpenFormDropDown.Size = new System.Drawing.Size(134, 20);
             this.OpenFormDropDown.Text = "Show All Open Forms";
             // 
-            // toolStripButton4
+            // toolStripSeparator11
             // 
-            this.toolStripButton4.AutoSize = false;
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(100, 27);
-            this.toolStripButton4.Text = "User";
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 30);
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.AutoSize = false;
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(100, 27);
+            this.toolStripButton5.Text = "Test TextBox1";
+            this.toolStripButton5.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // MainForm
             // 
@@ -719,5 +740,7 @@ namespace WinformDotNetFramework.Forms
         private ToolStripSeparator toolStripSeparator10;
         public ToolStripButton RegistryCostCreateTS;
         public ToolStripButton toolStripButton4;
+        private ToolStripSeparator toolStripSeparator11;
+        public ToolStripButton toolStripButton5;
     }
 }

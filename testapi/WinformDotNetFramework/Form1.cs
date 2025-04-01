@@ -1,8 +1,6 @@
-﻿using Entity_Validator;
-using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator.Entity.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,8 +9,6 @@ namespace WinformDotNetFramework
 {
     public partial class Form1 : Form
     {
-        public HashSet<RedTextBox> Wrongtextboxes = new HashSet<RedTextBox>();
-
         // Lista di 10 CustomerInvoiceCostDTO con 9 che contengono errori
         List<CustomerInvoiceCostDTO> dtoList = new List<CustomerInvoiceCostDTO>
 {
@@ -134,12 +130,13 @@ namespace WinformDotNetFramework
         public Form1()
         {
             InitializeComponent();
-            CustomerInvoiceId.Tag = CustomerInvoiceIdLbl;
-            Cost.Tag = CostLbl;
-            Quantity.Tag = QuantityLbl;
-            name.Tag = NameLbl;
-            CostRegistryCode.Tag = CostRegistryCodeLbl;
-            CustomerInvoiceCode.Tag = CustomerInvoiceCodeLbl;
+            CustomerInvoiceIdTxt.propName = "CustomerInvoiceId";
+            CostTxt.propName = "Cost";
+            QuantityTxt.propName = "Quantity";
+            NameTxt.propName = "Name";
+            CostRegistryCodeTxt.propName = "CostRegistryCode";
+            CustomerInvoiceCodeTxt.propName = "CustomerInvoiceCode";
+            IsPostTxt.propName = "IsPost";
 
         }
 
@@ -159,37 +156,16 @@ namespace WinformDotNetFramework
 
         private void ValidateTextBoxes(CustomerInvoiceCostDTO invoiceCost)
         {
-            Wrongtextboxes.Clear();
+            // assegna il testo alle textbox
+            CustomerInvoiceIdTxt.Text = invoiceCost.CustomerInvoiceId?.ToString() ?? string.Empty;
+            CostTxt.Text = invoiceCost.Cost?.ToString() ?? string.Empty;
+            QuantityTxt.Text = invoiceCost.Quantity?.ToString() ?? string.Empty;
+            NameTxt.Text = invoiceCost.Name ?? string.Empty;
+            CostRegistryCodeTxt.Text = invoiceCost.CostRegistryCode ?? string.Empty;
+            CustomerInvoiceCodeTxt.Text = invoiceCost.CustomerInvoiceCode ?? string.Empty;
+            IsPostTxt.Text = invoiceCost.IsPost.ToString();
 
-            CustomerInvoiceId.Text = invoiceCost.CustomerInvoiceId?.ToString() ?? string.Empty;
-            Cost.Text = invoiceCost.Cost?.ToString() ?? string.Empty;
-            Quantity.Text = invoiceCost.Quantity?.ToString() ?? string.Empty;
-            name.Text = invoiceCost.Name ?? string.Empty;
-            CostRegistryCode.Text = invoiceCost.CostRegistryCode ?? string.Empty;
-            CustomerInvoiceCode.Text = invoiceCost.CustomerInvoiceCode ?? string.Empty;
-
-            List<ValidationResult> validationResults = ValidatorEntity.Validate(invoiceCost);
-
-            string results = "";
-            foreach (var item in validationResults)
-            {
-                results += item.ToString() + "\n";
-
-                string n = item.MemberNames.First().Trim('"');
-
-                RedTextBox rtb = (RedTextBox)Controls.Find(n, true).First();
-                Label lbl = (Label)rtb.Tag;
-
-                lbl.ForeColor = System.Drawing.Color.Red;
-
-                Wrongtextboxes.Add(rtb);
-            }
-
-            if (validationResults.Count == 0)
-                results = "validato";
-
-            this.Refresh();
-            MessageBox.Show(results);
+            UtilityFunctions.ValidateTextBoxes(this, invoiceCost);
         }
 
         private void ResetLbl()
