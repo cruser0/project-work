@@ -123,8 +123,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public void SetSaleBkBol(string bol, string bk)
         {
-            BoLCmbxUC.Cmbx.Text = bol;
-            BKCmbxUC.Cmbx.Text = bk;
+            BoLCmbxUC.Cmbx.PropTxt.Text = bol;
+            BKCmbxUC.Cmbx.PropTxt.Text = bk;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -162,8 +162,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
 
             // Get the current text values from both comboboxes
-            bk = BKCmbxUC.Cmbx.Text;
-            bol = BoLCmbxUC.Cmbx.Text;
+            bk = BKCmbxUC.Cmbx.PropTxt.Text;
+            bol = BoLCmbxUC.Cmbx.PropTxt.Text;
 
             // If both comboboxes are empty, clear the suggestions
             if (string.IsNullOrEmpty(bk) && string.IsNullOrEmpty(bol))
@@ -259,7 +259,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private async Task CreateClick(bool quit = false)
         {
-            if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.Text) || !InvoiceDateDTP.Checked)
+            if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text) || !InvoiceDateDTP.Checked)
             {
                 MessageBox.Show("All the fields must be filled");
                 return;
@@ -314,8 +314,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             SaleCustomerFilter sf = new SaleCustomerFilter()
             {
-                SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
-                SaleBookingNumber = BKCmbxUC.Cmbx.Text
+                SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
+                SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
             };
 
             saleID = (int)(await _saleService
@@ -335,8 +335,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             SaleCustomerFilter sf = new SaleCustomerFilter()
             {
-                SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
-                SaleBookingNumber = BKCmbxUC.Cmbx.Text
+                SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
+                SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
             };
 
             saleID = (int)(await _saleService

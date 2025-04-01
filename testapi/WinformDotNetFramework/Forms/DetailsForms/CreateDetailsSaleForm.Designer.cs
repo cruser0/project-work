@@ -63,9 +63,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel8 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.OpenSale = new System.Windows.Forms.Button();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.RevenueTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.StatusCmbx = new System.Windows.Forms.ComboBox();
@@ -73,7 +73,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -423,7 +422,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Controls.Add(this.NameCmbxUC);
             this.panel6.Controls.Add(this.boltxt);
             this.panel6.Controls.Add(this.saleDateDtp);
-            this.panel6.Controls.Add(this.CustomerNameLbl);
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.StatusLbl);
             this.panel6.Controls.Add(this.RevenueTxt);
@@ -437,6 +435,20 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(744, 163);
             this.panel6.TabIndex = 51;
+            // 
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitButton.Location = new System.Drawing.Point(593, 111);
+            this.SaveQuitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(143, 25);
+            this.SaveQuitButton.TabIndex = 52;
+            this.SaveQuitButton.Text = "Save and Quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // OpenSale
             // 
@@ -458,23 +470,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(224, 24);
+            this.NameCmbxUC.Location = new System.Drawing.Point(467, 10);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
             this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.NameCmbxUC.Size = new System.Drawing.Size(237, 56);
             this.NameCmbxUC.TabIndex = 49;
-            // 
-            // CustomerNameLbl
-            // 
-            this.CustomerNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CustomerNameLbl.AutoSize = true;
-            this.CustomerNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CustomerNameLbl.Location = new System.Drawing.Point(221, 3);
-            this.CustomerNameLbl.Name = "CustomerNameLbl";
-            this.CustomerNameLbl.Size = new System.Drawing.Size(99, 15);
-            this.CustomerNameLbl.TabIndex = 47;
-            this.CustomerNameLbl.Text = "Customer Name*";
             // 
             // StatusLbl
             // 
@@ -557,20 +557,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
-            // SaveQuitButton
-            // 
-            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveQuitButton.Location = new System.Drawing.Point(593, 111);
-            this.SaveQuitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SaveQuitButton.Name = "SaveQuitButton";
-            this.SaveQuitButton.Size = new System.Drawing.Size(143, 25);
-            this.SaveQuitButton.TabIndex = 52;
-            this.SaveQuitButton.Text = "Save and Quit";
-            this.SaveQuitButton.UseVisualStyleBackColor = false;
-            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
-            // 
             // CreateDetailsSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -621,7 +607,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel5;
         private Panel panel6;
         public control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
-        public Label CustomerNameLbl;
         public Label StatusLbl;
         public ComboBox StatusCmbx;
         private TableLayoutPanel tableLayoutPanel1;

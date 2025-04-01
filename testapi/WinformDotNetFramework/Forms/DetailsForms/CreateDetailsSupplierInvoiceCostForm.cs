@@ -68,6 +68,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierInvoiceService = new SupplierInvoiceService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
             InitializeComponent();
+            InvoiceCodeCmbxUC.Cmbx.SetPropName("SupplierInvoiceCode");
+
             if (idDetails != null)
             {
                 detailsOnly = true;
@@ -158,15 +160,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public async Task SetList()
         {
-            if (string.IsNullOrWhiteSpace(InvoiceCodeCmbxUC.Cmbx.Text))
+            if (string.IsNullOrWhiteSpace(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
             {
-                InvoiceCodeCmbxUC.Cmbx.DroppedDown = false;
+                InvoiceCodeCmbxUC.Cmbx.PropTxt.DroppedDown = false;
                 return;
             }
             var listFiltered = await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter()
             {
 
-                SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text
+                SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text
             });
 
             var listItems = listFiltered.Select(x => x.SupplierInvoiceCode).ToList();
@@ -175,7 +177,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
+            if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
             {
                 MessageBox.Show("You need to choose an invoice Code");
                 return;
@@ -191,7 +193,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().SupplierInvoiceId;
+                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault().SupplierInvoiceId;
 
                 }
                 catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
@@ -202,7 +204,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
+                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
                     Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
                     Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
                     Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
@@ -235,7 +237,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
+                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
                     Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
                     Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
                     Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
@@ -252,7 +254,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveQuitButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
+            if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
             {
                 MessageBox.Show("You need to choose an invoice Code");
                 return;
@@ -268,7 +270,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault().SupplierInvoiceId;
+                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault().SupplierInvoiceId;
 
                 }
                 catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
@@ -279,7 +281,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
+                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
                     Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
                     Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
                     Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
@@ -289,15 +291,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     if (_updateCost != null)
                     {
                         supplierInvoiceCost.IsPost = false;
+                        UtilityFunctions.ValidateTextBoxes(panel1, supplierInvoiceCost);
                         var result = ValidatorEntity.Validate(supplierInvoiceCost);
                         if (result.Any())
                         {
-                            string err = "";
-                            foreach (var item in result)
-                            {
-                                err += item.ErrorMessage + "\n";
-                            }
-                            MessageBox.Show(err);
+                            
+                      
                             return;
                         }
 
@@ -339,7 +338,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
+                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
                     Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
                     Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
                     Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,

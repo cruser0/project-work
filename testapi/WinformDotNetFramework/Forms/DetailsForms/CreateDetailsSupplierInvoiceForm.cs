@@ -142,12 +142,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public void SetSaleBkBol(string bol, string bk)
         {
-            BoLCmbxUC.Cmbx.Text = bol;
-            BKCmbxUC.Cmbx.Text = bk;
+            BoLCmbxUC.Cmbx.PropTxt.Text = bol;
+            BKCmbxUC.Cmbx.PropTxt.Text = bk;
         }
         public void SetSupplierNameCountry(string name, string country)
         {
-            NameCmbxUC.Cmbx.Text = name + $" - {country}";
+            NameCmbxUC.Cmbx.PropTxt.Text = name + $" - {country}";
         }
         private void SupplierFillBtn_Click(object sender, EventArgs e)
         {
@@ -188,11 +188,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         public async Task SetList()
         {
-            string nameInput = NameCmbxUC.Cmbx.Text;
+            string nameInput = NameCmbxUC.Cmbx.PropTxt.Text;
 
 
-            bkString = BKCmbxUC.Cmbx.Text;
-            bolString = BoLCmbxUC.Cmbx.Text;
+            bkString = BKCmbxUC.Cmbx.PropTxt.Text;
+            bolString = BoLCmbxUC.Cmbx.PropTxt.Text;
             if (string.IsNullOrEmpty(bkString) && string.IsNullOrEmpty(bolString) &&
                 string.IsNullOrEmpty(nameInput))
             {
@@ -261,7 +261,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             try
             {
-                string name = NameCmbxUC.Cmbx.Text;
+                string name = NameCmbxUC.Cmbx.PropTxt.Text;
                 string country = "";
 
                 int lastIndex = name.LastIndexOf(" - ");
@@ -273,7 +273,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 }
 
                 saleId = (int)(await _saleService
-                    .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.Text, SaleBookingNumber = BKCmbxUC.Cmbx.Text }))
+                    .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text, SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text }))
                     .FirstOrDefault().SaleId;
 
                 supplierId = (int)(await _supplierService
@@ -317,8 +317,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     saleId = (int)(await _saleService.GetAll(new SaleCustomerFilter()
                     {
-                        SaleBoLnumber = BoLCmbxUC.Cmbx.Text,
-                        SaleBookingNumber = BKCmbxUC.Cmbx.Text
+                        SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
+                        SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
                     })).FirstOrDefault().SaleId;
                 }
                 catch (Exception)
@@ -332,7 +332,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    string name = NameCmbxUC.Cmbx.Text;
+                    string name = NameCmbxUC.Cmbx.PropTxt.Text;
                     string country = "";
 
                     int lastIndex = name.LastIndexOf(" - ");

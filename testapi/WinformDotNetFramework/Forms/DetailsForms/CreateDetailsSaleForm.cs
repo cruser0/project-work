@@ -38,6 +38,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierInvoiceService = new SupplierInvoiceService();
             _customerService = new CustomerService();
             InitializeComponent();
+            NameCmbxUC.Cmbx.SetPropName("CustomerName");
             if (id != null)
             {
                 _saleId = (int)id;
@@ -144,7 +145,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         string cname;
         public async Task SetList()
         {
-            cname = NameCmbxUC.Cmbx.Text;
+            cname = NameCmbxUC.Cmbx.PropTxt.Text;
             var CustomerListFiltered = await _customerService.GetAllCountryName(cname);
             NameCmbxUC.listItemsDropCmbx = CustomerListFiltered.ToList();
 
@@ -205,7 +206,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async Task UpdateClick(bool quit = false)
         {
-            string name = NameCmbxUC.Cmbx.Text;
+            string name = NameCmbxUC.Cmbx.PropTxt.Text;
             string country = "";
 
             int lastIndex = name.LastIndexOf(" - ");
@@ -265,7 +266,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 }
                 if (_id == -1)
                 {
-                    string name = NameCmbxUC.Cmbx.Text;
+                    string name = NameCmbxUC.Cmbx.PropTxt.Text;
                     string country = "";
 
                     int lastIndex = name.LastIndexOf(" - ");
@@ -326,7 +327,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void saveBtn_Click(object sender, EventArgs e)
         {
             if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
-                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) ||
+                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text) ||
                 string.IsNullOrEmpty(StatusCmbx.Text))
             {
                 MessageBox.Show("Every field must be filled");
@@ -345,7 +346,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void SaveQuitButton_Click(object sender, EventArgs e)
         {
             if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
-                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.Text) ||
+                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text) ||
                 string.IsNullOrEmpty(StatusCmbx.Text))
             {
                 MessageBox.Show("Every field must be filled");

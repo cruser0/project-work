@@ -29,7 +29,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             Init();
             InvoiceCode = data as string;
-            InvoiceCodeCmbxUC.Cmbx.Text = InvoiceCode;
+            InvoiceCodeCmbxUC.Cmbx.PropTxt.Text = InvoiceCode;
 
         }
         Form _father;
@@ -72,7 +72,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         public void SetCustomerInvoiceCode(string code)
         {
-            InvoiceCodeCmbxUC.Cmbx.Text = code;
+            InvoiceCodeCmbxUC.Cmbx.PropTxt.Text = code;
         }
         public void SetCustomerInvoiceID(string idFromForm)
         {
@@ -89,7 +89,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             if (string.IsNullOrWhiteSpace(text))
             {
-                InvoiceCodeCmbxUC.Cmbx.DroppedDown = false;
+                InvoiceCodeCmbxUC.Cmbx.PropTxt.DroppedDown = false;
                 return;
             }
             var listFiltered = await _customerInvoiceService.GetAll(new CustomerInvoiceFilter()
@@ -104,9 +104,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             CostRegistryDTO cr;
             CustomerInvoiceDTOGet listItems1;
-            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
+            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
             {
-                listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault();
+                listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault();
                 id = (int)listItems1.CustomerInvoiceId;
             }
             else
@@ -125,13 +125,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 CustomerInvoiceId = id,
                 CostRegistryCode = CostRegistryCmbx.Text,
-                CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
+                CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
                 Cost = string.IsNullOrEmpty(CostTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostTxt.GetText()),
                 Quantity = string.IsNullOrEmpty(QuantityTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityTxt.GetText()),
                 Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
             };
-            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
-                customerInvoiceCost.CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text;
+            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
+                customerInvoiceCost.CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text;
             else
             {
                 MessageBox.Show("You need to choose a Customer Invoice Code");
@@ -186,7 +186,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 }
 
                 CreateDetailsCustomerInvoiceForm form = (CreateDetailsCustomerInvoiceForm)_father;
-                form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.Text);
+                form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text);
 
                 Close();
             }
@@ -200,9 +200,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             CostRegistryDTO cr;
             CustomerInvoiceDTOGet listItems1;
-            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
+            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
             {
-                listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text })).FirstOrDefault();
+                listItems1 = (await _customerInvoiceService.GetAll(new CustomerInvoiceFilter() { CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault();
                 id = (int)listItems1.CustomerInvoiceId;
             }
             else
@@ -221,13 +221,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 CustomerInvoiceId = id,
                 CostRegistryCode = CostRegistryCmbx.Text,
-                CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text,
+                CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
                 Cost = string.IsNullOrEmpty(CostTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostTxt.GetText()),
                 Quantity = string.IsNullOrEmpty(QuantityTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityTxt.GetText()),
                 Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
             };
-            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.Text))
-                customerInvoiceCost.CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.Text;
+            if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
+                customerInvoiceCost.CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text;
             else
             {
                 MessageBox.Show("You need to choose a Customer Invoice Code");
@@ -260,7 +260,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 MessageBox.Show("Customer Invoice Cost Created Succesfully");
 
                 CreateDetailsCustomerInvoiceForm form = (CreateDetailsCustomerInvoiceForm)_father;
-                form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.Text);
+                form.UpdateDgv(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text);
 
                 CostRegistryCmbx.Text = "All";
                 NameTxt.Text = "";

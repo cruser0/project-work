@@ -91,8 +91,8 @@
         #endregion
 
         public System.Windows.Forms.Panel panel1;
-        private CustomComboBox PropTxt;
         public System.Windows.Forms.Label PropLbl;
         public System.Windows.Forms.Label Errorlbl;
+        public CustomComboBox PropTxt;
     }
 }

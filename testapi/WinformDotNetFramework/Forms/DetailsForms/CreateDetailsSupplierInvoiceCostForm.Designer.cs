@@ -32,12 +32,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             this.CreatePanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CostRegistryLbl = new System.Windows.Forms.Label();
             this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.NameSupplierLbl = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.NameTxt = new System.Windows.Forms.TextBox();
@@ -49,7 +49,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.CreatePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +77,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Controls.Add(this.InvoiceCodeCmbxUC);
             this.panel1.Controls.Add(this.CostRegistryLbl);
             this.panel1.Controls.Add(this.CostRegistryCmbx);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.NameSupplierLbl);
             this.panel1.Controls.Add(this.SaveBtn);
             this.panel1.Controls.Add(this.NameTxt);
@@ -91,6 +89,21 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 36;
+            // 
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.AllowDrop = true;
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveQuitButton.Location = new System.Drawing.Point(526, 292);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(98, 23);
+            this.SaveQuitButton.TabIndex = 45;
+            this.SaveQuitButton.Text = "Save and quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // CostIntegerTxt
             // 
@@ -120,10 +133,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.InvoiceCodeCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
-            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(289, 114);
+            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(258, 85);
             this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.InvoiceCodeCmbxUC.Name = "InvoiceCodeCmbxUC";
-            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(172, 23);
+            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(203, 52);
             this.InvoiceCodeCmbxUC.TabIndex = 42;
             // 
             // CostRegistryLbl
@@ -148,17 +161,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CostRegistryCmbx.Name = "CostRegistryCmbx";
             this.CostRegistryCmbx.Size = new System.Drawing.Size(172, 21);
             this.CostRegistryCmbx.TabIndex = 40;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(289, 98);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 13);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "Supplier Invoice Code *";
             // 
             // NameSupplierLbl
             // 
@@ -287,21 +289,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 40;
             // 
-            // SaveQuitButton
-            // 
-            this.SaveQuitButton.AllowDrop = true;
-            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveQuitButton.Location = new System.Drawing.Point(526, 292);
-            this.SaveQuitButton.Name = "SaveQuitButton";
-            this.SaveQuitButton.Size = new System.Drawing.Size(98, 23);
-            this.SaveQuitButton.TabIndex = 45;
-            this.SaveQuitButton.Text = "Save and quit";
-            this.SaveQuitButton.UseVisualStyleBackColor = false;
-            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
-            // 
             // CreateDetailsSupplierInvoiceCostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -337,7 +324,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private control.DropDownMenuAutoCompleteUserControl InvoiceCodeCmbxUC;
         private Label CostRegistryLbl;
         private ComboBox CostRegistryCmbx;
-        private Label label1;
         private CheckBox checkBox1;
         private control.DecimalTextBoxUserControl CostIntegerTxt;
         private Button SaveQuitButton;

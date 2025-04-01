@@ -26,11 +26,11 @@ namespace WinformDotNetFramework.Forms.control
             try
             {
                 string currentText = Cmbx.Text;
-                int selectionStart = Cmbx.SelectionStart;
+                int selectionStart = Cmbx.PropTxt.SelectionStart;
 
                 if (string.IsNullOrWhiteSpace(currentText))
                 {
-                    Cmbx.DroppedDown = false;
+                    Cmbx.PropTxt.DroppedDown = false;
                     return;
                 }
                 if (ParentForm is CreateDetailsCustomerInvoiceCostForm cicf)
@@ -59,18 +59,18 @@ namespace WinformDotNetFramework.Forms.control
 
                 if (listItemsDropCmbx.Count > 0)
                 {
-                    Cmbx.BeginUpdate();
-                    Cmbx.DataSource = listItemsDropCmbx;
-                    Cmbx.DroppedDown = true;
-                    Cmbx.Text = currentText;
-                    Cmbx.SelectionStart = selectionStart;
-                    Cmbx.EndUpdate();
+                    Cmbx.PropTxt.BeginUpdate();
+                    Cmbx.PropTxt.DataSource = listItemsDropCmbx;
+                    Cmbx.PropTxt.DroppedDown = true;
+                    Cmbx.PropTxt.Text = currentText;
+                    Cmbx.PropTxt.SelectionStart = selectionStart;
+                    Cmbx.PropTxt.EndUpdate();
 
 
                 }
                 else
                 {
-                    Cmbx.DroppedDown = false;
+                    Cmbx.PropTxt.DroppedDown = false;
                 }
             }
             catch (Exception)

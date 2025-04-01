@@ -27,9 +27,9 @@ namespace WinformDotNetFramework
 
         public static void SetDropdownText(DropDownMenuAutoCompleteUserControl dropdown, string text)
         {
-            dropdown.Cmbx.TextChanged -= dropdown.Cmbx_TextChanged;
-            dropdown.Cmbx.Text = text;
-            dropdown.Cmbx.TextChanged += dropdown.Cmbx_TextChanged;
+            dropdown.Cmbx.PropTxt.TextChanged -= dropdown.Cmbx_TextChanged;
+            dropdown.Cmbx.PropTxt.Text = text;
+            dropdown.Cmbx.PropTxt.TextChanged += dropdown.Cmbx_TextChanged;
         }
 
         public static void CreateFromDetails<T>(object sender, EventArgs e, object data) where T : Form
@@ -310,9 +310,9 @@ namespace WinformDotNetFramework
             {
                 rtb.SetBorderColor(validationResults);
             }
-            foreach (CustomTextBoxUserControl rtb in form.Controls.OfType<CustomTextBoxUserControl>())
+            foreach (CustomComboboxUserControl cmx in form.Controls.OfType<CustomComboboxUserControl>())
             {
-                rtb.SetBorderColor(validationResults);
+                cmx.SetBorderColor(validationResults);
             }
 
             // forza redraw del form

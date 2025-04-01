@@ -29,27 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Cmbx = new System.Windows.Forms.ComboBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.Cmbx = new WinformDotNetFramework.Forms.control.CustomComboboxUserControl();
             this.SuspendLayout();
-            // 
-            // Cmbx
-            // 
-            this.Cmbx.CausesValidation = false;
-            this.Cmbx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Cmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cmbx.FormattingEnabled = true;
-            this.Cmbx.Location = new System.Drawing.Point(0, 0);
-            this.Cmbx.Name = "Cmbx";
-            this.Cmbx.Size = new System.Drawing.Size(172, 23);
-            this.Cmbx.TabIndex = 38;
-            this.Cmbx.SelectedValueChanged += new System.EventHandler(this.Cmbx_SelectedValueChanged);
-            this.Cmbx.TextChanged += new System.EventHandler(this.Cmbx_TextChanged);
             // 
             // timer
             // 
             this.timer.Interval = 500;
             this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // Cmbx
+            // 
+            this.Cmbx.Location = new System.Drawing.Point(0, 0);
+            this.Cmbx.Name = "Cmbx";
+            this.Cmbx.Size = new System.Drawing.Size(200, 47);
+            this.Cmbx.TabIndex = 0;
             // 
             // DropDownMenuAutoCompleteUserControl
             // 
@@ -57,13 +51,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Cmbx);
             this.Name = "DropDownMenuAutoCompleteUserControl";
-            this.Size = new System.Drawing.Size(172, 21);
+            this.Size = new System.Drawing.Size(200, 47);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         public System.Windows.Forms.Timer timer;
-        public System.Windows.Forms.ComboBox Cmbx;
+        public CustomComboboxUserControl Cmbx;
     }
 }
