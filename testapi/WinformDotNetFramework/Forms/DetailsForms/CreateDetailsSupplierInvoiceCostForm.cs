@@ -35,8 +35,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             Init(null);
             InvoiceCode = data as string;
-            UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
-            InvoiceCodeCmbxUC.Enabled = false;
+            UtilityFunctions.SetDropdownText(SupplierInvoiceCmbxUC, InvoiceCode);
+            SupplierInvoiceCmbxUC.Enabled = false;
         }
         public CreateDetailsSupplierInvoiceCostForm(CreateDetailsSupplierInvoiceForm father, object data)
         {
@@ -47,7 +47,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 // Populate form with supplierInvoiceCost data
                 _updateCost = supplierInvoiceCost;
-                UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, _updateCost.SupplierInvoiceCode);
+                UtilityFunctions.SetDropdownText(SupplierInvoiceCmbxUC, _updateCost.SupplierInvoiceCode);
                 CostRegistryCmbx.Text = _updateCost.CostRegistryCode;
                 NameTxt.Text = _updateCost.Name;
                 CostIntegerTxt.SetText(_updateCost.Cost.ToString());
@@ -58,7 +58,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 // Handle string invoice code scenario
                 InvoiceCode = invoiceCode;
-                UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, InvoiceCode);
+                UtilityFunctions.SetDropdownText(SupplierInvoiceCmbxUC, InvoiceCode);
             }
         }
 
@@ -68,14 +68,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierInvoiceService = new SupplierInvoiceService();
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
             InitializeComponent();
-            InvoiceCodeCmbxUC.Cmbx.SetPropName("SupplierInvoiceCode");
+            SupplierInvoiceCmbxUC.Cmbx.SetPropName("SupplierInvoiceCode");
 
             if (idDetails != null)
             {
                 detailsOnly = true;
                 int idInt = (int)idDetails;
                 SupplierInvoiceCostDTOGet supplierInvoiceCost = await _supplierInvoiceCostService.GetById(idInt);
-                UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, supplierInvoiceCost.SupplierInvoiceCode);
+                UtilityFunctions.SetDropdownText(SupplierInvoiceCmbxUC, supplierInvoiceCost.SupplierInvoiceCode);
                 QuantityIntegerTxt.SetText(supplierInvoiceCost.Quantity.ToString());
                 CostIntegerTxt.SetText(supplierInvoiceCost.Cost.ToString());
                 NameTxt.Text = supplierInvoiceCost.Name;
@@ -118,7 +118,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private void SetEnable()
         {
-            InvoiceCodeCmbxUC.Enabled = !detailsOnly;
+            SupplierInvoiceCmbxUC.Enabled = !detailsOnly;
             QuantityIntegerTxt.Enabled = !detailsOnly;
             CostIntegerTxt.Enabled = !detailsOnly;
             NameTxt.Enabled = !detailsOnly;
@@ -128,7 +128,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private void EditCB_CheckedChanged(object sender, EventArgs e)
         {
-            InvoiceCodeCmbxUC.Enabled = !InvoiceCodeCmbxUC.Enabled;
+            SupplierInvoiceCmbxUC.Enabled = !SupplierInvoiceCmbxUC.Enabled;
             QuantityIntegerTxt.Enabled = !QuantityIntegerTxt.Enabled;
             CostIntegerTxt.Enabled = !CostIntegerTxt.Enabled;
             NameTxt.Enabled = !NameTxt.Enabled;
@@ -156,31 +156,31 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public void SetSupplierCode(string SupCode)
         {
-            UtilityFunctions.SetDropdownText(InvoiceCodeCmbxUC, SupCode);
+            UtilityFunctions.SetDropdownText(SupplierInvoiceCmbxUC, SupCode);
         }
         public async Task SetList()
         {
-            if (string.IsNullOrWhiteSpace(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
+            if (string.IsNullOrWhiteSpace(SupplierInvoiceCmbxUC.Cmbx.PropTxt.Text))
             {
-                InvoiceCodeCmbxUC.Cmbx.PropTxt.DroppedDown = false;
+                SupplierInvoiceCmbxUC.Cmbx.PropTxt.DroppedDown = false;
                 return;
             }
             var listFiltered = await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter()
             {
 
-                SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text
+                SupplierInvoiceCode = SupplierInvoiceCmbxUC.Cmbx.PropTxt.Text
             });
 
             var listItems = listFiltered.Select(x => x.SupplierInvoiceCode).ToList();
-            InvoiceCodeCmbxUC.listItemsDropCmbx = listItems;
+            SupplierInvoiceCmbxUC.listItemsDropCmbx = listItems;
         }
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
-            InvoiceCodeCmbxUC.Cmbx.SetBorderColorBlack();
-            if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
+            SupplierInvoiceCmbxUC.Cmbx.SetBorderColorBlack();
+            if (string.IsNullOrEmpty(SupplierInvoiceCmbxUC.Cmbx.PropTxt.Text))
             {
-                MessageBox.Show("You need to choose an invoice Code");
+                SupplierInvoiceCmbxUC.Cmbx.SetBorderColorRed("Invoice not found.");
                 return;
             }
             if (!CostRegistryCmbx.Text.Equals("All"))
@@ -194,10 +194,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
-                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault().SupplierInvoiceId;
+                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = SupplierInvoiceCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault().SupplierInvoiceId;
 
                 }
-                catch (Exception) { InvoiceCodeCmbxUC.Cmbx.SetBorderColorRed(); label1.Text=InvoiceCodeCmbxUC.Cmbx.Errorlbl.Visible.ToString(); return; }
+                catch (Exception) 
+                { 
+                    SupplierInvoiceCmbxUC.Cmbx.SetBorderColorRed("Invoice not found."); 
+                    return; 
+                }
             }
             if (!detailsOnly)
             {
@@ -205,7 +209,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
+                    SupplierInvoiceCode = SupplierInvoiceCmbxUC.Cmbx.PropTxt.Text,
                     Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
                     Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
                     Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
@@ -238,7 +242,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     SupplierInvoiceId = id,
                     CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
+                    SupplierInvoiceCode = SupplierInvoiceCmbxUC.Cmbx.PropTxt.Text,
                     Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
                     Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
                     Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
@@ -253,107 +257,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
-        private async void SaveQuitButton_Click(object sender, EventArgs e)
+        private void SaveQuitButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
-            {
-                MessageBox.Show("You need to choose an invoice Code");
-                return;
-            }
-            if (!CostRegistryCmbx.Text.Equals("All"))
-                cr = list.Where(x => x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text)).FirstOrDefault();
-            else
-            {
-                MessageBox.Show("You need to choose a Cost Registry");
-                return;
-            }
-            if (id == -1)
-            {
-                try
-                {
-                    id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault().SupplierInvoiceId;
-
-                }
-                catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
-            }
-            if (!detailsOnly)
-            {
-                SupplierInvoiceCostDTOGet supplierInvoiceCost = new SupplierInvoiceCostDTOGet
-                {
-                    SupplierInvoiceId = id,
-                    CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
-                    Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
-                    Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
-                    Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
-                };
-                try
-                {
-                    if (_updateCost != null)
-                    {
-                        supplierInvoiceCost.IsPost = false;
-                        UtilityFunctions.ValidateTextBoxes(panel1, supplierInvoiceCost);
-                        var result = ValidatorEntity.Validate(supplierInvoiceCost);
-                        if (result.Any())
-                        {
-                            return;
-                        }
-
-                        await _supplierInvoiceCostService.Update((int)_updateCost.SupplierInvoiceCostsId, supplierInvoiceCost);
-                        MessageBox.Show("Supplier Invoice Cost Updated Succesfully");
-
-                    }
-                    else
-                    {
-                        supplierInvoiceCost.IsPost = true;
-                        UtilityFunctions.ValidateTextBoxes(panel1, supplierInvoiceCost);
-                        var result = ValidatorEntity.Validate(supplierInvoiceCost);
-                        if (result.Any())
-                        {
-                            return;
-                        }
-
-                        await _supplierInvoiceCostService.Create(supplierInvoiceCost);
-                        MessageBox.Show("Supplier Invoice Cost created successfully!");
-                    }
-
-                    Close();
-                    if (_father is CreateDetailsSupplierInvoiceForm sidf)
-                        await sidf.RefreshDGV();
-                    detailsOnly = true;
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
-            {
-
-                SupplierInvoiceCostDTOGet supplierInvoiceCost = new SupplierInvoiceCostDTOGet
-                {
-                    SupplierInvoiceId = id,
-                    CostRegistryCode = CostRegistryCmbx.Text,
-                    SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text,
-                    Cost = string.IsNullOrEmpty(CostIntegerTxt.GetText()) ? cr.CostRegistryPrice : decimal.Parse(CostIntegerTxt.GetText()),
-                    Quantity = string.IsNullOrEmpty(QuantityIntegerTxt.GetText()) ? cr.CostRegistryQuantity : int.Parse(QuantityIntegerTxt.GetText()),
-                    Name = string.IsNullOrEmpty(NameTxt.Text) ? cr.CostRegistryName : NameTxt.Text,
-                };
-                try
-                {
-                    supplierInvoiceCost.IsPost = true;
-                    UtilityFunctions.ValidateTextBoxes(panel1, supplierInvoiceCost);
-                    var result = ValidatorEntity.Validate(supplierInvoiceCost);
-                    if (result.Any())
-                    {
-                        return;
-                    }
-
-                    await _supplierInvoiceCostService.Update((int)detailsSupplierInvoiceCost.SupplierInvoiceCostsId, supplierInvoiceCost);
-                    MessageBox.Show("Supplier Invoice Cost updated successfully!");
-                    Close();
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
+            SaveBtn.PerformClick();
+            Close();
         }
     }
 }

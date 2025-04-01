@@ -47,9 +47,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
-            this.InvoiceCodeCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.QuantityIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.SupplierInvoiceCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.CreatePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +76,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Controls.Add(this.SaveQuitButton);
             this.panel1.Controls.Add(this.CostIntegerTxt);
             this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.InvoiceCodeCmbxUC);
+            this.panel1.Controls.Add(this.SupplierInvoiceCmbxUC);
             this.panel1.Controls.Add(this.CostRegistryLbl);
             this.panel1.Controls.Add(this.CostRegistryCmbx);
             this.panel1.Controls.Add(this.NameSupplierLbl);
@@ -270,16 +270,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CostIntegerTxt.Size = new System.Drawing.Size(172, 25);
             this.CostIntegerTxt.TabIndex = 44;
             // 
-            // InvoiceCodeCmbxUC
-            // 
-            this.InvoiceCodeCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.InvoiceCodeCmbxUC.listItemsDropCmbx = null;
-            this.InvoiceCodeCmbxUC.Location = new System.Drawing.Point(56, 39);
-            this.InvoiceCodeCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.InvoiceCodeCmbxUC.Name = "InvoiceCodeCmbxUC";
-            this.InvoiceCodeCmbxUC.Size = new System.Drawing.Size(203, 98);
-            this.InvoiceCodeCmbxUC.TabIndex = 42;
-            // 
             // QuantityIntegerTxt
             // 
             this.QuantityIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -299,6 +289,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 46;
             this.label1.Text = "label1";
+            // 
+            // weewgheghewghr
+            // 
+            this.SupplierInvoiceCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierInvoiceCmbxUC.listItemsDropCmbx = null;
+            this.SupplierInvoiceCmbxUC.Location = new System.Drawing.Point(162, 19);
+            this.SupplierInvoiceCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SupplierInvoiceCmbxUC.Name = "weewgheghewghr";
+            this.SupplierInvoiceCmbxUC.Size = new System.Drawing.Size(203, 98);
+            this.SupplierInvoiceCmbxUC.TabIndex = 42;
             // 
             // CreateDetailsSupplierInvoiceCostForm
             // 
@@ -332,12 +332,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel3;
         private Panel panel2;
         private Panel panel5;
-        private control.DropDownMenuAutoCompleteUserControl InvoiceCodeCmbxUC;
         private Label CostRegistryLbl;
         private ComboBox CostRegistryCmbx;
         private CheckBox checkBox1;
         private control.DecimalTextBoxUserControl CostIntegerTxt;
         private Button SaveQuitButton;
         private Label label1;
+        private control.DropDownMenuAutoCompleteUserControl SupplierInvoiceCmbxUC;
     }
 }
