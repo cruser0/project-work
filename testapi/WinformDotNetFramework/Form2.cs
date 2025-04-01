@@ -114,11 +114,24 @@ namespace WinformDotNetFramework
         public Form2()
         {
             InitializeComponent();
-            customTextBoxUserControl1.SetPropName("CustomerName");
-            customTextBoxUserControl2.SetPropName("Country");
-            customTextBoxUserControl3.SetPropName("Deprecated");
-            customTextBoxUserControl4.SetPropName("CreatedAt");
-            customTextBoxUserControl5.SetPropName("IsPost");
+            CustomerNameTxt.PropName = "CustomerName";
+            CountryTxt.PropName = "Country";
+            DeprecatedTxt.PropName = "Deprecated";
+            CreatedAtTxt.PropName = "CreatedAt";
+            IsPostTxt.PropName = "IsPost";
+
+            CustomerNameTxt.Tag = CustomerNameLbl;
+            CountryTxt.Tag = CountryLbl;
+            DeprecatedTxt.Tag = DeprecatedLbl;
+            CreatedAtTxt.Tag = CreatedAtLbl;
+            IsPostTxt.Tag = IsPostLbl;
+
+            CustomerNameLbl.Tag = label1;
+            CountryLbl.Tag = label2;
+            DeprecatedLbl.Tag = label3;
+            CreatedAtLbl.Tag = label4;
+            IsPostLbl.Tag = label5;
+
         }
 
         private void button1_Click(object sender, EventArgs e)

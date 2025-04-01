@@ -130,13 +130,13 @@ namespace WinformDotNetFramework
         public Form1()
         {
             InitializeComponent();
-            CustomerInvoiceIdTxt.propName = "CustomerInvoiceId";
-            CostTxt.propName = "Cost";
-            QuantityTxt.propName = "Quantity";
-            NameTxt.propName = "Name";
-            CostRegistryCodeTxt.propName = "CostRegistryCode";
-            CustomerInvoiceCodeTxt.propName = "CustomerInvoiceCode";
-            IsPostTxt.propName = "IsPost";
+            CustomerInvoiceIdTxt.PropName = "CustomerInvoiceId";
+            CostTxt.PropName = "Cost";
+            QuantityTxt.PropName = "Quantity";
+            NameTxt.PropName = "Name";
+            CostRegistryCodeTxt.PropName = "CostRegistryCode";
+            CustomerInvoiceCodeTxt.PropName = "CustomerInvoiceCode";
+            IsPostTxt.PropName = "IsPost";
 
         }
 

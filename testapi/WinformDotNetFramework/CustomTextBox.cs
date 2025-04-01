@@ -9,10 +9,10 @@ namespace WinformDotNetFramework
 {
     public partial class CustomTextbox : TextBox
     {
-        public bool isNotValid = false;
-        public string propName = "";
-        public string errorMessage = "";
-        public Pen color = Pens.Red;
+        public bool IsNotValid { get; set; } = false;
+        public string PropName { get; set; } = "";
+        public string ErrorMessage { get; set; } = "";
+        public Pen Color { get; set; } = Pens.Red;
 
         public CustomTextbox()
         {
@@ -39,7 +39,7 @@ namespace WinformDotNetFramework
 
             // If the message is WM_NCPAINT (non-client area paint) and the textbox is not valid (isNotValid is true),
             // a red border will be drawn around the textbox.
-            if (m.Msg == WM_NCPAINT && isNotValid)
+            if (m.Msg == WM_NCPAINT && IsNotValid)
             {
                 // Get the device context (DC) for the current window handle
                 var dc = GetWindowDC(Handle);
@@ -48,7 +48,7 @@ namespace WinformDotNetFramework
                 using (Graphics g = Graphics.FromHdc(dc))
                 {
                     // Draw a red rectangle around the textbox to indicate invalidity
-                    g.DrawRectangle(color, 0, 0, Width - 1, Height - 1);
+                    g.DrawRectangle(Color, 0, 0, Width - 1, Height - 1);
                 }
 
                 // Release the device context after the drawing operation to avoid resource leaks
@@ -59,14 +59,14 @@ namespace WinformDotNetFramework
 
         public void ValidateProperty(List<ValidationResult> validationResults)
         {
-            if (string.IsNullOrEmpty(propName)) return;
+            if (string.IsNullOrEmpty(PropName)) return;
 
             foreach (var item in validationResults)
             {
-                isNotValid = propName.Equals(item.MemberNames.First().Trim('"'));
-                if (isNotValid)
+                IsNotValid = PropName.Equals(item.MemberNames.First().Trim('"'));
+                if (IsNotValid)
                 {
-                    errorMessage = item.ErrorMessage;
+                    ErrorMessage = item.ErrorMessage;
                     return;
                 }
             }
