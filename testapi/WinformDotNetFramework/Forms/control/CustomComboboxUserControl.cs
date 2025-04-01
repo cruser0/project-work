@@ -35,7 +35,7 @@ namespace WinformDotNetFramework.Forms.control
             if (PropTxt.IsNotValid)
             {
                 PropLbl.ForeColor = Color.Red;
-
+                PropTxt.BorderColor = Color.Red;
                 Errorlbl.Visible = true;
                 Errorlbl.ForeColor = Color.Red;
                 Errorlbl.Text = PropTxt.ErrorMessage;
@@ -46,6 +46,23 @@ namespace WinformDotNetFramework.Forms.control
                 Errorlbl.Visible = false;
             }
         }
+        internal void SetBorderColorRed()
+        {
+            PropLbl.ForeColor = Color.Red;
+            PropTxt.BorderColor = Color.Red;
 
+            Errorlbl.Visible = true;
+            Errorlbl.ForeColor = Color.Red;
+            Errorlbl.Text = PropTxt.ErrorMessage;
+        }
+        internal void SetBorderColorBlack()
+        {
+            PropLbl.ForeColor = Color.Black;
+            PropTxt.BorderColor = Color.Black;
+
+            Errorlbl.Visible = false;
+            Errorlbl.ForeColor = Color.Black;
+            Errorlbl.Text = PropTxt.ErrorMessage;
+        }
     }
 }

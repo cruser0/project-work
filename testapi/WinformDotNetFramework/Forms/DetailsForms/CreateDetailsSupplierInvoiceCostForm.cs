@@ -177,6 +177,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
+            InvoiceCodeCmbxUC.Cmbx.SetBorderColorBlack();
             if (string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
             {
                 MessageBox.Show("You need to choose an invoice Code");
@@ -196,7 +197,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     id = (int)(await _supplierInvoiceService.GetAll(new SupplierInvoiceSupplierFilter() { SupplierInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text })).FirstOrDefault().SupplierInvoiceId;
 
                 }
-                catch (Exception) { MessageBox.Show("Invalid Invoice Code"); return; }
+                catch (Exception) { InvoiceCodeCmbxUC.Cmbx.SetBorderColorRed(); label1.Text=InvoiceCodeCmbxUC.Cmbx.Errorlbl.Visible.ToString(); return; }
             }
             if (!detailsOnly)
             {
@@ -295,8 +296,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         var result = ValidatorEntity.Validate(supplierInvoiceCost);
                         if (result.Any())
                         {
-                            
-                      
                             return;
                         }
 
@@ -307,15 +306,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     else
                     {
                         supplierInvoiceCost.IsPost = true;
+                        UtilityFunctions.ValidateTextBoxes(panel1, supplierInvoiceCost);
                         var result = ValidatorEntity.Validate(supplierInvoiceCost);
                         if (result.Any())
                         {
-                            string err = "";
-                            foreach (var item in result)
-                            {
-                                err += item.ErrorMessage + "\n";
-                            }
-                            MessageBox.Show(err);
                             return;
                         }
 
@@ -346,15 +340,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 try
                 {
                     supplierInvoiceCost.IsPost = true;
+                    UtilityFunctions.ValidateTextBoxes(panel1, supplierInvoiceCost);
                     var result = ValidatorEntity.Validate(supplierInvoiceCost);
                     if (result.Any())
                     {
-                        string err = "";
-                        foreach (var item in result)
-                        {
-                            err += item.ErrorMessage + "\n";
-                        }
-                        MessageBox.Show(err);
                         return;
                     }
 

@@ -70,9 +70,12 @@
             // PropTxt
             // 
             this.PropTxt.BorderColor = System.Drawing.Color.Black;
+            this.PropTxt.ErrorMessage = "";
             this.PropTxt.FormattingEnabled = true;
+            this.PropTxt.IsNotValid = false;
             this.PropTxt.Location = new System.Drawing.Point(0, 15);
             this.PropTxt.Name = "PropTxt";
+            this.PropTxt.PropName = "";
             this.PropTxt.Size = new System.Drawing.Size(200, 21);
             this.PropTxt.TabIndex = 3;
             // 

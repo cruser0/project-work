@@ -310,7 +310,7 @@ namespace WinformDotNetFramework
             {
                 rtb.SetBorderColor(validationResults);
             }
-            foreach (CustomComboboxUserControl cmx in form.Controls.OfType<CustomComboboxUserControl>())
+            foreach (CustomComboboxUserControl cmx in panel.Controls.OfType<CustomComboboxUserControl>())
             {
                 cmx.SetBorderColor(validationResults);
             }
