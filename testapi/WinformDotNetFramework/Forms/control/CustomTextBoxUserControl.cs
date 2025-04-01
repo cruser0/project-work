@@ -5,15 +5,22 @@ using System.Windows.Forms;
 
 namespace WinformDotNetFramework.Forms.control
 {
+
+    public enum TextBoxType
+    {
+        Default,
+        Integer,
+        Decimal
+    }
     public partial class CustomTextBoxUserControl : UserControl
     {
         string _name;
+        public TextBoxType TextBoxType { get; set; } = TextBoxType.Default;
         public CustomTextBoxUserControl()
         {
             InitializeComponent();
             PropTxt.Tag = PropLbl;
             PropLbl.Tag = Errorlbl;
-            // Errorlbl.MaximumSize = new Size(PropTxt.Width, 0);
         }
 
         public void SetPropName(string name)
@@ -49,5 +56,29 @@ namespace WinformDotNetFramework.Forms.control
                 Errorlbl.Visible = false;
             }
         }
+
+        private void PropTxt_OnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (TextBoxType)
+            {
+                case TextBoxType.Decimal:
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+                        e.Handled = true;
+                    if (e.KeyChar == ',' && (sender as CustomTextbox).Text.Contains(","))
+                        e.Handled = true;
+                    break;
+
+                case TextBoxType.Integer:
+                    if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        e.Handled = true;
+                    break;
+
+                default:
+                    break;
+            }
+
+            return;
+        }
+
     }
 }

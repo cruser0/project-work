@@ -158,7 +158,7 @@ namespace WinformDotNetFramework
             CustomerInvoiceCodeTxt.Text = invoiceCost.CustomerInvoiceCode ?? string.Empty;
             IsPostTxt.Text = invoiceCost.IsPost.ToString();
 
-            UtilityFunctions.ValidateTextBoxes(this, invoiceCost);
+            //UtilityFunctions.ValidateTextBoxes(this, invoiceCost);
         }
 
         private void ResetLbl()

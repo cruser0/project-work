@@ -29,34 +29,26 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DescriptionTxt = new System.Windows.Forms.TextBox();
-            this.CostLbl = new System.Windows.Forms.Label();
-            this.UniqueCodeTxt = new System.Windows.Forms.TextBox();
-            this.CodeLbl = new System.Windows.Forms.Label();
-            this.CountryCustomerLbl = new System.Windows.Forms.Label();
             this.SaveEditCustomerBtn = new System.Windows.Forms.Button();
             this.EditCustomerCbx = new System.Windows.Forms.CheckBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DefaultQuantityIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.DefaultCostDecimalTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
+            this.QuantityCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.CostCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.DescriptionCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.CodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.panel1.Controls.Add(this.DefaultQuantityIntegerTxt);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.DefaultCostDecimalTxt);
-            this.panel1.Controls.Add(this.DescriptionTxt);
-            this.panel1.Controls.Add(this.CostLbl);
-            this.panel1.Controls.Add(this.UniqueCodeTxt);
-            this.panel1.Controls.Add(this.CodeLbl);
-            this.panel1.Controls.Add(this.CountryCustomerLbl);
+            this.panel1.Controls.Add(this.QuantityCtb);
+            this.panel1.Controls.Add(this.CostCtb);
+            this.panel1.Controls.Add(this.DescriptionCtb);
+            this.panel1.Controls.Add(this.CodeCtb);
             this.panel1.Controls.Add(this.SaveEditCustomerBtn);
             this.panel1.Controls.Add(this.EditCustomerCbx);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -64,74 +56,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(766, 416);
             this.panel1.TabIndex = 29;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(269, 207);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 15);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Defaul Quantity";
-            // 
-            // DescriptionTxt
-            // 
-            this.DescriptionTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DescriptionTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DescriptionTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DescriptionTxt.Location = new System.Drawing.Point(269, 137);
-            this.DescriptionTxt.Name = "DescriptionTxt";
-            this.DescriptionTxt.Size = new System.Drawing.Size(200, 23);
-            this.DescriptionTxt.TabIndex = 30;
-            // 
-            // CostLbl
-            // 
-            this.CostLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CostLbl.AutoSize = true;
-            this.CostLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CostLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostLbl.Location = new System.Drawing.Point(269, 163);
-            this.CostLbl.Name = "CostLbl";
-            this.CostLbl.Size = new System.Drawing.Size(72, 15);
-            this.CostLbl.TabIndex = 29;
-            this.CostLbl.Text = "Default Cost";
-            // 
-            // UniqueCodeTxt
-            // 
-            this.UniqueCodeTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UniqueCodeTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UniqueCodeTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.UniqueCodeTxt.Location = new System.Drawing.Point(269, 95);
-            this.UniqueCodeTxt.Name = "UniqueCodeTxt";
-            this.UniqueCodeTxt.Size = new System.Drawing.Size(200, 23);
-            this.UniqueCodeTxt.TabIndex = 2;
-            // 
-            // CodeLbl
-            // 
-            this.CodeLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CodeLbl.AutoSize = true;
-            this.CodeLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CodeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CodeLbl.Location = new System.Drawing.Point(269, 77);
-            this.CodeLbl.Name = "CodeLbl";
-            this.CodeLbl.Size = new System.Drawing.Size(76, 15);
-            this.CodeLbl.TabIndex = 5;
-            this.CodeLbl.Text = "Unique Code";
-            // 
-            // CountryCustomerLbl
-            // 
-            this.CountryCustomerLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CountryCustomerLbl.AutoSize = true;
-            this.CountryCustomerLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountryCustomerLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CountryCustomerLbl.Location = new System.Drawing.Point(269, 121);
-            this.CountryCustomerLbl.Name = "CountryCustomerLbl";
-            this.CountryCustomerLbl.Size = new System.Drawing.Size(67, 15);
-            this.CountryCustomerLbl.TabIndex = 6;
-            this.CountryCustomerLbl.Text = "Description";
             // 
             // SaveEditCustomerBtn
             // 
@@ -197,21 +121,45 @@
             this.panel2.Size = new System.Drawing.Size(17, 450);
             this.panel2.TabIndex = 30;
             // 
-            // DefaultQuantityIntegerTxt
+            // QuantityCtb
             // 
-            this.DefaultQuantityIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DefaultQuantityIntegerTxt.Location = new System.Drawing.Point(269, 225);
-            this.DefaultQuantityIntegerTxt.Name = "DefaultQuantityIntegerTxt";
-            this.DefaultQuantityIntegerTxt.Size = new System.Drawing.Size(200, 23);
-            this.DefaultQuantityIntegerTxt.TabIndex = 34;
+            this.QuantityCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.QuantityCtb.Location = new System.Drawing.Point(269, 242);
+            this.QuantityCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.QuantityCtb.Name = "QuantityCtb";
+            this.QuantityCtb.Size = new System.Drawing.Size(200, 47);
+            this.QuantityCtb.TabIndex = 38;
+            this.QuantityCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
-            // DefaultCostDecimalTxt
+            // CostCtb
             // 
-            this.DefaultCostDecimalTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DefaultCostDecimalTxt.Location = new System.Drawing.Point(269, 181);
-            this.DefaultCostDecimalTxt.Name = "DefaultCostDecimalTxt";
-            this.DefaultCostDecimalTxt.Size = new System.Drawing.Size(200, 23);
-            this.DefaultCostDecimalTxt.TabIndex = 31;
+            this.CostCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CostCtb.Location = new System.Drawing.Point(269, 190);
+            this.CostCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.CostCtb.Name = "CostCtb";
+            this.CostCtb.Size = new System.Drawing.Size(200, 47);
+            this.CostCtb.TabIndex = 37;
+            this.CostCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // DescriptionCtb
+            // 
+            this.DescriptionCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DescriptionCtb.Location = new System.Drawing.Point(269, 138);
+            this.DescriptionCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.DescriptionCtb.Name = "DescriptionCtb";
+            this.DescriptionCtb.Size = new System.Drawing.Size(200, 47);
+            this.DescriptionCtb.TabIndex = 36;
+            this.DescriptionCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // CodeCtb
+            // 
+            this.CodeCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CodeCtb.Location = new System.Drawing.Point(269, 86);
+            this.CodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.CodeCtb.Name = "CodeCtb";
+            this.CodeCtb.Size = new System.Drawing.Size(200, 47);
+            this.CodeCtb.TabIndex = 35;
+            this.CodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // CreateDetailsCostRegistryForm
             // 
@@ -234,19 +182,15 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label CostLbl;
-        private System.Windows.Forms.TextBox UniqueCodeTxt;
-        private System.Windows.Forms.Label CodeLbl;
-        private System.Windows.Forms.Label CountryCustomerLbl;
         private System.Windows.Forms.Button SaveEditCustomerBtn;
         private System.Windows.Forms.CheckBox EditCustomerCbx;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox DescriptionTxt;
-        private control.DecimalTextBoxUserControl DefaultCostDecimalTxt;
-        private System.Windows.Forms.Label label2;
-        private control.IntegerTextBoxUserControl DefaultQuantityIntegerTxt;
+        private control.CustomTextBoxUserControl QuantityCtb;
+        private control.CustomTextBoxUserControl CostCtb;
+        private control.CustomTextBoxUserControl DescriptionCtb;
+        private control.CustomTextBoxUserControl CodeCtb;
     }
 }

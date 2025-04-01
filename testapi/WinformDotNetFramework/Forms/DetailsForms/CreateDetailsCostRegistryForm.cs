@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using WinformDotNetFramework.Forms.control;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -27,19 +28,29 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             InitializeComponent();
             _costRegistryService = new CostRegistryService();
+            DescriptionCtb.SetPropName("CostRegistryName");
+            CodeCtb.SetPropName("CostRegistryUniqueCode");
+            QuantityCtb.SetPropName("CostRegistryQuantity");
+            CostCtb.SetPropName("CostRegistryPrice");
+            CostCtb.TextBoxType = TextBoxType.Decimal;
+            QuantityCtb.TextBoxType = TextBoxType.Integer;
+
             if (id != null)
             {
                 int idInt = (int)id;
                 _costRegistry = await _costRegistryService.GetById(idInt);
                 costRegistryID = idInt;
-                DescriptionTxt.Text = _costRegistry.CostRegistryName;
-                UniqueCodeTxt.Text = _costRegistry.CostRegistryUniqueCode;
-                DefaultQuantityIntegerTxt.SetText(_costRegistry.CostRegistryQuantity.ToString());
-                DefaultCostDecimalTxt.SetText(_costRegistry.CostRegistryPrice.ToString());
-                DescriptionTxt.Enabled = false;
-                UniqueCodeTxt.Enabled = false;
-                DefaultQuantityIntegerTxt.Enabled = false;
-                DefaultCostDecimalTxt.Enabled = false;
+
+                DescriptionCtb.PropTxt.Text = _costRegistry.CostRegistryName;
+                CodeCtb.PropTxt.Text = _costRegistry.CostRegistryUniqueCode;
+                QuantityCtb.PropTxt.Text = _costRegistry.CostRegistryQuantity.ToString();
+                CostCtb.PropTxt.Text = _costRegistry.CostRegistryPrice.ToString();
+
+                DescriptionCtb.PropTxt.Enabled = false;
+                CodeCtb.PropTxt.Enabled = false;
+                QuantityCtb.PropTxt.Enabled = false;
+                CostCtb.PropTxt.Enabled = false;
+
                 detailsOnly = true;
             }
             else
@@ -73,15 +84,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void EditCostRegistryCbx_CheckedChanged(object sender, EventArgs e)
         {
-            DescriptionTxt.Enabled = EditCustomerCbx.Checked;
-            DefaultQuantityIntegerTxt.Enabled = EditCustomerCbx.Checked;
-            DefaultCostDecimalTxt.Enabled = EditCustomerCbx.Checked;
+            DescriptionCtb.PropTxt.Enabled = EditCustomerCbx.Checked;
+            QuantityCtb.PropTxt.Enabled = EditCustomerCbx.Checked;
+            CostCtb.PropTxt.Enabled = EditCustomerCbx.Checked;
 
             if (!EditCustomerCbx.Checked)
             {
-                DescriptionTxt.Text = _costRegistry.CostRegistryName;
-                DefaultQuantityIntegerTxt.Text = _costRegistry.CostRegistryQuantity.ToString();
-                DefaultCostDecimalTxt.Text = _costRegistry.CostRegistryPrice.ToString();
+                DescriptionCtb.PropTxt.Text = _costRegistry.CostRegistryName;
+                QuantityCtb.PropTxt.Text = _costRegistry.CostRegistryQuantity.ToString();
+                CostCtb.PropTxt.Text = _costRegistry.CostRegistryPrice.ToString();
             }
 
         }
@@ -93,19 +104,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
 
 
-                CostRegistryDTOGet costRegistry = new CostRegistryDTOGet { CostRegistryName = DescriptionTxt.Text, CostRegistryQuantity = int.Parse(DefaultQuantityIntegerTxt.GetText()), CostRegistryPrice = decimal.Parse(DefaultCostDecimalTxt.GetText()) };
+                CostRegistryDTOGet costRegistry = new CostRegistryDTOGet
+                {
+                    CostRegistryName = DescriptionCtb.PropTxt.Text,
+                    CostRegistryQuantity = int.Parse(QuantityCtb.PropTxt.Text),
+                    CostRegistryPrice = decimal.Parse(CostCtb.PropTxt.Text)
+                };
                 try
                 {
                     costRegistry.IsPost = false;
                     var result = ValidatorEntity.Validate(costRegistry);
+                    UtilityFunctions.ValidateTextBoxes(panel1, costRegistry);
                     if (result.Any())
                     {
-                        string err = "";
-                        foreach (var item in result)
-                        {
-                            err += item.ErrorMessage + "\n";
-                        }
-                        MessageBox.Show(err);
                         return;
                     }
 
@@ -117,35 +128,22 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
             else
             {
-                if (DescriptionTxt.Text.Length < 1 || string.IsNullOrEmpty(DefaultQuantityIntegerTxt.GetText()) || string.IsNullOrEmpty(DefaultCostDecimalTxt.GetText()) || UniqueCodeTxt.TextLength < 1)
-                {
-                    MessageBox.Show("Input data error!");
-                    return;
-                }
-                if (decimal.Parse(DefaultCostDecimalTxt.GetText()) < 0)
-                    MessageBox.Show("Input data error!");
-                if (int.Parse(DefaultQuantityIntegerTxt.GetText()) < 0)
-                    MessageBox.Show("Input data error!");
+
                 CostRegistryDTO costRegistry = new CostRegistryDTO()
                 {
-                    CostRegistryName = DescriptionTxt.Text,
-                    CostRegistryPrice = decimal.Parse(DefaultCostDecimalTxt.GetText()),
-                    CostRegistryQuantity = int.Parse(DefaultQuantityIntegerTxt.GetText()),
-                    CostRegistryUniqueCode = UniqueCodeTxt.Text,
+                    CostRegistryName = DescriptionCtb.PropTxt.Text,
+                    CostRegistryPrice = decimal.TryParse(CostCtb.PropTxt.Text, out decimal price) ? price : (decimal?)null,
+                    CostRegistryQuantity = int.TryParse(QuantityCtb.PropTxt.Text, out int quantity) ? quantity : (int?)null,
+                    CostRegistryUniqueCode = CodeCtb.PropTxt.Text,
                 };
 
                 try
                 {
                     costRegistry.IsPost = true;
                     var result = ValidatorEntity.Validate(costRegistry);
+                    UtilityFunctions.ValidateTextBoxes(panel1, costRegistry);
                     if (result.Any())
                     {
-                        string err = "";
-                        foreach (var item in result)
-                        {
-                            err += item.ErrorMessage + "\n";
-                        }
-                        MessageBox.Show(err);
                         return;
                     }
 

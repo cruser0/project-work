@@ -139,7 +139,7 @@ namespace WinformDotNetFramework
             customTextBoxUserControl4.WriteText(customer.CreatedAt?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty);
             customTextBoxUserControl5.WriteText(customer.IsPost.ToString());
 
-            UtilityFunctions.ValidateTextBoxes(this, customer);
+            //UtilityFunctions.ValidateTextBoxes(this, customer);
         }
     }
 }
