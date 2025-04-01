@@ -23,10 +23,8 @@ namespace Entity_Validator.Entity.DTO
     }
     public class SupplierDTOGet : SupplierDTO
     {
-        [RequiredIf("IsPost", true)]
         public int? SupplierId { get; set; }
 
-        [RequiredIf("IsPost", true)]
         public int? OriginalID { get; set; }
     }
 }

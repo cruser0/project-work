@@ -39,7 +39,6 @@ namespace Entity_Validator.Entity.DTO
 
     public class SupplierInvoiceDTOGet : SupplierInvoiceDTO
     {
-        [RequiredIf("IsPost", true)]
         public int? SupplierInvoiceId { get; set; }
     }
 

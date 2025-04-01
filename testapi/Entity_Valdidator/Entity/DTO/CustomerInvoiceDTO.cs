@@ -34,7 +34,6 @@ namespace Entity_Validator.Entity.DTO
     }
     public class CustomerInvoiceDTOGet : CustomerInvoiceDTO
     {
-        [RequiredIf("IsPost", true)]
         public int? CustomerInvoiceId { get; set; }
     }
 }

@@ -23,10 +23,8 @@ namespace Entity_Validator.Entity.DTO
 
     public class CustomerDTOGet : CustomerDTO
     {
-        [RequiredIf("IsPost", true)]
         public int? CustomerId { get; set; }
 
-        [RequiredIf("IsPost", true)]
         public int? OriginalID { get; set; }
     }
 }

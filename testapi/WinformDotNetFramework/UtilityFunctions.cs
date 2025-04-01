@@ -310,6 +310,10 @@ namespace WinformDotNetFramework
             {
                 rtb.SetBorderColor(validationResults);
             }
+            foreach (CustomTextBoxUserControl rtb in form.Controls.OfType<CustomTextBoxUserControl>())
+            {
+                rtb.SetBorderColor(validationResults);
+            }
 
             // forza redraw del form
             panel.Refresh();

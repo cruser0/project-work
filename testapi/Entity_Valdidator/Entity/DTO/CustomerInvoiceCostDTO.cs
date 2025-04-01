@@ -33,7 +33,6 @@ namespace Entity_Validator.Entity.DTO
     }
     public class CustomerInvoiceCostDTOGet : CustomerInvoiceCostDTO
     {
-        [RequiredIf("IsPost", true)]
         public int? CustomerInvoiceCostsId { get; set; }
     }
 }
