@@ -36,13 +36,14 @@
             this.CostRegistryCodeLbl = new System.Windows.Forms.Label();
             this.CustomerInvoiceCodeLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.IsPostTxt = new WinformDotNetFramework.CustomTextbox();
             this.CustomerInvoiceCodeTxt = new WinformDotNetFramework.CustomTextbox();
             this.CostRegistryCodeTxt = new WinformDotNetFramework.CustomTextbox();
             this.NameTxt = new WinformDotNetFramework.CustomTextbox();
             this.QuantityTxt = new WinformDotNetFramework.CustomTextbox();
             this.CostTxt = new WinformDotNetFramework.CustomTextbox();
             this.CustomerInvoiceIdTxt = new WinformDotNetFramework.CustomTextbox();
-            this.IsPostTxt = new WinformDotNetFramework.CustomTextbox();
+            this.customComboBox1 = new WinformDotNetFramework.Forms.CustomComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -118,6 +119,13 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "IsPost";
             // 
+            // IsPostTxt
+            // 
+            this.IsPostTxt.Location = new System.Drawing.Point(259, 348);
+            this.IsPostTxt.Name = "IsPostTxt";
+            this.IsPostTxt.Size = new System.Drawing.Size(199, 20);
+            this.IsPostTxt.TabIndex = 16;
+            // 
             // CustomerInvoiceCodeTxt
             // 
             this.CustomerInvoiceCodeTxt.Location = new System.Drawing.Point(259, 302);
@@ -160,18 +168,21 @@
             this.CustomerInvoiceIdTxt.Size = new System.Drawing.Size(199, 20);
             this.CustomerInvoiceIdTxt.TabIndex = 2;
             // 
-            // IsPostTxt
+            // customComboBox1
             // 
-            this.IsPostTxt.Location = new System.Drawing.Point(259, 348);
-            this.IsPostTxt.Name = "IsPostTxt";
-            this.IsPostTxt.Size = new System.Drawing.Size(199, 20);
-            this.IsPostTxt.TabIndex = 16;
+            this.customComboBox1.BorderColor = System.Drawing.Color.Black;
+            this.customComboBox1.FormattingEnabled = true;
+            this.customComboBox1.Location = new System.Drawing.Point(36, 199);
+            this.customComboBox1.Name = "customComboBox1";
+            this.customComboBox1.Size = new System.Drawing.Size(152, 21);
+            this.customComboBox1.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.customComboBox1);
             this.Controls.Add(this.IsPostTxt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CustomerInvoiceCodeLbl);
@@ -211,5 +222,6 @@
         private System.Windows.Forms.Label CustomerInvoiceCodeLbl;
         private System.Windows.Forms.Label label1;
         private CustomTextbox IsPostTxt;
+        private Forms.CustomComboBox customComboBox1;
     }
 }

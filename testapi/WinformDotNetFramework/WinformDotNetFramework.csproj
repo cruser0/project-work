@@ -134,6 +134,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomComboBox.Designer.cs">
+      <DependentUpon>CustomComboBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\CustomTextBoxUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -545,6 +551,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomComboBox.resx">
+      <DependentUpon>CustomComboBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\CustomTextBoxUserControl.resx">
       <DependentUpon>CustomTextBoxUserControl.cs</DependentUpon>
