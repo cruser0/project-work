@@ -116,11 +116,11 @@ namespace WinformDotNetFramework
         public Form2()
         {
             InitializeComponent();
-            CustomerNameTxt.propName = "CustomerName";
-            CountryTxt.propName = "Country";
-            DeprecatedTxt.propName = "Deprecated";
-            CreatedAtTxt.propName = "CreatedAt";
-            IsPostTxt.propName = "IsPost";
+            CustomerNameTxt.PropName = "CustomerName";
+            CountryTxt.PropName = "Country";
+            DeprecatedTxt.PropName = "Deprecated";
+            CreatedAtTxt.PropName = "CreatedAt";
+            IsPostTxt.PropName = "IsPost";
 
             CustomerNameTxt.Tag = CustomerNameLbl;
             CountryTxt.Tag = CountryLbl;

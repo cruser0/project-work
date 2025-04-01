@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace WinformDotNetFramework.Forms
 {
     public partial class CustomComboBox : ComboBox
     {
+        public string PropName { get; set; } = "";
+        public string ErrorMessage { get; set; } = "";
+        public bool IsNotValid { get; set; } = false;
         private const int WM_PAINT = 0xF;
         private int buttonWidth = SystemInformation.HorizontalScrollBarArrowWidth;
         Color borderColor = Color.Black;
@@ -35,6 +39,20 @@ namespace WinformDotNetFramework.Forms
                         g.DrawLine(p, Width - buttonWidth - d,
                             0, Width - buttonWidth - d, Height);
                     }
+                }
+            }
+        }
+        public void ValidateProperty(List<ValidationResult> validationResults)
+        {
+            if (string.IsNullOrEmpty(PropName)) return;
+
+            foreach (var item in validationResults)
+            {
+                IsNotValid = PropName.Equals(item.MemberNames.First().Trim('"'));
+                if (IsNotValid)
+                {
+                    ErrorMessage = item.ErrorMessage;
+                    return;
                 }
             }
         }

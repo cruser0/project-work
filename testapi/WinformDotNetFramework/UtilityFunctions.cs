@@ -309,18 +309,18 @@ namespace WinformDotNetFramework
             // valida singole textbox
             foreach (CustomTextbox rtb in form.Controls.OfType<CustomTextbox>())
             {
-                rtb.isNotValid = false;
+                rtb.IsNotValid = false;
                 rtb.ValidateProperty(validationResults);
                 Label lbl = (Label)rtb.Tag;
 
-                if (rtb.isNotValid)
+                if (rtb.IsNotValid)
                 {
                     lbl.ForeColor = Color.Red;
                     Label lblError = (Label)lbl.Tag;
 
                     lblError.Visible = true;
                     lblError.ForeColor = Color.Red;
-                    lblError.Text = rtb.errorMessage;
+                    lblError.Text = rtb.ErrorMessage;
 
                 }
                 else
