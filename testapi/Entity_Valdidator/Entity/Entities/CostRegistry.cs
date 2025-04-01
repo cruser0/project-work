@@ -10,7 +10,7 @@ namespace Entity_Validator.Entity.Entities
             SupplierInvoiceCosts = new HashSet<SupplierInvoiceCost>();
 
         }
-        public int CostRegistryID { get; set; }
+        public int? CostRegistryID { get; set; }
         public string CostRegistryUniqueCode { get; set; }
         public string CostRegistryName { get; set; }
         public decimal? CostRegistryPrice { get; set; }

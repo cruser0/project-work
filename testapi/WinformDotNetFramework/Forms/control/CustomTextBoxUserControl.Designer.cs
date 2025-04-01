@@ -37,8 +37,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.PropLbl);
             this.panel1.Controls.Add(this.PropTxt);
+            this.panel1.Controls.Add(this.PropLbl);
             this.panel1.Controls.Add(this.Errorlbl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -69,12 +69,13 @@
             // 
             // PropTxt
             // 
-            this.PropTxt.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PropTxt.Dock = System.Windows.Forms.DockStyle.Top;
             this.PropTxt.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.PropTxt.Location = new System.Drawing.Point(0, 13);
             this.PropTxt.Name = "PropTxt";
             this.PropTxt.Size = new System.Drawing.Size(200, 22);
             this.PropTxt.TabIndex = 0;
+            this.PropTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PropTxt_OnKeyPress);
             // 
             // CustomTextBoxUserControl
             // 

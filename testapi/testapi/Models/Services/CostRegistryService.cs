@@ -90,9 +90,9 @@ namespace API.Models.Services
         {
             var cr = await _context.CostRegistries.Where(x => x.CostRegistryID == id).FirstOrDefaultAsync();
 
-            cr.CostRegistryName = costRegistry.CostRegistryName;
-            cr.CostRegistryPrice = costRegistry.CostRegistryPrice;
-            cr.CostRegistryQuantity = costRegistry.CostRegistryQuantity;
+            cr.CostRegistryName = costRegistry.CostRegistryName ?? cr.CostRegistryName;
+            cr.CostRegistryPrice = costRegistry.CostRegistryPrice ?? cr.CostRegistryPrice;
+            cr.CostRegistryQuantity = costRegistry.CostRegistryQuantity ?? cr.CostRegistryQuantity;
 
             try
             {
@@ -209,7 +209,7 @@ namespace API.Models.Services
             try
             {
                 var deleteRegistry = await _context.CostRegistries
-                    .Where(x => costRegistryId.Contains(x.CostRegistryID))
+                    .Where(x => costRegistryId.Contains((int)x.CostRegistryID))
                     .Include(x => x.SupplierInvoiceCosts)
                     .Include(x => x.CustomerInvoiceCosts)
                     .ToListAsync();

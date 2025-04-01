@@ -114,23 +114,7 @@ namespace WinformDotNetFramework
         public Form2()
         {
             InitializeComponent();
-            CustomerNameTxt.PropName = "CustomerName";
-            CountryTxt.PropName = "Country";
-            DeprecatedTxt.PropName = "Deprecated";
-            CreatedAtTxt.PropName = "CreatedAt";
-            IsPostTxt.PropName = "IsPost";
 
-            CustomerNameTxt.Tag = CustomerNameLbl;
-            CountryTxt.Tag = CountryLbl;
-            DeprecatedTxt.Tag = DeprecatedLbl;
-            CreatedAtTxt.Tag = CreatedAtLbl;
-            IsPostTxt.Tag = IsPostLbl;
-
-            CustomerNameLbl.Tag = label1;
-            CountryLbl.Tag = label2;
-            DeprecatedLbl.Tag = label3;
-            CreatedAtLbl.Tag = label4;
-            IsPostLbl.Tag = label5;
 
         }
 
@@ -155,7 +139,7 @@ namespace WinformDotNetFramework
             customTextBoxUserControl4.WriteText(customer.CreatedAt?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty);
             customTextBoxUserControl5.WriteText(customer.IsPost.ToString());
 
-            UtilityFunctions.ValidateTextBoxes(this, customer);
+            //UtilityFunctions.ValidateTextBoxes(this, customer);
         }
     }
 }

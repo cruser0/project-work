@@ -23,8 +23,8 @@ namespace API.Models.Mapper
             {
                 CostRegistryUniqueCode = costRegistry.CostRegistryUniqueCode,
                 CostRegistryName = costRegistry.CostRegistryName,
-                CostRegistryPrice = (decimal)costRegistry.CostRegistryPrice!,
-                CostRegistryQuantity = (int)costRegistry.CostRegistryQuantity!
+                CostRegistryPrice = costRegistry.CostRegistryPrice.HasValue ? costRegistry.CostRegistryPrice : null,
+                CostRegistryQuantity = costRegistry.CostRegistryQuantity.HasValue ? costRegistry.CostRegistryQuantity : null
             };
         }
 
@@ -43,12 +43,13 @@ namespace API.Models.Mapper
         {
             return new CostRegistry
             {
-                CostRegistryID = (int)costRegistry.CostRegistryID!,
+                CostRegistryID = costRegistry.CostRegistryID.HasValue ? costRegistry.CostRegistryID : null,
                 CostRegistryUniqueCode = costRegistry.CostRegistryUniqueCode,
                 CostRegistryName = costRegistry.CostRegistryName,
-                CostRegistryPrice = (decimal)costRegistry.CostRegistryPrice!,
-                CostRegistryQuantity = (int)costRegistry.CostRegistryQuantity!
+                CostRegistryPrice = costRegistry.CostRegistryPrice.HasValue ? costRegistry.CostRegistryPrice : null,
+                CostRegistryQuantity = costRegistry.CostRegistryQuantity.HasValue ? costRegistry.CostRegistryQuantity : null
             };
+
         }
     }
 }

@@ -299,20 +299,20 @@ namespace WinformDotNetFramework
                 .ToList();
         }
 
-        public static void ValidateTextBoxes<T>(Form form, T entity)
+        public static void ValidateTextBoxes<T>(Panel panel, T entity)
         {
             // valida oggetto
             List<ValidationResult> validationResults = ValidatorEntity.Validate(entity);
 
 
             // valida singole textbox
-            foreach (CustomTextBoxUserControl rtb in form.Controls.OfType<CustomTextBoxUserControl>())
+            foreach (CustomTextBoxUserControl rtb in panel.Controls.OfType<CustomTextBoxUserControl>())
             {
                 rtb.SetBorderColor(validationResults);
             }
 
             // forza redraw del form
-            form.Refresh();
+            panel.Refresh();
 
             // scrivi messaggi di errore
             //string result = string.Join(Environment.NewLine + Environment.NewLine, validationResults.Select(x => x.ErrorMessage));
