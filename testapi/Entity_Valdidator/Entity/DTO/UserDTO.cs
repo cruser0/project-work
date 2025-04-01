@@ -36,7 +36,6 @@ namespace Entity_Validator.Entity.DTO
 
     public class UserDTOGet
     {
-        [RequiredIf("IsPost", true)]
         public int? UserID { get; set; }
 
         [RequiredIf("IsPost", true)]

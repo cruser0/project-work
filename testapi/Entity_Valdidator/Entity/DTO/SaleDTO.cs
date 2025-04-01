@@ -32,7 +32,6 @@ namespace Entity_Validator.Entity.DTO
 
     public class SaleDTOGet : SaleDTO
     {
-        [RequiredIf("IsPost", true)]
         public int? SaleId { get; set; }
     }
     public class SaleCustomerDTO : SaleDTOGet

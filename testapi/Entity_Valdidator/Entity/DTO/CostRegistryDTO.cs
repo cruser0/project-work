@@ -25,7 +25,6 @@ namespace Entity_Validator.Entity.DTO
     }
     public class CostRegistryDTOGet : CostRegistryDTO
     {
-        [RequiredIf("IsPost", true)]
         public int? CostRegistryID { get; set; }
     }
 }
