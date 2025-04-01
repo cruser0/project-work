@@ -43,13 +43,15 @@ namespace WinformDotNetFramework.Forms.control
             else
             {
                 PropLbl.ForeColor = Color.Black;
-                Errorlbl.Visible = false;
+                Errorlbl.Visible = false    ;
             }
         }
-        internal void SetBorderColorRed()
+        internal void SetBorderColorRed(string error)
         {
             PropLbl.ForeColor = Color.Red;
             PropTxt.BorderColor = Color.Red;
+            PropTxt.ErrorMessage = error;
+
 
             Errorlbl.Visible = true;
             Errorlbl.ForeColor = Color.Red;
@@ -62,7 +64,7 @@ namespace WinformDotNetFramework.Forms.control
 
             Errorlbl.Visible = false;
             Errorlbl.ForeColor = Color.Black;
-            Errorlbl.Text = PropTxt.ErrorMessage;
+
         }
     }
 }
