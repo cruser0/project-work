@@ -3,7 +3,6 @@ using Entity_Validator.Entity.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -307,28 +306,9 @@ namespace WinformDotNetFramework
 
 
             // valida singole textbox
-            foreach (CustomTextbox rtb in form.Controls.OfType<CustomTextbox>())
+            foreach (CustomTextBoxUserControl rtb in form.Controls.OfType<CustomTextBoxUserControl>())
             {
-                rtb.isNotValid = false;
-                rtb.ValidateProperty(validationResults);
-                Label lbl = (Label)rtb.Tag;
-
-                if (rtb.isNotValid)
-                {
-                    lbl.ForeColor = Color.Red;
-                    Label lblError = (Label)lbl.Tag;
-
-                    lblError.Visible = true;
-                    lblError.ForeColor = Color.Red;
-                    lblError.Text = rtb.errorMessage;
-
-                }
-                else
-                {
-                    lbl.ForeColor = Color.Black;
-                    Label lblError = (Label)lbl.Tag;
-                    lblError.Visible = false;
-                }
+                rtb.SetBorderColor(validationResults);
             }
 
             // forza redraw del form

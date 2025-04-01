@@ -134,6 +134,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\control\CustomTextBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\CustomTextBoxUserControl.Designer.cs">
+      <DependentUpon>CustomTextBoxUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\SearchCostRegistry.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -539,6 +545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\CustomTextBoxUserControl.resx">
+      <DependentUpon>CustomTextBoxUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\SearchCostRegistry.resx">
       <DependentUpon>SearchCostRegistry.cs</DependentUpon>

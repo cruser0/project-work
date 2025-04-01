@@ -1,8 +1,6 @@
 ﻿using Entity_Validator.Entity.DTO;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace WinformDotNetFramework
@@ -116,30 +114,15 @@ namespace WinformDotNetFramework
         public Form2()
         {
             InitializeComponent();
-            CustomerNameTxt.propName = "CustomerName";
-            CountryTxt.propName = "Country";
-            DeprecatedTxt.propName = "Deprecated";
-            CreatedAtTxt.propName = "CreatedAt";
-            IsPostTxt.propName = "IsPost";
-
-            CustomerNameTxt.Tag = CustomerNameLbl;
-            CountryTxt.Tag = CountryLbl;
-            DeprecatedTxt.Tag = DeprecatedLbl;
-            CreatedAtTxt.Tag = CreatedAtLbl;
-            IsPostTxt.Tag = IsPostLbl;
-
-            CustomerNameLbl.Tag = label1;
-            CountryLbl.Tag = label2;
-            DeprecatedLbl.Tag = label3;
-            CreatedAtLbl.Tag = label4;
-            IsPostLbl.Tag = label5;
-
+            customTextBoxUserControl1.SetPropName("CustomerName");
+            customTextBoxUserControl2.SetPropName("Country");
+            customTextBoxUserControl3.SetPropName("Deprecated");
+            customTextBoxUserControl4.SetPropName("CreatedAt");
+            customTextBoxUserControl5.SetPropName("IsPost");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ResetLbl();
-
             Random random = new Random();
             int randomIndex = random.Next(0, dtoList.Count);
             var customer = dtoList[randomIndex];
@@ -153,21 +136,13 @@ namespace WinformDotNetFramework
         private void ValidateTextBoxesInForm(CustomerDTO customer)
         {
             // assegna il testo alle textbox
-            CustomerNameTxt.Text = customer.CustomerName ?? string.Empty;
-            //CountryCmb.Text = customer.Country ?? string.Empty;
-            DeprecatedTxt.Text = customer.Deprecated?.ToString() ?? string.Empty;
-            CreatedAtTxt.Text = customer.CreatedAt?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty;
-            IsPostTxt.Text = customer.IsPost.ToString();
+            customTextBoxUserControl1.WriteText(customer.CustomerName ?? string.Empty);
+            customTextBoxUserControl2.WriteText(customer.Country ?? string.Empty);
+            customTextBoxUserControl3.WriteText(customer.Deprecated?.ToString() ?? string.Empty);
+            customTextBoxUserControl4.WriteText(customer.CreatedAt?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty);
+            customTextBoxUserControl5.WriteText(customer.IsPost.ToString());
 
             UtilityFunctions.ValidateTextBoxes(this, customer);
-        }
-
-        private void ResetLbl()
-        {
-            foreach (var label in Controls.OfType<Label>())
-            {
-                label.ForeColor = SystemColors.ControlText;
-            }
         }
     }
 }
