@@ -97,7 +97,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         }
 
-        bool enabled;
         private async void SaveEditCostRegistryBtn_Click(object sender, EventArgs e)
         {
             if (detailsOnly)
@@ -114,9 +113,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     costRegistry.IsPost = false;
                     var result = ValidatorEntity.Validate(costRegistry);
-                    UtilityFunctions.ValidateTextBoxes(panel1, costRegistry);
                     if (result.Any())
                     {
+                        UtilityFunctions.ValidateTextBoxes(panel1, costRegistry);
                         return;
                     }
 
@@ -141,9 +140,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     costRegistry.IsPost = true;
                     var result = ValidatorEntity.Validate(costRegistry);
-                    UtilityFunctions.ValidateTextBoxes(panel1, costRegistry);
                     if (result.Any())
                     {
+                        UtilityFunctions.ValidateTextBoxes(panel1, costRegistry);
                         return;
                     }
 
@@ -160,63 +159,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
-        //private async void SaveQuitButton_Click(object sender, EventArgs e)
-        //{
-        //    if (detailsOnly)
-        //    {
-
-        //        switch (comboBox1.Text)
-        //        {
-        //            case "Active":
-        //                enabled = false;
-        //                break;
-
-        //            case "Deprecated":
-        //                enabled = true;
-        //                break;
-        //        };
-
-        //        CostRegistry costRegistry = new CostRegistry { CostRegistryName = NameCostRegistryTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
-        //        try
-        //        {
-        //            await _costRegistryService.Update(costRegistryID, costRegistry);
-        //            MessageBox.Show("CostRegistry updated successfully!");
-        //            Close();
-
-        //        }
-        //        catch (Exception ex) { MessageBox.Show(ex.Message); }
-        //    }
-        //    else
-        //    {
-        //        if (NameCostRegistryTxt.Text.Length < 1 || CountryCmbx.Text.Equals("All") || string.IsNullOrEmpty(CountryCmbx.Text))
-        //        {
-        //            MessageBox.Show("Input data error!");
-        //            return;
-        //        }
-
-        //        CostRegistry costRegistry = new CostRegistry()
-        //        {
-        //            CostRegistryName = NameCostRegistryTxt.Text,
-        //            Country = CountryCmbx.Text
-        //        };
-        //        if (costRegistry.Country.Equals("All"))
-        //            MessageBox.Show("You Need to Select a country");
-        //        else
-        //        {
-        //            try
-        //            {
-        //                await _costRegistryService.Create(costRegistry);
-        //                MessageBox.Show("CostRegistry Created Succesfully");
-        //                Close();
-
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                MessageBox.Show(ex.Message);
-
-        //            }
-        //        }
-        //    }
-        //}
+        private void SaveQuitButton_Click(object sender, EventArgs e)
+        {
+            SaveEditCustomerBtn.PerformClick();
+            Close();
+        }
     }
 }
