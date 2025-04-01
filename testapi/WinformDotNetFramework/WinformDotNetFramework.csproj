@@ -140,6 +140,12 @@
     <Compile Include="CustomComboBox.Designer.cs">
       <DependentUpon>CustomComboBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\control\CustomTextBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\control\CustomTextBoxUserControl.Designer.cs">
+      <DependentUpon>CustomTextBoxUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\control\SearchCostRegistry.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -548,6 +554,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomComboBox.resx">
       <DependentUpon>CustomComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\control\CustomTextBoxUserControl.resx">
+      <DependentUpon>CustomTextBoxUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\control\SearchCostRegistry.resx">
       <DependentUpon>SearchCostRegistry.cs</DependentUpon>
