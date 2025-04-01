@@ -7,12 +7,14 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 namespace WinformDotNetFramework
 {
-    public partial class RedTextBox : TextBox
+    public partial class CustomTextbox : TextBox
     {
         public bool isNotValid = false;
         public string propName = "";
+        public string errorMessage = "";
+        public Pen color = Pens.Red;
 
-        public RedTextBox()
+        public CustomTextbox()
         {
             InitializeComponent();
         }
@@ -46,7 +48,7 @@ namespace WinformDotNetFramework
                 using (Graphics g = Graphics.FromHdc(dc))
                 {
                     // Draw a red rectangle around the textbox to indicate invalidity
-                    g.DrawRectangle(Pens.Red, 0, 0, Width - 1, Height - 1);
+                    g.DrawRectangle(color, 0, 0, Width - 1, Height - 1);
                 }
 
                 // Release the device context after the drawing operation to avoid resource leaks
@@ -62,7 +64,11 @@ namespace WinformDotNetFramework
             foreach (var item in validationResults)
             {
                 isNotValid = propName.Equals(item.MemberNames.First().Trim('"'));
-                if (isNotValid) return;
+                if (isNotValid)
+                {
+                    errorMessage = item.ErrorMessage;
+                    return;
+                }
             }
         }
 

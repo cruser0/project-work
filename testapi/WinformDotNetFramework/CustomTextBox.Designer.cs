@@ -1,6 +1,6 @@
 ﻿namespace WinformDotNetFramework
 {
-    partial class RedTextBox
+    partial class CustomTextbox
     {
         /// <summary> 
         /// Required designer variable.

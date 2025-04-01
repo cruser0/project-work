@@ -153,7 +153,6 @@ namespace WinformDotNetFramework
 
 
 
-
         private void ValidateTextBoxes(CustomerInvoiceCostDTO invoiceCost)
         {
             // assegna il testo alle textbox

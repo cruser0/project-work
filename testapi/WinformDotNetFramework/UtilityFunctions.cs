@@ -307,16 +307,27 @@ namespace WinformDotNetFramework
 
 
             // valida singole textbox
-            foreach (RedTextBox rtb in form.Controls.OfType<RedTextBox>())
+            foreach (CustomTextbox rtb in form.Controls.OfType<CustomTextbox>())
             {
                 rtb.isNotValid = false;
                 rtb.ValidateProperty(validationResults);
+                Label lbl = (Label)rtb.Tag;
 
                 if (rtb.isNotValid)
                 {
-                    Label lbl = form.Controls.OfType<Label>()
-                        .FirstOrDefault(x => x.Name.Substring(0, x.Name.Length - 3) == rtb.Name.Substring(0, rtb.Name.Length - 3));
                     lbl.ForeColor = Color.Red;
+                    Label lblError = (Label)lbl.Tag;
+
+                    lblError.Visible = true;
+                    lblError.ForeColor = Color.Red;
+                    lblError.Text = rtb.errorMessage;
+
+                }
+                else
+                {
+                    lbl.ForeColor = Color.Black;
+                    Label lblError = (Label)lbl.Tag;
+                    lblError.Visible = false;
                 }
             }
 
@@ -324,8 +335,9 @@ namespace WinformDotNetFramework
             form.Refresh();
 
             // scrivi messaggi di errore
-            string result = string.Join(Environment.NewLine + Environment.NewLine, validationResults.Select(x => x.ErrorMessage));
-            MessageBox.Show(string.IsNullOrEmpty(result) ? "Valid" : result);
+            //string result = string.Join(Environment.NewLine + Environment.NewLine, validationResults.Select(x => x.ErrorMessage));
+            //MessageBox.Show(string.IsNullOrEmpty(result) ? "Valid" : result);
         }
+
     }
 }

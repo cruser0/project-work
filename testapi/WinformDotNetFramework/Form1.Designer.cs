@@ -36,13 +36,13 @@
             this.CostRegistryCodeLbl = new System.Windows.Forms.Label();
             this.CustomerInvoiceCodeLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.CustomerInvoiceCodeTxt = new WinformDotNetFramework.RedTextBox();
-            this.CostRegistryCodeTxt = new WinformDotNetFramework.RedTextBox();
-            this.NameTxt = new WinformDotNetFramework.RedTextBox();
-            this.QuantityTxt = new WinformDotNetFramework.RedTextBox();
-            this.CostTxt = new WinformDotNetFramework.RedTextBox();
-            this.CustomerInvoiceIdTxt = new WinformDotNetFramework.RedTextBox();
-            this.IsPostTxt = new WinformDotNetFramework.RedTextBox();
+            this.CustomerInvoiceCodeTxt = new WinformDotNetFramework.CustomTextbox();
+            this.CostRegistryCodeTxt = new WinformDotNetFramework.CustomTextbox();
+            this.NameTxt = new WinformDotNetFramework.CustomTextbox();
+            this.QuantityTxt = new WinformDotNetFramework.CustomTextbox();
+            this.CostTxt = new WinformDotNetFramework.CustomTextbox();
+            this.CustomerInvoiceIdTxt = new WinformDotNetFramework.CustomTextbox();
+            this.IsPostTxt = new WinformDotNetFramework.CustomTextbox();
             this.SuspendLayout();
             // 
             // button1
@@ -197,12 +197,12 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private RedTextBox CustomerInvoiceIdTxt;
-        private RedTextBox CostTxt;
-        private RedTextBox NameTxt;
-        private RedTextBox QuantityTxt;
-        private RedTextBox CustomerInvoiceCodeTxt;
-        private RedTextBox CostRegistryCodeTxt;
+        private CustomTextbox CustomerInvoiceIdTxt;
+        private CustomTextbox CostTxt;
+        private CustomTextbox NameTxt;
+        private CustomTextbox QuantityTxt;
+        private CustomTextbox CustomerInvoiceCodeTxt;
+        private CustomTextbox CostRegistryCodeTxt;
         private System.Windows.Forms.Label CustomerInvoiceIdLbl;
         private System.Windows.Forms.Label CostLbl;
         private System.Windows.Forms.Label QuantityLbl;
@@ -210,6 +210,6 @@
         private System.Windows.Forms.Label CostRegistryCodeLbl;
         private System.Windows.Forms.Label CustomerInvoiceCodeLbl;
         private System.Windows.Forms.Label label1;
-        private RedTextBox IsPostTxt;
+        private CustomTextbox IsPostTxt;
     }
 }

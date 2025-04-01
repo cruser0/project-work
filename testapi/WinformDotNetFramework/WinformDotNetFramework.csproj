@@ -513,11 +513,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RedTextBox.cs">
+    <Compile Include="CustomTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RedTextBox.Designer.cs">
-      <DependentUpon>RedTextBox.cs</DependentUpon>
+    <Compile Include="CustomTextBox.Designer.cs">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\BaseCallService.cs" />
     <Compile Include="Services\CostRegistryService.cs" />

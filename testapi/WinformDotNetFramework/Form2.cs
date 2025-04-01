@@ -122,6 +122,18 @@ namespace WinformDotNetFramework
             CreatedAtTxt.propName = "CreatedAt";
             IsPostTxt.propName = "IsPost";
 
+            CustomerNameTxt.Tag = CustomerNameLbl;
+            CountryTxt.Tag = CountryLbl;
+            DeprecatedTxt.Tag = DeprecatedLbl;
+            CreatedAtTxt.Tag = CreatedAtLbl;
+            IsPostTxt.Tag = IsPostLbl;
+
+            CustomerNameLbl.Tag = label1;
+            CountryLbl.Tag = label2;
+            DeprecatedLbl.Tag = label3;
+            CreatedAtLbl.Tag = label4;
+            IsPostLbl.Tag = label5;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -132,17 +144,17 @@ namespace WinformDotNetFramework
             int randomIndex = random.Next(0, dtoList.Count);
             var customer = dtoList[randomIndex];
 
-            ValidateTextBoxes(customer);
+            ValidateTextBoxesInForm(customer);
         }
 
 
 
 
-        private void ValidateTextBoxes(CustomerDTO customer)
+        private void ValidateTextBoxesInForm(CustomerDTO customer)
         {
             // assegna il testo alle textbox
             CustomerNameTxt.Text = customer.CustomerName ?? string.Empty;
-            CountryTxt.Text = customer.Country ?? string.Empty;
+            //CountryCmb.Text = customer.Country ?? string.Empty;
             DeprecatedTxt.Text = customer.Deprecated?.ToString() ?? string.Empty;
             CreatedAtTxt.Text = customer.CreatedAt?.ToString("yyyy-MM-ddTHH:mm:ss") ?? string.Empty;
             IsPostTxt.Text = customer.IsPost.ToString();
