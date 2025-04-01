@@ -113,7 +113,7 @@ namespace WinformDotNetFramework.Forms
             SaleShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
             SaleCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleWrite", "SaleAdmin" });
 
-            UserShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
+            Form1ShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
             UserCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
 
             CustomerGroupTS.Visible = UtilityFunctions.IsAuthorized(ReadRoles, requireAll: true) ||
@@ -203,6 +203,10 @@ namespace WinformDotNetFramework.Forms
 
             switch (formName)
             {
+                case "Show Test TextBox":
+                    child = new Form1();
+                    break;
+
                 case "TS UserProfile":
                     child = new UserProfileForm();
                     break;
@@ -614,7 +618,7 @@ namespace WinformDotNetFramework.Forms
                     { "Show Supplier", SupplierShowTS },
                     { "Show Supplier Invoice", SupplierInvoiceShowTS },
                     { "Show Sale", SaleShowTS },
-                    { "Show User", UserShowTS },
+                    { "Show User", Form1ShowTS },
                     { "Report Customer Invoice",CustomerInvoiceReportTS },
                     { "Report Supplier Invoice",SupplierInvoiceReportTS },
                     { "Report Sale",SaleReportTS },

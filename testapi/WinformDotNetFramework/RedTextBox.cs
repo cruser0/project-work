@@ -22,7 +22,7 @@ namespace WinformDotNetFramework
             base.WndProc(ref m);
             if (Parent is Form1 f)
             {
-                if (m.Msg == WM_NCPAINT && this.Focused && !f.validated)
+                if (m.Msg == WM_NCPAINT && f.Wrongtextboxes.Contains(this))
                 {
                     var dc = GetWindowDC(Handle);
                     using (Graphics g = Graphics.FromHdc(dc))

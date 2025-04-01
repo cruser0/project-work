@@ -45,7 +45,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.RegistryCostShowTS = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripSeparator();
-            this.UserShowTS = new System.Windows.Forms.ToolStripButton();
+            this.Form1ShowTS = new System.Windows.Forms.ToolStripButton();
             this.AddTP = new System.Windows.Forms.TabPage();
             this.Create = new System.Windows.Forms.ToolStrip();
             this.CustomerCreateTS = new System.Windows.Forms.ToolStripButton();
@@ -80,6 +80,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.OpenFormDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -147,7 +148,8 @@ namespace WinformDotNetFramework.Forms
             this.toolStripSeparator13,
             this.RegistryCostShowTS,
             this.toolStripButton1,
-            this.UserShowTS});
+            this.toolStripButton4,
+            this.Form1ShowTS});
             this.Show.Location = new System.Drawing.Point(3, 3);
             this.Show.Name = "Show";
             this.Show.Size = new System.Drawing.Size(1063, 30);
@@ -246,17 +248,17 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(6, 30);
             // 
-            // UserShowTS
+            // Form1ShowTS
             // 
-            this.UserShowTS.AutoSize = false;
-            this.UserShowTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.UserShowTS.Image = ((System.Drawing.Image)(resources.GetObject("UserShowTS.Image")));
-            this.UserShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UserShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
-            this.UserShowTS.Name = "UserShowTS";
-            this.UserShowTS.Size = new System.Drawing.Size(100, 27);
-            this.UserShowTS.Text = "User";
-            this.UserShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
+            this.Form1ShowTS.AutoSize = false;
+            this.Form1ShowTS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Form1ShowTS.Image = ((System.Drawing.Image)(resources.GetObject("Form1ShowTS.Image")));
+            this.Form1ShowTS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Form1ShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.Form1ShowTS.Name = "Form1ShowTS";
+            this.Form1ShowTS.Size = new System.Drawing.Size(100, 27);
+            this.Form1ShowTS.Text = "Test TextBox";
+            this.Form1ShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // AddTP
             // 
@@ -621,6 +623,17 @@ namespace WinformDotNetFramework.Forms
             this.OpenFormDropDown.Size = new System.Drawing.Size(134, 20);
             this.OpenFormDropDown.Text = "Show All Open Forms";
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.AutoSize = false;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(100, 27);
+            this.toolStripButton4.Text = "User";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -691,7 +704,7 @@ namespace WinformDotNetFramework.Forms
         private ToolStripSeparator toolStripSeparator2;
         public ToolStripButton SaleShowTS;
         private ToolStripSeparator toolStripSeparator13;
-        public ToolStripButton UserShowTS;
+        public ToolStripButton Form1ShowTS;
         public ToolStrip Report;
         public ToolStripButton CustomerInvoiceReportTS;
         private ToolStripSeparator toolStripSeparator4;
@@ -705,5 +718,6 @@ namespace WinformDotNetFramework.Forms
         private ToolStripSeparator toolStripButton1;
         private ToolStripSeparator toolStripSeparator10;
         public ToolStripButton RegistryCostCreateTS;
+        public ToolStripButton toolStripButton4;
     }
 }
