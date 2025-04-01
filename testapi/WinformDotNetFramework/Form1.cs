@@ -142,13 +142,7 @@ namespace WinformDotNetFramework
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ResetLbl();
-
-            Random random = new Random();
-            int randomIndex = random.Next(0, dtoList.Count);
-            var invoiceCost = dtoList[randomIndex];
-
-            ValidateTextBoxes(invoiceCost);
+            customComboBox1.BorderColor = Color.Red;
         }
 
 
