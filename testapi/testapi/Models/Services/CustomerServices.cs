@@ -300,7 +300,7 @@ namespace API.Models.Services
             }
 
             return await query
-                .Select(x => x.CountryName + " - " + x.CountryName)
+                .Select(x => x.CustomerName + " - " + x.CountryName)
                 .ToListAsync();
         }
     }

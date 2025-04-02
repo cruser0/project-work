@@ -13,6 +13,8 @@ namespace WinformDotNetFramework.Forms.control
         public DropDownMenuAutoCompleteUserControl()
         {
             InitializeComponent();
+            Cmbx.PropTxt.TextChanged += Cmbx_TextChanged;
+            Cmbx.PropTxt.SelectedValueChanged += Cmbx_SelectedValueChanged;
         }
 
         private bool _suppressEvents = false;
@@ -25,7 +27,7 @@ namespace WinformDotNetFramework.Forms.control
 
             try
             {
-                string currentText = Cmbx.Text;
+                string currentText = Cmbx.PropTxt.Text;
                 int selectionStart = Cmbx.PropTxt.SelectionStart;
 
                 if (string.IsNullOrWhiteSpace(currentText))
