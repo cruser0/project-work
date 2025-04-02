@@ -50,22 +50,20 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
+            this.SaveQuitBtn = new System.Windows.Forms.Button();
             this.FlushCreateBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.OpenSale = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.SaleBKLbl = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.DateLbl = new System.Windows.Forms.Label();
-            this.SupplierNameLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.label2 = new System.Windows.Forms.Label();
-            this.SaveQuitBtn = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.SupplierInvoiceCostGrbBX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -78,7 +76,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveEditCustomerBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveEditCustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveEditCustomerBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(552, 70);
+            this.SaveEditCustomerBtn.Location = new System.Drawing.Point(625, 70);
             this.SaveEditCustomerBtn.Name = "SaveEditCustomerBtn";
             this.SaveEditCustomerBtn.Size = new System.Drawing.Size(110, 25);
             this.SaveEditCustomerBtn.TabIndex = 16;
@@ -91,7 +89,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCbx.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditCbx.AutoSize = true;
             this.EditCbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditCbx.Location = new System.Drawing.Point(251, 141);
+            this.EditCbx.Location = new System.Drawing.Point(469, 142);
             this.EditCbx.Name = "EditCbx";
             this.EditCbx.Size = new System.Drawing.Size(46, 19);
             this.EditCbx.TabIndex = 15;
@@ -103,7 +101,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.DateClnd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DateClnd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateClnd.Location = new System.Drawing.Point(251, 112);
+            this.DateClnd.Location = new System.Drawing.Point(254, 137);
             this.DateClnd.Name = "DateClnd";
             this.DateClnd.Size = new System.Drawing.Size(200, 23);
             this.DateClnd.TabIndex = 19;
@@ -255,14 +253,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Controls.Add(this.OpenSale);
             this.panel6.Controls.Add(this.textBox1);
             this.panel6.Controls.Add(this.label3);
-            this.panel6.Controls.Add(this.SaleBKLbl);
             this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.DateClnd);
             this.panel6.Controls.Add(this.SaveEditCustomerBtn);
             this.panel6.Controls.Add(this.NameCmbxUC);
             this.panel6.Controls.Add(this.EditCbx);
             this.panel6.Controls.Add(this.DateLbl);
-            this.panel6.Controls.Add(this.SupplierNameLbl);
             this.panel6.Controls.Add(this.label1);
             this.panel6.Controls.Add(this.BoLCmbxUC);
             this.panel6.Controls.Add(this.comboBox1);
@@ -274,12 +270,25 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(750, 187);
             this.panel6.TabIndex = 60;
             // 
+            // SaveQuitBtn
+            // 
+            this.SaveQuitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitBtn.Location = new System.Drawing.Point(625, 110);
+            this.SaveQuitBtn.Name = "SaveQuitBtn";
+            this.SaveQuitBtn.Size = new System.Drawing.Size(110, 25);
+            this.SaveQuitBtn.TabIndex = 65;
+            this.SaveQuitBtn.Text = "Save and Quit";
+            this.SaveQuitBtn.UseVisualStyleBackColor = false;
+            this.SaveQuitBtn.Click += new System.EventHandler(this.SaveQuitBtn_Click);
+            // 
             // FlushCreateBtn
             // 
             this.FlushCreateBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.FlushCreateBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.FlushCreateBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FlushCreateBtn.Location = new System.Drawing.Point(552, 28);
+            this.FlushCreateBtn.Location = new System.Drawing.Point(625, 28);
             this.FlushCreateBtn.Name = "FlushCreateBtn";
             this.FlushCreateBtn.Size = new System.Drawing.Size(110, 25);
             this.FlushCreateBtn.TabIndex = 64;
@@ -295,7 +304,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.button2.Location = new System.Drawing.Point(459, 72);
+            this.button2.Location = new System.Drawing.Point(462, 85);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(30, 25);
             this.button2.TabIndex = 63;
@@ -310,7 +319,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSale.FlatAppearance.BorderSize = 0;
             this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSale.Location = new System.Drawing.Point(213, 93);
+            this.OpenSale.Location = new System.Drawing.Point(213, 114);
             this.OpenSale.Name = "OpenSale";
             this.OpenSale.Size = new System.Drawing.Size(30, 25);
             this.OpenSale.TabIndex = 62;
@@ -322,7 +331,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBox1.Location = new System.Drawing.Point(6, 28);
+            this.textBox1.Location = new System.Drawing.Point(6, 32);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 23);
             this.textBox1.TabIndex = 61;
@@ -333,30 +342,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(6, 10);
+            this.label3.Location = new System.Drawing.Point(6, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 15);
             this.label3.TabIndex = 60;
             this.label3.Text = "Supplier Invoice Code";
-            // 
-            // SaleBKLbl
-            // 
-            this.SaleBKLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaleBKLbl.AutoSize = true;
-            this.SaleBKLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaleBKLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaleBKLbl.Location = new System.Drawing.Point(6, 54);
-            this.SaleBKLbl.Name = "SaleBKLbl";
-            this.SaleBKLbl.Size = new System.Drawing.Size(127, 15);
-            this.SaleBKLbl.TabIndex = 51;
-            this.SaleBKLbl.Text = "Sale Booking Number*";
             // 
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(6, 141);
+            this.button1.Location = new System.Drawing.Point(469, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 25);
             this.button1.TabIndex = 59;
@@ -368,10 +365,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(251, 72);
+            this.NameCmbxUC.Location = new System.Drawing.Point(254, 72);
             this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.NameCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
             this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.NameCmbxUC.Size = new System.Drawing.Size(200, 47);
             this.NameCmbxUC.TabIndex = 57;
             // 
             // DateLbl
@@ -379,23 +377,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.DateLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DateLbl.AutoSize = true;
             this.DateLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateLbl.Location = new System.Drawing.Point(251, 98);
+            this.DateLbl.Location = new System.Drawing.Point(251, 119);
             this.DateLbl.Name = "DateLbl";
             this.DateLbl.Size = new System.Drawing.Size(31, 15);
             this.DateLbl.TabIndex = 22;
             this.DateLbl.Text = "Date";
-            // 
-            // SupplierNameLbl
-            // 
-            this.SupplierNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierNameLbl.AutoSize = true;
-            this.SupplierNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SupplierNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierNameLbl.Location = new System.Drawing.Point(251, 54);
-            this.SupplierNameLbl.Name = "SupplierNameLbl";
-            this.SupplierNameLbl.Size = new System.Drawing.Size(90, 15);
-            this.SupplierNameLbl.TabIndex = 55;
-            this.SupplierNameLbl.Text = "Supplier Name*";
             // 
             // label1
             // 
@@ -414,23 +400,25 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.BoLCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BoLCmbxUC.listItemsDropCmbx = null;
-            this.BoLCmbxUC.Location = new System.Drawing.Point(6, 112);
+            this.BoLCmbxUC.Location = new System.Drawing.Point(6, 125);
             this.BoLCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.BoLCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
             this.BoLCmbxUC.Name = "BoLCmbxUC";
-            this.BoLCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.BoLCmbxUC.Size = new System.Drawing.Size(200, 47);
             this.BoLCmbxUC.TabIndex = 54;
             // 
             // comboBox1
             // 
             this.comboBox1.AllowDrop = true;
             this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Approved",
             "Unapproved"});
-            this.comboBox1.Location = new System.Drawing.Point(251, 28);
+            this.comboBox1.Location = new System.Drawing.Point(254, 32);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(200, 23);
             this.comboBox1.TabIndex = 49;
@@ -442,8 +430,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.BKCmbxUC.listItemsDropCmbx = null;
             this.BKCmbxUC.Location = new System.Drawing.Point(6, 72);
             this.BKCmbxUC.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.BKCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
             this.BKCmbxUC.Name = "BKCmbxUC";
-            this.BKCmbxUC.Size = new System.Drawing.Size(200, 23);
+            this.BKCmbxUC.Size = new System.Drawing.Size(200, 47);
             this.BKCmbxUC.TabIndex = 53;
             // 
             // label2
@@ -457,19 +446,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.Size = new System.Drawing.Size(107, 15);
             this.label2.TabIndex = 52;
             this.label2.Text = "Sale Bill Of Lading*";
-            // 
-            // SaveQuitBtn
-            // 
-            this.SaveQuitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveQuitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveQuitBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveQuitBtn.Location = new System.Drawing.Point(552, 110);
-            this.SaveQuitBtn.Name = "SaveQuitBtn";
-            this.SaveQuitBtn.Size = new System.Drawing.Size(110, 25);
-            this.SaveQuitBtn.TabIndex = 65;
-            this.SaveQuitBtn.Text = "Save and Quit";
-            this.SaveQuitBtn.UseVisualStyleBackColor = false;
-            this.SaveQuitBtn.Click += new System.EventHandler(this.SaveQuitBtn_Click);
             // 
             // CreateDetailsSupplierInvoiceForm
             // 
@@ -507,11 +483,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel5;
         private Label DateLbl;
         private control.DropDownMenuAutoCompleteUserControl NameCmbxUC;
-        private Label SupplierNameLbl;
         private control.DropDownMenuAutoCompleteUserControl BoLCmbxUC;
         private control.DropDownMenuAutoCompleteUserControl BKCmbxUC;
         private Label label2;
-        private Label SaleBKLbl;
         private ComboBox comboBox1;
         private Label label1;
         private Panel panel6;
