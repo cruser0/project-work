@@ -38,7 +38,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierInvoiceService = new SupplierInvoiceService();
             _customerService = new CustomerService();
             InitializeComponent();
-            NameCmbxUC.Cmbx.SetPropName("CustomerName");
+            NameCmbxUC.Cmbx.SetTiltes("CustomerName");
             if (id != null)
             {
                 _saleId = (int)id;

@@ -21,7 +21,7 @@ namespace WinformDotNetFramework.Forms.control
             PropTxt.Tag = PropLbl;
             PropLbl.Tag = Errorlbl;
         }
-        public void SetPropName(string name)
+        public void SetTiltes(string name)
         {
             _name = name;
             PropTxt.PropName = _name;
