@@ -38,7 +38,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierInvoiceService = new SupplierInvoiceService();
             _customerService = new CustomerService();
             InitializeComponent();
-            NameCmbxUC.Cmbx.SetTiltes("CustomerName");
+            StatusCmbx.SelectedIndex = 0;
+            NameCmbxUC.Cmbx.SetTiltes("Customer");
             if (id != null)
             {
                 _saleId = (int)id;
@@ -206,6 +207,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async Task UpdateClick(bool quit = false)
         {
+            NameCmbxUC.Cmbx.SetBorderColorBlack();
+            bool exit = false;
             string name = NameCmbxUC.Cmbx.PropTxt.Text;
             string country = "";
 
@@ -217,13 +220,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                 name = name.Substring(0, lastIndex);
             }
-
-
-            int customerId = (int)(await _customerService.GetAll(new CustomerFilter()
+            int customerId = -1;
+            try
             {
-                CustomerName = name,
-                CustomerCountry = country
-            })).FirstOrDefault().CustomerId;
+                if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(name))
+                    throw new Exception();
+                customerId = (int)(await _customerService.GetAll(new CustomerFilter()
+                {
+                    CustomerName = name,
+                    CustomerCountry = country
+                })).FirstOrDefault().CustomerId;
+            }catch (Exception) {NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
             SaleDTOGet sale = new SaleDTOGet
             {
@@ -239,15 +246,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var result = ValidatorEntity.Validate(sale);
                 if (result.Any())
                 {
-                    string err = "";
-                    foreach (var item in result)
-                    {
-                        err += item.ErrorMessage + "\n";
-                    }
-                    MessageBox.Show(err);
                     return;
                 }
-
+                if (exit)
+                    return;
                 await _saleService.Update(_saleId, sale);
                 MessageBox.Show("Sale updated successfully!");
                 if (quit) Close();
@@ -257,6 +259,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async Task CreateClick(bool quit = false)
         {
+            NameCmbxUC.Cmbx.SetBorderColorBlack();
+            bool exit = false;
             try
             {
                 if (!saleDateDtp.Checked)
@@ -277,13 +281,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
                         name = name.Substring(0, lastIndex);
                     }
-
-
-                    int customerId = (int)(await _customerService.GetAll(new CustomerFilter()
+                    int customerId = -1;
+                    try
                     {
-                        CustomerName = name,
-                        CustomerCountry = country
-                    })).FirstOrDefault().CustomerId;
+                        if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(name))
+                            throw new Exception();
+                        customerId = (int)(await _customerService.GetAll(new CustomerFilter()
+                        {
+                            CustomerName = name,
+                            CustomerCountry = country
+                        })).FirstOrDefault().CustomerId;
+                    }
+                    catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
                     _id = customerId;
                 }
@@ -300,16 +309,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var result = ValidatorEntity.Validate(sale1);
                 if (result.Any())
                 {
-                    string err = "";
-                    foreach (var item in result)
-                    {
-                        err += item.ErrorMessage + "\n";
-                    }
-                    MessageBox.Show(err);
                     return;
                 }
 
-
+                if (exit)
+                    return;
                 SaleDTOGet saleReturn = await _saleService.Create(sale1);
                 _saleId = (int)saleReturn.SaleId;
                 MessageBox.Show("Sale Created successfully!");
@@ -326,13 +330,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void saveBtn_Click(object sender, EventArgs e)
         {
-            if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
-                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text) ||
-                string.IsNullOrEmpty(StatusCmbx.Text))
-            {
-                MessageBox.Show("Every field must be filled");
-                return;
-            }
             if (detailsOnly)
             {
                 await UpdateClick();
@@ -345,13 +342,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveQuitButton_Click(object sender, EventArgs e)
         {
-            if (boltxt.TextLength < 1 || bntxt.TextLength < 1 ||
-                !saleDateDtp.Checked || string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text) ||
-                string.IsNullOrEmpty(StatusCmbx.Text))
-            {
-                MessageBox.Show("Every field must be filled");
-                return;
-            }
+
             if (detailsOnly)
             {
                 await UpdateClick(true);

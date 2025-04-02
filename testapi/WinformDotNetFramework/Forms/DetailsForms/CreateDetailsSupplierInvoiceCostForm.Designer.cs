@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace WinformDotNetFramework.Forms.DetailsForms
+﻿namespace WinformDotNetFramework.Forms.DetailsForms
 {
     partial class CreateDetailsSupplierInvoiceCostForm
     {
@@ -91,7 +89,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveQuitButton.Location = new System.Drawing.Point(526, 292);
+            this.SaveQuitButton.Location = new System.Drawing.Point(498, 292);
             this.SaveQuitButton.Name = "SaveQuitButton";
             this.SaveQuitButton.Size = new System.Drawing.Size(98, 23);
             this.SaveQuitButton.TabIndex = 45;
@@ -105,7 +103,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.checkBox1.Location = new System.Drawing.Point(578, 238);
+            this.checkBox1.Location = new System.Drawing.Point(498, 238);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(46, 19);
             this.checkBox1.TabIndex = 43;
@@ -135,6 +133,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CostRegistryCmbx.Name = "CostRegistryCmbx";
             this.CostRegistryCmbx.Size = new System.Drawing.Size(196, 21);
             this.CostRegistryCmbx.TabIndex = 40;
+            this.CostRegistryCmbx.SelectedIndexChanged += new System.EventHandler(this.CostRegistryCmbx_SelectedIndexChanged);
             // 
             // SaveBtn
             // 
@@ -143,13 +142,35 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveBtn.Location = new System.Drawing.Point(526, 263);
+            this.SaveBtn.Location = new System.Drawing.Point(498, 263);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(98, 23);
             this.SaveBtn.TabIndex = 25;
             this.SaveBtn.Text = "Save Cost";
             this.SaveBtn.UseVisualStyleBackColor = false;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            // 
+            this.SupplierIDLbl.AllowDrop = true;
+            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierIDLbl.AutoSize = true;
+            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierIDLbl.Location = new System.Drawing.Point(289, 140);
+            this.SupplierIDLbl.Name = "SupplierIDLbl";
+            this.SupplierIDLbl.Size = new System.Drawing.Size(31, 15);
+            this.SupplierIDLbl.TabIndex = 23;
+            this.SupplierIDLbl.Text = "Cost";
+            // 
+            this.SupplierIDLbl.AllowDrop = true;
+            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierIDLbl.AutoSize = true;
+            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SupplierIDLbl.Location = new System.Drawing.Point(289, 140);
+            this.SupplierIDLbl.Name = "SupplierIDLbl";
+            this.SupplierIDLbl.Size = new System.Drawing.Size(31, 15);
+            this.SupplierIDLbl.TabIndex = 23;
+            this.SupplierIDLbl.Text = "Cost";
             // 
             // OpenSupplierInvoice
             // 
@@ -158,7 +179,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSupplierInvoice.FlatAppearance.BorderSize = 0;
             this.OpenSupplierInvoice.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSupplierInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSupplierInvoice.Location = new System.Drawing.Point(472, 112);
+            this.OpenSupplierInvoice.Location = new System.Drawing.Point(471, 76);
             this.OpenSupplierInvoice.Name = "OpenSupplierInvoice";
             this.OpenSupplierInvoice.Size = new System.Drawing.Size(55, 25);
             this.OpenSupplierInvoice.TabIndex = 29;
@@ -180,28 +201,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 17);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(17, 427);
-            this.panel3.TabIndex = 38;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 17);
-            this.panel2.TabIndex = 37;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 444);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(784, 17);
-            this.panel5.TabIndex = 40;
-            // 
             // NameCtb
             // 
             this.NameCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -242,6 +241,28 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CostCtb.Size = new System.Drawing.Size(200, 47);
             this.CostCtb.TabIndex = 48;
             this.CostCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            // 
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(17, 427);
+            this.panel3.TabIndex = 38;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(784, 17);
+            this.panel2.TabIndex = 37;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 444);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(784, 17);
+            this.panel5.TabIndex = 40;
             // 
             // CreateDetailsSupplierInvoiceCostForm
             // 
