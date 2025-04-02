@@ -113,7 +113,7 @@ namespace WinformDotNetFramework.Forms
             SaleShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleRead", "SaleWrite", "SaleAdmin" });
             SaleCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin", "SaleWrite", "SaleAdmin" });
 
-            Form1ShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
+            UserShowTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
             UserCreateTS.Visible = UtilityFunctions.IsAuthorized(new HashSet<string>() { "Admin" });
 
             CustomerGroupTS.Visible = UtilityFunctions.IsAuthorized(ReadRoles, requireAll: true) ||
@@ -203,26 +203,18 @@ namespace WinformDotNetFramework.Forms
 
             switch (formName)
             {
-                case "Show Test TextBox1":
-                    child = new Form1();
-                    break;
-
-                case "Show Test TextBox2":
-                    child = new Form2();
-                    break;
-
                 case "TS UserProfile":
                     child = new UserProfileForm();
                     break;
 
                 case "Report Customer Invoice":
-                    //child = new AllChartTest();
-                    //child = new testChart();
                     child = new CustomerInvoiceReportForm();
                     break;
+
                 case "Report Supplier Invoice":
                     child = new SupplierInvoiceReportForm();
                     break;
+
                 case "Report Sale":
                     child = new SaleReportForm();
                     break;
@@ -622,7 +614,7 @@ namespace WinformDotNetFramework.Forms
                     { "Show Supplier", SupplierShowTS },
                     { "Show Supplier Invoice", SupplierInvoiceShowTS },
                     { "Show Sale", SaleShowTS },
-                    { "Show User", Form1ShowTS },
+                    { "Show User", UserShowTS },
                     { "Report Customer Invoice",CustomerInvoiceReportTS },
                     { "Report Supplier Invoice",SupplierInvoiceReportTS },
                     { "Report Sale",SaleReportTS },
