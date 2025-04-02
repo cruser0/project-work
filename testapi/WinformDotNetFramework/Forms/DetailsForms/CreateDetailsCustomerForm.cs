@@ -176,7 +176,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             CustomerDTOGet customer = new CustomerDTOGet()
             {
                 CustomerName = NameCustomerCtb.PropTxt.Text,
-                Country = CountryCmbx.Text
+                Country = CountryCmbx.Text,
+                Deprecated = false
             };
 
             customer.IsPost = true;
