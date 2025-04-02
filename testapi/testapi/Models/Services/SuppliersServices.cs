@@ -24,8 +24,8 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ISupplierInvoiceService _supplierInvoiceService;
-        private readonly CountryService _countryService;
-        public SupplierService(Progetto_FormativoContext ctx, ISupplierInvoiceService supplierInvoiceService, CountryService countryService)
+        private readonly ICountryService _countryService;
+        public SupplierService(Progetto_FormativoContext ctx, ISupplierInvoiceService supplierInvoiceService, ICountryService countryService)
         {
             _context = ctx;
             _supplierInvoiceService = supplierInvoiceService;
@@ -94,7 +94,7 @@ namespace API.Models.Services
         }
 
         public async Task<SupplierDTOGet> CreateSupplier(Supplier supplier)
-        {           
+        {
 
             if (supplier.Deprecated != null)
                 if ((bool)supplier.Deprecated)

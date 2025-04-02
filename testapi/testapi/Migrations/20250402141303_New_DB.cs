@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -1231,6 +1230,8 @@ namespace API.Migrations
                 column: "Email",
                 unique: true,
                 filter: "[Email] IS NOT NULL");
+
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1315,6 +1316,8 @@ namespace API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Country");
+
+
         }
     }
 }

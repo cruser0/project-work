@@ -23,8 +23,8 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ISalesService _sService;
-        private readonly CountryService _countryService;
-        public CustomerServices(Progetto_FormativoContext ctx, ISalesService SaleService, CountryService cs)
+        private readonly ICountryService _countryService;
+        public CustomerServices(Progetto_FormativoContext ctx, ISalesService SaleService, ICountryService cs)
         {
             _context = ctx;
             _sService = SaleService;

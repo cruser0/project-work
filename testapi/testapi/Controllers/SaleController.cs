@@ -16,8 +16,8 @@ namespace API.Controllers
     public class SaleController : ControllerBase
     {
         private readonly ISalesService _saleService;
-        private readonly StatusService _statusService;
-        public SaleController(ISalesService saleService, StatusService statusService)
+        private readonly IStatusService _statusService;
+        public SaleController(ISalesService saleService, IStatusService statusService)
         {
             _saleService = saleService;
             _statusService = statusService;
@@ -60,7 +60,7 @@ namespace API.Controllers
         public async Task<IActionResult> Post(SaleDTO sale)
         {
             sale.IsPost = true;
-            var result =ValidatorEntity.Validate(sale);
+            var result = ValidatorEntity.Validate(sale);
             if (result.Any())
             {
                 throw new ValidateException(result.First().ToString());

@@ -9,9 +9,9 @@ namespace API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly ValueServices _valueServices;
+        private readonly IValueServices _valueServices;
 
-        public ValuesController(ValueServices valueServices)
+        public ValuesController(IValueServices valueServices)
         {
             _valueServices = valueServices;
         }

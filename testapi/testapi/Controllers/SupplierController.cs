@@ -16,8 +16,8 @@ namespace API.Controllers
     public class SupplierController : ControllerBase
     {
         private readonly ISupplierService _supplierService;
-        private readonly CountryService _countryService;
-        public SupplierController(ISupplierService supplierService, CountryService countryService)
+        private readonly ICountryService _countryService;
+        public SupplierController(ISupplierService supplierService, ICountryService countryService)
         {
             _supplierService = supplierService;
             _countryService = countryService;

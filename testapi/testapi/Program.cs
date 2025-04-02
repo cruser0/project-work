@@ -21,8 +21,8 @@ builder.Services.AddDbContext<Progetto_FormativoContext>(options =>
 
 builder.Services.AddTransient<GlobalExceptionHandler>();
 builder.Services.AddScoped<ICustomerService, CustomerServices>();
-builder.Services.AddScoped<CountryService>();
-builder.Services.AddScoped<StatusService>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<ICostRegistryService, CostRegistryService>();
 builder.Services.AddScoped<ICustomerInvoicesService, CustomerInvoicesServices>();
 builder.Services.AddScoped<ISalesService, SaleServices>();
@@ -30,8 +30,8 @@ builder.Services.AddScoped<ISupplierInvoiceCostService, SupplierInvoiceCostServi
 builder.Services.AddScoped<ICustomerInvoiceCostService, CustomerInvoiceCostService>();
 builder.Services.AddScoped<ISupplierInvoiceService, SupplierInvoiceService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
-builder.Services.AddScoped<ValueServices>();
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IValueServices, ValueServices>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ProcedureService>();
 builder.Services.AddAuthentication(options =>
 {

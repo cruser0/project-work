@@ -27,9 +27,9 @@ namespace API.Models.Services
         private readonly Progetto_FormativoContext _context;
         private readonly ICustomerInvoicesService _ciService;
         private readonly ISupplierInvoiceService _siService;
-        private readonly StatusService _statusService;
+        private readonly IStatusService _statusService;
         List<string> statusList = new() { "active", "closed" };
-        public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIservice, ISupplierInvoiceService SIservice, StatusService statusService)
+        public SaleServices(Progetto_FormativoContext ctx, ICustomerInvoicesService CIservice, ISupplierInvoiceService SIservice, IStatusService statusService)
         {
             _context = ctx;
             _ciService = CIservice;

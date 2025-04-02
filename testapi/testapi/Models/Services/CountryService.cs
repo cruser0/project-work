@@ -4,7 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
-    public class CountryService
+    public interface ICountryService
+    {
+        Task<Country?> GetCountryByName(string? name);
+        Task<List<CountryDTOGet>> GetAllCountry();
+    }
+    public class CountryService : ICountryService
     {
         private readonly Progetto_FormativoContext _context;
         public CountryService(Progetto_FormativoContext ctx)

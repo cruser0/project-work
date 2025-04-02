@@ -25,10 +25,10 @@ namespace API.Models.Services
     public class CustomerInvoicesServices : ICustomerInvoicesService
     {
         private readonly Progetto_FormativoContext _context;
-        private readonly StatusService _statusService;
+        private readonly IStatusService _statusService;
 
         List<string> statusList = new() { "paid", "unpaid" };
-        public CustomerInvoicesServices(Progetto_FormativoContext ctx, StatusService ss)
+        public CustomerInvoicesServices(Progetto_FormativoContext ctx, IStatusService ss)
         {
             _context = ctx;
             _statusService = ss;

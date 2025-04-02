@@ -13,8 +13,8 @@ namespace API.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly UserService _authenticationService;
-        public AuthenticationController(UserService auth)
+        private readonly IUserService _authenticationService;
+        public AuthenticationController(IUserService auth)
         {
             _authenticationService = auth;
         }

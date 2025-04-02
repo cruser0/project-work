@@ -3,7 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
-    public class StatusService
+    public interface IStatusService
+    {
+        Task<Status?> GetStatusByName(string? name);
+    }
+    public class StatusService : IStatusService
     {
         private readonly Progetto_FormativoContext _context;
         public StatusService(Progetto_FormativoContext ctx)

@@ -10,8 +10,8 @@ namespace API.Controllers
     [ApiController]
     public class PreferenceController : ControllerBase
     {
-        private readonly UserService _userService;
-        public PreferenceController(UserService us)
+        private readonly IUserService _userService;
+        public PreferenceController(IUserService us)
         {
             _userService = us;
         }

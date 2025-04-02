@@ -20,8 +20,8 @@ namespace API.Controllers
     {
 
         private readonly ICustomerService _customerService;
-        private readonly CountryService _countryService;
-        public CustomerController(ICustomerService customerService, CountryService countryService)
+        private readonly ICountryService _countryService;
+        public CustomerController(ICustomerService customerService, ICountryService countryService)
         {
             _customerService = customerService;
             _countryService = countryService;

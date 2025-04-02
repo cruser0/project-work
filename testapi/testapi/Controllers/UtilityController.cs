@@ -10,8 +10,8 @@ namespace API.Controllers
     public class UtilityController : ControllerBase
     {
         private readonly ICostRegistryService _costRegistryService;
-        private readonly CountryService _countryService;
-        public UtilityController(ICostRegistryService crs, CountryService cs)
+        private readonly ICountryService _countryService;
+        public UtilityController(ICostRegistryService crs, ICountryService cs)
         {
             _costRegistryService = crs;
             _countryService = cs;

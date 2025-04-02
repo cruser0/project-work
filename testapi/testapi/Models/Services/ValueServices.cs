@@ -1,5 +1,4 @@
-﻿
-using API.Models.Exceptions;
+﻿using API.Models.Exceptions;
 
 using API.Models.Mapper;
 using Entity_Validator.Entity.DTO;
@@ -8,9 +7,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Models.Services
 {
+    public interface IValueServices
+    {
+        Task<CustomerGroupDTO> GetCustomerInvoiceCosts(CustomerInvoiceCostFilter? costFilter,
+                                               CustomerInvoiceFilter? invoiceFilter,
+                                               SaleCustomerFilter? saleFilter,
+                                               CustomerFilter? customerFilter);
+        Task<SupplierGroupDTO> GetSupplierInvoiceCosts(SupplierInvoiceCostFilter? costFilter,
+                                                SupplierInvoiceFilter? invoiceFilter,
+                                                SupplierFilter? supplierFilter);
 
+    }
 
-    public class ValueServices
+    public class ValueServices : IValueServices
     {
         private readonly Progetto_FormativoContext _context;
         private readonly int itemsPerPage;

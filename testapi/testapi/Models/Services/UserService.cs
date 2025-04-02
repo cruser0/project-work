@@ -13,7 +13,79 @@ using System.Text;
 
 namespace API.Models.Services
 {
-    public class UserService
+
+    public interface IUserService
+    {
+        // Authentication and password methods
+        void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
+        bool VeryfyPasswordHash(string password, byte[] hash, byte[] salt);
+        string CreateToken(UserRoleDTO user);
+        Task<RefreshToken> GetRefreshTokenByrefTokenString(string refToken);
+        Task<RefreshToken> GenerateRefreshToken(int userID);
+        Task<RefreshToken> GetNewerRefreshToken(RefreshTokenDTO refTk);
+
+        // User management methods
+        Task<List<UserRole>> GetAllRolesByUserID(int id);
+        Task EditRoles(int? id, List<string> roles);
+        Task EditUser(int id, UserDTOEdit updateUser);
+        Task DeleteUser(int id);
+        Task<string> MassDeleteUser(List<int> userId);
+        Task<string> MassUpdateUser(List<UserDTOGet> newUsers);
+        Task<User> GetUserByEmail(string email);
+        Task<User> GetUserByID(int id);
+        Task<UserRoleDTO> GetUserRoleDTOByID(int id);
+        Task<ICollection<UserRoleDTO>> GetAllUsers(UserFilter filter);
+        Task<int> CountUsers(UserFilter filter);
+        Task<Role> GetRole(string role);
+        Task<User> CreateUser(UserDTOCreate user);
+
+        // Preference methods - CustomerDGV
+        Task<CustomerDGV> GetCustomerDGV(int userId);
+        Task<CustomerDGV> CreateUpdateCustomerDGV(CustomerDGV cdgv);
+
+        // Preference methods - CostRegistryDGV
+        Task<CostRegistryDGV> CreateUpdateCostRegistryDGV(CostRegistryDGV value);
+        Task<CostRegistryDGV> GetCostRegistryDGV(int id);
+
+        // Preference methods - CustomerInvoiceDGV
+        Task<CustomerInvoiceDGV> GetCustomerInvoiceDGV(int userId);
+        Task<CustomerInvoiceDGV> CreateUpdateCustomerInvoiceDGV(CustomerInvoiceDGV cdgv);
+
+        // Preference methods - CustomerInvoiceCostDGV
+        Task<CustomerInvoiceCostDGV> GetCustomerInvoiceCostDGV(int userId);
+        Task<CustomerInvoiceCostDGV> CreateUpdateCustomerInvoiceCostDGV(CustomerInvoiceCostDGV cdgv);
+
+        // Preference methods - SupplierDGV
+        Task<SupplierDGV> GetSupplierDGV(int userId);
+        Task<SupplierDGV> CreateUpdateSupplierDGV(SupplierDGV cdgv);
+
+        // Preference methods - SupplierInvoiceDGV
+        Task<SupplierInvoiceDGV> GetSupplierInvoiceDGV(int userId);
+        Task<SupplierInvoiceDGV> CreateUpdateSupplierInvoiceDGV(SupplierInvoiceDGV cdgv);
+
+        // Preference methods - SupplierInvoiceCostDGV
+        Task<SupplierInvoiceCostDGV> GetSupplierInvoiceCostDGV(int userId);
+        Task<SupplierInvoiceCostDGV> CreateUpdateSupplierInvoiceCostDGV(SupplierInvoiceCostDGV cdgv);
+
+        // Preference methods - SaleDGV
+        Task<SaleDGV> GetSaleDGV(int userId);
+        Task<SaleDGV> CreateUpdateSaleDGV(SaleDGV cdgv);
+
+        // Preference methods - UserDGV
+        Task<UserDGV> GetUserDGV(int userId);
+        Task<UserDGV> CreateUpdateUserDGV(UserDGV cdgv);
+
+        // Favorite pages methods
+        Task<FavouritePages> GetFavouritePages(string name);
+        Task<FavouritePages> GetFavouritePagesByID(int id);
+        Task<List<string>> GetUserPreferredPages(int userID);
+        Task CreateFavouritePages(string name);
+        Task AddFavouritePagesToUser(List<string> pageName, int userID);
+        Task RemoveFavouritePagesToUser(List<string> pageName, int userID);
+    }
+
+
+    public class UserService : IUserService
     {
         private readonly IConfiguration _configuration;
         private readonly Progetto_FormativoContext _context;
@@ -69,7 +141,7 @@ namespace API.Models.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        internal async Task<RefreshToken> GetRefreshTokenByrefTokenString(string refToken)
+        public async Task<RefreshToken> GetRefreshTokenByrefTokenString(string refToken)
         {
             RefreshToken dbRefToken = await _context.RefreshTokens.Where(x => x.Token.Equals(refToken)).FirstOrDefaultAsync();
             if (dbRefToken == null)
@@ -149,7 +221,7 @@ namespace API.Models.Services
         }
 
 
-        internal async Task EditUser(int id, UserDTOEdit updateUser)
+        public async Task EditUser(int id, UserDTOEdit updateUser)
         {
             User user = await GetUserByID(id);
             user.Name = !string.IsNullOrEmpty(updateUser.Name) ? updateUser.Name : user.Name;
@@ -166,7 +238,7 @@ namespace API.Models.Services
 
         }
 
-        internal async Task DeleteUser(int id)
+        public async Task DeleteUser(int id)
         {
             var rolesList = await GetAllRolesByUserID(id);
             if (!_context.Users.Any(x => x.UserID == id))
@@ -180,7 +252,7 @@ namespace API.Models.Services
             await _context.SaveChangesAsync();
         }
 
-        internal async Task<string> MassDeleteUser(List<int> userId)
+        public async Task<string> MassDeleteUser(List<int> userId)
         {
             int count = 0;
             foreach (int id in userId)
@@ -200,7 +272,7 @@ namespace API.Models.Services
             return $"{count} Users were deleted out of {userId.Count}";
         }
 
-        internal async Task<string> MassUpdateUser(List<UserDTOGet> newUsers)
+        public async Task<string> MassUpdateUser(List<UserDTOGet> newUsers)
         {
             int count = 0;
             foreach (UserDTOGet updateUser in newUsers)

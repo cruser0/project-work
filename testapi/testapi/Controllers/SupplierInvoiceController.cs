@@ -17,8 +17,8 @@ namespace API.Controllers
     {
         private readonly ISupplierInvoiceService _supplierInvoiceService;
         private readonly ISalesService _saleService;
-        private readonly StatusService _statusService;
-        public SupplierInvoiceController(ISupplierInvoiceService supplierInvoiceService, StatusService statusService, ISalesService saleServ)
+        private readonly IStatusService _statusService;
+        public SupplierInvoiceController(ISupplierInvoiceService supplierInvoiceService, IStatusService statusService, ISalesService saleServ)
         {
             _supplierInvoiceService = supplierInvoiceService;
             _statusService = statusService;

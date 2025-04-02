@@ -28,8 +28,8 @@ namespace API.Models.Services
     {
         private readonly Progetto_FormativoContext _context;
         private readonly ISupplierInvoiceCostService _serviceCost;
-        private readonly StatusService _statusService;
-        public SupplierInvoiceService(Progetto_FormativoContext ctx, ISupplierInvoiceCostService serviceCost, StatusService statusService)
+        private readonly IStatusService _statusService;
+        public SupplierInvoiceService(Progetto_FormativoContext ctx, ISupplierInvoiceCostService serviceCost, IStatusService statusService)
         {
             _context = ctx;
             _serviceCost = serviceCost;
@@ -161,9 +161,9 @@ namespace API.Models.Services
             string code;
             while (true)
             {
-                code ="SINV-"+Guid.NewGuid().ToString("N").Substring(0, 20);
-                if(!await _context.SupplierInvoices.AnyAsync(x=>x.SupplierInvoiceCode.Equals(code)))
-                        break;
+                code = "SINV-" + Guid.NewGuid().ToString("N").Substring(0, 20);
+                if (!await _context.SupplierInvoices.AnyAsync(x => x.SupplierInvoiceCode.Equals(code)))
+                    break;
             }
             supplierInvoice.SupplierInvoiceCode = code;
 
