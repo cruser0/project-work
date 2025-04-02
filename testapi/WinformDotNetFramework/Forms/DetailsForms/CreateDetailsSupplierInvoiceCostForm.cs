@@ -1,7 +1,13 @@
-﻿using System;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WinformDotNetFramework.Forms.GridForms;
+using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
 {
@@ -152,9 +158,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void SetTxtByRC()
         {
             cr = list.FirstOrDefault(x => x.CostRegistryUniqueCode.Equals(CostRegistryCmbx.Text));
-            NameTxt.Text = cr.CostRegistryName;
-            QuantityIntegerTxt.SetText(cr.CostRegistryQuantity.ToString());
-            CostIntegerTxt.SetText(cr.CostRegistryPrice.ToString());
+            NameCtb.PropTxt.Text = cr.CostRegistryName;
+            QuantityCtb.PropTxt.Text = cr.CostRegistryQuantity.ToString();
+            CostCtb.PropTxt.Text = cr.CostRegistryPrice.ToString();
         }
         public void SetSupplierID(string idSup)
         {

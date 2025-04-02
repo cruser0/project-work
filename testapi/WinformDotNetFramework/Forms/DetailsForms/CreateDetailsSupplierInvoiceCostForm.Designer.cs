@@ -1,4 +1,6 @@
-﻿namespace WinformDotNetFramework.Forms.DetailsForms
+﻿using System.Windows.Forms;
+
+namespace WinformDotNetFramework.Forms.DetailsForms
 {
     partial class CreateDetailsSupplierInvoiceCostForm
     {
@@ -150,27 +152,6 @@
             this.SaveBtn.UseVisualStyleBackColor = false;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
-            this.SupplierIDLbl.AllowDrop = true;
-            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierIDLbl.AutoSize = true;
-            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierIDLbl.Location = new System.Drawing.Point(289, 140);
-            this.SupplierIDLbl.Name = "SupplierIDLbl";
-            this.SupplierIDLbl.Size = new System.Drawing.Size(31, 15);
-            this.SupplierIDLbl.TabIndex = 23;
-            this.SupplierIDLbl.Text = "Cost";
-            // 
-            this.SupplierIDLbl.AllowDrop = true;
-            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierIDLbl.AutoSize = true;
-            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierIDLbl.Location = new System.Drawing.Point(289, 140);
-            this.SupplierIDLbl.Name = "SupplierIDLbl";
-            this.SupplierIDLbl.Size = new System.Drawing.Size(31, 15);
-            this.SupplierIDLbl.TabIndex = 23;
-            this.SupplierIDLbl.Text = "Cost";
             // 
             // OpenSupplierInvoice
             // 
