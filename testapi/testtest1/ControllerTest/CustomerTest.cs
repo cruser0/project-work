@@ -1,4 +1,5 @@
 using API.Controllers;
+using API.Models.Exceptions;
 using API.Models.Mapper;
 using API.Models.Services;
 using Entity_Validator.Entity.DTO;
@@ -87,162 +88,120 @@ namespace API_Test.ControllerTest
         public async Task GetByID_ReturnBadResult_Customer()
         {
             // Arrange
-            _mockCustomerService.Setup(service => service.GetCustomerById(1)).ReturnsAsync((CustomerDTOGet)null);
-
-            // Act
-            var result = await _customerController.Get(1);
-
-            // Assert
-            var actionResult = Assert.IsType<BadRequestObjectResult>(result);
-            var returnValue = Assert.IsType<string>(actionResult.Value);
-            Assert.Equal("Customer not found!", returnValue);
+            var exception = await Assert.ThrowsAsync<NotFoundException>(
+               () => _customerController.Get(1));
+            Assert.Equal("Customer not found!", exception.Message);
         }
 
 
-        //[Theory]
-        //[InlineData(1, "", "Italy")]
-        //[InlineData(1, "Marco", "")]
-        //[InlineData(1, "", "")]
-        //public async Task PostCustomer_ReturnBadRequest_Customer_null_data(int id, string name, string country)
-        //{
-        //    // Arrange
-        //    var customerDto = new CustomerDTO { CustomerName = name, Country = country };
-        //    _mockCustomerService
-        //    .Setup(service => service.CreateCustomer(It.IsAny<Customer>()))
-        //    .Throws(new Exception("Data can't be null"));
+        [Theory]
+        [InlineData(1, "", "Italy")]
+        [InlineData(1, "Marco", "")]
+        [InlineData(1, "", "")]
+        public async Task PostCustomer_ReturnBadRequest_Customer_null_data(int id, string name, string country)
+        {
+            // Arrange
+            var customerDto = new CustomerDTO { CustomerName = name, Country = country };
+
+            var exception = await Assert.ThrowsAsync<ValidateException>(
+               () => _customerController.Post(customerDto));
+
+            Assert.Equal("Required.", exception.Message);
+
+        }
+
+        [Fact]
+        public async Task PostCustomer_ReturnOK_Customer()
+        {
+            // Arrange
+            var customerDto = new CustomerDTO { CustomerName = "Pier Paolo Pittavino", Country = "Italy" };
+            var expectedCustomer = new Customer { CustomerID = 1, CustomerName = "Pier Paolo Pittavino", CountryID = 1, Country = new Country() { CountryID = 1, CountryName = "Italy" } };
+
+            _mockCustomerService
+            .Setup(service => service.CreateCustomer(It.IsAny<Customer>()))
+            .ReturnsAsync(CustomerMapper.MapGet(expectedCustomer));
+
+            // Act
+            var result = await _customerController.Post(customerDto);
+
+            // Assert
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<CustomerDTOGet>(actionResult.Value);
+
+            Assert.Equal(expectedCustomer.CustomerID, returnValue.CustomerId);
+        }
+
+        [Fact]
+        public async Task DeleteCustomer_ReturnOK_Customer()
+        {
+            //Arrange
+            Customer customer = new() { CustomerID = 1, CustomerName = "Pier Paolo", CountryID = 1, Country = new Country { CountryID = 1, CountryName = "Italy" } };
+            _mockCustomerService
+                .Setup(service => service.DeleteCustomer(1))
+                .ReturnsAsync(CustomerMapper.MapGet(customer));
 
 
-
-        //    // Act
-        //    var result = _customerController.Post(customerDto);
-
-
-        //    // Assert
-        //    var actionResult = Assert.IsType<BadRequestObjectResult>(result);
-        //    var returnValue = Assert.IsType<string>(actionResult.Value);
-        //    Assert.Equal("Data can't be null", returnValue);
-
-        //}
-
-        //[Fact]
-        //public async Task PostCustomer_ReturnOK_Customer()
-        //{
-        //    // Arrange
-        //    var customerDto = new CustomerDTO { CustomerName = "Pier Paolo Pittavino", Country = "Italy" };
-        //    var expectedCustomer = new Customer { CustomerId = 1, CustomerName = "Pier Paolo Pittavino", Country = "Italy" };
-
-        //    _mockCustomerService
-        //    .Setup(service => service.CreateCustomer(It.IsAny<Customer>()))
-        //    .Returns(CustomerMapper.MapGet(expectedCustomer));
-
-        //    // Act
-        //    var result = _customerController.Post(customerDto);
-
-        //    // Assert
-        //    var actionResult = Assert.IsType<OkObjectResult>(result);
-        //    var returnValue = Assert.IsType<CustomerDTOGet>(actionResult.Value);
-
-        //    Assert.Equal(expectedCustomer.CustomerId, returnValue.CustomerId);
-        //}
-
-        //[Fact]
-        //public async Task PostCustomer_ReturnBadRequest_Customer()
-        //{
+            // Act
+            var result = await _customerController.Delete(1);
 
 
-        //    // Arrange
-        //    _mockCustomerService
-        //    .Setup(service => service.CreateCustomer(null))
-        //    .Throws(new Exception("Couldn't create customer"));
+            // Assert
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<CustomerDTOGet>(actionResult.Value);
+            Assert.NotNull(returnValue);
+            Assert.Equal(customer.CustomerID, returnValue.CustomerId);
+        }
 
-        //    // Act
-        //    var result = _customerController.Post(null);
+        [Fact]
+        public async Task DeleteCustomer_ReturnBadRequest_Customer()
+        {
+            var exception = await Assert.ThrowsAsync<NotFoundException>(
+               () => _customerController.Delete(1));
 
-        //    // Assert
-        //    var actionResult = Assert.IsType<BadRequestObjectResult>(result);
-        //    var returnValue = Assert.IsType<string>(actionResult.Value);
-
-        //    Assert.Equal("Couldn't create customer", returnValue);
-        //}
-
-        //[Fact]
-        //public async Task DeleteCustomer_ReturnOK_Customer()
-        //{
-        //    //Arrange
-        //    Customer customer = new() { CustomerId = 1, CustomerName = "Pier Paolo", Country = "Italy" };
-        //    _mockCustomerService
-        //        .Setup(service => service.DeleteCustomer(1))
-        //        .Returns(CustomerMapper.MapGet(customer));
+            Assert.Equal("Customer not found!", exception.Message);
+        }
 
 
-        //    // Act
-        //    var result = _customerController.Delete(1);
+        [Theory]
+        [InlineData(1, "Marco", "Italy", 1)]
+        [InlineData(1, "", "Italy", 1)]
+        [InlineData(1, "Marco", "", null)]
+        [InlineData(1, "", "", null)]
+        public async Task Put_ReturnOk_Customer(int id, string name, string country, int? countryId)
+        {
+            //Arrange
+            var originalCustomer = new Customer { CustomerID = id, CustomerName = "Luca", CountryID = 2, Country = new Country { CountryName = "Japan", CountryID = 2 } };
+            var updatedCustomer = new Customer { CustomerID = id, CustomerName = name, CountryID = countryId, Country = new Country { CountryName = country, CountryID = (int)countryId } };
 
+            if (string.IsNullOrEmpty(name))
+                updatedCustomer.CustomerName = originalCustomer.CustomerName;
 
-        //    // Assert
-        //    var actionResult = Assert.IsType<OkObjectResult>(result);
-        //    var returnValue = Assert.IsType<CustomerDTOGet>(actionResult.Value);
-        //    Assert.NotNull(returnValue);
-        //    Assert.Equal(customer.CustomerId, returnValue.CustomerId);
-        //}
+            if (string.IsNullOrEmpty(country))
+                updatedCustomer.Country = originalCustomer.Country;
 
-        //[Fact]
-        //public async Task DeleteCustomer_ReturnBadRequest_Customer()
-        //{
-        //    //Arrange
-        //    Customer customer = new() { CustomerId = 1, CustomerName = "Pier Paolo", Country = "Italy" };
-        //    _mockCustomerService
-        //        .Setup(service => service.DeleteCustomer(2))
-        //        .Throws(new Exception("Customer not found!"));
+            _mockCustomerService.Setup(service => service.UpdateCustomer(id, It.IsAny<Customer>()))
+                        .ReturnsAsync(CustomerMapper.MapGet(updatedCustomer));
 
+            // Act
+            var result = await _customerController.Put(id, CustomerMapper.Map(updatedCustomer));
 
-        //    //Act
-        //    var result = _customerController.Delete(2);
+            // Assert
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<CustomerDTOGet>(actionResult.Value);
 
+            if (string.IsNullOrEmpty(name))
+                Assert.Equal(originalCustomer.CustomerName, returnValue.CustomerName);
+            else
+                Assert.Equal(updatedCustomer.CustomerName, returnValue.CustomerName);
 
-        //    //Assert
-        //    var actionResult = Assert.IsType<BadRequestObjectResult>(result);
-        //    var returnValue = Assert.IsType<string>(actionResult.Value);
-        //    Assert.Equal("Customer not found!", returnValue);
-        //}
+            Assert.Equal(id, returnValue.CustomerId);
 
+            if (string.IsNullOrEmpty(country))
+                Assert.Equal(originalCustomer.Country.CountryName, returnValue.Country);
+            else
+                Assert.Equal(updatedCustomer.Country.CountryName, returnValue.Country);
+        }
 
-        //[Theory]
-        //[InlineData(1, "Marco", "Italy")]
-        //[InlineData(1, "", "Italy")]
-        //[InlineData(1, "Marco", "")]
-        //[InlineData(1, "", "")]
-        //public async Task Put_ReturnOk_Customer(int id, string name, string country)
-        //{
-        //    //Arrange
-        //    var originalCustomer = new Customer { CustomerId = id, CustomerName = "Luca", Country = "Japan" };
-        //    var updatedCustomer = new Customer { CustomerId = id, CustomerName = name, Country = country };
-
-        //    if (string.IsNullOrEmpty(name))
-        //        updatedCustomer.CustomerName = originalCustomer.CustomerName;
-
-        //    if (string.IsNullOrEmpty(country))
-        //        updatedCustomer.Country = originalCustomer.Country;
-
-        //    _mockCustomerService.Setup(service => service.UpdateCustomer(id, It.IsAny<Customer>()))
-        //                .Returns(CustomerMapper.MapGet(updatedCustomer));
-
-        //    // Act
-        //    var result = _customerController.Put(id, CustomerMapper.Map(updatedCustomer));
-
-        //    // Assert
-        //    var actionResult = Assert.IsType<OkObjectResult>(result);
-        //    var returnValue = Assert.IsType<CustomerDTOGet>(actionResult.Value);
-        //    if (string.IsNullOrEmpty(name))
-        //        Assert.Equal(originalCustomer.CustomerName, returnValue.CustomerName);
-        //    else
-        //        Assert.Equal(updatedCustomer.CustomerName, returnValue.CustomerName);
-        //    Assert.Equal(id, returnValue.CustomerId);
-        //    if (string.IsNullOrEmpty(country))
-        //        Assert.Equal(originalCustomer.Country, returnValue.Country);
-        //    else
-        //        Assert.Equal(updatedCustomer.Country, returnValue.Country);
-        //}
         //[Fact]
         //public async Task Put_ReutrnBadRequest_Customer()
         //{
