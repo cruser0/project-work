@@ -311,11 +311,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     exit = true;
                 }
 
+                DateTime? selectedDate = DateClnd.Checked ? (DateTime?)DateClnd.Value : null;
+
                 SupplierInvoiceDTOGet si = new SupplierInvoiceDTOGet
                 {
                     SaleId = saleId,
                     Status = comboBox1.Text,
-                    InvoiceDate = DateClnd.Value,
+                    InvoiceDate = selectedDate,
                     SupplierId = supplierId,
                 };
 
@@ -395,9 +397,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             try
             {
+                DateTime? selectedDate = DateClnd.Checked ? (DateTime?)DateClnd.Value : null;
+
                 SupplierInvoiceDTOGet si = new SupplierInvoiceDTOGet
                 {
-                    InvoiceDate = DateClnd.Value,
+                    InvoiceDate = selectedDate,
                     SaleId = saleId,
                     SaleBoL = BoLCmbxUC.Cmbx.PropTxt.Text,
                     SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text,
