@@ -69,7 +69,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _supplierInvoiceCostService = new SupplierInvoiceCostService();
             InitializeComponent();
 
-            SupplierInvoiceCmbxUC.Cmbx.SetTiltes("SupplierInvoiceCode");
+            SupplierInvoiceCmbxUC.Cmbx.SetTiltes("Supplier Invoice Code");
             NameCtb.SetPropName("Name");
             QuantityCtb.SetPropName("Quantity");
             CostCtb.SetPropName("Cost");
