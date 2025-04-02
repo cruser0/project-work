@@ -53,10 +53,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             dataGridView1.DataSource = new CustomerInvoiceCostDTOGet();
             checkBox1.Visible = false;
-            textBox1.Visible = false;
-            label1.Visible = false;
-            InvoiceAmountTxt.Visible = false;
-            label5.Visible = false;
+            CustomerInvoiceCodeCtb.PropTxt.Visible = false;
+            InvoiceAmountCtb.PropTxt.Visible = false;
             StatusCB.Visible = false;
             label4.Visible = false;
             AddCostBtn.Enabled = false;
@@ -65,8 +63,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             customerInvoice = await _customerInvoiceService.GetById(id);
 
-            textBox1.Text = customerInvoice.CustomerInvoiceCode;
-            InvoiceAmountTxt.Text = customerInvoice.InvoiceAmount.ToString();
+            CustomerInvoiceCodeCtb.PropTxt.Text = customerInvoice.CustomerInvoiceCode;
+            InvoiceAmountCtb.PropTxt.Text = customerInvoice.InvoiceAmount.ToString();
 
             UtilityFunctions.SetDropdownText(BKCmbxUC, customerInvoice.SaleBookingNumber);
             UtilityFunctions.SetDropdownText(BoLCmbxUC, customerInvoice.SaleBoL);
@@ -77,8 +75,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             List<CustomerInvoiceCostDTOGet> data = (await _customerInvoiceCostService
                 .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = customerInvoice.CustomerInvoiceCode })).ToList();
             dataGridView1.DataSource = data;
-            InvoiceAmountTxt.Enabled = false;
-            textBox1.Enabled = false;
+            InvoiceAmountCtb.PropTxt.Enabled = false;
+            CustomerInvoiceCodeCtb.PropTxt.Enabled = false;
             StatusCB.Enabled = false;
             BKCmbxUC.Cmbx.Enabled = false;
             BoLCmbxUC.Cmbx.Enabled = false;
@@ -138,8 +136,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             if (!checkBox1.Checked)
             {
-                textBox1.Text = customerInvoice.CustomerInvoiceCode;
-                InvoiceAmountTxt.Text = customerInvoice.InvoiceAmount.ToString();
+                CustomerInvoiceCodeCtb.PropTxt.Text = customerInvoice.CustomerInvoiceCode;
+                InvoiceAmountCtb.PropTxt.Text = customerInvoice.InvoiceAmount.ToString();
 
                 UtilityFunctions.SetDropdownText(BKCmbxUC, customerInvoice.SaleBookingNumber);
                 UtilityFunctions.SetDropdownText(BoLCmbxUC, customerInvoice.SaleBoL);
@@ -155,7 +153,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 .GetAll(new CustomerInvoiceCostFilter() { CustomerInvoiceCostCustomerInvoiceCode = code })).ToList();
             dataGridView1.DataSource = data;
 
-            InvoiceAmountTxt.Text = data.Select(x => x.Quantity * x.Cost).Sum().ToString();
+            InvoiceAmountCtb.PropTxt.Text = data.Select(x => x.Quantity * x.Cost).Sum().ToString();
         }
         public async Task SetList()
         {
@@ -242,12 +240,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var result = ValidatorEntity.Validate(invoice);
                 if (result.Any())
                 {
-                    string err = "";
-                    foreach (var item in result)
-                    {
-                        err += item.ErrorMessage + "\n";
-                    }
-                    MessageBox.Show(err);
+                    UtilityFunctions.ValidateTextBoxes(panel6, invoice);
                     return;
                 }
                 await _customerInvoiceService.Update((int)customerInvoice.CustomerInvoiceId, invoice);
@@ -278,12 +271,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var result = ValidatorEntity.Validate(invoice);
                 if (result.Any())
                 {
-                    string err = "";
-                    foreach (var item in result)
-                    {
-                        err += item.ErrorMessage + "\n";
-                    }
-                    MessageBox.Show(err);
+                    UtilityFunctions.ValidateTextBoxes(panel6, invoice);
                     return;
                 }
                 customerInvoice = await _customerInvoiceService.Create(invoice);
@@ -293,13 +281,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 InitDetails((int)customerInvoice.CustomerInvoiceId);
 
                 AddCostBtn.Enabled = true;
-                label5.Visible = true;
                 checkBox1.Visible = true;
-                textBox1.Visible = true;
-                label1.Visible = true;
+                CustomerInvoiceCodeCtb.PropTxt.Visible = true;
                 StatusCB.Visible = true;
                 label4.Visible = true;
-                InvoiceAmountTxt.Visible = true;
+                InvoiceAmountCtb.PropTxt.Visible = true;
 
 
             }

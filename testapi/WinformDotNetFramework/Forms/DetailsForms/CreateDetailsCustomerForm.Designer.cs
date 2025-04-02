@@ -30,13 +30,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            this.NameCustomerTxt = new System.Windows.Forms.TextBox();
-            this.NameCustomerLbl = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.EditCustomerCbx = new System.Windows.Forms.CheckBox();
             this.CountryCustomerLbl = new System.Windows.Forms.Label();
             this.SaveEditCustomerBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CountryCmbx = new System.Windows.Forms.ComboBox();
@@ -45,32 +44,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.SaveQuitButton = new System.Windows.Forms.Button();
+            this.NameCustomerCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // NameCustomerTxt
-            // 
-            this.NameCustomerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameCustomerTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameCustomerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameCustomerTxt.Location = new System.Drawing.Point(261, 123);
-            this.NameCustomerTxt.Name = "NameCustomerTxt";
-            this.NameCustomerTxt.Size = new System.Drawing.Size(200, 23);
-            this.NameCustomerTxt.TabIndex = 2;
-            // 
-            // NameCustomerLbl
-            // 
-            this.NameCustomerLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameCustomerLbl.AutoSize = true;
-            this.NameCustomerLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameCustomerLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameCustomerLbl.Location = new System.Drawing.Point(261, 105);
-            this.NameCustomerLbl.Name = "NameCustomerLbl";
-            this.NameCustomerLbl.Size = new System.Drawing.Size(39, 15);
-            this.NameCustomerLbl.TabIndex = 5;
-            this.NameCustomerLbl.Text = "Name";
             // 
             // EditCustomerCbx
             // 
@@ -115,13 +92,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.NameCustomerCtb);
             this.panel1.Controls.Add(this.SaveQuitButton);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.CountryCmbx);
             this.panel1.Controls.Add(this.chart1);
-            this.panel1.Controls.Add(this.NameCustomerTxt);
-            this.panel1.Controls.Add(this.NameCustomerLbl);
             this.panel1.Controls.Add(this.CountryCustomerLbl);
             this.panel1.Controls.Add(this.SaveEditCustomerBtn);
             this.panel1.Controls.Add(this.EditCustomerCbx);
@@ -130,6 +106,20 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 24;
+            // 
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveQuitButton.Location = new System.Drawing.Point(369, 359);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(92, 25);
+            this.SaveQuitButton.TabIndex = 31;
+            this.SaveQuitButton.Text = "Save and Quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // comboBox1
             // 
@@ -175,8 +165,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.chart1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chart1.BackColor = System.Drawing.Color.Transparent;
             this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(494, 105);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(250, 250);
@@ -219,19 +209,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(750, 17);
             this.panel5.TabIndex = 28;
             // 
-            // SaveQuitButton
+            // NameCustomerCtb
             // 
-            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveQuitButton.Location = new System.Drawing.Point(369, 359);
-            this.SaveQuitButton.Name = "SaveQuitButton";
-            this.SaveQuitButton.Size = new System.Drawing.Size(92, 25);
-            this.SaveQuitButton.TabIndex = 31;
-            this.SaveQuitButton.Text = "Save and Quit";
-            this.SaveQuitButton.UseVisualStyleBackColor = false;
-            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
+            this.NameCustomerCtb.Location = new System.Drawing.Point(261, 99);
+            this.NameCustomerCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCustomerCtb.Name = "NameCustomerCtb";
+            this.NameCustomerCtb.Size = new System.Drawing.Size(200, 47);
+            this.NameCustomerCtb.TabIndex = 32;
+            this.NameCustomerCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // CreateDetailsCustomerForm
             // 
@@ -254,9 +239,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
 
         #endregion
-
-        private TextBox NameCustomerTxt;
-        private Label NameCustomerLbl;
         private CheckBox EditCustomerCbx;
         private Label CountryCustomerLbl;
         private Button SaveEditCustomerBtn;
@@ -270,5 +252,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private ComboBox comboBox1;
         private Label label1;
         private Button SaveQuitButton;
+        private control.CustomTextBoxUserControl NameCustomerCtb;
     }
 }

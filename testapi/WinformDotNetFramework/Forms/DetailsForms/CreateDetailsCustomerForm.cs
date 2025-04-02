@@ -38,10 +38,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             customer = await _customerService.GetById(intid);
             customerId = intid;
 
-            NameCustomerTxt.Text = customer.CustomerName;
+            NameCustomerCtb.PropTxt.Text = customer.CustomerName;
             CountryCmbx.Text = customer.Country;
             comboBox1.Text = (bool)customer.Deprecated ? "Deprecated" : "Active";
-            NameCustomerTxt.Enabled = false;
+            NameCustomerCtb.PropTxt.Enabled = false;
             CountryCmbx.Enabled = false;
             comboBox1.Enabled = false;
             SaveEditCustomerBtn.Enabled = false;
@@ -52,6 +52,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void Init()
         {
             InitializeComponent();
+            NameCustomerCtb.SetPropName("CustomerName");
             _customerService = new CustomerService();
             _customerInvoiceService = new CustomerInvoiceService();
             CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).Skip(1).ToList();
@@ -117,14 +118,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void EditCustomerCbx_CheckedChanged(object sender, EventArgs e)
         {
 
-            NameCustomerTxt.Enabled = EditCustomerCbx.Checked;
+            NameCustomerCtb.PropTxt.Enabled = EditCustomerCbx.Checked;
             CountryCmbx.Enabled = EditCustomerCbx.Checked;
             comboBox1.Enabled = EditCustomerCbx.Checked;
             SaveEditCustomerBtn.Enabled = EditCustomerCbx.Checked;
 
             if (!EditCustomerCbx.Checked)
             {
-                NameCustomerTxt.Text = customer.CustomerName;
+                NameCustomerCtb.PropTxt.Text = customer.CustomerName;
                 CountryCmbx.Text = customer.Country;
                 comboBox1.Text = (bool)customer.Deprecated ? "Deprecated" : "Active";
             }
@@ -150,64 +151,45 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     break;
             };
 
-            CustomerDTOGet customer = new CustomerDTOGet { CustomerName = NameCustomerTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
-            try
+            CustomerDTOGet customer = new CustomerDTOGet
             {
-                customer.IsPost = false;
-                var result = ValidatorEntity.Validate(customer);
-                if (result.Any())
-                {
-                    string err = "";
-                    foreach (var item in result)
-                    {
-                        err += item.ErrorMessage + "\n";
-                    }
-                    MessageBox.Show(err);
-                    return;
-                }
-                await _customerService.Update(customerId, customer);
-                MessageBox.Show("Customer updated successfully!");
-                if (quit) Close();
+                CustomerName = NameCustomerCtb.PropTxt.Text,
+                Country = CountryCmbx.Text,
+                Deprecated = enabled
+            };
+
+            customer.IsPost = false;
+            var result = ValidatorEntity.Validate(customer);
+            if (result.Any())
+            {
+                UtilityFunctions.ValidateTextBoxes(panel1, customer);
+                return;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            await _customerService.Update(customerId, customer);
+            MessageBox.Show("Customer updated successfully!");
+            if (quit) Close();
+
         }
         private async Task CreateClick(bool quit = false)
         {
-            if (NameCustomerTxt.Text.Length < 1 || string.IsNullOrEmpty(CountryCmbx.Text))
-            {
-                MessageBox.Show("Input data error!");
-                return;
-            }
 
             CustomerDTOGet customer = new CustomerDTOGet()
             {
-                CustomerName = NameCustomerTxt.Text,
+                CustomerName = NameCustomerCtb.PropTxt.Text,
                 Country = CountryCmbx.Text
             };
 
-            try
+            customer.IsPost = true;
+            var result = ValidatorEntity.Validate(customer);
+            if (result.Any())
             {
-                customer.IsPost = true;
-                var result = ValidatorEntity.Validate(customer);
-                if (result.Any())
-                {
-                    string err = "";
-                    foreach (var item in result)
-                    {
-                        err += item.ErrorMessage + "\n";
-                    }
-                    MessageBox.Show(err);
-                    return;
-                }
-                await _customerService.Create(customer);
-                MessageBox.Show("Customer Created Succesfully");
-                if (quit) Close();
+                UtilityFunctions.ValidateTextBoxes(panel1, customer);
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+            await _customerService.Create(customer);
+            MessageBox.Show("Customer Created Succesfully");
+            if (quit) Close();
 
-            }
         }
 
         private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
