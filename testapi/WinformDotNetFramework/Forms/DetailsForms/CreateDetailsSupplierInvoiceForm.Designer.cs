@@ -54,8 +54,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.FlushCreateBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.OpenSale = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.DateLbl = new System.Windows.Forms.Label();
@@ -64,6 +62,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.label2 = new System.Windows.Forms.Label();
+            this.InvoiceCodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel5.SuspendLayout();
             this.SupplierInvoiceCostGrbBX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -247,12 +246,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.InvoiceCodeCtb);
             this.panel6.Controls.Add(this.SaveQuitBtn);
             this.panel6.Controls.Add(this.FlushCreateBtn);
             this.panel6.Controls.Add(this.button2);
             this.panel6.Controls.Add(this.OpenSale);
-            this.panel6.Controls.Add(this.textBox1);
-            this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.DateClnd);
             this.panel6.Controls.Add(this.SaveEditCustomerBtn);
@@ -326,27 +324,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSale.Text = "->";
             this.OpenSale.UseVisualStyleBackColor = false;
             this.OpenSale.Click += new System.EventHandler(this.SaleFillBtn_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBox1.Location = new System.Drawing.Point(6, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 23);
-            this.textBox1.TabIndex = 61;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(6, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 15);
-            this.label3.TabIndex = 60;
-            this.label3.Text = "Supplier Invoice Code";
             // 
             // button1
             // 
@@ -447,6 +424,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.TabIndex = 52;
             this.label2.Text = "Sale Bill Of Lading*";
             // 
+            // InvoiceCodeCtb
+            // 
+            this.InvoiceCodeCtb.Location = new System.Drawing.Point(9, 10);
+            this.InvoiceCodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.InvoiceCodeCtb.Name = "InvoiceCodeCtb";
+            this.InvoiceCodeCtb.Size = new System.Drawing.Size(200, 47);
+            this.InvoiceCodeCtb.TabIndex = 62;
+            this.InvoiceCodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
             // CreateDetailsSupplierInvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -490,8 +476,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Label label1;
         private Panel panel6;
         private Button button1;
-        private Label label3;
-        private TextBox textBox1;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn costRegistryCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
@@ -506,5 +490,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private GroupBox SupplierInvoiceCostGrbBX;
         private Button FlushCreateBtn;
         private Button SaveQuitBtn;
+        private control.CustomTextBoxUserControl InvoiceCodeCtb;
     }
 }

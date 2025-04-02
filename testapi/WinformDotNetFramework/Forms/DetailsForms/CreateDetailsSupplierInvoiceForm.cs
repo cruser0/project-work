@@ -69,7 +69,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 if (supplierInvoice.Status == "Approved")
                     dataGridView1.CellDoubleClick -= dataGridView1_CellDoubleClick;
 
-                textBox1.Text = supplierInvoice.SupplierInvoiceCode;
+                InvoiceCodeCtb.PropTxt.Text = supplierInvoice.SupplierInvoiceCode;
 
                 UtilityFunctions.SetDropdownText(BKCmbxUC, supplierInvoice.SaleBookingNumber);
                 UtilityFunctions.SetDropdownText(BoLCmbxUC, supplierInvoice.SaleBoL);
@@ -82,7 +82,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     { SupplierInvoiceCostSupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode }))
                     .ToList();
                 dataGridView1.DataSource = data;
-                textBox1.Enabled = false;
+                InvoiceCodeCtb.PropTxt.Enabled = false;
                 BKCmbxUC.Cmbx.Enabled = false;
                 BoLCmbxUC.Cmbx.Enabled = false;
                 NameCmbxUC.Cmbx.Enabled = false;
@@ -114,14 +114,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void SetVisibility()
         {
             button1.Visible = detailsOnly;
-            label3.Visible = detailsOnly;
+            InvoiceCodeCtb.PropLbl.Visible = detailsOnly;
             EditCbx.Visible = detailsOnly;
-            textBox1.Visible = detailsOnly;
+            InvoiceCodeCtb.PropTxt.Visible = detailsOnly;
 
         }
         private void SetEnableForTxt()
         {
-            textBox1.Enabled = !detailsOnly;
+            InvoiceCodeCtb.PropTxt.Enabled = !detailsOnly;
             BKCmbxUC.Cmbx.Enabled = !detailsOnly;
             BoLCmbxUC.Cmbx.Enabled = !detailsOnly;
             NameCmbxUC.Cmbx.Enabled = !detailsOnly;
@@ -246,7 +246,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             SetEnableForTxt();
             UtilityFunctions.SetDropdownText(NameCmbxUC, "");
             comboBox1.SelectedIndex = 1;
-            textBox1.Text = "";
+            InvoiceCodeCtb.PropTxt.Text = "";
             dataGridView1.DataSource = new List<SupplierInvoiceCostDTOGet>();
         }
 
@@ -290,10 +290,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     saleId = (int)(await _saleService
                     .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text, SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text }))
                     .FirstOrDefault().SaleId;
-                }catch (Exception) {
+                }
+                catch (Exception)
+                {
                     BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
                     BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
-                    exit = true; }
+                    exit = true;
+                }
                 try
                 {
                     if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text))
@@ -301,7 +304,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     supplierId = (int)(await _supplierService
                     .GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country }))
                     .FirstOrDefault().SupplierId;
-                }catch (Exception)
+                }
+                catch (Exception)
                 {
                     NameCmbxUC.Cmbx.SetBorderColorRed("Supplier not found.");
                     exit = true;
@@ -319,6 +323,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var validated = ValidatorEntity.Validate(si);
                 if (validated.Any())
                 {
+                    UtilityFunctions.ValidateTextBoxes(panel6, si);
                     return;
                 }
                 if (exit)
@@ -353,7 +358,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
                     BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
-                    exit=true;
+                    exit = true;
                 }
             }
 
@@ -396,7 +401,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     SaleId = saleId,
                     SaleBoL = BoLCmbxUC.Cmbx.PropTxt.Text,
                     SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text,
-                    SupplierInvoiceCode ="",
+                    SupplierInvoiceCode = "",
                     SupplierId = supplierId,
                     Status = comboBox1.Text
                 };
@@ -404,6 +409,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var validated = ValidatorEntity.Validate(si);
                 if (validated.Any())
                 {
+                    UtilityFunctions.ValidateTextBoxes(panel6, si);
                     return;
                 }
                 if (exit)
@@ -420,8 +426,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     SupplierInvoiceCode = newSI.SupplierInvoiceCode
                 })).FirstOrDefault();
 
-                textBox1.Text = supplierInvoice.SupplierInvoiceCode;
-                textBox1.Enabled = false;
+                InvoiceCodeCtb.PropTxt.Text = supplierInvoice.SupplierInvoiceCode;
+                InvoiceCodeCtb.PropTxt.Enabled = false;
                 NameCmbxUC.Enabled = false;
                 comboBox1.Enabled = false;
                 DateClnd.Enabled = false;
