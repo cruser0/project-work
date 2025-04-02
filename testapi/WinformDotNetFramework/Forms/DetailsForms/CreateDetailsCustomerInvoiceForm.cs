@@ -128,8 +128,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public void SetSaleBkBol(string bol, string bk)
         {
-            BoLCmbxUC.Cmbx.PropTxt.Text = bol;
-            BKCmbxUC.Cmbx.PropTxt.Text = bk;
+            UtilityFunctions.SetDropdownText(BKCmbxUC, bk);
+            UtilityFunctions.SetDropdownText(BoLCmbxUC, bol);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

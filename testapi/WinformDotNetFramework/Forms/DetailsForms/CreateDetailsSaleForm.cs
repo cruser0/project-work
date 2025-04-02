@@ -271,8 +271,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 MessageBox.Show("Select a date");
                 return;
             }
-            if (_id == -1)
-            {
                 string name = NameCmbxUC.Cmbx.PropTxt.Text;
                 string country = "";
 
@@ -298,7 +296,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
                 _id = customerId;
-            }
             SaleDTOGet sale1 = new SaleDTOGet
             {
                 BookingNumber = BkCtb.PropTxt.Text,
