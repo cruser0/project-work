@@ -87,7 +87,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void Init()
         {
             InitializeComponent();
-
+            BKCmbxUC.Cmbx.SetTiltes("Booking Number");
+            BoLCmbxUC.Cmbx.SetTiltes("Bill of Lading");
             CustomerInvoiceCodeCtb.SetPropName("CustomerInvoiceCode");
             InvoiceAmountCtb.SetPropName("InvoiceAmount");
 
@@ -231,7 +232,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
-        private async Task UpdateClick(bool quit = false)
+        private async Task UpdateClick(bool quit = false,bool validateBeforeExiting=false)
         {
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
@@ -248,6 +249,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     UtilityFunctions.ValidateTextBoxes(panel6, invoice);
                     return;
                 }
+                if (validateBeforeExiting)
+                    return;
                 await _customerInvoiceService.Update((int)customerInvoice.CustomerInvoiceId, invoice);
                 MessageBox.Show("Customer Invoice Updated successfully!");
                 if (quit) Close();
@@ -255,8 +258,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-        private async Task CreateClick(bool quit = false)
+        private void SetAllCmbxUCBlack()
         {
+            BoLCmbxUC.Cmbx.SetBorderColorBlack();
+            BKCmbxUC.Cmbx.SetBorderColorBlack();
+        }
+        private async Task CreateClick(bool quit = false, bool validateBeforeExiting = false)
+        {
+            SetAllCmbxUCBlack();
             SaveBtn.Enabled = false;
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
@@ -274,6 +283,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 SaveBtn.Enabled = true;
                 return;
             }
+            if (validateBeforeExiting)
+                return;
             customerInvoice = await _customerInvoiceService.Create(invoice);
             MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
             if (quit) Close();
@@ -292,35 +303,51 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void Savebutton_Click(object sender, EventArgs e)
         {
-            SaleCustomerFilter sf = new SaleCustomerFilter()
+            bool exit = false;
+            try
             {
-                SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
-                SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
-            };
-
-            saleID = (int)(await _saleService
-                .GetAll(sf)).FirstOrDefault().SaleId;
+                if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
+                    throw new Exception();
+                saleID = (int)(await _saleService
+                .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text, SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text }))
+                .FirstOrDefault().SaleId;
+            }
+            catch (Exception)
+            {
+                saleID = -1;
+                BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                exit = true;
+            }
 
             if (detailsOnly)
             {
-                await UpdateClick();
+                await UpdateClick(false, exit);
             }
             else
             {
-                await CreateClick();
+                await CreateClick(false, exit);
             }
         }
 
         private async void SaveQuitButton_Click(object sender, EventArgs e)
         {
-            SaleCustomerFilter sf = new SaleCustomerFilter()
+            bool exit = false;
+            try
             {
-                SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
-                SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
-            };
-
-            saleID = (int)(await _saleService
-                .GetAll(sf)).FirstOrDefault().SaleId;
+                if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
+                    throw new Exception();
+                saleID = (int)(await _saleService
+                .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text, SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text }))
+                .FirstOrDefault().SaleId;
+            }
+            catch (Exception)
+            {
+                saleID = -1;
+                BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                exit = true;
+            }
 
             if (detailsOnly)
             {
