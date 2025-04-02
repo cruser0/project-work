@@ -63,6 +63,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _customerInvoiceCostService = new CustomerInvoiceCostService();
             _customerInvoiceService = new CustomerInvoiceService();
             InitializeComponent();
+            InvoiceCodeCmbxUC.Cmbx.SetTiltes("Customer Invoice Code");
 
             NameCtb.SetPropName("Name");
             CostCtb.SetPropName("Cost");
@@ -118,21 +119,26 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveBtn_Click(object sender, EventArgs e)
         {
-
+            bool exit = false;
+            InvoiceCodeCmbxUC.Cmbx.SetBorderColorBlack();
             CustomerInvoiceDTOGet listItems1;
             if (!string.IsNullOrEmpty(InvoiceCodeCmbxUC.Cmbx.PropTxt.Text))
             {
+                try
+                {
+
                 listItems1 = (await _customerInvoiceService
                     .GetAll(new CustomerInvoiceFilter()
                     {
                         CustomerInvoiceCode = InvoiceCodeCmbxUC.Cmbx.PropTxt.Text
-                    })).FirstOrDefault();
+                    })).First();
                 id = (int)listItems1.CustomerInvoiceId;
+                }catch (Exception) {InvoiceCodeCmbxUC.Cmbx.SetBorderColorRed("Invalid Customer Code"); exit = true; }
             }
             else
             {
-                MessageBox.Show("You need to select an Invoice Code");
-                return;
+                InvoiceCodeCmbxUC.Cmbx.SetBorderColorRed("Invalid Customer Code");
+                exit = true;
             }
             CustomerInvoiceCostDTOGet customerInvoiceCost = new CustomerInvoiceCostDTOGet()
             {
@@ -170,7 +176,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         UtilityFunctions.ValidateTextBoxes(PanelCreateCustomerInvoiceCost, customerInvoiceCost);
                         return;
                     }
-
+                    if (exit)
+                        return;
                     await _customerInvoiceCostService.Update((int)_updateCost.CustomerInvoiceCostsId, customerInvoiceCost);
                     MessageBox.Show("Customer Invoice Cost Updated Succesfully");
 
@@ -184,6 +191,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         UtilityFunctions.ValidateTextBoxes(PanelCreateCustomerInvoiceCost, customerInvoiceCost);
                         return;
                     }
+                    if (exit)
+                        return;
                     await _customerInvoiceCostService.Create(customerInvoiceCost);
                     MessageBox.Show("Customer Invoice Cost Created Succesfully");
                 }

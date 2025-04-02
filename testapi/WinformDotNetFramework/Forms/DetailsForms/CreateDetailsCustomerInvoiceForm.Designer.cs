@@ -82,6 +82,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // StatusCB
             // 
             this.StatusCB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.StatusCB.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.StatusCB.FormattingEnabled = true;

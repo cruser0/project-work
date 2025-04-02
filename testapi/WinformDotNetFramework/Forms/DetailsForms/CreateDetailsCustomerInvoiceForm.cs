@@ -87,6 +87,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void Init()
         {
             InitializeComponent();
+            StatusCB.SelectedIndex = 1;
             BKCmbxUC.Cmbx.SetTiltes("Booking Number");
             BoLCmbxUC.Cmbx.SetTiltes("Bill of Lading");
             CustomerInvoiceCodeCtb.SetPropName("CustomerInvoiceCode");
@@ -265,12 +266,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private async Task CreateClick(bool quit = false, bool validateBeforeExiting = false)
         {
-            SetAllCmbxUCBlack();
-            SaveBtn.Enabled = false;
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
                 SaleID = saleID,
                 InvoiceDate = InvoiceDateDTP.Value,
+                SaleBoL=BoLCmbxUC.Cmbx.PropTxt.Text,
+                SaleBookingNumber=BKCmbxUC.Cmbx.PropTxt.Text,
                 Status = "Unpaid",
             };
 
@@ -286,6 +287,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             if (validateBeforeExiting)
                 return;
             customerInvoice = await _customerInvoiceService.Create(invoice);
+            SaveBtn.Enabled = false;
             MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
             if (quit) Close();
 
@@ -303,6 +305,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void Savebutton_Click(object sender, EventArgs e)
         {
+            SetAllCmbxUCBlack();
             bool exit = false;
             try
             {
@@ -310,7 +313,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     throw new Exception();
                 saleID = (int)(await _saleService
                 .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text, SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text }))
-                .FirstOrDefault().SaleId;
+                .First().SaleId;
             }
             catch (Exception)
             {
@@ -332,6 +335,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void SaveQuitButton_Click(object sender, EventArgs e)
         {
+            SetAllCmbxUCBlack();
+
             bool exit = false;
             try
             {
@@ -351,11 +356,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             if (detailsOnly)
             {
-                await UpdateClick(true);
+                await UpdateClick(true, exit);
             }
             else
             {
-                await CreateClick(true);
+                await CreateClick(true, exit);
             }
         }
     }
