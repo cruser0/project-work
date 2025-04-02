@@ -123,9 +123,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             CenterDgv.Columns["InvoiceAmount"].Visible = (bool)cdgv.ShowInvoiceAmount;
             CenterDgv.Columns["InvoiceDate"].Visible = (bool)cdgv.ShowDate;
             CenterDgv.Columns["Status"].Visible = (bool)cdgv.ShowStatus;
-            CenterDgv.Columns["CustomerInvoiceCode"].Visible = (bool)cdgv.ShowStatus;//change ref
-            CenterDgv.Columns["SaleBookingNumber"].Visible = (bool)cdgv.ShowStatus;
-            CenterDgv.Columns["SaleBol"].Visible = (bool)cdgv.ShowStatus;
+            CenterDgv.Columns["CustomerInvoiceCode"].Visible = (bool)cdgv.ShowInvoiceCode;
+            CenterDgv.Columns["SaleBookingNumber"].Visible = (bool)cdgv.ShowSaleBookingNumber;
+            CenterDgv.Columns["SaleBol"].Visible = (bool)cdgv.ShowSaleBoL;
 
             CenterDgv.Columns["CustomerInvoiceID"].HeaderText = "Customer Invoice ID";
             CenterDgv.Columns["SaleID"].HeaderText = "Sale ID";
@@ -258,6 +258,9 @@ namespace WinformDotNetFramework.Forms.GridForms
                     ShowInvoiceAmount = CustomerInvoiceInvoiceAmountTsmi.Checked,
                     ShowSaleID = CustomerInvoiceSaleIDTsmi.Checked,
                     ShowStatus = CustomerInvoiceStatusTsmi.Checked,
+                    ShowInvoiceCode=CustomerInvoiceCodeTsmi.Checked,
+                    ShowSaleBoL=CustomerInvoiceSaleBolTsmi.Checked,
+                    ShowSaleBookingNumber=CustomerInvoiceSaleBookingNumberTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 await _userService.PostCustomerInvoiceDGV(cdgv);

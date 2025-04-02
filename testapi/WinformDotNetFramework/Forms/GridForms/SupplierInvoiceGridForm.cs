@@ -147,9 +147,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceDgv.Columns["SupplierName"].Visible = (bool)cdgv.ShowSupplierName;
             SupplierInvoiceDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
             SupplierInvoiceDgv.Columns["SupplierID"].Visible = (bool)cdgv.ShowSupplierID;
-            SupplierInvoiceDgv.Columns["SupplierInvoiceCode"].Visible = (bool)cdgv.ShowSupplierID;//change ref
-            SupplierInvoiceDgv.Columns["SaleBookingNumber"].Visible = (bool)cdgv.ShowSupplierID;
-            SupplierInvoiceDgv.Columns["SaleBoL"].Visible = (bool)cdgv.ShowSupplierID;
+            SupplierInvoiceDgv.Columns["SupplierInvoiceCode"].Visible = (bool)cdgv.ShowInvoiceCode;//change ref
+            SupplierInvoiceDgv.Columns["SaleBookingNumber"].Visible = (bool)cdgv.ShowSaleBookingNumber;
+            SupplierInvoiceDgv.Columns["SaleBoL"].Visible = (bool)cdgv.ShowSaleBoL;
 
             SupplierInvoiceDgv.Columns["SupplierInvoiceID"].HeaderText = "Supplier Invoice ID";
             SupplierInvoiceDgv.Columns["SaleID"].HeaderText = "Sale ID";
@@ -158,7 +158,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceDgv.Columns["SupplierName"].HeaderText = "Supplier Name";
             SupplierInvoiceDgv.Columns["Country"].HeaderText = "Supplier Country";
             SupplierInvoiceDgv.Columns["SupplierID"].HeaderText = "Supplier ID";
-            SupplierInvoiceDgv.Columns["SupplierInvoiceCode"].HeaderText = "Supplier Invoice Code";//change ref
+            SupplierInvoiceDgv.Columns["SupplierInvoiceCode"].HeaderText = "Supplier Invoice Code";
             SupplierInvoiceDgv.Columns["SaleBookingNumber"].HeaderText = "Sale Booking Number";
             SupplierInvoiceDgv.Columns["SaleBoL"].HeaderText = "Sale Bill of Lading";
 
@@ -284,6 +284,9 @@ namespace WinformDotNetFramework.Forms.GridForms
                     ShowCountry = SupplierInvoiceCountryTsmi.Checked,
                     ShowSupplierName = SupplierInvoiceSupplierNameTsmi.Checked,
                     ShowSupplierID = SupplierInvoiceSupplierIDTsmi.Checked,
+                    ShowSaleBoL=SupplierInvoiceSaleBolTsmi.Checked,
+                    ShowSaleBookingNumber=SupplierInvoiceSaleBookingNumberTsmi.Checked,
+                    ShowInvoiceCode=SupplierInvoiceSupplierInvoiceCodeTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 await _userService.PostSupplierInvoiceDGV(cdgv);
