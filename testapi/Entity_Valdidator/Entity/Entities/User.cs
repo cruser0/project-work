@@ -25,6 +25,7 @@ namespace Entity_Validator.Entity.Entities
         public virtual SupplierDGV SupplierDGV { get; set; }
         public virtual SupplierInvoiceDGV SupplierInvoiceDGV { get; set; }
         public virtual SupplierInvoiceCostDGV SupplierInvoiceCostDGV { get; set; }
+        public virtual CostRegistryDGV CostRegistryDGV { get; set; }
         public virtual SaleDGV SaleDGV { get; set; }
         public virtual UserDGV UserDGV { get; set; }
         public virtual SupplierGroupSplit SupplierGroupSplit { get; set; }

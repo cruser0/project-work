@@ -75,6 +75,21 @@ namespace API.Models.Configuration
             );
         }
     }
+
+    public class CostRegistryDgvConfiguration : IEntityTypeConfiguration<CostRegistryDGV>
+    {
+        public void Configure(EntityTypeBuilder<CostRegistryDGV> builder)
+        {
+            builder.HasData(
+                new CostRegistryDGV
+                {
+                    CostRegistryDGVID = 1,
+                    UserID = 1,
+                }
+            );
+        }
+    }
+
     public class SupplierInvoiceDgvConfiguration : IEntityTypeConfiguration<SupplierInvoiceDGV>
     {
         public void Configure(EntityTypeBuilder<SupplierInvoiceDGV> builder)
@@ -209,7 +224,8 @@ namespace API.Models.Configuration
                 new FavouritePages() { FavouritePageID = 19, Name = "User Area" },
                 new FavouritePages() { FavouritePageID = 20, Name = "Report Sale" },
                 new FavouritePages() { FavouritePageID = 21, Name = "Report Supplier Invoice" },
-                new FavouritePages() { FavouritePageID = 22, Name = "Show User" }
+                new FavouritePages() { FavouritePageID = 22, Name = "Show User" },
+                new FavouritePages() { FavouritePageID = 23, Name = "Show Registry Cost" }
             );
         }
     }
