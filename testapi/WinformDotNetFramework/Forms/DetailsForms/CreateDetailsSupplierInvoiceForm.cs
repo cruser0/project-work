@@ -51,6 +51,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void Init(int? id)
         {
             InitializeComponent();
+            BKCmbxUC.Cmbx.SetTiltes("Booking Number");
+            BoLCmbxUC.Cmbx.SetTiltes("Bill of Lading");
+            NameCmbxUC.Cmbx.SetTiltes("Supplier");
+
             _saleService = new SaleService();
             _supplierService = new SupplierService();
             _supplierInvoiceService = new SupplierInvoiceService();
@@ -257,8 +261,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             }
         }
+        private void SetAllCmbxUCBlack()
+        {
+            NameCmbxUC.Cmbx.SetBorderColorBlack();
+            BoLCmbxUC.Cmbx.SetBorderColorBlack();
+            BKCmbxUC.Cmbx.SetBorderColorBlack();
+        }
         private async Task UpdateExistingSupplierInvoice(bool quit = false)
         {
+            bool exit = false;
+            SetAllCmbxUCBlack();
             try
             {
                 string name = NameCmbxUC.Cmbx.PropTxt.Text;
@@ -271,14 +283,29 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     country = name.Substring(lastIndex + 3);
                     name = name.Substring(0, lastIndex);
                 }
-
-                saleId = (int)(await _saleService
+                try
+                {
+                    if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
+                        throw new Exception();
+                    saleId = (int)(await _saleService
                     .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text, SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text }))
                     .FirstOrDefault().SaleId;
-
-                supplierId = (int)(await _supplierService
+                }catch (Exception) {
+                    BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                    BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                    exit = true; }
+                try
+                {
+                    if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text))
+                        throw new Exception();
+                    supplierId = (int)(await _supplierService
                     .GetAll(new SupplierFilter() { SupplierName = name, SupplierCountry = country }))
                     .FirstOrDefault().SupplierId;
+                }catch (Exception)
+                {
+                    NameCmbxUC.Cmbx.SetBorderColorRed("Supplier not found.");
+                    exit = true;
+                }
 
                 SupplierInvoiceDTOGet si = new SupplierInvoiceDTOGet
                 {
@@ -292,12 +319,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var validated = ValidatorEntity.Validate(si);
                 if (validated.Any())
                 {
-                    var err = "";
-                    foreach (var error in validated)
-                        err += error + "\n";
-                    MessageBox.Show($"{err}");
                     return;
                 }
+                if (exit)
+                    return;
                 await _supplierInvoiceService.Update((int)supplierInvoice.SupplierInvoiceId, si);
                 MessageBox.Show("Customer updated successfully!");
                 if (quit) Close();
@@ -310,11 +335,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async Task CreateNewSupplierInvoice(bool quit = false)
         {
-
+            bool exit = false;
+            SetAllCmbxUCBlack();
             if (saleId == -1)
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
+                        throw new Exception();
                     saleId = (int)(await _saleService.GetAll(new SaleCustomerFilter()
                     {
                         SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
@@ -323,8 +351,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Invalid input for the sale");
-                    return;
+                    BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                    BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                    exit=true;
                 }
             }
 
@@ -332,6 +361,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text))
+                        throw new Exception();
                     string name = NameCmbxUC.Cmbx.PropTxt.Text;
                     string country = "";
 
@@ -351,8 +382,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Invalid input for the sale");
-                    return;
+                    NameCmbxUC.Cmbx.SetBorderColorRed("Invalid supplier.");
+                    exit = true;
                 }
             }
 
@@ -363,6 +394,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 {
                     InvoiceDate = DateClnd.Value,
                     SaleId = saleId,
+                    SaleBoL = BoLCmbxUC.Cmbx.PropTxt.Text,
+                    SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text,
+                    SupplierInvoiceCode ="",
                     SupplierId = supplierId,
                     Status = comboBox1.Text
                 };
@@ -370,13 +404,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var validated = ValidatorEntity.Validate(si);
                 if (validated.Any())
                 {
-                    var err = "";
-                    foreach (var error in validated)
-                        err += error + "\n";
-                    MessageBox.Show($"{err}");
                     return;
                 }
-
+                if (exit)
+                    return;
                 SupplierInvoiceDTOGet newSI = await _supplierInvoiceService.Create(si);
                 MessageBox.Show("Supplier Invoice created Successfully!");
                 if (quit) Close();

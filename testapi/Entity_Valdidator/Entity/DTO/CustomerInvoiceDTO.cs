@@ -6,7 +6,7 @@ namespace Entity_Validator.Entity.DTO
 
     public class CustomerInvoiceDTO
     {
-        [RequiredIf("IsPost", true)]
+        [MaxLength(50)]
         public string CustomerInvoiceCode { get; set; }
 
         [RequiredIf("IsPost", true)]
