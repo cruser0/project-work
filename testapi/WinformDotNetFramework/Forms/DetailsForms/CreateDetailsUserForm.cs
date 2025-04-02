@@ -21,6 +21,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             _userService = new UserService();
             InitializeComponent();
+            NameCtb.SetPropName("Name");
+            LastNameCtb.SetPropName("LastName");
+            EmailCtb.SetPropName("Email");
+            PasswordCtb.SetPropName("Password");
+
             _detailsOnly = false;
             checkBox1.Visible = false;
         }
@@ -29,6 +34,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             _userService = new UserService();
             InitializeComponent();
+
+            NameCtb.SetPropName("Name");
+            LastNameCtb.SetPropName("LastName");
+            EmailCtb.SetPropName("Email");
+            PasswordCtb.SetPropName("Password");
             Init(id);
             _detailsOnly = true;
         }
@@ -37,9 +47,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
 
             user = await _userService.GetById(id);
-            UserNameTxt.Text = user.Name;
-            UserLastNameTxt.Text = user.LastName;
-            UserEmailTxt.Text = user.Email;
+            NameCtb.PropTxt.Text = user.Name;
+            LastNameCtb.PropTxt.Text = user.LastName;
+            EmailCtb.PropTxt.Text = user.Email;
             foreach (var role in user.Role)
             {
                 int roleIndex = rolesListBox.Items.IndexOf(role);
@@ -52,11 +62,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             checkBox1.Visible = true;
 
             rolesListBox.Enabled = false;
-            PasswordTxt.Enabled = false;
+            PasswordCtb.PropTxt.Enabled = false;
             PasswordSeeBtn.Enabled = false;
-            UserEmailTxt.Enabled = false;
-            UserLastNameTxt.Enabled = false;
-            UserNameTxt.Enabled = false;
+            EmailCtb.PropTxt.Enabled = false;
+            LastNameCtb.PropTxt.Enabled = false;
+            NameCtb.PropTxt.Enabled = false;
 
             List<string> authRolesWrite = new List<string>
             {
@@ -85,11 +95,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             rolesListBox.Enabled = checkBox1.Checked;
-            PasswordTxt.Enabled = checkBox1.Checked;
+            PasswordCtb.PropTxt.Enabled = checkBox1.Checked;
             PasswordSeeBtn.Enabled = checkBox1.Checked;
-            UserEmailTxt.Enabled = checkBox1.Checked;
-            UserLastNameTxt.Enabled = checkBox1.Checked;
-            UserNameTxt.Enabled = checkBox1.Checked;
+            EmailCtb.PropTxt.Enabled = checkBox1.Checked;
+            LastNameCtb.PropTxt.Enabled = checkBox1.Checked;
+            NameCtb.PropTxt.Enabled = checkBox1.Checked;
         }
         private bool TwoListCheck(List<string> list1, List<string> list2)
         {
@@ -109,18 +119,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void PasswordSeeBtn_Click(object sender, EventArgs e)
         {
-            if (PasswordTxt.PasswordChar.Equals('•'))
-                PasswordTxt.PasswordChar = default(char);
+            if (PasswordCtb.PropTxt.PasswordChar.Equals('•'))
+                PasswordCtb.PropTxt.PasswordChar = default(char);
             else
-                PasswordTxt.PasswordChar = '•';
+                PasswordCtb.PropTxt.PasswordChar = '•';
         }
 
-        private void UserNameTxt_TextChanged(object sender, EventArgs e)
+        private void NameTxt_TextChanged(object sender, EventArgs e)
         {
-            SaveBtn.Enabled = PasswordTxt.Text.Length > 0 &&
-                UserNameTxt.Text.Length > 0 &&
-                UserLastNameTxt.Text.Length > 0 &&
-                UserEmailLbl.Text.Length > 0 &&
+            SaveBtn.Enabled = PasswordCtb.PropTxt.Text.Length > 0 &&
+                NameCtb.PropTxt.Text.Length > 0 &&
+                LastNameCtb.PropTxt.Text.Length > 0 &&
+                EmailCtb.PropTxt.Text.Length > 0 &&
                 rolesListBox.CheckedItems.Count > 0;
         }
 
@@ -128,10 +138,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             int newCheckedCount = rolesListBox.CheckedItems.Count + (e.NewValue == CheckState.Checked ? 1 : -1);
 
-            SaveBtn.Enabled = PasswordTxt.Text.Length > 0 &&
-                              UserNameTxt.Text.Length > 0 &&
-                              UserLastNameTxt.Text.Length > 0 &&
-                              UserEmailLbl.Text.Length > 0 &&
+            SaveBtn.Enabled = PasswordCtb.PropTxt.Text.Length > 0 &&
+                              NameCtb.PropTxt.Text.Length > 0 &&
+                              LastNameCtb.PropTxt.Text.Length > 0 &&
+                              EmailCtb.PropTxt.Text.Length > 0 &&
                               newCheckedCount > 0;
         }
 
@@ -144,86 +154,73 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 roles.Add(role.ToString());
             }
-            if (UserEmailTxt.Text.Equals(user.Email) &&
-                UserLastNameTxt.Equals(user.LastName) &&
-                string.IsNullOrEmpty(PasswordTxt.Text) &&
-                UserNameTxt.Equals(user.Name) && TwoListCheck(user.Role, roles))
+            if (EmailCtb.PropTxt.Text.Equals(user.Email) &&
+                LastNameCtb.PropTxt.Equals(user.LastName) &&
+                string.IsNullOrEmpty(PasswordCtb.PropTxt.Text) &&
+                NameCtb.PropTxt.Equals(user.Name) && TwoListCheck(user.Role, roles))
                 return;
+
             UserDTOEdit si = new UserDTOEdit
             {
-                Email = UserEmailTxt.Text,
-                LastName = UserLastNameTxt.Text,
-                Name = UserNameTxt.Text,
-                Password = !string.IsNullOrEmpty(PasswordTxt.Text) ? PasswordTxt.Text : null,
+                Email = EmailCtb.PropTxt.Text,
+                LastName = LastNameCtb.PropTxt.Text,
+                Name = NameCtb.PropTxt.Text,
+                Password = !string.IsNullOrEmpty(PasswordCtb.PropTxt.Text) ? PasswordCtb.PropTxt.Text : null,
             };
             AssignRoleDTO ar = new AssignRoleDTO
             {
                 Roles = roles,
                 UserID = user.UserID,
             };
-            try
+
+            si.IsPost = false;
+            var validated = ValidatorEntity.Validate(si);
+            if (validated.Any())
             {
-                si.IsPost = false;
-                var validated = ValidatorEntity.Validate(user);
-                if (validated.Any())
-                {
-                    var err = "";
-                    foreach (var error in validated)
-                        err += error+"\n";
-                    MessageBox.Show($"{err}");
-                    return;
-                }
-                await _userService.Update((int)user.UserID, si);
-                await _userService.EditUserRoles(ar);
-                MessageBox.Show("User updated successfully!");
-                if (quit) Close();
+                UtilityFunctions.ValidateTextBoxes(panel3, si);
+                return;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            await _userService.Update((int)user.UserID, si);
+            await _userService.EditUserRoles(ar);
+            MessageBox.Show("User updated successfully!");
+            if (quit) Close();
+
         }
         private async Task CreateClick(bool quit = false)
         {
             List<string> roles = rolesListBox.CheckedItems.Cast<string>().ToList();
-
+            if (roles.Count == 0) { return; }
 
             UserDTOCreate user = new UserDTOCreate()
             {
-                Name = UserNameTxt.Text,
-                LastName = UserLastNameTxt.Text,
-                Email = UserEmailTxt.Text,
-                Password = PasswordTxt.Text,
+                Name = NameCtb.PropTxt.Text,
+                LastName = LastNameCtb.PropTxt.Text,
+                Email = EmailCtb.PropTxt.Text,
+                Password = PasswordCtb.PropTxt.Text,
                 Role = roles
             };
             user.IsPost = true;
             var validated = ValidatorEntity.Validate(user);
             if (validated.Any())
             {
-                var err = "";
-                foreach (var error in validated)
-                    err += error+"\n";
-                MessageBox.Show($"{err}");
+                UtilityFunctions.ValidateTextBoxes(panel3, user);
                 return;
             }
-            try
+
+            await _userService.Register(user);
+            MessageBox.Show("User Created Succesfully");
+            if (quit) Close();
+
+            _detailsOnly = true;
+            int id = (int)(await _userService.GetAll(new UserFilter()
             {
-                await _userService.Register(user);
-                MessageBox.Show("User Created Succesfully");
-                if (quit) Close();
+                UserName = NameCtb.PropTxt.Text,
+                UserLastName = LastNameCtb.PropTxt.Text,
+                UserEmail = EmailCtb.PropTxt.Text,
 
-                _detailsOnly = true;
-                int id = (int)(await _userService.GetAll(new UserFilter()
-                {
-                    UserName = UserNameTxt.Text,
-                    UserLastName = UserLastNameTxt.Text,
-                    UserEmail = UserEmailTxt.Text,
+            })).FirstOrDefault().UserID;
 
-                })).FirstOrDefault().UserID;
-
-                Init(id);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            Init(id);
         }
         private async void SaveEditCustomerBtn_Click(object sender, EventArgs e)
         {

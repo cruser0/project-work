@@ -32,23 +32,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             this.label4 = new System.Windows.Forms.Label();
             this.rolesListBox = new System.Windows.Forms.CheckedListBox();
-            this.UserNameLbl = new System.Windows.Forms.Label();
-            this.UserNameTxt = new System.Windows.Forms.TextBox();
-            this.UserLastNameLbl = new System.Windows.Forms.Label();
-            this.UserLastNameTxt = new System.Windows.Forms.TextBox();
-            this.UserEmailLbl = new System.Windows.Forms.Label();
-            this.UserEmailTxt = new System.Windows.Forms.TextBox();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.PasswordLbl = new System.Windows.Forms.Label();
-            this.PasswordTxt = new System.Windows.Forms.TextBox();
             this.PasswordSeeBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.SaveQuitButton = new System.Windows.Forms.Button();
+            this.NameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.EmailCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.PasswordCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.LastNameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,72 +96,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.rolesListBox.Size = new System.Drawing.Size(404, 202);
             this.rolesListBox.TabIndex = 9;
             // 
-            // UserNameLbl
-            // 
-            this.UserNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UserNameLbl.AutoSize = true;
-            this.UserNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.UserNameLbl.Location = new System.Drawing.Point(77, 47);
-            this.UserNameLbl.Name = "UserNameLbl";
-            this.UserNameLbl.Size = new System.Drawing.Size(39, 15);
-            this.UserNameLbl.TabIndex = 28;
-            this.UserNameLbl.Text = "Name";
-            // 
-            // UserNameTxt
-            // 
-            this.UserNameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UserNameTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.UserNameTxt.Location = new System.Drawing.Point(76, 69);
-            this.UserNameTxt.Name = "UserNameTxt";
-            this.UserNameTxt.Size = new System.Drawing.Size(167, 23);
-            this.UserNameTxt.TabIndex = 27;
-            // 
-            // UserLastNameLbl
-            // 
-            this.UserLastNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UserLastNameLbl.AutoSize = true;
-            this.UserLastNameLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserLastNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.UserLastNameLbl.Location = new System.Drawing.Point(77, 99);
-            this.UserLastNameLbl.Name = "UserLastNameLbl";
-            this.UserLastNameLbl.Size = new System.Drawing.Size(58, 15);
-            this.UserLastNameLbl.TabIndex = 30;
-            this.UserLastNameLbl.Text = "Lastname";
-            // 
-            // UserLastNameTxt
-            // 
-            this.UserLastNameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UserLastNameTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserLastNameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.UserLastNameTxt.Location = new System.Drawing.Point(76, 121);
-            this.UserLastNameTxt.Name = "UserLastNameTxt";
-            this.UserLastNameTxt.Size = new System.Drawing.Size(167, 23);
-            this.UserLastNameTxt.TabIndex = 29;
-            // 
-            // UserEmailLbl
-            // 
-            this.UserEmailLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UserEmailLbl.AutoSize = true;
-            this.UserEmailLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserEmailLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.UserEmailLbl.Location = new System.Drawing.Point(77, 151);
-            this.UserEmailLbl.Name = "UserEmailLbl";
-            this.UserEmailLbl.Size = new System.Drawing.Size(36, 15);
-            this.UserEmailLbl.TabIndex = 32;
-            this.UserEmailLbl.Text = "Email";
-            // 
-            // UserEmailTxt
-            // 
-            this.UserEmailTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UserEmailTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserEmailTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.UserEmailTxt.Location = new System.Drawing.Point(76, 173);
-            this.UserEmailTxt.Name = "UserEmailTxt";
-            this.UserEmailTxt.Size = new System.Drawing.Size(167, 23);
-            this.UserEmailTxt.TabIndex = 31;
-            // 
             // SaveBtn
             // 
             this.SaveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -193,28 +123,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.checkBox1.Text = "Edit";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // PasswordLbl
-            // 
-            this.PasswordLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PasswordLbl.AutoSize = true;
-            this.PasswordLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.PasswordLbl.Location = new System.Drawing.Point(77, 203);
-            this.PasswordLbl.Name = "PasswordLbl";
-            this.PasswordLbl.Size = new System.Drawing.Size(101, 15);
-            this.PasswordLbl.TabIndex = 36;
-            this.PasswordLbl.Text = "Change Password";
-            // 
-            // PasswordTxt
-            // 
-            this.PasswordTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PasswordTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.PasswordTxt.Location = new System.Drawing.Point(76, 225);
-            this.PasswordTxt.Name = "PasswordTxt";
-            this.PasswordTxt.Size = new System.Drawing.Size(167, 23);
-            this.PasswordTxt.TabIndex = 35;
             // 
             // PasswordSeeBtn
             // 
@@ -251,18 +159,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel3.Controls.Add(this.LastNameCtb);
+            this.panel3.Controls.Add(this.PasswordCtb);
+            this.panel3.Controls.Add(this.EmailCtb);
+            this.panel3.Controls.Add(this.NameCtb);
             this.panel3.Controls.Add(this.SaveQuitButton);
             this.panel3.Controls.Add(this.rolesListBox);
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.UserNameTxt);
-            this.panel3.Controls.Add(this.UserNameLbl);
-            this.panel3.Controls.Add(this.UserLastNameTxt);
             this.panel3.Controls.Add(this.PasswordSeeBtn);
-            this.panel3.Controls.Add(this.UserLastNameLbl);
-            this.panel3.Controls.Add(this.PasswordLbl);
-            this.panel3.Controls.Add(this.UserEmailTxt);
-            this.panel3.Controls.Add(this.PasswordTxt);
-            this.panel3.Controls.Add(this.UserEmailLbl);
             this.panel3.Controls.Add(this.SaveBtn);
             this.panel3.Controls.Add(this.checkBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -270,6 +174,20 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(750, 427);
             this.panel3.TabIndex = 41;
+            // 
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveQuitButton.Location = new System.Drawing.Point(571, 326);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(107, 25);
+            this.SaveQuitButton.TabIndex = 39;
+            this.SaveQuitButton.Text = "Save and Quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // panel4
             // 
@@ -289,21 +207,43 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 43;
             // 
-            // SaveQuitButton
+            // NameCtb
             // 
-            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveQuitButton.Location = new System.Drawing.Point(571, 326);
-            this.SaveQuitButton.Name = "SaveQuitButton";
-            this.SaveQuitButton.Size = new System.Drawing.Size(107, 25);
-            this.SaveQuitButton.TabIndex = 39;
-            this.SaveQuitButton.Text = "Save and Quit";
-            this.SaveQuitButton.UseVisualStyleBackColor = false;
-            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
+            this.NameCtb.Location = new System.Drawing.Point(43, 47);
+            this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCtb.Name = "NameCtb";
+            this.NameCtb.Size = new System.Drawing.Size(200, 47);
+            this.NameCtb.TabIndex = 40;
+            this.NameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
-            // UserDetailsForm
+            // EmailCtb
+            // 
+            this.EmailCtb.Location = new System.Drawing.Point(43, 153);
+            this.EmailCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.EmailCtb.Name = "EmailCtb";
+            this.EmailCtb.Size = new System.Drawing.Size(200, 47);
+            this.EmailCtb.TabIndex = 41;
+            this.EmailCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // PasswordCtb
+            // 
+            this.PasswordCtb.Location = new System.Drawing.Point(43, 206);
+            this.PasswordCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.PasswordCtb.Name = "PasswordCtb";
+            this.PasswordCtb.Size = new System.Drawing.Size(200, 47);
+            this.PasswordCtb.TabIndex = 42;
+            this.PasswordCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // LastNameCtb
+            // 
+            this.LastNameCtb.Location = new System.Drawing.Point(43, 100);
+            this.LastNameCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.LastNameCtb.Name = "LastNameCtb";
+            this.LastNameCtb.Size = new System.Drawing.Size(200, 47);
+            this.LastNameCtb.TabIndex = 43;
+            this.LastNameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // CreateDetailsUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -314,7 +254,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel5);
             this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.Name = "UserDetailsForm";
+            this.Name = "CreateDetailsUserForm";
             this.Text = "UserDetails";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -326,16 +266,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private Label label4;
         private CheckedListBox rolesListBox;
-        private Label UserNameLbl;
-        private TextBox UserNameTxt;
-        private Label UserLastNameLbl;
-        private TextBox UserLastNameTxt;
-        private Label UserEmailLbl;
-        private TextBox UserEmailTxt;
         private Button SaveBtn;
         private CheckBox checkBox1;
-        private Label PasswordLbl;
-        private TextBox PasswordTxt;
         private Button PasswordSeeBtn;
         private Panel panel1;
         private Panel panel2;
@@ -343,5 +275,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel4;
         private Panel panel5;
         private Button SaveQuitButton;
+        private control.CustomTextBoxUserControl LastNameCtb;
+        private control.CustomTextBoxUserControl PasswordCtb;
+        private control.CustomTextBoxUserControl EmailCtb;
+        private control.CustomTextBoxUserControl NameCtb;
     }
 }

@@ -188,7 +188,7 @@ namespace WinformDotNetFramework.Forms.control
                         { "Show Supplier", mainForm.SupplierShowTS },
                         { "Show Supplier Invoice", mainForm.SupplierInvoiceShowTS },
                         { "Show Sale", mainForm.SaleShowTS },
-                        { "Show User", mainForm.Form1ShowTS },
+                        { "Show User", mainForm.UserShowTS },
                         { "Create Customer", mainForm.CustomerCreateTS },
                         { "Create Customer Invoice", mainForm.CustomerInvoiceCreateTS },
                         { "Create Supplier", mainForm.SupplierCreateTS },
