@@ -2,18 +2,18 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="WinformDotNetFrameworkProcedures">
+    <DataSource Name="Entity_ValidatorEntityProcedures">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>7ddbf4bd-7d83-4ce2-b985-ef05378aec0b</rd:DataSourceID>
+      <rd:DataSourceID>34dc9264-9f4f-4da5-a070-72abe19cf6f5</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="SaleByProfit">
       <Query>
-        <DataSourceName>WinformDotNetFrameworkProcedures</DataSourceName>
+        <DataSourceName>Entity_ValidatorEntityProcedures</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -29,13 +29,17 @@
           <DataField>Country</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CountryRegion">
+          <DataField>CountryRegion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CustomerName">
           <DataField>CustomerName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Profit">
           <DataField>Profit</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="SaleDate">
           <DataField>SaleDate</DataField>
@@ -59,13 +63,13 @@
         </Field>
         <Field Name="TotalSpent">
           <DataField>TotalSpent</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>WinformDotNetFramework.Procedures</rd:DataSetName>
+        <rd:DataSetName>Entity_Validator.Entity.Procedures</rd:DataSetName>
         <rd:TableName>ClassifySalesByProfit</rd:TableName>
-        <rd:ObjectDataSourceType>WinformDotNetFramework.Procedures.ClassifySalesByProfit, WinformDotNetFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>Entity_Validator.Entity.Procedures.ClassifySalesByProfit, Entity_Validator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
