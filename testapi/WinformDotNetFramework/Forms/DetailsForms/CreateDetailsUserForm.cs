@@ -175,8 +175,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             si.IsPost = false;
             var validated = ValidatorEntity.Validate(si);
-            if (validated.Any())
+            if (validated.Any() || roles.Count == 0)
             {
+                ListBoxErrorLbl.Visible = roles.Count == 0;
+
                 UtilityFunctions.ValidateTextBoxes(panel3, si);
                 return;
             }
@@ -189,7 +191,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async Task CreateClick(bool quit = false)
         {
             List<string> roles = rolesListBox.CheckedItems.Cast<string>().ToList();
-            if (roles.Count == 0) { return; }
 
             UserDTOCreate user = new UserDTOCreate()
             {
@@ -201,8 +202,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             };
             user.IsPost = true;
             var validated = ValidatorEntity.Validate(user);
-            if (validated.Any())
+            if (validated.Any() || roles.Count == 0)
             {
+                ListBoxErrorLbl.Visible = roles.Count == 0;
+
                 UtilityFunctions.ValidateTextBoxes(panel3, user);
                 return;
             }

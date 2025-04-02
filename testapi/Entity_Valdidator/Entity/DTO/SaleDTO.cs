@@ -8,11 +8,11 @@ namespace Entity_Validator.Entity.DTO
     public class SaleDTO
     {
         [RequiredIf("IsPost", true)]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Must be at most {1} characters.")]
         public string BookingNumber { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Must be at most {1} characters.")]
         public string BoLnumber { get; set; }
 
         [RequiredIf("IsPost", true)]
@@ -37,11 +37,11 @@ namespace Entity_Validator.Entity.DTO
     public class SaleCustomerDTO : SaleDTOGet
     {
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         public string CustomerName { get; set; }
 
         [RequiredIf("IsPost", true)]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
         [RegularExpression("^[A-Za-z ]+$", ErrorMessage = "Only alphabetical characters and spaces are allowed.")]
         public string Country { get; set; }
 
