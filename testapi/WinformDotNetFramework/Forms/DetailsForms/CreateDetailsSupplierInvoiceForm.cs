@@ -146,12 +146,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         public void SetSaleBkBol(string bol, string bk)
         {
-            BoLCmbxUC.Cmbx.PropTxt.Text = bol;
-            BKCmbxUC.Cmbx.PropTxt.Text = bk;
+            UtilityFunctions.SetDropdownText(BKCmbxUC, bk);
+            UtilityFunctions.SetDropdownText(BoLCmbxUC, bol);
         }
         public void SetSupplierNameCountry(string name, string country)
         {
-            NameCmbxUC.Cmbx.PropTxt.Text = name + $" - {country}";
+            UtilityFunctions.SetDropdownText(NameCmbxUC, name + $" - {country}");
         }
         private void SupplierFillBtn_Click(object sender, EventArgs e)
         {
@@ -344,8 +344,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             bool exit = false;
             SetAllCmbxUCBlack();
-            if (saleId == -1)
-            {
                 try
                 {
                     if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
@@ -354,18 +352,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     {
                         SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
                         SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
-                    })).FirstOrDefault().SaleId;
+                    })).First().SaleId;
                 }
                 catch (Exception)
                 {
                     BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
                     BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
                     exit = true;
+                    saleId = -1;
                 }
-            }
+           
 
-            if (supplierId == -1)
-            {
                 try
                 {
                     if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text))
@@ -385,14 +382,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     {
                         SupplierName = name,
                         SupplierCountry = country
-                    })).FirstOrDefault().SupplierId;
+                    })).First().SupplierId;
                 }
                 catch (Exception)
                 {
                     NameCmbxUC.Cmbx.SetBorderColorRed("Invalid supplier.");
                     exit = true;
+                    supplierId = -1;
                 }
-            }
+            
 
 
             try
