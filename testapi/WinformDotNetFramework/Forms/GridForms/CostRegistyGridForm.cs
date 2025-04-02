@@ -1,4 +1,5 @@
 ﻿using Entity_Validator.Entity.DTO;
+using Entity_Validator.Entity.Entities;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -76,34 +77,33 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         }
 
-        //private async Task SetCheckBoxes()
-        //{
-        //    await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
-        //    IEnumerable<CostRegistry> query = await getAllNotFiltered;
-        //    int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
-        //    if (mPage <= 0)
-        //        mPage = 1;
+        private async Task SetCheckBoxes()
+        {
+            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            List<CostRegistryDTOGet> query = (await getAllNotFiltered).ToList();
+            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            if (mPage <= 0)
+                mPage = 1;
 
-        //    PaginationUserControl.maxPage = mPage.ToString();
-        //    PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            PaginationUserControl.maxPage = mPage.ToString();
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
 
-        //    CostRegistryDgv.DataSource = query.ToList();
+            CostRegistryDgv.DataSource = query.ToList();
 
-        //    CostRegistryDGV cdgv = await getFav;
-        //    CostRegistryCountryTsmi.Checked = cdgv.ShowCountry;
-        //    CostRegistryDateTsmi.Checked = cdgv.ShowDate;
-        //    CostRegistryIDTsmi.Checked = cdgv.ShowID;
-        //    CostRegistryStatusTsmi.Checked = cdgv.ShowStatus;
-        //    CostRegistryOriginalIDTsmi.Checked = cdgv.ShowOriginalID;
-        //    CostRegistryNameTsmi.Checked = cdgv.ShowName;
-        //    PaginationUserControl.Visible = true;
-        //    CostRegistryDgv.Columns["CostRegistryName"].Visible = cdgv.ShowName;
-        //    CostRegistryDgv.Columns["Country"].Visible = cdgv.ShowCountry;
-        //    CostRegistryDgv.Columns["CreatedAt"].Visible = cdgv.ShowDate;
-        //    CostRegistryDgv.Columns["OriginalID"].Visible = cdgv.ShowOriginalID;
-        //    CostRegistryDgv.Columns["Deprecated"].Visible = cdgv.ShowStatus;
-        //    CostRegistryDgv.Columns["CostRegistryID"].Visible = CostRegistryIDTsmi.Checked;
-        //}
+            //CostRegistryDGV cdgv = await getFav;
+            CostRegistryIDTsmi.Checked = true;//cdgv.ShowCountry;
+            CostRegistryCodeTsmi.Checked = true;//cdgv.ShowDate;
+            CostRegistryCostTsmi.Checked = true;//cdgv.ShowStatus;
+            CustomerQuantityTsmi.Checked = true;//cdgv.ShowOriginalID;
+            CostRegistryNameTsmi.Checked = true;//cdgv.ShowName;
+            PaginationUserControl.Visible = true;
+            CostRegistryDgv.Columns["CostRegistryName"].Visible = true;//cdgv.ShowName;
+            CostRegistryDgv.Columns["Country"].Visible = true;//cdgv.ShowCountry;
+            CostRegistryDgv.Columns["CreatedAt"].Visible = true;//cdgv.ShowDate;
+            CostRegistryDgv.Columns["OriginalID"].Visible = true;//cdgv.ShowOriginalID;
+            CostRegistryDgv.Columns["Deprecated"].Visible = true;//cdgv.ShowStatus;
+            CostRegistryDgv.Columns["CostRegistryID"].Visible = CostRegistryIDTsmi.Checked;
+        }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
             filter.CostRegistryPage = PaginationUserControl.CurrentPage;
@@ -175,57 +175,57 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private void CostRegistryDgv_RightClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //if (e.Button == MouseButtons.Right)
-            //{
-            //    var hitTest = CostRegistryDgv.HitTest(e.X, e.Y);
-            //    if (hitTest.RowIndex >= 0)
-            //    {
-            //        RightClickDgv.Show(CostRegistryDgv, e.Location);
-            //    }
-            //}
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitTest = CostRegistryDgv.HitTest(e.X, e.Y);
+                if (hitTest.RowIndex >= 0)
+                {
+                    RightClickDgv.Show(CostRegistryDgv, e.Location);
+                }
+            }
         }
 
         private async void ContextMenuStripCheckEvent(object sender, EventArgs e)
         {
-            //if (sender is ToolStripMenuItem tsmi)
-            //{
-            //    string name = tsmi.Name;
-            //    switch (name)
-            //    {
-            //        case "CostRegistryIDTsmi":
-            //            CostRegistryDgv.Columns["CostRegistryID"].Visible = tsmi.Checked;
-            //            break;
-            //        case "CostRegistryNameTsmi":
-            //            CostRegistryDgv.Columns["CostRegistryName"].Visible = tsmi.Checked;
-            //            break;
-            //        case "CostRegistryCountryTsmi":
-            //            CostRegistryDgv.Columns["Country"].Visible = tsmi.Checked;
-            //            break;
-            //        case "CostRegistryDateTsmi":
-            //            CostRegistryDgv.Columns["CreatedAt"].Visible = tsmi.Checked;
-            //            break;
-            //        case "CostRegistryOriginalIDTsmi":
-            //            CostRegistryDgv.Columns["OriginalID"].Visible = tsmi.Checked;
-            //            break;
-            //        case "CostRegistryStatusTsmi":
-            //            CostRegistryDgv.Columns["Deprecated"].Visible = tsmi.Checked;
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //    CostRegistryDGV cdgv = new CostRegistryDGV
-            //    {
-            //        ShowDate = CostRegistryDateTsmi.Checked,
-            //        ShowID = CostRegistryIDTsmi.Checked,
-            //        ShowStatus = CostRegistryStatusTsmi.Checked,
-            //        ShowOriginalID = CostRegistryOriginalIDTsmi.Checked,
-            //        ShowCountry = CostRegistryCountryTsmi.Checked,
-            //        ShowName = CostRegistryNameTsmi.Checked,
-            //        UserID = UserAccessInfo.RefreshUserID
-            //    };
-            //    await _userService.PostCostRegistryDGV(cdgv);
+            if (sender is ToolStripMenuItem tsmi)
+            {
+                string name = tsmi.Name;
+                switch (name)
+                {
+                    case "CostRegistryIDTsmi":
+                        CostRegistryDgv.Columns["CostRegistryID"].Visible = tsmi.Checked;
+                        break;
+                    case "CostRegistryNameTsmi":
+                        CostRegistryDgv.Columns["CostRegistryName"].Visible = tsmi.Checked;
+                        break;
+                    case "CostRegistryCountryTsmi":
+                        CostRegistryDgv.Columns["Country"].Visible = tsmi.Checked;
+                        break;
+                    case "CostRegistryDateTsmi":
+                        CostRegistryDgv.Columns["CreatedAt"].Visible = tsmi.Checked;
+                        break;
+                    case "CostRegistryOriginalIDTsmi":
+                        CostRegistryDgv.Columns["OriginalID"].Visible = tsmi.Checked;
+                        break;
+                    case "CostRegistryStatusTsmi":
+                        CostRegistryDgv.Columns["Deprecated"].Visible = tsmi.Checked;
+                        break;
+                    default:
+                        break;
+                }
+                CostRegistryDGV cdgv = new CostRegistryDGV
+                {
+                    ShowDate = CostRegistryDateTsmi.Checked,
+                    ShowID = CostRegistryIDTsmi.Checked,
+                    ShowStatus = CostRegistryStatusTsmi.Checked,
+                    ShowOriginalID = CostRegistryOriginalIDTsmi.Checked,
+                    ShowCountry = CostRegistryCountryTsmi.Checked,
+                    ShowName = CostRegistryNameTsmi.Checked,
+                    UserID = UserAccessInfo.RefreshUserID
+                };
+                await _userService.PostCostRegistryDGV(cdgv);
 
-            //}
+            }
         }
 
         private async void CostRegistryGridForm_Load(object sender, EventArgs e)
@@ -252,7 +252,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             CostRegistryDgv.DataSource = query.ToList();
             PaginationUserControl.Visible = true;
             //getFav = _userService.GetCostRegistryDGV();
-            //await SetCheckBoxes();
+            await SetCheckBoxes();
         }
 
 

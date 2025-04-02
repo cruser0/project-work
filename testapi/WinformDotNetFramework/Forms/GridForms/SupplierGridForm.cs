@@ -119,12 +119,23 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierStatusTsmi.Checked = (bool)cdgv.ShowStatus;
             SupplierOriginalIDTsmi.Checked = (bool)cdgv.ShowOriginalID;
             SupplierNameTsmi.Checked = (bool)cdgv.ShowName;
+
+            SupplierDgv.Columns["IsPost"].Visible = false;
+
             SupplierDgv.Columns["SupplierName"].Visible = (bool)cdgv.ShowName;
             SupplierDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
             SupplierDgv.Columns["CreatedAt"].Visible = (bool)cdgv.ShowDate;
             SupplierDgv.Columns["OriginalID"].Visible = (bool)cdgv.ShowOriginalID;
             SupplierDgv.Columns["Deprecated"].Visible = (bool)cdgv.ShowStatus;
             SupplierDgv.Columns["SupplierID"].Visible = SupplierIDTsmi.Checked;
+
+
+            SupplierDgv.Columns["SupplierName"].HeaderText = "Supplier Name";
+            SupplierDgv.Columns["Country"].HeaderText = "Supplier Country";
+            SupplierDgv.Columns["CreatedAt"].HeaderText = "Creation Date";
+            SupplierDgv.Columns["OriginalID"].HeaderText = "Supplier Original ID";
+            SupplierDgv.Columns["SupplierID"].HeaderText = "Supplier ID";
+
             PaginationUserControl.Visible = true;
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)

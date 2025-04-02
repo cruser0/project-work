@@ -144,12 +144,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             UserRoleTsmi.Checked = (bool)cdgv.ShowRoles;
             paginationControl.Visible = true;
 
+            userDgv.Columns["IsPost"].Visible = (bool)cdgv.ShowRoles;
 
             userDgv.Columns["Roles"].Visible = (bool)cdgv.ShowRoles;
             userDgv.Columns["UserID"].Visible = (bool)cdgv.ShowID;
             userDgv.Columns["Email"].Visible = (bool)cdgv.ShowEmail;
             userDgv.Columns["Name"].Visible = (bool)cdgv.ShowName;
             userDgv.Columns["LastName"].Visible = (bool)cdgv.ShowLastName;
+
+
+            userDgv.Columns["UserID"].HeaderText = "User ID";
+            userDgv.Columns["LastName"].HeaderText = "Last Name";
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {

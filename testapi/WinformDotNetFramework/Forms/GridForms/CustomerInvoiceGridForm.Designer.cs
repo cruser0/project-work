@@ -34,8 +34,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerInvoiceGridForm));
             this.RightPanel = new System.Windows.Forms.Panel();
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.searchCustomerInvoice1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoice();
-            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CenterDgv = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -45,7 +43,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -54,6 +51,12 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceInvoiceAmountTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CustomerInvoiceStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerInvoiceCodeTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerInvoiceSaleBolTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerInvoiceSaleBookingNumberTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
+            this.searchCustomerInvoice1 = new WinformDotNetFramework.Forms.control.SearchCustomerInvoice();
+            this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.RightPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
             this.CenterPanel.SuspendLayout();
@@ -83,23 +86,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 387);
             this.TextBoxesRightPanel.TabIndex = 8;
-            // 
-            // searchCustomerInvoice1
-            // 
-            this.searchCustomerInvoice1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.searchCustomerInvoice1.Location = new System.Drawing.Point(0, 0);
-            this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
-            this.searchCustomerInvoice1.Size = new System.Drawing.Size(200, 372);
-            this.searchCustomerInvoice1.TabIndex = 0;
-            // 
-            // RightSideBar
-            // 
-            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
-            this.RightSideBar.Name = "RightSideBar";
-            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
-            this.RightSideBar.TabIndex = 0;
             // 
             // CenterPanel
             // 
@@ -201,14 +187,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.panel5.Size = new System.Drawing.Size(313, 87);
             this.panel5.TabIndex = 2;
             // 
-            // PaginationUserControl
-            // 
-            this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
-            this.PaginationUserControl.Name = "PaginationUserControl";
-            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
-            this.PaginationUserControl.TabIndex = 0;
-            // 
             // panel4
             // 
             this.panel4.AutoSize = true;
@@ -234,15 +212,18 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceSaleIDTsmi,
             this.CustomerInvoiceInvoiceAmountTsmi,
             this.CustomerInvoiceDateTsmi,
-            this.CustomerInvoiceStatusTsmi});
+            this.CustomerInvoiceStatusTsmi,
+            this.CustomerInvoiceCodeTsmi,
+            this.CustomerInvoiceSaleBolTsmi,
+            this.CustomerInvoiceSaleBookingNumberTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(192, 114);
+            this.RightClickDgv.Size = new System.Drawing.Size(231, 202);
             // 
             // CustomerInvoiceIDTsmi
             // 
             this.CustomerInvoiceIDTsmi.CheckOnClick = true;
             this.CustomerInvoiceIDTsmi.Name = "CustomerInvoiceIDTsmi";
-            this.CustomerInvoiceIDTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceIDTsmi.Size = new System.Drawing.Size(230, 22);
             this.CustomerInvoiceIDTsmi.Text = "Show ID";
             this.CustomerInvoiceIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -252,7 +233,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceSaleIDTsmi.CheckOnClick = true;
             this.CustomerInvoiceSaleIDTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerInvoiceSaleIDTsmi.Name = "CustomerInvoiceSaleIDTsmi";
-            this.CustomerInvoiceSaleIDTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceSaleIDTsmi.Size = new System.Drawing.Size(230, 22);
             this.CustomerInvoiceSaleIDTsmi.Text = "Show Sale ID";
             this.CustomerInvoiceSaleIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -262,7 +243,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceInvoiceAmountTsmi.CheckOnClick = true;
             this.CustomerInvoiceInvoiceAmountTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerInvoiceInvoiceAmountTsmi.Name = "CustomerInvoiceInvoiceAmountTsmi";
-            this.CustomerInvoiceInvoiceAmountTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceInvoiceAmountTsmi.Size = new System.Drawing.Size(230, 22);
             this.CustomerInvoiceInvoiceAmountTsmi.Text = "Show Invoice Amount";
             this.CustomerInvoiceInvoiceAmountTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -272,7 +253,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceDateTsmi.CheckOnClick = true;
             this.CustomerInvoiceDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerInvoiceDateTsmi.Name = "CustomerInvoiceDateTsmi";
-            this.CustomerInvoiceDateTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceDateTsmi.Size = new System.Drawing.Size(230, 22);
             this.CustomerInvoiceDateTsmi.Text = "Show Invoice Date";
             this.CustomerInvoiceDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -282,9 +263,64 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.CustomerInvoiceStatusTsmi.CheckOnClick = true;
             this.CustomerInvoiceStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CustomerInvoiceStatusTsmi.Name = "CustomerInvoiceStatusTsmi";
-            this.CustomerInvoiceStatusTsmi.Size = new System.Drawing.Size(191, 22);
+            this.CustomerInvoiceStatusTsmi.Size = new System.Drawing.Size(230, 22);
             this.CustomerInvoiceStatusTsmi.Text = "Show Status";
             this.CustomerInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerInvoiceCodeTsmi
+            // 
+            this.CustomerInvoiceCodeTsmi.Checked = true;
+            this.CustomerInvoiceCodeTsmi.CheckOnClick = true;
+            this.CustomerInvoiceCodeTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerInvoiceCodeTsmi.Name = "CustomerInvoiceCodeTsmi";
+            this.CustomerInvoiceCodeTsmi.Size = new System.Drawing.Size(230, 22);
+            this.CustomerInvoiceCodeTsmi.Text = "Show Customer Invoice Code";
+            this.CustomerInvoiceCodeTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerInvoiceSaleBolTsmi
+            // 
+            this.CustomerInvoiceSaleBolTsmi.Checked = true;
+            this.CustomerInvoiceSaleBolTsmi.CheckOnClick = true;
+            this.CustomerInvoiceSaleBolTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerInvoiceSaleBolTsmi.Name = "CustomerInvoiceSaleBolTsmi";
+            this.CustomerInvoiceSaleBolTsmi.Size = new System.Drawing.Size(230, 22);
+            this.CustomerInvoiceSaleBolTsmi.Text = "Show Sale Bill of Lading";
+            this.CustomerInvoiceSaleBolTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // CustomerInvoiceSaleBookingNumberTsmi
+            // 
+            this.CustomerInvoiceSaleBookingNumberTsmi.Checked = true;
+            this.CustomerInvoiceSaleBookingNumberTsmi.CheckOnClick = true;
+            this.CustomerInvoiceSaleBookingNumberTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CustomerInvoiceSaleBookingNumberTsmi.Name = "CustomerInvoiceSaleBookingNumberTsmi";
+            this.CustomerInvoiceSaleBookingNumberTsmi.Size = new System.Drawing.Size(230, 22);
+            this.CustomerInvoiceSaleBookingNumberTsmi.Text = "Show Sale Booking Number";
+            this.CustomerInvoiceSaleBookingNumberTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
+            this.PaginationUserControl.TabIndex = 0;
+            // 
+            // searchCustomerInvoice1
+            // 
+            this.searchCustomerInvoice1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.searchCustomerInvoice1.Location = new System.Drawing.Point(0, 0);
+            this.searchCustomerInvoice1.Name = "searchCustomerInvoice1";
+            this.searchCustomerInvoice1.Size = new System.Drawing.Size(200, 372);
+            this.searchCustomerInvoice1.TabIndex = 0;
+            // 
+            // RightSideBar
+            // 
+            this.RightSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.RightSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightSideBar.Location = new System.Drawing.Point(0, 0);
+            this.RightSideBar.Name = "RightSideBar";
+            this.RightSideBar.Size = new System.Drawing.Size(200, 461);
+            this.RightSideBar.TabIndex = 0;
             // 
             // CustomerInvoiceGridForm
             // 
@@ -338,5 +374,8 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton1;
         private control.SearchCustomerInvoice searchCustomerInvoice1;
         private ToolStripButton ToggleEditButton;
+        private ToolStripMenuItem CustomerInvoiceCodeTsmi;
+        private ToolStripMenuItem CustomerInvoiceSaleBolTsmi;
+        private ToolStripMenuItem CustomerInvoiceSaleBookingNumberTsmi;
     }
 }

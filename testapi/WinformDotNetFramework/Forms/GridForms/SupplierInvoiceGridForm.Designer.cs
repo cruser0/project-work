@@ -56,6 +56,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceSupplierIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceSupplierNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.SupplierInvoiceCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceSaleBolTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.SupplierInvoiceSaleBookingNumberTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.RigtPanel.SuspendLayout();
             this.TextBoxesRightPanel.SuspendLayout();
@@ -232,15 +235,18 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceStatusTsmi,
             this.SupplierInvoiceSupplierIDTsmi,
             this.SupplierInvoiceSupplierNameTsmi,
-            this.SupplierInvoiceCountryTsmi});
+            this.SupplierInvoiceCountryTsmi,
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi,
+            this.SupplierInvoiceSaleBolTsmi,
+            this.SupplierInvoiceSaleBookingNumberTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(196, 180);
+            this.RightClickDgv.Size = new System.Drawing.Size(222, 268);
             // 
             // SupplierInvoiceIDTsmi
             // 
             this.SupplierInvoiceIDTsmi.CheckOnClick = true;
             this.SupplierInvoiceIDTsmi.Name = "SupplierInvoiceIDTsmi";
-            this.SupplierInvoiceIDTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceIDTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceIDTsmi.Text = "Show ID";
             this.SupplierInvoiceIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -250,7 +256,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceSaleIDTsmi.CheckOnClick = true;
             this.SupplierInvoiceSaleIDTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierInvoiceSaleIDTsmi.Name = "SupplierInvoiceSaleIDTsmi";
-            this.SupplierInvoiceSaleIDTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceSaleIDTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceSaleIDTsmi.Text = "Show Sale ID";
             this.SupplierInvoiceSaleIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -260,7 +266,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceInvoiceAmountTsmi.CheckOnClick = true;
             this.SupplierInvoiceInvoiceAmountTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierInvoiceInvoiceAmountTsmi.Name = "SupplierInvoiceInvoiceAmountTsmi";
-            this.SupplierInvoiceInvoiceAmountTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceInvoiceAmountTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceInvoiceAmountTsmi.Text = "Show Invoice Amount";
             this.SupplierInvoiceInvoiceAmountTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -270,7 +276,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceDateTsmi.CheckOnClick = true;
             this.SupplierInvoiceDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierInvoiceDateTsmi.Name = "SupplierInvoiceDateTsmi";
-            this.SupplierInvoiceDateTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceDateTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceDateTsmi.Text = "Show Invoice Date";
             this.SupplierInvoiceDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -280,7 +286,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceStatusTsmi.CheckOnClick = true;
             this.SupplierInvoiceStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierInvoiceStatusTsmi.Name = "SupplierInvoiceStatusTsmi";
-            this.SupplierInvoiceStatusTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceStatusTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceStatusTsmi.Text = "Show Status";
             this.SupplierInvoiceStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -288,7 +294,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             // 
             this.SupplierInvoiceSupplierIDTsmi.CheckOnClick = true;
             this.SupplierInvoiceSupplierIDTsmi.Name = "SupplierInvoiceSupplierIDTsmi";
-            this.SupplierInvoiceSupplierIDTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceSupplierIDTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceSupplierIDTsmi.Text = "Show Supplier ID";
             this.SupplierInvoiceSupplierIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -298,7 +304,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceSupplierNameTsmi.CheckOnClick = true;
             this.SupplierInvoiceSupplierNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierInvoiceSupplierNameTsmi.Name = "SupplierInvoiceSupplierNameTsmi";
-            this.SupplierInvoiceSupplierNameTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceSupplierNameTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceSupplierNameTsmi.Text = "Show Supplier Name";
             this.SupplierInvoiceSupplierNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
@@ -308,9 +314,39 @@ namespace WinformDotNetFramework.Forms.GridForms
             this.SupplierInvoiceCountryTsmi.CheckOnClick = true;
             this.SupplierInvoiceCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SupplierInvoiceCountryTsmi.Name = "SupplierInvoiceCountryTsmi";
-            this.SupplierInvoiceCountryTsmi.Size = new System.Drawing.Size(195, 22);
+            this.SupplierInvoiceCountryTsmi.Size = new System.Drawing.Size(221, 22);
             this.SupplierInvoiceCountryTsmi.Text = "Show Supplier Country";
             this.SupplierInvoiceCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceSupplierInvoiceCodeTsmi
+            // 
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi.Checked = true;
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi.CheckOnClick = true;
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi.Name = "SupplierInvoiceSupplierInvoiceCodeTsmi";
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi.Size = new System.Drawing.Size(221, 22);
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi.Text = "Show Supplier Invoice Code";
+            this.SupplierInvoiceSupplierInvoiceCodeTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceSaleBolTsmi
+            // 
+            this.SupplierInvoiceSaleBolTsmi.Checked = true;
+            this.SupplierInvoiceSaleBolTsmi.CheckOnClick = true;
+            this.SupplierInvoiceSaleBolTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceSaleBolTsmi.Name = "SupplierInvoiceSaleBolTsmi";
+            this.SupplierInvoiceSaleBolTsmi.Size = new System.Drawing.Size(221, 22);
+            this.SupplierInvoiceSaleBolTsmi.Text = "Show Sale Bill of Lading";
+            this.SupplierInvoiceSaleBolTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            // 
+            // SupplierInvoiceSaleBookingNumberTsmi
+            // 
+            this.SupplierInvoiceSaleBookingNumberTsmi.Checked = true;
+            this.SupplierInvoiceSaleBookingNumberTsmi.CheckOnClick = true;
+            this.SupplierInvoiceSaleBookingNumberTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SupplierInvoiceSaleBookingNumberTsmi.Name = "SupplierInvoiceSaleBookingNumberTsmi";
+            this.SupplierInvoiceSaleBookingNumberTsmi.Size = new System.Drawing.Size(221, 22);
+            this.SupplierInvoiceSaleBookingNumberTsmi.Text = "Show Booking Number";
+            this.SupplierInvoiceSaleBookingNumberTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // SupplierInvoiceGridForm
             // 
@@ -366,5 +402,8 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripButton toolStripButton1;
         private control.SearchSupplierInvoice searchSupplierInvoice1;
         private ToolStripButton ToggleEditButton;
+        private ToolStripMenuItem SupplierInvoiceSupplierInvoiceCodeTsmi;
+        private ToolStripMenuItem SupplierInvoiceSaleBolTsmi;
+        private ToolStripMenuItem SupplierInvoiceSaleBookingNumberTsmi;
     }
 }
