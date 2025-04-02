@@ -29,22 +29,24 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.QuantityCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.CostCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.DescriptionCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.CodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.SaveEditCustomerBtn = new System.Windows.Forms.Button();
             this.EditCustomerCbx = new System.Windows.Forms.CheckBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.QuantityCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.CostCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.DescriptionCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.CodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.SaveQuitBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.SaveQuitBtn);
             this.panel1.Controls.Add(this.QuantityCtb);
             this.panel1.Controls.Add(this.CostCtb);
             this.panel1.Controls.Add(this.DescriptionCtb);
@@ -56,6 +58,46 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(766, 416);
             this.panel1.TabIndex = 29;
+            // 
+            // QuantityCtb
+            // 
+            this.QuantityCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.QuantityCtb.Location = new System.Drawing.Point(269, 242);
+            this.QuantityCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.QuantityCtb.Name = "QuantityCtb";
+            this.QuantityCtb.Size = new System.Drawing.Size(200, 47);
+            this.QuantityCtb.TabIndex = 38;
+            this.QuantityCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // CostCtb
+            // 
+            this.CostCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CostCtb.Location = new System.Drawing.Point(269, 190);
+            this.CostCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.CostCtb.Name = "CostCtb";
+            this.CostCtb.Size = new System.Drawing.Size(200, 47);
+            this.CostCtb.TabIndex = 37;
+            this.CostCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // DescriptionCtb
+            // 
+            this.DescriptionCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DescriptionCtb.Location = new System.Drawing.Point(269, 138);
+            this.DescriptionCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.DescriptionCtb.Name = "DescriptionCtb";
+            this.DescriptionCtb.Size = new System.Drawing.Size(200, 47);
+            this.DescriptionCtb.TabIndex = 36;
+            this.DescriptionCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // CodeCtb
+            // 
+            this.CodeCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CodeCtb.Location = new System.Drawing.Point(269, 86);
+            this.CodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.CodeCtb.Name = "CodeCtb";
+            this.CodeCtb.Size = new System.Drawing.Size(200, 47);
+            this.CodeCtb.TabIndex = 35;
+            this.CodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // SaveEditCustomerBtn
             // 
@@ -121,45 +163,15 @@
             this.panel2.Size = new System.Drawing.Size(17, 450);
             this.panel2.TabIndex = 30;
             // 
-            // QuantityCtb
+            // SaveQuitBtn
             // 
-            this.QuantityCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.QuantityCtb.Location = new System.Drawing.Point(269, 242);
-            this.QuantityCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.QuantityCtb.Name = "QuantityCtb";
-            this.QuantityCtb.Size = new System.Drawing.Size(200, 47);
-            this.QuantityCtb.TabIndex = 38;
-            this.QuantityCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // CostCtb
-            // 
-            this.CostCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CostCtb.Location = new System.Drawing.Point(269, 190);
-            this.CostCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.CostCtb.Name = "CostCtb";
-            this.CostCtb.Size = new System.Drawing.Size(200, 47);
-            this.CostCtb.TabIndex = 37;
-            this.CostCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // DescriptionCtb
-            // 
-            this.DescriptionCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DescriptionCtb.Location = new System.Drawing.Point(269, 138);
-            this.DescriptionCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.DescriptionCtb.Name = "DescriptionCtb";
-            this.DescriptionCtb.Size = new System.Drawing.Size(200, 47);
-            this.DescriptionCtb.TabIndex = 36;
-            this.DescriptionCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // CodeCtb
-            // 
-            this.CodeCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CodeCtb.Location = new System.Drawing.Point(269, 86);
-            this.CodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.CodeCtb.Name = "CodeCtb";
-            this.CodeCtb.Size = new System.Drawing.Size(200, 47);
-            this.CodeCtb.TabIndex = 35;
-            this.CodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            this.SaveQuitBtn.Location = new System.Drawing.Point(367, 354);
+            this.SaveQuitBtn.Name = "SaveQuitBtn";
+            this.SaveQuitBtn.Size = new System.Drawing.Size(102, 23);
+            this.SaveQuitBtn.TabIndex = 39;
+            this.SaveQuitBtn.Text = "Save and Quit";
+            this.SaveQuitBtn.UseVisualStyleBackColor = true;
+            this.SaveQuitBtn.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // CreateDetailsCostRegistryForm
             // 
@@ -192,5 +204,6 @@
         private control.CustomTextBoxUserControl CostCtb;
         private control.CustomTextBoxUserControl DescriptionCtb;
         private control.CustomTextBoxUserControl CodeCtb;
+        private System.Windows.Forms.Button SaveQuitBtn;
     }
 }

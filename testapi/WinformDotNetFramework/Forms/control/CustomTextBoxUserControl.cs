@@ -19,8 +19,6 @@ namespace WinformDotNetFramework.Forms.control
         public CustomTextBoxUserControl()
         {
             InitializeComponent();
-            PropTxt.Tag = PropLbl;
-            PropLbl.Tag = Errorlbl;
         }
 
         public void SetPropName(string name)
