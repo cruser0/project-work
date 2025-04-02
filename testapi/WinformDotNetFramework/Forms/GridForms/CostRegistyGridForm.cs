@@ -241,7 +241,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             // DA TOGLIERE DOPO !!!
             await Task.WhenAll(/*getFav,*/ countNotFiltered, getAllNotFiltered);
-            IEnumerable<CostRegistryDTOGet> query = await getAllNotFiltered;
+            List<CostRegistryDTOGet> query = (await getAllNotFiltered).ToList();
             int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;

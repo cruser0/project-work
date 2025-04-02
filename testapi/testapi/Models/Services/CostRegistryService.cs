@@ -61,7 +61,8 @@ namespace API.Models.Services
         private IQueryable<CostRegistryDTOGet> ApplyFilter(CostRegistryFilter filter)
         {
             int itemsPage = 10;
-            var query = _context.CostRegistries.Include(x => x.SupplierInvoiceCosts).Include(x => x.CustomerInvoiceCosts).AsQueryable();
+
+            var query = _context.CostRegistries.AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.CostRegistryCode))
             {
