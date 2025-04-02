@@ -736,6 +736,7 @@
     <EmbeddedResource Include="Reports\SubReportCharts.rdlc" />
     <EmbeddedResource Include="Reports\ReportSales.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Entity_Validator.Entity.Procedures.ClassifySalesByProfit1.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.Customer.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.CustomerInvoice.datasource" />
     <None Include="Properties\DataSources\WinformDotNetFramework.Entities.CustomerInvoiceCost.datasource" />
