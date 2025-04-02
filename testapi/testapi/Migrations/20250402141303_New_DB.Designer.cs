@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(Progetto_FormativoContext))]
-    [Migration("20250402140252_New_DB")]
+    [Migration("20250402141303_New_DB")]
     partial class New_DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2408,8 +2408,8 @@ namespace API.Migrations
                         new
                         {
                             TokenID = 1,
-                            Created = new DateTime(2025, 4, 2, 16, 2, 50, 959, DateTimeKind.Local).AddTicks(7973),
-                            Expires = new DateTime(2025, 4, 12, 16, 2, 50, 959, DateTimeKind.Local).AddTicks(8037),
+                            Created = new DateTime(2025, 4, 2, 16, 13, 3, 31, DateTimeKind.Local).AddTicks(5169),
+                            Expires = new DateTime(2025, 4, 12, 16, 13, 3, 31, DateTimeKind.Local).AddTicks(5233),
                             Token = "BASEADMINTOKEN",
                             UserID = 1
                         });

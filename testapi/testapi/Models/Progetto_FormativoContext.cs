@@ -852,7 +852,6 @@ namespace API.Models
             modelBuilder.Entity<TotalAmountSpentPerSuppliers>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalAmountGainedPerCustomerInvoice>().HasNoKey().ToView(null);
 
-            modelBuilder.ApplyConfiguration(new RegistryCostConfiguration());
             modelBuilder.ApplyConfiguration(new StatusConfiguration());
             modelBuilder.ApplyConfiguration(new CountryConfiguration());
 
@@ -873,6 +872,7 @@ namespace API.Models
             modelBuilder.ApplyConfiguration(new SupplierInvoiceCostDgvConfiguration());
             modelBuilder.ApplyConfiguration(new SaleDgvConfiguration());
             modelBuilder.ApplyConfiguration(new UserDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new RegistryCostConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerGroupSplitConfiguration());
             modelBuilder.ApplyConfiguration(new SupplierGroupSplitConfiguration());
             modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());

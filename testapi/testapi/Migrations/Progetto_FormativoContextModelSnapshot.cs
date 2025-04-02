@@ -2406,8 +2406,8 @@ namespace API.Migrations
                         new
                         {
                             TokenID = 1,
-                            Created = new DateTime(2025, 4, 2, 16, 2, 50, 959, DateTimeKind.Local).AddTicks(7973),
-                            Expires = new DateTime(2025, 4, 12, 16, 2, 50, 959, DateTimeKind.Local).AddTicks(8037),
+                            Created = new DateTime(2025, 4, 2, 16, 13, 3, 31, DateTimeKind.Local).AddTicks(5169),
+                            Expires = new DateTime(2025, 4, 12, 16, 13, 3, 31, DateTimeKind.Local).AddTicks(5233),
                             Token = "BASEADMINTOKEN",
                             UserID = 1
                         });
