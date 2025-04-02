@@ -12,7 +12,7 @@ namespace Entity_Validator.Entity.Procedures
         public string Status { get; set; }
         public string CustomerName { get; set; }
         public string Country { get; set; }
-        public string CountryRegion { get; set; }
+        public string Region { get; set; }
         public decimal? TotalSpent { get; set; }
         public decimal? Profit { get; set; }
         public string SaleMargins { get; set; }
