@@ -1,5 +1,6 @@
 ﻿using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Entities;
+using Entity_Validator.Entity.Entities.Preference;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         Form _father;
         Task<ICollection<CostRegistryDTOGet>> getAllNotFiltered;
         Task<int> countNotFiltered;
-        //Task<CostRegistryDGV> getFav;
+        Task<CostRegistryDGV> getFav;
 
         private UserService _userService;
         public CostRegistryGridForm()
@@ -90,19 +91,28 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             CostRegistryDgv.DataSource = query.ToList();
 
-            //CostRegistryDGV cdgv = await getFav;
-            CostRegistryIDTsmi.Checked = true;//cdgv.ShowCountry;
-            CostRegistryCodeTsmi.Checked = true;//cdgv.ShowDate;
-            CostRegistryCostTsmi.Checked = true;//cdgv.ShowStatus;
-            CustomerQuantityTsmi.Checked = true;//cdgv.ShowOriginalID;
-            CostRegistryNameTsmi.Checked = true;//cdgv.ShowName;
-            PaginationUserControl.Visible = true;
-            CostRegistryDgv.Columns["CostRegistryName"].Visible = true;//cdgv.ShowName;
-            CostRegistryDgv.Columns["Country"].Visible = true;//cdgv.ShowCountry;
-            CostRegistryDgv.Columns["CreatedAt"].Visible = true;//cdgv.ShowDate;
-            CostRegistryDgv.Columns["OriginalID"].Visible = true;//cdgv.ShowOriginalID;
-            CostRegistryDgv.Columns["Deprecated"].Visible = true;//cdgv.ShowStatus;
-            CostRegistryDgv.Columns["CostRegistryID"].Visible = CostRegistryIDTsmi.Checked;
+
+
+            CostRegistryDGV cdgv = await getFav;
+            CostRegistryIDTsmi.Checked = (bool)cdgv.ShowRegistryID;
+            CostRegistryCodeTsmi.Checked = (bool)cdgv.ShowRegistryCode;
+            CostRegistryCostTsmi.Checked =(bool)cdgv.ShowRegistryPrice;
+            CostRegistryQuantityTsmi.Checked =(bool)cdgv.ShowRegistryQuantity;
+            CostRegistryNameTsmi.Checked =(bool)cdgv.ShowRegistryName;
+
+            CostRegistryDgv.Columns["IsPost"].Visible = (bool)cdgv.ShowRegistryName;
+
+            CostRegistryDgv.Columns["CostRegistryName"].Visible = (bool)cdgv.ShowRegistryName;
+            CostRegistryDgv.Columns["CostRegistryUniqueCode"].Visible = (bool)cdgv.ShowRegistryCode;
+            CostRegistryDgv.Columns["CostRegistryPrice"].Visible = (bool)cdgv.ShowRegistryPrice;
+            CostRegistryDgv.Columns["CostRegistryQuantity"].Visible = (bool)cdgv.ShowRegistryQuantity;
+            CostRegistryDgv.Columns["CostRegistryID"].Visible = (bool)cdgv.ShowRegistryID;
+
+            CostRegistryDgv.Columns["CostRegistryName"].HeaderText = "Cost Registry Default Description";
+            CostRegistryDgv.Columns["CostRegistryUniqueCode"].HeaderText = "Cost Registry  Unique Code";
+            CostRegistryDgv.Columns["CostRegistryPrice"].HeaderText = "Cost Registry Default Price";
+            CostRegistryDgv.Columns["CostRegistryQuantity"].HeaderText = "Cost Registry Default Quantity";
+            CostRegistryDgv.Columns["CostRegistryID"].HeaderText = "Cost Registry ID";
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -192,39 +202,34 @@ namespace WinformDotNetFramework.Forms.GridForms
                 string name = tsmi.Name;
                 switch (name)
                 {
-                    case "CostRegistryIDTsmi":
-                        CostRegistryDgv.Columns["CostRegistryID"].Visible = tsmi.Checked;
-                        break;
                     case "CostRegistryNameTsmi":
                         CostRegistryDgv.Columns["CostRegistryName"].Visible = tsmi.Checked;
                         break;
-                    case "CostRegistryCountryTsmi":
-                        CostRegistryDgv.Columns["Country"].Visible = tsmi.Checked;
+                    case "CostRegistryIDTsmi":
+                        CostRegistryDgv.Columns["CostRegistryID"].Visible = tsmi.Checked;
                         break;
-                    case "CostRegistryDateTsmi":
-                        CostRegistryDgv.Columns["CreatedAt"].Visible = tsmi.Checked;
+                    case "CostRegistryCodeTsmi":
+                        CostRegistryDgv.Columns["CostRegistryUniqueCode"].Visible = tsmi.Checked;
                         break;
-                    case "CostRegistryOriginalIDTsmi":
-                        CostRegistryDgv.Columns["OriginalID"].Visible = tsmi.Checked;
+                    case "CostRegistryCostTsmi":
+                        CostRegistryDgv.Columns["CostRegistryPrice"].Visible = tsmi.Checked;
                         break;
-                    case "CostRegistryStatusTsmi":
-                        CostRegistryDgv.Columns["Deprecated"].Visible = tsmi.Checked;
+                    case "CostRegistryQuantityTsmi":
+                        CostRegistryDgv.Columns["CostRegistryQuantity"].Visible = tsmi.Checked;
                         break;
                     default:
                         break;
                 }
                 CostRegistryDGV cdgv = new CostRegistryDGV
                 {
-                    ShowDate = CostRegistryDateTsmi.Checked,
-                    ShowID = CostRegistryIDTsmi.Checked,
-                    ShowStatus = CostRegistryStatusTsmi.Checked,
-                    ShowOriginalID = CostRegistryOriginalIDTsmi.Checked,
-                    ShowCountry = CostRegistryCountryTsmi.Checked,
-                    ShowName = CostRegistryNameTsmi.Checked,
+                    ShowRegistryName = CostRegistryNameTsmi.Checked,
+                    ShowRegistryID = CostRegistryIDTsmi.Checked,
+                    ShowRegistryCode = CostRegistryCodeTsmi.Checked,
+                    ShowRegistryPrice = CostRegistryCostTsmi.Checked,
+                    ShowRegistryQuantity = CostRegistryQuantityTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 await _userService.PostCostRegistryDGV(cdgv);
-
             }
         }
 
@@ -239,19 +244,10 @@ namespace WinformDotNetFramework.Forms.GridForms
 
 
 
-            // DA TOGLIERE DOPO !!!
-            await Task.WhenAll(/*getFav,*/ countNotFiltered, getAllNotFiltered);
-            List<CostRegistryDTOGet> query = (await getAllNotFiltered).ToList();
-            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
-            if (mPage <= 0)
-                mPage = 1;
-
-            PaginationUserControl.maxPage = mPage.ToString();
-            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
-
-            CostRegistryDgv.DataSource = query.ToList();
+            
+            getFav = _userService.GetCostRegistryDGV();
             PaginationUserControl.Visible = true;
-            //getFav = _userService.GetCostRegistryDGV();
+
             await SetCheckBoxes();
         }
 

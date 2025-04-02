@@ -212,14 +212,14 @@ namespace WinformDotNetFramework.Services
         public async Task<CostRegistryDGV> GetCostRegistryDGV()
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await GetItem<CostRegistryDGV>(client, $"preference/customer-invoicedgv/{UserAccessInfo.RefreshUserID}", "Cost Registry DGV");
+            var returnResult = await GetItem<CostRegistryDGV>(client, $"preference/cost-registrydgv/{UserAccessInfo.RefreshUserID}", "Cost Registry DGV");
             return returnResult;
         }
 
-        public async Task<CostRegistryDGV> PostCustomerDGV(CostRegistryDGV entity)
+        public async Task<CostRegistryDGV> PostCostRegistryDGV(CostRegistryDGV entity)
         {
             ClientAPI client = new ClientAPI(UserAccessInfo.Token);
-            var returnResult = await PostItem(client, $"preference/customer-invoicedgv", entity, "Cost Registry DGV");
+            var returnResult = await PostItem(client, $"preference/cost-registrydgv", entity, "Cost Registry DGV");
             return returnResult;
         }
 

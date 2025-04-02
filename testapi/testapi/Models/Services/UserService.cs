@@ -401,11 +401,11 @@ namespace API.Models.Services
             }
             else
             {
-                cdgvDb.ShowRegistryID = cdgvDb.ShowRegistryID == null ? false : cdgvDb.ShowRegistryID;
-                cdgvDb.ShowRegistryCode = cdgvDb.ShowRegistryCode == null ? true : cdgvDb.ShowRegistryCode;
-                cdgvDb.ShowRegistryName = cdgvDb.ShowRegistryName == null ? true : cdgvDb.ShowRegistryName;
-                cdgvDb.ShowRegistryPrice = cdgvDb.ShowRegistryPrice == null ? true : cdgvDb.ShowRegistryPrice;
-                cdgvDb.ShowRegistryQuantity = cdgvDb.ShowRegistryQuantity == null ? true : cdgvDb.ShowRegistryQuantity;
+                cdgvDb.ShowRegistryID = value.ShowRegistryID == null ? false : value.ShowRegistryID;
+                cdgvDb.ShowRegistryCode = value.ShowRegistryCode == null ? true : value.ShowRegistryCode;
+                cdgvDb.ShowRegistryName = value.ShowRegistryName == null ? true : value.ShowRegistryName;
+                cdgvDb.ShowRegistryPrice = value.ShowRegistryPrice == null ? true : value.ShowRegistryPrice;
+                cdgvDb.ShowRegistryQuantity = value.ShowRegistryQuantity == null ? true : value.ShowRegistryQuantity;
 
                 _context.CostRegistryDGV.Update(cdgvDb);
                 await _context.SaveChangesAsync();

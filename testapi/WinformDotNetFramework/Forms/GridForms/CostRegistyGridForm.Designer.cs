@@ -41,7 +41,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
-            this.CustomerQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CostRegistryQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CostRegistryCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CostRegistryNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.CostRegistryCodeTsmi = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,13 +182,13 @@
             this.CustomerGdv.Size = new System.Drawing.Size(584, 374);
             this.CustomerGdv.TabIndex = 6;
             // 
-            // CustomerQuantityTsmi
+            // CostRegistryQuantityTsmi
             // 
-            this.CustomerQuantityTsmi.CheckOnClick = true;
-            this.CustomerQuantityTsmi.Name = "CustomerQuantityTsmi";
-            this.CustomerQuantityTsmi.Size = new System.Drawing.Size(207, 22);
-            this.CustomerQuantityTsmi.Text = "Show Default Quantity";
-            this.CustomerQuantityTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.CostRegistryQuantityTsmi.CheckOnClick = true;
+            this.CostRegistryQuantityTsmi.Name = "CostRegistryQuantityTsmi";
+            this.CostRegistryQuantityTsmi.Size = new System.Drawing.Size(207, 22);
+            this.CostRegistryQuantityTsmi.Text = "Show Default Quantity";
+            this.CostRegistryQuantityTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // CostRegistryCostTsmi
             // 
@@ -235,9 +235,9 @@
             this.CostRegistryCodeTsmi,
             this.CostRegistryNameTsmi,
             this.CostRegistryCostTsmi,
-            this.CustomerQuantityTsmi});
+            this.CostRegistryQuantityTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(208, 114);
+            this.RightClickDgv.Size = new System.Drawing.Size(208, 136);
             // 
             // TextBoxesRightPanel
             // 
@@ -338,7 +338,7 @@
         public System.Windows.Forms.ToolStripButton toolStripButton2;
         public System.Windows.Forms.ToolStripButton ToggleEditButton;
         public System.Windows.Forms.DataGridView CustomerGdv;
-        public System.Windows.Forms.ToolStripMenuItem CustomerQuantityTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CostRegistryQuantityTsmi;
         public System.Windows.Forms.ToolStripMenuItem CostRegistryCostTsmi;
         public System.Windows.Forms.ToolStripMenuItem CostRegistryNameTsmi;
         public System.Windows.Forms.ToolStripMenuItem CostRegistryCodeTsmi;
