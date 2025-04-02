@@ -40,6 +40,7 @@ namespace API.Models
         public virtual DbSet<SupplierDGV> SupplierDGV { get; set; } = null!;
         public virtual DbSet<SupplierInvoiceDGV> SupplierInvoiceDGV { get; set; } = null!;
         public virtual DbSet<SupplierInvoiceCostDGV> SupplierInvoiceCostDGV { get; set; } = null!;
+        public virtual DbSet<CostRegistryDGV> CostRegistryDGV { get; set; } = null!;
         public virtual DbSet<SaleDGV> SaleDGV { get; set; } = null!;
         public virtual DbSet<CustomerGroupSplit> CustomerGroupSplit { get; set; } = null!;
         public virtual DbSet<SupplierGroupSplit> SupplierGroupSplit { get; set; } = null!;
@@ -166,6 +167,37 @@ namespace API.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+            });
+
+            modelBuilder.Entity<CostRegistryDGV>(entity =>
+            {
+                entity.ToTable("CostRegistryDGVs");
+
+                entity.HasKey(e => e.CostRegistryDGVID);
+                entity.Property(e => e.CostRegistryDGVID)
+                    .HasColumnName("CostRegistryDGVID");
+                entity.Property(e => e.UserID)
+                   .HasColumnType("int");
+
+                entity.Property(e => e.ShowRegistryID)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(false);
+                entity.Property(e => e.ShowRegistryCode)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowRegistryName)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowRegistryPrice)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowRegistryQuantity)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+
+                entity.HasOne(d => d.User)
+                    .WithOne(p => p.CostRegistryDGV)
+                    .HasForeignKey<CostRegistryDGV>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<CustomerDGV>(entity =>
@@ -402,6 +434,15 @@ namespace API.Models
                 entity.Property(e => e.ShowStatus)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
+                entity.Property(e => e.ShowInvoiceCode)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowSaleBookingNumber)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowSaleBoL)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
 
                 entity.HasOne(d => d.User)
                     .WithOne(p => p.CustomerInvoiceDGV)
@@ -439,6 +480,15 @@ namespace API.Models
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
                 entity.Property(e => e.ShowCountry)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowInvoiceCode)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowSaleBookingNumber)
+                   .HasColumnType("bit")
+                   .HasDefaultValue(true);
+                entity.Property(e => e.ShowSaleBoL)
                    .HasColumnType("bit")
                    .HasDefaultValue(true);
 

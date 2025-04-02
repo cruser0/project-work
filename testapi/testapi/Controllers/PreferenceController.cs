@@ -35,6 +35,25 @@ namespace API.Controllers
 
         }
 
+        [HttpGet("cost-registrydgv/{id}")]
+        public async Task<IActionResult> GetCostRegistryDGV(int id)
+        {
+
+            var result = await _userService.GetCostRegistryDGV(id);
+            return Ok(result);
+
+
+        }
+        [HttpPost("cost-registrydgv")]
+        public async Task<IActionResult> PostCostRegistryDGV([FromBody] CostRegistryDGV value)
+        {
+
+            var result = await _userService.CreateUpdateCostRegistryDGV(value);
+            return Ok(result);
+
+
+        }
+
         [HttpGet("customer-invoicedgv/{id}")]
         public async Task<IActionResult> GetCustomerInvoiceDGV(int id)
         {

@@ -12,6 +12,9 @@
         public bool? ShowSupplierID { get; set; }
         public bool? ShowSupplierName { get; set; }
         public bool? ShowCountry { get; set; }
+        public bool? ShowInvoiceCode { get; set; }
+        public bool? ShowSaleBookingNumber { get; set; }
+        public bool? ShowSaleBoL { get; set; }
         public virtual User User { get; set; }
 
     }

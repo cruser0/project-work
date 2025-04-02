@@ -9,6 +9,9 @@
         public bool? ShowInvoiceAmount { get; set; }
         public bool? ShowDate { get; set; }
         public bool? ShowStatus { get; set; }
+        public bool? ShowInvoiceCode { get; set; }
+        public bool? ShowSaleBookingNumber { get; set; }
+        public bool? ShowSaleBoL { get; set; }
         public virtual User User { get; set; }
     }
 }
