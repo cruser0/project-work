@@ -87,6 +87,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void Init()
         {
             InitializeComponent();
+
+            CustomerInvoiceCodeCtb.SetPropName("CustomerInvoiceCode");
+            InvoiceAmountCtb.SetPropName("InvoiceAmount");
+
+
             _saleService = new SaleService();
             _customerInvoiceService = new CustomerInvoiceService();
             _customerInvoiceCostService = new CustomerInvoiceCostService();
@@ -252,11 +257,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private async Task CreateClick(bool quit = false)
         {
-            if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text) || !InvoiceDateDTP.Checked)
-            {
-                MessageBox.Show("All the fields must be filled");
-                return;
-            }
             SaveBtn.Enabled = false;
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
@@ -265,35 +265,29 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 Status = "Unpaid",
             };
 
-            try
+
+            invoice.IsPost = true;
+            var result = ValidatorEntity.Validate(invoice);
+            if (result.Any())
             {
-                invoice.IsPost = true;
-                var result = ValidatorEntity.Validate(invoice);
-                if (result.Any())
-                {
-                    UtilityFunctions.ValidateTextBoxes(panel6, invoice);
-                    return;
-                }
-                customerInvoice = await _customerInvoiceService.Create(invoice);
-                MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
-                if (quit) Close();
-
-                InitDetails((int)customerInvoice.CustomerInvoiceId);
-
-                AddCostBtn.Enabled = true;
-                checkBox1.Visible = true;
-                CustomerInvoiceCodeCtb.PropTxt.Visible = true;
-                StatusCB.Visible = true;
-                label4.Visible = true;
-                InvoiceAmountCtb.PropTxt.Visible = true;
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                UtilityFunctions.ValidateTextBoxes(panel6, invoice);
                 SaveBtn.Enabled = true;
+                return;
             }
+            customerInvoice = await _customerInvoiceService.Create(invoice);
+            MessageBox.Show("Customer Invoice Created Succesfully\nNow you can add Costs");
+            if (quit) Close();
+
+            InitDetails((int)customerInvoice.CustomerInvoiceId);
+
+            AddCostBtn.Enabled = true;
+            checkBox1.Visible = true;
+            CustomerInvoiceCodeCtb.PropTxt.Visible = true;
+            StatusCB.Visible = true;
+            label4.Visible = true;
+            InvoiceAmountCtb.PropTxt.Visible = true;
+
+
         }
 
         private async void Savebutton_Click(object sender, EventArgs e)
