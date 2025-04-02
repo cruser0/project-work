@@ -864,6 +864,7 @@ namespace API.Models
             modelBuilder.ApplyConfiguration(new FavouritePagesConfiguration());
             modelBuilder.ApplyConfiguration(new UserFavouritePageConfiguration());
 
+            modelBuilder.ApplyConfiguration(new CostRegistryDgvConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerDgvConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerInvoiceDgvConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerInvoiceCostDgvConfiguration());

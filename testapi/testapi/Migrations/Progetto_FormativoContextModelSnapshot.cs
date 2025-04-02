@@ -1625,6 +1625,13 @@ namespace API.Migrations
                         .HasFilter("[UserID] IS NOT NULL");
 
                     b.ToTable("CostRegistryDGVs", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CostRegistryDGVID = 1,
+                            UserID = 1
+                        });
                 });
 
             modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerDGV", b =>
@@ -2399,8 +2406,8 @@ namespace API.Migrations
                         new
                         {
                             TokenID = 1,
-                            Created = new DateTime(2025, 4, 2, 15, 37, 25, 360, DateTimeKind.Local).AddTicks(8752),
-                            Expires = new DateTime(2025, 4, 12, 15, 37, 25, 360, DateTimeKind.Local).AddTicks(8807),
+                            Created = new DateTime(2025, 4, 2, 16, 2, 50, 959, DateTimeKind.Local).AddTicks(7973),
+                            Expires = new DateTime(2025, 4, 12, 16, 2, 50, 959, DateTimeKind.Local).AddTicks(8037),
                             Token = "BASEADMINTOKEN",
                             UserID = 1
                         });
