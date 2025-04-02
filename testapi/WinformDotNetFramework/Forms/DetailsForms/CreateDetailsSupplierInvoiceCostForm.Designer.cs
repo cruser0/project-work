@@ -36,19 +36,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.CostRegistryLbl = new System.Windows.Forms.Label();
             this.CostRegistryCmbx = new System.Windows.Forms.ComboBox();
-            this.NameSupplierLbl = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
-            this.NameTxt = new System.Windows.Forms.TextBox();
-            this.Quantity = new System.Windows.Forms.Label();
-            this.SupplierIDLbl = new System.Windows.Forms.Label();
             this.OpenSupplierInvoice = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.CostIntegerTxt = new WinformDotNetFramework.Forms.control.DecimalTextBoxUserControl();
+            this.NameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.SupplierInvoiceCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.QuantityIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.QuantityCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.CostCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.CreatePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -71,18 +68,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.CostCtb);
+            this.panel1.Controls.Add(this.QuantityCtb);
+            this.panel1.Controls.Add(this.NameCtb);
             this.panel1.Controls.Add(this.SaveQuitButton);
-            this.panel1.Controls.Add(this.CostIntegerTxt);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.SupplierInvoiceCmbxUC);
             this.panel1.Controls.Add(this.CostRegistryLbl);
             this.panel1.Controls.Add(this.CostRegistryCmbx);
-            this.panel1.Controls.Add(this.NameSupplierLbl);
             this.panel1.Controls.Add(this.SaveBtn);
-            this.panel1.Controls.Add(this.NameTxt);
-            this.panel1.Controls.Add(this.Quantity);
-            this.panel1.Controls.Add(this.QuantityIntegerTxt);
-            this.panel1.Controls.Add(this.SupplierIDLbl);
             this.panel1.Controls.Add(this.OpenSupplierInvoice);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(17, 17);
@@ -124,7 +118,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CostRegistryLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CostRegistryLbl.AutoSize = true;
             this.CostRegistryLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.CostRegistryLbl.Location = new System.Drawing.Point(247, 287);
+            this.CostRegistryLbl.Location = new System.Drawing.Point(265, 278);
             this.CostRegistryLbl.Name = "CostRegistryLbl";
             this.CostRegistryLbl.Size = new System.Drawing.Size(76, 13);
             this.CostRegistryLbl.TabIndex = 41;
@@ -137,23 +131,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CostRegistryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CostRegistryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CostRegistryCmbx.FormattingEnabled = true;
-            this.CostRegistryCmbx.Location = new System.Drawing.Point(250, 303);
+            this.CostRegistryCmbx.Location = new System.Drawing.Point(265, 291);
             this.CostRegistryCmbx.Name = "CostRegistryCmbx";
-            this.CostRegistryCmbx.Size = new System.Drawing.Size(200, 21);
+            this.CostRegistryCmbx.Size = new System.Drawing.Size(196, 21);
             this.CostRegistryCmbx.TabIndex = 40;
             this.CostRegistryCmbx.SelectedIndexChanged += new System.EventHandler(this.CostRegistryCmbx_SelectedIndexChanged);
-            // 
-            // NameSupplierLbl
-            // 
-            this.NameSupplierLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameSupplierLbl.AutoSize = true;
-            this.NameSupplierLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameSupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierLbl.Location = new System.Drawing.Point(247, 174);
-            this.NameSupplierLbl.Name = "NameSupplierLbl";
-            this.NameSupplierLbl.Size = new System.Drawing.Size(102, 15);
-            this.NameSupplierLbl.TabIndex = 35;
-            this.NameSupplierLbl.Text = "Description Name";
             // 
             // SaveBtn
             // 
@@ -170,43 +152,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveBtn.UseVisualStyleBackColor = false;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
-            // NameTxt
-            // 
-            this.NameTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameTxt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.NameTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameTxt.Location = new System.Drawing.Point(250, 192);
-            this.NameTxt.MaxLength = 100;
-            this.NameTxt.Name = "NameTxt";
-            this.NameTxt.Size = new System.Drawing.Size(200, 23);
-            this.NameTxt.TabIndex = 34;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AllowDrop = true;
-            this.Quantity.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Quantity.AutoSize = true;
-            this.Quantity.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.Quantity.Location = new System.Drawing.Point(247, 114);
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Size = new System.Drawing.Size(53, 15);
-            this.Quantity.TabIndex = 27;
-            this.Quantity.Text = "Quantity";
-            // 
-            // SupplierIDLbl
-            // 
-            this.SupplierIDLbl.AllowDrop = true;
-            this.SupplierIDLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierIDLbl.AutoSize = true;
-            this.SupplierIDLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SupplierIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SupplierIDLbl.Location = new System.Drawing.Point(247, 229);
-            this.SupplierIDLbl.Name = "SupplierIDLbl";
-            this.SupplierIDLbl.Size = new System.Drawing.Size(31, 15);
-            this.SupplierIDLbl.TabIndex = 23;
-            this.SupplierIDLbl.Text = "Cost";
             // 
             // OpenSupplierInvoice
             // 
@@ -237,6 +182,47 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 17);
+            // NameCtb
+            // 
+            this.NameCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameCtb.Location = new System.Drawing.Point(265, 137);
+            this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCtb.Name = "NameCtb";
+            this.NameCtb.Size = new System.Drawing.Size(200, 47);
+            this.NameCtb.TabIndex = 46;
+            this.NameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // SupplierInvoiceCmbxUC
+            // 
+            this.SupplierInvoiceCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SupplierInvoiceCmbxUC.listItemsDropCmbx = null;
+            this.SupplierInvoiceCmbxUC.Location = new System.Drawing.Point(265, 90);
+            this.SupplierInvoiceCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SupplierInvoiceCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
+            this.SupplierInvoiceCmbxUC.Name = "SupplierInvoiceCmbxUC";
+            this.SupplierInvoiceCmbxUC.Size = new System.Drawing.Size(200, 47);
+            this.SupplierInvoiceCmbxUC.TabIndex = 42;
+            // 
+            // QuantityCtb
+            // 
+            this.QuantityCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.QuantityCtb.Location = new System.Drawing.Point(265, 231);
+            this.QuantityCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.QuantityCtb.Name = "QuantityCtb";
+            this.QuantityCtb.Size = new System.Drawing.Size(200, 47);
+            this.QuantityCtb.TabIndex = 47;
+            this.QuantityCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Integer;
+            // 
+            // CostCtb
+            // 
+            this.CostCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CostCtb.Location = new System.Drawing.Point(265, 184);
+            this.CostCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.CostCtb.Name = "CostCtb";
+            this.CostCtb.Size = new System.Drawing.Size(200, 47);
+            this.CostCtb.TabIndex = 48;
+            this.CostCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            // 
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(17, 427);
             this.panel3.TabIndex = 38;
@@ -259,38 +245,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 40;
             // 
-            // CostIntegerTxt
-            // 
-            this.CostIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CostIntegerTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CostIntegerTxt.Location = new System.Drawing.Point(250, 247);
-            this.CostIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.CostIntegerTxt.Name = "CostIntegerTxt";
-            this.CostIntegerTxt.Size = new System.Drawing.Size(200, 25);
-            this.CostIntegerTxt.TabIndex = 44;
-            // 
-            // SupplierInvoiceCmbxUC
-            // 
-            this.SupplierInvoiceCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SupplierInvoiceCmbxUC.listItemsDropCmbx = null;
-            this.SupplierInvoiceCmbxUC.Location = new System.Drawing.Point(250, 64);
-            this.SupplierInvoiceCmbxUC.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SupplierInvoiceCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
-            this.SupplierInvoiceCmbxUC.Name = "SupplierInvoiceCmbxUC";
-            this.SupplierInvoiceCmbxUC.Size = new System.Drawing.Size(200, 47);
-            this.SupplierInvoiceCmbxUC.TabIndex = 42;
-            // 
-            // QuantityIntegerTxt
-            // 
-            this.QuantityIntegerTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.QuantityIntegerTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QuantityIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.QuantityIntegerTxt.Location = new System.Drawing.Point(250, 132);
-            this.QuantityIntegerTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.QuantityIntegerTxt.Name = "QuantityIntegerTxt";
-            this.QuantityIntegerTxt.Size = new System.Drawing.Size(200, 25);
-            this.QuantityIntegerTxt.TabIndex = 33;
-            // 
             // CreateDetailsSupplierInvoiceCostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,13 +265,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         #endregion
 
         private Panel CreatePanel;
-        private control.IntegerTextBoxUserControl QuantityIntegerTxt;
         private Button OpenSupplierInvoice;
-        private Label SupplierIDLbl;
-        private Label Quantity;
         private Button SaveBtn;
-        private Label NameSupplierLbl;
-        private TextBox NameTxt;
         private Panel panel1;
         private Panel panel4;
         private Panel panel3;
@@ -326,8 +275,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Label CostRegistryLbl;
         private ComboBox CostRegistryCmbx;
         private CheckBox checkBox1;
-        private control.DecimalTextBoxUserControl CostIntegerTxt;
         private Button SaveQuitButton;
         private control.DropDownMenuAutoCompleteUserControl SupplierInvoiceCmbxUC;
+        private control.CustomTextBoxUserControl NameCtb;
+        private control.CustomTextBoxUserControl CostCtb;
+        private control.CustomTextBoxUserControl QuantityCtb;
     }
 }

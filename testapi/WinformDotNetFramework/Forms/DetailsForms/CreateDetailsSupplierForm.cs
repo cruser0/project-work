@@ -29,6 +29,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async void Init(int? id)
         {
             InitializeComponent();
+            NameCtb.SetPropName("SupplierName");
+
             _supplierService = new SupplierService();
             _supplierInvoiceService = new SupplierInvoiceService();
             _supplierService = new SupplierService();
@@ -39,10 +41,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 summary = await _supplierInvoiceService.GetSummary(idInt);
                 supplier = await _supplierService.GetById(idInt);
                 supplierID = idInt;
-                NameSupplierTxt.Text = supplier.SupplierName;
+                NameCtb.PropTxt.Text = supplier.SupplierName;
                 CountryCmbx.Text = supplier.Country;
                 comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
-                NameSupplierTxt.Enabled = false;
+                NameCtb.PropTxt.Enabled = false;
                 CountryCmbx.Enabled = false;
                 comboBox1.Enabled = false;
                 detailsOnly = true;
@@ -116,13 +118,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private void EditSupplierCbx_CheckedChanged(object sender, EventArgs e)
         {
-            NameSupplierTxt.Enabled = EditSupplierCbx.Checked;
+            NameCtb.PropTxt.Enabled = EditSupplierCbx.Checked;
             CountryCmbx.Enabled = EditSupplierCbx.Checked;
             comboBox1.Enabled = EditSupplierCbx.Checked;
 
             if (!EditSupplierCbx.Checked)
             {
-                NameSupplierTxt.Text = supplier.SupplierName;
+                NameCtb.PropTxt.Text = supplier.SupplierName;
                 CountryCmbx.Text = supplier.Country;
                 comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
             }
@@ -146,19 +148,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                         break;
                 };
 
-                SupplierDTOGet supplier = new SupplierDTOGet { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
+                SupplierDTOGet supplier = new SupplierDTOGet
+                {
+                    SupplierName = NameCtb.PropTxt.Text,
+                    Country = CountryCmbx.Text,
+                    Deprecated = enabled
+                };
                 try
                 {
                     supplier.IsPost = false;
                     var result = ValidatorEntity.Validate(supplier);
                     if (result.Any())
                     {
-                        string err = "";
-                        foreach (var item in result)
-                        {
-                            err += item.ErrorMessage + "\n";
-                        }
-                        MessageBox.Show(err);
+                        UtilityFunctions.ValidateTextBoxes(panel1, supplier);
                         return;
                     }
 
@@ -170,132 +172,34 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
             else
             {
-                if (NameSupplierTxt.Text.Length < 1 || CountryCmbx.Text.Equals("All") || string.IsNullOrEmpty(CountryCmbx.Text))
-                {
-                    MessageBox.Show("Input data error!");
-                    return;
-                }
 
                 SupplierDTOGet supplier = new SupplierDTOGet()
                 {
-                    SupplierName = NameSupplierTxt.Text,
+                    SupplierName = NameCtb.PropTxt.Text,
                     Country = CountryCmbx.Text
                 };
-                if (supplier.Country.Equals("All"))
-                    MessageBox.Show("You Need to Select a country");
-                else
+
+
+                supplier.IsPost = true;
+                var result = ValidatorEntity.Validate(supplier);
+                if (result.Any())
                 {
-                    try
-                    {
-                        supplier.IsPost = true;
-                        var result = ValidatorEntity.Validate(supplier);
-                        if (result.Any())
-                        {
-                            string err = "";
-                            foreach (var item in result)
-                            {
-                                err += item.ErrorMessage + "\n";
-                            }
-                            MessageBox.Show(err);
-                            return;
-                        }
-
-                        await _supplierService.Create(supplier);
-                        MessageBox.Show("Supplier Created Succesfully");
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-
-                    }
+                    UtilityFunctions.ValidateTextBoxes(panel1, supplier);
+                    return;
                 }
+
+                await _supplierService.Create(supplier);
+                MessageBox.Show("Supplier Created Succesfully");
+
+
+
             }
         }
 
-        private async void SaveQuitButton_Click(object sender, EventArgs e)
+        private void SaveQuitButton_Click(object sender, EventArgs e)
         {
-            if (detailsOnly)
-            {
-
-                switch (comboBox1.Text)
-                {
-                    case "Active":
-                        enabled = false;
-                        break;
-
-                    case "Deprecated":
-                        enabled = true;
-                        break;
-                };
-
-                SupplierDTOGet supplier = new SupplierDTOGet { SupplierName = NameSupplierTxt.Text, Country = CountryCmbx.Text, Deprecated = enabled };
-                try
-                {
-                    supplier.IsPost = false;
-                    var result = ValidatorEntity.Validate(supplier);
-                    if (result.Any())
-                    {
-                        string err = "";
-                        foreach (var item in result)
-                        {
-                            err += item.ErrorMessage + "\n";
-                        }
-                        MessageBox.Show(err);
-                        return;
-                    }
-
-                    await _supplierService.Update(supplierID, supplier);
-                    MessageBox.Show("Supplier updated successfully!");
-                    Close();
-
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
-            else
-            {
-                if (NameSupplierTxt.Text.Length < 1 || CountryCmbx.Text.Equals("All") || string.IsNullOrEmpty(CountryCmbx.Text))
-                {
-                    MessageBox.Show("Input data error!");
-                    return;
-                }
-
-                SupplierDTOGet supplier = new SupplierDTOGet()
-                {
-                    SupplierName = NameSupplierTxt.Text,
-                    Country = CountryCmbx.Text
-                };
-                if (supplier.Country.Equals("All"))
-                    MessageBox.Show("You Need to Select a country");
-                else
-                {
-                    try
-                    {
-                        supplier.IsPost = true;
-                        var result = ValidatorEntity.Validate(supplier);
-                        if (result.Any())
-                        {
-                            string err = "";
-                            foreach (var item in result)
-                            {
-                                err += item.ErrorMessage + "\n";
-                            }
-                            MessageBox.Show(err);
-                            return;
-                        }
-
-                        await _supplierService.Create(supplier);
-                        MessageBox.Show("Supplier Created Succesfully");
-                        Close();
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-
-                    }
-                }
-            }
+            SaveEditSupplierBtn.PerformClick();
+            Close();
         }
     }
 }

@@ -34,9 +34,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveEditSupplierBtn = new System.Windows.Forms.Button();
             this.EditSupplierCbx = new System.Windows.Forms.CheckBox();
             this.CountrySupplierLbl = new System.Windows.Forms.Label();
-            this.NameSupplierLbl = new System.Windows.Forms.Label();
-            this.NameSupplierTxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CountryCmbx = new System.Windows.Forms.ComboBox();
@@ -45,7 +44,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.SaveQuitButton = new System.Windows.Forms.Button();
+            this.NameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -90,47 +89,37 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountrySupplierLbl.TabIndex = 14;
             this.CountrySupplierLbl.Text = "Country";
             // 
-            // NameSupplierLbl
-            // 
-            this.NameSupplierLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameSupplierLbl.AutoSize = true;
-            this.NameSupplierLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameSupplierLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierLbl.Location = new System.Drawing.Point(261, 105);
-            this.NameSupplierLbl.Name = "NameSupplierLbl";
-            this.NameSupplierLbl.Size = new System.Drawing.Size(39, 15);
-            this.NameSupplierLbl.TabIndex = 13;
-            this.NameSupplierLbl.Text = "Name";
-            // 
-            // NameSupplierTxt
-            // 
-            this.NameSupplierTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameSupplierTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameSupplierTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.NameSupplierTxt.Location = new System.Drawing.Point(261, 123);
-            this.NameSupplierTxt.MaxLength = 100;
-            this.NameSupplierTxt.Name = "NameSupplierTxt";
-            this.NameSupplierTxt.Size = new System.Drawing.Size(200, 23);
-            this.NameSupplierTxt.TabIndex = 10;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.NameCtb);
             this.panel1.Controls.Add(this.SaveQuitButton);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.CountryCmbx);
             this.panel1.Controls.Add(this.chart1);
-            this.panel1.Controls.Add(this.NameSupplierTxt);
             this.panel1.Controls.Add(this.SaveEditSupplierBtn);
             this.panel1.Controls.Add(this.EditSupplierCbx);
-            this.panel1.Controls.Add(this.NameSupplierLbl);
             this.panel1.Controls.Add(this.CountrySupplierLbl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(17, 17);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 19;
+            // 
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.SaveQuitButton.Location = new System.Drawing.Point(261, 330);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(92, 25);
+            this.SaveQuitButton.TabIndex = 33;
+            this.SaveQuitButton.Text = "Save and Quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // comboBox1
             // 
@@ -163,6 +152,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CountryCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CountryCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CountryCmbx.BackColor = System.Drawing.SystemColors.Window;
+            this.CountryCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CountryCmbx.FormattingEnabled = true;
             this.CountryCmbx.Location = new System.Drawing.Point(261, 167);
             this.CountryCmbx.Name = "CountryCmbx";
@@ -218,19 +208,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(750, 17);
             this.panel5.TabIndex = 23;
             // 
-            // SaveQuitButton
+            // NameCtb
             // 
-            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.SaveQuitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.SaveQuitButton.Location = new System.Drawing.Point(261, 330);
-            this.SaveQuitButton.Name = "SaveQuitButton";
-            this.SaveQuitButton.Size = new System.Drawing.Size(92, 25);
-            this.SaveQuitButton.TabIndex = 33;
-            this.SaveQuitButton.Text = "Save and Quit";
-            this.SaveQuitButton.UseVisualStyleBackColor = false;
-            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
+            this.NameCtb.Location = new System.Drawing.Point(261, 99);
+            this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCtb.Name = "NameCtb";
+            this.NameCtb.Size = new System.Drawing.Size(200, 47);
+            this.NameCtb.TabIndex = 34;
+            this.NameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // CreateDetailsSupplierForm
             // 
@@ -257,8 +242,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Button SaveEditSupplierBtn;
         private CheckBox EditSupplierCbx;
         private Label CountrySupplierLbl;
-        private Label NameSupplierLbl;
-        private TextBox NameSupplierTxt;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
@@ -269,5 +252,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private ComboBox comboBox1;
         private Label label1;
         private Button SaveQuitButton;
+        private control.CustomTextBoxUserControl NameCtb;
     }
 }
