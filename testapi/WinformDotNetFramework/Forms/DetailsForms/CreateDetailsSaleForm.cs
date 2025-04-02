@@ -40,6 +40,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             InitializeComponent();
             StatusCmbx.SelectedIndex = 0;
             NameCmbxUC.Cmbx.SetTiltes("Customer");
+
+            BkCtb.SetPropName("BookingNumber");
+            BolCtb.SetPropName("BoLnumber");
+            RevenueCtb.SetPropName("TotalRevenue");
+
+
             if (id != null)
             {
                 _saleId = (int)id;
@@ -61,10 +67,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     })).ToList();
                 SuInDgv.DataSource = si;
                 UtilityFunctions.SetDropdownText(NameCmbxUC, sale.CustomerName + $" - {sale.Country}");
-                bntxt.Text = sale.BookingNumber;
-                boltxt.Text = sale.BoLnumber;
+                BkCtb.PropTxt.Text = sale.BookingNumber;
+                BolCtb.PropTxt.Text = sale.BoLnumber;
                 saleDateDtp.Value = sale.SaleDate.Value;
-                RevenueTxt.SetText(sale.TotalRevenue.ToString());
+                RevenueCtb.PropTxt.Text = sale.TotalRevenue.ToString();
                 StatusCmbx.Text = sale.Status.ToString();
             }
             else
@@ -98,8 +104,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void SetVisibility()
         {
             EditCB.Visible = detailsOnly;
-            label6.Visible = detailsOnly;
-            RevenueTxt.Visible = detailsOnly;
+            RevenueCtb.PropTxt.Visible = detailsOnly;
             button1.Visible = detailsOnly;
             button2.Visible = detailsOnly;
         }
@@ -107,10 +112,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             saveBtn.Enabled = !detailsOnly;
             NameCmbxUC.Cmbx.Enabled = !detailsOnly;
-            bntxt.Enabled = !detailsOnly;
-            boltxt.Enabled = !detailsOnly;
+            BkCtb.PropTxt.Enabled = !detailsOnly;
+            BolCtb.PropTxt.Enabled = !detailsOnly;
             saleDateDtp.Enabled = !detailsOnly;
-            RevenueTxt.Enabled = !detailsOnly;
+            RevenueCtb.PropTxt.Enabled = !detailsOnly;
             StatusCmbx.Enabled = !detailsOnly;
         }
         private bool Authorize(List<string> allowedRoles)
@@ -121,10 +126,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void EditCB_CheckedChanged(object sender, EventArgs e)
         {
             NameCmbxUC.Cmbx.Enabled = EditCB.Checked;
-            bntxt.Enabled = EditCB.Checked;
-            boltxt.Enabled = EditCB.Checked;
+            BkCtb.PropTxt.Enabled = EditCB.Checked;
+            BolCtb.PropTxt.Enabled = EditCB.Checked;
             saleDateDtp.Enabled = EditCB.Checked;
-            RevenueTxt.Enabled = EditCB.Checked;
+            RevenueCtb.PropTxt.Enabled = EditCB.Checked;
             StatusCmbx.Enabled = EditCB.Checked;
             saveBtn.Enabled = EditCB.Checked;
         }
@@ -230,102 +235,100 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     CustomerName = name,
                     CustomerCountry = country
                 })).FirstOrDefault().CustomerId;
-            }catch (Exception) {NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
+            }
+            catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
             SaleDTOGet sale = new SaleDTOGet
             {
-                BookingNumber = bntxt.Text,
-                BoLnumber = boltxt.Text,
+                BookingNumber = BkCtb.PropTxt.Text,
+                BoLnumber = BolCtb.PropTxt.Text,
                 SaleDate = saleDateDtp.Value,
                 CustomerId = customerId,
                 Status = StatusCmbx.Text
             };
-            try
+
+            sale.IsPost = false;
+            var result = ValidatorEntity.Validate(sale);
+            if (result.Any())
             {
-                sale.IsPost = false;
-                var result = ValidatorEntity.Validate(sale);
-                if (result.Any())
-                {
-                    return;
-                }
-                if (exit)
-                    return;
-                await _saleService.Update(_saleId, sale);
-                MessageBox.Show("Sale updated successfully!");
-                if (quit) Close();
+                UtilityFunctions.ValidateTextBoxes(panel6, sale);
+                return;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            if (exit)
+                return;
+            await _saleService.Update(_saleId, sale);
+            MessageBox.Show("Sale updated successfully!");
+            if (quit) Close();
         }
 
         private async Task CreateClick(bool quit = false)
         {
             NameCmbxUC.Cmbx.SetBorderColorBlack();
             bool exit = false;
-            try
+
+            if (!saleDateDtp.Checked)
             {
-                if (!saleDateDtp.Checked)
-                {
-                    MessageBox.Show("Select a date");
-                    return;
-                }
-                if (_id == -1)
-                {
-                    string name = NameCmbxUC.Cmbx.PropTxt.Text;
-                    string country = "";
-
-                    int lastIndex = name.LastIndexOf(" - ");
-
-                    if (lastIndex != -1 && lastIndex != name.Length - 3)
-                    {
-                        country = name.Substring(lastIndex + 3);
-
-                        name = name.Substring(0, lastIndex);
-                    }
-                    int customerId = -1;
-                    try
-                    {
-                        if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(name))
-                            throw new Exception();
-                        customerId = (int)(await _customerService.GetAll(new CustomerFilter()
-                        {
-                            CustomerName = name,
-                            CustomerCountry = country
-                        })).FirstOrDefault().CustomerId;
-                    }
-                    catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
-
-                    _id = customerId;
-                }
-                SaleDTOGet sale1 = new SaleDTOGet
-                {
-                    BookingNumber = bntxt.Text,
-                    BoLnumber = boltxt.Text,
-                    SaleDate = saleDateDtp.Value,
-                    CustomerId = _id,
-                    Status = StatusCmbx.Text
-                };
-
-                sale1.IsPost = true;
-                var result = ValidatorEntity.Validate(sale1);
-                if (result.Any())
-                {
-                    return;
-                }
-
-                if (exit)
-                    return;
-                SaleDTOGet saleReturn = await _saleService.Create(sale1);
-                _saleId = (int)saleReturn.SaleId;
-                MessageBox.Show("Sale Created successfully!");
-                if (quit) Close();
-
-                sale = (await _saleService.GetAll(new SaleCustomerFilter() { SaleBoLnumber = boltxt.Text, SaleBookingNumber = bntxt.Text })).FirstOrDefault();
-                detailsOnly = true;
-                SetVisibility();
-                RevenueTxt.Text = saleReturn.TotalRevenue.ToString();
-                RevenueTxt.Enabled = false;
+                MessageBox.Show("Select a date");
+                return;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            if (_id == -1)
+            {
+                string name = NameCmbxUC.Cmbx.PropTxt.Text;
+                string country = "";
+
+                int lastIndex = name.LastIndexOf(" - ");
+
+                if (lastIndex != -1 && lastIndex != name.Length - 3)
+                {
+                    country = name.Substring(lastIndex + 3);
+
+                    name = name.Substring(0, lastIndex);
+                }
+                int customerId = -1;
+                try
+                {
+                    if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(name))
+                        throw new Exception();
+                    customerId = (int)(await _customerService.GetAll(new CustomerFilter()
+                    {
+                        CustomerName = name,
+                        CustomerCountry = country
+                    })).FirstOrDefault().CustomerId;
+                }
+                catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
+
+                _id = customerId;
+            }
+            SaleDTOGet sale1 = new SaleDTOGet
+            {
+                BookingNumber = BkCtb.PropTxt.Text,
+                BoLnumber = BolCtb.PropTxt.Text,
+                SaleDate = saleDateDtp.Value,
+                CustomerId = _id,
+                Status = StatusCmbx.Text
+            };
+
+            sale1.IsPost = true;
+            var result = ValidatorEntity.Validate(sale1);
+            if (result.Any())
+            {
+                UtilityFunctions.ValidateTextBoxes(panel6, sale1);
+                return;
+            }
+
+            if (exit)
+                return;
+            SaleDTOGet saleReturn = await _saleService.Create(sale1);
+            _saleId = (int)saleReturn.SaleId;
+            MessageBox.Show("Sale Created successfully!");
+            if (quit) Close();
+
+            sale = (await _saleService.GetAll(new SaleCustomerFilter() { SaleBoLnumber = BolCtb.PropTxt.Text, SaleBookingNumber = BkCtb.PropTxt.Text })).FirstOrDefault();
+            detailsOnly = true;
+            SetVisibility();
+            RevenueCtb.PropTxt.Text = saleReturn.TotalRevenue.ToString();
+            RevenueCtb.PropTxt.Enabled = false;
+
         }
 
         private async void saveBtn_Click(object sender, EventArgs e)

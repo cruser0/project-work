@@ -38,13 +38,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.LastNameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.PasswordCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.EmailCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.NameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.SaveQuitButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.NameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.EmailCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.PasswordCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.LastNameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.ListBoxErrorLbl = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,6 +160,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel3.Controls.Add(this.ListBoxErrorLbl);
             this.panel3.Controls.Add(this.LastNameCtb);
             this.panel3.Controls.Add(this.PasswordCtb);
             this.panel3.Controls.Add(this.EmailCtb);
@@ -174,6 +176,42 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(750, 427);
             this.panel3.TabIndex = 41;
+            // 
+            // LastNameCtb
+            // 
+            this.LastNameCtb.Location = new System.Drawing.Point(43, 100);
+            this.LastNameCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.LastNameCtb.Name = "LastNameCtb";
+            this.LastNameCtb.Size = new System.Drawing.Size(200, 47);
+            this.LastNameCtb.TabIndex = 43;
+            this.LastNameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // PasswordCtb
+            // 
+            this.PasswordCtb.Location = new System.Drawing.Point(43, 206);
+            this.PasswordCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.PasswordCtb.Name = "PasswordCtb";
+            this.PasswordCtb.Size = new System.Drawing.Size(200, 47);
+            this.PasswordCtb.TabIndex = 42;
+            this.PasswordCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // EmailCtb
+            // 
+            this.EmailCtb.Location = new System.Drawing.Point(43, 153);
+            this.EmailCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.EmailCtb.Name = "EmailCtb";
+            this.EmailCtb.Size = new System.Drawing.Size(200, 47);
+            this.EmailCtb.TabIndex = 41;
+            this.EmailCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // NameCtb
+            // 
+            this.NameCtb.Location = new System.Drawing.Point(43, 47);
+            this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCtb.Name = "NameCtb";
+            this.NameCtb.Size = new System.Drawing.Size(200, 47);
+            this.NameCtb.TabIndex = 40;
+            this.NameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // SaveQuitButton
             // 
@@ -207,41 +245,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(784, 17);
             this.panel5.TabIndex = 43;
             // 
-            // NameCtb
+            // ListBoxErrorLbl
             // 
-            this.NameCtb.Location = new System.Drawing.Point(43, 47);
-            this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.NameCtb.Name = "NameCtb";
-            this.NameCtb.Size = new System.Drawing.Size(200, 47);
-            this.NameCtb.TabIndex = 40;
-            this.NameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // EmailCtb
-            // 
-            this.EmailCtb.Location = new System.Drawing.Point(43, 153);
-            this.EmailCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.EmailCtb.Name = "EmailCtb";
-            this.EmailCtb.Size = new System.Drawing.Size(200, 47);
-            this.EmailCtb.TabIndex = 41;
-            this.EmailCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // PasswordCtb
-            // 
-            this.PasswordCtb.Location = new System.Drawing.Point(43, 206);
-            this.PasswordCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.PasswordCtb.Name = "PasswordCtb";
-            this.PasswordCtb.Size = new System.Drawing.Size(200, 47);
-            this.PasswordCtb.TabIndex = 42;
-            this.PasswordCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // LastNameCtb
-            // 
-            this.LastNameCtb.Location = new System.Drawing.Point(43, 100);
-            this.LastNameCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.LastNameCtb.Name = "LastNameCtb";
-            this.LastNameCtb.Size = new System.Drawing.Size(200, 47);
-            this.LastNameCtb.TabIndex = 43;
-            this.LastNameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            this.ListBoxErrorLbl.AutoSize = true;
+            this.ListBoxErrorLbl.ForeColor = System.Drawing.Color.Red;
+            this.ListBoxErrorLbl.Location = new System.Drawing.Point(273, 272);
+            this.ListBoxErrorLbl.Name = "ListBoxErrorLbl";
+            this.ListBoxErrorLbl.Size = new System.Drawing.Size(106, 13);
+            this.ListBoxErrorLbl.TabIndex = 44;
+            this.ListBoxErrorLbl.Text = "Select at least 1 role.";
+            this.ListBoxErrorLbl.Visible = false;
             // 
             // CreateDetailsUserForm
             // 
@@ -279,5 +292,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private control.CustomTextBoxUserControl PasswordCtb;
         private control.CustomTextBoxUserControl EmailCtb;
         private control.CustomTextBoxUserControl NameCtb;
+        private Label ListBoxErrorLbl;
     }
 }

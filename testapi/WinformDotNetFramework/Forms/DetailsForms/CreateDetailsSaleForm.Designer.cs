@@ -31,12 +31,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.bntxt = new System.Windows.Forms.TextBox();
-            this.boltxt = new System.Windows.Forms.TextBox();
             this.saleDateDtp = new System.Windows.Forms.DateTimePicker();
             this.EditCB = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
@@ -65,14 +60,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6 = new System.Windows.Forms.Panel();
             this.SaveQuitButton = new System.Windows.Forms.Button();
             this.OpenSale = new System.Windows.Forms.Button();
+            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.StatusCmbx = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.RevenueTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.BkCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.RevenueCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.BolCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -86,73 +83,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 25);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Booking Number";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 73);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "BoL Number";
-            // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 115);
+            this.label4.Location = new System.Drawing.Point(5, 120);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Sale Date";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(218, 115);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 15);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Total Revenue";
-            // 
-            // bntxt
-            // 
-            this.bntxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bntxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntxt.Location = new System.Drawing.Point(8, 43);
-            this.bntxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.bntxt.Name = "bntxt";
-            this.bntxt.Size = new System.Drawing.Size(200, 23);
-            this.bntxt.TabIndex = 8;
-            // 
-            // boltxt
-            // 
-            this.boltxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.boltxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boltxt.Location = new System.Drawing.Point(8, 91);
-            this.boltxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.boltxt.Name = "boltxt";
-            this.boltxt.Size = new System.Drawing.Size(200, 23);
-            this.boltxt.TabIndex = 9;
             // 
             // saleDateDtp
             // 
@@ -415,21 +356,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.BolCtb);
+            this.panel6.Controls.Add(this.RevenueCtb);
+            this.panel6.Controls.Add(this.BkCtb);
             this.panel6.Controls.Add(this.SaveQuitButton);
             this.panel6.Controls.Add(this.OpenSale);
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Controls.Add(this.bntxt);
             this.panel6.Controls.Add(this.NameCmbxUC);
-            this.panel6.Controls.Add(this.boltxt);
             this.panel6.Controls.Add(this.saleDateDtp);
-            this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.StatusLbl);
-            this.panel6.Controls.Add(this.RevenueTxt);
             this.panel6.Controls.Add(this.StatusCmbx);
             this.panel6.Controls.Add(this.label4);
             this.panel6.Controls.Add(this.EditCB);
             this.panel6.Controls.Add(this.saveBtn);
-            this.panel6.Controls.Add(this.label3);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.Location = new System.Drawing.Point(0, 0);
@@ -458,7 +396,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSale.FlatAppearance.BorderSize = 0;
             this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSale.Location = new System.Drawing.Point(432, 43);
+            this.OpenSale.Location = new System.Drawing.Point(433, 33);
             this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.OpenSale.Name = "OpenSale";
             this.OpenSale.Size = new System.Drawing.Size(29, 23);
@@ -467,6 +405,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSale.UseVisualStyleBackColor = false;
             this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
             // 
+            // NameCmbxUC
+            // 
+            this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameCmbxUC.listItemsDropCmbx = null;
+            this.NameCmbxUC.Location = new System.Drawing.Point(221, 19);
+            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.NameCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCmbxUC.Name = "NameCmbxUC";
+            this.NameCmbxUC.Size = new System.Drawing.Size(200, 47);
+            this.NameCmbxUC.TabIndex = 49;
+            // 
             // StatusLbl
             // 
             this.StatusLbl.AllowDrop = true;
@@ -474,7 +423,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(218, 73);
+            this.StatusLbl.Location = new System.Drawing.Point(218, 69);
             this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
@@ -492,7 +441,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusCmbx.Items.AddRange(new object[] {
             "Active",
             "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(221, 91);
+            this.StatusCmbx.Location = new System.Drawing.Point(221, 84);
             this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.StatusCmbx.Name = "StatusCmbx";
             this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
@@ -538,27 +487,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
-            // NameCmbxUC
+            // BkCtb
             // 
-            this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(220, 29);
-            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
-            this.NameCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
-            this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(200, 47);
-            this.NameCmbxUC.TabIndex = 49;
+            this.BkCtb.Location = new System.Drawing.Point(11, 19);
+            this.BkCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.BkCtb.Name = "BkCtb";
+            this.BkCtb.Size = new System.Drawing.Size(200, 47);
+            this.BkCtb.TabIndex = 53;
+            this.BkCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
-            // RevenueTxt
+            // RevenueCtb
             // 
-            this.RevenueTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RevenueTxt.Enabled = false;
-            this.RevenueTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RevenueTxt.Location = new System.Drawing.Point(221, 133);
-            this.RevenueTxt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RevenueTxt.Name = "RevenueTxt";
-            this.RevenueTxt.Size = new System.Drawing.Size(200, 23);
-            this.RevenueTxt.TabIndex = 13;
+            this.RevenueCtb.Location = new System.Drawing.Point(221, 113);
+            this.RevenueCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.RevenueCtb.Name = "RevenueCtb";
+            this.RevenueCtb.Size = new System.Drawing.Size(200, 47);
+            this.RevenueCtb.TabIndex = 54;
+            this.RevenueCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            // 
+            // BolCtb
+            // 
+            this.BolCtb.Location = new System.Drawing.Point(7, 72);
+            this.BolCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.BolCtb.Name = "BolCtb";
+            this.BolCtb.Size = new System.Drawing.Size(200, 47);
+            this.BolCtb.TabIndex = 55;
+            this.BolCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // CreateDetailsSaleForm
             // 
@@ -593,14 +547,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
 
         #endregion
-        private Label label2;
-        private Label label3;
         private Label label4;
-        private Label label6;
-        private TextBox bntxt;
-        private TextBox boltxt;
         private DateTimePicker saleDateDtp;
-        private control.IntegerTextBoxUserControl RevenueTxt;
         private CheckBox EditCB;
         private Button saveBtn;
         private Panel panel1;
@@ -635,5 +583,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Button button1;
         public Button OpenSale;
         private Button SaveQuitButton;
+        private control.CustomTextBoxUserControl BolCtb;
+        private control.CustomTextBoxUserControl RevenueCtb;
+        private control.CustomTextBoxUserControl BkCtb;
     }
 }
