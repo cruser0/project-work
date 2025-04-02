@@ -1,4 +1,4 @@
-﻿namespace WinformDotNetFramework.Forms
+﻿namespace WinformDotNetFramework.Forms.control
 {
     partial class CustomComboBox
     {

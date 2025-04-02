@@ -1,4 +1,4 @@
-﻿namespace WinformDotNetFramework
+﻿namespace WinformDotNetFramework.Forms.control
 {
     partial class CustomTextbox
     {

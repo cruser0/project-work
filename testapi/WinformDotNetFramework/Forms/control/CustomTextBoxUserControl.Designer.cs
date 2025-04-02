@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.Errorlbl = new System.Windows.Forms.Label();
             this.PropLbl = new System.Windows.Forms.Label();
-            this.PropTxt = new WinformDotNetFramework.CustomTextbox();
+            this.PropTxt = new WinformDotNetFramework.Forms.control.CustomTextbox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
