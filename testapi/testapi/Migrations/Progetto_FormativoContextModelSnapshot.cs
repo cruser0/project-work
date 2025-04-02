@@ -1593,12 +1593,12 @@ namespace API.Migrations
                     b.Property<bool?>("ShowRegistryCode")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasDefaultValue(true);
 
                     b.Property<bool?>("ShowRegistryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasDefaultValue(false);
 
                     b.Property<bool?>("ShowRegistryName")
                         .ValueGeneratedOnAdd()
@@ -1613,7 +1613,7 @@ namespace API.Migrations
                     b.Property<bool?>("ShowRegistryQuantity")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasDefaultValue(true);
 
                     b.Property<int?>("UserID")
                         .HasColumnType("int");
@@ -2399,8 +2399,8 @@ namespace API.Migrations
                         new
                         {
                             TokenID = 1,
-                            Created = new DateTime(2025, 4, 2, 14, 35, 5, 97, DateTimeKind.Local).AddTicks(8891),
-                            Expires = new DateTime(2025, 4, 12, 14, 35, 5, 97, DateTimeKind.Local).AddTicks(8961),
+                            Created = new DateTime(2025, 4, 2, 15, 37, 25, 360, DateTimeKind.Local).AddTicks(8752),
+                            Expires = new DateTime(2025, 4, 12, 15, 37, 25, 360, DateTimeKind.Local).AddTicks(8807),
                             Token = "BASEADMINTOKEN",
                             UserID = 1
                         });

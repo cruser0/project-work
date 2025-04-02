@@ -1,5 +1,4 @@
 ﻿using Entity_Validator.Entity.DTO;
-using Entity_Validator.Entity.Entities;
 using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
@@ -79,9 +78,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async Task SetCheckBoxes()
         {
-            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            //await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             List<CostRegistryDTOGet> query = (await getAllNotFiltered).ToList();
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 
@@ -213,17 +212,17 @@ namespace WinformDotNetFramework.Forms.GridForms
                     default:
                         break;
                 }
-                CostRegistryDGV cdgv = new CostRegistryDGV
-                {
-                    ShowDate = CostRegistryDateTsmi.Checked,
-                    ShowID = CostRegistryIDTsmi.Checked,
-                    ShowStatus = CostRegistryStatusTsmi.Checked,
-                    ShowOriginalID = CostRegistryOriginalIDTsmi.Checked,
-                    ShowCountry = CostRegistryCountryTsmi.Checked,
-                    ShowName = CostRegistryNameTsmi.Checked,
-                    UserID = UserAccessInfo.RefreshUserID
-                };
-                await _userService.PostCostRegistryDGV(cdgv);
+                //CostRegistryDGV cdgv = new CostRegistryDGV
+                //{
+                //    ShowDate = CostRegistryDateTsmi.Checked,
+                //    ShowID = CostRegistryIDTsmi.Checked,
+                //    ShowStatus = CostRegistryStatusTsmi.Checked,
+                //    ShowOriginalID = CostRegistryOriginalIDTsmi.Checked,
+                //    ShowCountry = CostRegistryCountryTsmi.Checked,
+                //    ShowName = CostRegistryNameTsmi.Checked,
+                //    UserID = UserAccessInfo.RefreshUserID
+                //};
+                //await _userService.PostCostRegistryDGV(cdgv);
 
             }
         }
