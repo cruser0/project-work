@@ -116,7 +116,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             button1.Visible = detailsOnly;
             InvoiceCodeCtb.PropLbl.Visible = detailsOnly;
             EditCbx.Visible = detailsOnly;
-            InvoiceCodeCtb.PropTxt.Visible = detailsOnly;
+            InvoiceCodeCtb.Visible = detailsOnly;
 
         }
         private void SetEnableForTxt()

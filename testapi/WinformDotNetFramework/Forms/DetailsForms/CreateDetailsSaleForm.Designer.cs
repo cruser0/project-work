@@ -58,6 +58,9 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel8 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.BolCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.RevenueCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.BkCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.SaveQuitButton = new System.Windows.Forms.Button();
             this.OpenSale = new System.Windows.Forms.Button();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
@@ -67,9 +70,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.BkCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.RevenueCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.BolCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -375,6 +375,36 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(744, 163);
             this.panel6.TabIndex = 51;
             // 
+            // BolCtb
+            // 
+            this.BolCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BolCtb.Location = new System.Drawing.Point(7, 72);
+            this.BolCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.BolCtb.Name = "BolCtb";
+            this.BolCtb.Size = new System.Drawing.Size(200, 47);
+            this.BolCtb.TabIndex = 55;
+            this.BolCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // RevenueCtb
+            // 
+            this.RevenueCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RevenueCtb.Location = new System.Drawing.Point(221, 113);
+            this.RevenueCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.RevenueCtb.Name = "RevenueCtb";
+            this.RevenueCtb.Size = new System.Drawing.Size(200, 47);
+            this.RevenueCtb.TabIndex = 54;
+            this.RevenueCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            // 
+            // BkCtb
+            // 
+            this.BkCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BkCtb.Location = new System.Drawing.Point(11, 19);
+            this.BkCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.BkCtb.Name = "BkCtb";
+            this.BkCtb.Size = new System.Drawing.Size(200, 47);
+            this.BkCtb.TabIndex = 53;
+            this.BkCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
             // SaveQuitButton
             // 
             this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -486,33 +516,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
-            // 
-            // BkCtb
-            // 
-            this.BkCtb.Location = new System.Drawing.Point(11, 19);
-            this.BkCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.BkCtb.Name = "BkCtb";
-            this.BkCtb.Size = new System.Drawing.Size(200, 47);
-            this.BkCtb.TabIndex = 53;
-            this.BkCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // RevenueCtb
-            // 
-            this.RevenueCtb.Location = new System.Drawing.Point(221, 113);
-            this.RevenueCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.RevenueCtb.Name = "RevenueCtb";
-            this.RevenueCtb.Size = new System.Drawing.Size(200, 47);
-            this.RevenueCtb.TabIndex = 54;
-            this.RevenueCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
-            // 
-            // BolCtb
-            // 
-            this.BolCtb.Location = new System.Drawing.Point(7, 72);
-            this.BolCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.BolCtb.Name = "BolCtb";
-            this.BolCtb.Size = new System.Drawing.Size(200, 47);
-            this.BolCtb.TabIndex = 55;
-            this.BolCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // CreateDetailsSaleForm
             // 

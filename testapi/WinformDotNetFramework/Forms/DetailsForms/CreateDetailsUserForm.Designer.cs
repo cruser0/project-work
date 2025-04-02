@@ -179,6 +179,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // LastNameCtb
             // 
+            this.LastNameCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LastNameCtb.Location = new System.Drawing.Point(43, 100);
             this.LastNameCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.LastNameCtb.Name = "LastNameCtb";
@@ -188,6 +189,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // PasswordCtb
             // 
+            this.PasswordCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PasswordCtb.Location = new System.Drawing.Point(43, 206);
             this.PasswordCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.PasswordCtb.Name = "PasswordCtb";
@@ -197,6 +199,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // EmailCtb
             // 
+            this.EmailCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EmailCtb.Location = new System.Drawing.Point(43, 153);
             this.EmailCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.EmailCtb.Name = "EmailCtb";
@@ -206,6 +209,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // NameCtb
             // 
+            this.NameCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameCtb.Location = new System.Drawing.Point(43, 47);
             this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.NameCtb.Name = "NameCtb";
@@ -247,6 +251,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // ListBoxErrorLbl
             // 
+            this.ListBoxErrorLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ListBoxErrorLbl.AutoSize = true;
             this.ListBoxErrorLbl.ForeColor = System.Drawing.Color.Red;
             this.ListBoxErrorLbl.Location = new System.Drawing.Point(273, 272);

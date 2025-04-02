@@ -35,6 +35,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditSupplierCbx = new System.Windows.Forms.CheckBox();
             this.CountrySupplierLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.NameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.SaveQuitButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.NameCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -106,6 +106,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 427);
             this.panel1.TabIndex = 19;
+            // 
+            // NameCtb
+            // 
+            this.NameCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameCtb.Location = new System.Drawing.Point(261, 99);
+            this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCtb.Name = "NameCtb";
+            this.NameCtb.Size = new System.Drawing.Size(200, 47);
+            this.NameCtb.TabIndex = 34;
+            this.NameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // SaveQuitButton
             // 
@@ -207,15 +217,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(750, 17);
             this.panel5.TabIndex = 23;
-            // 
-            // NameCtb
-            // 
-            this.NameCtb.Location = new System.Drawing.Point(261, 99);
-            this.NameCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.NameCtb.Name = "NameCtb";
-            this.NameCtb.Size = new System.Drawing.Size(200, 47);
-            this.NameCtb.TabIndex = 34;
-            this.NameCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // CreateDetailsSupplierForm
             // 

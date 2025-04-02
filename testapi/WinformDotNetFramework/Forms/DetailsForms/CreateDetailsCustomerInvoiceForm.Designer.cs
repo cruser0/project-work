@@ -56,7 +56,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.AddCostBtn = new System.Windows.Forms.Button();
             this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -261,7 +260,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.StatusCB);
             this.panel6.Controls.Add(this.label4);
-            this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.InvoiceDateDTP);
             this.panel6.Controls.Add(this.SaveBtn);
             this.panel6.Controls.Add(this.checkBox1);
@@ -273,6 +271,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // InvoiceAmountCtb
             // 
+            this.InvoiceAmountCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.InvoiceAmountCtb.Location = new System.Drawing.Point(33, 103);
             this.InvoiceAmountCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.InvoiceAmountCtb.Name = "InvoiceAmountCtb";
@@ -296,6 +295,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // CustomerInvoiceCodeCtb
             // 
+            this.CustomerInvoiceCodeCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CustomerInvoiceCodeCtb.Location = new System.Drawing.Point(33, 50);
             this.CustomerInvoiceCodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.CustomerInvoiceCodeCtb.Name = "CustomerInvoiceCodeCtb";
@@ -353,18 +353,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.BKCmbxUC.Name = "BKCmbxUC";
             this.BKCmbxUC.Size = new System.Drawing.Size(200, 47);
             this.BKCmbxUC.TabIndex = 41;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label6.Location = new System.Drawing.Point(281, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 15);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Booking Number";
             // 
             // panel2
             // 
@@ -457,6 +445,5 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Button SaveQuitButton;
         private control.CustomTextBoxUserControl InvoiceAmountCtb;
         private control.CustomTextBoxUserControl CustomerInvoiceCodeCtb;
-        private Label label6;
     }
 }

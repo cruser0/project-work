@@ -53,8 +53,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             dataGridView1.DataSource = new CustomerInvoiceCostDTOGet();
             checkBox1.Visible = false;
-            CustomerInvoiceCodeCtb.PropTxt.Visible = false;
-            InvoiceAmountCtb.PropTxt.Visible = false;
+            CustomerInvoiceCodeCtb.Visible = false;
+            InvoiceAmountCtb.Visible = false;
             StatusCB.Visible = false;
             label4.Visible = false;
             AddCostBtn.Enabled = false;
@@ -233,7 +233,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
         }
 
-        private async Task UpdateClick(bool quit = false,bool validateBeforeExiting=false)
+        private async Task UpdateClick(bool quit = false, bool validateBeforeExiting = false)
         {
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
@@ -270,8 +270,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 SaleID = saleID,
                 InvoiceDate = InvoiceDateDTP.Value,
-                SaleBoL=BoLCmbxUC.Cmbx.PropTxt.Text,
-                SaleBookingNumber=BKCmbxUC.Cmbx.PropTxt.Text,
+                SaleBoL = BoLCmbxUC.Cmbx.PropTxt.Text,
+                SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text,
                 Status = "Unpaid",
             };
 

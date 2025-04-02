@@ -104,7 +104,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void SetVisibility()
         {
             EditCB.Visible = detailsOnly;
-            RevenueCtb.PropTxt.Visible = detailsOnly;
+            RevenueCtb.Visible = detailsOnly;
             button1.Visible = detailsOnly;
             button2.Visible = detailsOnly;
         }

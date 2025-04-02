@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SaveQuitBtn = new System.Windows.Forms.Button();
             this.QuantityCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.CostCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.DescriptionCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
@@ -39,7 +40,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.SaveQuitBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(766, 416);
             this.panel1.TabIndex = 29;
+            // 
+            // SaveQuitBtn
+            // 
+            this.SaveQuitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitBtn.Location = new System.Drawing.Point(367, 354);
+            this.SaveQuitBtn.Name = "SaveQuitBtn";
+            this.SaveQuitBtn.Size = new System.Drawing.Size(102, 23);
+            this.SaveQuitBtn.TabIndex = 39;
+            this.SaveQuitBtn.Text = "Save and Quit";
+            this.SaveQuitBtn.UseVisualStyleBackColor = true;
+            this.SaveQuitBtn.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // QuantityCtb
             // 
@@ -162,16 +173,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(17, 450);
             this.panel2.TabIndex = 30;
-            // 
-            // SaveQuitBtn
-            // 
-            this.SaveQuitBtn.Location = new System.Drawing.Point(367, 354);
-            this.SaveQuitBtn.Name = "SaveQuitBtn";
-            this.SaveQuitBtn.Size = new System.Drawing.Size(102, 23);
-            this.SaveQuitBtn.TabIndex = 39;
-            this.SaveQuitBtn.Text = "Save and Quit";
-            this.SaveQuitBtn.UseVisualStyleBackColor = true;
-            this.SaveQuitBtn.Click += new System.EventHandler(this.SaveQuitButton_Click);
             // 
             // CreateDetailsCostRegistryForm
             // 
