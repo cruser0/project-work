@@ -50,6 +50,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
+            this.InvoiceCodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.SaveQuitBtn = new System.Windows.Forms.Button();
             this.FlushCreateBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -62,7 +63,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.label2 = new System.Windows.Forms.Label();
-            this.InvoiceCodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel5.SuspendLayout();
             this.SupplierInvoiceCostGrbBX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -268,6 +268,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(750, 187);
             this.panel6.TabIndex = 60;
             // 
+            // InvoiceCodeCtb
+            // 
+            this.InvoiceCodeCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.InvoiceCodeCtb.Location = new System.Drawing.Point(9, 10);
+            this.InvoiceCodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.InvoiceCodeCtb.Name = "InvoiceCodeCtb";
+            this.InvoiceCodeCtb.Size = new System.Drawing.Size(200, 47);
+            this.InvoiceCodeCtb.TabIndex = 62;
+            this.InvoiceCodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
             // SaveQuitBtn
             // 
             this.SaveQuitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -423,15 +433,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.Size = new System.Drawing.Size(107, 15);
             this.label2.TabIndex = 52;
             this.label2.Text = "Sale Bill Of Lading*";
-            // 
-            // InvoiceCodeCtb
-            // 
-            this.InvoiceCodeCtb.Location = new System.Drawing.Point(9, 10);
-            this.InvoiceCodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.InvoiceCodeCtb.Name = "InvoiceCodeCtb";
-            this.InvoiceCodeCtb.Size = new System.Drawing.Size(200, 47);
-            this.InvoiceCodeCtb.TabIndex = 62;
-            this.InvoiceCodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // CreateDetailsSupplierInvoiceForm
             // 
