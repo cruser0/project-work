@@ -55,8 +55,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             checkBox1.Visible = false;
             CustomerInvoiceCodeCtb.Visible = false;
             InvoiceAmountCtb.Visible = false;
-            StatusCB.Visible = false;
-            label4.Visible = false;
             AddCostBtn.Enabled = false;
         }
         private async void InitDetails(int id)
@@ -272,7 +270,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 InvoiceDate = InvoiceDateDTP.Value,
                 SaleBoL = BoLCmbxUC.Cmbx.PropTxt.Text,
                 SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text,
-                Status = "Unpaid",
+                Status = StatusCB.Text,
             };
 
 
@@ -297,7 +295,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             checkBox1.Visible = true;
             CustomerInvoiceCodeCtb.PropTxt.Visible = true;
             StatusCB.Visible = true;
-            label4.Visible = true;
+            StatusLbl.Visible = true;
             InvoiceAmountCtb.PropTxt.Visible = true;
 
 

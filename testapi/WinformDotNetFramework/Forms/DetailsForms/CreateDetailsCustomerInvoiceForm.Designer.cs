@@ -34,7 +34,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.InvoiceDateDTP = new System.Windows.Forms.DateTimePicker();
             this.StatusCB = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.StatusLbl = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -106,17 +106,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label3.TabIndex = 26;
             this.label3.Text = "Invoice Date";
             // 
-            // label4
+            // StatusLbl
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label4.Location = new System.Drawing.Point(532, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 15);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "Status";
+            this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusLbl.Location = new System.Drawing.Point(532, 100);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
+            this.StatusLbl.TabIndex = 27;
+            this.StatusLbl.Text = "Status";
             // 
             // checkBox1
             // 
@@ -259,7 +259,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Controls.Add(this.BKCmbxUC);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.StatusCB);
-            this.panel6.Controls.Add(this.label4);
+            this.panel6.Controls.Add(this.StatusLbl);
             this.panel6.Controls.Add(this.InvoiceDateDTP);
             this.panel6.Controls.Add(this.SaveBtn);
             this.panel6.Controls.Add(this.checkBox1);
@@ -418,7 +418,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private DateTimePicker InvoiceDateDTP;
         private ComboBox StatusCB;
         private Label label3;
-        private Label label4;
+        private Label StatusLbl;
         private CheckBox checkBox1;
         private Button SaveBtn;
         private Panel panel1;
