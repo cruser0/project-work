@@ -71,4 +71,9 @@ namespace Entity_Validator.Entity.DTO
             Status = si.Status.StatusName;
         }
     }
+
+    public class SupplierInvoiceReport : SupplierInvoiceSupplierDTO
+    {
+
+    }
 }

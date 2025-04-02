@@ -62,4 +62,9 @@ namespace Entity_Validator.Entity.DTO
             Country = customer.Country.CountryName;
         }
     }
+
+    public class SaleReport : SaleCustomerDTO
+    {
+
+    }
 }
