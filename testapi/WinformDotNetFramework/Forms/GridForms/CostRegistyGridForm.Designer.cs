@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CostRegistryGridForm));
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.CenterPanel = new System.Windows.Forms.Panel();
             this.CostRegistryDgv = new System.Windows.Forms.DataGridView();
@@ -40,19 +41,17 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.MassDeleteTSB = new System.Windows.Forms.ToolStripButton();
             this.CustomerGdv = new System.Windows.Forms.DataGridView();
-            this.CustomerStatusTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerOriginalIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerDateTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerCountryTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustomerIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustomerQuantityTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CostRegistryCostTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CostRegistryNameTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CostRegistryCodeTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.CostRegistryIDTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.RightClickDgv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
+            this.searchCostRegistry1 = new WinformDotNetFramework.Forms.control.SearchCostRegistry();
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.PaginationUserControl = new WinformDotNetFramework.Forms.control.PaginationUserControl();
-            this.searchCostRegistry1 = new WinformDotNetFramework.Forms.control.SearchCostRegistry();
             this.RightSideBar = new WinformDotNetFramework.Forms.control.RightSideBarUserControl();
             this.panel5.SuspendLayout();
             this.CenterPanel.SuspendLayout();
@@ -81,6 +80,14 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(313, 87);
             this.panel5.TabIndex = 2;
+            // 
+            // PaginationUserControl
+            // 
+            this.PaginationUserControl.CurrentPage = 0;
+            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
+            this.PaginationUserControl.Name = "PaginationUserControl";
+            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
+            this.PaginationUserControl.TabIndex = 0;
             // 
             // toolStripSeparator2
             // 
@@ -175,73 +182,62 @@
             this.CustomerGdv.Size = new System.Drawing.Size(584, 374);
             this.CustomerGdv.TabIndex = 6;
             // 
-            // CustomerStatusTsmi
+            // CustomerQuantityTsmi
             // 
-            this.CustomerStatusTsmi.Checked = true;
-            this.CustomerStatusTsmi.CheckOnClick = true;
-            this.CustomerStatusTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerStatusTsmi.Name = "CustomerStatusTsmi";
-            this.CustomerStatusTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerStatusTsmi.Text = "Show Status";
-            this.CustomerStatusTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.CustomerQuantityTsmi.CheckOnClick = true;
+            this.CustomerQuantityTsmi.Name = "CustomerQuantityTsmi";
+            this.CustomerQuantityTsmi.Size = new System.Drawing.Size(207, 22);
+            this.CustomerQuantityTsmi.Text = "Show Default Quantity";
+            this.CustomerQuantityTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerOriginalIDTsmi
+            // CostRegistryCostTsmi
             // 
-            this.CustomerOriginalIDTsmi.CheckOnClick = true;
-            this.CustomerOriginalIDTsmi.Name = "CustomerOriginalIDTsmi";
-            this.CustomerOriginalIDTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerOriginalIDTsmi.Text = "Show Original ID";
-            this.CustomerOriginalIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.CostRegistryCostTsmi.Checked = true;
+            this.CostRegistryCostTsmi.CheckOnClick = true;
+            this.CostRegistryCostTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CostRegistryCostTsmi.Name = "CostRegistryCostTsmi";
+            this.CostRegistryCostTsmi.Size = new System.Drawing.Size(207, 22);
+            this.CostRegistryCostTsmi.Text = "Show Default Cost";
+            this.CostRegistryCostTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerDateTsmi
+            // CostRegistryNameTsmi
             // 
-            this.CustomerDateTsmi.Checked = true;
-            this.CustomerDateTsmi.CheckOnClick = true;
-            this.CustomerDateTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerDateTsmi.Name = "CustomerDateTsmi";
-            this.CustomerDateTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerDateTsmi.Text = "Show Date";
-            this.CustomerDateTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.CostRegistryNameTsmi.Checked = true;
+            this.CostRegistryNameTsmi.CheckOnClick = true;
+            this.CostRegistryNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CostRegistryNameTsmi.Name = "CostRegistryNameTsmi";
+            this.CostRegistryNameTsmi.Size = new System.Drawing.Size(207, 22);
+            this.CostRegistryNameTsmi.Text = "Show Default Description";
+            this.CostRegistryNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerCountryTsmi
+            // CostRegistryCodeTsmi
             // 
-            this.CustomerCountryTsmi.Checked = true;
-            this.CustomerCountryTsmi.CheckOnClick = true;
-            this.CustomerCountryTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerCountryTsmi.Name = "CustomerCountryTsmi";
-            this.CustomerCountryTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerCountryTsmi.Text = "Show Country";
-            this.CustomerCountryTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.CostRegistryCodeTsmi.Checked = true;
+            this.CostRegistryCodeTsmi.CheckOnClick = true;
+            this.CostRegistryCodeTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CostRegistryCodeTsmi.Name = "CostRegistryCodeTsmi";
+            this.CostRegistryCodeTsmi.Size = new System.Drawing.Size(207, 22);
+            this.CostRegistryCodeTsmi.Text = "Show Unique Code";
+            this.CostRegistryCodeTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
-            // CustomerNameTsmi
+            // CostRegistryIDTsmi
             // 
-            this.CustomerNameTsmi.Checked = true;
-            this.CustomerNameTsmi.CheckOnClick = true;
-            this.CustomerNameTsmi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CustomerNameTsmi.Name = "CustomerNameTsmi";
-            this.CustomerNameTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerNameTsmi.Text = "Show Name";
-            this.CustomerNameTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
-            // 
-            // CustomerIDTsmi
-            // 
-            this.CustomerIDTsmi.CheckOnClick = true;
-            this.CustomerIDTsmi.Name = "CustomerIDTsmi";
-            this.CustomerIDTsmi.Size = new System.Drawing.Size(162, 22);
-            this.CustomerIDTsmi.Text = "Show ID";
-            this.CustomerIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
+            this.CostRegistryIDTsmi.CheckOnClick = true;
+            this.CostRegistryIDTsmi.Name = "CostRegistryIDTsmi";
+            this.CostRegistryIDTsmi.Size = new System.Drawing.Size(207, 22);
+            this.CostRegistryIDTsmi.Text = "Show ID";
+            this.CostRegistryIDTsmi.CheckedChanged += new System.EventHandler(this.ContextMenuStripCheckEvent);
             // 
             // RightClickDgv
             // 
             this.RightClickDgv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CustomerIDTsmi,
-            this.CustomerNameTsmi,
-            this.CustomerCountryTsmi,
-            this.CustomerDateTsmi,
-            this.CustomerOriginalIDTsmi,
-            this.CustomerStatusTsmi});
+            this.CostRegistryIDTsmi,
+            this.CostRegistryCodeTsmi,
+            this.CostRegistryNameTsmi,
+            this.CostRegistryCostTsmi,
+            this.CustomerQuantityTsmi});
             this.RightClickDgv.Name = "contextMenuStrip1";
-            this.RightClickDgv.Size = new System.Drawing.Size(163, 136);
+            this.RightClickDgv.Size = new System.Drawing.Size(208, 114);
             // 
             // TextBoxesRightPanel
             // 
@@ -253,6 +249,13 @@
             this.TextBoxesRightPanel.Name = "TextBoxesRightPanel";
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 372);
             this.TextBoxesRightPanel.TabIndex = 6;
+            // 
+            // searchCostRegistry1
+            // 
+            this.searchCostRegistry1.Location = new System.Drawing.Point(3, 3);
+            this.searchCostRegistry1.Name = "searchCostRegistry1";
+            this.searchCostRegistry1.Size = new System.Drawing.Size(187, 125);
+            this.searchCostRegistry1.TabIndex = 0;
             // 
             // BottomPanel
             // 
@@ -284,21 +287,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 461);
             this.panel1.TabIndex = 10;
-            // 
-            // PaginationUserControl
-            // 
-            this.PaginationUserControl.CurrentPage = 0;
-            this.PaginationUserControl.Location = new System.Drawing.Point(15, 23);
-            this.PaginationUserControl.Name = "PaginationUserControl";
-            this.PaginationUserControl.Size = new System.Drawing.Size(265, 38);
-            this.PaginationUserControl.TabIndex = 0;
-            // 
-            // searchCostRegistry1
-            // 
-            this.searchCostRegistry1.Location = new System.Drawing.Point(3, 3);
-            this.searchCostRegistry1.Name = "searchCostRegistry1";
-            this.searchCostRegistry1.Size = new System.Drawing.Size(187, 125);
-            this.searchCostRegistry1.TabIndex = 0;
             // 
             // RightSideBar
             // 
@@ -350,12 +338,11 @@
         public System.Windows.Forms.ToolStripButton toolStripButton2;
         public System.Windows.Forms.ToolStripButton ToggleEditButton;
         public System.Windows.Forms.DataGridView CustomerGdv;
-        public System.Windows.Forms.ToolStripMenuItem CustomerStatusTsmi;
-        public System.Windows.Forms.ToolStripMenuItem CustomerOriginalIDTsmi;
-        public System.Windows.Forms.ToolStripMenuItem CustomerDateTsmi;
-        public System.Windows.Forms.ToolStripMenuItem CustomerCountryTsmi;
-        public System.Windows.Forms.ToolStripMenuItem CustomerNameTsmi;
-        public System.Windows.Forms.ToolStripMenuItem CustomerIDTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CustomerQuantityTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CostRegistryCostTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CostRegistryNameTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CostRegistryCodeTsmi;
+        public System.Windows.Forms.ToolStripMenuItem CostRegistryIDTsmi;
         public System.Windows.Forms.ContextMenuStrip RightClickDgv;
         public control.RightSideBarUserControl RightSideBar;
         public System.Windows.Forms.Panel TextBoxesRightPanel;

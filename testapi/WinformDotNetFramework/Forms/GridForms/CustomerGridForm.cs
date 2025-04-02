@@ -112,12 +112,20 @@ namespace WinformDotNetFramework.Forms.GridForms
             CustomerOriginalIDTsmi.Checked = (bool)cdgv.ShowOriginalID;
             CustomerNameTsmi.Checked = (bool)cdgv.ShowName;
             PaginationUserControl.Visible = true;
+            CustomerDgv.Columns["IsPost"].Visible = false;
             CustomerDgv.Columns["CustomerName"].Visible = (bool)cdgv.ShowName;
             CustomerDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
             CustomerDgv.Columns["CreatedAt"].Visible = (bool)cdgv.ShowDate;
             CustomerDgv.Columns["OriginalID"].Visible = (bool)cdgv.ShowOriginalID;
             CustomerDgv.Columns["Deprecated"].Visible = (bool)cdgv.ShowStatus;
             CustomerDgv.Columns["CustomerID"].Visible = CustomerIDTsmi.Checked;
+
+            CustomerDgv.Columns["CustomerID"].HeaderText = "Customer ID";
+            CustomerDgv.Columns["CustomerName"].HeaderText = "Customer Name";
+            CustomerDgv.Columns["Country"].HeaderText = "Customer Country";
+            CustomerDgv.Columns["CreatedAt"].HeaderText = "Creation Date";
+            CustomerDgv.Columns["OriginalID"].HeaderText = "Original Customer ID";
+
         }
         private async void MyControl_ButtonClicked_Pagination(object sender, EventArgs e)
         {
@@ -252,6 +260,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             countNotFiltered = _customerService.Count(new CustomerFilter() { CustomerDeprecated = false });
             getFav = _userService.GetCustomerDGV();
             await SetCheckBoxes();
+            
         }
 
 

@@ -116,6 +116,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             SaleStatusTsmi.Checked = (bool)cdgv.ShowStatus;
             SaleDateTsmi.Checked = (bool)cdgv.ShowDate;
 
+            SaleDgv.Columns["IsPost"].Visible = false;
+
+
             SaleDgv.Columns["SaleID"].Visible = (bool)cdgv.ShowID;
             SaleDgv.Columns["BookingNumber"].Visible = (bool)cdgv.ShowBKNumber;
             SaleDgv.Columns["Country"].Visible = (bool)cdgv.ShowCustomerCountry;
@@ -125,6 +128,15 @@ namespace WinformDotNetFramework.Forms.GridForms
             SaleDgv.Columns["TotalRevenue"].Visible = (bool)cdgv.ShowTotalRevenue;
             SaleDgv.Columns["Status"].Visible = (bool)cdgv.ShowStatus;
             SaleDgv.Columns["SaleDate"].Visible = (bool)cdgv.ShowDate;
+
+            SaleDgv.Columns["SaleID"].HeaderText = "Sale ID";
+            SaleDgv.Columns["BookingNumber"].HeaderText = "Booking Number";
+            SaleDgv.Columns["Country"].HeaderText = "Customer Country";
+            SaleDgv.Columns["CustomerName"].HeaderText = "Customer Name";
+            SaleDgv.Columns["BoLNumber"].HeaderText ="Bill of Lading";
+            SaleDgv.Columns["CustomerID"].HeaderText = "Customer ID";
+            SaleDgv.Columns["TotalRevenue"].HeaderText = "Total Revenue";
+            SaleDgv.Columns["SaleDate"].HeaderText = "Creation Date";
 
             PaginationUserControl.Visible = true;
         }

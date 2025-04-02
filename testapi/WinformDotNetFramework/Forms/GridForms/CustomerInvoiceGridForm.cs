@@ -116,11 +116,24 @@ namespace WinformDotNetFramework.Forms.GridForms
             CustomerInvoiceInvoiceAmountTsmi.Checked = (bool)cdgv.ShowInvoiceAmount;
             CustomerInvoiceSaleIDTsmi.Checked = (bool)cdgv.ShowSaleID;
             CustomerInvoiceStatusTsmi.Checked = (bool)cdgv.ShowStatus;
+            CenterDgv.Columns["IsPost"].Visible = false;
+
             CenterDgv.Columns["CustomerInvoiceID"].Visible = (bool)cdgv.ShowID;
             CenterDgv.Columns["SaleID"].Visible = (bool)cdgv.ShowSaleID;
             CenterDgv.Columns["InvoiceAmount"].Visible = (bool)cdgv.ShowInvoiceAmount;
             CenterDgv.Columns["InvoiceDate"].Visible = (bool)cdgv.ShowDate;
             CenterDgv.Columns["Status"].Visible = (bool)cdgv.ShowStatus;
+            CenterDgv.Columns["CustomerInvoiceCode"].Visible = (bool)cdgv.ShowStatus;//change ref
+            CenterDgv.Columns["SaleBookingNumber"].Visible = (bool)cdgv.ShowStatus;
+            CenterDgv.Columns["SaleBol"].Visible = (bool)cdgv.ShowStatus;
+
+            CenterDgv.Columns["CustomerInvoiceID"].HeaderText = "Customer Invoice ID";
+            CenterDgv.Columns["SaleID"].HeaderText = "Sale ID";
+            CenterDgv.Columns["InvoiceAmount"].HeaderText = "Total Invoice Amount";
+            CenterDgv.Columns["InvoiceDate"].HeaderText = "Creation Date";
+            CenterDgv.Columns["CustomerInvoiceCode"].HeaderText ="Customer Invoice Code";
+            CenterDgv.Columns["SaleBookingNumber"].HeaderText = "Sale Booking Number";
+            CenterDgv.Columns["SaleBol"].HeaderText = "Sale Bill of Lading";
             PaginationUserControl.Visible = true;
 
         }
@@ -224,6 +237,15 @@ namespace WinformDotNetFramework.Forms.GridForms
                         break;
                     case "CustomerInvoiceStatusTsmi":
                         CenterDgv.Columns["Status"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceCodeTsmi":
+                        CenterDgv.Columns["CustomerInvoiceCode"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceSaleBookingNumberTsmi":
+                        CenterDgv.Columns["SaleBookingNumber"].Visible = tsmi.Checked;
+                        break;
+                    case "CustomerInvoiceSaleBolTsmi":
+                        CenterDgv.Columns["SaleBol"].Visible = tsmi.Checked;
                         break;
 
                     default:

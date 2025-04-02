@@ -137,6 +137,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceCountryTsmi.Checked = (bool)cdgv.ShowCountry;
             SupplierInvoiceSupplierIDTsmi.Checked = (bool)cdgv.ShowSupplierID;
 
+            SupplierInvoiceDgv.Columns["IsPost"].Visible = false;
+
             SupplierInvoiceDgv.Columns["SupplierInvoiceID"].Visible = (bool)cdgv.ShowID;
             SupplierInvoiceDgv.Columns["SaleID"].Visible = (bool)cdgv.ShowSaleID;
             SupplierInvoiceDgv.Columns["InvoiceAmount"].Visible = (bool)cdgv.ShowInvoiceAmount;
@@ -145,6 +147,20 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceDgv.Columns["SupplierName"].Visible = (bool)cdgv.ShowSupplierName;
             SupplierInvoiceDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
             SupplierInvoiceDgv.Columns["SupplierID"].Visible = (bool)cdgv.ShowSupplierID;
+            SupplierInvoiceDgv.Columns["SupplierInvoiceCode"].Visible = (bool)cdgv.ShowSupplierID;//change ref
+            SupplierInvoiceDgv.Columns["SaleBookingNumber"].Visible = (bool)cdgv.ShowSupplierID;
+            SupplierInvoiceDgv.Columns["SaleBoL"].Visible = (bool)cdgv.ShowSupplierID;
+
+            SupplierInvoiceDgv.Columns["SupplierInvoiceID"].HeaderText = "Supplier Invoice ID";
+            SupplierInvoiceDgv.Columns["SaleID"].HeaderText = "Sale ID";
+            SupplierInvoiceDgv.Columns["InvoiceAmount"].HeaderText = "Total Amount";
+            SupplierInvoiceDgv.Columns["InvoiceDate"].HeaderText = "Creation Date";
+            SupplierInvoiceDgv.Columns["SupplierName"].HeaderText = "Supplier Name";
+            SupplierInvoiceDgv.Columns["Country"].HeaderText = "Supplier Country";
+            SupplierInvoiceDgv.Columns["SupplierID"].HeaderText = "Supplier ID";
+            SupplierInvoiceDgv.Columns["SupplierInvoiceCode"].HeaderText = "Supplier Invoice Code";//change ref
+            SupplierInvoiceDgv.Columns["SaleBookingNumber"].HeaderText = "Sale Booking Number";
+            SupplierInvoiceDgv.Columns["SaleBoL"].HeaderText = "Sale Bill of Lading";
 
             PaginationUserControl.Visible = true;
 
@@ -244,6 +260,15 @@ namespace WinformDotNetFramework.Forms.GridForms
                         break;
                     case "SupplierInvoiceSupplierIDTsmi":
                         SupplierInvoiceDgv.Columns["SupplierID"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceSupplierInvoiceCodeTsmi":
+                        SupplierInvoiceDgv.Columns["SupplierInvoiceCode"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceSaleBookingNumberTsmi":
+                        SupplierInvoiceDgv.Columns["SaleBookingNumber"].Visible = tsmi.Checked;
+                        break;
+                    case "SupplierInvoiceSaleBolTsmi":
+                        SupplierInvoiceDgv.Columns["SaleBoL"].Visible = tsmi.Checked;
                         break;
 
                     default:
