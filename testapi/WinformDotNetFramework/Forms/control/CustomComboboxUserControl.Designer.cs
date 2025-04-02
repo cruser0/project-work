@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PropLbl = new System.Windows.Forms.Label();
             this.Errorlbl = new System.Windows.Forms.Label();
-            this.PropTxt = new WinformDotNetFramework.Forms.CustomComboBox();
+            this.PropTxt = new WinformDotNetFramework.Forms.control.CustomComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 

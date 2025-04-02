@@ -80,9 +80,9 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         private async Task SetCheckBoxes()
         {
-            await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
+            //await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             List<CostRegistryDTOGet> query = (await getAllNotFiltered).ToList();
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 

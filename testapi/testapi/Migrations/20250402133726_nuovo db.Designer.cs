@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(Progetto_FormativoContext))]
-    [Migration("20250324150523_StoredFunctionsMigration")]
-    partial class FunctionSQLMigration
+    [Migration("20250402133726_nuovo db")]
+    partial class nuovodb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,17 +24,19 @@ namespace API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("API.Models.Entities.CostRegistry", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.CostRegistry", b =>
                 {
-                    b.Property<int>("CostRegistryID")
+                    b.Property<int?>("CostRegistryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("CostRegistryID");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CostRegistryID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("CostRegistryID"), 1L, 1);
 
                     b.Property<string>("CostRegistryName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<decimal?>("CostRegistryPrice")
                         .HasColumnType("decimal(18,2)");
@@ -62,7 +64,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Country", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Country", b =>
                 {
                     b.Property<int>("CountryID")
                         .ValueGeneratedOnAdd()
@@ -71,24 +73,29 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryID"), 1L, 1);
 
                     b.Property<string>("CountryName")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("ISOCode")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .IsUnicode(false)
                         .HasColumnType("varchar(20)");
 
+                    b.Property<string>("Region")
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(10)");
+
                     b.HasKey("CountryID");
 
                     b.HasIndex("CountryName")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[CountryName] IS NOT NULL");
 
                     b.HasIndex("ISOCode")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[ISOCode] IS NOT NULL");
 
                     b.ToTable("Country", (string)null);
 
@@ -97,1175 +104,1370 @@ namespace API.Migrations
                         {
                             CountryID = 1,
                             CountryName = "Afghanistan",
-                            ISOCode = "AF"
+                            ISOCode = "AF",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 2,
                             CountryName = "Albania",
-                            ISOCode = "AL"
+                            ISOCode = "AL",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 3,
                             CountryName = "Algeria",
-                            ISOCode = "DZ"
+                            ISOCode = "DZ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 4,
                             CountryName = "Andorra",
-                            ISOCode = "AD"
+                            ISOCode = "AD",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 5,
                             CountryName = "Angola",
-                            ISOCode = "AO"
+                            ISOCode = "AO",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 6,
                             CountryName = "Antigua and Barbuda",
-                            ISOCode = "AG"
+                            ISOCode = "AG",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 7,
                             CountryName = "Argentina",
-                            ISOCode = "AR"
+                            ISOCode = "AR",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 8,
                             CountryName = "Armenia",
-                            ISOCode = "AM"
+                            ISOCode = "AM",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 9,
                             CountryName = "Australia",
-                            ISOCode = "AU"
+                            ISOCode = "AU",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 10,
                             CountryName = "Austria",
-                            ISOCode = "AT"
+                            ISOCode = "AT",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 11,
                             CountryName = "Azerbaijan",
-                            ISOCode = "AZ"
+                            ISOCode = "AZ",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 12,
                             CountryName = "Bahamas",
-                            ISOCode = "BS"
+                            ISOCode = "BS",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 13,
                             CountryName = "Bahrain",
-                            ISOCode = "BH"
+                            ISOCode = "BH",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 14,
                             CountryName = "Bangladesh",
-                            ISOCode = "BD"
+                            ISOCode = "BD",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 15,
                             CountryName = "Barbados",
-                            ISOCode = "BB"
+                            ISOCode = "BB",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 16,
                             CountryName = "Belarus",
-                            ISOCode = "BY"
+                            ISOCode = "BY",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 17,
                             CountryName = "Belgium",
-                            ISOCode = "BE"
+                            ISOCode = "BE",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 18,
                             CountryName = "Belize",
-                            ISOCode = "BZ"
+                            ISOCode = "BZ",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 19,
                             CountryName = "Benin",
-                            ISOCode = "BJ"
+                            ISOCode = "BJ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 20,
                             CountryName = "Bhutan",
-                            ISOCode = "BT"
+                            ISOCode = "BT",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 21,
                             CountryName = "Bolivia",
-                            ISOCode = "BO"
+                            ISOCode = "BO",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 22,
                             CountryName = "Bosnia and Herzegovina",
-                            ISOCode = "BA"
+                            ISOCode = "BA",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 23,
                             CountryName = "Botswana",
-                            ISOCode = "BW"
+                            ISOCode = "BW",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 24,
                             CountryName = "Brazil",
-                            ISOCode = "BR"
+                            ISOCode = "BR",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 25,
                             CountryName = "Brunei",
-                            ISOCode = "BN"
+                            ISOCode = "BN",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 26,
                             CountryName = "Bulgaria",
-                            ISOCode = "BG"
+                            ISOCode = "BG",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 27,
                             CountryName = "Burkina Faso",
-                            ISOCode = "BF"
+                            ISOCode = "BF",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 28,
                             CountryName = "Burundi",
-                            ISOCode = "BI"
+                            ISOCode = "BI",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 29,
                             CountryName = "Cabo Verde",
-                            ISOCode = "CV"
+                            ISOCode = "CV",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 30,
                             CountryName = "Cambodia",
-                            ISOCode = "KH"
+                            ISOCode = "KH",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 31,
                             CountryName = "Cameroon",
-                            ISOCode = "CM"
+                            ISOCode = "CM",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 32,
                             CountryName = "Canada",
-                            ISOCode = "CA"
+                            ISOCode = "CA",
+                            Region = "NA"
                         },
                         new
                         {
                             CountryID = 33,
                             CountryName = "Central African Republic",
-                            ISOCode = "CF"
+                            ISOCode = "CF",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 34,
                             CountryName = "Chad",
-                            ISOCode = "TD"
+                            ISOCode = "TD",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 35,
                             CountryName = "Chile",
-                            ISOCode = "CL"
+                            ISOCode = "CL",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 36,
                             CountryName = "China",
-                            ISOCode = "CN"
+                            ISOCode = "CN",
+                            Region = "EAS"
                         },
                         new
                         {
                             CountryID = 37,
                             CountryName = "Colombia",
-                            ISOCode = "CO"
+                            ISOCode = "CO",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 38,
                             CountryName = "Comoros",
-                            ISOCode = "KM"
+                            ISOCode = "KM",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 39,
-                            CountryName = "Congo (Congo-Brazzaville)",
-                            ISOCode = "CG"
+                            CountryName = "Congo Brazzaville",
+                            ISOCode = "CG",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 40,
-                            CountryName = "Congo (Congo-Kinshasa)",
-                            ISOCode = "CD"
+                            CountryName = "Congo Kinshasa",
+                            ISOCode = "CD",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 41,
                             CountryName = "Costa Rica",
-                            ISOCode = "CR"
+                            ISOCode = "CR",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 42,
                             CountryName = "Croatia",
-                            ISOCode = "HR"
+                            ISOCode = "HR",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 43,
                             CountryName = "Cuba",
-                            ISOCode = "CU"
+                            ISOCode = "CU",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 44,
                             CountryName = "Cyprus",
-                            ISOCode = "CY"
+                            ISOCode = "CY",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 45,
                             CountryName = "Czechia",
-                            ISOCode = "CZ"
+                            ISOCode = "CZ",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 46,
                             CountryName = "Denmark",
-                            ISOCode = "DK"
+                            ISOCode = "DK",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 47,
                             CountryName = "Djibouti",
-                            ISOCode = "DJ"
+                            ISOCode = "DJ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 48,
                             CountryName = "Dominica",
-                            ISOCode = "DM"
+                            ISOCode = "DM",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 49,
                             CountryName = "Dominican Republic",
-                            ISOCode = "DO"
+                            ISOCode = "DO",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 50,
                             CountryName = "Ecuador",
-                            ISOCode = "EC"
+                            ISOCode = "EC",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 51,
                             CountryName = "Egypt",
-                            ISOCode = "EG"
+                            ISOCode = "EG",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 52,
                             CountryName = "El Salvador",
-                            ISOCode = "SV"
+                            ISOCode = "SV",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 53,
                             CountryName = "Equatorial Guinea",
-                            ISOCode = "GQ"
+                            ISOCode = "GQ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 54,
                             CountryName = "Eritrea",
-                            ISOCode = "ER"
+                            ISOCode = "ER",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 55,
                             CountryName = "Estonia",
-                            ISOCode = "EE"
+                            ISOCode = "EE",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 56,
                             CountryName = "Eswatini",
-                            ISOCode = "SZ"
+                            ISOCode = "SZ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 57,
                             CountryName = "Ethiopia",
-                            ISOCode = "ET"
+                            ISOCode = "ET",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 58,
                             CountryName = "Fiji",
-                            ISOCode = "FJ"
+                            ISOCode = "FJ",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 59,
                             CountryName = "Finland",
-                            ISOCode = "FI"
+                            ISOCode = "FI",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 60,
                             CountryName = "France",
-                            ISOCode = "FR"
+                            ISOCode = "FR",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 61,
                             CountryName = "Gabon",
-                            ISOCode = "GA"
+                            ISOCode = "GA",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 62,
                             CountryName = "Gambia",
-                            ISOCode = "GM"
+                            ISOCode = "GM",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 63,
                             CountryName = "Georgia",
-                            ISOCode = "GE"
+                            ISOCode = "GE",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 64,
                             CountryName = "Germany",
-                            ISOCode = "DE"
+                            ISOCode = "DE",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 65,
                             CountryName = "Ghana",
-                            ISOCode = "GH"
+                            ISOCode = "GH",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 66,
                             CountryName = "Greece",
-                            ISOCode = "GR"
+                            ISOCode = "GR",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 67,
                             CountryName = "Grenada",
-                            ISOCode = "GD"
+                            ISOCode = "GD",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 68,
                             CountryName = "Guatemala",
-                            ISOCode = "GT"
+                            ISOCode = "GT",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 69,
                             CountryName = "Guinea",
-                            ISOCode = "GN"
+                            ISOCode = "GN",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 70,
-                            CountryName = "Guinea-Bissau",
-                            ISOCode = "GW"
+                            CountryName = "Guinea Bissau",
+                            ISOCode = "GW",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 71,
                             CountryName = "Guyana",
-                            ISOCode = "GY"
+                            ISOCode = "GY",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 72,
                             CountryName = "Haiti",
-                            ISOCode = "HT"
+                            ISOCode = "HT",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 73,
                             CountryName = "Honduras",
-                            ISOCode = "HN"
+                            ISOCode = "HN",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 74,
                             CountryName = "Hungary",
-                            ISOCode = "HU"
+                            ISOCode = "HU",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 75,
                             CountryName = "Iceland",
-                            ISOCode = "IS"
+                            ISOCode = "IS",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 76,
                             CountryName = "India",
-                            ISOCode = "IN"
+                            ISOCode = "IN",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 77,
                             CountryName = "Indonesia",
-                            ISOCode = "ID"
+                            ISOCode = "ID",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 78,
                             CountryName = "Iran",
-                            ISOCode = "IR"
+                            ISOCode = "IR",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 79,
                             CountryName = "Iraq",
-                            ISOCode = "IQ"
+                            ISOCode = "IQ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 80,
                             CountryName = "Ireland",
-                            ISOCode = "IE"
+                            ISOCode = "IE",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 81,
                             CountryName = "Israel",
-                            ISOCode = "IL"
+                            ISOCode = "IL",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 82,
                             CountryName = "Italy",
-                            ISOCode = "IT"
+                            ISOCode = "IT",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 83,
                             CountryName = "Jamaica",
-                            ISOCode = "JM"
+                            ISOCode = "JM",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 84,
                             CountryName = "Japan",
-                            ISOCode = "JP"
+                            ISOCode = "JP",
+                            Region = "EAS"
                         },
                         new
                         {
                             CountryID = 85,
                             CountryName = "Jordan",
-                            ISOCode = "JO"
+                            ISOCode = "JO",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 86,
                             CountryName = "Kazakhstan",
-                            ISOCode = "KZ"
+                            ISOCode = "KZ",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 87,
                             CountryName = "Kenya",
-                            ISOCode = "KE"
+                            ISOCode = "KE",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 88,
                             CountryName = "Kiribati",
-                            ISOCode = "KI"
+                            ISOCode = "KI",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 89,
-                            CountryName = "Korea, North",
-                            ISOCode = "KP"
+                            CountryName = "Korea North",
+                            ISOCode = "KP",
+                            Region = "EAS"
                         },
                         new
                         {
                             CountryID = 90,
-                            CountryName = "Korea, South",
-                            ISOCode = "KR"
+                            CountryName = "Korea South",
+                            ISOCode = "KR",
+                            Region = "EAS"
                         },
                         new
                         {
                             CountryID = 91,
                             CountryName = "Kuwait",
-                            ISOCode = "KW"
+                            ISOCode = "KW",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 92,
                             CountryName = "Kyrgyzstan",
-                            ISOCode = "KG"
+                            ISOCode = "KG",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 93,
                             CountryName = "Laos",
-                            ISOCode = "LA"
+                            ISOCode = "LA",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 94,
                             CountryName = "Latvia",
-                            ISOCode = "LV"
+                            ISOCode = "LV",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 95,
                             CountryName = "Lebanon",
-                            ISOCode = "LB"
+                            ISOCode = "LB",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 96,
                             CountryName = "Lesotho",
-                            ISOCode = "LS"
+                            ISOCode = "LS",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 97,
                             CountryName = "Liberia",
-                            ISOCode = "LR"
+                            ISOCode = "LR",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 98,
                             CountryName = "Libya",
-                            ISOCode = "LY"
+                            ISOCode = "LY",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 99,
                             CountryName = "Liechtenstein",
-                            ISOCode = "LI"
+                            ISOCode = "LI",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 100,
                             CountryName = "Lithuania",
-                            ISOCode = "LT"
+                            ISOCode = "LT",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 101,
                             CountryName = "Luxembourg",
-                            ISOCode = "LU"
+                            ISOCode = "LU",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 102,
                             CountryName = "Madagascar",
-                            ISOCode = "MG"
+                            ISOCode = "MG",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 103,
                             CountryName = "Malawi",
-                            ISOCode = "MW"
+                            ISOCode = "MW",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 104,
                             CountryName = "Malaysia",
-                            ISOCode = "MY"
+                            ISOCode = "MY",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 105,
                             CountryName = "Maldives",
-                            ISOCode = "MV"
+                            ISOCode = "MV",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 106,
                             CountryName = "Mali",
-                            ISOCode = "ML"
+                            ISOCode = "ML",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 107,
                             CountryName = "Malta",
-                            ISOCode = "MT"
+                            ISOCode = "MT",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 108,
                             CountryName = "Marshall Islands",
-                            ISOCode = "MH"
+                            ISOCode = "MH",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 109,
                             CountryName = "Mauritania",
-                            ISOCode = "MR"
+                            ISOCode = "MR",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 110,
                             CountryName = "Mauritius",
-                            ISOCode = "MU"
+                            ISOCode = "MU",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 111,
                             CountryName = "Mexico",
-                            ISOCode = "MX"
+                            ISOCode = "MX",
+                            Region = "NA"
                         },
                         new
                         {
                             CountryID = 112,
                             CountryName = "Micronesia",
-                            ISOCode = "FM"
+                            ISOCode = "FM",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 113,
                             CountryName = "Moldova",
-                            ISOCode = "MD"
+                            ISOCode = "MD",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 114,
                             CountryName = "Monaco",
-                            ISOCode = "MC"
+                            ISOCode = "MC",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 115,
                             CountryName = "Mongolia",
-                            ISOCode = "MN"
+                            ISOCode = "MN",
+                            Region = "EAS"
                         },
                         new
                         {
                             CountryID = 116,
                             CountryName = "Montenegro",
-                            ISOCode = "ME"
+                            ISOCode = "ME",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 117,
                             CountryName = "Morocco",
-                            ISOCode = "MA"
+                            ISOCode = "MA",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 118,
                             CountryName = "Mozambique",
-                            ISOCode = "MZ"
+                            ISOCode = "MZ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 119,
                             CountryName = "Myanmar",
-                            ISOCode = "MM"
+                            ISOCode = "MM",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 120,
                             CountryName = "Namibia",
-                            ISOCode = "NA"
+                            ISOCode = "NA",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 121,
                             CountryName = "Nauru",
-                            ISOCode = "NR"
+                            ISOCode = "NR",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 122,
                             CountryName = "Nepal",
-                            ISOCode = "NP"
+                            ISOCode = "NP",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 123,
                             CountryName = "Netherlands",
-                            ISOCode = "NL"
+                            ISOCode = "NL",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 124,
                             CountryName = "New Zealand",
-                            ISOCode = "NZ"
+                            ISOCode = "NZ",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 125,
                             CountryName = "Nicaragua",
-                            ISOCode = "NI"
+                            ISOCode = "NI",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 126,
                             CountryName = "Niger",
-                            ISOCode = "NE"
+                            ISOCode = "NE",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 127,
                             CountryName = "Nigeria",
-                            ISOCode = "NG"
+                            ISOCode = "NG",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 128,
                             CountryName = "North Macedonia",
-                            ISOCode = "MK"
+                            ISOCode = "MK",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 129,
                             CountryName = "Norway",
-                            ISOCode = "NO"
+                            ISOCode = "NO",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 130,
                             CountryName = "Oman",
-                            ISOCode = "OM"
+                            ISOCode = "OM",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 131,
                             CountryName = "Pakistan",
-                            ISOCode = "PK"
+                            ISOCode = "PK",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 132,
                             CountryName = "Palau",
-                            ISOCode = "PW"
+                            ISOCode = "PW",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 133,
                             CountryName = "Palestine",
-                            ISOCode = "PS"
+                            ISOCode = "PS",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 134,
                             CountryName = "Panama",
-                            ISOCode = "PA"
+                            ISOCode = "PA",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 135,
                             CountryName = "Papua New Guinea",
-                            ISOCode = "PG"
+                            ISOCode = "PG",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 136,
                             CountryName = "Paraguay",
-                            ISOCode = "PY"
+                            ISOCode = "PY",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 137,
                             CountryName = "Peru",
-                            ISOCode = "PE"
+                            ISOCode = "PE",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 138,
                             CountryName = "Philippines",
-                            ISOCode = "PH"
+                            ISOCode = "PH",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 139,
                             CountryName = "Poland",
-                            ISOCode = "PL"
+                            ISOCode = "PL",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 140,
                             CountryName = "Portugal",
-                            ISOCode = "PT"
+                            ISOCode = "PT",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 141,
                             CountryName = "Qatar",
-                            ISOCode = "QA"
+                            ISOCode = "QA",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 142,
                             CountryName = "Romania",
-                            ISOCode = "RO"
+                            ISOCode = "RO",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 143,
                             CountryName = "Russia",
-                            ISOCode = "RU"
+                            ISOCode = "RU",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 144,
                             CountryName = "Rwanda",
-                            ISOCode = "RW"
+                            ISOCode = "RW",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 145,
                             CountryName = "Saint Kitts and Nevis",
-                            ISOCode = "KN"
+                            ISOCode = "KN",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 146,
                             CountryName = "Saint Lucia",
-                            ISOCode = "LC"
+                            ISOCode = "LC",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 147,
                             CountryName = "Saint Vincent and the Grenadines",
-                            ISOCode = "VC"
+                            ISOCode = "VC",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 148,
                             CountryName = "Samoa",
-                            ISOCode = "WS"
+                            ISOCode = "WS",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 149,
                             CountryName = "San Marino",
-                            ISOCode = "SM"
+                            ISOCode = "SM",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 150,
                             CountryName = "Sao Tome and Principe",
-                            ISOCode = "ST"
+                            ISOCode = "ST",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 151,
                             CountryName = "Saudi Arabia",
-                            ISOCode = "SA"
+                            ISOCode = "SA",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 152,
                             CountryName = "Senegal",
-                            ISOCode = "SN"
+                            ISOCode = "SN",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 153,
                             CountryName = "Serbia",
-                            ISOCode = "RS"
+                            ISOCode = "RS",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 154,
                             CountryName = "Seychelles",
-                            ISOCode = "SC"
+                            ISOCode = "SC",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 155,
                             CountryName = "Sierra Leone",
-                            ISOCode = "SL"
+                            ISOCode = "SL",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 156,
                             CountryName = "Singapore",
-                            ISOCode = "SG"
+                            ISOCode = "SG",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 157,
                             CountryName = "Slovakia",
-                            ISOCode = "SK"
+                            ISOCode = "SK",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 158,
                             CountryName = "Slovenia",
-                            ISOCode = "SI"
+                            ISOCode = "SI",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 159,
                             CountryName = "Solomon Islands",
-                            ISOCode = "SB"
+                            ISOCode = "SB",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 160,
                             CountryName = "Somalia",
-                            ISOCode = "SO"
+                            ISOCode = "SO",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 161,
                             CountryName = "South Africa",
-                            ISOCode = "ZA"
+                            ISOCode = "ZA",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 162,
                             CountryName = "South Sudan",
-                            ISOCode = "SS"
+                            ISOCode = "SS",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 163,
                             CountryName = "Spain",
-                            ISOCode = "ES"
+                            ISOCode = "ES",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 164,
                             CountryName = "Sri Lanka",
-                            ISOCode = "LK"
+                            ISOCode = "LK",
+                            Region = "SA"
                         },
                         new
                         {
                             CountryID = 165,
                             CountryName = "Sudan",
-                            ISOCode = "SD"
+                            ISOCode = "SD",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 166,
                             CountryName = "Suriname",
-                            ISOCode = "SR"
+                            ISOCode = "SR",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 167,
                             CountryName = "Sweden",
-                            ISOCode = "SE"
+                            ISOCode = "SE",
+                            Region = "EU"
                         },
                         new
                         {
                             CountryID = 168,
                             CountryName = "Switzerland",
-                            ISOCode = "CH"
+                            ISOCode = "CH",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 169,
                             CountryName = "Syria",
-                            ISOCode = "SY"
+                            ISOCode = "SY",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 170,
                             CountryName = "Taiwan",
-                            ISOCode = "TW"
+                            ISOCode = "TW",
+                            Region = "EAS"
                         },
                         new
                         {
                             CountryID = 171,
                             CountryName = "Tajikistan",
-                            ISOCode = "TJ"
+                            ISOCode = "TJ",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 172,
                             CountryName = "Tanzania",
-                            ISOCode = "TZ"
+                            ISOCode = "TZ",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 173,
                             CountryName = "Thailand",
-                            ISOCode = "TH"
+                            ISOCode = "TH",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 174,
-                            CountryName = "Timor-Leste",
-                            ISOCode = "TL"
+                            CountryName = "Timor Leste",
+                            ISOCode = "TL",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 175,
                             CountryName = "Togo",
-                            ISOCode = "TG"
+                            ISOCode = "TG",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 176,
                             CountryName = "Tonga",
-                            ISOCode = "TO"
+                            ISOCode = "TO",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 177,
                             CountryName = "Trinidad and Tobago",
-                            ISOCode = "TT"
+                            ISOCode = "TT",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 178,
                             CountryName = "Tunisia",
-                            ISOCode = "TN"
+                            ISOCode = "TN",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 179,
                             CountryName = "Turkey",
-                            ISOCode = "TR"
+                            ISOCode = "TR",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 180,
                             CountryName = "Turkmenistan",
-                            ISOCode = "TM"
+                            ISOCode = "TM",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 181,
                             CountryName = "Tuvalu",
-                            ISOCode = "TV"
+                            ISOCode = "TV",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 182,
                             CountryName = "Uganda",
-                            ISOCode = "UG"
+                            ISOCode = "UG",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 183,
                             CountryName = "Ukraine",
-                            ISOCode = "UA"
+                            ISOCode = "UA",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 184,
                             CountryName = "United Arab Emirates",
-                            ISOCode = "AE"
+                            ISOCode = "AE",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 185,
                             CountryName = "United Kingdom",
-                            ISOCode = "GB"
+                            ISOCode = "GB",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 186,
                             CountryName = "United States",
-                            ISOCode = "US"
+                            ISOCode = "US",
+                            Region = "NA"
                         },
                         new
                         {
                             CountryID = 187,
                             CountryName = "Uruguay",
-                            ISOCode = "UY"
+                            ISOCode = "UY",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 188,
                             CountryName = "Uzbekistan",
-                            ISOCode = "UZ"
+                            ISOCode = "UZ",
+                            Region = "CIS"
                         },
                         new
                         {
                             CountryID = 189,
                             CountryName = "Vanuatu",
-                            ISOCode = "VU"
+                            ISOCode = "VU",
+                            Region = "OCE"
                         },
                         new
                         {
                             CountryID = 190,
                             CountryName = "Vatican City",
-                            ISOCode = "VA"
+                            ISOCode = "VA",
+                            Region = "NON_EU"
                         },
                         new
                         {
                             CountryID = 191,
                             CountryName = "Venezuela",
-                            ISOCode = "VE"
+                            ISOCode = "VE",
+                            Region = "LATAM"
                         },
                         new
                         {
                             CountryID = 192,
                             CountryName = "Vietnam",
-                            ISOCode = "VN"
+                            ISOCode = "VN",
+                            Region = "SEA"
                         },
                         new
                         {
                             CountryID = 193,
                             CountryName = "Yemen",
-                            ISOCode = "YE"
+                            ISOCode = "YE",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 194,
                             CountryName = "Zambia",
-                            ISOCode = "ZM"
+                            ISOCode = "ZM",
+                            Region = "MEA"
                         },
                         new
                         {
                             CountryID = 195,
                             CountryName = "Zimbabwe",
-                            ISOCode = "ZW"
+                            ISOCode = "ZW",
+                            Region = "MEA"
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Customer", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Customer", b =>
                 {
                     b.Property<int>("CustomerID")
                         .ValueGeneratedOnAdd()
@@ -1274,7 +1476,6 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"), 1L, 1);
 
                     b.Property<int?>("CountryID")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -1304,7 +1505,7 @@ namespace API.Migrations
                     b.ToTable("Customers", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.CustomerInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.CustomerInvoice", b =>
                 {
                     b.Property<int>("CustomerInvoiceID")
                         .ValueGeneratedOnAdd()
@@ -1312,6 +1513,12 @@ namespace API.Migrations
                         .HasColumnName("CustomerInvoiceID");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerInvoiceID"), 1L, 1);
+
+                    b.Property<string>("CustomerInvoiceCode")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("CustomerInvoiceCode");
 
                     b.Property<decimal?>("InvoiceAmount")
                         .HasColumnType("decimal(18,2)");
@@ -1328,6 +1535,10 @@ namespace API.Migrations
 
                     b.HasKey("CustomerInvoiceID");
 
+                    b.HasIndex("CustomerInvoiceCode")
+                        .IsUnique()
+                        .HasFilter("[CustomerInvoiceCode] IS NOT NULL");
+
                     b.HasIndex("SaleID");
 
                     b.HasIndex("StatusID");
@@ -1335,7 +1546,7 @@ namespace API.Migrations
                     b.ToTable("CustomerInvoices", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.CustomerInvoiceCost", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.CustomerInvoiceCost", b =>
                 {
                     b.Property<int>("CustomerInvoiceCostsID")
                         .ValueGeneratedOnAdd()
@@ -1372,7 +1583,53 @@ namespace API.Migrations
                     b.ToTable("CustomerInvoiceCosts", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CostRegistryDGV", b =>
+                {
+                    b.Property<int?>("CostRegistryDGVID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CostRegistryDGVID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("CostRegistryDGVID"), 1L, 1);
+
+                    b.Property<bool?>("ShowRegistryCode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowRegistryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool?>("ShowRegistryName")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowRegistryPrice")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowRegistryQuantity")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CostRegistryDGVID");
+
+                    b.HasIndex("UserID")
+                        .IsUnique()
+                        .HasFilter("[UserID] IS NOT NULL");
+
+                    b.ToTable("CostRegistryDGVs", (string)null);
+                });
+
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerDGV", b =>
                 {
                     b.Property<int?>("CustomerDGVID")
                         .ValueGeneratedOnAdd()
@@ -1430,7 +1687,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerGroupSplit", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerGroupSplit", b =>
                 {
                     b.Property<int?>("CustomerGroupSplitID")
                         .ValueGeneratedOnAdd()
@@ -1470,7 +1727,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerInvoiceCostDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerInvoiceCostDGV", b =>
                 {
                     b.Property<int?>("CustomerInvoiceCostDGVID")
                         .ValueGeneratedOnAdd()
@@ -1523,7 +1780,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerInvoiceDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerInvoiceDGV", b =>
                 {
                     b.Property<int?>("CustomerInvoiceDGVID")
                         .ValueGeneratedOnAdd()
@@ -1543,6 +1800,21 @@ namespace API.Migrations
                         .HasDefaultValue(false);
 
                     b.Property<bool?>("ShowInvoiceAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowInvoiceCode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowSaleBoL")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowSaleBookingNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
@@ -1576,7 +1848,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.FavouritePages", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.FavouritePages", b =>
                 {
                     b.Property<int?>("FavouritePageID")
                         .ValueGeneratedOnAdd()
@@ -1704,10 +1976,20 @@ namespace API.Migrations
                         {
                             FavouritePageID = 21,
                             Name = "Report Supplier Invoice"
+                        },
+                        new
+                        {
+                            FavouritePageID = 22,
+                            Name = "Show User"
+                        },
+                        new
+                        {
+                            FavouritePageID = 23,
+                            Name = "Show Registry Cost"
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SaleDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SaleDGV", b =>
                 {
                     b.Property<int?>("SaleDGVID")
                         .ValueGeneratedOnAdd()
@@ -1780,7 +2062,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierDGV", b =>
                 {
                     b.Property<int?>("SupplierDGVID")
                         .ValueGeneratedOnAdd()
@@ -1838,7 +2120,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierGroupSplit", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierGroupSplit", b =>
                 {
                     b.Property<int?>("SupplierGroupSplitID")
                         .ValueGeneratedOnAdd()
@@ -1875,7 +2157,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierInvoiceCostDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierInvoiceCostDGV", b =>
                 {
                     b.Property<int?>("SupplierInvoiceCostDGVID")
                         .ValueGeneratedOnAdd()
@@ -1928,7 +2210,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierInvoiceDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierInvoiceDGV", b =>
                 {
                     b.Property<int?>("SupplierInvoiceDGVID")
                         .ValueGeneratedOnAdd()
@@ -1952,7 +2234,22 @@ namespace API.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
+                    b.Property<bool?>("ShowInvoiceCode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
                     b.Property<bool?>("ShowInvoiceDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowSaleBoL")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("ShowSaleBookingNumber")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
@@ -1996,7 +2293,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.UserDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.UserDGV", b =>
                 {
                     b.Property<int?>("UserDGVID")
                         .ValueGeneratedOnAdd()
@@ -2049,7 +2346,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.UserFavouritePage", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.UserFavouritePage", b =>
                 {
                     b.Property<int?>("UserID")
                         .HasColumnType("int");
@@ -2071,7 +2368,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.RefreshToken", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.RefreshToken", b =>
                 {
                     b.Property<int>("TokenID")
                         .ValueGeneratedOnAdd()
@@ -2080,14 +2377,13 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TokenID"), 1L, 1);
 
-                    b.Property<DateTime>("Created")
+                    b.Property<DateTime?>("Created")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("Expires")
+                    b.Property<DateTime?>("Expires")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Token")
-                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(MAX)");
 
@@ -2105,14 +2401,14 @@ namespace API.Migrations
                         new
                         {
                             TokenID = 1,
-                            Created = new DateTime(2025, 3, 19, 16, 5, 21, 713, DateTimeKind.Local).AddTicks(7603),
-                            Expires = new DateTime(2025, 3, 29, 16, 5, 21, 713, DateTimeKind.Local).AddTicks(7657),
+                            Created = new DateTime(2025, 4, 2, 15, 37, 25, 360, DateTimeKind.Local).AddTicks(8752),
+                            Expires = new DateTime(2025, 4, 12, 15, 37, 25, 360, DateTimeKind.Local).AddTicks(8807),
                             Token = "BASEADMINTOKEN",
                             UserID = 1
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Role", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Role", b =>
                 {
                     b.Property<int>("RoleID")
                         .ValueGeneratedOnAdd()
@@ -2122,7 +2418,6 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
 
                     b.Property<string>("RoleName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)")
@@ -2131,7 +2426,8 @@ namespace API.Migrations
                     b.HasKey("RoleID");
 
                     b.HasIndex("RoleName")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[RoleName] IS NOT NULL");
 
                     b.ToTable("Roles", (string)null);
 
@@ -2248,7 +2544,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Sale", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Sale", b =>
                 {
                     b.Property<int>("SaleID")
                         .ValueGeneratedOnAdd()
@@ -2295,7 +2591,7 @@ namespace API.Migrations
                     b.ToTable("Sales", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Status", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Status", b =>
                 {
                     b.Property<int>("StatusID")
                         .ValueGeneratedOnAdd()
@@ -2305,7 +2601,6 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusID"), 1L, 1);
 
                     b.Property<string>("StatusName")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .IsUnicode(false)
                         .HasColumnType("varchar(20)");
@@ -2347,7 +2642,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Supplier", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Supplier", b =>
                 {
                     b.Property<int>("SupplierID")
                         .ValueGeneratedOnAdd()
@@ -2357,7 +2652,6 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierID"), 1L, 1);
 
                     b.Property<int?>("CountryID")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -2387,7 +2681,7 @@ namespace API.Migrations
                     b.ToTable("Suppliers", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.SupplierInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.SupplierInvoice", b =>
                 {
                     b.Property<int>("SupplierInvoiceID")
                         .ValueGeneratedOnAdd()
@@ -2413,6 +2707,12 @@ namespace API.Migrations
                         .HasColumnType("int")
                         .HasColumnName("SupplierID");
 
+                    b.Property<string>("SupplierInvoiceCode")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("SupplierInvoiceCode");
+
                     b.HasKey("SupplierInvoiceID");
 
                     b.HasIndex("SaleID");
@@ -2421,10 +2721,14 @@ namespace API.Migrations
 
                     b.HasIndex("SupplierID");
 
+                    b.HasIndex("SupplierInvoiceCode")
+                        .IsUnique()
+                        .HasFilter("[SupplierInvoiceCode] IS NOT NULL");
+
                     b.ToTable("SupplierInvoices", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.SupplierInvoiceCost", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.SupplierInvoiceCost", b =>
                 {
                     b.Property<int>("SupplierInvoiceCostsId")
                         .ValueGeneratedOnAdd()
@@ -2461,7 +2765,7 @@ namespace API.Migrations
                     b.ToTable("SupplierInvoiceCosts", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.User", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.User", b =>
                 {
                     b.Property<int>("UserID")
                         .ValueGeneratedOnAdd()
@@ -2471,7 +2775,6 @@ namespace API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"), 1L, 1);
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)")
@@ -2498,7 +2801,8 @@ namespace API.Migrations
                     b.HasKey("UserID");
 
                     b.HasIndex("Email")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.ToTable("Users", (string)null);
 
@@ -2506,7 +2810,7 @@ namespace API.Migrations
                         new
                         {
                             UserID = 1,
-                            Email = "Admin",
+                            Email = "Admin@admin.com",
                             LastName = "Admin",
                             Name = "Admin",
                             PasswordHash = new byte[] { 115, 99, 121, 33, 251, 228, 182, 244, 226, 19, 236, 198, 68, 236, 133, 37, 79, 115, 185, 68, 146, 249, 57, 2, 155, 70, 91, 59, 192, 229, 221, 48, 39, 239, 222, 133, 50, 226, 8, 10, 90, 251, 143, 163, 176, 200, 142, 252, 45, 37, 117, 117, 164, 22, 75, 31, 80, 104, 233, 157, 177, 112, 239, 40 },
@@ -2514,7 +2818,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Entities.UserRole", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.UserRole", b =>
                 {
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -2536,7 +2840,7 @@ namespace API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API.Models.Procedures.ClassifySalesByProfit", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Procedures.ClassifySalesByProfit", b =>
                 {
                     b.Property<string>("BoLNumber")
                         .HasColumnType("nvarchar(max)");
@@ -2545,6 +2849,9 @@ namespace API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryRegion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerName")
@@ -2574,9 +2881,12 @@ namespace API.Migrations
                     b.ToView(null);
                 });
 
-            modelBuilder.Entity("API.Models.Procedures.TotalAmountGainedPerCustomerInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Procedures.TotalAmountGainedPerCustomerInvoice", b =>
                 {
                     b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryRegion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustomerInvoiceID")
@@ -2600,16 +2910,16 @@ namespace API.Migrations
                     b.ToView(null);
                 });
 
-            modelBuilder.Entity("API.Models.Procedures.TotalAmountSpentPerSupplierInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Procedures.TotalAmountSpentPerSupplierInvoice", b =>
                 {
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CountryRegion")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("InvoiceDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("InvoiceID")
-                        .HasColumnType("int");
 
                     b.Property<int?>("SaleID")
                         .HasColumnType("int");
@@ -2618,6 +2928,9 @@ namespace API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SupplierID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplierInvoiceID")
                         .HasColumnType("int");
 
                     b.Property<string>("SupplierName")
@@ -2629,7 +2942,7 @@ namespace API.Migrations
                     b.ToView(null);
                 });
 
-            modelBuilder.Entity("API.Models.Procedures.TotalAmountSpentPerSuppliers", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Procedures.TotalAmountSpentPerSuppliers", b =>
                 {
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
@@ -2655,27 +2968,26 @@ namespace API.Migrations
                     b.ToView(null);
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Customer", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Customer", b =>
                 {
-                    b.HasOne("API.Models.Entities.Country", "Country")
+                    b.HasOne("Entity_Validator.Entity.Entities.Country", "Country")
                         .WithMany("Customers")
                         .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired()
                         .HasConstraintName("customer_country_fk");
 
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.CustomerInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.CustomerInvoice", b =>
                 {
-                    b.HasOne("API.Models.Entities.Sale", "Sale")
+                    b.HasOne("Entity_Validator.Entity.Entities.Sale", "Sale")
                         .WithMany("CustomerInvoices")
                         .HasForeignKey("SaleID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .HasConstraintName("sale_CustomerInvoices_fk");
 
-                    b.HasOne("API.Models.Entities.Status", "Status")
+                    b.HasOne("Entity_Validator.Entity.Entities.Status", "Status")
                         .WithMany("CustomerInvoices")
                         .HasForeignKey("StatusID")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -2686,15 +2998,15 @@ namespace API.Migrations
                     b.Navigation("Status");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.CustomerInvoiceCost", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.CustomerInvoiceCost", b =>
                 {
-                    b.HasOne("API.Models.Entities.CostRegistry", "CostRegistry")
+                    b.HasOne("Entity_Validator.Entity.Entities.CostRegistry", "CostRegistry")
                         .WithMany("CustomerInvoiceCosts")
                         .HasForeignKey("CostRegistryID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .HasConstraintName("costRegistry_CustomerInvoiceCosts_fk");
 
-                    b.HasOne("API.Models.Entities.CustomerInvoice", "CustomerInvoice")
+                    b.HasOne("Entity_Validator.Entity.Entities.CustomerInvoice", "CustomerInvoice")
                         .WithMany("CustomerInvoiceCosts")
                         .HasForeignKey("CustomerInvoiceID")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -2705,110 +3017,120 @@ namespace API.Migrations
                     b.Navigation("CustomerInvoice");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CostRegistryDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
+                        .WithOne("CostRegistryDGV")
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.CostRegistryDGV", "UserID")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerDGV", b =>
+                {
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("CustomerDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.CustomerDGV", "UserID")
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.CustomerDGV", "UserID")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerGroupSplit", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerGroupSplit", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("CustomerGroupSplit")
-                        .HasForeignKey("API.Models.Entities.Preference.CustomerGroupSplit", "UserID")
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.CustomerGroupSplit", "UserID")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerInvoiceCostDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerInvoiceCostDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("CustomerInvoiceCostDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.CustomerInvoiceCostDGV", "UserID");
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.CustomerInvoiceCostDGV", "UserID");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.CustomerInvoiceDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.CustomerInvoiceDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("CustomerInvoiceDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.CustomerInvoiceDGV", "UserID");
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.CustomerInvoiceDGV", "UserID");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SaleDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SaleDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("SaleDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.SaleDGV", "UserID")
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.SaleDGV", "UserID")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("SupplierDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.SupplierDGV", "UserID")
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.SupplierDGV", "UserID")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierGroupSplit", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierGroupSplit", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("SupplierGroupSplit")
-                        .HasForeignKey("API.Models.Entities.Preference.SupplierGroupSplit", "UserID")
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.SupplierGroupSplit", "UserID")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierInvoiceCostDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierInvoiceCostDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("SupplierInvoiceCostDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.SupplierInvoiceCostDGV", "UserID");
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.SupplierInvoiceCostDGV", "UserID");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.SupplierInvoiceDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.SupplierInvoiceDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("SupplierInvoiceDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.SupplierInvoiceDGV", "UserID");
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.SupplierInvoiceDGV", "UserID");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.UserDGV", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.UserDGV", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithOne("UserDGV")
-                        .HasForeignKey("API.Models.Entities.Preference.UserDGV", "UserID");
+                        .HasForeignKey("Entity_Validator.Entity.Entities.Preference.UserDGV", "UserID");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.UserFavouritePage", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.UserFavouritePage", b =>
                 {
-                    b.HasOne("API.Models.Entities.Preference.FavouritePages", "FavouritePage")
+                    b.HasOne("Entity_Validator.Entity.Entities.Preference.FavouritePages", "FavouritePage")
                         .WithMany("UserFavourtitePages")
                         .HasForeignKey("FavouritePageID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithMany("UserFavouritePages")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2819,9 +3141,9 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.RefreshToken", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -2831,15 +3153,15 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Sale", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Sale", b =>
                 {
-                    b.HasOne("API.Models.Entities.Customer", "Customer")
+                    b.HasOne("Entity_Validator.Entity.Entities.Customer", "Customer")
                         .WithMany("Sales")
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .HasConstraintName("customer_sales_fk");
 
-                    b.HasOne("API.Models.Entities.Status", "Status")
+                    b.HasOne("Entity_Validator.Entity.Entities.Status", "Status")
                         .WithMany("Sales")
                         .HasForeignKey("StatusID")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -2850,33 +3172,32 @@ namespace API.Migrations
                     b.Navigation("Status");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Supplier", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Supplier", b =>
                 {
-                    b.HasOne("API.Models.Entities.Country", "Country")
+                    b.HasOne("Entity_Validator.Entity.Entities.Country", "Country")
                         .WithMany("Suppliers")
                         .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired()
                         .HasConstraintName("supplier_country_fk");
 
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.SupplierInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.SupplierInvoice", b =>
                 {
-                    b.HasOne("API.Models.Entities.Sale", "Sale")
+                    b.HasOne("Entity_Validator.Entity.Entities.Sale", "Sale")
                         .WithMany("SupplierInvoices")
                         .HasForeignKey("SaleID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .HasConstraintName("sale_supplierInvoices_fk");
 
-                    b.HasOne("API.Models.Entities.Status", "Status")
+                    b.HasOne("Entity_Validator.Entity.Entities.Status", "Status")
                         .WithMany("SupplierInvoices")
                         .HasForeignKey("StatusID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .HasConstraintName("status_supplierInvoices_fk");
 
-                    b.HasOne("API.Models.Entities.Supplier", "Supplier")
+                    b.HasOne("Entity_Validator.Entity.Entities.Supplier", "Supplier")
                         .WithMany("SupplierInvoices")
                         .HasForeignKey("SupplierID")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -2889,15 +3210,15 @@ namespace API.Migrations
                     b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.SupplierInvoiceCost", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.SupplierInvoiceCost", b =>
                 {
-                    b.HasOne("API.Models.Entities.CostRegistry", "CostRegistry")
+                    b.HasOne("Entity_Validator.Entity.Entities.CostRegistry", "CostRegistry")
                         .WithMany("SupplierInvoiceCosts")
                         .HasForeignKey("CostRegistryID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .HasConstraintName("costRegistry_SupplierInvoiceCosts_fk");
 
-                    b.HasOne("API.Models.Entities.SupplierInvoice", "SupplierInvoice")
+                    b.HasOne("Entity_Validator.Entity.Entities.SupplierInvoice", "SupplierInvoice")
                         .WithMany("SupplierInvoiceCosts")
                         .HasForeignKey("SupplierInvoiceId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -2908,15 +3229,15 @@ namespace API.Migrations
                     b.Navigation("SupplierInvoice");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.UserRole", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.UserRole", b =>
                 {
-                    b.HasOne("API.Models.Entities.Role", "Role")
+                    b.HasOne("Entity_Validator.Entity.Entities.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Entities.User", "User")
+                    b.HasOne("Entity_Validator.Entity.Entities.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2927,48 +3248,48 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.CostRegistry", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.CostRegistry", b =>
                 {
                     b.Navigation("CustomerInvoiceCosts");
 
                     b.Navigation("SupplierInvoiceCosts");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Country", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Country", b =>
                 {
                     b.Navigation("Customers");
 
                     b.Navigation("Suppliers");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Customer", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Customer", b =>
                 {
                     b.Navigation("Sales");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.CustomerInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.CustomerInvoice", b =>
                 {
                     b.Navigation("CustomerInvoiceCosts");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Preference.FavouritePages", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Preference.FavouritePages", b =>
                 {
                     b.Navigation("UserFavourtitePages");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Role", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Role", b =>
                 {
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Sale", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Sale", b =>
                 {
                     b.Navigation("CustomerInvoices");
 
                     b.Navigation("SupplierInvoices");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Status", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Status", b =>
                 {
                     b.Navigation("CustomerInvoices");
 
@@ -2977,49 +3298,41 @@ namespace API.Migrations
                     b.Navigation("SupplierInvoices");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Supplier", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.Supplier", b =>
                 {
                     b.Navigation("SupplierInvoices");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.SupplierInvoice", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.SupplierInvoice", b =>
                 {
                     b.Navigation("SupplierInvoiceCosts");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.User", b =>
+            modelBuilder.Entity("Entity_Validator.Entity.Entities.User", b =>
                 {
-                    b.Navigation("CustomerDGV")
-                        .IsRequired();
+                    b.Navigation("CostRegistryDGV");
 
-                    b.Navigation("CustomerGroupSplit")
-                        .IsRequired();
+                    b.Navigation("CustomerDGV");
 
-                    b.Navigation("CustomerInvoiceCostDGV")
-                        .IsRequired();
+                    b.Navigation("CustomerGroupSplit");
 
-                    b.Navigation("CustomerInvoiceDGV")
-                        .IsRequired();
+                    b.Navigation("CustomerInvoiceCostDGV");
+
+                    b.Navigation("CustomerInvoiceDGV");
 
                     b.Navigation("RefreshTokens");
 
-                    b.Navigation("SaleDGV")
-                        .IsRequired();
+                    b.Navigation("SaleDGV");
 
-                    b.Navigation("SupplierDGV")
-                        .IsRequired();
+                    b.Navigation("SupplierDGV");
 
-                    b.Navigation("SupplierGroupSplit")
-                        .IsRequired();
+                    b.Navigation("SupplierGroupSplit");
 
-                    b.Navigation("SupplierInvoiceCostDGV")
-                        .IsRequired();
+                    b.Navigation("SupplierInvoiceCostDGV");
 
-                    b.Navigation("SupplierInvoiceDGV")
-                        .IsRequired();
+                    b.Navigation("SupplierInvoiceDGV");
 
-                    b.Navigation("UserDGV")
-                        .IsRequired();
+                    b.Navigation("UserDGV");
 
                     b.Navigation("UserFavouritePages");
 
