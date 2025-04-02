@@ -43,6 +43,9 @@ namespace API.Models.Services
                 return compuuteHash.SequenceEqual(hash);
             }
         }
+
+
+
         public string CreateToken(UserRoleDTO user)
         {
             List<Claim> claims = new List<Claim>
@@ -150,7 +153,7 @@ namespace API.Models.Services
         {
             User user = await GetUserByID(id);
             user.Name = !string.IsNullOrEmpty(updateUser.Name) ? updateUser.Name : user.Name;
-            user.LastName = !string.IsNullOrEmpty(updateUser.LastName)  ? updateUser.LastName : user.LastName;
+            user.LastName = !string.IsNullOrEmpty(updateUser.LastName) ? updateUser.LastName : user.LastName;
             user.Email = !string.IsNullOrEmpty(updateUser.Email) ? updateUser.Email : user.Email;
             if (!string.IsNullOrEmpty(updateUser.Password))
             {
@@ -315,8 +318,8 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException("Can't create a User with no Roles");
             User returnUser = new User();
             returnUser.Name = user.Name;
-            returnUser.LastName =user.LastName;
-            returnUser.Email =user.Email;
+            returnUser.LastName = user.LastName;
+            returnUser.Email = user.Email;
             CreatePasswordHash(user.Password, out byte[] hash, out byte[] salt);
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
@@ -385,6 +388,37 @@ namespace API.Models.Services
                 await _context.SaveChangesAsync();
                 return cdgvDb;
             }
+        }
+
+        public async Task<CostRegistryDGV> CreateUpdateCostRegistryDGV(CostRegistryDGV value)
+        {
+            var cdgvDb = await _context.CostRegistryDGV.Where(x => x.UserID == value.UserID).FirstOrDefaultAsync();
+            if (cdgvDb == null)
+            {
+                _context.CostRegistryDGV.Add(value);
+                await _context.SaveChangesAsync();
+                return value;
+            }
+            else
+            {
+                cdgvDb.ShowRegistryID = cdgvDb.ShowRegistryID == null ? false : cdgvDb.ShowRegistryID;
+                cdgvDb.ShowRegistryCode = cdgvDb.ShowRegistryCode == null ? true : cdgvDb.ShowRegistryCode;
+                cdgvDb.ShowRegistryName = cdgvDb.ShowRegistryName == null ? true : cdgvDb.ShowRegistryName;
+                cdgvDb.ShowRegistryPrice = cdgvDb.ShowRegistryPrice == null ? true : cdgvDb.ShowRegistryPrice;
+                cdgvDb.ShowRegistryQuantity = cdgvDb.ShowRegistryQuantity == null ? true : cdgvDb.ShowRegistryQuantity;
+
+                _context.CostRegistryDGV.Update(cdgvDb);
+                await _context.SaveChangesAsync();
+                return cdgvDb;
+            }
+        }
+
+        public async Task<CostRegistryDGV> GetCostRegistryDGV(int id)
+        {
+            var cdgv = await _context.CostRegistryDGV.Where(x => x.UserID == id).FirstOrDefaultAsync();
+            if (cdgv == null)
+                throw new NotFoundException("Customer Invoice DGV not found");
+            return cdgv;
         }
 
         public async Task<CustomerInvoiceDGV> GetCustomerInvoiceDGV(int userId)
