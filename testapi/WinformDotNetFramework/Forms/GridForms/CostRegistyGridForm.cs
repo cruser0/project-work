@@ -100,7 +100,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             CostRegistryQuantityTsmi.Checked =(bool)cdgv.ShowRegistryQuantity;
             CostRegistryNameTsmi.Checked =(bool)cdgv.ShowRegistryName;
 
-            CostRegistryDgv.Columns["IsPost"].Visible = (bool)cdgv.ShowRegistryName;
+            CostRegistryDgv.Columns["IsPost"].Visible = false;
 
             CostRegistryDgv.Columns["CostRegistryName"].Visible = (bool)cdgv.ShowRegistryName;
             CostRegistryDgv.Columns["CostRegistryUniqueCode"].Visible = (bool)cdgv.ShowRegistryCode;
