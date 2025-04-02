@@ -173,22 +173,28 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private async Task CreateClick(bool quit = false)
         {
 
-            CustomerDTOGet customer = new CustomerDTOGet()
+            CustomerDTOGet customer1 = new CustomerDTOGet()
             {
                 CustomerName = NameCustomerCtb.PropTxt.Text,
                 Country = CountryCmbx.Text,
                 Deprecated = false
             };
 
-            customer.IsPost = true;
-            var result = ValidatorEntity.Validate(customer);
+            customer1.IsPost = true;
+            var result = ValidatorEntity.Validate(customer1);
             if (result.Any())
             {
-                UtilityFunctions.ValidateTextBoxes(panel1, customer);
+                UtilityFunctions.ValidateTextBoxes(panel1, customer1);
                 return;
             }
-            await _customerService.Create(customer);
+            customer = await _customerService.Create(customer1);
             MessageBox.Show("Customer Created Succesfully");
+            InitDetails((int)customer.CustomerId);
+            chart1.Visible = true;
+            EditCustomerCbx.Visible = true;
+            comboBox1.Visible = true;
+            label1.Visible = true;
+
             if (quit) Close();
 
         }

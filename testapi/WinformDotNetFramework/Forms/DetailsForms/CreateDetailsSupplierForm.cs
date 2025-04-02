@@ -37,18 +37,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).Skip(1).ToList();
             if (id != null)
             {
-                int idInt = (int)id;
-                summary = await _supplierInvoiceService.GetSummary(idInt);
-                supplier = await _supplierService.GetById(idInt);
-                supplierID = idInt;
-                NameCtb.PropTxt.Text = supplier.SupplierName;
-                CountryCmbx.Text = supplier.Country;
-                comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
-                NameCtb.PropTxt.Enabled = false;
-                CountryCmbx.Enabled = false;
-                comboBox1.Enabled = false;
+                InitDetails((int)id);
                 detailsOnly = true;
-                CreateDonutChart();
             }
             else
                 detailsOnly = false;
@@ -74,6 +64,22 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             EditSupplierCbx.Visible = detailsOnly;
             comboBox1.Visible = detailsOnly;
             label1.Visible = detailsOnly;
+        }
+
+        private async void InitDetails(int id)
+        {
+            int idInt = id;
+            summary = await _supplierInvoiceService.GetSummary(idInt);
+            supplier = await _supplierService.GetById(idInt);
+            supplierID = idInt;
+            NameCtb.PropTxt.Text = supplier.SupplierName;
+            CountryCmbx.Text = supplier.Country;
+            comboBox1.Text = (bool)supplier.Deprecated ? "Deprecated" : "Active";
+            NameCtb.PropTxt.Enabled = false;
+            CountryCmbx.Enabled = false;
+            comboBox1.Enabled = false;
+            detailsOnly = true;
+            CreateDonutChart();
         }
 
         private void CreateDonutChart()
@@ -173,25 +179,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             else
             {
 
-                SupplierDTOGet supplier = new SupplierDTOGet()
+                SupplierDTOGet supplier1 = new SupplierDTOGet()
                 {
                     SupplierName = NameCtb.PropTxt.Text,
                     Country = CountryCmbx.Text
                 };
-
-
-                supplier.IsPost = true;
-                var result = ValidatorEntity.Validate(supplier);
-                if (result.Any())
+                try
                 {
-                    UtilityFunctions.ValidateTextBoxes(panel1, supplier);
-                    return;
+
+                    supplier1.IsPost = true;
+                    var result = ValidatorEntity.Validate(supplier1);
+                    if (result.Any())
+                    {
+                        UtilityFunctions.ValidateTextBoxes(panel1, supplier1);
+                        return;
+                    }
+
+                    supplier = await _supplierService.Create(supplier1);
+                    MessageBox.Show("Supplier Created Succesfully");
+                    detailsOnly = true;
+                    InitDetails((int)supplier.SupplierId);
+                    chart1.Visible = true;
+                    EditSupplierCbx.Visible = true;
+                    comboBox1.Visible = true;
+                    label1.Visible = true;
                 }
-
-                await _supplierService.Create(supplier);
-                MessageBox.Show("Supplier Created Succesfully");
-
-
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             }
         }
