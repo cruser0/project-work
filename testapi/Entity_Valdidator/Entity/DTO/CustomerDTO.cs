@@ -14,7 +14,6 @@ namespace Entity_Validator.Entity.DTO
         [RegularExpression("^[A-Za-z\\s]+$", ErrorMessage = "Only alphabetical characters are allowed.")]
         public string Country { get; set; }
 
-        [RequiredIf("IsPost", true)]
         public bool? Deprecated { get; set; }
         public DateTime? CreatedAt { get; set; }
         public bool IsPost { get; set; }

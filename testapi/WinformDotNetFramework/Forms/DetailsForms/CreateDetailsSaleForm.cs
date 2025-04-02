@@ -238,11 +238,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             }
             catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
+            DateTime? selectedDate = saleDateDtp.Checked ? (DateTime?)saleDateDtp.Value : null;
+
             SaleDTOGet sale = new SaleDTOGet
             {
                 BookingNumber = BkCtb.PropTxt.Text,
                 BoLnumber = BolCtb.PropTxt.Text,
-                SaleDate = saleDateDtp.Value,
+                SaleDate = selectedDate,
                 CustomerId = customerId,
                 Status = StatusCmbx.Text
             };
@@ -296,11 +298,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
                 _id = customerId;
+            
+            DateTime? selectedDate = saleDateDtp.Checked ? (DateTime?)saleDateDtp.Value : null;
+
             SaleDTOGet sale1 = new SaleDTOGet
             {
                 BookingNumber = BkCtb.PropTxt.Text,
                 BoLnumber = BolCtb.PropTxt.Text,
-                SaleDate = saleDateDtp.Value,
+                SaleDate = selectedDate,
                 CustomerId = _id,
                 Status = StatusCmbx.Text
             };

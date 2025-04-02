@@ -99,9 +99,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // DateClnd
             // 
             this.DateClnd.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DateClnd.CustomFormat = "ddMMMMyyyy";
             this.DateClnd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateClnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DateClnd.Location = new System.Drawing.Point(254, 137);
             this.DateClnd.Name = "DateClnd";
+            this.DateClnd.ShowCheckBox = true;
             this.DateClnd.Size = new System.Drawing.Size(200, 23);
             this.DateClnd.TabIndex = 19;
             // 

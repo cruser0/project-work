@@ -55,8 +55,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             checkBox1.Visible = false;
             CustomerInvoiceCodeCtb.Visible = false;
             InvoiceAmountCtb.Visible = false;
-            StatusCB.Visible = false;
-            label4.Visible = false;
             AddCostBtn.Enabled = false;
         }
         private async void InitDetails(int id)
@@ -235,11 +233,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async Task UpdateClick(bool quit = false, bool validateBeforeExiting = false)
         {
+            DateTime? selectedDate = InvoiceDateDTP.Checked ? (DateTime?)InvoiceDateDTP.Value : null;
+
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
                 SaleID = saleID,
                 Status = StatusCB.Text,
-                InvoiceDate = InvoiceDateDTP.Value
+                InvoiceDate = selectedDate
             };
             try
             {
@@ -266,13 +266,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         }
         private async Task CreateClick(bool quit = false, bool validateBeforeExiting = false)
         {
+            DateTime? selectedDate = InvoiceDateDTP.Checked ? (DateTime?)InvoiceDateDTP.Value : null;
+
             CustomerInvoiceDTOGet invoice = new CustomerInvoiceDTOGet
             {
                 SaleID = saleID,
-                InvoiceDate = InvoiceDateDTP.Value,
+                InvoiceDate = selectedDate,
                 SaleBoL = BoLCmbxUC.Cmbx.PropTxt.Text,
                 SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text,
-                Status = "Unpaid",
+                Status = StatusCB.Text,
             };
 
 
@@ -295,10 +297,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
             AddCostBtn.Enabled = true;
             checkBox1.Visible = true;
-            CustomerInvoiceCodeCtb.PropTxt.Visible = true;
+            CustomerInvoiceCodeCtb.Visible = true;
             StatusCB.Visible = true;
-            label4.Visible = true;
-            InvoiceAmountCtb.PropTxt.Visible = true;
+            StatusLbl.Visible = true;
+            InvoiceAmountCtb.Visible = true;
 
 
         }
@@ -312,7 +314,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
                     throw new Exception();
                 saleID = (int)(await _saleService
-                .GetAll(new SaleCustomerFilter() { SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text, SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text }))
+                .GetAll(new SaleCustomerFilter()
+                {
+                    SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
+                    SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
+                }))
                 .First().SaleId;
             }
             catch (Exception)

@@ -111,6 +111,7 @@ namespace API.Models.Services
             customer.CreatedAt = DateTime.Now;
 
             _context.Customers.Add(customer);
+            await _context.SaveChangesAsync();
             customer.OriginalID = customer.CustomerID;
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();

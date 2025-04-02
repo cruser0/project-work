@@ -98,10 +98,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // saleDateDtp
             // 
             this.saleDateDtp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.saleDateDtp.CustomFormat = "ddMMMMyyyy";
             this.saleDateDtp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saleDateDtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.saleDateDtp.Location = new System.Drawing.Point(8, 133);
             this.saleDateDtp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saleDateDtp.Name = "saleDateDtp";
+            this.saleDateDtp.ShowCheckBox = true;
             this.saleDateDtp.Size = new System.Drawing.Size(200, 23);
             this.saleDateDtp.TabIndex = 10;
             // 
