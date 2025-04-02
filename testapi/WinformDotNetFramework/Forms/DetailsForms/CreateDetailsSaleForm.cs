@@ -40,6 +40,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             InitializeComponent();
             StatusCmbx.SelectedIndex = 0;
             NameCmbxUC.Cmbx.SetTiltes("Customer");
+
+            BkCtb.SetPropName("BookingNumber");
+            BolCtb.SetPropName("BoLnumber");
+            RevenueCtb.SetPropName("TotalRevenue");
+
+
             if (id != null)
             {
                 _saleId = (int)id;
@@ -61,10 +67,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     })).ToList();
                 SuInDgv.DataSource = si;
                 UtilityFunctions.SetDropdownText(NameCmbxUC, sale.CustomerName + $" - {sale.Country}");
-                bntxt.Text = sale.BookingNumber;
-                boltxt.Text = sale.BoLnumber;
+                BkCtb.PropTxt.Text = sale.BookingNumber;
+                BolCtb.PropTxt.Text = sale.BoLnumber;
                 saleDateDtp.Value = sale.SaleDate.Value;
-                RevenueTxt.SetText(sale.TotalRevenue.ToString());
+                RevenueCtb.PropTxt.Text = sale.TotalRevenue.ToString();
                 StatusCmbx.Text = sale.Status.ToString();
             }
             else
@@ -98,8 +104,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void SetVisibility()
         {
             EditCB.Visible = detailsOnly;
-            label6.Visible = detailsOnly;
-            RevenueTxt.Visible = detailsOnly;
+            RevenueCtb.PropTxt.Visible = detailsOnly;
             button1.Visible = detailsOnly;
             button2.Visible = detailsOnly;
         }
@@ -107,10 +112,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             saveBtn.Enabled = !detailsOnly;
             NameCmbxUC.Cmbx.Enabled = !detailsOnly;
-            bntxt.Enabled = !detailsOnly;
-            boltxt.Enabled = !detailsOnly;
+            BkCtb.PropTxt.Enabled = !detailsOnly;
+            BolCtb.PropTxt.Enabled = !detailsOnly;
             saleDateDtp.Enabled = !detailsOnly;
-            RevenueTxt.Enabled = !detailsOnly;
+            RevenueCtb.PropTxt.Enabled = !detailsOnly;
             StatusCmbx.Enabled = !detailsOnly;
         }
         private bool Authorize(List<string> allowedRoles)
@@ -121,10 +126,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void EditCB_CheckedChanged(object sender, EventArgs e)
         {
             NameCmbxUC.Cmbx.Enabled = EditCB.Checked;
-            bntxt.Enabled = EditCB.Checked;
-            boltxt.Enabled = EditCB.Checked;
+            BkCtb.PropTxt.Enabled = EditCB.Checked;
+            BolCtb.PropTxt.Enabled = EditCB.Checked;
             saleDateDtp.Enabled = EditCB.Checked;
-            RevenueTxt.Enabled = EditCB.Checked;
+            RevenueCtb.PropTxt.Enabled = EditCB.Checked;
             StatusCmbx.Enabled = EditCB.Checked;
             saveBtn.Enabled = EditCB.Checked;
         }
@@ -230,12 +235,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     CustomerName = name,
                     CustomerCountry = country
                 })).FirstOrDefault().CustomerId;
-            }catch (Exception) {NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
+            }
+            catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
             SaleDTOGet sale = new SaleDTOGet
             {
-                BookingNumber = bntxt.Text,
-                BoLnumber = boltxt.Text,
+                BookingNumber = BkCtb.PropTxt.Text,
+                BoLnumber = BolCtb.PropTxt.Text,
                 SaleDate = saleDateDtp.Value,
                 CustomerId = customerId,
                 Status = StatusCmbx.Text
@@ -246,6 +252,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var result = ValidatorEntity.Validate(sale);
                 if (result.Any())
                 {
+                    UtilityFunctions.ValidateTextBoxes(panel6, sale);
                     return;
                 }
                 if (exit)
@@ -298,8 +305,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 }
                 SaleDTOGet sale1 = new SaleDTOGet
                 {
-                    BookingNumber = bntxt.Text,
-                    BoLnumber = boltxt.Text,
+                    BookingNumber = BkCtb.PropTxt.Text,
+                    BoLnumber = BolCtb.PropTxt.Text,
                     SaleDate = saleDateDtp.Value,
                     CustomerId = _id,
                     Status = StatusCmbx.Text
@@ -309,6 +316,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 var result = ValidatorEntity.Validate(sale1);
                 if (result.Any())
                 {
+                    UtilityFunctions.ValidateTextBoxes(panel6, sale);
                     return;
                 }
 
@@ -319,11 +327,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 MessageBox.Show("Sale Created successfully!");
                 if (quit) Close();
 
-                sale = (await _saleService.GetAll(new SaleCustomerFilter() { SaleBoLnumber = boltxt.Text, SaleBookingNumber = bntxt.Text })).FirstOrDefault();
+                sale = (await _saleService.GetAll(new SaleCustomerFilter() { SaleBoLnumber = BolCtb.PropTxt.Text, SaleBookingNumber = BkCtb.PropTxt.Text })).FirstOrDefault();
                 detailsOnly = true;
                 SetVisibility();
-                RevenueTxt.Text = saleReturn.TotalRevenue.ToString();
-                RevenueTxt.Enabled = false;
+                RevenueCtb.PropTxt.Text = saleReturn.TotalRevenue.ToString();
+                RevenueCtb.PropTxt.Enabled = false;
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
