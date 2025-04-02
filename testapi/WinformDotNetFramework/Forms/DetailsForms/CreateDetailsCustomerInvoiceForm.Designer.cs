@@ -49,19 +49,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.customerInvoiceCostsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
+            this.InvoiceAmountCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.SaveQuitButton = new System.Windows.Forms.Button();
+            this.CustomerInvoiceCodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.ButtonOpenSales = new System.Windows.Forms.Button();
             this.AddCostBtn = new System.Windows.Forms.Button();
             this.BoLCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CustomerInvoiceCodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.InvoiceAmountCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -257,7 +256,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Controls.Add(this.ButtonOpenSales);
             this.panel6.Controls.Add(this.AddCostBtn);
             this.panel6.Controls.Add(this.BoLCmbxUC);
-            this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.BKCmbxUC);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.StatusCB);
@@ -272,6 +270,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(750, 222);
             this.panel6.TabIndex = 43;
             // 
+            // InvoiceAmountCtb
+            // 
+            this.InvoiceAmountCtb.Location = new System.Drawing.Point(33, 103);
+            this.InvoiceAmountCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.InvoiceAmountCtb.Name = "InvoiceAmountCtb";
+            this.InvoiceAmountCtb.Size = new System.Drawing.Size(200, 47);
+            this.InvoiceAmountCtb.TabIndex = 35;
+            this.InvoiceAmountCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            // 
             // SaveQuitButton
             // 
             this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -285,6 +292,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveQuitButton.Text = "Save and Quit";
             this.SaveQuitButton.UseVisualStyleBackColor = false;
             this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
+            // 
+            // CustomerInvoiceCodeCtb
+            // 
+            this.CustomerInvoiceCodeCtb.Location = new System.Drawing.Point(33, 50);
+            this.CustomerInvoiceCodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.CustomerInvoiceCodeCtb.Name = "CustomerInvoiceCodeCtb";
+            this.CustomerInvoiceCodeCtb.Size = new System.Drawing.Size(200, 47);
+            this.CustomerInvoiceCodeCtb.TabIndex = 34;
+            this.CustomerInvoiceCodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
             // 
             // ButtonOpenSales
             // 
@@ -337,6 +353,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.BKCmbxUC.Size = new System.Drawing.Size(200, 47);
             this.BKCmbxUC.TabIndex = 41;
             // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.label6.Location = new System.Drawing.Point(281, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 15);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Booking Number";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
@@ -372,48 +400,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(17, 427);
             this.panel5.TabIndex = 36;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label6.Location = new System.Drawing.Point(281, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 15);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Booking Number";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(522, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 15);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Bill of Lading";
-            // 
-            // CustomerInvoiceCodeCtb
-            // 
-            this.CustomerInvoiceCodeCtb.Location = new System.Drawing.Point(33, 50);
-            this.CustomerInvoiceCodeCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.CustomerInvoiceCodeCtb.Name = "CustomerInvoiceCodeCtb";
-            this.CustomerInvoiceCodeCtb.Size = new System.Drawing.Size(200, 47);
-            this.CustomerInvoiceCodeCtb.TabIndex = 34;
-            this.CustomerInvoiceCodeCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // InvoiceAmountCtb
-            // 
-            this.InvoiceAmountCtb.Location = new System.Drawing.Point(33, 103);
-            this.InvoiceAmountCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.InvoiceAmountCtb.Name = "InvoiceAmountCtb";
-            this.InvoiceAmountCtb.Size = new System.Drawing.Size(200, 47);
-            this.InvoiceAmountCtb.TabIndex = 35;
-            this.InvoiceAmountCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
             // 
             // CreateDetailsCustomerInvoiceForm
             // 
@@ -470,7 +456,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Button SaveQuitButton;
         private control.CustomTextBoxUserControl InvoiceAmountCtb;
         private control.CustomTextBoxUserControl CustomerInvoiceCodeCtb;
-        private Label label2;
         private Label label6;
     }
 }
