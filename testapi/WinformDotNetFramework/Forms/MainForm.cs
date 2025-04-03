@@ -43,7 +43,7 @@ namespace WinformDotNetFramework.Forms
             tabControl.TabPages.Remove(AddTP);
             tabControl.TabPages.Remove(GroupTP);
             tabControl.TabPages.Remove(ReportTP);
-            UserProfile.Text = "Hello " + UserAccessInfo.Name;
+            UserProfile.Text = "H&ello " + UserAccessInfo.Name;
 
         }
         private async void MainForm_Load(object sender, EventArgs e)
@@ -137,6 +137,7 @@ namespace WinformDotNetFramework.Forms
         public void buttonOpenChild_Click(object sender, EventArgs e)
         {
             var menuItem = sender as ToolStripButton;
+            string btnName = menuItem.Text.Replace("&", "");
 
             Cursor.Current = Cursors.WaitCursor;
 
@@ -146,7 +147,7 @@ namespace WinformDotNetFramework.Forms
                 formName = tabName + " " + menuItem.Name;
             else
             {
-                formName = tabName + " " + menuItem.Text;
+                formName = tabName + " " + btnName;
 
                 if (tabControl.SelectedTab.Text.Equals("Favorite"))
                 {
@@ -640,7 +641,7 @@ namespace WinformDotNetFramework.Forms
                             AutoSize = true,
                             Margin = btn.Margin,
                             BackColor = Color.Transparent,
-                            Text = $"{btn.GetCurrentParent().Parent.Text} {t}",
+                            Text = $"{btn.GetCurrentParent().Parent.Text} {t.Replace("&", "")}",
                             Image = null,
                             ToolTipText = btn.ToolTipText,
                             Tag = favorite,

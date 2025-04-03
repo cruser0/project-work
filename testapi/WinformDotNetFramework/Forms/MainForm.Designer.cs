@@ -163,7 +163,7 @@ namespace WinformDotNetFramework.Forms
             this.CustomerShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerShowTS.Name = "CustomerShowTS";
             this.CustomerShowTS.Size = new System.Drawing.Size(100, 27);
-            this.CustomerShowTS.Text = "Customer";
+            this.CustomerShowTS.Text = "&Customer";
             this.CustomerShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // CustomerInvoiceShowTS
@@ -175,7 +175,7 @@ namespace WinformDotNetFramework.Forms
             this.CustomerInvoiceShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerInvoiceShowTS.Name = "CustomerInvoiceShowTS";
             this.CustomerInvoiceShowTS.Size = new System.Drawing.Size(100, 27);
-            this.CustomerInvoiceShowTS.Text = "Customer Invoice";
+            this.CustomerInvoiceShowTS.Text = "Cus&tomer Invoice";
             this.CustomerInvoiceShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator1
@@ -192,7 +192,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierShowTS.Name = "SupplierShowTS";
             this.SupplierShowTS.Size = new System.Drawing.Size(100, 27);
-            this.SupplierShowTS.Text = "Supplier";
+            this.SupplierShowTS.Text = "Su&pplier";
             this.SupplierShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // SupplierInvoiceShowTS
@@ -204,7 +204,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierInvoiceShowTS.Name = "SupplierInvoiceShowTS";
             this.SupplierInvoiceShowTS.Size = new System.Drawing.Size(100, 27);
-            this.SupplierInvoiceShowTS.Text = "Supplier Invoice";
+            this.SupplierInvoiceShowTS.Text = "Supplier &Invoice";
             this.SupplierInvoiceShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator2
@@ -221,7 +221,7 @@ namespace WinformDotNetFramework.Forms
             this.SaleShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SaleShowTS.Name = "SaleShowTS";
             this.SaleShowTS.Size = new System.Drawing.Size(100, 27);
-            this.SaleShowTS.Text = "Sale";
+            this.SaleShowTS.Text = "&Sale";
             this.SaleShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator13
@@ -238,7 +238,7 @@ namespace WinformDotNetFramework.Forms
             this.RegistryCostShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.RegistryCostShowTS.Name = "RegistryCostShowTS";
             this.RegistryCostShowTS.Size = new System.Drawing.Size(100, 27);
-            this.RegistryCostShowTS.Text = "Registry Cost";
+            this.RegistryCostShowTS.Text = "&Registry Cost";
             this.RegistryCostShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripButton1
@@ -255,7 +255,7 @@ namespace WinformDotNetFramework.Forms
             this.UserShowTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.UserShowTS.Name = "UserShowTS";
             this.UserShowTS.Size = new System.Drawing.Size(100, 27);
-            this.UserShowTS.Text = "User";
+            this.UserShowTS.Text = "&User";
             this.UserShowTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // AddTP
@@ -302,7 +302,7 @@ namespace WinformDotNetFramework.Forms
             this.CustomerCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerCreateTS.Name = "CustomerCreateTS";
             this.CustomerCreateTS.Size = new System.Drawing.Size(100, 27);
-            this.CustomerCreateTS.Text = "Customer";
+            this.CustomerCreateTS.Text = "&Customer";
             this.CustomerCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // CustomerInvoiceCreateTS
@@ -314,7 +314,7 @@ namespace WinformDotNetFramework.Forms
             this.CustomerInvoiceCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerInvoiceCreateTS.Name = "CustomerInvoiceCreateTS";
             this.CustomerInvoiceCreateTS.Size = new System.Drawing.Size(100, 27);
-            this.CustomerInvoiceCreateTS.Text = "Customer Invoice";
+            this.CustomerInvoiceCreateTS.Text = "Cus&tomer Invoice";
             this.CustomerInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator7
@@ -331,7 +331,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierCreateTS.Name = "SupplierCreateTS";
             this.SupplierCreateTS.Size = new System.Drawing.Size(100, 27);
-            this.SupplierCreateTS.Text = "Supplier";
+            this.SupplierCreateTS.Text = "Su&pplier";
             this.SupplierCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // SupplierInvoiceCreateTS
@@ -343,7 +343,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierInvoiceCreateTS.Name = "SupplierInvoiceCreateTS";
             this.SupplierInvoiceCreateTS.Size = new System.Drawing.Size(100, 27);
-            this.SupplierInvoiceCreateTS.Text = "Supplier Invoice";
+            this.SupplierInvoiceCreateTS.Text = "Supplier &Invoice";
             this.SupplierInvoiceCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator8
@@ -360,7 +360,7 @@ namespace WinformDotNetFramework.Forms
             this.SaleCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SaleCreateTS.Name = "SaleCreateTS";
             this.SaleCreateTS.Size = new System.Drawing.Size(100, 27);
-            this.SaleCreateTS.Text = "Sale";
+            this.SaleCreateTS.Text = "&Sale";
             this.SaleCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator10
@@ -394,7 +394,7 @@ namespace WinformDotNetFramework.Forms
             this.UserCreateTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.UserCreateTS.Name = "UserCreateTS";
             this.UserCreateTS.Size = new System.Drawing.Size(100, 27);
-            this.UserCreateTS.Text = "User";
+            this.UserCreateTS.Text = "&User";
             this.UserCreateTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // GroupTP
@@ -433,7 +433,7 @@ namespace WinformDotNetFramework.Forms
             this.CustomerGroupTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerGroupTS.Name = "CustomerGroupTS";
             this.CustomerGroupTS.Size = new System.Drawing.Size(100, 27);
-            this.CustomerGroupTS.Text = "Customer";
+            this.CustomerGroupTS.Text = "&Customer";
             this.CustomerGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator12
@@ -450,7 +450,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierGroupTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierGroupTS.Name = "SupplierGroupTS";
             this.SupplierGroupTS.Size = new System.Drawing.Size(100, 27);
-            this.SupplierGroupTS.Text = "Supplier";
+            this.SupplierGroupTS.Text = "&Supplier";
             this.SupplierGroupTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // ReportTP
@@ -491,7 +491,7 @@ namespace WinformDotNetFramework.Forms
             this.CustomerInvoiceReportTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.CustomerInvoiceReportTS.Name = "CustomerInvoiceReportTS";
             this.CustomerInvoiceReportTS.Size = new System.Drawing.Size(100, 27);
-            this.CustomerInvoiceReportTS.Text = "Customer Invoice";
+            this.CustomerInvoiceReportTS.Text = "&Customer Invoice";
             this.CustomerInvoiceReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator4
@@ -508,7 +508,7 @@ namespace WinformDotNetFramework.Forms
             this.SupplierInvoiceReportTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SupplierInvoiceReportTS.Name = "SupplierInvoiceReportTS";
             this.SupplierInvoiceReportTS.Size = new System.Drawing.Size(100, 27);
-            this.SupplierInvoiceReportTS.Text = "Supplier Invoice";
+            this.SupplierInvoiceReportTS.Text = "Supplier &Invoice";
             this.SupplierInvoiceReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // toolStripSeparator5
@@ -525,7 +525,7 @@ namespace WinformDotNetFramework.Forms
             this.SaleReportTS.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             this.SaleReportTS.Name = "SaleReportTS";
             this.SaleReportTS.Size = new System.Drawing.Size(100, 27);
-            this.SaleReportTS.Text = "Sale";
+            this.SaleReportTS.Text = "&Sale";
             this.SaleReportTS.Click += new System.EventHandler(this.buttonOpenChild_Click);
             // 
             // TS
@@ -555,7 +555,7 @@ namespace WinformDotNetFramework.Forms
             this.Logout.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.Logout.Name = "Logout";
             this.Logout.Size = new System.Drawing.Size(49, 20);
-            this.Logout.Text = "Logout";
+            this.Logout.Text = "&Logout";
             this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
             // UserProfile
@@ -589,7 +589,8 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(93, 20);
-            this.toolStripButton2.Text = "Close All Forms";
+            this.toolStripButton2.Text = "Close &All Forms";
+            this.toolStripButton2.ToolTipText = "Close All Forms";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator3
@@ -604,7 +605,7 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(89, 20);
-            this.toolStripButton3.Text = "Hide All Forms";
+            this.toolStripButton3.Text = "&Hide All Forms";
             this.toolStripButton3.ToolTipText = "Hide All";
             this.toolStripButton3.Click += new System.EventHandler(this.MinimizeAll_Click);
             // 
@@ -619,7 +620,7 @@ namespace WinformDotNetFramework.Forms
             this.OpenFormDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenFormDropDown.Name = "OpenFormDropDown";
             this.OpenFormDropDown.Size = new System.Drawing.Size(134, 20);
-            this.OpenFormDropDown.Text = "Show All Open Forms";
+            this.OpenFormDropDown.Text = "Show All Open &Forms";
             // 
             // MainForm
             // 
