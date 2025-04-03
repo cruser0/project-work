@@ -56,6 +56,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            PaginationUserControl.PageNumberTextboxEvent += PaginationUserControl_PageNumberTextboxEvent;
 
             searchSupplier1.comboBox1.SelectedIndex = 1;
 
@@ -94,7 +95,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             await Task.WhenAll(query, count);
 
             IEnumerable<SupplierDTOGet> query1 = await query;
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             SupplierDgv.DataSource = query1.ToList();
         }
@@ -103,7 +104,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<SupplierDTOGet> query = await getAllNotFiltered;
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 
@@ -150,7 +151,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             if (sender is DataGridView dgv)
             {
-                if(_father is CreateDetailsSupplierInvoiceForm sidf)
+                if (_father is CreateDetailsSupplierInvoiceForm sidf)
                 {
                     sidf.SetSupplierID(dgv.CurrentRow.Cells["SupplierID"].Value.ToString());
                     sidf.SetSupplierNameCountry(dgv.CurrentRow.Cells["SupplierName"].Value.ToString(), dgv.CurrentRow.Cells["Country"].Value.ToString());
@@ -191,6 +192,16 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         }
 
+        private void PaginationUserControl_PageNumberTextboxEvent(object sender, EventArgs e)
+        {
+
+            if (int.Parse(PaginationUserControl.CurrentPageTxt.Text) > int.Parse(PaginationUserControl.GetmaxPage()))
+                PaginationUserControl.CurrentPageTxt.Text = PaginationUserControl.GetmaxPage();
+
+            PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.CurrentPageTxt.Text);
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
+        }
         private void CustomerGridForm_Resize(object sender, EventArgs e)
         {
 

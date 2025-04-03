@@ -57,6 +57,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            PaginationUserControl.PageNumberTextboxEvent += PaginationUserControl_PageNumberTextboxEvent;
 
             searchCustomer1.comboBox1.SelectedIndex = 1;
             PaginationUserControl.Visible = false;
@@ -168,7 +169,16 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         }
 
+        private void PaginationUserControl_PageNumberTextboxEvent(object sender, EventArgs e)
+        {
 
+            if (int.Parse(PaginationUserControl.CurrentPageTxt.Text) > int.Parse(PaginationUserControl.GetmaxPage()))
+                PaginationUserControl.CurrentPageTxt.Text = PaginationUserControl.GetmaxPage();
+
+            PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.CurrentPageTxt.Text);
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
+        }
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {
@@ -260,7 +270,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             countNotFiltered = _customerService.Count(new CustomerFilter() { CustomerDeprecated = false });
             getFav = _userService.GetCustomerDGV();
             await SetCheckBoxes();
-            
+
         }
 
 

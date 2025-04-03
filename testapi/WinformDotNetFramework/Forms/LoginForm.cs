@@ -1,4 +1,5 @@
-﻿using Entity_Validator.Entity.DTO;
+﻿using Entity_Validator;
+using Entity_Validator.Entity.DTO;
 using System;
 using System.Windows.Forms;
 using WinformDotNetFramework.Services;
@@ -13,6 +14,12 @@ namespace WinformDotNetFramework.Forms
         {
             _userService = new UserService();
             InitializeComponent();
+            EmailCtb.SetPropName("Email");
+            PasswordCtb.SetPropName("Password");
+            PasswordCtb.PropTxt.PasswordChar = '•';
+
+            EmailCtb.PropTxt.TextChanged += EmailTxt_TextChanged;
+            PasswordCtb.PropTxt.TextChanged += EmailTxt_TextChanged;
         }
 
 
@@ -20,12 +27,19 @@ namespace WinformDotNetFramework.Forms
         {
             UserDTO user = new UserDTO()
             {
-                Email = EmailTxt.Text,
-                Password = PasswordTxt.Text,
+                Email = EmailCtb.PropTxt.Text,
+                Password = PasswordCtb.PropTxt.Text,
             };
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
+                var result = ValidatorEntity.Validate(user);
+                if (result.Count > 0)
+                {
+                    UtilityFunctions.ValidateTextBoxes(panel1, user);
+                    return;
+                }
+
                 var ret = await _userService.Login(user);
                 DialogResult = DialogResult.OK;
                 Close();
@@ -48,25 +62,25 @@ namespace WinformDotNetFramework.Forms
         {
             try
             {
-            var ret = await _userService.Login(new UserDTO() { Email = "Admin@admin.com", Password = "Admin" });
-            DialogResult = DialogResult.OK;
-            Close();
+                var ret = await _userService.Login(new UserDTO() { Email = "Admin@admin.com", Password = "Admin" });
+                DialogResult = DialogResult.OK;
+                Close();
 
-            }catch (Exception ex) { MessageBox.Show(ex.Message);}
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void EmailTxt_TextChanged(object sender, EventArgs e)
         {
-            EnterBtn.Enabled = EmailTxt.Text.Length > 0 && PasswordTxt.Text.Length > 0;
+            EnterBtn.Enabled = EmailCtb.PropTxt.Text.Length > 0 && PasswordCtb.PropTxt.Text.Length > 0;
         }
 
         private void PasswordSeeBtn_Click(object sender, EventArgs e)
         {
-            if (PasswordTxt.PasswordChar.Equals('•'))
-                PasswordTxt.PasswordChar = default(char);
+            if (PasswordCtb.PropTxt.PasswordChar.Equals('•'))
+                PasswordCtb.PropTxt.PasswordChar = default(char);
             else
-                PasswordTxt.PasswordChar = '•';
+                PasswordCtb.PropTxt.PasswordChar = '•';
         }
-
     }
 }
