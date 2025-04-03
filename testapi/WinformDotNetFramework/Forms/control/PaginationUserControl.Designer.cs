@@ -31,9 +31,10 @@ namespace WinformDotNetFramework.Forms.control
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CurrentPageTxt = new System.Windows.Forms.TextBox();
             this.PageNumber = new System.Windows.Forms.Label();
-            this.DoubleRightArrow = new System.Windows.Forms.Button();
             this.SingleRightArrow = new System.Windows.Forms.Button();
+            this.DoubleRightArrow = new System.Windows.Forms.Button();
             this.SingleLeftArrow = new System.Windows.Forms.Button();
             this.DoubleLeftArrow = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -41,87 +42,107 @@ namespace WinformDotNetFramework.Forms.control
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.panel1.Controls.Add(this.PageNumber);
-            this.panel1.Controls.Add(this.DoubleRightArrow);
             this.panel1.Controls.Add(this.SingleRightArrow);
+            this.panel1.Controls.Add(this.CurrentPageTxt);
+            this.panel1.Controls.Add(this.DoubleRightArrow);
             this.panel1.Controls.Add(this.SingleLeftArrow);
             this.panel1.Controls.Add(this.DoubleLeftArrow);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(316, 50);
+            this.panel1.Size = new System.Drawing.Size(271, 43);
             this.panel1.TabIndex = 0;
+            // 
+            // CurrentPageTxt
+            // 
+            this.CurrentPageTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CurrentPageTxt.Location = new System.Drawing.Point(95, 12);
+            this.CurrentPageTxt.Name = "CurrentPageTxt";
+            this.CurrentPageTxt.Size = new System.Drawing.Size(37, 20);
+            this.CurrentPageTxt.TabIndex = 5;
+            this.CurrentPageTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CurrentPageTxt_KeyPress);
             // 
             // PageNumber
             // 
+            this.PageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PageNumber.AutoSize = true;
+            this.PageNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.PageNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.PageNumber.Location = new System.Drawing.Point(132, 16);
+            this.PageNumber.Location = new System.Drawing.Point(138, 15);
             this.PageNumber.Name = "PageNumber";
-            this.PageNumber.Size = new System.Drawing.Size(38, 15);
+            this.PageNumber.Size = new System.Drawing.Size(30, 13);
             this.PageNumber.TabIndex = 4;
-            this.PageNumber.Text = "label1";
-            // 
-            // DoubleRightArrow
-            // 
-            this.DoubleRightArrow.FlatAppearance.BorderSize = 0;
-            this.DoubleRightArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DoubleRightArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.DoubleRightArrow.Image = global::WinformDotNetFramework.Properties.Resources.double_right_resize;
-            this.DoubleRightArrow.Location = new System.Drawing.Point(273, 3);
-            this.DoubleRightArrow.Name = "DoubleRightArrow";
-            this.DoubleRightArrow.Size = new System.Drawing.Size(40, 40);
-            this.DoubleRightArrow.TabIndex = 3;
-            this.DoubleRightArrow.UseVisualStyleBackColor = true;
-            this.DoubleRightArrow.Click += new System.EventHandler(this.DoubleRightArrow_Click);
+            this.PageNumber.Text = "/250";
             // 
             // SingleRightArrow
             // 
+            this.SingleRightArrow.Dock = System.Windows.Forms.DockStyle.Right;
             this.SingleRightArrow.FlatAppearance.BorderSize = 0;
             this.SingleRightArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SingleRightArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SingleRightArrow.Image = global::WinformDotNetFramework.Properties.Resources.single_right_resize;
-            this.SingleRightArrow.Location = new System.Drawing.Point(227, 3);
+            this.SingleRightArrow.Location = new System.Drawing.Point(203, 0);
             this.SingleRightArrow.Name = "SingleRightArrow";
-            this.SingleRightArrow.Size = new System.Drawing.Size(40, 40);
+            this.SingleRightArrow.Size = new System.Drawing.Size(34, 43);
             this.SingleRightArrow.TabIndex = 2;
             this.SingleRightArrow.UseVisualStyleBackColor = true;
             this.SingleRightArrow.Click += new System.EventHandler(this.SingleRightArrow_Click);
             // 
+            // DoubleRightArrow
+            // 
+            this.DoubleRightArrow.Dock = System.Windows.Forms.DockStyle.Right;
+            this.DoubleRightArrow.FlatAppearance.BorderSize = 0;
+            this.DoubleRightArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DoubleRightArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.DoubleRightArrow.Image = global::WinformDotNetFramework.Properties.Resources.double_right_resize;
+            this.DoubleRightArrow.Location = new System.Drawing.Point(237, 0);
+            this.DoubleRightArrow.Name = "DoubleRightArrow";
+            this.DoubleRightArrow.Size = new System.Drawing.Size(34, 43);
+            this.DoubleRightArrow.TabIndex = 3;
+            this.DoubleRightArrow.UseVisualStyleBackColor = true;
+            this.DoubleRightArrow.Click += new System.EventHandler(this.DoubleRightArrow_Click);
+            // 
             // SingleLeftArrow
             // 
+            this.SingleLeftArrow.Dock = System.Windows.Forms.DockStyle.Left;
             this.SingleLeftArrow.FlatAppearance.BorderSize = 0;
             this.SingleLeftArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SingleLeftArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.SingleLeftArrow.Image = global::WinformDotNetFramework.Properties.Resources.single_left_resize;
-            this.SingleLeftArrow.Location = new System.Drawing.Point(49, 3);
+            this.SingleLeftArrow.Location = new System.Drawing.Point(34, 0);
             this.SingleLeftArrow.Name = "SingleLeftArrow";
-            this.SingleLeftArrow.Size = new System.Drawing.Size(40, 40);
+            this.SingleLeftArrow.Size = new System.Drawing.Size(34, 43);
             this.SingleLeftArrow.TabIndex = 1;
             this.SingleLeftArrow.UseVisualStyleBackColor = true;
             this.SingleLeftArrow.Click += new System.EventHandler(this.SingleLeftArrow_Click);
             // 
             // DoubleLeftArrow
             // 
+            this.DoubleLeftArrow.Dock = System.Windows.Forms.DockStyle.Left;
             this.DoubleLeftArrow.FlatAppearance.BorderSize = 0;
             this.DoubleLeftArrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DoubleLeftArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
             this.DoubleLeftArrow.Image = global::WinformDotNetFramework.Properties.Resources.double_left_resize;
-            this.DoubleLeftArrow.Location = new System.Drawing.Point(3, 3);
+            this.DoubleLeftArrow.Location = new System.Drawing.Point(0, 0);
             this.DoubleLeftArrow.Name = "DoubleLeftArrow";
-            this.DoubleLeftArrow.Size = new System.Drawing.Size(40, 40);
+            this.DoubleLeftArrow.Size = new System.Drawing.Size(34, 43);
             this.DoubleLeftArrow.TabIndex = 0;
             this.DoubleLeftArrow.UseVisualStyleBackColor = true;
             this.DoubleLeftArrow.Click += new System.EventHandler(this.DoubleLeftArrow_Click);
             // 
             // PaginationUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Name = "PaginationUserControl";
-            this.Size = new System.Drawing.Size(316, 50);
+            this.Size = new System.Drawing.Size(271, 43);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -136,5 +157,6 @@ namespace WinformDotNetFramework.Forms.control
         private Button SingleRightArrow;
         private Button SingleLeftArrow;
         private Button DoubleLeftArrow;
+        public TextBox CurrentPageTxt;
     }
 }

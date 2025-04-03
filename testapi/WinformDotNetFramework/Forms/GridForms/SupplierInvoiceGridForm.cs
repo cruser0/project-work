@@ -65,6 +65,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            PaginationUserControl.PageNumberTextboxEvent += PaginationUserControl_PageNumberTextboxEvent;
 
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.CurrentPage = 1;
@@ -206,6 +207,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             MyControl_ButtonClicked_Pagination(sender, e);
 
         }
+
+        private void PaginationUserControl_PageNumberTextboxEvent(object sender, EventArgs e)
+        {
+
+            if (int.Parse(PaginationUserControl.CurrentPageTxt.Text) > int.Parse(PaginationUserControl.GetmaxPage()))
+                PaginationUserControl.CurrentPageTxt.Text = PaginationUserControl.GetmaxPage();
+
+            PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.CurrentPageTxt.Text);
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
+        }
         private void CustomerGridForm_Resize(object sender, EventArgs e)
         {
             panel2.Location = new Point((Width - panel2.Width) / 2, 0);
@@ -284,9 +296,9 @@ namespace WinformDotNetFramework.Forms.GridForms
                     ShowCountry = SupplierInvoiceCountryTsmi.Checked,
                     ShowSupplierName = SupplierInvoiceSupplierNameTsmi.Checked,
                     ShowSupplierID = SupplierInvoiceSupplierIDTsmi.Checked,
-                    ShowSaleBoL=SupplierInvoiceSaleBolTsmi.Checked,
-                    ShowSaleBookingNumber=SupplierInvoiceSaleBookingNumberTsmi.Checked,
-                    ShowInvoiceCode=SupplierInvoiceSupplierInvoiceCodeTsmi.Checked,
+                    ShowSaleBoL = SupplierInvoiceSaleBolTsmi.Checked,
+                    ShowSaleBookingNumber = SupplierInvoiceSaleBookingNumberTsmi.Checked,
+                    ShowInvoiceCode = SupplierInvoiceSupplierInvoiceCodeTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 await _userService.PostSupplierInvoiceDGV(cdgv);

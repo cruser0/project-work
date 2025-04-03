@@ -59,6 +59,8 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            PaginationUserControl.PageNumberTextboxEvent += PaginationUserControl_PageNumberTextboxEvent;
+
             PaginationUserControl.Visible = false;
             PaginationUserControl.SetMaxPage(pages.ToString());
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
@@ -88,7 +90,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
 
             IEnumerable<CustomerInvoiceDTOGet> query1 = await query;
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             CenterDgv.DataSource = query1.ToList();
 
@@ -102,7 +104,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<CustomerInvoiceDTOGet> query = await getAllNotFiltered;
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 
@@ -131,7 +133,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             CenterDgv.Columns["SaleID"].HeaderText = "Sale ID";
             CenterDgv.Columns["InvoiceAmount"].HeaderText = "Total Invoice Amount";
             CenterDgv.Columns["InvoiceDate"].HeaderText = "Creation Date";
-            CenterDgv.Columns["CustomerInvoiceCode"].HeaderText ="Customer Invoice Code";
+            CenterDgv.Columns["CustomerInvoiceCode"].HeaderText = "Customer Invoice Code";
             CenterDgv.Columns["SaleBookingNumber"].HeaderText = "Sale Booking Number";
             CenterDgv.Columns["SaleBol"].HeaderText = "Sale Bill of Lading";
             PaginationUserControl.Visible = true;
@@ -193,6 +195,16 @@ namespace WinformDotNetFramework.Forms.GridForms
             MyControl_ButtonClicked_Pagination(sender, e);
         }
 
+        private void PaginationUserControl_PageNumberTextboxEvent(object sender, EventArgs e)
+        {
+
+            if (int.Parse(PaginationUserControl.CurrentPageTxt.Text) > int.Parse(PaginationUserControl.GetmaxPage()))
+                PaginationUserControl.CurrentPageTxt.Text = PaginationUserControl.GetmaxPage();
+
+            PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.CurrentPageTxt.Text);
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
+        }
         private void CustomerGridForm_Resize(object sender, EventArgs e)
         {
 
@@ -258,9 +270,9 @@ namespace WinformDotNetFramework.Forms.GridForms
                     ShowInvoiceAmount = CustomerInvoiceInvoiceAmountTsmi.Checked,
                     ShowSaleID = CustomerInvoiceSaleIDTsmi.Checked,
                     ShowStatus = CustomerInvoiceStatusTsmi.Checked,
-                    ShowInvoiceCode=CustomerInvoiceCodeTsmi.Checked,
-                    ShowSaleBoL=CustomerInvoiceSaleBolTsmi.Checked,
-                    ShowSaleBookingNumber=CustomerInvoiceSaleBookingNumberTsmi.Checked,
+                    ShowInvoiceCode = CustomerInvoiceCodeTsmi.Checked,
+                    ShowSaleBoL = CustomerInvoiceSaleBolTsmi.Checked,
+                    ShowSaleBookingNumber = CustomerInvoiceSaleBookingNumberTsmi.Checked,
                     UserID = UserAccessInfo.RefreshUserID
                 };
                 await _userService.PostCustomerInvoiceDGV(cdgv);

@@ -1,5 +1,4 @@
 ﻿using Entity_Validator.Entity.DTO;
-using Entity_Validator.Entity.Entities;
 using Entity_Validator.Entity.Entities.Preference;
 using Entity_Validator.Entity.Filters;
 using System;
@@ -45,6 +44,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            PaginationUserControl.PageNumberTextboxEvent += PaginationUserControl_PageNumberTextboxEvent;
 
             PaginationUserControl.Visible = false;
             PaginationUserControl.SetMaxPage(pages.ToString());
@@ -96,9 +96,9 @@ namespace WinformDotNetFramework.Forms.GridForms
             CostRegistryDGV cdgv = await getFav;
             CostRegistryIDTsmi.Checked = (bool)cdgv.ShowRegistryID;
             CostRegistryCodeTsmi.Checked = (bool)cdgv.ShowRegistryCode;
-            CostRegistryCostTsmi.Checked =(bool)cdgv.ShowRegistryPrice;
-            CostRegistryQuantityTsmi.Checked =(bool)cdgv.ShowRegistryQuantity;
-            CostRegistryNameTsmi.Checked =(bool)cdgv.ShowRegistryName;
+            CostRegistryCostTsmi.Checked = (bool)cdgv.ShowRegistryPrice;
+            CostRegistryQuantityTsmi.Checked = (bool)cdgv.ShowRegistryQuantity;
+            CostRegistryNameTsmi.Checked = (bool)cdgv.ShowRegistryName;
 
             CostRegistryDgv.Columns["IsPost"].Visible = false;
 
@@ -155,6 +155,16 @@ namespace WinformDotNetFramework.Forms.GridForms
 
         }
 
+        private void PaginationUserControl_PageNumberTextboxEvent(object sender, EventArgs e)
+        {
+
+            if (int.Parse(PaginationUserControl.CurrentPageTxt.Text) > int.Parse(PaginationUserControl.GetmaxPage()))
+                PaginationUserControl.CurrentPageTxt.Text = PaginationUserControl.GetmaxPage();
+
+            PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.CurrentPageTxt.Text);
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
+        }
 
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
@@ -244,7 +254,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
 
 
-            
+
             getFav = _userService.GetCostRegistryDGV();
             PaginationUserControl.Visible = true;
 

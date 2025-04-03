@@ -44,6 +44,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             paginationControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             paginationControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             paginationControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            paginationControl.PageNumberTextboxEvent += PaginationUserControl_PageNumberTextboxEvent;
 
             rolesListBox.ItemCheck -= rolesListBox_ItemCheck;
             for (int i = 0; i < rolesListBox.Items.Count; i++)
@@ -127,7 +128,7 @@ namespace WinformDotNetFramework.Forms.GridForms
 
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<UserRoleDTO> query = await getAllNotFiltered;
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 
@@ -210,7 +211,16 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
 
 
+        private void PaginationUserControl_PageNumberTextboxEvent(object sender, EventArgs e)
+        {
 
+            if (int.Parse(paginationControl.CurrentPageTxt.Text) > int.Parse(paginationControl.GetmaxPage()))
+                paginationControl.CurrentPageTxt.Text = paginationControl.GetmaxPage();
+
+            paginationControl.CurrentPage = int.Parse(paginationControl.CurrentPageTxt.Text);
+            paginationControl.SetPageLbl(paginationControl.CurrentPage + "/" + paginationControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
+        }
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
         {

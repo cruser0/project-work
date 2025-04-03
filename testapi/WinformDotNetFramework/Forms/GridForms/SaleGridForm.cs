@@ -61,6 +61,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.DoubleRightArrowEvent += PaginationUserControl_DoubleRightArrowEvent;
             PaginationUserControl.DoubleLeftArrowEvent += PaginationUserControl_DoubleLeftArrowEvent;
             PaginationUserControl.SingleLeftArrowEvent += PaginationUserControl_SingleLeftArrowEvent;
+            PaginationUserControl.PageNumberTextboxEvent += PaginationUserControl_PageNumberTextboxEvent;
 
             PaginationUserControl.Visible = false;
             PaginationUserControl.SetMaxPage(pages.ToString());
@@ -87,7 +88,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             var count = _saleService.Count(filterPage);
             await Task.WhenAll(query, count);
 
-            PaginationUserControl.maxPage = ((int)Math.Ceiling((double)await count / itemsPage)).ToString();
+            PaginationUserControl.maxPage = ((int)Math.Ceiling(await count / itemsPage)).ToString();
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             IEnumerable<SaleCustomerDTO> query1 = await query;
             SaleDgv.DataSource = query1.ToList();
@@ -97,7 +98,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<SaleCustomerDTO> query = await getAllNotFiltered;
-            int mPage = (int)Math.Ceiling((double)await countNotFiltered / itemsPage);
+            int mPage = (int)Math.Ceiling(await countNotFiltered / itemsPage);
             if (mPage <= 0)
                 mPage = 1;
 
@@ -133,7 +134,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             SaleDgv.Columns["BookingNumber"].HeaderText = "Booking Number";
             SaleDgv.Columns["Country"].HeaderText = "Customer Country";
             SaleDgv.Columns["CustomerName"].HeaderText = "Customer Name";
-            SaleDgv.Columns["BoLNumber"].HeaderText ="Bill of Lading";
+            SaleDgv.Columns["BoLNumber"].HeaderText = "Bill of Lading";
             SaleDgv.Columns["CustomerID"].HeaderText = "Customer ID";
             SaleDgv.Columns["TotalRevenue"].HeaderText = "Total Revenue";
             SaleDgv.Columns["SaleDate"].HeaderText = "Creation Date";
@@ -179,6 +180,17 @@ namespace WinformDotNetFramework.Forms.GridForms
             PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
             MyControl_ButtonClicked_Pagination(sender, e);
 
+        }
+
+        private void PaginationUserControl_PageNumberTextboxEvent(object sender, EventArgs e)
+        {
+
+            if (int.Parse(PaginationUserControl.CurrentPageTxt.Text) > int.Parse(PaginationUserControl.GetmaxPage()))
+                PaginationUserControl.CurrentPageTxt.Text = PaginationUserControl.GetmaxPage();
+
+            PaginationUserControl.CurrentPage = int.Parse(PaginationUserControl.CurrentPageTxt.Text);
+            PaginationUserControl.SetPageLbl(PaginationUserControl.CurrentPage + "/" + PaginationUserControl.GetmaxPage());
+            MyControl_ButtonClicked_Pagination(sender, e);
         }
 
         public virtual void MyControl_OpenDetails_Clicked(object sender, DataGridViewCellEventArgs e)
@@ -283,7 +295,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         {
             if (DesignMode)
                 return;
-            await Init(); 
+            await Init();
             if (_father != null)
                 searchSale1.StatusCB.Text = "Active";
 

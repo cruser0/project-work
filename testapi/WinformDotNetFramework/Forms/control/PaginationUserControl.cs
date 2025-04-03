@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace WinformDotNetFramework.Forms.control
@@ -13,16 +12,22 @@ namespace WinformDotNetFramework.Forms.control
         public event EventHandler SingleLeftArrowEvent;
         public event EventHandler DoubleRightArrowEvent;
         public event EventHandler DoubleLeftArrowEvent;
+        public event EventHandler PageNumberTextboxEvent;
         public PaginationUserControl()
         {
             InitializeComponent();
-            PageNumber.Location = new Point((Width - PageNumber.Width) / 2, (Height - PageNumber.Height) / 2);
+
 
         }
         public void SetPageLbl(string page)
         {
+            string lbl = "/" + page.Split('/')[1];
+            string txt = page.Split('/')[0];
             labelHolder = page;
-            PageNumber.Text = page;
+
+
+            PageNumber.Text = lbl;
+            CurrentPageTxt.Text = txt;
         }
         public void SetMaxPage(string page)
         {
@@ -56,6 +61,20 @@ namespace WinformDotNetFramework.Forms.control
         {
             DoubleLeftArrowEvent.Invoke(this, EventArgs.Empty);
         }
+
+        private void CurrentPageTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                PageNumberTextboxEvent.Invoke(this, EventArgs.Empty);
+            }
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
+
 
 }
