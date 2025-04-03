@@ -60,6 +60,29 @@ namespace API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new StatusConfiguration());
+            modelBuilder.ApplyConfiguration(new CountryConfiguration());
+
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRolesConfiguration());
+
+            modelBuilder.ApplyConfiguration(new FavouritePagesConfiguration());
+            modelBuilder.ApplyConfiguration(new UserFavouritePageConfiguration());
+
+            modelBuilder.ApplyConfiguration(new CostRegistryDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerInvoiceDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerInvoiceCostDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierInvoiceDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierInvoiceCostDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new SaleDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new UserDgvConfiguration());
+            modelBuilder.ApplyConfiguration(new RegistryCostConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerGroupSplitConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierGroupSplitConfiguration());
+            modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -100,6 +123,7 @@ namespace API.Models
                 entity.HasIndex(x => x.CountryName).IsUnique();
                 entity.HasIndex(x => x.ISOCode).IsUnique();
             });
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("Users");
@@ -150,6 +174,7 @@ namespace API.Models
                     .IsUnicode(false);
 
             });
+
             modelBuilder.Entity<FavouritePages>(entity =>
             {
                 entity.ToTable("FavouritePages");
@@ -199,7 +224,6 @@ namespace API.Models
                     .WithOne(p => p.CostRegistryDGV)
                     .HasForeignKey<CostRegistryDGV>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
-
             modelBuilder.Entity<CustomerDGV>(entity =>
             {
                 entity.ToTable("CustomerDGVs");
@@ -328,7 +352,6 @@ namespace API.Models
                     .WithOne(p => p.CustomerGroupSplit)
                     .HasForeignKey<CustomerGroupSplit>(d => d.UserID).OnDelete(DeleteBehavior.NoAction);
             });
-
             modelBuilder.Entity<SupplierGroupSplit>(entity =>
             {
                 entity.ToTable("SupplierGroupSplits");
@@ -525,8 +548,6 @@ namespace API.Models
                     .HasForeignKey<UserDGV>(d => d.UserID);
             });
 
-
-
             modelBuilder.Entity<RefreshToken>(entity =>
             {
                 entity.ToTable("RefreshTokens");
@@ -587,8 +608,6 @@ namespace API.Models
                       .WithMany(r => r.UserRoles)
                       .HasForeignKey(ur => ur.RoleID);
             });
-
-
 
             modelBuilder.Entity<CustomerInvoice>(entity =>
             {
@@ -851,34 +870,6 @@ namespace API.Models
             modelBuilder.Entity<TotalAmountSpentPerSupplierInvoice>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalAmountSpentPerSuppliers>().HasNoKey().ToView(null);
             modelBuilder.Entity<TotalAmountGainedPerCustomerInvoice>().HasNoKey().ToView(null);
-
-            modelBuilder.ApplyConfiguration(new StatusConfiguration());
-            modelBuilder.ApplyConfiguration(new CountryConfiguration());
-
-
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
-            modelBuilder.ApplyConfiguration(new RolesConfiguration());
-            modelBuilder.ApplyConfiguration(new UserRolesConfiguration());
-
-            modelBuilder.ApplyConfiguration(new FavouritePagesConfiguration());
-            modelBuilder.ApplyConfiguration(new UserFavouritePageConfiguration());
-
-            modelBuilder.ApplyConfiguration(new CostRegistryDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerInvoiceDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerInvoiceCostDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new SupplierDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new SupplierInvoiceDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new SupplierInvoiceCostDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new SaleDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new UserDgvConfiguration());
-            modelBuilder.ApplyConfiguration(new RegistryCostConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerGroupSplitConfiguration());
-            modelBuilder.ApplyConfiguration(new SupplierGroupSplitConfiguration());
-            modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
-
-
-
 
             OnModelCreatingPartial(modelBuilder);
         }
