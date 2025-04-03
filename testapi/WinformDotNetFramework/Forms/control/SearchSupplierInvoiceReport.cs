@@ -1,4 +1,5 @@
 ﻿using Entity_Validator.Entity.Filters;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,19 +15,35 @@ namespace WinformDotNetFramework.Forms.control
         }
         public async void Init()
         {
-            comboBox1.SelectedIndex = 0;
+            StatusCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
                 GrapCBL.SetItemChecked(i, true);
             }
             CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+            DateTime todayDate = DateTime.Now;
+            int month = todayDate.Month - 1;
+            int year = todayDate.Year;
+
+            if (todayDate.Month == 1)
+            {
+                month = 12;
+                year -= 1;
+            }
+            DateTime firstDayOfLastMonth = new DateTime(year, month, 1);
+            DateTime lastDayOfLastMonth = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+            DateFromClnd.Checked = true;
+            DateToClnd.Checked = true;
+            DateFromClnd.Value = firstDayOfLastMonth;
+            DateToClnd.Value = lastDayOfLastMonth;
+            RegionCmbx.SelectedIndex = 1;
         }
         public TotalAmountSpentPerSupplierInvoiceFilter GetFilter()
         {
             TotalAmountSpentPerSupplierInvoiceFilter filter = new TotalAmountSpentPerSupplierInvoiceFilter()
             {
                 SupplierName = string.IsNullOrEmpty(NameTxt.Text) ? null : NameTxt.Text,
-                Status = comboBox1.Text.Equals("All") ? null : comboBox1.Text,
+                Status = StatusCmbx.Text.Equals("All") ? null : StatusCmbx.Text,
 
             };
             if (!string.IsNullOrEmpty(CountryCmbx.Text))
@@ -39,12 +56,12 @@ namespace WinformDotNetFramework.Forms.control
             else
                 filter.SupplierCountry = null;
 
-            if (!string.IsNullOrEmpty(comboBox1.Text))
+            if (!string.IsNullOrEmpty(RegionCmbx.Text))
             {
-                if (comboBox1.Text.Equals("All"))
+                if (RegionCmbx.Text.Equals("All"))
                     filter.CountryRegion = null;
                 else
-                    filter.CountryRegion = comboBox1.Text.Split(' ')[0];
+                    filter.CountryRegion = StatusCmbx.Text.Split(' ')[0];
             }
             else
                 filter.CountryRegion = null;
@@ -69,7 +86,7 @@ namespace WinformDotNetFramework.Forms.control
         }
         public bool IsFilterEmpty(TotalAmountSpentPerSupplierInvoiceFilter filter)
         {
-            if (filter.SupplierCountry != null || filter.SupplierName != null || filter.Status != null || filter.DateFrom.HasValue || filter.DateTo.HasValue || filter.TotalSpentFrom != null || filter.TotalSpentTo != null)
+            if (filter.SupplierCountry != null || filter.SupplierName != null || filter.Status != null || filter.DateFrom.HasValue || filter.DateTo.HasValue || filter.TotalSpentFrom != null || filter.TotalSpentTo != null||filter.CountryRegion!=null)
                 return false;
             else
                 return true;

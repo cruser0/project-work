@@ -12,6 +12,6 @@ namespace Entity_Validator.Entity.Procedures
         public decimal? TotalGained { get; set; }
         public string CustomerName { get; set; }
         public string Country { get; set; }
-        public string CountryRegion { get; set; }
+        public string Region { get; set; }
     }
 }

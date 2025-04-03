@@ -25,7 +25,7 @@ namespace API.Models.Services
         {
             var list = await _context.Countries.ToListAsync();
             if (list.Any())
-                return list.Select(x => new CountryDTOGet() { CountryID = x.CountryID, CountryName = x.CountryName, ISOCountry = x.ISOCode }).ToList();
+                return list.Select(x => new CountryDTOGet() { CountryID = x.CountryID, CountryName = x.CountryName, ISOCountry = x.ISOCode,Region=x.Region }).ToList();
             return new List<CountryDTOGet>();
         }
     }

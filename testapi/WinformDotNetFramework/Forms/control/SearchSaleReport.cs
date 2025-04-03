@@ -1,4 +1,6 @@
 ﻿using Entity_Validator.Entity.Filters;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,13 +17,45 @@ namespace WinformDotNetFramework.Forms.control
         public async void Init()
         {
             StatusCmbx.SelectedIndex = 0;
-            comboBox1.SelectedIndex = 0;
+            RegionCmbx.SelectedIndex = 0;
             FilterMarginCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
                 GrapCBL.SetItemChecked(i, true);
             }
-            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+            RegionCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.Region).ToList();
+            RegionCmbx.SelectedIndex = 1;
+            SetCountry();
+            DateFromClnd.Checked = true;
+            DateToClnd.Checked = true;
+            DateTime todayDate = DateTime.Now;
+            int month = todayDate.Month - 1;
+            int year = todayDate.Year;
+
+            if (todayDate.Month == 1)
+            {
+                month = 12;
+                year -= 1;
+            }
+            DateTime firstDayOfLastMonth = new DateTime(year, month, 1);
+            DateTime lastDayOfLastMonth = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+            DateFromClnd.Value = firstDayOfLastMonth;
+            DateToClnd.Value = lastDayOfLastMonth;
+        }
+        private async void SetCountry()
+        {
+
+            if (RegionCmbx.SelectedItem.ToString().Equals("All"))
+            {
+                var filteredCountry = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+                CountryCmbx.DataSource = (filteredCountry).ToList();
+            }
+            else
+            {
+                var zeroIndex = new List<string>() { "All" };
+                var filteredCountry = (await UtilityFunctions.GetCountries()).Where(x => x.Region.Equals(RegionCmbx.SelectedItem.ToString())).Select(x => x.CountryName).ToList();
+                CountryCmbx.DataSource = zeroIndex.Concat(filteredCountry).ToList();
+            }
         }
         public ClassifySalesByProfitFilter GetFilter()
         {
@@ -43,12 +77,12 @@ namespace WinformDotNetFramework.Forms.control
             else
                 filter.CustomerCountry = null;
 
-            if (!string.IsNullOrEmpty(comboBox1.Text))
+            if (!string.IsNullOrEmpty(RegionCmbx.Text))
             {
-                if (comboBox1.Text.Equals("All"))
+                if (RegionCmbx.Text.Equals("All"))
                     filter.CountryRegion = null;
                 else
-                    filter.CountryRegion = comboBox1.Text.Split(' ')[0];
+                    filter.CountryRegion = RegionCmbx.Text.Split(' ')[0];
             }
             else
                 filter.CountryRegion = null;
@@ -95,10 +129,15 @@ namespace WinformDotNetFramework.Forms.control
 
         public bool IsFilterEmpty(ClassifySalesByProfitFilter filter)
         {
-            if (filter.TotalRevenueFrom != null || filter.DateFrom.HasValue || filter.DateTo.HasValue || filter.TotalRevenueTo != null || filter.BKNumber != null || filter.BoLNumber != null || filter.CustomerCountry != null || filter.CountryRegion != null || filter.TotalSpentTo != null || filter.TotalSpentFrom != null || filter.ProfitFrom != null || filter.ProfitTo != null || filter.CustomerName != null || filter.FilterMargin != null || filter.Status != null)
+            if (filter.TotalRevenueFrom != null || filter.DateFrom.HasValue || filter.DateTo.HasValue || filter.TotalRevenueTo != null || filter.BKNumber != null || filter.BoLNumber != null || filter.CustomerCountry != null || filter.CountryRegion != null || filter.TotalSpentTo != null || filter.TotalSpentFrom != null || filter.ProfitFrom != null || filter.ProfitTo != null || filter.CustomerName != null || filter.FilterMargin != null || filter.Status != null || filter.CountryRegion!=null)
                 return false;
             else
                 return true;
+        }
+
+        private void RegionCmbx_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SetCountry();
         }
     }
 }

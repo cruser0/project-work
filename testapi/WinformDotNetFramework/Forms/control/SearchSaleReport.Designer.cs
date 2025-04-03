@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.RegionCmbx = new System.Windows.Forms.ComboBox();
             this.RegionLbl = new System.Windows.Forms.Label();
             this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.GraphLbl = new System.Windows.Forms.Label();
@@ -69,7 +69,7 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
+            this.TextBoxesRightPanel.Controls.Add(this.RegionCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.RegionLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.GraphLbl);
@@ -107,12 +107,12 @@
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 818);
             this.TextBoxesRightPanel.TabIndex = 8;
             // 
-            // comboBox1
+            // RegionCmbx
             // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.RegionCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.RegionCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.RegionCmbx.FormattingEnabled = true;
+            this.RegionCmbx.Items.AddRange(new object[] {
             "All",
             "NA  (North America)",
             "LATAM  (Latin America & Caribbean)",
@@ -124,10 +124,11 @@
             "EAS  (East Asia)",
             "OCE  (Oceania)",
             "SA  (South Asia)"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 271);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 21);
-            this.comboBox1.TabIndex = 44;
+            this.RegionCmbx.Location = new System.Drawing.Point(3, 271);
+            this.RegionCmbx.Name = "RegionCmbx";
+            this.RegionCmbx.Size = new System.Drawing.Size(180, 21);
+            this.RegionCmbx.TabIndex = 44;
+            this.RegionCmbx.SelectionChangeCommitted += new System.EventHandler(this.RegionCmbx_SelectionChangeCommitted);
             // 
             // RegionLbl
             // 
@@ -509,7 +510,7 @@
         private System.Windows.Forms.Label GraphLbl;
         public System.Windows.Forms.CheckedListBox GrapCBL;
         private System.Windows.Forms.ComboBox CountryCmbx;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox RegionCmbx;
         private System.Windows.Forms.Label RegionLbl;
     }
 }

@@ -4,6 +4,7 @@
     {
         public string CountryName { get; set; }
         public string ISOCountry { get; set; }
+        public string Region { get; set; }
     }
     public class CountryDTOGet : CountryDTO
     {

@@ -41,6 +41,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             ReportViewer.ProcessingMode = ProcessingMode.Local;
             ReportViewer.LocalReport.SubreportProcessing +=
                         new SubreportProcessingEventHandler(SubreportProcessingEventHandler);
+            
             tasks.Add(_procedureService.GetClassifySalesByProfit(new ClassifySalesByProfitFilter()));
             tasks.Add(_procedureService.GetTotalAmountGainedPerCustomerInvoice(new TotalAmountGainedPerCustomerInvoiceFilter()));
             tasks.Add(_procedureService.GetTotalAmountSpentPerSupplierInvoice(new TotalAmountSpentPerSupplierInvoiceFilter()));
