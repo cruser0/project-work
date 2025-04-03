@@ -13,10 +13,11 @@ namespace WinformDotNetFramework.Forms.control
         public SearchCustomerInvoiceReportUserControl()
         {
             InitializeComponent();
-            Init();
         }
-        public async void Init()
+        public async Task Init()
         {
+            if (DesignMode)
+                return;
             StatusCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
@@ -117,6 +118,13 @@ namespace WinformDotNetFramework.Forms.control
         {
 
             await SetCountry();
+        }
+
+        private async void SearchCustomerInvoiceReportUserControl_Load(object sender, EventArgs e)
+        {
+            if (DesignMode)
+                return;
+            await Init();
         }
     }
 }

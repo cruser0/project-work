@@ -36,6 +36,8 @@
             this.GrapCBL = new System.Windows.Forms.CheckedListBox();
             this.GainedToLbl = new System.Windows.Forms.Label();
             this.GainedFromLbl = new System.Windows.Forms.Label();
+            this.GainedToIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.GainedFromIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.label2 = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
@@ -45,8 +47,6 @@
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.CountryLbl = new System.Windows.Forms.Label();
-            this.GainedToIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.GainedFromIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,6 +171,22 @@
             this.GainedFromLbl.TabIndex = 25;
             this.GainedFromLbl.Text = "Gained From";
             // 
+            // GainedToIntegerTxt
+            // 
+            this.GainedToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.GainedToIntegerTxt.Location = new System.Drawing.Point(3, 60);
+            this.GainedToIntegerTxt.Name = "GainedToIntegerTxt";
+            this.GainedToIntegerTxt.Size = new System.Drawing.Size(180, 20);
+            this.GainedToIntegerTxt.TabIndex = 24;
+            // 
+            // GainedFromIntegerTxt
+            // 
+            this.GainedFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.GainedFromIntegerTxt.Location = new System.Drawing.Point(3, 19);
+            this.GainedFromIntegerTxt.Name = "GainedFromIntegerTxt";
+            this.GainedFromIntegerTxt.Size = new System.Drawing.Size(180, 20);
+            this.GainedFromIntegerTxt.TabIndex = 23;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -273,22 +289,6 @@
             this.CountryLbl.TabIndex = 4;
             this.CountryLbl.Text = "Customer Country";
             // 
-            // GainedToIntegerTxt
-            // 
-            this.GainedToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.GainedToIntegerTxt.Location = new System.Drawing.Point(3, 60);
-            this.GainedToIntegerTxt.Name = "GainedToIntegerTxt";
-            this.GainedToIntegerTxt.Size = new System.Drawing.Size(180, 20);
-            this.GainedToIntegerTxt.TabIndex = 24;
-            // 
-            // GainedFromIntegerTxt
-            // 
-            this.GainedFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.GainedFromIntegerTxt.Location = new System.Drawing.Point(3, 19);
-            this.GainedFromIntegerTxt.Name = "GainedFromIntegerTxt";
-            this.GainedFromIntegerTxt.Size = new System.Drawing.Size(180, 20);
-            this.GainedFromIntegerTxt.TabIndex = 23;
-            // 
             // SearchCustomerInvoiceReportUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,6 +296,7 @@
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchCustomerInvoiceReportUserControl";
             this.Size = new System.Drawing.Size(200, 460);
+            this.Load += new System.EventHandler(this.SearchCustomerInvoiceReportUserControl_Load);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

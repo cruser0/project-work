@@ -11,12 +11,12 @@ namespace WinformDotNetFramework.Forms.control
     {
         public SearchSaleReport()
         {
-            InitializeComponent();
-
-            Init();
+            InitializeComponent();  
         }
-        public async void Init()
+        public async Task Init()
         {
+            if (DesignMode)
+                return;
             StatusCmbx.SelectedIndex = 0;
             RegionCmbx.SelectedIndex = 0;
             FilterMarginCmbx.SelectedIndex = 0;
@@ -139,6 +139,13 @@ namespace WinformDotNetFramework.Forms.control
         private async void RegionCmbx_SelectionChangeCommitted(object sender, EventArgs e)
         {
             await SetCountry();
+        }
+
+        private async void SearchSaleReport_Load(object sender, EventArgs e)
+        {
+            if (DesignMode)
+                return;
+            await Init();
         }
     }
 }

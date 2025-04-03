@@ -296,6 +296,7 @@
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplierInvoiceReport";
             this.Size = new System.Drawing.Size(200, 492);
+            this.Load += new System.EventHandler(this.SearchSupplierInvoiceReport_Load);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

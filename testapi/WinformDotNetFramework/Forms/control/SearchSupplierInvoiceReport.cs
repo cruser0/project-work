@@ -12,10 +12,8 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplierInvoiceReport()
         {
             InitializeComponent();
-
-            Init();
         }
-        public async void Init()
+        public async Task Init()
         {
             StatusCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
@@ -113,6 +111,13 @@ namespace WinformDotNetFramework.Forms.control
         private async void RegionCmbx_SelectionChangeCommitted(object sender, EventArgs e)
         {
             await SetCountry();
+        }
+
+        private async void SearchSupplierInvoiceReport_Load(object sender, EventArgs e)
+        {
+            if (DesignMode)
+                return;
+            await Init();
         }
     }
 }
