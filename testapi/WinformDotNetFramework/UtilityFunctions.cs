@@ -282,9 +282,9 @@ namespace WinformDotNetFramework
         {
 
             if (mainForm == null)
-                return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All" } };
+                return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All",Region="All" } };
 
-            return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All" } }
+            return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All",Region="All" } }
                 .Concat(await mainForm.CountriesList)
                 .ToList();
         }

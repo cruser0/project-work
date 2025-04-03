@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.TextBoxesRightPanel = new System.Windows.Forms.Panel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.RegionCmbx = new System.Windows.Forms.ComboBox();
             this.RegionLbl = new System.Windows.Forms.Label();
             this.CountryCmbx = new System.Windows.Forms.ComboBox();
             this.GraphLbl = new System.Windows.Forms.Label();
             this.GrapCBL = new System.Windows.Forms.CheckedListBox();
             this.GainedToLbl = new System.Windows.Forms.Label();
             this.GainedFromLbl = new System.Windows.Forms.Label();
-            this.GainedToIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
-            this.GainedFromIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.label2 = new System.Windows.Forms.Label();
             this.DateFromLbl = new System.Windows.Forms.Label();
             this.DateToClnd = new System.Windows.Forms.DateTimePicker();
             this.DateFromClnd = new System.Windows.Forms.DateTimePicker();
             this.StatusLbl = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.StatusCmbx = new System.Windows.Forms.ComboBox();
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.CustomerNameLbl = new System.Windows.Forms.Label();
             this.CountryLbl = new System.Windows.Forms.Label();
+            this.GainedToIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
+            this.GainedFromIntegerTxt = new WinformDotNetFramework.Forms.control.IntegerTextBoxUserControl();
             this.TextBoxesRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             this.TextBoxesRightPanel.AutoScroll = true;
             this.TextBoxesRightPanel.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.TextBoxesRightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.TextBoxesRightPanel.Controls.Add(this.comboBox2);
+            this.TextBoxesRightPanel.Controls.Add(this.RegionCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.RegionLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.GraphLbl);
@@ -69,7 +69,7 @@
             this.TextBoxesRightPanel.Controls.Add(this.DateToClnd);
             this.TextBoxesRightPanel.Controls.Add(this.DateFromClnd);
             this.TextBoxesRightPanel.Controls.Add(this.StatusLbl);
-            this.TextBoxesRightPanel.Controls.Add(this.comboBox1);
+            this.TextBoxesRightPanel.Controls.Add(this.StatusCmbx);
             this.TextBoxesRightPanel.Controls.Add(this.NameTxt);
             this.TextBoxesRightPanel.Controls.Add(this.CustomerNameLbl);
             this.TextBoxesRightPanel.Controls.Add(this.CountryLbl);
@@ -79,12 +79,12 @@
             this.TextBoxesRightPanel.Size = new System.Drawing.Size(200, 460);
             this.TextBoxesRightPanel.TabIndex = 9;
             // 
-            // comboBox2
+            // RegionCmbx
             // 
-            this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.RegionCmbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.RegionCmbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.RegionCmbx.FormattingEnabled = true;
+            this.RegionCmbx.Items.AddRange(new object[] {
             "All",
             "NA  (North America)",
             "LATAM  (Latin America & Caribbean)",
@@ -96,10 +96,11 @@
             "EAS  (East Asia)",
             "OCE  (Oceania)",
             "SA  (South Asia)"});
-            this.comboBox2.Location = new System.Drawing.Point(3, 308);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(180, 21);
-            this.comboBox2.TabIndex = 46;
+            this.RegionCmbx.Location = new System.Drawing.Point(3, 308);
+            this.RegionCmbx.Name = "RegionCmbx";
+            this.RegionCmbx.Size = new System.Drawing.Size(180, 21);
+            this.RegionCmbx.TabIndex = 46;
+            this.RegionCmbx.SelectionChangeCommitted += new System.EventHandler(this.RegionCmbx_SelectionChangeCommitted);
             // 
             // RegionLbl
             // 
@@ -170,22 +171,6 @@
             this.GainedFromLbl.TabIndex = 25;
             this.GainedFromLbl.Text = "Gained From";
             // 
-            // GainedToIntegerTxt
-            // 
-            this.GainedToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.GainedToIntegerTxt.Location = new System.Drawing.Point(3, 60);
-            this.GainedToIntegerTxt.Name = "GainedToIntegerTxt";
-            this.GainedToIntegerTxt.Size = new System.Drawing.Size(180, 20);
-            this.GainedToIntegerTxt.TabIndex = 24;
-            // 
-            // GainedFromIntegerTxt
-            // 
-            this.GainedFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.GainedFromIntegerTxt.Location = new System.Drawing.Point(3, 19);
-            this.GainedFromIntegerTxt.Name = "GainedFromIntegerTxt";
-            this.GainedFromIntegerTxt.Size = new System.Drawing.Size(180, 20);
-            this.GainedFromIntegerTxt.TabIndex = 23;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -242,19 +227,19 @@
             this.StatusLbl.TabIndex = 6;
             this.StatusLbl.Text = "Status";
             // 
-            // comboBox1
+            // StatusCmbx
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.StatusCmbx.BackColor = System.Drawing.SystemColors.Window;
+            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusCmbx.FormattingEnabled = true;
+            this.StatusCmbx.Items.AddRange(new object[] {
             "All",
             "Paid",
             "Unpaid"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 183);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 21);
-            this.comboBox1.TabIndex = 5;
+            this.StatusCmbx.Location = new System.Drawing.Point(3, 183);
+            this.StatusCmbx.Name = "StatusCmbx";
+            this.StatusCmbx.Size = new System.Drawing.Size(180, 21);
+            this.StatusCmbx.TabIndex = 5;
             // 
             // NameTxt
             // 
@@ -288,6 +273,22 @@
             this.CountryLbl.TabIndex = 4;
             this.CountryLbl.Text = "Customer Country";
             // 
+            // GainedToIntegerTxt
+            // 
+            this.GainedToIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.GainedToIntegerTxt.Location = new System.Drawing.Point(3, 60);
+            this.GainedToIntegerTxt.Name = "GainedToIntegerTxt";
+            this.GainedToIntegerTxt.Size = new System.Drawing.Size(180, 20);
+            this.GainedToIntegerTxt.TabIndex = 24;
+            // 
+            // GainedFromIntegerTxt
+            // 
+            this.GainedFromIntegerTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.GainedFromIntegerTxt.Location = new System.Drawing.Point(3, 19);
+            this.GainedFromIntegerTxt.Name = "GainedFromIntegerTxt";
+            this.GainedFromIntegerTxt.Size = new System.Drawing.Size(180, 20);
+            this.GainedFromIntegerTxt.TabIndex = 23;
+            // 
             // SearchCustomerInvoiceReportUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,12 +316,12 @@
         public System.Windows.Forms.DateTimePicker DateToClnd;
         public System.Windows.Forms.DateTimePicker DateFromClnd;
         private System.Windows.Forms.Label StatusLbl;
-        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox StatusCmbx;
         public System.Windows.Forms.TextBox NameTxt;
         private System.Windows.Forms.Label CustomerNameLbl;
         private System.Windows.Forms.Label CountryLbl;
         private System.Windows.Forms.ComboBox CountryCmbx;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox RegionCmbx;
         private System.Windows.Forms.Label RegionLbl;
     }
 }
