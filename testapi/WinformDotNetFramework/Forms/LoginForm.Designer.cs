@@ -30,10 +30,6 @@ namespace WinformDotNetFramework.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.EmailTxt = new System.Windows.Forms.TextBox();
-            this.PasswordTxt = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.EnterBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -43,53 +39,10 @@ namespace WinformDotNetFramework.Forms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.PasswordCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.EmailCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // EmailTxt
-            // 
-            this.EmailTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.EmailTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailTxt.Location = new System.Drawing.Point(232, 127);
-            this.EmailTxt.Name = "EmailTxt";
-            this.EmailTxt.Size = new System.Drawing.Size(172, 23);
-            this.EmailTxt.TabIndex = 0;
-            this.EmailTxt.TextChanged += new System.EventHandler(this.EmailTxt_TextChanged);
-            // 
-            // PasswordTxt
-            // 
-            this.PasswordTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PasswordTxt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTxt.Location = new System.Drawing.Point(232, 171);
-            this.PasswordTxt.Name = "PasswordTxt";
-            this.PasswordTxt.PasswordChar = '•';
-            this.PasswordTxt.Size = new System.Drawing.Size(172, 23);
-            this.PasswordTxt.TabIndex = 1;
-            this.PasswordTxt.TextChanged += new System.EventHandler(this.EmailTxt_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label1.Location = new System.Drawing.Point(233, 109);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Email";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.label2.Location = new System.Drawing.Point(233, 153);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Password";
             // 
             // EnterBtn
             // 
@@ -101,7 +54,7 @@ namespace WinformDotNetFramework.Forms
             this.EnterBtn.Location = new System.Drawing.Point(340, 200);
             this.EnterBtn.Name = "EnterBtn";
             this.EnterBtn.Size = new System.Drawing.Size(64, 25);
-            this.EnterBtn.TabIndex = 5;
+            this.EnterBtn.TabIndex = 3;
             this.EnterBtn.Text = "Enter";
             this.EnterBtn.UseVisualStyleBackColor = false;
             this.EnterBtn.Click += new System.EventHandler(this.EnterBtn_Click);
@@ -115,7 +68,7 @@ namespace WinformDotNetFramework.Forms
             this.button1.Location = new System.Drawing.Point(340, 251);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 25);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 5;
             this.button1.Text = "User Login";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -129,7 +82,7 @@ namespace WinformDotNetFramework.Forms
             this.button2.Location = new System.Drawing.Point(340, 225);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(64, 25);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 4;
             this.button2.Text = "Admin Login";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -138,14 +91,12 @@ namespace WinformDotNetFramework.Forms
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.PasswordCtb);
+            this.panel1.Controls.Add(this.EmailCtb);
             this.panel1.Controls.Add(this.PasswordSeeBtn);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.EmailTxt);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.PasswordTxt);
             this.panel1.Controls.Add(this.EnterBtn);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(17, 17);
             this.panel1.Name = "panel1";
@@ -158,10 +109,11 @@ namespace WinformDotNetFramework.Forms
             this.PasswordSeeBtn.FlatAppearance.BorderSize = 0;
             this.PasswordSeeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PasswordSeeBtn.Image = global::WinformDotNetFramework.Properties.Resources.eye_ri;
-            this.PasswordSeeBtn.Location = new System.Drawing.Point(410, 174);
+            this.PasswordSeeBtn.Location = new System.Drawing.Point(410, 161);
             this.PasswordSeeBtn.Name = "PasswordSeeBtn";
             this.PasswordSeeBtn.Size = new System.Drawing.Size(21, 20);
             this.PasswordSeeBtn.TabIndex = 53;
+            this.PasswordSeeBtn.TabStop = false;
             this.PasswordSeeBtn.UseVisualStyleBackColor = true;
             this.PasswordSeeBtn.Click += new System.EventHandler(this.PasswordSeeBtn_Click);
             // 
@@ -201,6 +153,26 @@ namespace WinformDotNetFramework.Forms
             this.panel5.Size = new System.Drawing.Size(672, 17);
             this.panel5.TabIndex = 12;
             // 
+            // PasswordCtb
+            // 
+            this.PasswordCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PasswordCtb.Location = new System.Drawing.Point(204, 147);
+            this.PasswordCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.PasswordCtb.Name = "PasswordCtb";
+            this.PasswordCtb.Size = new System.Drawing.Size(200, 47);
+            this.PasswordCtb.TabIndex = 2;
+            this.PasswordCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // EmailCtb
+            // 
+            this.EmailCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.EmailCtb.Location = new System.Drawing.Point(204, 94);
+            this.EmailCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.EmailCtb.Name = "EmailCtb";
+            this.EmailCtb.Size = new System.Drawing.Size(200, 47);
+            this.EmailCtb.TabIndex = 1;
+            this.EmailCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,17 +188,11 @@ namespace WinformDotNetFramework.Forms
             this.Name = "LoginForm";
             this.Text = "LoginForm";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private TextBox EmailTxt;
-        private TextBox PasswordTxt;
-        private Label label1;
-        private Label label2;
         private Button EnterBtn;
         private Button button1;
         private Button button2;
@@ -236,5 +202,7 @@ namespace WinformDotNetFramework.Forms
         private Panel panel3;
         private Panel panel4;
         private Panel panel5;
+        private control.CustomTextBoxUserControl PasswordCtb;
+        private control.CustomTextBoxUserControl EmailCtb;
     }
 }
