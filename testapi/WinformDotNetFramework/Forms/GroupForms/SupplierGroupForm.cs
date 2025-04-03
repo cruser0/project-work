@@ -170,12 +170,22 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
             SupplierDgv.DataSource = supplierPagedData;
 
+            SupplierDgv.Columns["IsPost"].Visible = false;
+
             SupplierDgv.Columns["SupplierID"].Visible = showIDToolStripMenuItem.Checked;
             SupplierDgv.Columns["SupplierName"].Visible = showNameToolStripMenuItem.Checked;
             SupplierDgv.Columns["Country"].Visible = showCountryToolStripMenuItem.Checked;
             SupplierDgv.Columns["CreatedAt"].Visible = showDateToolStripMenuItem.Checked;
             SupplierDgv.Columns["OriginalID"].Visible = showOriginalIDToolStripMenuItem.Checked;
             SupplierDgv.Columns["Deprecated"].Visible = showStatusToolStripMenuItem.Checked;
+
+            SupplierDgv.Columns["SupplierID"].HeaderText = "Supplier ID";
+            SupplierDgv.Columns["SupplierName"].HeaderText = "Supplier Name";
+            SupplierDgv.Columns["Country"].HeaderText = "Country";
+            SupplierDgv.Columns["CreatedAt"].HeaderText = "Created At";
+            SupplierDgv.Columns["OriginalID"].HeaderText = "Original ID";
+            SupplierDgv.Columns["Deprecated"].HeaderText = "Deprecated";
+
 
             supplierTotalPages = (int)Math.Ceiling((double)supplierTotalRecords / pageSize);
             if (supplierTotalPages > 0)
@@ -193,12 +203,28 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
             SupInvoiceDgv.DataSource = supplierInvoicePagedData;
 
+            SupInvoiceDgv.Columns["IsPost"].Visible = false;
+
             SupInvoiceDgv.Columns["SupplierInvoiceID"].Visible = showIDToolStripMenuItem2.Checked;
             SupInvoiceDgv.Columns["SaleID"].Visible = showSaleIDToolStripMenuItem.Checked;
             SupInvoiceDgv.Columns["InvoiceAmount"].Visible = showInvoiceAmountToolStripMenuItem.Checked;
             SupInvoiceDgv.Columns["InvoiceDate"].Visible = showInvoiceDateToolStripMenuItem.Checked;
             SupInvoiceDgv.Columns["Status"].Visible = showStatusToolStripMenuItem1.Checked;
             SupInvoiceDgv.Columns["SupplierID"].Visible = showSupplierIDToolStripMenuItem.Checked;
+            SupInvoiceDgv.Columns["SupplierInvoiceCode"].Visible = showInvoiceCodeToolStripMenuItem.Checked;
+            SupInvoiceDgv.Columns["SaleBookingNumber"].Visible = showSaleBookingNumberToolStripMenuItem.Checked;
+            SupInvoiceDgv.Columns["SaleBoL"].Visible = showSaleBoLToolStripMenuItem.Checked;
+
+            SupInvoiceDgv.Columns["SupplierInvoiceID"].HeaderText = "Supplier Invoice ID";
+            SupInvoiceDgv.Columns["SaleID"].HeaderText = "Sale ID";
+            SupInvoiceDgv.Columns["InvoiceAmount"].HeaderText = "Invoice Amount";
+            SupInvoiceDgv.Columns["InvoiceDate"].HeaderText = "Invoice Date";
+            SupInvoiceDgv.Columns["Status"].HeaderText = "Status";
+            SupInvoiceDgv.Columns["SupplierID"].HeaderText = "Supplier ID";
+            SupInvoiceDgv.Columns["SupplierInvoiceCode"].HeaderText = "Invoice Code";
+            SupInvoiceDgv.Columns["SaleBookingNumber"].HeaderText = "Booking Number";
+            SupInvoiceDgv.Columns["SaleBoL"].HeaderText = "Bill of Lading";
+
 
             supplierInvoiceTotalPages = (int)Math.Ceiling((double)supplierInvoiceTotalRecords / pageSize);
             if (supplierInvoiceTotalPages > 0)
@@ -216,11 +242,24 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
             SupInvoiceCostDgv.DataSource = supplierInvoiceCostPagedData;
 
+            SupInvoiceCostDgv.Columns["IsPost"].Visible = false;
+
             SupInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].Visible = showIDToolStripMenuItem1.Checked;
             SupInvoiceCostDgv.Columns["SupplierInvoiceID"].Visible = showCustomerInvoiceIDToolStripMenuItem.Checked;
             SupInvoiceCostDgv.Columns["Cost"].Visible = showCostToolStripMenuItem.Checked;
             SupInvoiceCostDgv.Columns["Quantity"].Visible = showQuantityToolStripMenuItem.Checked;
             SupInvoiceCostDgv.Columns["Name"].Visible = showDescriptionNameToolStripMenuItem.Checked;
+            SupInvoiceCostDgv.Columns["SupplierInvoiceCode"].Visible = showInvoiceCodeToolStripMenuItem1.Checked;
+            SupInvoiceCostDgv.Columns["CostRegistryCode"].Visible = showCostRegistryCodeToolStripMenuItem.Checked;
+
+            SupInvoiceCostDgv.Columns["SupplierInvoiceCostsID"].HeaderText = "Supplier Invoice Cost ID";
+            SupInvoiceCostDgv.Columns["SupplierInvoiceID"].HeaderText = "Supplier Invoice ID";
+            SupInvoiceCostDgv.Columns["Cost"].HeaderText = "Cost";
+            SupInvoiceCostDgv.Columns["Quantity"].HeaderText = "Quantity";
+            SupInvoiceCostDgv.Columns["Name"].HeaderText = "Name";
+            SupInvoiceCostDgv.Columns["SupplierInvoiceCode"].HeaderText = "Invoice Code";
+            SupInvoiceCostDgv.Columns["CostRegistryCode"].HeaderText = "Cost Registry Code";
+
 
             supplierInvoiceCostTotalPages = (int)Math.Ceiling((double)supplierInvoiceCostTotalRecords / pageSize);
             if (supplierInvoiceCostTotalPages > 0)
@@ -239,6 +278,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     if (supplierCurrentPage < supplierTotalPages)
                     {
                         supplierCurrentPage++;
+
                         LoadTableSupplier();
                     }
                     break;
@@ -579,6 +619,15 @@ namespace WinformDotNetFramework.Forms.GroupForms
                 case "Show Supplier ID":
                     SupInvoiceDgv.Columns["SupplierID"].Visible = menuItem.Checked;
                     break;
+                case "Show Invoice Code":
+                    SupInvoiceDgv.Columns["SupplierInvoiceCode"].Visible = menuItem.Checked;
+                    break;
+                case "Show Sale Booking Number":
+                    SupInvoiceDgv.Columns["SaleBookingNumber"].Visible = menuItem.Checked;
+                    break;
+                case "Show Sale BoL":
+                    SupInvoiceDgv.Columns["SaleBoL"].Visible = menuItem.Checked;
+                    break;
                 default:
                     break;
             }
@@ -605,6 +654,12 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     break;
                 case "Show Description Name":
                     SupInvoiceCostDgv.Columns["Name"].Visible = menuItem.Checked;
+                    break;
+                case "Show Cost Registry Code":
+                    SupInvoiceCostDgv.Columns["CostRegistryCode"].Visible = menuItem.Checked;
+                    break;
+                case "Show Invoice Code":
+                    SupInvoiceCostDgv.Columns["SupplierInvoiceCode"].Visible = menuItem.Checked;
                     break;
                 default:
                     break;

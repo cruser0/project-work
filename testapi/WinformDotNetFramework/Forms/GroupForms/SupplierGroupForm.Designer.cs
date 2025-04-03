@@ -60,9 +60,6 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.DoubleRight3 = new System.Windows.Forms.ToolStripButton();
             this.TSLbl3 = new System.Windows.Forms.ToolStripLabel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.searchSupplier1 = new WinformDotNetFramework.Forms.control.SearchSupplier();
-            this.searchSupplierInvoice1 = new WinformDotNetFramework.Forms.control.SearchSupplierInvoice();
-            this.searchSupplierInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchSupplierInvoiceCost();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -83,14 +80,22 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.showCustomerInvoiceIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showCostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showQuantityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showDescriptionNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCostRegistryCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SupInvoiceCtxStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showIDToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.showSaleIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showInvoiceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSaleBookingNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSaleBoLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showInvoiceAmountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showInvoiceDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showStatusToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.showSupplierIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showInvoiceCodeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.showDescriptionNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchSupplier1 = new WinformDotNetFramework.Forms.control.SearchSupplier();
+            this.searchSupplierInvoice1 = new WinformDotNetFramework.Forms.control.SearchSupplierInvoice();
+            this.searchSupplierInvoiceCost1 = new WinformDotNetFramework.Forms.control.SearchSupplierInvoiceCost();
             this.LeftPane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainSplitContainer)).BeginInit();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -152,7 +157,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.MainSplitContainer.Panel2.Controls.Add(this.SearchPanel);
             this.MainSplitContainer.Panel2.Controls.Add(this.panel1);
             this.MainSplitContainer.Size = new System.Drawing.Size(726, 461);
-            this.MainSplitContainer.SplitterDistance = 515;
+            this.MainSplitContainer.SplitterDistance = 516;
             this.MainSplitContainer.SplitterWidth = 3;
             this.MainSplitContainer.TabIndex = 1;
             // 
@@ -171,7 +176,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // SpliContainerDGV.Panel2
             // 
             this.SpliContainerDGV.Panel2.Controls.Add(this.SplitContainerDGV2);
-            this.SpliContainerDGV.Size = new System.Drawing.Size(515, 461);
+            this.SpliContainerDGV.Size = new System.Drawing.Size(516, 461);
             this.SpliContainerDGV.SplitterDistance = 240;
             this.SpliContainerDGV.SplitterWidth = 3;
             this.SpliContainerDGV.TabIndex = 0;
@@ -183,7 +188,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(513, 238);
+            this.groupBox1.Size = new System.Drawing.Size(514, 238);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Suppliers";
@@ -201,7 +206,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SupplierDgv.Name = "SupplierDgv";
             this.SupplierDgv.ReadOnly = true;
             this.SupplierDgv.RowTemplate.Height = 25;
-            this.SupplierDgv.Size = new System.Drawing.Size(507, 194);
+            this.SupplierDgv.Size = new System.Drawing.Size(508, 194);
             this.SupplierDgv.TabIndex = 0;
             this.SupplierDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SupplierDgv_CellClick);
             this.SupplierDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
@@ -219,7 +224,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.TSLbl1});
             this.SupplierToolStrip.Location = new System.Drawing.Point(3, 210);
             this.SupplierToolStrip.Name = "SupplierToolStrip";
-            this.SupplierToolStrip.Size = new System.Drawing.Size(507, 25);
+            this.SupplierToolStrip.Size = new System.Drawing.Size(508, 25);
             this.SupplierToolStrip.TabIndex = 2;
             this.SupplierToolStrip.Text = "toolStrip2";
             // 
@@ -283,7 +288,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             // SplitContainerDGV2.Panel2
             // 
             this.SplitContainerDGV2.Panel2.Controls.Add(this.groupBox3);
-            this.SplitContainerDGV2.Size = new System.Drawing.Size(515, 218);
+            this.SplitContainerDGV2.Size = new System.Drawing.Size(516, 218);
             this.SplitContainerDGV2.SplitterDistance = 244;
             this.SplitContainerDGV2.SplitterWidth = 3;
             this.SplitContainerDGV2.TabIndex = 0;
@@ -388,7 +393,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(266, 216);
+            this.groupBox3.Size = new System.Drawing.Size(267, 216);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Supplier Invoice Costs";
@@ -406,7 +411,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SupInvoiceCostDgv.Name = "SupInvoiceCostDgv";
             this.SupInvoiceCostDgv.ReadOnly = true;
             this.SupInvoiceCostDgv.RowTemplate.Height = 25;
-            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(260, 172);
+            this.SupInvoiceCostDgv.Size = new System.Drawing.Size(261, 172);
             this.SupInvoiceCostDgv.TabIndex = 4;
             this.SupInvoiceCostDgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.RightClickDgvEvent);
             // 
@@ -423,7 +428,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.TSLbl3});
             this.CostToolStrip.Location = new System.Drawing.Point(3, 188);
             this.CostToolStrip.Name = "CostToolStrip";
-            this.CostToolStrip.Size = new System.Drawing.Size(260, 25);
+            this.CostToolStrip.Size = new System.Drawing.Size(261, 25);
             this.CostToolStrip.TabIndex = 6;
             this.CostToolStrip.Text = "toolStrip3";
             // 
@@ -484,29 +489,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 63);
             this.flowLayoutPanel1.MaximumSize = new System.Drawing.Size(210, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(208, 398);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(207, 0);
             this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // searchSupplier1
-            // 
-            this.searchSupplier1.Location = new System.Drawing.Point(3, 3);
-            this.searchSupplier1.Name = "searchSupplier1";
-            this.searchSupplier1.Size = new System.Drawing.Size(186, 268);
-            this.searchSupplier1.TabIndex = 0;
-            // 
-            // searchSupplierInvoice1
-            // 
-            this.searchSupplierInvoice1.Location = new System.Drawing.Point(3, 277);
-            this.searchSupplierInvoice1.Name = "searchSupplierInvoice1";
-            this.searchSupplierInvoice1.Size = new System.Drawing.Size(186, 446);
-            this.searchSupplierInvoice1.TabIndex = 1;
-            // 
-            // searchSupplierInvoiceCost1
-            // 
-            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(3, 729);
-            this.searchSupplierInvoiceCost1.Name = "searchSupplierInvoiceCost1";
-            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(186, 264);
-            this.searchSupplierInvoiceCost1.TabIndex = 2;
             // 
             // SearchPanel
             // 
@@ -515,7 +499,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.SearchPanel.Location = new System.Drawing.Point(0, 20);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(208, 43);
+            this.SearchPanel.Size = new System.Drawing.Size(207, 43);
             this.SearchPanel.TabIndex = 5;
             // 
             // button1
@@ -538,7 +522,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(208, 20);
+            this.panel1.Size = new System.Drawing.Size(207, 20);
             this.panel1.TabIndex = 4;
             // 
             // DockButton
@@ -637,9 +621,11 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.showCustomerInvoiceIDToolStripMenuItem,
             this.showCostToolStripMenuItem,
             this.showQuantityToolStripMenuItem,
-            this.showDescriptionNameToolStripMenuItem});
+            this.showDescriptionNameToolStripMenuItem,
+            this.showInvoiceCodeToolStripMenuItem1,
+            this.showCostRegistryCodeToolStripMenuItem});
             this.SupInvoiceCostCtxStrip.Name = "contextMenuStrip1";
-            this.SupInvoiceCostCtxStrip.Size = new System.Drawing.Size(214, 114);
+            this.SupInvoiceCostCtxStrip.Size = new System.Drawing.Size(214, 180);
             // 
             // showIDToolStripMenuItem1
             // 
@@ -679,6 +665,127 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.showQuantityToolStripMenuItem.Text = "Show Quantity";
             this.showQuantityToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
             // 
+            // showCostRegistryCodeToolStripMenuItem
+            // 
+            this.showCostRegistryCodeToolStripMenuItem.Checked = true;
+            this.showCostRegistryCodeToolStripMenuItem.CheckOnClick = true;
+            this.showCostRegistryCodeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showCostRegistryCodeToolStripMenuItem.Name = "showCostRegistryCodeToolStripMenuItem";
+            this.showCostRegistryCodeToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.showCostRegistryCodeToolStripMenuItem.Text = "Show Cost Registry Code";
+            this.showCostRegistryCodeToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
+            // 
+            // SupInvoiceCtxStrip
+            // 
+            this.SupInvoiceCtxStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showIDToolStripMenuItem2,
+            this.showSaleIDToolStripMenuItem,
+            this.showInvoiceCodeToolStripMenuItem,
+            this.showSaleBookingNumberToolStripMenuItem,
+            this.showSaleBoLToolStripMenuItem,
+            this.showInvoiceAmountToolStripMenuItem,
+            this.showInvoiceDateToolStripMenuItem,
+            this.showStatusToolStripMenuItem1,
+            this.showSupplierIDToolStripMenuItem});
+            this.SupInvoiceCtxStrip.Name = "SupInvoiceCtxStrip";
+            this.SupInvoiceCtxStrip.Size = new System.Drawing.Size(222, 202);
+            // 
+            // showIDToolStripMenuItem2
+            // 
+            this.showIDToolStripMenuItem2.CheckOnClick = true;
+            this.showIDToolStripMenuItem2.Name = "showIDToolStripMenuItem2";
+            this.showIDToolStripMenuItem2.Size = new System.Drawing.Size(221, 22);
+            this.showIDToolStripMenuItem2.Text = "Show ID";
+            this.showIDToolStripMenuItem2.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showSaleIDToolStripMenuItem
+            // 
+            this.showSaleIDToolStripMenuItem.Checked = true;
+            this.showSaleIDToolStripMenuItem.CheckOnClick = true;
+            this.showSaleIDToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showSaleIDToolStripMenuItem.Name = "showSaleIDToolStripMenuItem";
+            this.showSaleIDToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showSaleIDToolStripMenuItem.Text = "Show Sale ID";
+            this.showSaleIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showInvoiceCodeToolStripMenuItem
+            // 
+            this.showInvoiceCodeToolStripMenuItem.Checked = true;
+            this.showInvoiceCodeToolStripMenuItem.CheckOnClick = true;
+            this.showInvoiceCodeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showInvoiceCodeToolStripMenuItem.Name = "showInvoiceCodeToolStripMenuItem";
+            this.showInvoiceCodeToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showInvoiceCodeToolStripMenuItem.Text = "Show Invoice Code";
+            this.showInvoiceCodeToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showSaleBookingNumberToolStripMenuItem
+            // 
+            this.showSaleBookingNumberToolStripMenuItem.Checked = true;
+            this.showSaleBookingNumberToolStripMenuItem.CheckOnClick = true;
+            this.showSaleBookingNumberToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showSaleBookingNumberToolStripMenuItem.Name = "showSaleBookingNumberToolStripMenuItem";
+            this.showSaleBookingNumberToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showSaleBookingNumberToolStripMenuItem.Text = "Show Sale Booking Number";
+            this.showSaleBookingNumberToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showSaleBoLToolStripMenuItem
+            // 
+            this.showSaleBoLToolStripMenuItem.Checked = true;
+            this.showSaleBoLToolStripMenuItem.CheckOnClick = true;
+            this.showSaleBoLToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showSaleBoLToolStripMenuItem.Name = "showSaleBoLToolStripMenuItem";
+            this.showSaleBoLToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showSaleBoLToolStripMenuItem.Text = "Show Sale BoL";
+            this.showSaleBoLToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showInvoiceAmountToolStripMenuItem
+            // 
+            this.showInvoiceAmountToolStripMenuItem.Checked = true;
+            this.showInvoiceAmountToolStripMenuItem.CheckOnClick = true;
+            this.showInvoiceAmountToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showInvoiceAmountToolStripMenuItem.Name = "showInvoiceAmountToolStripMenuItem";
+            this.showInvoiceAmountToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showInvoiceAmountToolStripMenuItem.Text = "Show Invoice Amount";
+            this.showInvoiceAmountToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showInvoiceDateToolStripMenuItem
+            // 
+            this.showInvoiceDateToolStripMenuItem.Checked = true;
+            this.showInvoiceDateToolStripMenuItem.CheckOnClick = true;
+            this.showInvoiceDateToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showInvoiceDateToolStripMenuItem.Name = "showInvoiceDateToolStripMenuItem";
+            this.showInvoiceDateToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showInvoiceDateToolStripMenuItem.Text = "Show Invoice Date";
+            this.showInvoiceDateToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showStatusToolStripMenuItem1
+            // 
+            this.showStatusToolStripMenuItem1.Checked = true;
+            this.showStatusToolStripMenuItem1.CheckOnClick = true;
+            this.showStatusToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showStatusToolStripMenuItem1.Name = "showStatusToolStripMenuItem1";
+            this.showStatusToolStripMenuItem1.Size = new System.Drawing.Size(221, 22);
+            this.showStatusToolStripMenuItem1.Text = "Show Status";
+            this.showStatusToolStripMenuItem1.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showSupplierIDToolStripMenuItem
+            // 
+            this.showSupplierIDToolStripMenuItem.CheckOnClick = true;
+            this.showSupplierIDToolStripMenuItem.Name = "showSupplierIDToolStripMenuItem";
+            this.showSupplierIDToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showSupplierIDToolStripMenuItem.Text = "Show Supplier ID";
+            this.showSupplierIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            // 
+            // showInvoiceCodeToolStripMenuItem1
+            // 
+            this.showInvoiceCodeToolStripMenuItem1.Checked = true;
+            this.showInvoiceCodeToolStripMenuItem1.CheckOnClick = true;
+            this.showInvoiceCodeToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showInvoiceCodeToolStripMenuItem1.Name = "showInvoiceCodeToolStripMenuItem1";
+            this.showInvoiceCodeToolStripMenuItem1.Size = new System.Drawing.Size(213, 22);
+            this.showInvoiceCodeToolStripMenuItem1.Text = "Show Invoice Code";
+            this.showInvoiceCodeToolStripMenuItem1.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
+            // 
             // showDescriptionNameToolStripMenuItem
             // 
             this.showDescriptionNameToolStripMenuItem.Checked = true;
@@ -689,73 +796,26 @@ namespace WinformDotNetFramework.Forms.GroupForms
             this.showDescriptionNameToolStripMenuItem.Text = "Show Description Name";
             this.showDescriptionNameToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCostCtxItem_CheckedChanged);
             // 
-            // SupInvoiceCtxStrip
+            // searchSupplier1
             // 
-            this.SupInvoiceCtxStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showIDToolStripMenuItem2,
-            this.showSaleIDToolStripMenuItem,
-            this.showInvoiceAmountToolStripMenuItem,
-            this.showInvoiceDateToolStripMenuItem,
-            this.showStatusToolStripMenuItem1,
-            this.showSupplierIDToolStripMenuItem});
-            this.SupInvoiceCtxStrip.Name = "SupInvoiceCtxStrip";
-            this.SupInvoiceCtxStrip.Size = new System.Drawing.Size(192, 136);
+            this.searchSupplier1.Location = new System.Drawing.Point(3, 3);
+            this.searchSupplier1.Name = "searchSupplier1";
+            this.searchSupplier1.Size = new System.Drawing.Size(186, 268);
+            this.searchSupplier1.TabIndex = 0;
             // 
-            // showIDToolStripMenuItem2
+            // searchSupplierInvoice1
             // 
-            this.showIDToolStripMenuItem2.CheckOnClick = true;
-            this.showIDToolStripMenuItem2.Name = "showIDToolStripMenuItem2";
-            this.showIDToolStripMenuItem2.Size = new System.Drawing.Size(191, 22);
-            this.showIDToolStripMenuItem2.Text = "Show ID";
-            this.showIDToolStripMenuItem2.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            this.searchSupplierInvoice1.Location = new System.Drawing.Point(3, 277);
+            this.searchSupplierInvoice1.Name = "searchSupplierInvoice1";
+            this.searchSupplierInvoice1.Size = new System.Drawing.Size(186, 446);
+            this.searchSupplierInvoice1.TabIndex = 1;
             // 
-            // showSaleIDToolStripMenuItem
+            // searchSupplierInvoiceCost1
             // 
-            this.showSaleIDToolStripMenuItem.Checked = true;
-            this.showSaleIDToolStripMenuItem.CheckOnClick = true;
-            this.showSaleIDToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showSaleIDToolStripMenuItem.Name = "showSaleIDToolStripMenuItem";
-            this.showSaleIDToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.showSaleIDToolStripMenuItem.Text = "Show Sale ID";
-            this.showSaleIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
-            // 
-            // showInvoiceAmountToolStripMenuItem
-            // 
-            this.showInvoiceAmountToolStripMenuItem.Checked = true;
-            this.showInvoiceAmountToolStripMenuItem.CheckOnClick = true;
-            this.showInvoiceAmountToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showInvoiceAmountToolStripMenuItem.Name = "showInvoiceAmountToolStripMenuItem";
-            this.showInvoiceAmountToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.showInvoiceAmountToolStripMenuItem.Text = "Show Invoice Amount";
-            this.showInvoiceAmountToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
-            // 
-            // showInvoiceDateToolStripMenuItem
-            // 
-            this.showInvoiceDateToolStripMenuItem.Checked = true;
-            this.showInvoiceDateToolStripMenuItem.CheckOnClick = true;
-            this.showInvoiceDateToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showInvoiceDateToolStripMenuItem.Name = "showInvoiceDateToolStripMenuItem";
-            this.showInvoiceDateToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.showInvoiceDateToolStripMenuItem.Text = "Show Invoice Date";
-            this.showInvoiceDateToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
-            // 
-            // showStatusToolStripMenuItem1
-            // 
-            this.showStatusToolStripMenuItem1.Checked = true;
-            this.showStatusToolStripMenuItem1.CheckOnClick = true;
-            this.showStatusToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showStatusToolStripMenuItem1.Name = "showStatusToolStripMenuItem1";
-            this.showStatusToolStripMenuItem1.Size = new System.Drawing.Size(191, 22);
-            this.showStatusToolStripMenuItem1.Text = "Show Status";
-            this.showStatusToolStripMenuItem1.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
-            // 
-            // showSupplierIDToolStripMenuItem
-            // 
-            this.showSupplierIDToolStripMenuItem.CheckOnClick = true;
-            this.showSupplierIDToolStripMenuItem.Name = "showSupplierIDToolStripMenuItem";
-            this.showSupplierIDToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.showSupplierIDToolStripMenuItem.Text = "Show Supplier ID";
-            this.showSupplierIDToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SupInvoiceCtxItem_CheckedChanged);
+            this.searchSupplierInvoiceCost1.Location = new System.Drawing.Point(3, 729);
+            this.searchSupplierInvoiceCost1.Name = "searchSupplierInvoiceCost1";
+            this.searchSupplierInvoiceCost1.Size = new System.Drawing.Size(186, 264);
+            this.searchSupplierInvoiceCost1.TabIndex = 2;
             // 
             // SupplierGroupForm
             // 
@@ -862,7 +922,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
         private ToolStripMenuItem showCustomerInvoiceIDToolStripMenuItem;
         private ToolStripMenuItem showCostToolStripMenuItem;
         private ToolStripMenuItem showQuantityToolStripMenuItem;
-        private ToolStripMenuItem showDescriptionNameToolStripMenuItem;
+        private ToolStripMenuItem showCostRegistryCodeToolStripMenuItem;
         private ToolStripMenuItem showIDToolStripMenuItem2;
         private ToolStripMenuItem showSaleIDToolStripMenuItem;
         private ToolStripMenuItem showInvoiceAmountToolStripMenuItem;
@@ -872,5 +932,10 @@ namespace WinformDotNetFramework.Forms.GroupForms
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
+        private ToolStripMenuItem showInvoiceCodeToolStripMenuItem;
+        private ToolStripMenuItem showSaleBookingNumberToolStripMenuItem;
+        private ToolStripMenuItem showSaleBoLToolStripMenuItem;
+        private ToolStripMenuItem showDescriptionNameToolStripMenuItem;
+        private ToolStripMenuItem showInvoiceCodeToolStripMenuItem1;
     }
 }
