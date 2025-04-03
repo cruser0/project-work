@@ -70,6 +70,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -359,6 +360,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.convertSupplierInvoicesBtn);
             this.panel6.Controls.Add(this.BolCtb);
             this.panel6.Controls.Add(this.RevenueCtb);
             this.panel6.Controls.Add(this.BkCtb);
@@ -520,6 +522,20 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
+            // convertSupplierInvoicesBtn
+            // 
+            this.convertSupplierInvoicesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.convertSupplierInvoicesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.convertSupplierInvoicesBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.convertSupplierInvoicesBtn.Location = new System.Drawing.Point(597, 6);
+            this.convertSupplierInvoicesBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.convertSupplierInvoicesBtn.Name = "convertSupplierInvoicesBtn";
+            this.convertSupplierInvoicesBtn.Size = new System.Drawing.Size(143, 50);
+            this.convertSupplierInvoicesBtn.TabIndex = 56;
+            this.convertSupplierInvoicesBtn.Text = "Convert Supplier Invoices";
+            this.convertSupplierInvoicesBtn.UseVisualStyleBackColor = false;
+            this.convertSupplierInvoicesBtn.Click += new System.EventHandler(this.convertSupplierInvoicesBtn_Click);
+            // 
             // CreateDetailsSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -592,5 +608,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private control.CustomTextBoxUserControl BolCtb;
         private control.CustomTextBoxUserControl RevenueCtb;
         private control.CustomTextBoxUserControl BkCtb;
+        private Button convertSupplierInvoicesBtn;
     }
 }
