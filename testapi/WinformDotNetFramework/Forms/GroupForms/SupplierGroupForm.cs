@@ -193,7 +193,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
             SupInvoiceDgv.DataSource = supplierInvoicePagedData;
 
-            SupInvoiceDgv.Columns["InvoiceID"].Visible = showIDToolStripMenuItem2.Checked;
+            SupInvoiceDgv.Columns["SupplierInvoiceID"].Visible = showIDToolStripMenuItem2.Checked;
             SupInvoiceDgv.Columns["SaleID"].Visible = showSaleIDToolStripMenuItem.Checked;
             SupInvoiceDgv.Columns["InvoiceAmount"].Visible = showInvoiceAmountToolStripMenuItem.Checked;
             SupInvoiceDgv.Columns["InvoiceDate"].Visible = showInvoiceDateToolStripMenuItem.Checked;
@@ -419,10 +419,10 @@ namespace WinformDotNetFramework.Forms.GroupForms
 
                 // Get selected invoice ID safely
                 if (SupInvoiceDgv.Rows.Count <= e.RowIndex ||
-                    SupInvoiceDgv.Rows[e.RowIndex].Cells["InvoiceID"].Value == null)
+                    SupInvoiceDgv.Rows[e.RowIndex].Cells["SupplierInvoiceID"].Value == null)
                     return;
 
-                int invoiceId = (int)SupInvoiceDgv.Rows[e.RowIndex].Cells["InvoiceID"].Value;
+                int invoiceId = (int)SupInvoiceDgv.Rows[e.RowIndex].Cells["SupplierInvoiceID"].Value;
 
                 // Get costs for this invoice from our lookup dictionary
                 if (invoiceCostsMap.ContainsKey(invoiceId))
