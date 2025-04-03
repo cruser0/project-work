@@ -54,6 +54,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             BKCmbxUC.Cmbx.SetTiltes("Booking Number");
             BoLCmbxUC.Cmbx.SetTiltes("Bill of Lading");
             NameCmbxUC.Cmbx.SetTiltes("Supplier");
+            InvoiceCodeCtb.SetPropName("SupplierInvoiceCode");
 
             _saleService = new SaleService();
             _supplierService = new SupplierService();
@@ -344,53 +345,53 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             bool exit = false;
             SetAllCmbxUCBlack();
-                try
+            try
+            {
+                if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
+                    throw new Exception();
+                saleId = (int)(await _saleService.GetAll(new SaleCustomerFilter()
                 {
-                    if (string.IsNullOrEmpty(BoLCmbxUC.Cmbx.PropTxt.Text) || string.IsNullOrEmpty(BKCmbxUC.Cmbx.PropTxt.Text))
-                        throw new Exception();
-                    saleId = (int)(await _saleService.GetAll(new SaleCustomerFilter()
-                    {
-                        SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
-                        SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
-                    })).First().SaleId;
-                }
-                catch (Exception)
+                    SaleBoLnumber = BoLCmbxUC.Cmbx.PropTxt.Text,
+                    SaleBookingNumber = BKCmbxUC.Cmbx.PropTxt.Text
+                })).First().SaleId;
+            }
+            catch (Exception)
+            {
+                BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
+                exit = true;
+                saleId = -1;
+            }
+
+
+            try
+            {
+                if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text))
+                    throw new Exception();
+                string name = NameCmbxUC.Cmbx.PropTxt.Text;
+                string country = "";
+
+                int lastIndex = name.LastIndexOf(" - ");
+
+                if (lastIndex != -1 && lastIndex != name.Length - 3)
                 {
-                    BoLCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
-                    BKCmbxUC.Cmbx.SetBorderColorRed("Sale not found.");
-                    exit = true;
-                    saleId = -1;
+                    country = name.Substring(lastIndex + 3);
+                    name = name.Substring(0, lastIndex);
                 }
-           
 
-                try
+                supplierId = (int)(await _supplierService.GetAll(new SupplierFilter()
                 {
-                    if (string.IsNullOrEmpty(NameCmbxUC.Cmbx.PropTxt.Text))
-                        throw new Exception();
-                    string name = NameCmbxUC.Cmbx.PropTxt.Text;
-                    string country = "";
+                    SupplierName = name,
+                    SupplierCountry = country
+                })).First().SupplierId;
+            }
+            catch (Exception)
+            {
+                NameCmbxUC.Cmbx.SetBorderColorRed("Invalid supplier.");
+                exit = true;
+                supplierId = -1;
+            }
 
-                    int lastIndex = name.LastIndexOf(" - ");
-
-                    if (lastIndex != -1 && lastIndex != name.Length - 3)
-                    {
-                        country = name.Substring(lastIndex + 3);
-                        name = name.Substring(0, lastIndex);
-                    }
-
-                    supplierId = (int)(await _supplierService.GetAll(new SupplierFilter()
-                    {
-                        SupplierName = name,
-                        SupplierCountry = country
-                    })).First().SupplierId;
-                }
-                catch (Exception)
-                {
-                    NameCmbxUC.Cmbx.SetBorderColorRed("Invalid supplier.");
-                    exit = true;
-                    supplierId = -1;
-                }
-            
 
 
             try
