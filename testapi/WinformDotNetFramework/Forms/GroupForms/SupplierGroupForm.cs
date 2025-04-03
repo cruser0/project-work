@@ -271,7 +271,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
         private void ToolButton_click(object sender, EventArgs e)
         {
             ToolStripButton btnNext = (ToolStripButton)sender;
-
+            DataGridViewCellEventArgs args = new DataGridViewCellEventArgs(0, 0);
             switch (btnNext.Name)
             {
                 case "Right":
@@ -280,6 +280,9 @@ namespace WinformDotNetFramework.Forms.GroupForms
                         supplierCurrentPage++;
 
                         LoadTableSupplier();
+
+
+                        SupplierDgv_CellClick(SupplierDgv, args);
                     }
                     break;
                 case "Right2":
@@ -287,6 +290,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     {
                         supplierInvoiceCurrentPage++;
                         LoadTableSupplierInvoice();
+                        SupInvoiceDgv_CellClick(SupInvoiceDgv, args);
                     }
                     break;
                 case "Right3":
@@ -302,6 +306,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     {
                         supplierCurrentPage = supplierTotalPages;
                         LoadTableSupplier();
+
+                        SupplierDgv_CellClick(SupplierDgv, args);
                     }
                     break;
                 case "DoubleRight2":
@@ -309,6 +315,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     {
                         supplierInvoiceCurrentPage = supplierInvoiceTotalPages;
                         LoadTableSupplierInvoice();
+                        SupInvoiceDgv_CellClick(SupInvoiceDgv, args);
                     }
                     break;
                 case "DoubleRight3":
@@ -324,6 +331,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     {
                         supplierCurrentPage--;
                         LoadTableSupplier();
+
+                        SupplierDgv_CellClick(SupplierDgv, args);
                     }
                     break;
                 case "Left2":
@@ -331,6 +340,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     {
                         supplierInvoiceCurrentPage--;
                         LoadTableSupplierInvoice();
+                        SupInvoiceDgv_CellClick(SupInvoiceDgv, args);
                     }
                     break;
                 case "Left3":
@@ -346,6 +356,8 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     {
                         supplierCurrentPage = 1;
                         LoadTableSupplier();
+
+                        SupplierDgv_CellClick(SupplierDgv, args);
                     }
                     break;
                 case "DoubleLeft2":
@@ -353,6 +365,7 @@ namespace WinformDotNetFramework.Forms.GroupForms
                     {
                         supplierInvoiceCurrentPage = 1;
                         LoadTableSupplierInvoice();
+                        SupInvoiceDgv_CellClick(SupInvoiceDgv, args);
                     }
                     break;
                 case "DoubleLeft3":
