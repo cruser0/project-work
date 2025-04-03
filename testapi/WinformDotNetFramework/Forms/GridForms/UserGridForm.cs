@@ -145,7 +145,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             UserRoleTsmi.Checked = (bool)cdgv.ShowRoles;
             paginationControl.Visible = true;
 
-            userDgv.Columns["IsPost"].Visible = (bool)cdgv.ShowRoles;
+            //userDgv.Columns["IsPost"].Visible = (bool)cdgv.ShowRoles;
 
             userDgv.Columns["Roles"].Visible = (bool)cdgv.ShowRoles;
             userDgv.Columns["UserID"].Visible = (bool)cdgv.ShowID;

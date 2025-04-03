@@ -64,9 +64,9 @@ namespace WinformDotNetFramework.Forms.control
                 mainForm.AddFavoriteButton.Image = Properties.Resources.star;
 
 
+            form.WindowState = FormWindowState.Normal;
             form.Activate();
             form.Show();
-            form.WindowState = FormWindowState.Normal;
             mainForm.LayoutMdi(MdiLayout.ArrangeIcons);
             panel.Controls.Remove(this);
 
@@ -211,7 +211,7 @@ namespace WinformDotNetFramework.Forms.control
                             AutoSize = false,
                             Margin = btn.Margin,
                             BackColor = Color.Transparent,
-                            Text = $"{btn.GetCurrentParent().Parent.Text} {btn.Text}",
+                            Text = $"{btn.GetCurrentParent().Parent.Text} {btn.Text.Replace("&", "")}",
                             Image = btn.Image,
                             ToolTipText = btn.ToolTipText,
                             Tag = favorite,
