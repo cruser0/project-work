@@ -100,6 +100,7 @@
             this.RegionCmbx.Name = "RegionCmbx";
             this.RegionCmbx.Size = new System.Drawing.Size(180, 21);
             this.RegionCmbx.TabIndex = 46;
+            this.RegionCmbx.SelectionChangeCommitted += new System.EventHandler(this.RegionCmbx_SelectionChangeCommitted);
             // 
             // RegionLbl
             // 
@@ -295,6 +296,7 @@
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSupplierInvoiceReport";
             this.Size = new System.Drawing.Size(200, 492);
+            this.Load += new System.EventHandler(this.SearchSupplierInvoiceReport_Load);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

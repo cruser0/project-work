@@ -3,6 +3,7 @@ using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinformDotNetFramework.Forms.control
@@ -12,10 +13,11 @@ namespace WinformDotNetFramework.Forms.control
         public SearchCustomerInvoiceReportUserControl()
         {
             InitializeComponent();
-            Init();
         }
-        public async void Init()
+        public async Task Init()
         {
+            if (DesignMode)
+                return;
             StatusCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
@@ -23,7 +25,7 @@ namespace WinformDotNetFramework.Forms.control
             }
             RegionCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.Region).ToList();
             RegionCmbx.SelectedIndex = 1;
-            SetCountry();
+            await  SetCountry();
             DateFromClnd.Checked = true;
             DateToClnd.Checked = true;
             DateTime todayDate = DateTime.Now;
@@ -42,7 +44,7 @@ namespace WinformDotNetFramework.Forms.control
 
 
         }
-        private async void  SetCountry()
+        private async Task SetCountry()
         {
 
             if (RegionCmbx.SelectedItem.ToString().Equals("All")){
@@ -115,7 +117,14 @@ namespace WinformDotNetFramework.Forms.control
         private async void RegionCmbx_SelectionChangeCommitted(object sender, EventArgs e)
         {
 
-            SetCountry();
+            await SetCountry();
+        }
+
+        private async void SearchCustomerInvoiceReportUserControl_Load(object sender, EventArgs e)
+        {
+            if (DesignMode)
+                return;
+            await Init();
         }
     }
 }

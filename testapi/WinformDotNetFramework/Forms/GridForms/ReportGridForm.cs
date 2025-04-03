@@ -31,12 +31,14 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
         private void Init()
         {
+            if (DesignMode)
+                return;
             _procedureService = new ProceduresService();
             DisableTSItems();
             SetSearchVisibilityFalse();
         }
 
-        private async void SaleReportForm_Load(object sender, EventArgs e)
+        private  void SaleReportForm_Load(object sender, EventArgs e)
         {
             ReportViewer.ProcessingMode = ProcessingMode.Local;
             ReportViewer.LocalReport.SubreportProcessing +=
@@ -348,6 +350,8 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
         public void CallDialogReport()
         {
+            if (DesignMode)
+                return;
             ReportViewer.Clear();
             searchSupplierInvoiceReport1.Visible = false;
             searchSaleReport1.Visible = false;

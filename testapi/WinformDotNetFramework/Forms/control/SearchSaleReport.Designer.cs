@@ -471,6 +471,7 @@
             this.Controls.Add(this.TextBoxesRightPanel);
             this.Name = "SearchSaleReport";
             this.Size = new System.Drawing.Size(200, 818);
+            this.Load += new System.EventHandler(this.SearchSaleReport_Load);
             this.TextBoxesRightPanel.ResumeLayout(false);
             this.TextBoxesRightPanel.PerformLayout();
             this.ResumeLayout(false);

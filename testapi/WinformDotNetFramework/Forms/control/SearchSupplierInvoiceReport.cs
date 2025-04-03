@@ -1,6 +1,8 @@
 ﻿using Entity_Validator.Entity.Filters;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinformDotNetFramework.Forms.control
@@ -10,17 +12,19 @@ namespace WinformDotNetFramework.Forms.control
         public SearchSupplierInvoiceReport()
         {
             InitializeComponent();
-
-            Init();
         }
-        public async void Init()
+        public async Task Init()
         {
             StatusCmbx.SelectedIndex = 0;
             for (int i = 0; i < GrapCBL.Items.Count; i++)
             {
                 GrapCBL.SetItemChecked(i, true);
             }
-            CountryCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+            RegionCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.Region).ToList();
+            RegionCmbx.SelectedIndex = 1;
+            await SetCountry();
+            DateFromClnd.Checked = true;
+            DateToClnd.Checked = true;
             DateTime todayDate = DateTime.Now;
             int month = todayDate.Month - 1;
             int year = todayDate.Year;
@@ -32,11 +36,23 @@ namespace WinformDotNetFramework.Forms.control
             }
             DateTime firstDayOfLastMonth = new DateTime(year, month, 1);
             DateTime lastDayOfLastMonth = new DateTime(year, month, DateTime.DaysInMonth(year, month));
-            DateFromClnd.Checked = true;
-            DateToClnd.Checked = true;
             DateFromClnd.Value = firstDayOfLastMonth;
             DateToClnd.Value = lastDayOfLastMonth;
-            RegionCmbx.SelectedIndex = 1;
+        }
+        private async Task SetCountry()
+        {
+
+            if (RegionCmbx.SelectedItem.ToString().Equals("All"))
+            {
+                var filteredCountry = (await UtilityFunctions.GetCountries()).Select(x => x.CountryName).ToList();
+                CountryCmbx.DataSource = (filteredCountry).ToList();
+            }
+            else
+            {
+                var zeroIndex = new List<string>() { "All" };
+                var filteredCountry = (await UtilityFunctions.GetCountries()).Where(x => x.Region.Equals(RegionCmbx.SelectedItem.ToString())).Select(x => x.CountryName).ToList();
+                CountryCmbx.DataSource = zeroIndex.Concat(filteredCountry).ToList();
+            }
         }
         public TotalAmountSpentPerSupplierInvoiceFilter GetFilter()
         {
@@ -90,6 +106,18 @@ namespace WinformDotNetFramework.Forms.control
                 return false;
             else
                 return true;
+        }
+
+        private async void RegionCmbx_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            await SetCountry();
+        }
+
+        private async void SearchSupplierInvoiceReport_Load(object sender, EventArgs e)
+        {
+            if (DesignMode)
+                return;
+            await Init();
         }
     }
 }
