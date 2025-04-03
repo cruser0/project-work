@@ -307,103 +307,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             }
         }
 
-
-        private HashSet<int> modifiedRows = new HashSet<int>();
-
-        private void CostRegistryDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void CreateBtn_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                modifiedRows.Add(e.RowIndex);
-            }
-        }
+            MainForm mf = (MainForm)MdiParent;
 
-        private async void MassUpdateTSB_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-                "This action is permanent and it will update all the history bound to this entity!",
-                "Confirm Update?",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (result != DialogResult.Yes)
-            {
-                MessageBox.Show("Action canceled.");
-                return;
-            }
-
-            try
-            {
-                List<CostRegistryDTOGet> modifiedEntities = new List<CostRegistryDTOGet>();
-
-                // Itera solo sulle righe che sono state modificate
-                foreach (int rowIndex in modifiedRows)
-                {
-                    if (CostRegistryDgv.Rows[rowIndex].DataBoundItem is CostRegistryDTOGet entity)
-                    {
-                        modifiedEntities.Add(entity);
-                    }
-                }
-
-                if (modifiedEntities.Count > 0)
-                {
-                    string message = await _costRegistryService.MassUpdate(modifiedEntities);
-                    MessageBox.Show(message);
-
-                    // Resetta le righe modificate dopo l'update
-                    modifiedRows.Clear();
-                    ToggleEditButton.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("No modified rows to update.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-        }
-
-
-        private void ToggleEditButton_Click(object sender, EventArgs e)
-        {
-            // Inverti lo stato ReadOnly
-            CostRegistryDgv.ReadOnly = !CostRegistryDgv.ReadOnly;
-
-            if (CostRegistryDgv.ReadOnly) // Modalità visualizzazione
-            {
-                if (modifiedRows.Count > 0)
-                {
-                    DialogResult result = MessageBox.Show(
-                        "You haven't saved your changes, and all edits will be lost!\nDo you want to continue?",
-                        "Warning",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.No)
-                    {
-                        // Se l'utente sceglie "No", torna in modalità modifica
-                        CostRegistryDgv.ReadOnly = false;
-                        return;
-                    }
-
-                    // Reset modifiche solo se l'utente conferma
-                    MyControl_ButtonClicked_Pagination(this, EventArgs.Empty);
-                    modifiedRows.Clear();
-                }
-
-                // Ripristina modalità visualizzazione
-                CostRegistryDgv.Cursor = Cursors.Default;
-                CostRegistryDgv.CellDoubleClick += MyControl_OpenDetails_Clicked;
-                CostRegistryDgv.CellValueChanged -= CostRegistryDgv_CellValueChanged;
-            }
-            else // Modalità modifica attivata
-            {
-                CostRegistryDgv.Cursor = Cursors.IBeam; // Migliore per l'editing di testo
-                CostRegistryDgv.CellDoubleClick -= MyControl_OpenDetails_Clicked;
-                CostRegistryDgv.CellValueChanged += CostRegistryDgv_CellValueChanged;
-            }
+            TabPage tp = mf.tabControl.TabPages["AddTP"];
+            ToolStrip ts = (ToolStrip)tp.Controls["Create"];
+            ToolStripButton btn = (ToolStripButton)ts.Items["RegistryCostCreateTS"];
+            btn.PerformClick();
         }
     }
 }

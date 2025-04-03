@@ -352,101 +352,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             }
         }
 
-
-        private HashSet<int> modifiedRows = new HashSet<int>();
-
-        private void SaleDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void CreateBtn_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                modifiedRows.Add(e.RowIndex);
-            }
-        }
-        private async void MassUpdateTSB_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-                "This action is permanent and it will update all the history bound to this entity!",
-                "Confirm Update?",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
+            MainForm mf = (MainForm)MdiParent;
 
-            if (result != DialogResult.Yes)
-            {
-                MessageBox.Show("Action canceled.");
-                return;
-            }
-
-            try
-            {
-                List<SaleDTOGet> modifiedEntities = new List<SaleDTOGet>();
-
-                // Itera solo sulle righe che sono state modificate
-                foreach (int rowIndex in modifiedRows)
-                {
-                    if (SaleDgv.Rows[rowIndex].DataBoundItem is SaleCustomerDTO entity)
-                    {
-                        modifiedEntities.Add((SaleDTOGet)(object)entity);
-                    }
-                }
-
-                if (modifiedEntities.Count > 0)
-                {
-                    string message = await _saleService.MassUpdate(modifiedEntities);
-                    MessageBox.Show(message);
-
-                    // Resetta le righe modificate dopo l'update
-                    modifiedRows.Clear();
-                    ToggleEditButton.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("No modified rows to update.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-        }
-
-        private void ToggleEditButton_Click(object sender, EventArgs e)
-        {
-            // Inverti lo stato ReadOnly
-            SaleDgv.ReadOnly = !SaleDgv.ReadOnly;
-
-            if (SaleDgv.ReadOnly) // Modalità visualizzazione
-            {
-                if (modifiedRows.Count > 0)
-                {
-                    DialogResult result = MessageBox.Show(
-                        "You haven't saved your changes, and all edits will be lost!\nDo you want to continue?",
-                        "Warning",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.No)
-                    {
-                        // Se l'utente sceglie "No", torna in modalità modifica
-                        SaleDgv.ReadOnly = false;
-                        return;
-                    }
-
-                    // Reset modifiche solo se l'utente conferma
-                    MyControl_ButtonClicked_Pagination(this, EventArgs.Empty);
-                    modifiedRows.Clear();
-                }
-
-                // Ripristina modalità visualizzazione
-                SaleDgv.Cursor = Cursors.Default;
-                SaleDgv.CellDoubleClick += MyControl_OpenDetails_Clicked;
-                SaleDgv.CellValueChanged -= SaleDgv_CellValueChanged;
-            }
-            else // Modalità modifica attivata
-            {
-                SaleDgv.Cursor = Cursors.IBeam; // Migliore per l'editing di testo
-                SaleDgv.CellDoubleClick -= MyControl_OpenDetails_Clicked;
-                SaleDgv.CellValueChanged += SaleDgv_CellValueChanged;
-            }
+            TabPage tp = mf.tabControl.TabPages["AddTP"];
+            ToolStrip ts = (ToolStrip)tp.Controls["Create"];
+            ToolStripButton btn = (ToolStripButton)ts.Items["SaleCreateTS"];
+            btn.PerformClick();
         }
     }
 }

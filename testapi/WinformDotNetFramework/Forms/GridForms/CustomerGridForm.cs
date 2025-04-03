@@ -319,104 +319,14 @@ namespace WinformDotNetFramework.Forms.GridForms
             }
         }
 
-
-        private HashSet<int> modifiedRows = new HashSet<int>();
-
-        private void CustomerDgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void CreateBtn_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                modifiedRows.Add(e.RowIndex);
-            }
+            MainForm mf = (MainForm)MdiParent;
+
+            TabPage tp = mf.tabControl.TabPages["AddTP"];
+            ToolStrip ts = (ToolStrip)tp.Controls["Create"];
+            ToolStripButton btn = (ToolStripButton)ts.Items["CustomerCreateTS"];
+            btn.PerformClick();
         }
-
-        private async void MassUpdateTSB_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show(
-                "This action is permanent and it will update all the history bound to this entity!",
-                "Confirm Update?",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (result != DialogResult.Yes)
-            {
-                MessageBox.Show("Action canceled.");
-                return;
-            }
-
-            try
-            {
-                List<CustomerDTOGet> modifiedEntities = new List<CustomerDTOGet>();
-
-                // Itera solo sulle righe che sono state modificate
-                foreach (int rowIndex in modifiedRows)
-                {
-                    if (CustomerDgv.Rows[rowIndex].DataBoundItem is CustomerDTOGet entity)
-                    {
-                        modifiedEntities.Add(entity);
-                    }
-                }
-
-                if (modifiedEntities.Count > 0)
-                {
-                    string message = await _customerService.MassUpdate(modifiedEntities);
-                    MessageBox.Show(message);
-
-                    // Resetta le righe modificate dopo l'update
-                    modifiedRows.Clear();
-                    ToggleEditButton.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("No modified rows to update.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-        }
-
-
-        private void ToggleEditButton_Click(object sender, EventArgs e)
-        {
-            // Inverti lo stato ReadOnly
-            CustomerDgv.ReadOnly = !CustomerDgv.ReadOnly;
-
-            if (CustomerDgv.ReadOnly) // Modalità visualizzazione
-            {
-                if (modifiedRows.Count > 0)
-                {
-                    DialogResult result = MessageBox.Show(
-                        "You haven't saved your changes, and all edits will be lost!\nDo you want to continue?",
-                        "Warning",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.No)
-                    {
-                        // Se l'utente sceglie "No", torna in modalità modifica
-                        CustomerDgv.ReadOnly = false;
-                        return;
-                    }
-
-                    // Reset modifiche solo se l'utente conferma
-                    MyControl_ButtonClicked_Pagination(this, EventArgs.Empty);
-                    modifiedRows.Clear();
-                }
-
-                // Ripristina modalità visualizzazione
-                CustomerDgv.Cursor = Cursors.Default;
-                CustomerDgv.CellDoubleClick += MyControl_OpenDetails_Clicked;
-                CustomerDgv.CellValueChanged -= CustomerDgv_CellValueChanged;
-            }
-            else // Modalità modifica attivata
-            {
-                CustomerDgv.Cursor = Cursors.IBeam; // Migliore per l'editing di testo
-                CustomerDgv.CellDoubleClick -= MyControl_OpenDetails_Clicked;
-                CustomerDgv.CellValueChanged += CustomerDgv_CellValueChanged;
-            }
-        }
-
     }
 }

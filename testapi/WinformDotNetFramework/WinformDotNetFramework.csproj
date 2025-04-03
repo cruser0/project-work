@@ -766,6 +766,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\AddIcon1.png" />
+    <None Include="Resources\AddIcon.png" />
     <None Include="Properties\Resources\PieChart-removebg-preview.png" />
     <None Include="Properties\Resources\BarChart-removebg-preview.png" />
     <None Include="Properties\Resources\BarChart-nobg.png" />

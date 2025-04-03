@@ -401,59 +401,14 @@ namespace WinformDotNetFramework.Forms.GridForms
                 modifiedRows.Add(e.RowIndex);
             }
         }
-
-        private async void MassUpdateTSB_Click(object sender, EventArgs e)
+        private void CreateBtn_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show(
-         "This action is permanent and it will update all the history bound to this entity!",
-         "Confirm Update?",
-         MessageBoxButtons.YesNo,
-         MessageBoxIcon.Warning);
+            MainForm mf = (MainForm)MdiParent;
 
-
-            if (result != DialogResult.Yes)
-            {
-                MessageBox.Show("Action canceled.");
-                return;
-            }
-
-            try
-            {
-                List<UserDTOGet> modifiedEntities = new List<UserDTOGet>();
-
-                // Itera solo sulle righe che sono state modificate
-                foreach (int rowIndex in modifiedRows)
-                {
-                    if (userDgv.Rows[rowIndex].DataBoundItem is UserRoleDTO entity)
-                    {
-                        modifiedEntities.Add((UserDTOGet)(object)entity);
-                    }
-                }
-
-                if (modifiedEntities.Count > 0)
-                {
-                    string message = await _userService.MassUpdate(modifiedEntities);
-                    MessageBox.Show(message);
-
-                    // Resetta le righe modificate dopo l'update
-                    modifiedRows.Clear();
-                    ToggleEditButton.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("No modified rows to update.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
+            TabPage tp = mf.tabControl.TabPages["AddTP"];
+            ToolStrip ts = (ToolStrip)tp.Controls["Create"];
+            ToolStripButton btn = (ToolStripButton)ts.Items["UserCreateTS"];
+            btn.PerformClick();
         }
-
-        private void ToggleEditButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
