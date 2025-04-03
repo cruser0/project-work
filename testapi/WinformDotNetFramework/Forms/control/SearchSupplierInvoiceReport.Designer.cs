@@ -100,6 +100,7 @@
             this.RegionCmbx.Name = "RegionCmbx";
             this.RegionCmbx.Size = new System.Drawing.Size(180, 21);
             this.RegionCmbx.TabIndex = 46;
+            this.RegionCmbx.SelectionChangeCommitted += new System.EventHandler(this.RegionCmbx_SelectionChangeCommitted);
             // 
             // RegionLbl
             // 

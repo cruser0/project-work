@@ -3,6 +3,7 @@ using Entity_Validator.Entity.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinformDotNetFramework.Forms.control
@@ -23,7 +24,7 @@ namespace WinformDotNetFramework.Forms.control
             }
             RegionCmbx.DataSource = (await UtilityFunctions.GetCountries()).Select(x => x.Region).ToList();
             RegionCmbx.SelectedIndex = 1;
-            SetCountry();
+            await  SetCountry();
             DateFromClnd.Checked = true;
             DateToClnd.Checked = true;
             DateTime todayDate = DateTime.Now;
@@ -42,7 +43,7 @@ namespace WinformDotNetFramework.Forms.control
 
 
         }
-        private async void  SetCountry()
+        private async Task SetCountry()
         {
 
             if (RegionCmbx.SelectedItem.ToString().Equals("All")){
@@ -115,7 +116,7 @@ namespace WinformDotNetFramework.Forms.control
         private async void RegionCmbx_SelectionChangeCommitted(object sender, EventArgs e)
         {
 
-            SetCountry();
+            await SetCountry();
         }
     }
 }
