@@ -152,5 +152,15 @@ namespace API.Controllers
             var data = await _customerInvoiceService.GetCustomerInvoiceSummary(CustomerID);
             return Ok(data);
         }
+
+        [HttpPost("make-invoice")]
+        public async Task<IActionResult> MakeInvoiceFromSupplier([FromBody] MakeCustomerInvoiceDTO MakeCustomerInvoiceDTO)
+        {
+            var data = await _customerInvoiceService.MakeInvoiceFromSupplier(MakeCustomerInvoiceDTO);
+            if (data == null)
+                throw new Exception("Something went wrong");
+
+            return Ok(data);
+        }
     }
 }

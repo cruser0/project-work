@@ -20,7 +20,7 @@ namespace API.Models.Services
 
         Task<string> MassUpdateCustomerInvoice(List<CustomerInvoiceDTOGet> newCustomerInvoices);
         Task<CustomerInvoiceSummary> GetCustomerInvoiceSummary(int customerID);
-
+        Task<CustomerInvoiceDTOGet> MakeInvoiceFromSupplier(MakeCustomerInvoiceDTO makeCustomerInvoiceDTO);
     }
     public class CustomerInvoicesServices : ICustomerInvoicesService
     {
@@ -392,5 +392,104 @@ namespace API.Models.Services
                 ClosedInvoices = data.ContainsKey("paid") ? data["paid"] : 0
             };
         }
+
+        public async Task<CustomerInvoiceDTOGet> MakeInvoiceFromSupplier(MakeCustomerInvoiceDTO makeCustomerInvoiceDTO)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                CustomerInvoice newInvoice = new CustomerInvoice()
+                {
+                    InvoiceDate = DateTime.Now,
+                    StatusID = 6, //unpaid
+                    SaleID = makeCustomerInvoiceDTO.SaleID,
+                    Status = await _context.Statuses.Where(x => x.StatusID == 6).FirstAsync(),
+                    Sale = await _context.Sales.Where(x => x.SaleID == makeCustomerInvoiceDTO.SaleID).FirstAsync()
+                };
+
+                CustomerInvoiceDTOGet createdInvoice = await CreateCustomerInvoice(newInvoice);
+
+
+
+                var customerInvoiceCosts = await _context.SupplierInvoiceCosts
+                    .Include(x => x.SupplierInvoice)
+                    .Include(x => x.CostRegistry)
+                    .Where(x => makeCustomerInvoiceDTO.SupplierInvoiceIDs.Contains(x.SupplierInvoice.SupplierInvoiceID))
+                    .Select(x => new CustomerInvoiceCost()
+                    {
+                        Cost = x.Cost,
+                        Quantity = x.Quantity,
+                        Name = x.Name,
+                        CostRegistryID = x.CostRegistryID,
+                        CustomerInvoiceID = createdInvoice.CustomerInvoiceId,
+
+                    })
+                    .ToListAsync();
+
+                decimal totalCost = 0;
+
+                foreach (var item in customerInvoiceCosts)
+                {
+                    totalCost += (decimal)item.Cost! * (decimal)item.Quantity!;
+                }
+
+                decimal surchargeCost = totalCost / 100 * (decimal)makeCustomerInvoiceDTO.PercentSurcharge! + (decimal)makeCustomerInvoiceDTO.FixedSurcharge!;
+
+                if (surchargeCost > 0)
+                {
+                    CustomerInvoiceCost surcharge = new CustomerInvoiceCost
+                    {
+                        Cost = surchargeCost,
+                        Quantity = 1,
+                        Name = "Surcharge",
+                        CostRegistryID = 1, //al momento metto gnc
+                        CustomerInvoiceID = createdInvoice.CustomerInvoiceId,
+                    };
+                    customerInvoiceCosts.Add(surcharge);
+                    totalCost += (decimal)surcharge.Cost!;
+                }
+
+                _context.CustomerInvoiceCosts.AddRange(customerInvoiceCosts);
+
+                createdInvoice = await UpdateCustomerInvoice((int)createdInvoice.CustomerInvoiceId!, new CustomerInvoice()
+                {
+                    InvoiceAmount = totalCost,
+                    Status = await _context.Statuses.Where(x => x.StatusID == 6).FirstAsync(),
+                    Sale = await _context.Sales.Where(x => x.SaleID == makeCustomerInvoiceDTO.SaleID).FirstAsync()
+                });
+
+                await _context.SaveChangesAsync();
+
+                var supplierInvoiceCosts = await _context.SupplierInvoiceCosts
+                   .Include(x => x.SupplierInvoice)
+                   .Include(x => x.CostRegistry)
+                   .Where(x => makeCustomerInvoiceDTO.SupplierInvoiceIDs.Contains(x.SupplierInvoice.SupplierInvoiceID))
+                   .ToListAsync();
+
+                var newCustomerInvoiceCostIDs = await _context.CustomerInvoiceCosts
+                    .Where(c => c.CustomerInvoiceID == createdInvoice.CustomerInvoiceId)
+                    .Select(x => x.CustomerInvoiceCostsID)
+                    .ToListAsync();
+
+                for (int i = 0; i < supplierInvoiceCosts.Count; i++)
+                {
+                    supplierInvoiceCosts[i].CustomerInvoiceCostID = newCustomerInvoiceCostIDs[i];
+                }
+
+                _context.SupplierInvoiceCosts.UpdateRange(supplierInvoiceCosts);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return createdInvoice;
+
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+
+
+        }
+
     }
 }

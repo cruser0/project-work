@@ -19,7 +19,7 @@ namespace API.Models
 
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<CustomerInvoice> CustomerInvoices { get; set; } = null!;
-        public virtual DbSet<CustomerInvoiceAmoutPaid> CustomerInvoiceAmoutPaids { get; set; } = null!;
+        public virtual DbSet<CustomerInvoiceAmountPaid> CustomerInvoiceAmoutPaids { get; set; } = null!;
         public virtual DbSet<Sale> Sales { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<SupplierInvoice> SupplierInvoices { get; set; } = null!;
@@ -881,7 +881,7 @@ namespace API.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
             });
-            modelBuilder.Entity<CustomerInvoiceAmoutPaid>(entity =>
+            modelBuilder.Entity<CustomerInvoiceAmountPaid>(entity =>
             {
                 entity.ToTable("CustomerInvoiceAmoutPaids");
 
@@ -893,8 +893,8 @@ namespace API.Models
                 entity.Property(e => e.AmountPaid).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.CustomerInvoice)
-                                    .WithOne(p => p.CustomerInvoiceAmoutPaid)
-                                    .HasForeignKey<CustomerInvoiceAmoutPaid>(d => d.CustomerInvoiceID)
+                                    .WithOne(p => p.CustomerInvoiceAmountPaid)
+                                    .HasForeignKey<CustomerInvoiceAmountPaid>(d => d.CustomerInvoiceID)
                                     .HasConstraintName("FK_CustomerInvoice_CustomerInvoicePaidAmount").OnDelete(DeleteBehavior.NoAction);
             });
 

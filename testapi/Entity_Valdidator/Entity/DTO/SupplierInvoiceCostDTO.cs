@@ -29,6 +29,8 @@ namespace Entity_Validator.Entity.DTO
         [MaxLength(50, ErrorMessage = "Must be at most {1} characters.")]
         public string SupplierInvoiceCode { get; set; }
 
+        public decimal? TotalCost { get; set; }
+
         public bool IsPost { get; set; }
 
     }

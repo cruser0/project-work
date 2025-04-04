@@ -50,10 +50,18 @@ namespace API.Models.Services
         private IQueryable<SupplierInvoiceSupplierDTO> ApplyFilter(SupplierInvoiceSupplierFilter filter)
         {
             int itemsPage = 10;
-            var query = (from si in _context.SupplierInvoices.Include(x => x.Status).Include(x => x.Sale)
+            var query = (from si in _context.SupplierInvoices.Include(x => x.Status).Include(x => x.Sale).Include(x => x.SupplierInvoiceCosts)
                          join s in _context.Suppliers.Include(x => x.Country) on si.SupplierID equals s.SupplierID into SupplierInvoiceGroup
                          from supplier in SupplierInvoiceGroup.DefaultIfEmpty()
                          select new { SupplierInvoice = si, Supplier = supplier }).AsQueryable();
+
+            if (filter.SupplierInvoiceMakeInvoice != null)
+            {
+                if ((bool)filter.SupplierInvoiceMakeInvoice)
+                {
+                    query = query.Where(x => x.SupplierInvoice.SupplierInvoiceCosts.All(c => c.CustomerInvoiceCostID == null));
+                }
+            }
 
             if (filter.SupplierInvoiceSaleID != null)
             {

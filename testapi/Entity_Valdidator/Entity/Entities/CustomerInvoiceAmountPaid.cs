@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity_Validator.Entity.Entities
 {
-    public class CustomerInvoiceAmoutPaid
+    public class CustomerInvoiceAmountPaid
     {
         public int CustomerInvoiceAmountPaidID { get; set; }
         public decimal? AmountPaid { get; set; }

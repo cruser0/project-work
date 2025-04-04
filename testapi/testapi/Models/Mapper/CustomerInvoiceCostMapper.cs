@@ -16,7 +16,8 @@ namespace API.Models.Mapper
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
                 CostRegistryCode = customerInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
-                CustomerInvoiceCode = customerInvoiceCost.CustomerInvoice.CustomerInvoiceCode
+                CustomerInvoiceCode = customerInvoiceCost.CustomerInvoice.CustomerInvoiceCode,
+                TotalCost = customerInvoiceCost.TotalCost,
 
             };
         }
@@ -32,7 +33,7 @@ namespace API.Models.Mapper
                 CostRegistryID = costRegistry?.CostRegistryID,
                 CostRegistry = costRegistry,
                 CustomerInvoice = customerInvoice,
-
+                TotalCost = customerInvoiceCost.TotalCost,
             };
         }
 
@@ -46,8 +47,8 @@ namespace API.Models.Mapper
                 Quantity = customerInvoiceCost.Quantity,
                 Name = customerInvoiceCost.Name,
                 CostRegistryCode = customerInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
-                CustomerInvoiceCode = customerInvoiceCost.CustomerInvoice.CustomerInvoiceCode
-
+                CustomerInvoiceCode = customerInvoiceCost.CustomerInvoice.CustomerInvoiceCode,
+                TotalCost = customerInvoiceCost.TotalCost,
             };
         }
         public static CustomerInvoiceCost MapGet(CustomerInvoiceCostDTOGet customerInvoiceCost, CostRegistry? costRegistry, CustomerInvoice? customerInvoice)
@@ -62,7 +63,7 @@ namespace API.Models.Mapper
                 CostRegistryID = costRegistry?.CostRegistryID,
                 CostRegistry = costRegistry,
                 CustomerInvoice = customerInvoice,
-
+                TotalCost = customerInvoiceCost.TotalCost,
             };
         }
     }

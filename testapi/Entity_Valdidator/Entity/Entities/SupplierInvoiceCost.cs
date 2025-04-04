@@ -10,7 +10,7 @@
         public decimal? TotalCost { get; set; }
 
         public string Name { get; set; }
-        public int CustomerInvoiceCostID { get; set; }
+        public int? CustomerInvoiceCostID { get; set; }
 
 
         public virtual CostRegistry CostRegistry { get; set; }

@@ -101,5 +101,12 @@ namespace WinformDotNetFramework.Services
             var returnResult = await MassUpdateWithStringResult(client, $"customer-invoice/mass-update", newEntity);
             return returnResult;
         }
+
+        public async Task<CustomerInvoiceDTOGet> MakeInvoice(MakeCustomerInvoiceDTO makeCustomerInvoiceDTO)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await PostMakeItem<CustomerInvoiceDTOGet>(client, "customer-invoice/make-invoice", makeCustomerInvoiceDTO, "Customer Invoice");
+            return returnResult;
+        }
     }
 }

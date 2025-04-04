@@ -26,7 +26,8 @@ namespace WinformDotNetFramework.Services
                 { "SupplierInvoiceStatus", filter.SupplierInvoiceStatus?.ToLower() != "all" ? filter.SupplierInvoiceStatus : null },
                 { "SupplierInvoicePage", filter.SupplierInvoicePage },
                 {"SupplierInvoiceSupplierName",filter.SupplierInvoiceSupplierName },
-                {"SupplierInvoiceSupplierCountry",filter.SupplierInvoiceSupplierCountry }
+                {"SupplierInvoiceSupplierCountry",filter.SupplierInvoiceSupplierCountry },
+                {"SupplierInvoiceMakeInvoice",filter.SupplierInvoiceMakeInvoice }
             };
 
             foreach (var kvp in filters)
