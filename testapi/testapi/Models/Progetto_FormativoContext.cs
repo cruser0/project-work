@@ -19,6 +19,7 @@ namespace API.Models
 
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<CustomerInvoice> CustomerInvoices { get; set; } = null!;
+        public virtual DbSet<CustomerInvoiceAmoutPaid> CustomerInvoiceAmoutPaids { get; set; } = null!;
         public virtual DbSet<Sale> Sales { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<SupplierInvoice> SupplierInvoices { get; set; } = null!;
@@ -774,7 +775,12 @@ namespace API.Models
 
                 entity.Property(e => e.Cost).HasColumnType("decimal(18, 2)");
 
+                
                 entity.Property(e => e.Quantity).HasColumnType("int");
+                
+                entity.Property(e => e.TotalCost)
+                    .HasComputedColumnSql("[Cost] * [Quantity]");
+
 
                 entity.Property(e => e.SupplierInvoiceId).HasColumnName("SupplierInvoiceID");
 
@@ -789,6 +795,12 @@ namespace API.Models
                     .WithMany(p => p.SupplierInvoiceCosts)
                     .HasForeignKey(d => d.CostRegistryID)
                     .HasConstraintName("costRegistry_SupplierInvoiceCosts_fk").OnDelete(DeleteBehavior.NoAction);
+
+                entity
+                    .HasOne(s => s.CustomerInvoiceCost)
+                    .WithMany(c => c.SupplierInvoiceCosts)
+                    .HasForeignKey(s => s.CustomerInvoiceCostID)
+                    .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(d => d.SupplierInvoice)
                     .WithMany(p => p.SupplierInvoiceCosts)
@@ -810,8 +822,11 @@ namespace API.Models
 
                 entity.Property(e => e.Cost).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.CustomerInvoiceID).HasColumnName("CustomerInvoiceID");
+                entity.Property(e => e.TotalCost)
+                    .HasComputedColumnSql("[Cost] * [Quantity]");
 
+
+                entity.Property(e => e.CustomerInvoiceID).HasColumnName("CustomerInvoiceID");
                 entity.Property(e => e.Name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -823,6 +838,7 @@ namespace API.Models
                     .WithMany(p => p.CustomerInvoiceCosts)
                     .HasForeignKey(d => d.CostRegistryID)
                     .HasConstraintName("costRegistry_CustomerInvoiceCosts_fk").OnDelete(DeleteBehavior.NoAction);
+
 
                 entity.HasOne(d => d.CustomerInvoice)
                     .WithMany(p => p.CustomerInvoiceCosts)
@@ -864,6 +880,22 @@ namespace API.Models
                 entity.Property(e => e.StatusName)
                     .HasMaxLength(20)
                     .IsUnicode(false);
+            });
+            modelBuilder.Entity<CustomerInvoiceAmoutPaid>(entity =>
+            {
+                entity.ToTable("CustomerInvoiceAmoutPaids");
+
+                entity.HasKey(e => e.CustomerInvoiceAmountPaidID);
+
+                entity.Property(e => e.CustomerInvoiceID)
+                    .HasColumnName("CustomerInvoiceID");
+
+                entity.Property(e => e.AmountPaid).HasColumnType("decimal(18, 2)");
+
+                entity.HasOne(d => d.CustomerInvoice)
+                                    .WithOne(p => p.CustomerInvoiceAmoutPaid)
+                                    .HasForeignKey<CustomerInvoiceAmoutPaid>(d => d.CustomerInvoiceID)
+                                    .HasConstraintName("FK_CustomerInvoice_CustomerInvoicePaidAmount").OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<ClassifySalesByProfit>().HasNoKey().ToView(null);

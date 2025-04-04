@@ -20,5 +20,7 @@ namespace Entity_Validator.Entity.Entities
         public virtual Sale Sale { get; set; }
         public virtual Status Status { get; set; }
         public virtual ICollection<CustomerInvoiceCost> CustomerInvoiceCosts { get; set; }
+        public virtual CustomerInvoiceAmoutPaid CustomerInvoiceAmoutPaid { get; set; }
+
     }
 }
