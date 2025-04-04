@@ -310,12 +310,10 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
 
         #endregion
-        private Panel panel1;
         private Panel TextBoxesRightPanel;
         private control.RightSideBarUserControl RightSideBar;
         private DataGridView SupplierDgv;
         public Panel CenterPanel;
-        private Panel BottomPanel;
         private Panel panel5;
         private control.PaginationUserControl PaginationUserControl;
         private Panel panel4;
@@ -332,5 +330,7 @@ namespace WinformDotNetFramework.Forms.GridForms
         private control.SearchSupplier searchSupplier1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton CreateBtn;
+        public Panel panel1;
+        public Panel BottomPanel;
     }
 }

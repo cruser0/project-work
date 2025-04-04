@@ -84,6 +84,33 @@ namespace WinformDotNetFramework
             formInstance.Activate();
 
         }
+        public static void OpenFormDetails<T>(object sender, EventArgs e, SaleCustomerDTO sale) where T : Form
+        {
+            if (mainForm == null)
+                return;
+
+            // Chiude i form aperti dello stesso tipo
+            CloseOpenForms<T>();
+
+            TableLayoutPanel minimizedPanel = (TableLayoutPanel)mainForm.Controls.Find("minimizedPanel", true)[0];
+            RemoveMinimizedButtons<T>(minimizedPanel);
+
+            // Crea un'istanza del form di tipo T e lo apre
+            T formInstance = (T)Activator.CreateInstance(typeof(T), sale);
+            formInstance.MdiParent = mainForm;
+            formInstance.StartPosition = FormStartPosition.CenterScreen;
+            formInstance.Size = formInstance.MinimumSize;
+            formInstance.Text = FormatFormName(typeof(T).Name);
+            formInstance.Resize += ChildForm_Resize;
+            formInstance.FormClosing += ChildForm_Close;
+            formInstance.Activated += FormInstance_Activated;
+
+            formInstance.Show();
+            formInstance.BringToFront();
+            formInstance.Activate();
+        }
+
+
 
         // Apre un form dei dettagli (con ID) del tipo specificato
         public static void OpenFormDetails<T>(object sender, DataGridViewCellEventArgs e, int id) where T : Form
@@ -282,9 +309,9 @@ namespace WinformDotNetFramework
         {
 
             if (mainForm == null)
-                return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All",Region="All" } };
+                return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All", Region = "All" } };
 
-            return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All",Region="All" } }
+            return new List<CountryDTOGet>() { new CountryDTOGet() { CountryID = 0, CountryName = "All", ISOCountry = "All", Region = "All" } }
                 .Concat(await mainForm.CountriesList)
                 .ToList();
         }

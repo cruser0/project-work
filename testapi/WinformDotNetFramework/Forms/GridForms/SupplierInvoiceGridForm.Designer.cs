@@ -362,13 +362,10 @@ namespace WinformDotNetFramework.Forms.GridForms
         }
 
         #endregion
-        private Panel panel1;
         private Panel RigtPanel;
         private Panel TextBoxesRightPanel;
         private control.RightSideBarUserControl RightSideBar;
-        private DataGridView SupplierInvoiceDgv;
         public Panel CenterPanel;
-        private Panel BottomPanel;
         private control.PaginationUserControl PaginationUserControl;
         private ContextMenuStrip RightClickDgv;
         private ToolStripMenuItem SupplierInvoiceIDTsmi;
@@ -388,5 +385,8 @@ namespace WinformDotNetFramework.Forms.GridForms
         private ToolStripMenuItem SupplierInvoiceSaleBookingNumberTsmi;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton CreateBtn;
+        public Panel panel1;
+        public Panel BottomPanel;
+        public DataGridView SupplierInvoiceDgv;
     }
 }

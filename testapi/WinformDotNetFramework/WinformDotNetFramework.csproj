@@ -476,6 +476,12 @@
     <Compile Include="Forms\SaleReportForm.Designer.cs">
       <DependentUpon>SaleReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectionForm\SelectSupplierInvoicesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectionForm\SelectSupplierInvoicesForm.Designer.cs">
+      <DependentUpon>SelectSupplierInvoicesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -710,6 +716,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridForms\ReportGridForm.resx">
       <DependentUpon>ReportGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectionForm\SelectSupplierInvoicesForm.resx">
+      <DependentUpon>SelectSupplierInvoicesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>

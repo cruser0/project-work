@@ -22,9 +22,9 @@ namespace WinformDotNetFramework.Forms.GridForms
         SupplierInvoiceService _supplierInvoiceService;
         int pages;
         double itemsPage = 10.0;
-        Task<ICollection<SupplierInvoiceSupplierDTO>> getAllNotFiltered;
-        Task<int> countNotFiltered;
-        Task<SupplierInvoiceDGV> getFav;
+        public Task<ICollection<SupplierInvoiceSupplierDTO>> getAllNotFiltered;
+        public Task<int> countNotFiltered;
+        public Task<SupplierInvoiceDGV> getFav;
         List<string> authRoles = new List<string>
             {
                 "SupplierInvoiceAdmin",
@@ -51,7 +51,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             }
         }
 
-        private async Task Init()
+        public async Task Init()
         {
             if (DesignMode)
                 return;
@@ -116,7 +116,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             SupplierInvoiceDgv.DataSource = query1.ToList();
         }
 
-        private async Task SetCheckBoxes()
+        public async Task SetCheckBoxes()
         {
             await Task.WhenAll(getFav, countNotFiltered, getAllNotFiltered);
             IEnumerable<SupplierInvoiceSupplierDTO> query = await getAllNotFiltered;
@@ -305,7 +305,7 @@ namespace WinformDotNetFramework.Forms.GridForms
             }
         }
 
-        private async void SupplierInvoiceGridForm_Load(object sender, EventArgs e)
+        public async virtual void SupplierInvoiceGridForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
                 return;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Forms.GridForms;
+using WinformDotNetFramework.Forms.SelectionForm;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -273,32 +274,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 MessageBox.Show("Select a date");
                 return;
             }
-                string name = NameCmbxUC.Cmbx.PropTxt.Text;
-                string country = "";
+            string name = NameCmbxUC.Cmbx.PropTxt.Text;
+            string country = "";
 
-                int lastIndex = name.LastIndexOf(" - ");
+            int lastIndex = name.LastIndexOf(" - ");
 
-                if (lastIndex != -1 && lastIndex != name.Length - 3)
+            if (lastIndex != -1 && lastIndex != name.Length - 3)
+            {
+                country = name.Substring(lastIndex + 3);
+
+                name = name.Substring(0, lastIndex);
+            }
+            int customerId = -1;
+            try
+            {
+                if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(name))
+                    throw new Exception();
+                customerId = (int)(await _customerService.GetAll(new CustomerFilter()
                 {
-                    country = name.Substring(lastIndex + 3);
+                    CustomerName = name,
+                    CustomerCountry = country
+                })).FirstOrDefault().CustomerId;
+            }
+            catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
 
-                    name = name.Substring(0, lastIndex);
-                }
-                int customerId = -1;
-                try
-                {
-                    if (string.IsNullOrEmpty(country) || string.IsNullOrEmpty(name))
-                        throw new Exception();
-                    customerId = (int)(await _customerService.GetAll(new CustomerFilter()
-                    {
-                        CustomerName = name,
-                        CustomerCountry = country
-                    })).FirstOrDefault().CustomerId;
-                }
-                catch (Exception) { NameCmbxUC.Cmbx.SetBorderColorRed("Customer not found."); exit = false; }
+            _id = customerId;
 
-                _id = customerId;
-            
             DateTime? selectedDate = saleDateDtp.Checked ? (DateTime?)saleDateDtp.Value : null;
 
             SaleDTOGet sale1 = new SaleDTOGet
@@ -356,6 +357,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 await CreateClick(true);
             }
+        }
+
+        private void convertSupplierInvoicesBtn_Click(object sender, EventArgs e)
+        {
+            UtilityFunctions.OpenFormDetails<SelectSupplierInvoicesForm>(sender, e, sale);
         }
     }
 }
