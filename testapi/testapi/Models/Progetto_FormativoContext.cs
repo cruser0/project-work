@@ -19,7 +19,7 @@ namespace API.Models
 
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<CustomerInvoice> CustomerInvoices { get; set; } = null!;
-        public virtual DbSet<CustomerInvoiceAmountPaid> CustomerInvoiceAmoutPaids { get; set; } = null!;
+        public virtual DbSet<CustomerInvoiceAmountPaid> CustomerInvoiceAmountPaids { get; set; } = null!;
         public virtual DbSet<Sale> Sales { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<SupplierInvoice> SupplierInvoices { get; set; } = null!;
@@ -775,9 +775,9 @@ namespace API.Models
 
                 entity.Property(e => e.Cost).HasColumnType("decimal(18, 2)");
 
-                
+
                 entity.Property(e => e.Quantity).HasColumnType("int");
-                
+
                 entity.Property(e => e.TotalCost)
                     .HasComputedColumnSql("[Cost] * [Quantity]");
 

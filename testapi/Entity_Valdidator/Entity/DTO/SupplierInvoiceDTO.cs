@@ -1,4 +1,5 @@
 ﻿
+using Entity_Validator.CustomAttributes;
 using Entity_Validator.Entity.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;

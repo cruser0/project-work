@@ -18,6 +18,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         CustomerInvoiceService _customerInvoiceService;
         CustomerService _customerService;
         SupplierInvoiceService _supplierInvoiceService;
+        CustomerInvoiceAmountPaidService _customerInvoiceAmountPaidService;
         int _id = -1;
         int _saleId;
 
@@ -37,6 +38,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _saleService = new SaleService();
             _customerInvoiceService = new CustomerInvoiceService();
             _supplierInvoiceService = new SupplierInvoiceService();
+            _customerInvoiceAmountPaidService = new CustomerInvoiceAmountPaidService();
             _customerService = new CustomerService();
             InitializeComponent();
             StatusCmbx.SelectedIndex = 0;
@@ -380,6 +382,18 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                     SupplierInvoiceSaleID = _saleId
                 })).ToList();
             SuInDgv.DataSource = si;
+        }
+
+        private async void CuInDgv_DataSourceChanged(object sender, EventArgs e)
+        {
+            CustomerInvoiceAmountPaidFilter filter = new CustomerInvoiceAmountPaidFilter()
+            {
+                PaidCustomerSaleID = _saleId
+            };
+
+            decimal amountPaid = (decimal)(await _customerInvoiceAmountPaidService.GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
+
+            PaidLabel.Text = $"{amountPaid}€/{sale.TotalRevenue}€";
         }
     }
 }

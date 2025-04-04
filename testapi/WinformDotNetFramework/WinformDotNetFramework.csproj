@@ -533,6 +533,7 @@
     </Compile>
     <Compile Include="Services\BaseCallService.cs" />
     <Compile Include="Services\CostRegistryService.cs" />
+    <Compile Include="Services\CustomerInvoiceAmountPaidService.cs" />
     <Compile Include="Services\UtilityService.cs" />
     <Compile Include="Services\CustomerInvoiceCostService.cs" />
     <Compile Include="Services\CustomerInvoiceService.cs" />

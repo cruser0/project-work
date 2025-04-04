@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Reflection;
 
-namespace Entity_Validator
+namespace Entity_Validator.CustomAttributes
 {
     /// <summary>
     /// Provides conditional validation based on related property value.

@@ -49,7 +49,7 @@ namespace API.Models.Services
         {
             int itemsPage = 10;
 
-            var query = _context.CustomerInvoices.Include(x => x.Status).Include(x => x.Sale).AsQueryable();
+            var query = _context.CustomerInvoices.Include(x => x.Status).Include(x => x.Sale).Include(x => x.CustomerInvoiceAmountPaid).AsQueryable();
 
             if (filter.CustomerInvoiceSaleID != null)
             {
@@ -135,6 +135,16 @@ namespace API.Models.Services
             _context.Add(customerInvoice);
             await _context.SaveChangesAsync();
 
+            int invoiceId = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceCode == code).Select(x => x.CustomerInvoiceID).FirstAsync();
+            CustomerInvoiceAmountPaid amountPaid = new CustomerInvoiceAmountPaid()
+            {
+                CustomerInvoiceID = invoiceId,
+                AmountPaid = 0
+            };
+
+            await _context.CustomerInvoiceAmountPaids.AddAsync(amountPaid);
+
+
             var Total = await _context.CustomerInvoices.Where(x => x.SaleID == customerInvoice.SaleID).SumAsync(x => x.InvoiceAmount);
 
             sale.TotalRevenue = Total;
@@ -146,7 +156,7 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoiceDTOGet> UpdateCustomerInvoice(int id, CustomerInvoice customerInvoice)
         {
-            var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).FirstOrDefaultAsync();
+            var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).Include(x => x.CustomerInvoiceAmountPaid).FirstOrDefaultAsync();
 
 
             int? oldSaleId = ciDB.SaleID;
@@ -169,6 +179,15 @@ namespace API.Models.Services
                 throw new ErrorInputPropertyException("The amount can't be less or equal than 0");
 
             _context.CustomerInvoices.Update(ciDB);
+
+            CustomerInvoiceAmountPaid amountPaid = await _context.CustomerInvoiceAmountPaids
+                .Where(x => x.CustomerInvoiceAmountPaidID == customerInvoice.CustomerInvoiceAmountPaid.CustomerInvoiceAmountPaidID).FirstAsync();
+
+            amountPaid.AmountPaid = customerInvoice.InvoiceAmount;
+
+            _context.CustomerInvoiceAmountPaids.Update(amountPaid);
+
+
             await _context.SaveChangesAsync();
 
             if (oldSaleId.HasValue)
@@ -196,7 +215,7 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoiceDTOGet> DeleteCustomerInvoice(int id)
         {
-            CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).FirstOrDefaultAsync();
+            CustomerInvoice? data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).Include(x => x.CustomerInvoiceAmountPaid).FirstOrDefaultAsync();
 
             if (data == null)
                 throw new NotFoundException("Customer invoice not found!");
@@ -274,7 +293,7 @@ namespace API.Models.Services
         }
         public async Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id)
         {
-            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).Include(x => x.Sale).FirstOrDefaultAsync();
+            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).Include(x => x.Sale).Include(x => x.CustomerInvoiceAmountPaid).FirstOrDefaultAsync();
 
             if (data == null)
                 throw new NotFoundException("Customer invoice not found!");
@@ -284,7 +303,7 @@ namespace API.Models.Services
 
         public async Task<CustomerInvoice?> GetOnlyCustomerInvoiceById(int id)
         {
-            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).FirstOrDefaultAsync();
+            var data = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == id).Include(x => x.Status).Include(x => x.CustomerInvoiceAmountPaid).FirstOrDefaultAsync();
 
             return data;
         }
@@ -297,7 +316,11 @@ namespace API.Models.Services
             {
                 foreach (CustomerInvoiceDTOGet customerInvoice in newCustomerInvoices)
                 {
-                    var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoice.CustomerInvoiceId).Include(x => x.Status).Include(x => x.Sale).FirstOrDefaultAsync();
+                    var ciDB = await _context.CustomerInvoices.Where(x => x.CustomerInvoiceID == customerInvoice.CustomerInvoiceId)
+                        .Include(x => x.Status)
+                        .Include(x => x.Sale)
+                        .Include(x => x.CustomerInvoiceAmountPaid)
+                        .FirstOrDefaultAsync();
 
                     if (ciDB == null)
                         throw new NotFoundException("Customer invoice not found");
@@ -310,7 +333,7 @@ namespace API.Models.Services
                     if (!await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).AnyAsync())
                         throw new NotFoundException("Old SaleId not found");
                     Status statusnew = await _statusService.GetStatusByName(customerInvoice.Status);
-                    CustomerInvoice customerInvoiceMapped = CustomerInvoiceMapper.Map(customerInvoice, statusnew, ciDB.Sale);
+                    CustomerInvoice customerInvoiceMapped = CustomerInvoiceMapper.Map(customerInvoice, statusnew, ciDB.Sale, ciDB.CustomerInvoiceAmountPaid);
                     ciDB.InvoiceAmount = customerInvoiceMapped.InvoiceAmount ?? ciDB.InvoiceAmount;
                     ciDB.InvoiceDate = customerInvoiceMapped.InvoiceDate ?? ciDB.InvoiceDate;
                     ciDB.StatusID = customerInvoiceMapped.StatusID ?? ciDB.StatusID;
@@ -404,12 +427,10 @@ namespace API.Models.Services
                     StatusID = 6, //unpaid
                     SaleID = makeCustomerInvoiceDTO.SaleID,
                     Status = await _context.Statuses.Where(x => x.StatusID == 6).FirstAsync(),
-                    Sale = await _context.Sales.Where(x => x.SaleID == makeCustomerInvoiceDTO.SaleID).FirstAsync()
+                    Sale = await _context.Sales.Where(x => x.SaleID == makeCustomerInvoiceDTO.SaleID).FirstAsync(),
                 };
 
                 CustomerInvoiceDTOGet createdInvoice = await CreateCustomerInvoice(newInvoice);
-
-
 
                 var customerInvoiceCosts = await _context.SupplierInvoiceCosts
                     .Include(x => x.SupplierInvoice)
@@ -451,11 +472,14 @@ namespace API.Models.Services
 
                 _context.CustomerInvoiceCosts.AddRange(customerInvoiceCosts);
 
+                var paid = await _context.CustomerInvoiceAmountPaids.Where(x => x.CustomerInvoiceID == createdInvoice.CustomerInvoiceId).FirstAsync();
+
                 createdInvoice = await UpdateCustomerInvoice((int)createdInvoice.CustomerInvoiceId!, new CustomerInvoice()
                 {
                     InvoiceAmount = totalCost,
                     Status = await _context.Statuses.Where(x => x.StatusID == 6).FirstAsync(),
-                    Sale = await _context.Sales.Where(x => x.SaleID == makeCustomerInvoiceDTO.SaleID).FirstAsync()
+                    Sale = await _context.Sales.Where(x => x.SaleID == makeCustomerInvoiceDTO.SaleID).FirstAsync(),
+                    CustomerInvoiceAmountPaid = paid
                 });
 
                 await _context.SaveChangesAsync();

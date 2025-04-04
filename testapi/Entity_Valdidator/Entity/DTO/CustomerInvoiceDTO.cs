@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity_Validator.CustomAttributes;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entity_Validator.Entity.DTO
@@ -11,6 +12,9 @@ namespace Entity_Validator.Entity.DTO
 
         [RequiredIf("IsPost", true)]
         public int? SaleID { get; set; }
+
+        [RequiredIf("IsPost", true)]
+        public int? AmountPaidID { get; set; }
 
         [RequiredIf("IsPost", true)]
         [MaxLength(50)]

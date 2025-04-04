@@ -39,27 +39,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CuInDgv = new System.Windows.Forms.DataGridView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.SuInDgv = new System.Windows.Forms.DataGridView();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
-            this.SaveQuitButton = new System.Windows.Forms.Button();
-            this.OpenSale = new System.Windows.Forms.Button();
-            this.StatusLbl = new System.Windows.Forms.Label();
-            this.StatusCmbx = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.customerInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SuInDgv = new System.Windows.Forms.DataGridView();
             this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceAmountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,22 +55,36 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierInvoiceSupplierDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
             this.BolCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.RevenueCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.BkCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
+            this.OpenSale = new System.Windows.Forms.Button();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.button3 = new System.Windows.Forms.Button();
+            this.StatusLbl = new System.Windows.Forms.Label();
+            this.StatusCmbx = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.PaidLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
             this.panel7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -90,7 +92,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 120);
+            this.label4.Location = new System.Drawing.Point(5, 112);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
@@ -103,7 +105,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.saleDateDtp.CustomFormat = "ddMMMMyyyy";
             this.saleDateDtp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleDateDtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.saleDateDtp.Location = new System.Drawing.Point(8, 133);
+            this.saleDateDtp.Location = new System.Drawing.Point(7, 125);
             this.saleDateDtp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saleDateDtp.Name = "saleDateDtp";
             this.saleDateDtp.ShowCheckBox = true;
@@ -115,7 +117,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditCB.AutoSize = true;
             this.EditCB.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditCB.Location = new System.Drawing.Point(539, 122);
+            this.EditCB.Location = new System.Drawing.Point(539, 127);
             this.EditCB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.EditCB.Name = "EditCB";
             this.EditCB.Size = new System.Drawing.Size(46, 19);
@@ -129,7 +131,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.saveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(593, 80);
+            this.saveBtn.Location = new System.Drawing.Point(593, 91);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(143, 25);
@@ -147,7 +149,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Location = new System.Drawing.Point(20, 20);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(744, 422);
+            this.panel1.Size = new System.Drawing.Size(744, 421);
             this.panel1.TabIndex = 20;
             // 
             // tableLayoutPanel1
@@ -162,7 +164,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 259);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 258);
             this.tableLayoutPanel1.TabIndex = 52;
             // 
             // groupBox1
@@ -172,7 +174,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(366, 253);
+            this.groupBox1.Size = new System.Drawing.Size(366, 252);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer Invoices";
@@ -195,229 +197,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CuInDgv.Location = new System.Drawing.Point(3, 44);
             this.CuInDgv.Name = "CuInDgv";
             this.CuInDgv.ReadOnly = true;
-            this.CuInDgv.Size = new System.Drawing.Size(360, 206);
+            this.CuInDgv.Size = new System.Drawing.Size(360, 205);
             this.CuInDgv.TabIndex = 0;
+            this.CuInDgv.DataSourceChanged += new System.EventHandler(this.CuInDgv_DataSourceChanged);
             this.CuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellDoubleClick);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.button2);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(3, 19);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(360, 25);
-            this.panel7.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 25);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Create Customer Invoice";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.CustomerInvoiceBtn_click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.SuInDgv);
-            this.groupBox2.Controls.Add(this.panel8);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(375, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(366, 253);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Supplier Invoices";
-            // 
-            // SuInDgv
-            // 
-            this.SuInDgv.AllowUserToAddRows = false;
-            this.SuInDgv.AllowUserToDeleteRows = false;
-            this.SuInDgv.AllowUserToOrderColumns = true;
-            this.SuInDgv.AutoGenerateColumns = false;
-            this.SuInDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.SuInDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SuInDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn,
-            this.invoiceAmountDataGridViewTextBoxColumn1,
-            this.invoiceDateDataGridViewTextBoxColumn1,
-            this.supplierNameDataGridViewTextBoxColumn,
-            this.countryDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn1});
-            this.SuInDgv.DataSource = this.supplierInvoiceSupplierDTOBindingSource;
-            this.SuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SuInDgv.Location = new System.Drawing.Point(3, 44);
-            this.SuInDgv.Name = "SuInDgv";
-            this.SuInDgv.ReadOnly = true;
-            this.SuInDgv.Size = new System.Drawing.Size(360, 206);
-            this.SuInDgv.TabIndex = 0;
-            this.SuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SuInDgv_CellDoubleClick);
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.button1);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(3, 19);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(360, 25);
-            this.panel8.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 25);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Create Supplier Invoice";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.SupplierInvoiceBtn_click);
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.button3);
-            this.panel6.Controls.Add(this.convertSupplierInvoicesBtn);
-            this.panel6.Controls.Add(this.BolCtb);
-            this.panel6.Controls.Add(this.RevenueCtb);
-            this.panel6.Controls.Add(this.BkCtb);
-            this.panel6.Controls.Add(this.SaveQuitButton);
-            this.panel6.Controls.Add(this.OpenSale);
-            this.panel6.Controls.Add(this.NameCmbxUC);
-            this.panel6.Controls.Add(this.saleDateDtp);
-            this.panel6.Controls.Add(this.StatusLbl);
-            this.panel6.Controls.Add(this.StatusCmbx);
-            this.panel6.Controls.Add(this.label4);
-            this.panel6.Controls.Add(this.EditCB);
-            this.panel6.Controls.Add(this.saveBtn);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(744, 163);
-            this.panel6.TabIndex = 51;
-            // 
-            // convertSupplierInvoicesBtn
-            // 
-            this.convertSupplierInvoicesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.convertSupplierInvoicesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.convertSupplierInvoicesBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.convertSupplierInvoicesBtn.Location = new System.Drawing.Point(593, 6);
-            this.convertSupplierInvoicesBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.convertSupplierInvoicesBtn.Name = "convertSupplierInvoicesBtn";
-            this.convertSupplierInvoicesBtn.Size = new System.Drawing.Size(143, 50);
-            this.convertSupplierInvoicesBtn.TabIndex = 56;
-            this.convertSupplierInvoicesBtn.Text = "Convert Supplier Invoices";
-            this.convertSupplierInvoicesBtn.UseVisualStyleBackColor = false;
-            this.convertSupplierInvoicesBtn.Click += new System.EventHandler(this.convertSupplierInvoicesBtn_Click);
-            // 
-            // SaveQuitButton
-            // 
-            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveQuitButton.Location = new System.Drawing.Point(593, 111);
-            this.SaveQuitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.SaveQuitButton.Name = "SaveQuitButton";
-            this.SaveQuitButton.Size = new System.Drawing.Size(143, 25);
-            this.SaveQuitButton.TabIndex = 52;
-            this.SaveQuitButton.Text = "Save and Quit";
-            this.SaveQuitButton.UseVisualStyleBackColor = false;
-            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
-            // 
-            // OpenSale
-            // 
-            this.OpenSale.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
-            this.OpenSale.FlatAppearance.BorderSize = 0;
-            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this.OpenSale.Location = new System.Drawing.Point(433, 33);
-            this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.OpenSale.Name = "OpenSale";
-            this.OpenSale.Size = new System.Drawing.Size(29, 23);
-            this.OpenSale.TabIndex = 51;
-            this.OpenSale.Text = "->";
-            this.OpenSale.UseVisualStyleBackColor = false;
-            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
-            // 
-            // StatusLbl
-            // 
-            this.StatusLbl.AllowDrop = true;
-            this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StatusLbl.AutoSize = true;
-            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(218, 69);
-            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.StatusLbl.Name = "StatusLbl";
-            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
-            this.StatusLbl.TabIndex = 46;
-            this.StatusLbl.Text = "Status";
-            // 
-            // StatusCmbx
-            // 
-            this.StatusCmbx.AllowDrop = true;
-            this.StatusCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.StatusCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusCmbx.FormattingEnabled = true;
-            this.StatusCmbx.Items.AddRange(new object[] {
-            "Active",
-            "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(221, 84);
-            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.StatusCmbx.Name = "StatusCmbx";
-            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
-            this.StatusCmbx.TabIndex = 45;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(20, 462);
-            this.panel2.TabIndex = 21;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(764, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 462);
-            this.panel3.TabIndex = 22;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(20, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(744, 20);
-            this.panel4.TabIndex = 23;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(20, 442);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(744, 20);
-            this.panel5.TabIndex = 24;
             // 
             // customerInvoiceCodeDataGridViewTextBoxColumn
             // 
@@ -450,6 +233,67 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // customerInvoiceBindingSource
             // 
             this.customerInvoiceBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.CustomerInvoiceDTOGet);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label2);
+            this.panel7.Controls.Add(this.PaidLabel);
+            this.panel7.Controls.Add(this.button2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(3, 19);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(360, 25);
+            this.panel7.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(161, 25);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Create Customer Invoice";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.CustomerInvoiceBtn_click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.SuInDgv);
+            this.groupBox2.Controls.Add(this.panel8);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(375, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(366, 252);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Supplier Invoices";
+            // 
+            // SuInDgv
+            // 
+            this.SuInDgv.AllowUserToAddRows = false;
+            this.SuInDgv.AllowUserToDeleteRows = false;
+            this.SuInDgv.AllowUserToOrderColumns = true;
+            this.SuInDgv.AutoGenerateColumns = false;
+            this.SuInDgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SuInDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SuInDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn,
+            this.invoiceAmountDataGridViewTextBoxColumn1,
+            this.invoiceDateDataGridViewTextBoxColumn1,
+            this.supplierNameDataGridViewTextBoxColumn,
+            this.countryDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn1});
+            this.SuInDgv.DataSource = this.supplierInvoiceSupplierDTOBindingSource;
+            this.SuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SuInDgv.Location = new System.Drawing.Point(3, 44);
+            this.SuInDgv.Name = "SuInDgv";
+            this.SuInDgv.ReadOnly = true;
+            this.SuInDgv.Size = new System.Drawing.Size(360, 205);
+            this.SuInDgv.TabIndex = 0;
+            this.SuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SuInDgv_CellDoubleClick);
             // 
             // supplierInvoiceCodeDataGridViewTextBoxColumn
             // 
@@ -497,10 +341,84 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.SupplierInvoiceSupplierDTO);
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.button1);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(3, 19);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(360, 25);
+            this.panel8.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 25);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Create Supplier Invoice";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.SupplierInvoiceBtn_click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.button3);
+            this.panel6.Controls.Add(this.convertSupplierInvoicesBtn);
+            this.panel6.Controls.Add(this.BolCtb);
+            this.panel6.Controls.Add(this.RevenueCtb);
+            this.panel6.Controls.Add(this.BkCtb);
+            this.panel6.Controls.Add(this.SaveQuitButton);
+            this.panel6.Controls.Add(this.OpenSale);
+            this.panel6.Controls.Add(this.NameCmbxUC);
+            this.panel6.Controls.Add(this.saleDateDtp);
+            this.panel6.Controls.Add(this.StatusLbl);
+            this.panel6.Controls.Add(this.StatusCmbx);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Controls.Add(this.EditCB);
+            this.panel6.Controls.Add(this.saveBtn);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(744, 163);
+            this.panel6.TabIndex = 51;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(433, 124);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(65, 25);
+            this.button3.TabIndex = 57;
+            this.button3.Text = "Refresh";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // convertSupplierInvoicesBtn
+            // 
+            this.convertSupplierInvoicesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.convertSupplierInvoicesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.convertSupplierInvoicesBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.convertSupplierInvoicesBtn.Location = new System.Drawing.Point(593, 33);
+            this.convertSupplierInvoicesBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.convertSupplierInvoicesBtn.Name = "convertSupplierInvoicesBtn";
+            this.convertSupplierInvoicesBtn.Size = new System.Drawing.Size(143, 50);
+            this.convertSupplierInvoicesBtn.TabIndex = 56;
+            this.convertSupplierInvoicesBtn.Text = "Convert Supplier Invoices";
+            this.convertSupplierInvoicesBtn.UseVisualStyleBackColor = false;
+            this.convertSupplierInvoicesBtn.Click += new System.EventHandler(this.convertSupplierInvoicesBtn_Click);
+            // 
             // BolCtb
             // 
             this.BolCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BolCtb.Location = new System.Drawing.Point(7, 72);
+            this.BolCtb.Location = new System.Drawing.Point(7, 68);
             this.BolCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.BolCtb.Name = "BolCtb";
             this.BolCtb.Size = new System.Drawing.Size(200, 47);
@@ -520,12 +438,42 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // BkCtb
             // 
             this.BkCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BkCtb.Location = new System.Drawing.Point(11, 19);
+            this.BkCtb.Location = new System.Drawing.Point(7, 19);
             this.BkCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.BkCtb.Name = "BkCtb";
             this.BkCtb.Size = new System.Drawing.Size(200, 47);
             this.BkCtb.TabIndex = 53;
             this.BkCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // SaveQuitButton
+            // 
+            this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveQuitButton.Location = new System.Drawing.Point(593, 124);
+            this.SaveQuitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SaveQuitButton.Name = "SaveQuitButton";
+            this.SaveQuitButton.Size = new System.Drawing.Size(143, 25);
+            this.SaveQuitButton.TabIndex = 52;
+            this.SaveQuitButton.Text = "Save and Quit";
+            this.SaveQuitButton.UseVisualStyleBackColor = false;
+            this.SaveQuitButton.Click += new System.EventHandler(this.SaveQuitButton_Click);
+            // 
+            // OpenSale
+            // 
+            this.OpenSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.OpenSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(124)))), ((int)(((byte)(166)))));
+            this.OpenSale.FlatAppearance.BorderSize = 0;
+            this.OpenSale.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.OpenSale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.OpenSale.Location = new System.Drawing.Point(433, 33);
+            this.OpenSale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.OpenSale.Name = "OpenSale";
+            this.OpenSale.Size = new System.Drawing.Size(29, 23);
+            this.OpenSale.TabIndex = 51;
+            this.OpenSale.Text = "->";
+            this.OpenSale.UseVisualStyleBackColor = false;
+            this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
             // 
             // NameCmbxUC
             // 
@@ -538,25 +486,102 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.NameCmbxUC.Size = new System.Drawing.Size(200, 47);
             this.NameCmbxUC.TabIndex = 49;
             // 
-            // button3
+            // StatusLbl
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(433, 124);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 25);
-            this.button3.TabIndex = 57;
-            this.button3.Text = "Refresh";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.StatusLbl.AllowDrop = true;
+            this.StatusLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusLbl.AutoSize = true;
+            this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusLbl.Location = new System.Drawing.Point(218, 65);
+            this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StatusLbl.Name = "StatusLbl";
+            this.StatusLbl.Size = new System.Drawing.Size(39, 15);
+            this.StatusLbl.TabIndex = 46;
+            this.StatusLbl.Text = "Status";
+            // 
+            // StatusCmbx
+            // 
+            this.StatusCmbx.AllowDrop = true;
+            this.StatusCmbx.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.StatusCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusCmbx.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusCmbx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.StatusCmbx.FormattingEnabled = true;
+            this.StatusCmbx.Items.AddRange(new object[] {
+            "Active",
+            "Closed"});
+            this.StatusCmbx.Location = new System.Drawing.Point(221, 80);
+            this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.StatusCmbx.Name = "StatusCmbx";
+            this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
+            this.StatusCmbx.TabIndex = 45;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(20, 461);
+            this.panel2.TabIndex = 21;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(764, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(20, 461);
+            this.panel3.TabIndex = 22;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(20, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(744, 20);
+            this.panel4.TabIndex = 23;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(20, 441);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(744, 20);
+            this.panel5.TabIndex = 24;
+            // 
+            // PaidLabel
+            // 
+            this.PaidLabel.AutoSize = true;
+            this.PaidLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PaidLabel.Location = new System.Drawing.Point(299, 0);
+            this.PaidLabel.Name = "PaidLabel";
+            this.PaidLabel.Size = new System.Drawing.Size(61, 15);
+            this.PaidLabel.TabIndex = 18;
+            this.PaidLabel.Text = "Total Paid:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Location = new System.Drawing.Point(238, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 15);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Total Paid:";
             // 
             // CreateDetailsSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 462);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
@@ -572,14 +597,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
             this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -626,5 +652,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private control.CustomTextBoxUserControl BkCtb;
         private Button convertSupplierInvoicesBtn;
         private Button button3;
+        private Label label2;
+        private Label PaidLabel;
     }
 }

@@ -15,12 +15,13 @@ namespace API.Models.Mapper
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status!.StatusName,
-                CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode
+                CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
+                AmountPaidID = customerInvoice.CustomerInvoiceAmountPaid.CustomerInvoiceAmountPaidID
             };
         }
 
 
-        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status? status, Sale? sale)
+        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status? status, Sale? sale, CustomerInvoiceAmountPaid? amountPaid)
         {
             return new CustomerInvoice()
             {
@@ -30,7 +31,8 @@ namespace API.Models.Mapper
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 Status = status,
                 StatusID = status?.StatusID,
-                Sale = sale
+                Sale = sale,
+                CustomerInvoiceAmountPaid = amountPaid
             };
         }
 
@@ -45,12 +47,13 @@ namespace API.Models.Mapper
                 InvoiceAmount = customerInvoice.InvoiceAmount,
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 InvoiceDate = customerInvoice.InvoiceDate,
-                Status = customerInvoice.Status!.StatusName
+                Status = customerInvoice.Status!.StatusName,
+                AmountPaidID = customerInvoice.CustomerInvoiceAmountPaid.CustomerInvoiceAmountPaidID
             };
         }
 
 
-        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice, Status? status, Sale? sale)
+        public static CustomerInvoice MapGet(CustomerInvoiceDTOGet customerInvoice, Status? status, Sale? sale, CustomerInvoiceAmountPaid? amountPaid)
         {
             return new CustomerInvoice()
             {
@@ -61,7 +64,8 @@ namespace API.Models.Mapper
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 Status = status,
                 StatusID = status?.StatusID,
-                Sale = sale
+                Sale = sale,
+                CustomerInvoiceAmountPaid = amountPaid,
             };
         }
     }
