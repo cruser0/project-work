@@ -80,7 +80,6 @@ namespace WinformDotNetFramework.Forms
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.OpenFormDropDown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.ShowTP.SuspendLayout();
@@ -97,7 +96,6 @@ namespace WinformDotNetFramework.Forms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.tabControl);
             this.panel1.Controls.Add(this.TS);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -624,16 +622,6 @@ namespace WinformDotNetFramework.Forms
             this.OpenFormDropDown.Size = new System.Drawing.Size(134, 20);
             this.OpenFormDropDown.Text = "Show All Open &Forms";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(602, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -718,6 +706,5 @@ namespace WinformDotNetFramework.Forms
         private ToolStripSeparator toolStripSeparator10;
         public ToolStripButton RegistryCostCreateTS;
         public ToolStripButton UserShowTS;
-        private Button button1;
     }
 }

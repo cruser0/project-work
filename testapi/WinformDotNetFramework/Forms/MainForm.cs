@@ -739,11 +739,6 @@ namespace WinformDotNetFramework.Forms
             // Attendi un breve momento per assicurare la completa chiusura
             Application.DoEvents();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            throw new Exception("???");
-        }
     }
 }
 
