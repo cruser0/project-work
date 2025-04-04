@@ -59,7 +59,7 @@ namespace API.Models.Services
             {
                 if ((bool)filter.SupplierInvoiceMakeInvoice)
                 {
-                    query = query.Where(x => x.SupplierInvoice.SupplierInvoiceCosts.All(c => c.CustomerInvoiceCostID == null));
+                    query = query.Where(x => !x.SupplierInvoice.SupplierInvoiceCosts.Any(c => c.CustomerInvoiceCostID != null));
                 }
             }
 

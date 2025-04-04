@@ -39,15 +39,27 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CuInDgv = new System.Windows.Forms.DataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SuInDgv = new System.Windows.Forms.DataGridView();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
+            this.SaveQuitButton = new System.Windows.Forms.Button();
+            this.OpenSale = new System.Windows.Forms.Button();
+            this.StatusLbl = new System.Windows.Forms.Label();
+            this.StatusCmbx = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.customerInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.SuInDgv = new System.Windows.Forms.DataGridView();
             this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceAmountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,33 +67,22 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierInvoiceSupplierDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.BolCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.RevenueCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.BkCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.SaveQuitButton = new System.Windows.Forms.Button();
-            this.OpenSale = new System.Windows.Forms.Button();
             this.NameCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
-            this.StatusLbl = new System.Windows.Forms.Label();
-            this.StatusCmbx = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
             this.panel7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -198,38 +199,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CuInDgv.TabIndex = 0;
             this.CuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellDoubleClick);
             // 
-            // customerInvoiceCodeDataGridViewTextBoxColumn
-            // 
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "CustomerInvoiceCode";
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "CustomerInvoiceCode";
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.Name = "customerInvoiceCodeDataGridViewTextBoxColumn";
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invoiceAmountDataGridViewTextBoxColumn
-            // 
-            this.invoiceAmountDataGridViewTextBoxColumn.DataPropertyName = "InvoiceAmount";
-            this.invoiceAmountDataGridViewTextBoxColumn.HeaderText = "InvoiceAmount";
-            this.invoiceAmountDataGridViewTextBoxColumn.Name = "invoiceAmountDataGridViewTextBoxColumn";
-            this.invoiceAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invoiceDateDataGridViewTextBoxColumn
-            // 
-            this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
-            this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "InvoiceDate";
-            this.invoiceDateDataGridViewTextBoxColumn.Name = "invoiceDateDataGridViewTextBoxColumn";
-            this.invoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // customerInvoiceBindingSource
-            // 
-            this.customerInvoiceBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.CustomerInvoiceDTOGet);
-            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.button2);
@@ -289,52 +258,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SuInDgv.TabIndex = 0;
             this.SuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SuInDgv_CellDoubleClick);
             // 
-            // supplierInvoiceCodeDataGridViewTextBoxColumn
-            // 
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCode";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCode";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Name = "supplierInvoiceCodeDataGridViewTextBoxColumn";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invoiceAmountDataGridViewTextBoxColumn1
-            // 
-            this.invoiceAmountDataGridViewTextBoxColumn1.DataPropertyName = "InvoiceAmount";
-            this.invoiceAmountDataGridViewTextBoxColumn1.HeaderText = "InvoiceAmount";
-            this.invoiceAmountDataGridViewTextBoxColumn1.Name = "invoiceAmountDataGridViewTextBoxColumn1";
-            this.invoiceAmountDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // invoiceDateDataGridViewTextBoxColumn1
-            // 
-            this.invoiceDateDataGridViewTextBoxColumn1.DataPropertyName = "InvoiceDate";
-            this.invoiceDateDataGridViewTextBoxColumn1.HeaderText = "InvoiceDate";
-            this.invoiceDateDataGridViewTextBoxColumn1.Name = "invoiceDateDataGridViewTextBoxColumn1";
-            this.invoiceDateDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // supplierNameDataGridViewTextBoxColumn
-            // 
-            this.supplierNameDataGridViewTextBoxColumn.DataPropertyName = "SupplierName";
-            this.supplierNameDataGridViewTextBoxColumn.HeaderText = "SupplierName";
-            this.supplierNameDataGridViewTextBoxColumn.Name = "supplierNameDataGridViewTextBoxColumn";
-            this.supplierNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // countryDataGridViewTextBoxColumn
-            // 
-            this.countryDataGridViewTextBoxColumn.DataPropertyName = "Country";
-            this.countryDataGridViewTextBoxColumn.HeaderText = "Country";
-            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
-            this.countryDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn1
-            // 
-            this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn1.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
-            this.statusDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // supplierInvoiceSupplierDTOBindingSource
-            // 
-            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.SupplierInvoiceSupplierDTO);
-            // 
             // panel8
             // 
             this.panel8.Controls.Add(this.button1);
@@ -360,6 +283,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.button3);
             this.panel6.Controls.Add(this.convertSupplierInvoicesBtn);
             this.panel6.Controls.Add(this.BolCtb);
             this.panel6.Controls.Add(this.RevenueCtb);
@@ -380,35 +304,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(744, 163);
             this.panel6.TabIndex = 51;
             // 
-            // BolCtb
+            // convertSupplierInvoicesBtn
             // 
-            this.BolCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BolCtb.Location = new System.Drawing.Point(7, 72);
-            this.BolCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.BolCtb.Name = "BolCtb";
-            this.BolCtb.Size = new System.Drawing.Size(200, 47);
-            this.BolCtb.TabIndex = 55;
-            this.BolCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
-            // 
-            // RevenueCtb
-            // 
-            this.RevenueCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RevenueCtb.Location = new System.Drawing.Point(221, 113);
-            this.RevenueCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.RevenueCtb.Name = "RevenueCtb";
-            this.RevenueCtb.Size = new System.Drawing.Size(200, 47);
-            this.RevenueCtb.TabIndex = 54;
-            this.RevenueCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
-            // 
-            // BkCtb
-            // 
-            this.BkCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BkCtb.Location = new System.Drawing.Point(11, 19);
-            this.BkCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.BkCtb.Name = "BkCtb";
-            this.BkCtb.Size = new System.Drawing.Size(200, 47);
-            this.BkCtb.TabIndex = 53;
-            this.BkCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            this.convertSupplierInvoicesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.convertSupplierInvoicesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.convertSupplierInvoicesBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.convertSupplierInvoicesBtn.Location = new System.Drawing.Point(593, 6);
+            this.convertSupplierInvoicesBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.convertSupplierInvoicesBtn.Name = "convertSupplierInvoicesBtn";
+            this.convertSupplierInvoicesBtn.Size = new System.Drawing.Size(143, 50);
+            this.convertSupplierInvoicesBtn.TabIndex = 56;
+            this.convertSupplierInvoicesBtn.Text = "Convert Supplier Invoices";
+            this.convertSupplierInvoicesBtn.UseVisualStyleBackColor = false;
+            this.convertSupplierInvoicesBtn.Click += new System.EventHandler(this.convertSupplierInvoicesBtn_Click);
             // 
             // SaveQuitButton
             // 
@@ -439,17 +347,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.OpenSale.Text = "->";
             this.OpenSale.UseVisualStyleBackColor = false;
             this.OpenSale.Click += new System.EventHandler(this.OpenSale_Click);
-            // 
-            // NameCmbxUC
-            // 
-            this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NameCmbxUC.listItemsDropCmbx = null;
-            this.NameCmbxUC.Location = new System.Drawing.Point(221, 19);
-            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
-            this.NameCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
-            this.NameCmbxUC.Name = "NameCmbxUC";
-            this.NameCmbxUC.Size = new System.Drawing.Size(200, 47);
-            this.NameCmbxUC.TabIndex = 49;
             // 
             // StatusLbl
             // 
@@ -522,19 +419,138 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
-            // convertSupplierInvoicesBtn
+            // customerInvoiceCodeDataGridViewTextBoxColumn
             // 
-            this.convertSupplierInvoicesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.convertSupplierInvoicesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.convertSupplierInvoicesBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.convertSupplierInvoicesBtn.Location = new System.Drawing.Point(597, 6);
-            this.convertSupplierInvoicesBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.convertSupplierInvoicesBtn.Name = "convertSupplierInvoicesBtn";
-            this.convertSupplierInvoicesBtn.Size = new System.Drawing.Size(143, 50);
-            this.convertSupplierInvoicesBtn.TabIndex = 56;
-            this.convertSupplierInvoicesBtn.Text = "Convert Supplier Invoices";
-            this.convertSupplierInvoicesBtn.UseVisualStyleBackColor = false;
-            this.convertSupplierInvoicesBtn.Click += new System.EventHandler(this.convertSupplierInvoicesBtn_Click);
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "CustomerInvoiceCode";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "CustomerInvoiceCode";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.Name = "customerInvoiceCodeDataGridViewTextBoxColumn";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceAmountDataGridViewTextBoxColumn
+            // 
+            this.invoiceAmountDataGridViewTextBoxColumn.DataPropertyName = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn.HeaderText = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn.Name = "invoiceAmountDataGridViewTextBoxColumn";
+            this.invoiceAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceDateDataGridViewTextBoxColumn
+            // 
+            this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn.Name = "invoiceDateDataGridViewTextBoxColumn";
+            this.invoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerInvoiceBindingSource
+            // 
+            this.customerInvoiceBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.CustomerInvoiceDTOGet);
+            // 
+            // supplierInvoiceCodeDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Name = "supplierInvoiceCodeDataGridViewTextBoxColumn";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceAmountDataGridViewTextBoxColumn1
+            // 
+            this.invoiceAmountDataGridViewTextBoxColumn1.DataPropertyName = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn1.HeaderText = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn1.Name = "invoiceAmountDataGridViewTextBoxColumn1";
+            this.invoiceAmountDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // invoiceDateDataGridViewTextBoxColumn1
+            // 
+            this.invoiceDateDataGridViewTextBoxColumn1.DataPropertyName = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn1.HeaderText = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn1.Name = "invoiceDateDataGridViewTextBoxColumn1";
+            this.invoiceDateDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // supplierNameDataGridViewTextBoxColumn
+            // 
+            this.supplierNameDataGridViewTextBoxColumn.DataPropertyName = "SupplierName";
+            this.supplierNameDataGridViewTextBoxColumn.HeaderText = "SupplierName";
+            this.supplierNameDataGridViewTextBoxColumn.Name = "supplierNameDataGridViewTextBoxColumn";
+            this.supplierNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // countryDataGridViewTextBoxColumn
+            // 
+            this.countryDataGridViewTextBoxColumn.DataPropertyName = "Country";
+            this.countryDataGridViewTextBoxColumn.HeaderText = "Country";
+            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
+            this.countryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn1
+            // 
+            this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn1.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
+            this.statusDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // supplierInvoiceSupplierDTOBindingSource
+            // 
+            this.supplierInvoiceSupplierDTOBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.SupplierInvoiceSupplierDTO);
+            // 
+            // BolCtb
+            // 
+            this.BolCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BolCtb.Location = new System.Drawing.Point(7, 72);
+            this.BolCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.BolCtb.Name = "BolCtb";
+            this.BolCtb.Size = new System.Drawing.Size(200, 47);
+            this.BolCtb.TabIndex = 55;
+            this.BolCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // RevenueCtb
+            // 
+            this.RevenueCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RevenueCtb.Location = new System.Drawing.Point(221, 113);
+            this.RevenueCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.RevenueCtb.Name = "RevenueCtb";
+            this.RevenueCtb.Size = new System.Drawing.Size(200, 47);
+            this.RevenueCtb.TabIndex = 54;
+            this.RevenueCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            // 
+            // BkCtb
+            // 
+            this.BkCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BkCtb.Location = new System.Drawing.Point(11, 19);
+            this.BkCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.BkCtb.Name = "BkCtb";
+            this.BkCtb.Size = new System.Drawing.Size(200, 47);
+            this.BkCtb.TabIndex = 53;
+            this.BkCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Default;
+            // 
+            // NameCmbxUC
+            // 
+            this.NameCmbxUC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NameCmbxUC.listItemsDropCmbx = null;
+            this.NameCmbxUC.Location = new System.Drawing.Point(221, 19);
+            this.NameCmbxUC.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
+            this.NameCmbxUC.MinimumSize = new System.Drawing.Size(200, 47);
+            this.NameCmbxUC.Name = "NameCmbxUC";
+            this.NameCmbxUC.Size = new System.Drawing.Size(200, 47);
+            this.NameCmbxUC.TabIndex = 49;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(433, 124);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(65, 25);
+            this.button3.TabIndex = 57;
+            this.button3.Text = "Refresh";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // CreateDetailsSaleForm
             // 
@@ -556,14 +572,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
             this.panel7.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -609,5 +625,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private control.CustomTextBoxUserControl RevenueCtb;
         private control.CustomTextBoxUserControl BkCtb;
         private Button convertSupplierInvoicesBtn;
+        private Button button3;
     }
 }

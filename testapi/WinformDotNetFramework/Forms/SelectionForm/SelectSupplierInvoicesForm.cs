@@ -102,7 +102,8 @@ namespace WinformDotNetFramework.Forms.SelectionForm
             if (result == null)
                 throw new Exception("Something went wrong");
 
-            return;
+            MessageBox.Show("Customer Invoice Created Successfully");
+            Close();
 
         }
 

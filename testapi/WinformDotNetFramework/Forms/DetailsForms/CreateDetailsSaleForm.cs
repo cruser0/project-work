@@ -363,5 +363,23 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             UtilityFunctions.OpenFormDetails<SelectSupplierInvoicesForm>(sender, e, sale);
         }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            List<CustomerInvoiceDTOGet> ci = (await _customerInvoiceService
+                                .GetAll(new CustomerInvoiceFilter()
+                                {
+                                    CustomerInvoiceSaleID = _saleId
+
+                                })).ToList();
+            CuInDgv.DataSource = ci;
+
+            List<SupplierInvoiceSupplierDTO> si = (await _supplierInvoiceService
+                .GetAll(new SupplierInvoiceSupplierFilter()
+                {
+                    SupplierInvoiceSaleID = _saleId
+                })).ToList();
+            SuInDgv.DataSource = si;
+        }
     }
 }
