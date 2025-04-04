@@ -1,4 +1,5 @@
 ﻿using API.Models.Services;
+using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Filters;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,28 @@ namespace API.Controllers
             var data = await _customerInvoiceAmountPaidServices.GetBySale(filter);
 
             return Ok(data);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var data = await _customerInvoiceAmountPaidServices.GetByID(id);
+
+            return Ok(data);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PayInvoice(int id, [FromBody] CustomerInvoiceAmountPaidDTO amountPaid)
+        {
+            try
+            {
+                var data = await _customerInvoiceAmountPaidServices.Pay(id, amountPaid);
+
+                return Ok(data);
+
+            }
+            catch { throw; }
+
         }
     }
 }

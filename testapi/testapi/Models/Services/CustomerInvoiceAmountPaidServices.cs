@@ -1,4 +1,5 @@
-﻿using API.Models.Mapper;
+﻿using API.Models.Exceptions;
+using API.Models.Mapper;
 using Entity_Validator;
 using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Entities;
@@ -13,7 +14,7 @@ namespace API.Models.Services
         Task<CustomerInvoiceAmountPaidDTOGet?> GetByID(int id);
         Task<CustomerInvoiceAmountPaid?> GetOnlyByID(int id);
 
-        Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, decimal amount);
+        Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, CustomerInvoiceAmountPaidDTO amountPaid);
     }
     public class CustomerInvoiceAmountPaidServices : ICustomerInvoiceAmountPaidServices
     {
@@ -61,23 +62,30 @@ namespace API.Models.Services
             return data;
         }
 
-        public async Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, decimal amount)
+        public async Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, CustomerInvoiceAmountPaidDTO amountPaid)
         {
-            var amountPaid = await _context.CustomerInvoiceAmountPaids.Where(x => x.CustomerInvoiceAmountPaidID == id).Include(x => x.CustomerInvoice).FirstOrDefaultAsync();
+            try
+            {
 
-            amountPaid.AmountPaid += amount;
+                var ap = await _context.CustomerInvoiceAmountPaids.Where(x => x.CustomerInvoiceAmountPaidID == id).Include(x => x.CustomerInvoice).FirstOrDefaultAsync();
 
-            CustomerInvoiceAmountPaidDTOGet ap = CustomerInvoiceAmountPaidMapper.MapGet(amountPaid);
+                ap.AmountPaid += amountPaid.AmountPaid;
 
-            var result = ValidatorEntity.Validate(ap);
+                CustomerInvoiceAmountPaidDTOGet newAmountPaid = CustomerInvoiceAmountPaidMapper.MapGet(ap);
 
-            if (result.Count > 0)
-                throw new Exception(result[0].ErrorMessage);
+                var results = ValidatorEntity.Validate(newAmountPaid);
+                if (results.Count > 0)
+                    throw new ValidateException(string.Join('\n', results.First().ErrorMessage));
 
-            _context.CustomerInvoiceAmountPaids.Update(amountPaid);
-            await _context.SaveChangesAsync();
+                _context.CustomerInvoiceAmountPaids.Update(ap);
+                await _context.SaveChangesAsync();
 
-            return ap;
+                return newAmountPaid;
+            }
+            catch
+            {
+                throw;
+            }
 
         }
     }

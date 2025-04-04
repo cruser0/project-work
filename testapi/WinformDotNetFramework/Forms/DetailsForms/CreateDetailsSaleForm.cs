@@ -391,7 +391,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 PaidCustomerSaleID = _saleId
             };
 
-            decimal amountPaid = (decimal)(await _customerInvoiceAmountPaidService.GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
+            decimal amountPaid = (decimal)(await _customerInvoiceAmountPaidService
+                .GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
 
             PaidLabel.Text = $"{amountPaid}€/{sale.TotalRevenue}€";
         }
