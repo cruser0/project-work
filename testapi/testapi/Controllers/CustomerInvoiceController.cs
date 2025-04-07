@@ -31,7 +31,7 @@ namespace API.Controllers
 
 
         // GET: api/<CustomerInvoiceController>
-        [Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
+        //[Authorize(Roles = "Admin,CustomerInvoiceRead,CustomerInvoiceWrite,CustomerInvoiceAdmin,CustomerInvoiceCostWrite,CustomerInvoiceCostAdmin")]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] CustomerInvoiceFilter filter)
         {

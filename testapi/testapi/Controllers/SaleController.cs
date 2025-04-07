@@ -23,7 +23,7 @@ namespace API.Controllers
             _statusService = statusService;
         }
         // GET: api/<SaleController>
-        [Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
+        //[Authorize(Roles = "Admin,SaleRead,SaleWrite,SaleAdmin")]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] SaleCustomerFilter filter)
         {

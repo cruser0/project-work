@@ -1,0 +1,40 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+    .card:hover {
+        background-color: #eef2f7;
+        transform: scale(1.01);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        color: #333;
+    }
+
+.invoice-card {
+    background-color: #e8f0fe;
+    padding: 12px;
+    margin-left: 20px;
+    border-left: 4px solid #4285f4;
+    border-radius: 8px;
+}
