@@ -406,17 +406,22 @@ namespace WinformDotNetFramework.Forms.DetailsForms
 
         private async void CuInDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
+
             DataGridView dgv = (DataGridView)sender;
 
-            if (dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
-            {
-                CustomerInvoiceDTOGet ci = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
+            if (dgv.Columns["PayColumn"].Index != e.ColumnIndex)
+                return;
 
-                PayInvoiceDialog payInvoice = new PayInvoiceDialog(ci);
-                if (payInvoice.ShowDialog() == DialogResult.OK)
-                    RefreshBtn.PerformClick();
+            CustomerInvoiceDTOGet ci = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
-            }
+            if (ci.Status == "Paid")
+                return;
+
+            PayInvoiceDialog payInvoice = new PayInvoiceDialog(ci);
+            if (payInvoice.ShowDialog() == DialogResult.OK)
+                RefreshBtn.PerformClick();
 
         }
     }

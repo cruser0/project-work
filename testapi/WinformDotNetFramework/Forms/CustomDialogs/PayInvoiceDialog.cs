@@ -36,13 +36,14 @@ namespace WinformDotNetFramework.Forms.CustomDialogs
             InvoiceCodeBtc.PropTxt.Text = invoice.CustomerInvoiceCode;
 
             InvoiceAmountBtc.SetPropName("MaximumAmount");
-            InvoiceAmountBtc.PropTxt.Text = invoice.InvoiceAmount.ToString();
+            InvoiceAmountBtc.PropTxt.Text = ((decimal)invoice.InvoiceAmount).ToString("N2");
 
             AlreadyPaidBtc.SetPropName("AlreadyPaid");
-            AlreadyPaidBtc.PropTxt.Text = alreadyPaid.AmountPaid.ToString();
+            AlreadyPaidBtc.PropTxt.Text = ((decimal)alreadyPaid.AmountPaid).ToString("N2");
 
             AmountToPayBtc.SetPropName("AmountToPay");
-            AmountToPayBtc.PropTxt.Text = (invoice.InvoiceAmount - alreadyPaid.AmountPaid).ToString();
+            AmountToPayBtc.PropTxt.Text = ((decimal)(invoice.InvoiceAmount - alreadyPaid.AmountPaid)).ToString("N2");
+
         }
 
         private async void PayBtn_Click(object sender, EventArgs e)
