@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinformDotNetFramework.Forms.CustomDialogs;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Forms.SelectionForm;
 using WinformDotNetFramework.Services;
@@ -398,7 +399,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             decimal amountPaid = (decimal)(await _customerInvoiceAmountPaidService
                 .GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
 
-            PaidLabel.Text = $"{amountPaid}€/{sale.TotalRevenue}€";
+            PaidLabel.Text = $"{amountPaid:N2}€/{(decimal)sale.TotalRevenue:N2}€";
         }
 
 
@@ -407,22 +408,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             DataGridView dgv = (DataGridView)sender;
 
-            CustomerInvoiceDTOGet ci = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
+            if (dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
+            {
+                CustomerInvoiceDTOGet ci = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
-            CustomerInvoiceAmountPaidDTOGet amountPaid = new CustomerInvoiceAmountPaidDTOGet()
-            {
-                CustomerInvoiceID = ci.CustomerInvoiceId,
-                AmountPaid = 10000,
-                MaximumAmount = ci.InvoiceAmount
-            };
-            try
-            {
-                await _customerInvoiceAmountPaidService.PayInvoice((int)ci.CustomerInvoiceId, amountPaid);
-                RefreshBtn.PerformClick();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                PayInvoiceDialog payInvoice = new PayInvoiceDialog(ci);
+                if (payInvoice.ShowDialog() == DialogResult.OK)
+                    RefreshBtn.PerformClick();
+
             }
 
         }

@@ -42,6 +42,12 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
+        public async Task<CustomerInvoiceAmountPaidDTOGet> GetById(int id)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnItem = GetItem<CustomerInvoiceAmountPaidDTOGet>(client, $"customer-invoice-amount/{id}", "Customer Invoice Amount");
+            return await returnItem;
+        }
 
     }
 }
