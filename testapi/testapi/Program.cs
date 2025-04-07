@@ -21,6 +21,7 @@ builder.Services.AddDbContext<Progetto_FormativoContext>(options =>
 
 builder.Services.AddTransient<GlobalExceptionHandler>();
 builder.Services.AddScoped<ICustomerService, CustomerServices>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<ICostRegistryService, CostRegistryService>();
@@ -91,7 +92,9 @@ builder.Services.AddSwaggerGen(c =>
 
 
 var app = builder.Build();
-
+app.UseDefaultFiles();
+app.UseStaticFiles();
+//app.MapControllers();
 static void ApplyMigration<TDbContext>(IServiceScope services)
     where TDbContext : DbContext
 {
