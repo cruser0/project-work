@@ -4,9 +4,9 @@ namespace Entity_Validator.Entity.DTO
 {
     public class CustomerInvoiceAmountPaidDTO
     {
-        [AmountPaidRange("AmountToPay")]
+        [AmountPaidRange("MaximumAmount")]
         public decimal? AmountPaid { get; set; }
-        public decimal? AmountToPay { get; set; }
+        public decimal? MaximumAmount { get; set; }
         public int? CustomerInvoiceID { get; set; }
     }
 

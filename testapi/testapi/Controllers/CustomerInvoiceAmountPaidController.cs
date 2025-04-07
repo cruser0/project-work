@@ -32,7 +32,7 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PayInvoice(int id, [FromBody] CustomerInvoiceAmountPaidDTO amountPaid)
+        public async Task<IActionResult> PayInvoice(int id, [FromBody] CustomerInvoiceAmountPaidDTOGet amountPaid)
         {
             try
             {

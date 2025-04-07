@@ -11,7 +11,7 @@ namespace API.Models.Mapper
             {
                 CustomerInvoiceID = customerInvoiceAmountPaid.CustomerInvoiceID,
                 AmountPaid = customerInvoiceAmountPaid.AmountPaid,
-                AmountToPay = customerInvoiceAmountPaid.CustomerInvoice.InvoiceAmount
+                MaximumAmount = customerInvoiceAmountPaid.CustomerInvoice.InvoiceAmount
             };
         }
         public static CustomerInvoiceAmountPaid Map(CustomerInvoiceAmountPaidDTO customerInvoiceAmountPaid, CustomerInvoice customerInvoice)
@@ -31,7 +31,7 @@ namespace API.Models.Mapper
                 CustomerInvoiceAmountPaidID = customerInvoiceAmountPaid.CustomerInvoiceID,
                 CustomerInvoiceID = customerInvoiceAmountPaid.CustomerInvoiceID,
                 AmountPaid = customerInvoiceAmountPaid.AmountPaid,
-                AmountToPay = customerInvoiceAmountPaid.CustomerInvoice.InvoiceAmount
+                MaximumAmount = customerInvoiceAmountPaid.CustomerInvoice.InvoiceAmount
             };
         }
         public static CustomerInvoiceAmountPaid MapGet(CustomerInvoiceAmountPaidDTOGet customerInvoiceAmountPaid, CustomerInvoice customerInvoice)

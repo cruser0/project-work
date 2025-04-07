@@ -14,7 +14,7 @@ namespace API.Models.Services
         Task<CustomerInvoiceAmountPaidDTOGet?> GetByID(int id);
         Task<CustomerInvoiceAmountPaid?> GetOnlyByID(int id);
 
-        Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, CustomerInvoiceAmountPaidDTO amountPaid);
+        Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, CustomerInvoiceAmountPaidDTOGet amountPaid);
     }
     public class CustomerInvoiceAmountPaidServices : ICustomerInvoiceAmountPaidServices
     {
@@ -62,12 +62,14 @@ namespace API.Models.Services
             return data;
         }
 
-        public async Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, CustomerInvoiceAmountPaidDTO amountPaid)
+        public async Task<CustomerInvoiceAmountPaidDTOGet> Pay(int id, CustomerInvoiceAmountPaidDTOGet amountPaid)
         {
             try
             {
 
-                var ap = await _context.CustomerInvoiceAmountPaids.Where(x => x.CustomerInvoiceAmountPaidID == id).Include(x => x.CustomerInvoice).FirstOrDefaultAsync();
+                var ap = await _context.CustomerInvoiceAmountPaids
+                    .Where(x => x.CustomerInvoiceAmountPaidID == id)
+                    .Include(x => x.CustomerInvoice).FirstOrDefaultAsync();
 
                 ap.AmountPaid += amountPaid.AmountPaid;
 
@@ -76,6 +78,11 @@ namespace API.Models.Services
                 var results = ValidatorEntity.Validate(newAmountPaid);
                 if (results.Count > 0)
                     throw new ValidateException(string.Join('\n', results.First().ErrorMessage));
+
+                if (ap.AmountPaid == ap.CustomerInvoice.InvoiceAmount)
+                {
+                    ap.CustomerInvoice.StatusID = 5; //paid
+                }
 
                 _context.CustomerInvoiceAmountPaids.Update(ap);
                 await _context.SaveChangesAsync();

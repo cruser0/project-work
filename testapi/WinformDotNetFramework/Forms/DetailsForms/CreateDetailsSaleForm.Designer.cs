@@ -43,8 +43,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PayColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PaidLabel = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SuInDgv = new System.Windows.Forms.DataGridView();
@@ -58,7 +61,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel8 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.RefreshBtn = new System.Windows.Forms.Button();
             this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
             this.BolCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.RevenueCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
@@ -72,8 +75,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.PaidLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -191,7 +192,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.customerInvoiceCodeDataGridViewTextBoxColumn,
             this.invoiceAmountDataGridViewTextBoxColumn,
             this.invoiceDateDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn});
+            this.statusDataGridViewTextBoxColumn,
+            this.PayColumn});
             this.CuInDgv.DataSource = this.customerInvoiceBindingSource;
             this.CuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CuInDgv.Location = new System.Drawing.Point(3, 44);
@@ -200,6 +202,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CuInDgv.Size = new System.Drawing.Size(360, 205);
             this.CuInDgv.TabIndex = 0;
             this.CuInDgv.DataSourceChanged += new System.EventHandler(this.CuInDgv_DataSourceChanged);
+            this.CuInDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellContentClick);
             this.CuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellDoubleClick);
             // 
             // customerInvoiceCodeDataGridViewTextBoxColumn
@@ -230,6 +233,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
             this.statusDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // PayColumn
+            // 
+            this.PayColumn.HeaderText = "Pay";
+            this.PayColumn.Name = "PayColumn";
+            this.PayColumn.ReadOnly = true;
+            this.PayColumn.Text = "Pay";
+            this.PayColumn.UseColumnTextForButtonValue = true;
+            // 
             // customerInvoiceBindingSource
             // 
             this.customerInvoiceBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.CustomerInvoiceDTOGet);
@@ -244,6 +255,26 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(360, 25);
             this.panel7.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Location = new System.Drawing.Point(262, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 15);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Total Paid:";
+            // 
+            // PaidLabel
+            // 
+            this.PaidLabel.AutoSize = true;
+            this.PaidLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PaidLabel.Location = new System.Drawing.Point(323, 0);
+            this.PaidLabel.Name = "PaidLabel";
+            this.PaidLabel.Size = new System.Drawing.Size(37, 15);
+            this.PaidLabel.TabIndex = 18;
+            this.PaidLabel.Text = "12345";
             // 
             // button2
             // 
@@ -366,7 +397,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.button3);
+            this.panel6.Controls.Add(this.RefreshBtn);
             this.panel6.Controls.Add(this.convertSupplierInvoicesBtn);
             this.panel6.Controls.Add(this.BolCtb);
             this.panel6.Controls.Add(this.RevenueCtb);
@@ -387,19 +418,19 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(744, 163);
             this.panel6.TabIndex = 51;
             // 
-            // button3
+            // RefreshBtn
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(433, 124);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 25);
-            this.button3.TabIndex = 57;
-            this.button3.Text = "Refresh";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.RefreshBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.RefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshBtn.Location = new System.Drawing.Point(433, 124);
+            this.RefreshBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Size = new System.Drawing.Size(65, 25);
+            this.RefreshBtn.TabIndex = 57;
+            this.RefreshBtn.Text = "Refresh";
+            this.RefreshBtn.UseVisualStyleBackColor = false;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // convertSupplierInvoicesBtn
             // 
@@ -557,26 +588,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
-            // PaidLabel
-            // 
-            this.PaidLabel.AutoSize = true;
-            this.PaidLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PaidLabel.Location = new System.Drawing.Point(299, 0);
-            this.PaidLabel.Name = "PaidLabel";
-            this.PaidLabel.Size = new System.Drawing.Size(61, 15);
-            this.PaidLabel.TabIndex = 18;
-            this.PaidLabel.Text = "Total Paid:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Location = new System.Drawing.Point(238, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 15);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Total Paid:";
-            // 
             // CreateDetailsSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -627,10 +638,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox groupBox1;
         private DataGridView CuInDgv;
-        private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private BindingSource customerInvoiceBindingSource;
         private GroupBox groupBox2;
         private DataGridView SuInDgv;
@@ -651,8 +658,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private control.CustomTextBoxUserControl RevenueCtb;
         private control.CustomTextBoxUserControl BkCtb;
         private Button convertSupplierInvoicesBtn;
-        private Button button3;
+        private Button RefreshBtn;
         private Label label2;
         private Label PaidLabel;
+        private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private DataGridViewButtonColumn PayColumn;
     }
 }

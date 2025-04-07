@@ -206,6 +206,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 if (e.RowIndex == -1)
                     return;
+
+                if (e.ColumnIndex == dgv.Columns["PayColumn"].Index)
+                    return;
+
                 CustomerInvoiceDTOGet customerInvoice = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
                 UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, (int)customerInvoice.CustomerInvoiceId);
@@ -366,7 +370,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             UtilityFunctions.OpenFormDetails<SelectSupplierInvoicesForm>(sender, e, sale);
         }
 
-        private async void button3_Click(object sender, EventArgs e)
+        private async void RefreshBtn_Click(object sender, EventArgs e)
         {
             List<CustomerInvoiceDTOGet> ci = (await _customerInvoiceService
                                 .GetAll(new CustomerInvoiceFilter()
@@ -395,6 +399,32 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 .GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
 
             PaidLabel.Text = $"{amountPaid}€/{sale.TotalRevenue}€";
+        }
+
+
+
+        private async void CuInDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+
+            CustomerInvoiceDTOGet ci = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
+
+            CustomerInvoiceAmountPaidDTOGet amountPaid = new CustomerInvoiceAmountPaidDTOGet()
+            {
+                CustomerInvoiceID = ci.CustomerInvoiceId,
+                AmountPaid = 10000,
+                MaximumAmount = ci.InvoiceAmount
+            };
+            try
+            {
+                await _customerInvoiceAmountPaidService.PayInvoice((int)ci.CustomerInvoiceId, amountPaid);
+                RefreshBtn.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

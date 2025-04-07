@@ -35,6 +35,13 @@ namespace WinformDotNetFramework.Services
             return returnResult;
         }
 
+        public async Task<CustomerInvoiceAmountPaidDTOGet> PayInvoice(int id, CustomerInvoiceAmountPaidDTOGet entity)
+        {
+            ClientAPI client = new ClientAPI(UserAccessInfo.Token);
+            var returnResult = await PutItem(client, $"customer-invoice-amount/{id}", entity, "Customer Invoice Amount");
+            return returnResult;
+        }
+
 
     }
 }
