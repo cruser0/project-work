@@ -40,5 +40,11 @@ namespace Entity_Validator.Entity.DTO
     {
         public int? CustomerInvoiceId { get; set; }
     }
+    public class CustomerInvoiceTotalAmountPaidDTO: CustomerInvoiceDTOGet
+    {
+        [AmountPaidRange("MaximumAmount")]
+        public decimal? AmountPaid { get; set; }
+        public decimal? MaximumAmount { get; set; }
+    }
 }
 

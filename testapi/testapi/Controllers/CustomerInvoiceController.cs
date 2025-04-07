@@ -27,7 +27,16 @@ namespace API.Controllers
             _saleService = saleServ;
             _customerInvoiceAmountPaidService = ciaps;
         }
-
+        [HttpGet("with-total-paid")]
+        public async Task<IActionResult> GetWithInvoice([FromQuery] CustomerInvoiceFilter filter)
+        {
+            var result = await _customerInvoiceService.GetAllCustomerInvoicesWithTotalPaid(filter);
+            if (result.Any())
+            {
+                return Ok(result);
+            }
+            else return Ok(new List<CustomerInvoiceTotalAmountPaidDTO>());
+        }
 
 
         // GET: api/<CustomerInvoiceController>
@@ -59,7 +68,7 @@ namespace API.Controllers
 
 
         // GET api/<CustomerInvoiceController>/5
-        [Authorize(Roles = "Admin,CustomerInvoiceRead")]
+        //[Authorize(Roles = "Admin,CustomerInvoiceRead")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

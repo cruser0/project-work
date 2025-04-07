@@ -1,3 +1,4 @@
+using API;
 using API.Models;
 using API.Models.Middleware;
 using API.Models.Services;
@@ -90,10 +91,16 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
+if (builder.Configuration.GetValue<bool>("HMailServer:Initialize"))
+{
+    HMailInitializer.Initialize();
+}
 
 var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
+
+
 //app.MapControllers();
 static void ApplyMigration<TDbContext>(IServiceScope services)
     where TDbContext : DbContext

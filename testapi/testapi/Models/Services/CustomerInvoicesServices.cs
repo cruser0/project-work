@@ -10,6 +10,7 @@ namespace API.Models.Services
     public interface ICustomerInvoicesService
     {
         Task<ICollection<CustomerInvoiceDTOGet>> GetAllCustomerInvoices(CustomerInvoiceFilter filter);
+        Task<ICollection<CustomerInvoiceTotalAmountPaidDTO>> GetAllCustomerInvoicesWithTotalPaid(CustomerInvoiceFilter filter);
         Task<CustomerInvoiceDTOGet> GetCustomerInvoiceById(int id);
         Task<CustomerInvoice?> GetOnlyCustomerInvoiceById(int id);
         Task<CustomerInvoiceDTOGet> CreateCustomerInvoice(CustomerInvoice customer);
@@ -38,6 +39,32 @@ namespace API.Models.Services
         public async Task<ICollection<CustomerInvoiceDTOGet>> GetAllCustomerInvoices(CustomerInvoiceFilter filter)
         {
             return await ApplyFilter(filter).ToListAsync();
+        }
+        public async Task<ICollection<CustomerInvoiceTotalAmountPaidDTO>> GetAllCustomerInvoicesWithTotalPaid(CustomerInvoiceFilter filter)
+        {
+            var query = _context.CustomerInvoices
+                .Include(x => x.Status)
+                .Include(x => x.Sale)
+                .Include(x => x.CustomerInvoiceAmountPaid)
+                .AsQueryable();
+
+            query = query.Where(x => x.Sale.BoLnumber == filter.CustomerInvoiceSaleBoL)
+                         .Where(x => x.Sale.BookingNumber == filter.CustomerInvoiceSaleBk);
+
+            var result = await query.Select(x => new CustomerInvoiceTotalAmountPaidDTO
+            {
+                CustomerInvoiceId = x.CustomerInvoiceID,
+                CustomerInvoiceCode = x.CustomerInvoiceCode,
+                SaleID = x.SaleID,
+                AmountPaidID = x.CustomerInvoiceAmountPaid.CustomerInvoiceAmountPaidID,
+                SaleBookingNumber = x.Sale.BookingNumber,
+                SaleBoL = x.Sale.BoLnumber,
+                InvoiceAmount = x.InvoiceAmount,
+                InvoiceDate = x.InvoiceDate,
+                Status = x.Status.StatusName,
+                AmountPaid = x.CustomerInvoiceAmountPaid.AmountPaid,  
+            }).ToListAsync();
+            return result;
         }
 
         public async Task<int> CountCustomerInvoices(CustomerInvoiceFilter filter)
