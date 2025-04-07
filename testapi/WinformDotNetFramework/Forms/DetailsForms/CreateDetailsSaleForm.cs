@@ -18,6 +18,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         CustomerInvoiceService _customerInvoiceService;
         CustomerService _customerService;
         SupplierInvoiceService _supplierInvoiceService;
+        CustomerInvoiceAmountPaidService _customerInvoiceAmountPaidService;
         int _id = -1;
         int _saleId;
 
@@ -37,6 +38,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             _saleService = new SaleService();
             _customerInvoiceService = new CustomerInvoiceService();
             _supplierInvoiceService = new SupplierInvoiceService();
+            _customerInvoiceAmountPaidService = new CustomerInvoiceAmountPaidService();
             _customerService = new CustomerService();
             InitializeComponent();
             StatusCmbx.SelectedIndex = 0;
@@ -204,6 +206,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 if (e.RowIndex == -1)
                     return;
+
+                if (e.ColumnIndex == dgv.Columns["PayColumn"].Index)
+                    return;
+
                 CustomerInvoiceDTOGet customerInvoice = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
                 UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, (int)customerInvoice.CustomerInvoiceId);
@@ -362,6 +368,63 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void convertSupplierInvoicesBtn_Click(object sender, EventArgs e)
         {
             UtilityFunctions.OpenFormDetails<SelectSupplierInvoicesForm>(sender, e, sale);
+        }
+
+        private async void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            List<CustomerInvoiceDTOGet> ci = (await _customerInvoiceService
+                                .GetAll(new CustomerInvoiceFilter()
+                                {
+                                    CustomerInvoiceSaleID = _saleId
+
+                                })).ToList();
+            CuInDgv.DataSource = ci;
+
+            List<SupplierInvoiceSupplierDTO> si = (await _supplierInvoiceService
+                .GetAll(new SupplierInvoiceSupplierFilter()
+                {
+                    SupplierInvoiceSaleID = _saleId
+                })).ToList();
+            SuInDgv.DataSource = si;
+        }
+
+        private async void CuInDgv_DataSourceChanged(object sender, EventArgs e)
+        {
+            CustomerInvoiceAmountPaidFilter filter = new CustomerInvoiceAmountPaidFilter()
+            {
+                PaidCustomerSaleID = _saleId
+            };
+
+            decimal amountPaid = (decimal)(await _customerInvoiceAmountPaidService
+                .GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
+
+            PaidLabel.Text = $"{amountPaid}€/{sale.TotalRevenue}€";
+        }
+
+
+
+        private async void CuInDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+
+            CustomerInvoiceDTOGet ci = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
+
+            CustomerInvoiceAmountPaidDTOGet amountPaid = new CustomerInvoiceAmountPaidDTOGet()
+            {
+                CustomerInvoiceID = ci.CustomerInvoiceId,
+                AmountPaid = 10000,
+                MaximumAmount = ci.InvoiceAmount
+            };
+            try
+            {
+                await _customerInvoiceAmountPaidService.PayInvoice((int)ci.CustomerInvoiceId, amountPaid);
+                RefreshBtn.PerformClick();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

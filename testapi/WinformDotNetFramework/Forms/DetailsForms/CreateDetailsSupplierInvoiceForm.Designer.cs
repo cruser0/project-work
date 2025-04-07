@@ -41,13 +41,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5 = new System.Windows.Forms.Panel();
             this.SupplierInvoiceCostGrbBX = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.costRegistryCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierInvoiceIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierInvoiceCostBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.InvoiceCodeCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
@@ -63,6 +56,14 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.BKCmbxUC = new WinformDotNetFramework.Forms.control.DropDownMenuAutoCompleteUserControl();
             this.label2 = new System.Windows.Forms.Label();
+            this.costRegistryCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5.SuspendLayout();
             this.SupplierInvoiceCostGrbBX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -179,6 +180,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.nameDataGridViewTextBoxColumn,
             this.quantityDataGridViewTextBoxColumn,
             this.costDataGridViewTextBoxColumn,
+            this.TotalCost,
             this.supplierInvoiceCostsIdDataGridViewTextBoxColumn,
             this.supplierInvoiceIdDataGridViewTextBoxColumn,
             this.supplierInvoiceCodeDataGridViewTextBoxColumn});
@@ -190,58 +192,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.dataGridView1.Size = new System.Drawing.Size(744, 221);
             this.dataGridView1.TabIndex = 61;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // costRegistryCodeDataGridViewTextBoxColumn
-            // 
-            this.costRegistryCodeDataGridViewTextBoxColumn.DataPropertyName = "CostRegistryCode";
-            this.costRegistryCodeDataGridViewTextBoxColumn.HeaderText = "CostRegistryCode";
-            this.costRegistryCodeDataGridViewTextBoxColumn.Name = "costRegistryCodeDataGridViewTextBoxColumn";
-            this.costRegistryCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // costDataGridViewTextBoxColumn
-            // 
-            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
-            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
-            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
-            this.costDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // supplierInvoiceCostsIdDataGridViewTextBoxColumn
-            // 
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCostsId";
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCostsId";
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Name = "supplierInvoiceCostsIdDataGridViewTextBoxColumn";
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // supplierInvoiceIdDataGridViewTextBoxColumn
-            // 
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceId";
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceId";
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.Name = "supplierInvoiceIdDataGridViewTextBoxColumn";
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.supplierInvoiceIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // supplierInvoiceCodeDataGridViewTextBoxColumn
-            // 
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCode";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCode";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Name = "supplierInvoiceCodeDataGridViewTextBoxColumn";
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Visible = false;
             // 
             // supplierInvoiceCostBindingSource
             // 
@@ -437,6 +387,65 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label2.TabIndex = 52;
             this.label2.Text = "Sale Bill Of Lading*";
             // 
+            // costRegistryCodeDataGridViewTextBoxColumn
+            // 
+            this.costRegistryCodeDataGridViewTextBoxColumn.DataPropertyName = "CostRegistryCode";
+            this.costRegistryCodeDataGridViewTextBoxColumn.HeaderText = "CostRegistryCode";
+            this.costRegistryCodeDataGridViewTextBoxColumn.Name = "costRegistryCodeDataGridViewTextBoxColumn";
+            this.costRegistryCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // TotalCost
+            // 
+            this.TotalCost.DataPropertyName = "TotalCost";
+            this.TotalCost.HeaderText = "TotalCost";
+            this.TotalCost.Name = "TotalCost";
+            this.TotalCost.ReadOnly = true;
+            // 
+            // supplierInvoiceCostsIdDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCostsId";
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCostsId";
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Name = "supplierInvoiceCostsIdDataGridViewTextBoxColumn";
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.supplierInvoiceCostsIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // supplierInvoiceIdDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceId";
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceId";
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.Name = "supplierInvoiceIdDataGridViewTextBoxColumn";
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.supplierInvoiceIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // supplierInvoiceCodeDataGridViewTextBoxColumn
+            // 
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "SupplierInvoiceCode";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Name = "supplierInvoiceCodeDataGridViewTextBoxColumn";
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.supplierInvoiceCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
             // CreateDetailsSupplierInvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,13 +490,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Panel panel6;
         private Button button1;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn costRegistryCodeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn supplierInvoiceCostsIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn supplierInvoiceIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn supplierInvoiceCodeDataGridViewTextBoxColumn;
         private BindingSource supplierInvoiceCostBindingSource;
         private Button button2;
         private Button OpenSale;
@@ -495,5 +497,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Button FlushCreateBtn;
         private Button SaveQuitBtn;
         private control.CustomTextBoxUserControl InvoiceCodeCtb;
+        private DataGridViewTextBoxColumn costRegistryCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn TotalCost;
+        private DataGridViewTextBoxColumn supplierInvoiceCostsIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn supplierInvoiceIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn supplierInvoiceCodeDataGridViewTextBoxColumn;
     }
 }

@@ -19,11 +19,13 @@ namespace API.Controllers
         private readonly ICustomerInvoicesService _customerInvoiceService;
         private readonly ISalesService _saleService;
         private readonly IStatusService _statusService;
-        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService, IStatusService ss, ISalesService saleServ)
+        private readonly ICustomerInvoiceAmountPaidServices _customerInvoiceAmountPaidService;
+        public CustomerInvoiceController(ICustomerInvoicesService customerInvoiceService, IStatusService ss, ISalesService saleServ, ICustomerInvoiceAmountPaidServices ciaps)
         {
             _customerInvoiceService = customerInvoiceService;
             _statusService = ss;
             _saleService = saleServ;
+            _customerInvoiceAmountPaidService = ciaps;
         }
 
 
@@ -84,7 +86,8 @@ namespace API.Controllers
 
             var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                     await _statusService.GetStatusByName(customerInvoice.Status),
-                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));
+                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!),
+                                                                                                    await _customerInvoiceAmountPaidService.GetOnlyByID((int)customerInvoice.AmountPaidID!)));
             if (data == null)
                 throw new NotFoundException("Customer Invoices not found!");
             return Ok(data);
@@ -104,7 +107,8 @@ namespace API.Controllers
 
             var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                    await _statusService.GetStatusByName(customerInvoice.Status),
-                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)));
+                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!),
+                                                                                                    await _customerInvoiceAmountPaidService.GetOnlyByID((int)customerInvoice.AmountPaidID!)));
             if (data == null)
                 if (data == null)
                     throw new NotFoundException("Customer Invoices not found!");
@@ -135,9 +139,6 @@ namespace API.Controllers
             return Ok(data);
         }
 
-
-
-
         [Authorize(Roles = "Admin,CustomerInvoiceAdmin")]
         [HttpPut("mass-update")]
         public async Task<IActionResult> MassUpdate([FromBody] List<CustomerInvoiceDTOGet> newCustomerInvoices)
@@ -150,6 +151,16 @@ namespace API.Controllers
         public async Task<ActionResult<CustomerInvoiceSummary>> GetCustomerInvoiceSummary(int CustomerID)
         {
             var data = await _customerInvoiceService.GetCustomerInvoiceSummary(CustomerID);
+            return Ok(data);
+        }
+
+        [HttpPost("make-invoice")]
+        public async Task<IActionResult> MakeInvoiceFromSupplier([FromBody] MakeCustomerInvoiceDTO MakeCustomerInvoiceDTO)
+        {
+            var data = await _customerInvoiceService.MakeInvoiceFromSupplier(MakeCustomerInvoiceDTO);
+            if (data == null)
+                throw new Exception("Something went wrong");
+
             return Ok(data);
         }
     }

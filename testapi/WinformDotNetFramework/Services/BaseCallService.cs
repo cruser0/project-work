@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace WinformDotNetFramework.Services
@@ -39,6 +38,13 @@ namespace WinformDotNetFramework.Services
             return response;
         }
 
+        protected async Task<HttpResponseMessage> PostMakeResponse<T>(ClientAPI client, string uri, object entity)
+        {
+            var returnResult = SerializeEntity(entity);
+            var response = await client.GetClient().PostAsync(client.GetBaseUri() + uri, returnResult);
+            return response;
+        }
+
         //makes a post call to the api
         protected async Task<HttpResponseMessage> PostResponse<T>(ClientAPI client, string uri, T entity)
         {
@@ -51,9 +57,9 @@ namespace WinformDotNetFramework.Services
             HttpResponseMessage response = await client.GetClient().PostAsync(client.GetBaseUri() + uri, null);
             return response;
         }
-        
-        
-        
+
+
+
         protected async Task<string> StatusOKStringReturn(HttpResponseMessage response)
         {
             var json = response.Content.ReadAsStringAsync();
@@ -155,8 +161,8 @@ namespace WinformDotNetFramework.Services
 
                 return await item;
             }
-            await ExceptionHandler(response,error);
-            return default; 
+            await ExceptionHandler(response, error);
+            return default;
         }
         //get the number of items from the getAll
         protected async Task<int> GetCount(ClientAPI client, string uri, string queryString)
@@ -173,10 +179,20 @@ namespace WinformDotNetFramework.Services
         }
 
 
+        protected async Task<T> PostMakeItem<T>(ClientAPI client, string uri, object entity, string error)
+        {
+            HttpResponseMessage response = await PostMakeResponse<T>(client, uri, entity);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStreamAsync();
+                var item = JsonSerializer.DeserializeAsync<T>(json,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-
-
-
+                return await item;
+            }
+            await ExceptionHandler(response, error);
+            return default;
+        }
 
         //Post an item
         protected async Task<T> PostItem<T>(ClientAPI client, string uri, T entity, string error)
@@ -226,8 +242,8 @@ namespace WinformDotNetFramework.Services
                 UserAccessInfo.RefreshUserID = items.RefreshUserID;
                 return items;
             }
-            await ExceptionHandler(response,error);
-            return default; 
+            await ExceptionHandler(response, error);
+            return default;
         }
         //Post for Refersh Token
         protected async Task PostRefreshToken(ClientAPI client, string uri, string error)
@@ -245,7 +261,7 @@ namespace WinformDotNetFramework.Services
                 UserAccessInfo.Role = items.Role;
                 return;
             }
-            await ExceptionHandler(response,error);
+            await ExceptionHandler(response, error);
         }
 
 
@@ -289,7 +305,7 @@ namespace WinformDotNetFramework.Services
                 return json;
             }
             await ExceptionHandler(response, "Mass Update Error");
-            return default; 
+            return default;
         }
 
 
@@ -343,7 +359,7 @@ namespace WinformDotNetFramework.Services
 
 
 
-        private async Task ExceptionHandler(HttpResponseMessage response,string error)
+        private async Task ExceptionHandler(HttpResponseMessage response, string error)
         {
             var errorJson = await response.Content.ReadAsStringAsync();
             var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(errorJson,

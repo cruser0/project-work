@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entity_Validator.CustomAttributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entity_Validator.Entity.DTO
 {
@@ -26,6 +27,8 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost", true)]
         [MaxLength(50, ErrorMessage = "Must be at most {1} characters.")]
         public string CustomerInvoiceCode { get; set; }
+
+        public decimal? TotalCost { get; set; }
 
         public bool IsPost { get; set; }
 

@@ -10,7 +10,6 @@ namespace API.Models.Mapper
         {
             return new SupplierInvoiceDTO()
             {
-
                 SaleId = supplierInvoice.SaleID,
                 SaleBoL = supplierInvoice.Sale.BoLnumber,
                 SaleBookingNumber = supplierInvoice.Sale.BookingNumber,
@@ -19,7 +18,6 @@ namespace API.Models.Mapper
                 SupplierInvoiceCode = supplierInvoice.SupplierInvoiceCode,
                 InvoiceDate = supplierInvoice.InvoiceDate,
                 Status = supplierInvoice.Status!.StatusName
-
             };
         }
         public static SupplierInvoice Map(SupplierInvoiceDTO supplierInvoice, Status? status, Sale? sale)

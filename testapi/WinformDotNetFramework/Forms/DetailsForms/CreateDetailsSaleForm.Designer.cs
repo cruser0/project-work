@@ -43,8 +43,11 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PayColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PaidLabel = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SuInDgv = new System.Windows.Forms.DataGridView();
@@ -58,6 +61,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel8 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.RefreshBtn = new System.Windows.Forms.Button();
+            this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
             this.BolCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.RevenueCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.BkCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
@@ -70,7 +75,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.convertSupplierInvoicesBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,7 +93,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 120);
+            this.label4.Location = new System.Drawing.Point(5, 112);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 15);
@@ -102,7 +106,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.saleDateDtp.CustomFormat = "ddMMMMyyyy";
             this.saleDateDtp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saleDateDtp.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.saleDateDtp.Location = new System.Drawing.Point(8, 133);
+            this.saleDateDtp.Location = new System.Drawing.Point(7, 125);
             this.saleDateDtp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saleDateDtp.Name = "saleDateDtp";
             this.saleDateDtp.ShowCheckBox = true;
@@ -114,7 +118,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.EditCB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditCB.AutoSize = true;
             this.EditCB.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditCB.Location = new System.Drawing.Point(539, 122);
+            this.EditCB.Location = new System.Drawing.Point(539, 127);
             this.EditCB.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.EditCB.Name = "EditCB";
             this.EditCB.Size = new System.Drawing.Size(46, 19);
@@ -128,7 +132,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.saveBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.saveBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(593, 80);
+            this.saveBtn.Location = new System.Drawing.Point(593, 91);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(143, 25);
@@ -146,7 +150,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel1.Location = new System.Drawing.Point(20, 20);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(744, 422);
+            this.panel1.Size = new System.Drawing.Size(744, 421);
             this.panel1.TabIndex = 20;
             // 
             // tableLayoutPanel1
@@ -161,7 +165,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 259);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 258);
             this.tableLayoutPanel1.TabIndex = 52;
             // 
             // groupBox1
@@ -171,7 +175,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(366, 253);
+            this.groupBox1.Size = new System.Drawing.Size(366, 252);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer Invoices";
@@ -188,14 +192,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.customerInvoiceCodeDataGridViewTextBoxColumn,
             this.invoiceAmountDataGridViewTextBoxColumn,
             this.invoiceDateDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn});
+            this.statusDataGridViewTextBoxColumn,
+            this.PayColumn});
             this.CuInDgv.DataSource = this.customerInvoiceBindingSource;
             this.CuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CuInDgv.Location = new System.Drawing.Point(3, 44);
             this.CuInDgv.Name = "CuInDgv";
             this.CuInDgv.ReadOnly = true;
-            this.CuInDgv.Size = new System.Drawing.Size(360, 206);
+            this.CuInDgv.Size = new System.Drawing.Size(360, 205);
             this.CuInDgv.TabIndex = 0;
+            this.CuInDgv.DataSourceChanged += new System.EventHandler(this.CuInDgv_DataSourceChanged);
+            this.CuInDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellContentClick);
             this.CuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellDoubleClick);
             // 
             // customerInvoiceCodeDataGridViewTextBoxColumn
@@ -226,18 +233,48 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
             this.statusDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // PayColumn
+            // 
+            this.PayColumn.HeaderText = "Pay";
+            this.PayColumn.Name = "PayColumn";
+            this.PayColumn.ReadOnly = true;
+            this.PayColumn.Text = "Pay";
+            this.PayColumn.UseColumnTextForButtonValue = true;
+            // 
             // customerInvoiceBindingSource
             // 
             this.customerInvoiceBindingSource.DataSource = typeof(Entity_Validator.Entity.DTO.CustomerInvoiceDTOGet);
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.label2);
+            this.panel7.Controls.Add(this.PaidLabel);
             this.panel7.Controls.Add(this.button2);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(3, 19);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(360, 25);
             this.panel7.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Location = new System.Drawing.Point(262, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 15);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Total Paid:";
+            // 
+            // PaidLabel
+            // 
+            this.PaidLabel.AutoSize = true;
+            this.PaidLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PaidLabel.Location = new System.Drawing.Point(323, 0);
+            this.PaidLabel.Name = "PaidLabel";
+            this.PaidLabel.Size = new System.Drawing.Size(37, 15);
+            this.PaidLabel.TabIndex = 18;
+            this.PaidLabel.Text = "12345";
             // 
             // button2
             // 
@@ -260,7 +297,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(375, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(366, 253);
+            this.groupBox2.Size = new System.Drawing.Size(366, 252);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Invoices";
@@ -285,7 +322,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SuInDgv.Location = new System.Drawing.Point(3, 44);
             this.SuInDgv.Name = "SuInDgv";
             this.SuInDgv.ReadOnly = true;
-            this.SuInDgv.Size = new System.Drawing.Size(360, 206);
+            this.SuInDgv.Size = new System.Drawing.Size(360, 205);
             this.SuInDgv.TabIndex = 0;
             this.SuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SuInDgv_CellDoubleClick);
             // 
@@ -360,6 +397,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.RefreshBtn);
             this.panel6.Controls.Add(this.convertSupplierInvoicesBtn);
             this.panel6.Controls.Add(this.BolCtb);
             this.panel6.Controls.Add(this.RevenueCtb);
@@ -380,10 +418,38 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel6.Size = new System.Drawing.Size(744, 163);
             this.panel6.TabIndex = 51;
             // 
+            // RefreshBtn
+            // 
+            this.RefreshBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.RefreshBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshBtn.Location = new System.Drawing.Point(433, 124);
+            this.RefreshBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Size = new System.Drawing.Size(65, 25);
+            this.RefreshBtn.TabIndex = 57;
+            this.RefreshBtn.Text = "Refresh";
+            this.RefreshBtn.UseVisualStyleBackColor = false;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
+            // 
+            // convertSupplierInvoicesBtn
+            // 
+            this.convertSupplierInvoicesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.convertSupplierInvoicesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.convertSupplierInvoicesBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.convertSupplierInvoicesBtn.Location = new System.Drawing.Point(593, 33);
+            this.convertSupplierInvoicesBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.convertSupplierInvoicesBtn.Name = "convertSupplierInvoicesBtn";
+            this.convertSupplierInvoicesBtn.Size = new System.Drawing.Size(143, 50);
+            this.convertSupplierInvoicesBtn.TabIndex = 56;
+            this.convertSupplierInvoicesBtn.Text = "Convert Supplier Invoices";
+            this.convertSupplierInvoicesBtn.UseVisualStyleBackColor = false;
+            this.convertSupplierInvoicesBtn.Click += new System.EventHandler(this.convertSupplierInvoicesBtn_Click);
+            // 
             // BolCtb
             // 
             this.BolCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BolCtb.Location = new System.Drawing.Point(7, 72);
+            this.BolCtb.Location = new System.Drawing.Point(7, 68);
             this.BolCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.BolCtb.Name = "BolCtb";
             this.BolCtb.Size = new System.Drawing.Size(200, 47);
@@ -403,7 +469,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // BkCtb
             // 
             this.BkCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BkCtb.Location = new System.Drawing.Point(11, 19);
+            this.BkCtb.Location = new System.Drawing.Point(7, 19);
             this.BkCtb.MinimumSize = new System.Drawing.Size(200, 47);
             this.BkCtb.Name = "BkCtb";
             this.BkCtb.Size = new System.Drawing.Size(200, 47);
@@ -415,7 +481,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.SaveQuitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SaveQuitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
             this.SaveQuitButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveQuitButton.Location = new System.Drawing.Point(593, 111);
+            this.SaveQuitButton.Location = new System.Drawing.Point(593, 124);
             this.SaveQuitButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.SaveQuitButton.Name = "SaveQuitButton";
             this.SaveQuitButton.Size = new System.Drawing.Size(143, 25);
@@ -458,7 +524,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusLbl.AutoSize = true;
             this.StatusLbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.StatusLbl.Location = new System.Drawing.Point(218, 69);
+            this.StatusLbl.Location = new System.Drawing.Point(218, 65);
             this.StatusLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(39, 15);
@@ -476,7 +542,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.StatusCmbx.Items.AddRange(new object[] {
             "Active",
             "Closed"});
-            this.StatusCmbx.Location = new System.Drawing.Point(221, 84);
+            this.StatusCmbx.Location = new System.Drawing.Point(221, 80);
             this.StatusCmbx.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.StatusCmbx.Name = "StatusCmbx";
             this.StatusCmbx.Size = new System.Drawing.Size(200, 23);
@@ -489,7 +555,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(20, 462);
+            this.panel2.Size = new System.Drawing.Size(20, 461);
             this.panel2.TabIndex = 21;
             // 
             // panel3
@@ -499,7 +565,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3.Location = new System.Drawing.Point(764, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(20, 462);
+            this.panel3.Size = new System.Drawing.Size(20, 461);
             this.panel3.TabIndex = 22;
             // 
             // panel4
@@ -516,31 +582,17 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(20, 442);
+            this.panel5.Location = new System.Drawing.Point(20, 441);
             this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
-            // convertSupplierInvoicesBtn
-            // 
-            this.convertSupplierInvoicesBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.convertSupplierInvoicesBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.convertSupplierInvoicesBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.convertSupplierInvoicesBtn.Location = new System.Drawing.Point(597, 6);
-            this.convertSupplierInvoicesBtn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.convertSupplierInvoicesBtn.Name = "convertSupplierInvoicesBtn";
-            this.convertSupplierInvoicesBtn.Size = new System.Drawing.Size(143, 50);
-            this.convertSupplierInvoicesBtn.TabIndex = 56;
-            this.convertSupplierInvoicesBtn.Text = "Convert Supplier Invoices";
-            this.convertSupplierInvoicesBtn.UseVisualStyleBackColor = false;
-            this.convertSupplierInvoicesBtn.Click += new System.EventHandler(this.convertSupplierInvoicesBtn_Click);
-            // 
             // CreateDetailsSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 462);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
@@ -558,6 +610,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             ((System.ComponentModel.ISupportInitialize)(this.CuInDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerInvoiceBindingSource)).EndInit();
             this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SuInDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierInvoiceSupplierDTOBindingSource)).EndInit();
@@ -585,10 +638,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox groupBox1;
         private DataGridView CuInDgv;
-        private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private BindingSource customerInvoiceBindingSource;
         private GroupBox groupBox2;
         private DataGridView SuInDgv;
@@ -609,5 +658,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private control.CustomTextBoxUserControl RevenueCtb;
         private control.CustomTextBoxUserControl BkCtb;
         private Button convertSupplierInvoicesBtn;
+        private Button RefreshBtn;
+        private Label label2;
+        private Label PaidLabel;
+        private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private DataGridViewButtonColumn PayColumn;
     }
 }

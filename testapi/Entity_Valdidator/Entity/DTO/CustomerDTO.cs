@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity_Validator.CustomAttributes;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Entity_Validator.Entity.DTO

@@ -16,6 +16,8 @@ namespace Entity_Validator.Entity.Filters
 
         public string SupplierInvoiceStatus { get; set; }
         public int? SupplierInvoicePage { get; set; }
+
+        public bool? SupplierInvoiceMakeInvoice { get; set; }
     }
 
     public class SupplierInvoiceSupplierFilter : SupplierInvoiceFilter

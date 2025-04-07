@@ -16,7 +16,8 @@ namespace API.Models.Mapper
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
                 CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
-                SupplierInvoiceCode = supplierInvoiceCost.SupplierInvoice.SupplierInvoiceCode
+                SupplierInvoiceCode = supplierInvoiceCost.SupplierInvoice.SupplierInvoiceCode,
+                TotalCost = supplierInvoiceCost.TotalCost,
             };
         }
         public static SupplierInvoiceCost Map(SupplierInvoiceCostDTO supplierInvoiceCost, CostRegistry? costRegistry, SupplierInvoice? supplierInvoice)
@@ -30,7 +31,8 @@ namespace API.Models.Mapper
                 Name = supplierInvoiceCost.Name,
                 CostRegistry = costRegistry,
                 CostRegistryID = costRegistry?.CostRegistryID,
-                SupplierInvoice = supplierInvoice
+                SupplierInvoice = supplierInvoice,
+                TotalCost = supplierInvoiceCost.TotalCost,
             };
         }
 
@@ -44,7 +46,8 @@ namespace API.Models.Mapper
                 Quantity = supplierInvoiceCost.Quantity,
                 Name = supplierInvoiceCost.Name,
                 CostRegistryCode = supplierInvoiceCost.CostRegistry!.CostRegistryUniqueCode,
-                SupplierInvoiceCode = supplierInvoiceCost.SupplierInvoice.SupplierInvoiceCode
+                SupplierInvoiceCode = supplierInvoiceCost.SupplierInvoice.SupplierInvoiceCode,
+                TotalCost = supplierInvoiceCost.TotalCost,
             };
         }
         public static SupplierInvoiceCost MapGet(SupplierInvoiceCostDTOGet supplierInvoiceCost, CostRegistry costRegistry, SupplierInvoice? supplierInvoice)
@@ -58,8 +61,8 @@ namespace API.Models.Mapper
                 Name = supplierInvoiceCost.Name,
                 CostRegistry = costRegistry,
                 CostRegistryID = costRegistry?.CostRegistryID,
-                SupplierInvoice = supplierInvoice
-
+                SupplierInvoice = supplierInvoice,
+                TotalCost = supplierInvoiceCost.TotalCost,
             };
         }
     }

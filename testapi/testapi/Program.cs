@@ -33,6 +33,7 @@ builder.Services.AddScoped<ISupplierInvoiceService, SupplierInvoiceService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IValueServices, ValueServices>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICustomerInvoiceAmountPaidServices, CustomerInvoiceAmountPaidServices>();
 builder.Services.AddScoped<ProcedureService>();
 builder.Services.AddAuthentication(options =>
 {

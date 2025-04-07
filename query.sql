@@ -1,9 +1,9 @@
 -- Assign Variables
 DECLARE @SupplierAmount int = 500;
-DECLARE @CustomerAmount int = 250;
-DECLARE @SaleAmount int = 2500;
-DECLARE @MaxSupplierInvoicePerSale int = 3;
-DECLARE @MaxCustomerInvoicePerSale int = 5;
+DECLARE @CustomerAmount int = 500;
+DECLARE @SaleAmount int = 500;
+DECLARE @MaxSupplierInvoicePerSale int = 8;
+DECLARE @MaxCustomerInvoicePerSale int = 8;
 DECLARE @MaxCostPerSupplierInvoice int = 8;
 DECLARE @MaxCostPerCustomerInvoice int = 8;
 DECLARE @PercentageClosedSupplierInvoices int = 70;
@@ -13,6 +13,7 @@ DECLARE @PercentageClosedSales int = 35;
 -- Delete existing data
 DELETE FROM CustomerInvoiceCosts;
 DELETE FROM SupplierInvoiceCosts;
+DELETE FROM CustomerInvoiceAmoutPaids;
 DELETE FROM CustomerInvoices;
 DELETE FROM SupplierInvoices;
 DELETE FROM Sales;
@@ -27,6 +28,7 @@ DBCC CHECKIDENT ('CustomerInvoices', RESEED, 0);
 DBCC CHECKIDENT ('SupplierInvoices', RESEED, 0);
 DBCC CHECKIDENT ('CustomerInvoiceCosts', RESEED, 0);
 DBCC CHECKIDENT ('SupplierInvoiceCosts', RESEED, 0);
+DBCC CHECKIDENT ('CustomerInvoiceAmoutPaids', RESEED, 0);
 
 -- Insert Suppliers
 INSERT INTO Suppliers (SupplierName, CountryID, Deprecated, CreatedAt, OriginalID)
@@ -79,11 +81,15 @@ SELECT
     ),
     6,  -- Unpaid status
     CONCAT('CINV-', IG.SaleID, '-', RN)
+
 FROM CustomerInvoiceGeneration IG
 CROSS APPLY (
     SELECT TOP (IG.InvoiceCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
     FROM master.dbo.spt_values
 ) AS NumGen;
+
+
+
 
 -- Generate Supplier Invoices with 1 to 3 invoices per sale
 WITH SupplierInvoiceGeneration AS (
@@ -119,11 +125,12 @@ BEGIN
     VALUES ('DefaultCost', 10, 1)
 END;
 
--- Insert CustomerInvoiceCosts with 1 to 8 invoice costs per customer invoice
+-- Insert CustomerInvoiceCosts with 1 to 5 invoice costs per customer invoice
+-- CORREZIONE: Limitare ABS() per evitare overflow e usare CAST per sicurezza
 WITH CustomerInvoiceCostGeneration AS (
     SELECT 
         CI.CustomerInvoiceID, 
-        (ABS(CHECKSUM(NEWID()) + CI.CustomerInvoiceID) % (@MaxCostPerCustomerInvoice)) + 1 AS CostCount
+        1 + ABS(CHECKSUM(NEWID()) % @MaxCostPerCustomerInvoice) AS CostCount
     FROM CustomerInvoices CI
 )
 
@@ -140,21 +147,23 @@ CROSS APPLY (
     FROM master.dbo.spt_values
 ) AS NumGen;
 
--- Insert SupplierInvoiceCosts with 1 to 8 invoice costs per supplier invoice
+-- Insert SupplierInvoiceCosts with 1 to 5 invoice costs per supplier invoice
+-- CORREZIONE: Limitare ABS() per evitare overflow e usare CAST per sicurezza
 WITH SupplierInvoiceCostGeneration AS (
     SELECT 
         SI.SupplierInvoiceID, 
-        (ABS(CHECKSUM(NEWID()) + SI.SupplierInvoiceID) % (@MaxCostPerSupplierInvoice)) + 1 AS CostCount
+        1 + ABS(CHECKSUM(NEWID()) % @MaxCostPerSupplierInvoice) AS CostCount
     FROM SupplierInvoices SI
 )
 
-INSERT INTO SupplierInvoiceCosts (SupplierInvoiceID, Cost, Quantity, Name, CostRegistryID)
+INSERT INTO SupplierInvoiceCosts (SupplierInvoiceID, Cost, Quantity, Name, CostRegistryID, CustomerInvoiceCostID)
 SELECT 
     IG.SupplierInvoiceID,
     ROUND(RAND(CHECKSUM(NEWID()) + IG.SupplierInvoiceID + RN) * 800, 2),
     FLOOR(RAND(CHECKSUM(NEWID()) + IG.SupplierInvoiceID * RN) * 80) + 1,
     CONCAT('Generated Supplier Cost ', RN),
-    1
+    1,
+	Null
 FROM SupplierInvoiceCostGeneration IG
 CROSS APPLY (
     SELECT TOP (IG.CostCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
@@ -178,6 +187,7 @@ SET InvoiceAmount = COALESCE((
     WHERE CustomerInvoiceID = CI.CustomerInvoiceID
 ), 0)
 FROM CustomerInvoices CI;
+
 
 -- Calculate and Update Total Revenue for Sales
 UPDATE S
@@ -214,6 +224,17 @@ WHERE CustomerInvoiceID IN (
     FROM CustomerInvoices 
     ORDER BY NEWID()
 );
+
+INSERT INTO CustomerInvoiceAmoutPaids(CustomerInvoiceID, AmountPaid)
+SELECT 
+    CustomerInvoiceID, 
+    CASE 
+        WHEN StatusID = 6 THEN 0
+        WHEN StatusID = 5 THEN InvoiceAmount
+        ELSE 0 -- Default case for other statuses
+    END AS AmountPaid
+FROM CustomerInvoices;
+
 
 -- Verification Queries for Invoice Distribution
 WITH CustomerInvoiceCountPerSale AS (
