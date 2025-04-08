@@ -1,0 +1,9 @@
+[Setup] 
+Dir=C:\Program Files (x86)\hMailServer 
+Group=hMailServer 
+NoIcons=0 
+SetupType=full     REM Ensure the full setup is selected
+Components=server,client,admintools     REM All components should be installed
+Tasks= 
+DatabaseType=MSSQLCE 
+Password=12345 
