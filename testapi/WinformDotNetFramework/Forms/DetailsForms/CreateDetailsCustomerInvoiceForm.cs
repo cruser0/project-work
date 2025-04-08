@@ -21,6 +21,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         string bol;
         string bk;
         int saleID;
+
         bool detailsOnly = false;
         Form _father;
         public CreateDetailsCustomerInvoiceForm()
@@ -368,6 +369,12 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 await CreateClick(true, exit);
             }
+        }
+
+        private void PdfButton_Click(object sender, EventArgs e)
+        {
+            PdfInvoiceForm form = new PdfInvoiceForm((int)customerInvoice.SaleID, customerInvoice);
+            form.Show(MdiParent);
         }
     }
 }
