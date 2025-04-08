@@ -1,4 +1,5 @@
 ﻿using API.Models.Services;
+using Entity_Validator.Entity.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,11 +24,11 @@ namespace API.Controllers
 
         // POST api/<ValuesController1>
         [HttpPost]
-        public async Task<IActionResult> Post(string recipient,string subject, [FromBody] string body)
+        public async Task<IActionResult> Post([FromBody] EmailDTO body)
         {
 
-            await _emailService.SendEmail(recipient, subject, body);
-            return Ok();
+            var data = await _emailService.SendEmail(body);
+            return Ok(data);
         }
     }
 }

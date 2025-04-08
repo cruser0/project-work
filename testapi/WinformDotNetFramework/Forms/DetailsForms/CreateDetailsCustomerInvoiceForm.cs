@@ -374,6 +374,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void PdfButton_Click(object sender, EventArgs e)
         {
             PdfInvoiceForm form = new PdfInvoiceForm((int)customerInvoice.SaleID, customerInvoice);
+            form.MdiParent = MdiParent;
             form.Show(MdiParent);
         }
     }

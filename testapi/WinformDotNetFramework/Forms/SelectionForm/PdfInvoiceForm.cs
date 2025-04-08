@@ -3,7 +3,6 @@ using Entity_Validator.Entity.Filters;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 using WinformDotNetFramework.Services;
 
@@ -11,17 +10,17 @@ namespace WinformDotNetFramework
 {
     public partial class PdfInvoiceForm : Form
     {
-        CustomerInvoiceService _customerInvoiceService = new CustomerInvoiceService();
         CustomerInvoiceCostService _customerInvoiceCostService = new CustomerInvoiceCostService();
         SaleService _saleService = new SaleService();
+        EmailService _emailService = new EmailService();
         LocalReport report = new LocalReport()
         {
             ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportPaidInvoice.rdlc",
             EnableHyperlinks = true,
         };
-
         SaleCustomerDTO saleCustomerDTO;
         CustomerInvoiceDTOGet invoice;
+
         public PdfInvoiceForm(int saleId, CustomerInvoiceDTOGet customerInvoice)
         {
             invoice = customerInvoice;
@@ -33,63 +32,77 @@ namespace WinformDotNetFramework
         private async void Init(int saleId)
         {
             saleCustomerDTO = await _saleService.GetById(saleId);
-
             CustomerInvoiceCostFilter cic_filter = new CustomerInvoiceCostFilter()
             {
                 CustomerInvoiceCostCustomerInvoiceCode = invoice.CustomerInvoiceCode
             };
             var costs = await _customerInvoiceCostService.GetAll(cic_filter);
 
-            // Convert single objects to lists/collections that implement IEnumerable
             var invoiceList = new List<CustomerInvoiceDTOGet> { invoice };
             var saleCustomerList = new List<SaleCustomerDTO> { saleCustomerDTO };
 
             ReportDataSource CustomerInvoice = new ReportDataSource()
             {
                 Name = "CustomerInvoice",
-                Value = invoiceList  // Using list instead of single object
+                Value = invoiceList
             };
+
             ReportDataSource SaleCustomer = new ReportDataSource()
             {
                 Name = "SaleCustomer",
-                Value = saleCustomerList  // Using list instead of single object
+                Value = saleCustomerList
             };
+
             ReportDataSource CustomerInvoiceCost = new ReportDataSource()
             {
                 Name = "CustomerInvoiceCost",
-                Value = costs  // This should already be a collection
+                Value = costs
             };
 
             ReportParameter param = new ReportParameter("UrlPay",
-    "http://localhost:5069/paypage.html?name=" + saleCustomerDTO.CustomerName + "&country=" + saleCustomerDTO.Country);
+                "http://localhost:5069/paypage.html?name=" + saleCustomerDTO.CustomerName + "&country=" + saleCustomerDTO.Country);
 
             report.SetParameters(new ReportParameter[] { param });
-
             report.DataSources.Add(CustomerInvoice);
             report.DataSources.Add(SaleCustomer);
             report.DataSources.Add(CustomerInvoiceCost);
         }
 
-        private void PrfButton_click(object sender, EventArgs e)
+        private async void PrfButton_click(object sender, EventArgs e)
         {
-
             try
             {
                 Cursor = Cursors.WaitCursor;
                 Application.DoEvents();
-
-                string FileName = $"{invoice.CustomerInvoiceCode}.pdf";
-
-                byte[] bytes = report.Render(
+                string fileName = $"{invoice.CustomerInvoiceCode}.pdf";
+                byte[] pdfBytes = report.Render(
                     "PDF", null, out string mimeType, out string encoding,
                     out string filenameExtension, out string[] streamIds,
                     out Warning[] warnings);
 
-                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileName);
+                // Converti PDF in base64
+                string base64Pdf = Convert.ToBase64String(pdfBytes);
 
-                File.WriteAllBytes(filePath, bytes);
+                EmailDTO email = new EmailDTO()
+                {
+                    Body = BodyTxt.Text,
+                    FileName = fileName,
+                    PdfContent = base64Pdf,
+                    To = "user@localhost.com",
+                    Subject = "EmailTest"
+                };
 
-                MessageBox.Show($"{FileName} saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    var ret = await _emailService.Create(email);
+                    MessageBox.Show(ret.Body);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Text, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             catch (Exception ex)
             {
@@ -102,4 +115,3 @@ namespace WinformDotNetFramework
         }
     }
 }
-

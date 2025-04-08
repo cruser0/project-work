@@ -1,23 +1,25 @@
-﻿using System.Net;
+﻿using Entity_Validator.Entity.DTO;
+using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 
 namespace API.Models.Services
 {
     public interface IEmailService
     {
-        Task<string> SendEmail(string to, string subject, string body);
+        Task<EmailDTO> SendEmail(EmailDTO email);
     }
     public class EmailService : IEmailService
     {
         private readonly IConfiguration _appSettings;
 
 
-            public EmailService(IConfiguration Appsettings)
-            {
-                _appSettings = Appsettings;
-            }
+        public EmailService(IConfiguration Appsettings)
+        {
+            _appSettings = Appsettings;
+        }
 
-        public  async Task<string> SendEmail(string to, string subject, string body)
+        public async Task<EmailDTO> SendEmail(EmailDTO email)
         {
             var smtpClient = new SmtpClient(_appSettings["HMailServer:SmtpHost"], int.Parse(_appSettings["HMailServer:Port"]))
             {
@@ -25,27 +27,36 @@ namespace API.Models.Services
                 EnableSsl = false
             };
 
+            byte[] pdfBytes = Convert.FromBase64String(email.PdfContent);
+
+
             var mailMessage = new MailMessage
             {
                 From = new MailAddress(_appSettings["HMailServer:SmtpUser"]),
-                Subject = subject,
-                Body = body,
+                Subject = email.Subject,
+                Body = email.Body,
                 IsBodyHtml = true
             };
 
-            mailMessage.To.Add(to); 
+            mailMessage.To.Add(email.To);
 
 
-            try
+            using (var stream = new MemoryStream(pdfBytes))
             {
-                smtpClient.Send(mailMessage);
-                return "Email sent successfully!";
-            }
-            catch (Exception ex)
-            {
-                return $"Error sending email: {ex.Message}";
+                var attachment = new Attachment(stream, email.FileName, MediaTypeNames.Application.Pdf);
+                mailMessage.Attachments.Add(attachment);
+
+                try
+                {
+                    smtpClient.Send(mailMessage);
+                    return email;
+                }
+                catch
+                {
+                    throw;
+                }
             }
         }
     }
-        
+
 }
