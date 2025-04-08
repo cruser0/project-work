@@ -149,15 +149,6 @@ CROSS APPLY (
 ) AS NumGen;
 
 -- =============================================
--- ENSURE DEFAULT COST REGISTRY EXISTS
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM CostRegistries WHERE CostRegistryID = 1)
-BEGIN
-    INSERT INTO CostRegistries (CostRegistryName, CostRegistryPrice, CostRegistryQuantity)
-    VALUES ('DefaultCost', 10, 1)
-END;
-
--- =============================================
 -- GENERATE CUSTOMER INVOICE COSTS
 -- =============================================
 -- Generate between 1 and @MaxCostPerCustomerInvoice costs per customer invoice
