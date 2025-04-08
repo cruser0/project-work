@@ -9,7 +9,7 @@ namespace API
                 try
                 {
                     var app = new hMailServer.Application();
-                    app.Authenticate("Administrator", "12345");
+                    app.Authenticate("Administrator", "");
 
                     for (int i = 0; i < app.Domains.Count; i++)
                     {
@@ -30,7 +30,13 @@ namespace API
                     admin.Active = true;
                     admin.Save();
 
-                    var user = domain.Accounts.Add();
+                var server = domain.Accounts.Add();
+                    server.Address = "server@localhost.com";
+                    server.Password = "12345";
+                    server.Active = true;
+                    server.Save();
+
+                var user = domain.Accounts.Add();
                     user.Address = "user@localhost.com";
                     user.Password = "12345";
                     user.Active = true;
@@ -56,6 +62,10 @@ namespace API
                 var port = tcpPorts[i];
                 if (port.Protocol == protocol)
                 {
+                    if(port.Protocol== eSessionType.eSTSMTP && i!=587)
+                    {
+                        continue;
+                    }
                     port.PortNumber = newPort;
                     port.ConnectionSecurity = eConnectionSecurity.eCSNone;
                     port.Save();
