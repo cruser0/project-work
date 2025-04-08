@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinformDotNetFramework.Forms.CustomDialogs;
 using WinformDotNetFramework.Forms.GridForms;
 using WinformDotNetFramework.Forms.SelectionForm;
 using WinformDotNetFramework.Services;
@@ -208,9 +207,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 if (e.RowIndex == -1)
                     return;
 
-                if (e.ColumnIndex == dgv.Columns["PayColumn"].Index)
-                    return;
-
                 CustomerInvoiceDTOGet customerInvoice = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
 
                 UtilityFunctions.OpenFormDetails<CreateDetailsCustomerInvoiceForm>(sender, e, (int)customerInvoice.CustomerInvoiceId);
@@ -400,29 +396,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 .GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
 
             PaidLabel.Text = $"{amountPaid:N2}€/{(decimal)sale.TotalRevenue:N2}€";
-        }
-
-
-
-        private async void CuInDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1)
-                return;
-
-            DataGridView dgv = (DataGridView)sender;
-
-            if (dgv.Columns["PayColumn"].Index != e.ColumnIndex)
-                return;
-
-            CustomerInvoiceDTOGet ci = (CustomerInvoiceDTOGet)dgv.CurrentRow.DataBoundItem;
-
-            if (ci.Status == "Paid")
-                return;
-
-            PayInvoiceDialog payInvoice = new PayInvoiceDialog(ci);
-            if (payInvoice.ShowDialog() == DialogResult.OK)
-                RefreshBtn.PerformClick();
-
         }
     }
 }
