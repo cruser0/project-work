@@ -89,6 +89,16 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowFrontend", policy =>
+//    {
+//        policy.WithOrigins("http://localhost:5500")
+//              .AllowCredentials()
+//              .AllowAnyHeader()
+//              .AllowAnyMethod();
+//    });
+//});
 
 
 if (builder.Configuration.GetValue<bool>("HMailServer:Initialize"))
@@ -99,6 +109,7 @@ if (builder.Configuration.GetValue<bool>("HMailServer:Initialize"))
 var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
+//app.UseCors("AllowFrontend");
 
 
 //app.MapControllers();
