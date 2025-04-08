@@ -28,18 +28,22 @@ namespace API
                     admin.Address = "admin@localhost.com";
                     admin.Password = "12345";
                     admin.Active = true;
-                    admin.Save();
+                    admin.AdminLevel = eAdminLevel.hAdminLevelDomainAdmin;
+
+                admin.Save();
 
                 var server = domain.Accounts.Add();
                     server.Address = "server@localhost.com";
                     server.Password = "12345";
                     server.Active = true;
+                    server.AdminLevel = eAdminLevel.hAdminLevelServerAdmin;
                     server.Save();
 
                 var user = domain.Accounts.Add();
                     user.Address = "user@localhost.com";
                     user.Password = "12345";
                     user.Active = true;
+                    user.AdminLevel = eAdminLevel.hAdminLevelNormal;
                     user.Save();
 
                     SetPort(app, eSessionType.eSTSMTP, 9000);

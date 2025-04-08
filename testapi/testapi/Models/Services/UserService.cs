@@ -165,10 +165,10 @@ namespace API.Models.Services
 
         public async Task<RefreshToken> GetNewerRefreshToken(RefreshTokenDTO refTk)
         {
-            User user = await _context.Users.Where(x => x.UserID == refTk.UserID).FirstOrDefaultAsync();
+            var user = await _context.Users.Where(x => x.UserID == refTk.UserID).FirstOrDefaultAsync();
             if (user == null)
                 throw new NotFoundException("User not found");
-            RefreshToken refreshToken = await _context.RefreshTokens
+            var refreshToken = await _context.RefreshTokens
                 .Where(x => x.UserID == user.UserID)
                 .OrderByDescending(x => x.Created)
                 .FirstOrDefaultAsync();

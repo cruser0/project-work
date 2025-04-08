@@ -23,7 +23,7 @@ namespace API.Controllers
 
         // POST api/<ValuesController1>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] string recipient,string subject,string body)
+        public async Task<IActionResult> Post(string recipient,string subject, [FromBody] string body)
         {
 
             await _emailService.SendEmail(recipient, subject, body);

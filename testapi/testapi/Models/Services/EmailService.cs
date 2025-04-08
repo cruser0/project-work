@@ -17,24 +17,23 @@ namespace API.Models.Services
                 _appSettings = Appsettings;
             }
 
-
         public  async Task<string> SendEmail(string to, string subject, string body)
         {
-            var smtpClient = new SmtpClient("localhost.com", 9000)
+            var smtpClient = new SmtpClient(_appSettings["HMailServer:SmtpHost"], int.Parse(_appSettings["HMailServer:Port"]))
             {
-                Credentials = new NetworkCredential("admin@localhost.com", "12345"),
+                Credentials = new NetworkCredential(_appSettings["HMailServer:SmtpUser"], _appSettings["HMailServer:SmtpPass"]),
                 EnableSsl = false
             };
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("admin@localhost.com"),
-                Subject = "Test Email",
-                Body = "Test from backend",
+                From = new MailAddress(_appSettings["HMailServer:SmtpUser"]),
+                Subject = subject,
+                Body = body,
                 IsBodyHtml = true
             };
 
-            mailMessage.To.Add("server@localhost.com"); 
+            mailMessage.To.Add(to); 
 
 
             try
