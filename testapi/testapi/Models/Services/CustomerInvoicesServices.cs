@@ -62,7 +62,7 @@ namespace API.Models.Services
                 InvoiceAmount = x.InvoiceAmount,
                 InvoiceDate = x.InvoiceDate,
                 Status = x.Status.StatusName,
-                AmountPaid = x.CustomerInvoiceAmountPaid.AmountPaid,  
+                AmountPaid = x.CustomerInvoiceAmountPaid.AmountPaid,
             }).ToListAsync();
             return result;
         }
@@ -503,7 +503,7 @@ namespace API.Models.Services
 
                 createdInvoice = await UpdateCustomerInvoice((int)createdInvoice.CustomerInvoiceId!, new CustomerInvoice()
                 {
-                    InvoiceAmount = totalCost,
+                    InvoiceAmount = (decimal)createdInvoice.InvoiceAmount! + totalCost,
                     Status = await _context.Statuses.Where(x => x.StatusID == 6).FirstAsync(),
                     Sale = await _context.Sales.Where(x => x.SaleID == makeCustomerInvoiceDTO.SaleID).FirstAsync(),
                     CustomerInvoiceAmountPaid = paid

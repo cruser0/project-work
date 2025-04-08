@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.PercentageCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
-            this.FixedCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
             this.MakeInvoiceBtn = new System.Windows.Forms.Button();
+            this.FixedCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.PercentageCtb = new WinformDotNetFramework.Forms.control.CustomTextBoxUserControl();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(180)))), ((int)(((byte)(194)))));
             this.panel3.Controls.Add(this.MakeInvoiceBtn);
             this.panel3.Controls.Add(this.FixedCtb);
             this.panel3.Controls.Add(this.PercentageCtb);
@@ -66,25 +66,19 @@
             this.panel3.Size = new System.Drawing.Size(800, 100);
             this.panel3.TabIndex = 20;
             // 
-            // label1
+            // MakeInvoiceBtn
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "label1";
-            // 
-            // PercentageCtb
-            // 
-            this.PercentageCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PercentageCtb.Location = new System.Drawing.Point(12, 47);
-            this.PercentageCtb.MinimumSize = new System.Drawing.Size(200, 47);
-            this.PercentageCtb.Name = "PercentageCtb";
-            this.PercentageCtb.Size = new System.Drawing.Size(200, 47);
-            this.PercentageCtb.TabIndex = 14;
-            this.PercentageCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            this.MakeInvoiceBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.MakeInvoiceBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
+            this.MakeInvoiceBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MakeInvoiceBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
+            this.MakeInvoiceBtn.Location = new System.Drawing.Point(705, 60);
+            this.MakeInvoiceBtn.Name = "MakeInvoiceBtn";
+            this.MakeInvoiceBtn.Size = new System.Drawing.Size(92, 25);
+            this.MakeInvoiceBtn.TabIndex = 16;
+            this.MakeInvoiceBtn.Text = "Make Invoice";
+            this.MakeInvoiceBtn.UseVisualStyleBackColor = false;
+            this.MakeInvoiceBtn.Click += new System.EventHandler(this.MakeInvoiceBtn_Click);
             // 
             // FixedCtb
             // 
@@ -96,19 +90,25 @@
             this.FixedCtb.TabIndex = 15;
             this.FixedCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
             // 
-            // MakeInvoiceBtn
+            // PercentageCtb
             // 
-            this.MakeInvoiceBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.MakeInvoiceBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(226)))));
-            this.MakeInvoiceBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MakeInvoiceBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(56)))), ((int)(((byte)(69)))));
-            this.MakeInvoiceBtn.Location = new System.Drawing.Point(705, 58);
-            this.MakeInvoiceBtn.Name = "MakeInvoiceBtn";
-            this.MakeInvoiceBtn.Size = new System.Drawing.Size(92, 25);
-            this.MakeInvoiceBtn.TabIndex = 16;
-            this.MakeInvoiceBtn.Text = "Make Invoice";
-            this.MakeInvoiceBtn.UseVisualStyleBackColor = false;
-            this.MakeInvoiceBtn.Click += new System.EventHandler(this.MakeInvoiceBtn_Click);
+            this.PercentageCtb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PercentageCtb.Location = new System.Drawing.Point(12, 47);
+            this.PercentageCtb.MinimumSize = new System.Drawing.Size(200, 47);
+            this.PercentageCtb.Name = "PercentageCtb";
+            this.PercentageCtb.Size = new System.Drawing.Size(200, 47);
+            this.PercentageCtb.TabIndex = 14;
+            this.PercentageCtb.TextBoxType = WinformDotNetFramework.Forms.control.TextBoxType.Decimal;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "label1";
             // 
             // SelectSupplierInvoicesForm
             // 
