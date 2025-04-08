@@ -18,5 +18,6 @@ namespace Entity_Validator.Entity.Entities
 
         public virtual Country Country { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<CustomerUser> CustomerUser { get; set; }
     }
 }

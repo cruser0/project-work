@@ -12,5 +12,6 @@ namespace Entity_Validator.Entity.Entities
         public int RoleID { get; set; }
         public string RoleName { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<CustomerUser> CustomerUser { get; set; }
     }
 }

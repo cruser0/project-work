@@ -18,7 +18,7 @@ namespace Entity_Validator.Entity.DTO
             LastName = user.LastName;
             Email = user.Email;
             Role = user.Role;
-            RefreshUserID = refreshToken.UserID;
+            RefreshUserID = (int)refreshToken.UserID;
             RefreshExpires = refreshToken.Expires;
             RefreshCreated = refreshToken.Created;
             RefreshToken = refreshToken.Token;

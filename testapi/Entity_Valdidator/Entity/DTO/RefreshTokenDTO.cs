@@ -12,7 +12,7 @@ namespace Entity_Validator.Entity.DTO
         public RefreshTokenDTO(RefreshToken tk)
         {
             TokenID = tk.TokenID;
-            UserID = tk.UserID;
+            UserID = (int)tk.UserID;
             Token = tk.Token;
             Created = (DateTime)tk.Created;
             Expires = (DateTime)tk.Expires;

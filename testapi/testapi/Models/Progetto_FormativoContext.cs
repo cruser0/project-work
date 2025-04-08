@@ -18,6 +18,7 @@ namespace API.Models
         }
 
         public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<CustomerUser> CustomerUsers { get; set; } = null!;
         public virtual DbSet<CustomerInvoice> CustomerInvoices { get; set; } = null!;
         public virtual DbSet<CustomerInvoiceAmountPaid> CustomerInvoiceAmountPaids { get; set; } = null!;
         public virtual DbSet<Sale> Sales { get; set; } = null!;
@@ -157,7 +158,46 @@ namespace API.Models
                     .HasColumnType("varbinary(MAX)")
                     .IsUnicode(false);
             });
+            modelBuilder.Entity<CustomerUser>(entity =>
+            {
+                entity.ToTable("CustomerUsers");
+                entity.HasKey(e => e.CustomerUserID);
 
+                entity.Property(e => e.CustomerUserID)
+                    .HasColumnName("CustomerUserID");
+
+                entity.HasIndex(c => c.Email)
+                .IsUnique();
+
+                entity.Property(e => e.Email)
+                    .HasColumnName("Email")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasswordSalt)
+                    .HasColumnType("varbinary(MAX)")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasswordHash)
+                    .HasColumnType("varbinary(MAX)")
+                    .IsUnicode(false);
+                entity.HasOne(cu => cu.Role)
+                      .WithMany(r => r.CustomerUser)
+                      .HasForeignKey(ur => ur.RoleID);
+                entity.HasOne(cu => cu.Customer)
+                     .WithMany(c => c.CustomerUser)
+                     .HasForeignKey(ur => ur.CustomerID);
+
+
+            });
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("Roles");
@@ -577,6 +617,10 @@ namespace API.Models
                     .WithMany(p => p.RefreshTokens)
                     .HasForeignKey(d => d.UserID)
                     .HasConstraintName("FK_RefreshTokens_Users").OnDelete(DeleteBehavior.NoAction);
+                entity.HasOne(d => d.CustomerUser)
+                    .WithMany(p => p.RefreshTokens)
+                    .HasForeignKey(d => d.CustomerUserID)
+                    .HasConstraintName("FK_RefreshTokens_CustomerUsers").OnDelete(DeleteBehavior.NoAction);
 
             });
 
