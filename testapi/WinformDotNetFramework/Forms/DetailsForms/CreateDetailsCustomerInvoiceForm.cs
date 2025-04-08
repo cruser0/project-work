@@ -375,7 +375,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         {
             PdfInvoiceForm form = new PdfInvoiceForm((int)customerInvoice.SaleID, customerInvoice);
             form.MdiParent = MdiParent;
-            form.Show(MdiParent);
+            form.Show();
         }
     }
 }
