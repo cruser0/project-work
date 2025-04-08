@@ -21,13 +21,15 @@
     transition: all 0.2s ease-in-out;
 }
 
-    .card:hover {
-        background-color: #eef2f7;
-        transform: scale(1.01);
-    }
+.card:hover {
+    background-color: #eef2f7;
+    transform: scale(1.01);
+}
 
-    .card h3 {
-        margin-top: 0;
-        color: #333;
-    }
+.card h3 {
+    margin-top: 0;
+    color: #333;
+}
+#navbar{
 
+}

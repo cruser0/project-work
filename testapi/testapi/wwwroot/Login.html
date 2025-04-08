@@ -12,16 +12,16 @@
 <div class="d-flex align-items-center justify-content-center form-container">
   <div class="card shadow p-4">
     <h4 class="text-center mb-3">Login</h4>
-    <form method="post" action="/login">
+    <form id="loginForm">
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="text" class="form-control" id="email" name="email" required>
       </div>
       <div class="mb-3">
-        <label for="country" class="form-label">country</label>
-        <input type="text" class="form-control" id="country" name="country" required>
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
       </div>
-      <a type="submit" class="btn btn-primary w-100" id="login">Login</a>
+      <button type="submit" class="btn btn-primary w-100" id="login">Login</button>
     </form>
   </div>
 </div>

@@ -53,6 +53,81 @@ namespace API.Controllers
             var refreshToken = await _authenticationService.GenerateRefreshToken(user.UserID);
             return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
         }
+        [HttpPost("login-web")]
+        public async Task<ActionResult<UserAccessInfoDTO>> LoginWeb(UserDTO request)
+        {
+            request.IsPost = true;
+            var result = ValidatorEntity.Validate(request);
+            if (result.Any())
+            {
+                throw new ValidateException(result[0].ToString());
+            }
+
+            User user = await _authenticationService.GetUserByEmail(request.Email);
+            if (!_authenticationService.VeryfyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+                return Unauthorized("Wrong Password!");
+
+            List<string> roles = new List<string>();
+            foreach (var role in user.UserRoles)
+            {
+                roles.Add(role.Role.RoleName);
+            }
+
+            UserRoleDTO userDTO = new UserRoleDTO(user, roles);
+            string accessToken = _authenticationService.CreateToken(userDTO);
+            var refreshToken = await _authenticationService.GenerateRefreshToken(user.UserID);
+
+            SetAccessTokenCookie(accessToken);
+            SetRefreshTokenCookie(refreshToken.Token, (DateTime)refreshToken.Expires!);
+
+            return Ok();
+        }
+        [Authorize(Roles = "Admin,UserAdmin")]
+        [HttpPost("refresh-token-web")]
+        public async Task<ActionResult> RefreshTokenWeb()
+        {
+            var refToken = Request.Cookies["refreshToken"];
+            if (string.IsNullOrEmpty(refToken))
+                return Unauthorized("Missing Refresh Token");
+
+            RefreshTokenDTO dbRefToken = new RefreshTokenDTO(await _authenticationService.GetRefreshTokenByrefTokenString(refToken));
+            RefreshToken refreshToken = await _authenticationService.GetNewerRefreshToken(dbRefToken);
+
+            if (!refreshToken.Token.Equals(refToken))
+                return Unauthorized("Invalid Refresh Token");
+
+            if (refreshToken.Expires < DateTime.Now)
+                return Unauthorized("Outdated Refresh Token");
+
+            UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
+            string newAccessToken = _authenticationService.CreateToken(userDTO);
+
+            SetAccessTokenCookie(newAccessToken);
+            SetRefreshTokenCookie(refreshToken.Token, (DateTime)refreshToken.Expires!);
+
+            return Ok();
+        }
+        private void SetAccessTokenCookie(string token)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = false,
+                Expires = DateTime.UtcNow.AddMinutes(15)
+            };
+            Response.Cookies.Append("accessToken", token, cookieOptions);
+        }
+
+        private void SetRefreshTokenCookie(string refreshToken, DateTime expires)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = false,
+                Expires = expires
+            };
+            Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
+        }
+
+
 
         [HttpPost("refresh-token")]
         public async Task<ActionResult<UserAccessInfoDTO>> RefreshToken(string refToken)

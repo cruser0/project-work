@@ -1,18 +1,25 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+﻿
+
+document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get("name");
     const country = urlParams.get("country");
-
     if (!name || !country) {
         return;
     }
-
     const salesContainer = document.getElementById("salesContainer");
     const invoicesContainer = document.getElementById("invoicesContainer");
-
     const saleUrl = `http://localhost:5069/api/sale?saleCustomerName=${encodeURIComponent(name)}&saleCustomerCountry=${encodeURIComponent(country)}`;
-
-    fetch(saleUrl)
+    console.log("token scaduto: "+isTokenExpired());
+    if(isTokenExpired()){
+        RefreshToken();
+    }
+    fetch(saleUrl, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`
+        }
+      })
         .then(response => response.json())
         .then(data => {
             if (!Array.isArray(data)) {
@@ -38,8 +45,15 @@
             const invoiceUrl = `http://localhost:5069/api/customer-invoice/with-total-paid?customerInvoiceSaleBk=${encodeURIComponent(sale.bookingNumber)}&customerInvoiceSaleBoL=${encodeURIComponent(sale.boLnumber)}`;
             const headerName = document.getElementById("SaleInv");
             headerName.textContent = `Invoices : ${sale.bookingNumber} - ${sale.boLnumber}`;
-            
-            fetch(invoiceUrl)
+            if(isTokenExpired()){
+                RefreshToken();
+            }
+            fetch(invoiceUrl, {
+                method: 'GET',
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`
+                }
+              })
                 .then(response => response.json())
                 .then(data => {
                     invoicesContainer.innerHTML = "";
@@ -116,9 +130,12 @@
                 CustomerInvoiceAmountPaidID: inv.amountPaidID
             };
             console.log(body);
-        
+            if(isTokenExpired()){
+                RefreshToken();
+            }
             fetch(payUrl, {
                 method: "PUT",
+                Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -138,6 +155,15 @@
                 console.error("Payment error:", error);
                 alert("Payment failed. Please try again.");
             });
+        }
+        function isTokenExpired() {
+            const exp = sessionStorage.getItem("exp");
+            if (!exp) {
+                console.error("Expiration time not found.");
+                return true;
+            }
+            const currentTime = Math.floor(Date.now() / 1000);
+            return exp < currentTime;
         }
         
 });
