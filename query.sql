@@ -1,16 +1,20 @@
 BEGIN TRY
     BEGIN TRANSACTION;
 
+DECLARE @StartTime DATETIME = GETDATE();
+DECLARE @StepStartTime DATETIME;
+PRINT 'Query started at: ' + CONVERT(VARCHAR, @StartTime, 120);
+
 -- =============================================
 -- CONFIGURATION VARIABLES
 -- =============================================
-DECLARE @SupplierAmount int = 500;                      -- Number of suppliers to generate
-DECLARE @CustomerAmount int = 500;                     -- Number of customers to generate
-DECLARE @MaxSalePerCustomer int = 20;                   -- Maximum sales per customer
-DECLARE @MaxSupplierInvoicePerSale int = 15;            -- Maximum supplier invoices per sale
-DECLARE @MaxCustomerInvoicePerSale int = 10;            -- Maximum customer invoices per sale
-DECLARE @MaxCostPerSupplierInvoice int = 10;            -- Maximum cost entries per supplier invoice
-DECLARE @MaxCostPerCustomerInvoice int = 10;            -- Maximum cost entries per customer invoice
+DECLARE @SupplierAmount int = 2500;                      -- Number of suppliers to generate
+DECLARE @CustomerAmount int = 2500;                     -- Number of customers to generate
+DECLARE @MaxSalePerCustomer int = 50;                   -- Maximum sales per customer
+DECLARE @MaxSupplierInvoicePerSale int = 30;            -- Maximum supplier invoices per sale
+DECLARE @MaxCustomerInvoicePerSale int = 30;            -- Maximum customer invoices per sale
+DECLARE @MaxCostPerSupplierInvoice int = 50;            -- Maximum cost entries per supplier invoice
+DECLARE @MaxCostPerCustomerInvoice int = 50;            -- Maximum cost entries per customer invoice
 DECLARE @PercentageClosedSupplierInvoices int = 30;     -- % of supplier invoices to be closed (for open sales)
 DECLARE @PercentageClosedCustomerInvoices int = 20;     -- % of customer invoices to be closed (for open sales)
 DECLARE @PercentageClosedSales int = 35;                -- % of sales to be marked as closed
