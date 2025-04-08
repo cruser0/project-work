@@ -1,26 +1,38 @@
--- Assign Variables
-DECLARE @SupplierAmount int = 500;
-DECLARE @CustomerAmount int = 500;
-DECLARE @SaleAmount int = 500;
-DECLARE @MaxSupplierInvoicePerSale int = 8;
-DECLARE @MaxCustomerInvoicePerSale int = 8;
-DECLARE @MaxCostPerSupplierInvoice int = 8;
-DECLARE @MaxCostPerCustomerInvoice int = 8;
-DECLARE @PercentageClosedSupplierInvoices int = 70;
-DECLARE @PercentageClosedCustomerInvoices int = 50;
-DECLARE @PercentageClosedSales int = 35;
+BEGIN TRY
+    BEGIN TRANSACTION;
 
--- Delete existing data
+DECLARE @StartTime DATETIME = GETDATE();
+DECLARE @StepStartTime DATETIME;
+PRINT 'Query started at: ' + CONVERT(VARCHAR, @StartTime, 120);
+
+-- =============================================
+-- CONFIGURATION VARIABLES
+-- =============================================
+DECLARE @SupplierAmount int = 500;                      -- Number of suppliers to generate
+DECLARE @CustomerAmount int = 500;                      -- Number of customers to generate
+DECLARE @MaxSalePerCustomer int = 10;                   -- Maximum sales per customer
+DECLARE @MaxSupplierInvoicePerSale int = 10;            -- Maximum supplier invoices per sale
+DECLARE @MaxCustomerInvoicePerSale int = 10;            -- Maximum customer invoices per sale
+DECLARE @MaxCostPerSupplierInvoice int = 20;            -- Maximum cost entries per supplier invoice
+DECLARE @MaxCostPerCustomerInvoice int = 20;            -- Maximum cost entries per customer invoice
+DECLARE @PercentageClosedSupplierInvoices int = 30;     -- % of supplier invoices to be closed (for open sales)
+DECLARE @PercentageClosedCustomerInvoices int = 20;     -- % of customer invoices to be closed (for open sales)
+DECLARE @PercentageClosedSales int = 35;                -- % of sales to be marked as closed
+
+-- =============================================
+-- CLEAN EXISTING DATA
+-- =============================================
+-- Delete existing data in reverse order of dependencies
+DELETE FROM CustomerInvoiceAmoutPaids;
 DELETE FROM CustomerInvoiceCosts;
 DELETE FROM SupplierInvoiceCosts;
-DELETE FROM CustomerInvoiceAmoutPaids;
 DELETE FROM CustomerInvoices;
 DELETE FROM SupplierInvoices;
 DELETE FROM Sales;
 DELETE FROM Suppliers;
 DELETE FROM Customers;
 
--- Reset Identity
+-- Reset identity columns to start fresh
 DBCC CHECKIDENT ('Customers', RESEED, 0);
 DBCC CHECKIDENT ('Suppliers', RESEED, 0);
 DBCC CHECKIDENT ('Sales', RESEED, 0);
@@ -30,57 +42,76 @@ DBCC CHECKIDENT ('CustomerInvoiceCosts', RESEED, 0);
 DBCC CHECKIDENT ('SupplierInvoiceCosts', RESEED, 0);
 DBCC CHECKIDENT ('CustomerInvoiceAmoutPaids', RESEED, 0);
 
--- Insert Suppliers
+-- =============================================
+-- GENERATE BASE ENTITIES
+-- =============================================
+-- Insert Suppliers with random country assignments
 INSERT INTO Suppliers (SupplierName, CountryID, Deprecated, CreatedAt, OriginalID)
 SELECT TOP (@SupplierAmount)
-    CONCAT('Supplier', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
-    FLOOR(RAND(CHECKSUM(NEWID())) * 195) + 1,
-    0,
-    GETDATE(),
-    ROW_NUMBER() OVER (ORDER BY (SELECT NULL))
+    CONCAT('Supplier', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))), -- Sequential names
+    FLOOR(RAND(CHECKSUM(NEWID())) * 195) + 1,                       -- Random country from 1-195
+    0,                                                              -- Not deprecated
+    GETDATE(),                                                      -- Current date
+    ROW_NUMBER() OVER (ORDER BY (SELECT NULL))                      -- Original ID matches sequence
 FROM master.dbo.spt_values v1;
 
--- Insert Customers
+-- Insert Customers with random country assignments
 INSERT INTO Customers (CustomerName, CountryID, Deprecated, CreatedAt, OriginalID)
 SELECT TOP (@CustomerAmount)
-    CONCAT('Customer', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))), 
-    FLOOR(RAND(CHECKSUM(NEWID())) * 195) + 1,
-    0,
-    GETDATE(),
-    ROW_NUMBER() OVER (ORDER BY (SELECT NULL))
+    CONCAT('Customer', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))), -- Sequential names
+    FLOOR(RAND(CHECKSUM(NEWID())) * 195) + 1,                       -- Random country from 1-195
+    0,                                                              -- Not deprecated
+    GETDATE(),                                                      -- Current date
+    ROW_NUMBER() OVER (ORDER BY (SELECT NULL))                      -- Original ID matches sequence
 FROM master.dbo.spt_values v1;
 
--- Insert Sales with 0 amount and open/unapproved status
+-- =============================================
+-- GENERATE SALES RECORDS
+-- =============================================
+-- Generate between 1 and @MaxSalePerCustomer sales for each customer
+WITH SaleGeneration AS (
+    SELECT 
+        C.CustomerID,
+        (ABS(CHECKSUM(NEWID()) + C.CustomerID) % (@MaxSalePerCustomer)) + 1 AS SaleCount
+    FROM Customers C
+) 
+
 INSERT INTO Sales (BookingNumber, BoLNumber, SaleDate, CustomerID, TotalRevenue, StatusID)
-SELECT TOP (@SaleAmount)
-    CONCAT('BN-', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
-    CONCAT('BoL-', Floor(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) /2)),
-    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()),
-    (ABS(CHECKSUM(NEWID())) % (@CustomerAmount)) + 1,
-    0,  -- Set TotalRevenue to 0
-    1   -- Open status (1)
-FROM master.dbo.spt_values v1;
+SELECT 
+   CONCAT('BN-', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),        -- Unique booking number
+   CONCAT('BoL-', Floor(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) /2)), -- Bill of Lading number (shared between 2 sales)
+   DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()),          -- Random date within past year
+   SG.CustomerID,
+   0,                                                               -- Initial TotalRevenue (will update later)
+   1                                                                -- Open status (1)
+FROM SaleGeneration SG
+CROSS APPLY (
+    SELECT TOP (SG.SaleCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
+    FROM master.dbo.spt_values
+) AS NumGen;
 
--- Generate Customer Invoices with 1 to 5 invoices per sale
+-- =============================================
+-- GENERATE CUSTOMER INVOICES
+-- =============================================
+-- Generate between 1 and @MaxCustomerInvoicePerSale invoices per sale
 WITH CustomerInvoiceGeneration AS (
     SELECT 
         S.SaleID, 
         S.SaleDate,
-        (ABS(CHECKSUM(NEWID()) + S.SaleID) % (@MaxCustomerInvoicePerSale)) + 1 AS InvoiceCount
+        (ABS(CHECKSUM(NEWID())) % (@MaxCustomerInvoicePerSale)) + 1 AS InvoiceCount
     FROM Sales S
 )
 
--- Insert Customer Invoices
 INSERT INTO CustomerInvoices (SaleID, InvoiceAmount, InvoiceDate, StatusID, CustomerInvoiceCode)
 SELECT 
     IG.SaleID,
-    0,  -- Set InvoiceAmount to 0
-    DATEADD(DAY, 
-        (RN - 1) * (ABS(CHECKSUM(NEWID()) + IG.SaleID) % 30), 
+    0,                                                               -- Initial InvoiceAmount (will update later)
+    DATEADD(DAY,                                                     -- Invoice date is sale date + random days
+        (RN - 1) * (ABS(CHECKSUM(NEWID())) % 30), 
         IG.SaleDate
     ),
-    6,  -- Unpaid status
-    CONCAT('CINV-', IG.SaleID, '-', RN)
+    6,                                                               -- Default status: Unpaid (6)
+    CONCAT('CINV-', IG.SaleID, '-', RN)                             -- Unique invoice code
 
 FROM CustomerInvoiceGeneration IG
 CROSS APPLY (
@@ -88,45 +119,48 @@ CROSS APPLY (
     FROM master.dbo.spt_values
 ) AS NumGen;
 
-
-
-
--- Generate Supplier Invoices with 1 to 3 invoices per sale
+-- =============================================
+-- GENERATE SUPPLIER INVOICES
+-- =============================================
+-- Generate between 1 and @MaxSupplierInvoicePerSale invoices per sale
 WITH SupplierInvoiceGeneration AS (
     SELECT 
         S.SaleID, 
         S.SaleDate,
-        (ABS(CHECKSUM(NEWID()) + S.SaleID) % (@MaxSupplierInvoicePerSale)) + 1 AS InvoiceCount
+        (ABS(CHECKSUM(NEWID())) % (@MaxSupplierInvoicePerSale)) + 1 AS InvoiceCount
     FROM Sales S
 )
 
--- Insert Supplier Invoices
 INSERT INTO SupplierInvoices (SaleID, InvoiceAmount, InvoiceDate, StatusID, SupplierInvoiceCode, SupplierID)
 SELECT 
     IG.SaleID,
-    0,  -- Set InvoiceAmount to 0
-    DATEADD(DAY, 
-        (RN - 1) * (ABS(CHECKSUM(NEWID()) + IG.SaleID) % 30), 
+    0,                                                               -- Initial InvoiceAmount (will update later)
+    DATEADD(DAY,                                                     -- Invoice date is sale date + random days
+        (RN - 1) * (ABS(CHECKSUM(NEWID())) % 30), 
         IG.SaleDate
     ),
-    4,  -- Unapproved status
-    CONCAT('SINV-', IG.SaleID, '-', RN),
-    (ABS(CHECKSUM(NEWID()) + IG.SaleID * RN) % (@SupplierAmount)) + 1
+    4,                                                               -- Default status: Unapproved (4)
+    CONCAT('SINV-', IG.SaleID, '-', RN),                            -- Unique invoice code
+    (ABS(CHECKSUM(NEWID()) + IG.SaleID * RN) % (@SupplierAmount)) + 1 -- Random supplier assignment
 FROM SupplierInvoiceGeneration IG
 CROSS APPLY (
     SELECT TOP (IG.InvoiceCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
     FROM master.dbo.spt_values
 ) AS NumGen;
 
--- Ensure we have data in CostRegistry
+-- =============================================
+-- ENSURE DEFAULT COST REGISTRY EXISTS
+-- =============================================
 IF NOT EXISTS (SELECT 1 FROM CostRegistries WHERE CostRegistryID = 1)
 BEGIN
     INSERT INTO CostRegistries (CostRegistryName, CostRegistryPrice, CostRegistryQuantity)
     VALUES ('DefaultCost', 10, 1)
 END;
 
--- Insert CustomerInvoiceCosts with 1 to 5 invoice costs per customer invoice
--- CORREZIONE: Limitare ABS() per evitare overflow e usare CAST per sicurezza
+-- =============================================
+-- GENERATE CUSTOMER INVOICE COSTS
+-- =============================================
+-- Generate between 1 and @MaxCostPerCustomerInvoice costs per customer invoice
 WITH CustomerInvoiceCostGeneration AS (
     SELECT 
         CI.CustomerInvoiceID, 
@@ -137,18 +171,20 @@ WITH CustomerInvoiceCostGeneration AS (
 INSERT INTO CustomerInvoiceCosts (CustomerInvoiceID, Cost, Quantity, Name, CostRegistryID)
 SELECT 
     IG.CustomerInvoiceID,
-    ROUND(RAND(CHECKSUM(NEWID()) + IG.CustomerInvoiceID + RN) * 1000, 2),
-    FLOOR(RAND(CHECKSUM(NEWID()) + IG.CustomerInvoiceID * RN) * 100) + 1,
-    CONCAT('Generated Customer Cost ', RN),
-    1
+    ROUND(RAND(ABS(CHECKSUM(NEWID())) % 1000) * 1000, 2), -- Random cost up to $1000
+    FLOOR(RAND(ABS(CHECKSUM(NEWID())) % 100) * 100) + 1,  -- Random quantity 1-100
+    CONCAT('Generated Customer Cost ', RN),               -- Cost name
+    1                                                     -- Default cost registry
 FROM CustomerInvoiceCostGeneration IG
 CROSS APPLY (
     SELECT TOP (IG.CostCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
     FROM master.dbo.spt_values
 ) AS NumGen;
 
--- Insert SupplierInvoiceCosts with 1 to 5 invoice costs per supplier invoice
--- CORREZIONE: Limitare ABS() per evitare overflow e usare CAST per sicurezza
+-- =============================================
+-- GENERATE SUPPLIER INVOICE COSTS
+-- =============================================
+-- Generate between 1 and @MaxCostPerSupplierInvoice costs per supplier invoice
 WITH SupplierInvoiceCostGeneration AS (
     SELECT 
         SI.SupplierInvoiceID, 
@@ -159,18 +195,21 @@ WITH SupplierInvoiceCostGeneration AS (
 INSERT INTO SupplierInvoiceCosts (SupplierInvoiceID, Cost, Quantity, Name, CostRegistryID, CustomerInvoiceCostID)
 SELECT 
     IG.SupplierInvoiceID,
-    ROUND(RAND(CHECKSUM(NEWID()) + IG.SupplierInvoiceID + RN) * 800, 2),
-    FLOOR(RAND(CHECKSUM(NEWID()) + IG.SupplierInvoiceID * RN) * 80) + 1,
-    CONCAT('Generated Supplier Cost ', RN),
-    1,
-	Null
+    ROUND(RAND(ABS(CHECKSUM(NEWID())) % 800) * 800, 2), -- Random cost up to $800
+    FLOOR(RAND(ABS(CHECKSUM(NEWID())) % 80) * 80) + 1,  -- Random quantity 1-80
+    CONCAT('Generated Supplier Cost ', RN),             -- Cost name
+    1,                                                  -- Default cost registry
+    NULL                                                -- No linked customer invoice cost
 FROM SupplierInvoiceCostGeneration IG
 CROSS APPLY (
     SELECT TOP (IG.CostCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
     FROM master.dbo.spt_values
 ) AS NumGen;
 
--- Update Supplier Invoice Amounts based on generated costs
+-- =============================================
+-- UPDATE CALCULATED INVOICE AMOUNTS
+-- =============================================
+-- Calculate supplier invoice amounts based on their line items
 UPDATE SI
 SET InvoiceAmount = COALESCE((
     SELECT SUM(Cost * Quantity)
@@ -179,7 +218,7 @@ SET InvoiceAmount = COALESCE((
 ), 0)
 FROM SupplierInvoices SI;
 
--- Update Customer Invoice Amounts based on generated costs
+-- Calculate customer invoice amounts based on their line items
 UPDATE CI
 SET InvoiceAmount = COALESCE((
     SELECT SUM(Cost * Quantity)
@@ -188,8 +227,7 @@ SET InvoiceAmount = COALESCE((
 ), 0)
 FROM CustomerInvoices CI;
 
-
--- Calculate and Update Total Revenue for Sales
+-- Update total revenue for each sale based on sum of customer invoices
 UPDATE S
 SET TotalRevenue = (
     SELECT SUM(InvoiceAmount)
@@ -198,7 +236,10 @@ SET TotalRevenue = (
 )
 FROM Sales S;
 
--- Update Sales Status (35% to status 2)
+-- =============================================
+-- UPDATE STATUSES
+-- =============================================
+-- Update selected sales to Closed status (2)
 UPDATE Sales
 SET StatusID = 2
 WHERE SaleID IN (
@@ -207,36 +248,91 @@ WHERE SaleID IN (
     ORDER BY NEWID()
 );
 
--- Update Supplier Invoices Status (70% to status 3)
+-- Auto-close all supplier invoices for closed sales
 UPDATE SupplierInvoices
-SET StatusID = 3
+SET StatusID = 3 -- Paid status
+WHERE SaleID IN (
+    SELECT SaleID
+    FROM Sales
+    WHERE StatusID = 2
+);
+
+-- Close a percentage of supplier invoices for open sales
+UPDATE SupplierInvoices
+SET StatusID = 3 -- Paid status
 WHERE SupplierInvoiceID IN (
     SELECT TOP (@PercentageClosedSupplierInvoices) PERCENT SupplierInvoiceID 
     FROM SupplierInvoices 
     ORDER BY NEWID()
+) AND 
+SaleID IN (
+    SELECT SaleID
+    FROM Sales
+    WHERE StatusID = 1 -- Open sales only
 );
 
--- Update Customer Invoices Status (50% to status 5)
+-- Auto-close all customer invoices for closed sales
 UPDATE CustomerInvoices
-SET StatusID = 5
+SET StatusID = 5 -- Paid status
+WHERE SaleID IN (
+    SELECT SaleID
+    FROM Sales
+    WHERE StatusID = 2 -- Closed sales
+);
+
+-- Close a percentage of customer invoices for open sales
+UPDATE CustomerInvoices
+SET StatusID = 5 -- Paid status
 WHERE CustomerInvoiceID IN (
     SELECT TOP (@PercentageClosedCustomerInvoices) PERCENT CustomerInvoiceID 
     FROM CustomerInvoices 
     ORDER BY NEWID()
+) AND 
+SaleID IN (
+    SELECT SaleID
+    FROM Sales
+    WHERE StatusID = 1 -- Open sales only
 );
 
+-- =============================================
+-- GENERATE PAYMENT RECORDS
+-- =============================================
+-- Insert payment records based on invoice status
 INSERT INTO CustomerInvoiceAmoutPaids(CustomerInvoiceID, AmountPaid)
 SELECT 
     CustomerInvoiceID, 
     CASE 
-        WHEN StatusID = 6 THEN 0
-        WHEN StatusID = 5 THEN InvoiceAmount
-        ELSE 0 -- Default case for other statuses
+        WHEN StatusID = 6 THEN 0             -- Unpaid invoices: zero payment
+        WHEN StatusID = 5 THEN InvoiceAmount -- Paid invoices: full payment
+        ELSE 0                               -- Default case
     END AS AmountPaid
 FROM CustomerInvoices;
 
+-- =============================================
+-- COMPREHENSIVE STATISTICS REPORTS
+-- =============================================
 
--- Verification Queries for Invoice Distribution
+-- =============================================
+-- 1. ENTITY COUNT SUMMARY
+-- =============================================
+SELECT 'ENTITY COUNT SUMMARY' AS ReportSection;
+
+SELECT 
+    'Entity Counts' AS StatisticType,
+    (SELECT COUNT(*) FROM Customers) AS TotalCustomers,
+    (SELECT COUNT(*) FROM Suppliers) AS TotalSuppliers,
+    (SELECT COUNT(*) FROM Sales) AS TotalSales,
+    (SELECT COUNT(*) FROM CustomerInvoices) AS TotalCustomerInvoices,
+    (SELECT COUNT(*) FROM SupplierInvoices) AS TotalSupplierInvoices,
+    (SELECT COUNT(*) FROM CustomerInvoiceCosts) AS TotalCustomerCostItems,
+    (SELECT COUNT(*) FROM SupplierInvoiceCosts) AS TotalSupplierCostItems;
+
+-- =============================================
+-- 2. INVOICE DISTRIBUTION ANALYSIS
+-- =============================================
+SELECT 'INVOICE DISTRIBUTION ANALYSIS' AS ReportSection;
+
+-- Customer invoice distribution per sale
 WITH CustomerInvoiceCountPerSale AS (
     SELECT 
         SaleID, 
@@ -245,7 +341,7 @@ WITH CustomerInvoiceCountPerSale AS (
     GROUP BY SaleID
 )
 SELECT 
-    'Customer Invoices per Sale' AS Statistic,
+    'Customer Invoices per Sale' AS StatisticType,
     InvoiceCount, 
     COUNT(*) AS NumberOfSales,
     ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Sales), 2) AS Percentage
@@ -253,6 +349,7 @@ FROM CustomerInvoiceCountPerSale
 GROUP BY InvoiceCount
 ORDER BY InvoiceCount;
 
+-- Supplier invoice distribution per sale
 WITH SupplierInvoiceCountPerSale AS (
     SELECT 
         SaleID, 
@@ -261,7 +358,7 @@ WITH SupplierInvoiceCountPerSale AS (
     GROUP BY SaleID
 )
 SELECT 
-    'Supplier Invoices per Sale' AS Statistic,
+    'Supplier Invoices per Sale' AS StatisticType,
     InvoiceCount, 
     COUNT(*) AS NumberOfSales,
     ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Sales), 2) AS Percentage
@@ -269,32 +366,65 @@ FROM SupplierInvoiceCountPerSale
 GROUP BY InvoiceCount
 ORDER BY InvoiceCount;
 
--- Verification Queries for Status Distribution
-SELECT 'Sales Status Distribution' AS Statistic, 
-       StatusID, 
-       COUNT(*) AS Count, 
-       ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Sales), 2) AS Percentage
-FROM Sales
-GROUP BY StatusID
-ORDER BY StatusID;
+-- =============================================
+-- 3. STATUS DISTRIBUTION ANALYSIS
+-- =============================================
+SELECT 'STATUS DISTRIBUTION ANALYSIS' AS ReportSection;
 
-SELECT 'Supplier Invoices Status Distribution' AS Statistic, 
-       StatusID, 
-       COUNT(*) AS Count, 
-       ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM SupplierInvoices), 2) AS Percentage
-FROM SupplierInvoices
-GROUP BY StatusID
-ORDER BY StatusID;
+-- Sale status distribution with status descriptions
+WITH SaleStatuses AS (
+    SELECT 1 AS ID, 'Open' AS StatusName
+    UNION SELECT 2, 'Closed'
+)
+SELECT 
+    'Sales Status Distribution' AS StatisticType, 
+    S.StatusID,
+    SS.StatusName, 
+    COUNT(*) AS Count, 
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Sales), 2) AS Percentage
+FROM Sales S
+JOIN SaleStatuses SS ON S.StatusID = SS.ID
+GROUP BY S.StatusID, SS.StatusName
+ORDER BY S.StatusID;
 
-SELECT 'Customer Invoices Status Distribution' AS Statistic, 
-       StatusID, 
-       COUNT(*) AS Count, 
-       ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM CustomerInvoices), 2) AS Percentage
-FROM CustomerInvoices
-GROUP BY StatusID
-ORDER BY StatusID;
+-- Supplier invoice status distribution with status descriptions
+WITH SupplierStatuses AS (
+    SELECT 3 AS ID, 'Paid' AS StatusName
+    UNION SELECT 4, 'Unapproved'
+)
+SELECT 
+    'Supplier Invoices Status Distribution' AS StatisticType, 
+    SI.StatusID,
+    SS.StatusName, 
+    COUNT(*) AS Count, 
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM SupplierInvoices), 2) AS Percentage
+FROM SupplierInvoices SI
+JOIN SupplierStatuses SS ON SI.StatusID = SS.ID
+GROUP BY SI.StatusID, SS.StatusName
+ORDER BY SI.StatusID;
 
--- Verification Queries for Invoice Cost Distribution
+-- Customer invoice status distribution with status descriptions
+WITH CustomerStatuses AS (
+    SELECT 5 AS ID, 'Paid' AS StatusName
+    UNION SELECT 6, 'Unpaid'
+)
+SELECT 
+    'Customer Invoices Status Distribution' AS StatisticType, 
+    CI.StatusID,
+    CS.StatusName, 
+    COUNT(*) AS Count, 
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM CustomerInvoices), 2) AS Percentage
+FROM CustomerInvoices CI
+JOIN CustomerStatuses CS ON CI.StatusID = CS.ID
+GROUP BY CI.StatusID, CS.StatusName
+ORDER BY CI.StatusID;
+
+-- =============================================
+-- 4. COST DISTRIBUTION ANALYSIS
+-- =============================================
+SELECT 'COST DISTRIBUTION ANALYSIS' AS ReportSection;
+
+-- Customer invoice cost distribution
 WITH CustomerInvoiceCostCountPerInvoice AS (
     SELECT 
         CustomerInvoiceID, 
@@ -303,7 +433,7 @@ WITH CustomerInvoiceCostCountPerInvoice AS (
     GROUP BY CustomerInvoiceID
 )
 SELECT 
-    'Customer Invoice Costs per Invoice' AS Statistic,
+    'Customer Invoice Costs per Invoice' AS StatisticType,
     CostCount, 
     COUNT(*) AS NumberOfInvoices,
     ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM CustomerInvoices), 2) AS Percentage
@@ -311,6 +441,7 @@ FROM CustomerInvoiceCostCountPerInvoice
 GROUP BY CostCount
 ORDER BY CostCount;
 
+-- Supplier invoice cost distribution
 WITH SupplierInvoiceCostCountPerInvoice AS (
     SELECT 
         SupplierInvoiceID, 
@@ -319,7 +450,7 @@ WITH SupplierInvoiceCostCountPerInvoice AS (
     GROUP BY SupplierInvoiceID
 )
 SELECT 
-    'Supplier Invoice Costs per Invoice' AS Statistic,
+    'Supplier Invoice Costs per Invoice' AS StatisticType,
     CostCount, 
     COUNT(*) AS NumberOfInvoices,
     ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM SupplierInvoices), 2) AS Percentage
@@ -327,49 +458,90 @@ FROM SupplierInvoiceCostCountPerInvoice
 GROUP BY CostCount
 ORDER BY CostCount;
 
--- Statistical Summaries
+-- =============================================
+-- 5. FINANCIAL SUMMARY ANALYSIS
+-- =============================================
+SELECT 'FINANCIAL SUMMARY ANALYSIS' AS ReportSection;
+
+-- Sales financial summary with percentile analysis
 SELECT 
-    'Sales Statistics' AS Statistic,
+    'Sales Financial Summary' AS StatisticType,
     COUNT(*) AS TotalCount,
-    SUM(TotalRevenue) AS TotalRevenue,
-    AVG(TotalRevenue) AS AverageRevenue,
-    MIN(TotalRevenue) AS MinRevenue,
-    MAX(TotalRevenue) AS MaxRevenue
+    FORMAT(SUM(TotalRevenue), 'C', 'en-us') AS TotalRevenue,
+    FORMAT(AVG(TotalRevenue), 'C', 'en-us') AS AverageRevenue,
+    FORMAT(MIN(TotalRevenue), 'C', 'en-us') AS MinRevenue,
+    FORMAT(MAX(TotalRevenue), 'C', 'en-us') AS MaxRevenue,
+    FORMAT(STDEV(TotalRevenue), 'C', 'en-us') AS StdDevRevenue
 FROM Sales;
 
+-- Customer invoices financial summary with percentile analysis
 SELECT 
-    'Customer Invoices Statistics' AS Statistic,
+    'Customer Invoices Financial Summary' AS StatisticType,
     COUNT(*) AS TotalInvoices,
-    SUM(InvoiceAmount) AS TotalInvoiceAmount,
-    AVG(InvoiceAmount) AS AverageInvoiceAmount,
-    MIN(InvoiceAmount) AS MinInvoiceAmount,
-    MAX(InvoiceAmount) AS MaxInvoiceAmount
+    FORMAT(SUM(InvoiceAmount), 'C', 'en-us') AS TotalInvoiceAmount,
+    FORMAT(AVG(InvoiceAmount), 'C', 'en-us') AS AvgInvoiceAmount,
+    FORMAT(MIN(InvoiceAmount), 'C', 'en-us') AS MinInvoiceAmount,
+    FORMAT(MAX(InvoiceAmount), 'C', 'en-us') AS MaxInvoiceAmount,
+    FORMAT(STDEV(InvoiceAmount), 'C', 'en-us') AS StdDevInvoiceAmount
 FROM CustomerInvoices;
 
+-- Supplier invoices financial summary with percentile analysis
 SELECT 
-    'Supplier Invoices Statistics' AS Statistic,
+    'Supplier Invoices Financial Summary' AS StatisticType,
     COUNT(*) AS TotalInvoices,
-    SUM(InvoiceAmount) AS TotalInvoiceAmount,
-    AVG(InvoiceAmount) AS AverageInvoiceAmount,
-    MIN(InvoiceAmount) AS MinInvoiceAmount,
-    MAX(InvoiceAmount) AS MaxInvoiceAmount
+    FORMAT(SUM(InvoiceAmount), 'C', 'en-us') AS TotalInvoiceAmount,
+    FORMAT(AVG(InvoiceAmount), 'C', 'en-us') AS AvgInvoiceAmount,
+    FORMAT(MIN(InvoiceAmount), 'C', 'en-us') AS MinInvoiceAmount,
+    FORMAT(MAX(InvoiceAmount), 'C', 'en-us') AS MaxInvoiceAmount,
+    FORMAT(STDEV(InvoiceAmount), 'C', 'en-us') AS StdDevInvoiceAmount
 FROM SupplierInvoices;
 
--- Statistics for Invoice Costs
+-- =============================================
+-- 6. COST ITEM ANALYSIS
+-- =============================================
+SELECT 'COST ITEM ANALYSIS' AS ReportSection;
+
+-- Customer invoice cost items summary
 SELECT 
-    'Customer Invoice Costs Statistics' AS Statistic,
-    COUNT(*) AS TotalCosts,
-    SUM(Cost * Quantity) AS TotalCostAmount,
-    AVG(Cost) AS AverageCost,
-    MIN(Cost) AS MinCost,
-    MAX(Cost) AS MaxCost
+    'Customer Invoice Cost Items Analysis' AS StatisticType,
+    COUNT(*) AS TotalCostItems,
+    FORMAT(SUM(Cost * Quantity), 'C', 'en-us') AS TotalCostValue,
+    FORMAT(AVG(Cost), 'C', 'en-us') AS AverageCostPerItem,
+    FORMAT(AVG(Quantity), 'N2') AS AverageQuantityPerItem,
+    FORMAT(MIN(Cost), 'C', 'en-us') AS MinCost,
+    FORMAT(MAX(Cost), 'C', 'en-us') AS MaxCost
 FROM CustomerInvoiceCosts;
 
+-- Supplier invoice cost items summary
 SELECT 
-    'Supplier Invoice Costs Statistics' AS Statistic,
-    COUNT(*) AS TotalCosts,
-    SUM(Cost * Quantity) AS TotalCostAmount,
-    AVG(Cost) AS AverageCost,
-    MIN(Cost) AS MinCost,
-    MAX(Cost) AS MaxCost
+    'Supplier Invoice Cost Items Analysis' AS StatisticType,
+    COUNT(*) AS TotalCostItems,
+    FORMAT(SUM(Cost * Quantity), 'C', 'en-us') AS TotalCostValue,
+    FORMAT(AVG(Cost), 'C', 'en-us') AS AverageCostPerItem,
+    FORMAT(AVG(Quantity), 'N2') AS AverageQuantityPerItem,
+    FORMAT(MIN(Cost), 'C', 'en-us') AS MinCost,
+    FORMAT(MAX(Cost), 'C', 'en-us') AS MaxCost
 FROM SupplierInvoiceCosts;
+
+-- =============================================
+-- 7. PROFITABILITY ANALYSIS
+-- =============================================
+SELECT 'PROFITABILITY ANALYSIS' AS ReportSection;
+
+-- Overall profitability summary
+SELECT
+    'Overall Profitability' AS StatisticType,
+    FORMAT((SELECT SUM(InvoiceAmount) FROM CustomerInvoices), 'C', 'en-us') AS TotalRevenue,
+    FORMAT((SELECT SUM(InvoiceAmount) FROM SupplierInvoices), 'C', 'en-us') AS TotalCost,
+    FORMAT((SELECT SUM(InvoiceAmount) FROM CustomerInvoices) - 
+           (SELECT SUM(InvoiceAmount) FROM SupplierInvoices), 'C', 'en-us') AS GrossProfit,
+    FORMAT(((SELECT SUM(InvoiceAmount) FROM CustomerInvoices) - 
+            (SELECT SUM(InvoiceAmount) FROM SupplierInvoices)) / 
+            NULLIF((SELECT SUM(InvoiceAmount) FROM CustomerInvoices), 0) * 100, 'N2') + '%' AS GrossProfitMargin;
+
+    COMMIT;
+END TRY
+BEGIN CATCH
+    ROLLBACK;
+    THROW;
+END CATCH;

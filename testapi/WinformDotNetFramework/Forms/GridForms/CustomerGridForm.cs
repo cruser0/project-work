@@ -114,7 +114,6 @@ namespace WinformDotNetFramework.Forms.GridForms
             CustomerNameTsmi.Checked = (bool)cdgv.ShowName;
             PaginationUserControl.Visible = true;
             CustomerDgv.Columns["IsPost"].Visible = false;
-            CustomerDgv.Columns["AmountPaidID"].Visible = false;
 
             CustomerDgv.Columns["CustomerName"].Visible = (bool)cdgv.ShowName;
             CustomerDgv.Columns["Country"].Visible = (bool)cdgv.ShowCountry;
