@@ -31,8 +31,8 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.saleDateDtp = new System.Windows.Forms.DateTimePicker();
             this.EditCB = new System.Windows.Forms.CheckBox();
@@ -41,11 +41,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CuInDgv = new System.Windows.Forms.DataGridView();
-            this.customerInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PayColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.customerInvoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel7 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,6 +72,10 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.customerInvoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -194,8 +193,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.customerInvoiceCodeDataGridViewTextBoxColumn,
             this.invoiceAmountDataGridViewTextBoxColumn,
             this.invoiceDateDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn,
-            this.PayColumn});
+            this.statusDataGridViewTextBoxColumn});
             this.CuInDgv.DataSource = this.customerInvoiceBindingSource;
             this.CuInDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CuInDgv.Location = new System.Drawing.Point(3, 44);
@@ -203,49 +201,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.CuInDgv.ReadOnly = true;
             this.CuInDgv.Size = new System.Drawing.Size(360, 205);
             this.CuInDgv.TabIndex = 0;
-            this.CuInDgv.DataSourceChanged += new System.EventHandler(this.CuInDgv_DataSourceChanged);
-            this.CuInDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellContentClick);
             this.CuInDgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CuInDgv_CellDoubleClick);
-            // 
-            // customerInvoiceCodeDataGridViewTextBoxColumn
-            // 
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "CustomerInvoiceCode";
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "CustomerInvoiceCode";
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.Name = "customerInvoiceCodeDataGridViewTextBoxColumn";
-            this.customerInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invoiceAmountDataGridViewTextBoxColumn
-            // 
-            this.invoiceAmountDataGridViewTextBoxColumn.DataPropertyName = "InvoiceAmount";
-            dataGridViewCellStyle1.Format = "N2";
-            this.invoiceAmountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.invoiceAmountDataGridViewTextBoxColumn.HeaderText = "InvoiceAmount";
-            this.invoiceAmountDataGridViewTextBoxColumn.Name = "invoiceAmountDataGridViewTextBoxColumn";
-            this.invoiceAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invoiceDateDataGridViewTextBoxColumn
-            // 
-            this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
-            this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "InvoiceDate";
-            this.invoiceDateDataGridViewTextBoxColumn.Name = "invoiceDateDataGridViewTextBoxColumn";
-            this.invoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // PayColumn
-            // 
-            this.PayColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PayColumn.HeaderText = "Pay";
-            this.PayColumn.Name = "PayColumn";
-            this.PayColumn.ReadOnly = true;
-            this.PayColumn.Text = "Pay";
-            this.PayColumn.UseColumnTextForButtonValue = true;
-            this.PayColumn.Width = 32;
             // 
             // customerInvoiceBindingSource
             // 
@@ -596,6 +552,36 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(744, 20);
             this.panel5.TabIndex = 24;
             // 
+            // customerInvoiceCodeDataGridViewTextBoxColumn
+            // 
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "CustomerInvoiceCode";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.HeaderText = "CustomerInvoiceCode";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.Name = "customerInvoiceCodeDataGridViewTextBoxColumn";
+            this.customerInvoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceAmountDataGridViewTextBoxColumn
+            // 
+            this.invoiceAmountDataGridViewTextBoxColumn.DataPropertyName = "InvoiceAmount";
+            dataGridViewCellStyle1.Format = "N2";
+            this.invoiceAmountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.invoiceAmountDataGridViewTextBoxColumn.HeaderText = "InvoiceAmount";
+            this.invoiceAmountDataGridViewTextBoxColumn.Name = "invoiceAmountDataGridViewTextBoxColumn";
+            this.invoiceAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceDateDataGridViewTextBoxColumn
+            // 
+            this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "InvoiceDate";
+            this.invoiceDateDataGridViewTextBoxColumn.Name = "invoiceDateDataGridViewTextBoxColumn";
+            this.invoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // CreateDetailsSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -663,16 +649,15 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Button RefreshBtn;
         private Label label2;
         private Label PaidLabel;
-        private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private DataGridViewButtonColumn PayColumn;
         private DataGridViewTextBoxColumn supplierInvoiceCodeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn supplierNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn countryDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn customerInvoiceCodeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceAmountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
     }
 }
