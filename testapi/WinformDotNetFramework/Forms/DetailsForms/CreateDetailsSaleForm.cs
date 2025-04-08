@@ -384,18 +384,5 @@ namespace WinformDotNetFramework.Forms.DetailsForms
                 })).ToList();
             SuInDgv.DataSource = si;
         }
-
-        private async void CuInDgv_DataSourceChanged(object sender, EventArgs e)
-        {
-            CustomerInvoiceAmountPaidFilter filter = new CustomerInvoiceAmountPaidFilter()
-            {
-                PaidCustomerSaleID = _saleId
-            };
-
-            decimal amountPaid = (decimal)(await _customerInvoiceAmountPaidService
-                .GetAllSale(filter)).Select(x => x.AmountPaid).Sum();
-
-            PaidLabel.Text = $"{amountPaid:N2}€/{(decimal)sale.TotalRevenue:N2}€";
-        }
     }
 }

@@ -8,16 +8,16 @@ PRINT 'Query started at: ' + CONVERT(VARCHAR, @StartTime, 120);
 -- =============================================
 -- CONFIGURATION VARIABLES
 -- =============================================
-DECLARE @SupplierAmount int = 500;                      -- Number of suppliers to generate
-DECLARE @CustomerAmount int = 500;                      -- Number of customers to generate
+DECLARE @SupplierAmount int = 10;                      -- Number of suppliers to generate
+DECLARE @CustomerAmount int = 10;                      -- Number of customers to generate
 DECLARE @MaxSalePerCustomer int = 10;                   -- Maximum sales per customer
 DECLARE @MaxSupplierInvoicePerSale int = 10;            -- Maximum supplier invoices per sale
 DECLARE @MaxCustomerInvoicePerSale int = 10;            -- Maximum customer invoices per sale
-DECLARE @MaxCostPerSupplierInvoice int = 20;            -- Maximum cost entries per supplier invoice
-DECLARE @MaxCostPerCustomerInvoice int = 20;            -- Maximum cost entries per customer invoice
+DECLARE @MaxCostPerSupplierInvoice int = 10;            -- Maximum cost entries per supplier invoice
+DECLARE @MaxCostPerCustomerInvoice int = 10;            -- Maximum cost entries per customer invoice
 DECLARE @PercentageClosedSupplierInvoices int = 30;     -- % of supplier invoices to be closed (for open sales)
 DECLARE @PercentageClosedCustomerInvoices int = 20;     -- % of customer invoices to be closed (for open sales)
-DECLARE @PercentageClosedSales int = 35;                -- % of sales to be marked as closed
+DECLARE @PercentageClosedSales int = 15;                -- % of sales to be marked as closed
 
 -- =============================================
 -- CLEAN EXISTING DATA
@@ -147,15 +147,6 @@ CROSS APPLY (
     SELECT TOP (IG.InvoiceCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS RN
     FROM master.dbo.spt_values
 ) AS NumGen;
-
--- =============================================
--- ENSURE DEFAULT COST REGISTRY EXISTS
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM CostRegistries WHERE CostRegistryID = 1)
-BEGIN
-    INSERT INTO CostRegistries (CostRegistryName, CostRegistryPrice, CostRegistryQuantity)
-    VALUES ('DefaultCost', 10, 1)
-END;
 
 -- =============================================
 -- GENERATE CUSTOMER INVOICE COSTS
