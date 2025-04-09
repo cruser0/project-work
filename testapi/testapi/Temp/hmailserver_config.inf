@@ -1,5 +1,5 @@
 [Setup] 
-Dir= C:\Program Files (x86)\hMailServer 
+Dir=C:\Program Files (x86)\hMailServer 
 Group=hMailServer 
 NoIcons=0 
 SetupType=full     REM Ensure the full setup is selected

@@ -21,42 +21,40 @@ namespace API.Models.Services
 
         public async Task<EmailDTO> SendEmail(EmailDTO email)
         {
-            var smtpClient = new SmtpClient(_appSettings["HMailServer:SmtpHost"], int.Parse(_appSettings["HMailServer:Port"]))
-            {
-                Credentials = new NetworkCredential(_appSettings["HMailServer:SmtpUser"], _appSettings["HMailServer:SmtpPass"]),
-                EnableSsl = false
-            };
-
             byte[] pdfBytes = Convert.FromBase64String(email.PdfContent);
 
-
-            var mailMessage = new MailMessage
+            using (var smtpClient = new SmtpClient(_appSettings["HMailServer:SmtpHost"], int.Parse(_appSettings["HMailServer:Port"])))
+            using (var mailMessage = new MailMessage
             {
                 From = new MailAddress(_appSettings["HMailServer:SmtpUser"]),
                 Subject = email.Subject,
                 Body = email.Body,
                 IsBodyHtml = true
-            };
-
-            mailMessage.To.Add(email.To);
-
-
-            using (var stream = new MemoryStream(pdfBytes))
+            })
             {
-                var attachment = new Attachment(stream, email.FileName, MediaTypeNames.Application.Pdf);
-                mailMessage.Attachments.Add(attachment);
+                smtpClient.Credentials = new NetworkCredential(_appSettings["HMailServer:SmtpUser"], _appSettings["HMailServer:SmtpPass"]);
+                smtpClient.EnableSsl = false;
 
-                try
+                mailMessage.To.Add(email.To);
+
+                using (var stream = new MemoryStream(pdfBytes))
                 {
-                    smtpClient.Send(mailMessage);
-                    return email;
-                }
-                catch
-                {
-                    throw;
+                    var attachment = new Attachment(stream, email.FileName, MediaTypeNames.Application.Pdf);
+                    mailMessage.Attachments.Add(attachment);
+
+                    try
+                    {
+                        smtpClient.Send(mailMessage);
+                        return email;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
                 }
             }
         }
+
     }
 
 }

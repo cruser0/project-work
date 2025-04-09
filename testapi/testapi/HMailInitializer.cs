@@ -1,6 +1,7 @@
 ﻿using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Entities;
 using hMailServer;
+
 namespace API
 {
     public class HMailInitializer
@@ -115,22 +116,23 @@ namespace API
                     user.AdminLevel = eAdminLevel.hAdminLevelNormal;
                     user.Save();
                 }
-            }catch (Exception ex) { throw new Exception("hMailServer init failed: " + ex.Message); }
+            }
+            catch (Exception ex) { throw new Exception("hMailServer init failed: " + ex.Message); }
         }
         public static void RemoveCustomersEmail(CustomerUser customers)
         {
             try
             {
-                    Domain domain = GetDomain();
-                    for (int i = 0; i < domain.Accounts.Count; i++)
+                Domain domain = GetDomain();
+                for (int i = 0; i < domain.Accounts.Count; i++)
+                {
+                    var acc = domain.Accounts[i];
+                    if (acc.Address.Equals(customers.Email, StringComparison.OrdinalIgnoreCase))
                     {
-                        var acc = domain.Accounts[i];
-                        if (acc.Address.Equals(customers.Email, StringComparison.OrdinalIgnoreCase))
-                        {
-                            acc.Delete();
-                        }
+                        acc.Delete();
                     }
-                    throw new Exception("Account not found");
+                }
+                throw new Exception("Account not found");
             }
             catch (Exception ex) { throw new Exception("hMailServer init failed: " + ex.Message); }
         }
