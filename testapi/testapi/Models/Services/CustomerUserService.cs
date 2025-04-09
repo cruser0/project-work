@@ -20,7 +20,7 @@ namespace API.Models.Services
         Task<RefreshToken> GetNewerRefreshToken(RefreshTokenDTO refTk);
         Task<List<CustomerUser>> GetCustomerUserByCustomerID(int id);
 
-        Task EditCustomerUser(int id, UserDTOEdit updateUser);
+        Task EditCustomerUser(int id, CustomerUserDTOEdit updateUser);
         Task DeleteCustomerUser(int id);
         Task<string> MassDeleteCustomerUser(List<int> userId);
         Task<CustomerUser> GetUserByEmail(string email);
@@ -219,7 +219,7 @@ namespace API.Models.Services
 
         }
 
-        public async Task EditCustomerUser(int id, UserDTOEdit updateUser)
+        public async Task EditCustomerUser(int id, CustomerUserDTOEdit updateUser)
         {
             CustomerUser user = await GetCustomerUserByID(id);
             user.Name = !string.IsNullOrEmpty(updateUser.Name) ? updateUser.Name : user.Name;
