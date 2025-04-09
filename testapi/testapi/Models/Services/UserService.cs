@@ -21,7 +21,7 @@ namespace API.Models.Services
         bool VeryfyPasswordHash(string password, byte[] hash, byte[] salt);
         string CreateToken(UserRoleDTO user);
         Task<RefreshToken> GetRefreshTokenByrefTokenString(string refToken);
-        Task<RefreshToken> GenerateRefreshToken(int userID);
+        Task<RefreshToken> GenerateRefreshToken(int userID,bool isCustomer=false);
         Task<RefreshToken> GetNewerRefreshToken(RefreshTokenDTO refTk);
 
         // User management methods
@@ -149,14 +149,15 @@ namespace API.Models.Services
             return dbRefToken;
         }
 
-        public async Task<RefreshToken> GenerateRefreshToken(int userID)
+        public async Task<RefreshToken> GenerateRefreshToken(int id,bool isCustomer=false)
         {
             var refreshToken = new RefreshToken
             {
                 Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
                 Expires = DateTime.Now.AddDays(int.Parse(_configuration["JwtConfig:RefreshTokenExpiration"])),
                 Created = DateTime.Now,
-                UserID = userID
+                UserID = isCustomer?null:id,
+                CustomerUserID= isCustomer?id:null,
             };
             _context.RefreshTokens.Add(refreshToken);
             await _context.SaveChangesAsync();
@@ -166,12 +167,18 @@ namespace API.Models.Services
         public async Task<RefreshToken> GetNewerRefreshToken(RefreshTokenDTO refTk)
         {
             var user = await _context.Users.Where(x => x.UserID == refTk.UserID).FirstOrDefaultAsync();
-            if (user == null)
+            var customerUser = await _context.CustomerUsers.Where(x => x.CustomerUserID == refTk.CustomerUserID).FirstOrDefaultAsync();
+            if (user == null && customerUser==null)
                 throw new NotFoundException("User not found");
-            var refreshToken = await _context.RefreshTokens
-                .Where(x => x.UserID == user.UserID)
-                .OrderByDescending(x => x.Created)
-                .FirstOrDefaultAsync();
+            RefreshToken? refreshToken = user == null
+                ? await _context.RefreshTokens
+                    .Where(x => x.CustomerUserID == customerUser.CustomerUserID)
+                    .OrderByDescending(x => x.Created)
+                    .FirstOrDefaultAsync()
+                : await _context.RefreshTokens
+                    .Where(x => x.UserID == user.UserID)
+                    .OrderByDescending(x => x.Created)
+                    .FirstOrDefaultAsync();
             if (refreshToken == null)
                 throw new NotFoundTokenException("User has no refresh tokens");
             return refreshToken;

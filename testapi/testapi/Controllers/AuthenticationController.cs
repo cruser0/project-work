@@ -99,7 +99,7 @@ namespace API.Controllers
             if (refreshToken.Expires < DateTime.Now)
                 return Unauthorized("Outdated Refresh Token");
 
-            UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
+            UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID((int)dbRefToken.UserID!);
             string newAccessToken = _authenticationService.CreateToken(userDTO);
 
             SetAccessTokenCookie(newAccessToken);
@@ -140,7 +140,7 @@ namespace API.Controllers
             {
                 return Unauthorized("Outdated Refresh Token");
             }
-            UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID(dbRefToken.UserID);
+            UserRoleDTO userDTO = await _authenticationService.GetUserRoleDTOByID((int)dbRefToken.UserID!);
             string token = _authenticationService.CreateToken(userDTO);
             return Ok(new UserAccessInfoDTO(userDTO, token, refreshToken));
         }
