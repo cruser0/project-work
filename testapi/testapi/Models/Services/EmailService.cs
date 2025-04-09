@@ -21,42 +21,45 @@ namespace API.Models.Services
 
         public async Task<EmailDTO> SendEmail(EmailDTO email)
         {
-            var smtpClient = new SmtpClient(_appSettings["HMailServer:SmtpHost"], int.Parse(_appSettings["HMailServer:Port"]))
-            {
-                Credentials = new NetworkCredential(_appSettings["HMailServer:SmtpUser"], _appSettings["HMailServer:SmtpPass"]),
-                EnableSsl = false
-            };
-
             byte[] pdfBytes = Convert.FromBase64String(email.PdfContent);
+            string host = _appSettings["HMailServer:SmtpHost"];
+            int port = int.Parse(_appSettings["HMailServer:Port"]);
+            string user = _appSettings["HMailServer:SmtpUser"];
+            string password = _appSettings["HMailServer:SmtpPass"];
 
-
-            var mailMessage = new MailMessage
+            using (var smtpClient = new SmtpClient(host, port))
+            using (var mailMessage = new MailMessage
             {
-                From = new MailAddress(_appSettings["HMailServer:SmtpUser"]),
+                From = new MailAddress(user),
                 Subject = email.Subject,
                 Body = email.Body,
                 IsBodyHtml = true
-            };
-
-            mailMessage.To.Add(email.To);
-
-
-            using (var stream = new MemoryStream(pdfBytes))
+            })
             {
-                var attachment = new Attachment(stream, email.FileName, MediaTypeNames.Application.Pdf);
-                mailMessage.Attachments.Add(attachment);
+                smtpClient.Credentials = new NetworkCredential(user, password);
+                smtpClient.EnableSsl = false;
 
-                try
+                mailMessage.To.Add(email.To);
+
+                using (var stream = new MemoryStream(pdfBytes))
                 {
-                    smtpClient.Send(mailMessage);
-                    return email;
-                }
-                catch
-                {
-                    throw;
+                    var attachment = new Attachment(stream, email.FileName, MediaTypeNames.Application.Pdf);
+                    mailMessage.Attachments.Add(attachment);
+
+                    try
+                    {
+                        smtpClient.Send(mailMessage);
+                        smtpClient.Dispose();
+                        return email;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
                 }
             }
         }
+
     }
 
 }

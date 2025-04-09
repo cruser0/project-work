@@ -1,17 +1,27 @@
 ﻿using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Entities;
 using hMailServer;
+
 namespace API
 {
-    public class HMailInitializer
+    public static class HMailInitializer
     {
+        private static string _adminUsername;
+        private static string _adminPassword;
+
+        // Metodo per configurare le credenziali
+        public static void ConfigureCredentials(IConfiguration configuration)
+        {
+            _adminUsername = configuration["HMailServer:DbName"];
+            _adminPassword = configuration["HMailServer:DbPassword"];
+        }
 
         public static void Initialize()
         {
             try
             {
-                var app = new hMailServer.Application();
-                app.Authenticate("Administrator", "");
+                var app = new Application();
+                app.Authenticate(_adminUsername, _adminPassword);
 
                 for (int i = 0; i < app.Domains.Count; i++)
                 {
@@ -31,7 +41,6 @@ namespace API
                 admin.Password = "12345";
                 admin.Active = true;
                 admin.AdminLevel = eAdminLevel.hAdminLevelDomainAdmin;
-
                 admin.Save();
 
                 var server = domain.Accounts.Add();
@@ -50,6 +59,8 @@ namespace API
 
                 SetPort(app, eSessionType.eSTSMTP, 9000);
                 SetPort(app, eSessionType.eSTIMAP, 10000);
+
+                //app.Settings.AutoBanMinutes = 0;
 
                 app.Reinitialize();
 
@@ -115,22 +126,23 @@ namespace API
                     user.AdminLevel = eAdminLevel.hAdminLevelNormal;
                     user.Save();
                 }
-            }catch (Exception ex) { throw new Exception("hMailServer init failed: " + ex.Message); }
+            }
+            catch (Exception ex) { throw new Exception("hMailServer init failed: " + ex.Message); }
         }
         public static void RemoveCustomersEmail(CustomerUser customers)
         {
             try
             {
-                    Domain domain = GetDomain();
-                    for (int i = 0; i < domain.Accounts.Count; i++)
+                Domain domain = GetDomain();
+                for (int i = 0; i < domain.Accounts.Count; i++)
+                {
+                    var acc = domain.Accounts[i];
+                    if (acc.Address.Equals(customers.Email, StringComparison.OrdinalIgnoreCase))
                     {
-                        var acc = domain.Accounts[i];
-                        if (acc.Address.Equals(customers.Email, StringComparison.OrdinalIgnoreCase))
-                        {
-                            acc.Delete();
-                        }
+                        acc.Delete();
                     }
-                    throw new Exception("Account not found");
+                }
+                throw new Exception("Account not found");
             }
             catch (Exception ex) { throw new Exception("hMailServer init failed: " + ex.Message); }
         }

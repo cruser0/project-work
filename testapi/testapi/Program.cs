@@ -111,6 +111,7 @@ builder.Services.AddSwaggerGen(c =>
 
 if (builder.Configuration.GetValue<bool>("HMailServer:Initialize"))
 {
+    HMailInitializer.ConfigureCredentials(builder.Configuration);
     HMailInitializer.Initialize();
 }
 
