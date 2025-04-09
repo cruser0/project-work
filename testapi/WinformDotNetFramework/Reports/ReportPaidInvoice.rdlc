@@ -189,67 +189,6 @@
             <ReportItems>
               <Rectangle Name="Rectangle2">
                 <ReportItems>
-                  <Textbox Name="Textbox12">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Dati Fattura</Value>
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
-                    <Top>0.6cm</Top>
-                    <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
-                    <Style>
-                      <Border>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="Textbox14">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=First(Fields!InvoiceAmount.Value, "CustomerInvoice")</Value>
-                            <Style>
-                              <Format>0.00'€'</Format>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
-                    <Top>0.6cm</Top>
-                    <Left>2.5cm</Left>
-                    <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
-                    <ZIndex>1</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                      <rd:FormatSymbolCulture>it-IT</rd:FormatSymbolCulture>
-                    </Style>
-                  </Textbox>
                   <Tablix Name="Tablix2">
                     <TablixBody>
                       <TablixColumns>
@@ -275,21 +214,21 @@
                           <TablixCells>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox30">
+                                <Textbox Name="Textbox1">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Cost Registry Code</Value>
+                                          <Value />
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox30</rd:DefaultName>
+                                  <rd:DefaultName>Textbox1</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -305,21 +244,21 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox31">
+                                <Textbox Name="Textbox2">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Name</Value>
+                                          <Value />
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox31</rd:DefaultName>
+                                  <rd:DefaultName>Textbox2</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -335,21 +274,21 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox33">
+                                <Textbox Name="Textbox3">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Quantity</Value>
+                                          <Value />
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox33</rd:DefaultName>
+                                  <rd:DefaultName>Textbox3</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -365,21 +304,21 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox35">
+                                <Textbox Name="Textbox4">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Cost</Value>
+                                          <Value />
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox35</rd:DefaultName>
+                                  <rd:DefaultName>Textbox4</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -395,21 +334,21 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox37">
+                                <Textbox Name="Textbox6">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Total Cost</Value>
+                                          <Value />
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox37</rd:DefaultName>
+                                  <rd:DefaultName>Textbox6</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -430,21 +369,21 @@
                           <TablixCells>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="CostRegistryCode">
+                                <Textbox Name="Textbox7">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!CostRegistryCode.Value</Value>
+                                          <Value />
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>CostRegistryCode</rd:DefaultName>
+                                  <rd:DefaultName>Textbox7</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -460,21 +399,21 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Name">
+                                <Textbox Name="Textbox8">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!Name.Value</Value>
+                                          <Value />
                                           <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Name</rd:DefaultName>
+                                  <rd:DefaultName>Textbox8</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -490,23 +429,21 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Quantity1">
+                                <Textbox Name="Textbox9">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!Quantity.Value</Value>
-                                          <Style>
-                                            <Format>n0</Format>
-                                          </Style>
+                                          <Value />
+                                          <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Quantity1</rd:DefaultName>
+                                  <rd:DefaultName>Textbox9</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -522,23 +459,21 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Cost">
+                                <Textbox Name="Textbox10">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!Cost.Value</Value>
-                                          <Style>
-                                            <Format>#,0.00 '€'</Format>
-                                          </Style>
+                                          <Value />
+                                          <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Cost</rd:DefaultName>
+                                  <rd:DefaultName>Textbox10</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -548,31 +483,27 @@
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
                                     <PaddingBottom>2pt</PaddingBottom>
-                                    <rd:FormatSymbolCulture>it-IT</rd:FormatSymbolCulture>
                                   </Style>
                                 </Textbox>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="TotalCost1">
+                                <Textbox Name="Textbox11">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!TotalCost.Value</Value>
-                                          <Style>
-                                            <Format>#,0.00 '€'</Format>
-                                            <rd:FormatSymbolCulture>it-IT</rd:FormatSymbolCulture>
-                                          </Style>
+                                          <Value />
+                                          <Style />
                                         </TextRun>
                                       </TextRuns>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>TotalCost1</rd:DefaultName>
+                                  <rd:DefaultName>Textbox11</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -582,7 +513,6 @@
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
                                     <PaddingBottom>2pt</PaddingBottom>
-                                    <rd:FormatSymbolCulture>it-IT</rd:FormatSymbolCulture>
                                   </Style>
                                 </Textbox>
                               </CellContents>
@@ -611,10 +541,9 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>CustomerInvoiceCost</DataSetName>
-                    <Top>1.8cm</Top>
+                    <Top>3.8cm</Top>
                     <Height>1.2cm</Height>
                     <Width>17cm</Width>
-                    <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
                         <Style>Solid</Style>
@@ -623,8 +552,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>5cm</Top>
-                <Height>3cm</Height>
+                <Top>7cm</Top>
+                <Height>5cm</Height>
                 <Width>17cm</Width>
                 <Style>
                   <Border>
@@ -634,7 +563,7 @@
               </Rectangle>
               <Rectangle Name="Rectangle4">
                 <ReportItems>
-                  <Textbox Name="Textbox5">
+                  <Textbox Name="Textbox26">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
@@ -704,12 +633,19 @@
                         </Style>
                       </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>Textbox5</rd:DefaultName>
+                    <rd:DefaultName>Textbox12</rd:DefaultName>
+                    <ActionInfo>
+                      <Actions>
+                        <Action>
+                          <Hyperlink>=Parameters!UrlPay.Value</Hyperlink>
+                        </Action>
+                      </Actions>
+                    </ActionInfo>
                     <Height>4cm</Height>
                     <Width>4cm</Width>
                     <Style>
                       <Border>
-                        <Style>None</Style>
+                        <Style>Solid</Style>
                       </Border>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
@@ -719,7 +655,7 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>0.5cm</Top>
+                <Top>2cm</Top>
                 <Left>0.5cm</Left>
                 <Height>4cm</Height>
                 <Width>4cm</Width>
@@ -731,14 +667,14 @@
                   <BackgroundColor>LightGrey</BackgroundColor>
                 </Style>
               </Rectangle>
-              <Textbox Name="Textbox26">
+              <Textbox Name="Textbox12">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!UrlPay.Value</Value>
+                        <Value>=Fields!CustomerName.ValueFirst(Fields!CustomerName.Value, "SaleCustomer")</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -746,21 +682,44 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <ActionInfo>
-                  <Actions>
-                    <Action>
-                      <Hyperlink>=Parameters!UrlPay.Value</Hyperlink>
-                    </Action>
-                  </Actions>
-                </ActionInfo>
-                <Top>3.9cm</Top>
-                <Left>4.8712cm</Left>
+                <Top>0.6cm</Top>
+                <Left>0.5cm</Left>
                 <Height>0.6cm</Height>
-                <Width>7.1275cm</Width>
+                <Width>4cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
-                    <Style>Solid</Style>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox13">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Fields!Country.Value</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox12</rd:DefaultName>
+                <Top>1.2cm</Top>
+                <Left>0.5cm</Left>
+                <Height>0.6cm</Height>
+                <Width>4cm</Width>
+                <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
                   </Border>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
@@ -770,94 +729,60 @@
               </Textbox>
               <Rectangle Name="Rectangle3">
                 <ReportItems>
-                  <Textbox Name="Textbox15">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Dati Cliente</Value>
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
-                    <Height>0.6cm</Height>
-                    <Width>3cm</Width>
+                  <Line Name="Line3">
+                    <Top>1.2cm</Top>
+                    <Height>0cm</Height>
+                    <Width>4.8cm</Width>
                     <Style>
                       <Border>
-                        <Style>None</Style>
+                        <Style>Solid</Style>
                       </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
                     </Style>
-                  </Textbox>
-                  <Textbox Name="Textbox18">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Dati Vendita</Value>
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
-                    <Left>3cm</Left>
-                    <Height>0.6cm</Height>
-                    <Width>3cm</Width>
+                  </Line>
+                  <Line Name="Line4">
+                    <Top>2.4cm</Top>
+                    <Height>0cm</Height>
+                    <Width>4.8cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
                       <Border>
-                        <Style>None</Style>
+                        <Style>Solid</Style>
                       </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
                     </Style>
-                  </Textbox>
-                </ReportItems>
-                <KeepTogether>true</KeepTogether>
-                <Top>0.5cm</Top>
-                <Left>10.2cm</Left>
-                <Height>0.6cm</Height>
-                <Width>6cm</Width>
-                <ZIndex>3</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>Solid</Style>
-                  </Border>
-                </Style>
-              </Rectangle>
-              <Rectangle Name="Rectangle7">
-                <ReportItems>
-                  <Textbox Name="Textbox17">
+                  </Line>
+                  <Line Name="Line5">
+                    <Top>3.6cm</Top>
+                    <Height>0cm</Height>
+                    <Width>4.8cm</Width>
+                    <ZIndex>2</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>Solid</Style>
+                      </Border>
+                    </Style>
+                  </Line>
+                  <Textbox Name="Textbox14">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!Country.Value, "SaleCustomer")</Value>
-                            <Style />
+                            <Value>INVOICE</Value>
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
                       </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
+                    <rd:DefaultName>Textbox14</rd:DefaultName>
+                    <Top>0.3cm</Top>
+                    <Left>0.3cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>3cm</Width>
+                    <Width>4.2cm</Width>
+                    <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -868,7 +793,7 @@
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
                   </Textbox>
-                  <Textbox Name="Textbox20">
+                  <Textbox Name="Textbox15">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
@@ -882,54 +807,12 @@
                         <Style />
                       </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
-                    <Left>3cm</Left>
+                    <rd:DefaultName>Textbox14</rd:DefaultName>
+                    <Top>3.77639cm</Top>
+                    <Left>0.3cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>3cm</Width>
-                    <ZIndex>1</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </ReportItems>
-                <KeepTogether>true</KeepTogether>
-                <Top>1.7cm</Top>
-                <Left>10.2cm</Left>
-                <Height>0.6cm</Height>
-                <Width>6cm</Width>
-                <ZIndex>4</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>Solid</Style>
-                  </Border>
-                </Style>
-              </Rectangle>
-              <Rectangle Name="Rectangle6">
-                <ReportItems>
-                  <Textbox Name="Textbox19">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=First(Fields!SaleBoL.Value, "CustomerInvoice")</Value>
-                            <Style />
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
-                    <Left>3cm</Left>
-                    <Height>0.6cm</Height>
-                    <Width>3cm</Width>
+                    <Width>4.2cm</Width>
+                    <ZIndex>4</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -947,17 +830,49 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!CustomerName.Value, "SaleCustomer")</Value>
+                            <Value>=First(Fields!SaleBoL.Value, "CustomerInvoice")</Value>
                             <Style />
                           </TextRun>
                         </TextRuns>
                         <Style />
                       </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>Textbox12</rd:DefaultName>
+                    <rd:DefaultName>Textbox14</rd:DefaultName>
+                    <Top>2.7cm</Top>
+                    <Left>0.3cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>3cm</Width>
-                    <ZIndex>1</ZIndex>
+                    <Width>4.2cm</Width>
+                    <ZIndex>5</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="Textbox17">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!CustomerInvoiceCode.Value, "CustomerInvoice")</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox14</rd:DefaultName>
+                    <Top>1.5cm</Top>
+                    <Left>0.3cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>4.2cm</Width>
+                    <ZIndex>6</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -970,11 +885,11 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>1.1cm</Top>
-                <Left>10.2cm</Left>
-                <Height>0.6cm</Height>
-                <Width>6cm</Width>
-                <ZIndex>5</ZIndex>
+                <Top>0.5cm</Top>
+                <Left>11.7cm</Left>
+                <Height>4.8cm</Height>
+                <Width>4.8cm</Width>
+                <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -984,7 +899,7 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Left>2cm</Left>
-            <Height>8cm</Height>
+            <Height>12cm</Height>
             <Width>17cm</Width>
             <Style>
               <Border>
@@ -993,7 +908,7 @@
             </Style>
           </Rectangle>
           <Line Name="Line1">
-            <Top>9.71768cm</Top>
+            <Top>12.57518cm</Top>
             <Left>14.19225cm</Left>
             <Height>0cm</Height>
             <Width>4.55021cm</Width>
@@ -1005,7 +920,7 @@
             </Style>
           </Line>
           <Line Name="Line2">
-            <Top>9.71768cm</Top>
+            <Top>12.57518cm</Top>
             <Left>2.16211cm</Left>
             <Height>0cm</Height>
             <Width>4.55021cm</Width>
@@ -1016,70 +931,8 @@
               </Border>
             </Style>
           </Line>
-          <Textbox Name="Textbox27">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Firma Nostra</Value>
-                    <Style>
-                      <FontFamily />
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox27</rd:DefaultName>
-            <Top>8.97657cm</Top>
-            <Left>2.16211cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.55021cm</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox28">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Firma Loro</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox27</rd:DefaultName>
-            <Top>8.97657cm</Top>
-            <Left>14.19225cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.55021cm</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
         </ReportItems>
-        <Height>9.71768cm</Height>
+        <Height>13.13081cm</Height>
         <Style />
       </Body>
       <Width>19cm</Width>
@@ -1108,10 +961,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox21</rd:DefaultName>
-              <Top>0.39688cm</Top>
-              <Left>2.16209cm</Left>
+              <Top>0.4cm</Top>
+              <Left>2cm</Left>
               <Height>0.6cm</Height>
-              <Width>7.70911cm</Width>
+              <Width>7cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1139,10 +992,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox22</rd:DefaultName>
-              <Top>0.39688cm</Top>
-              <Left>12.61063cm</Left>
+              <Top>0.4cm</Top>
+              <Left>12cm</Left>
               <Height>0.6cm</Height>
-              <Width>6.38937cm</Width>
+              <Width>7cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
