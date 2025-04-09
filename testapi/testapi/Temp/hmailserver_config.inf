@@ -1,5 +1,5 @@
 [Setup] 
-Dir=hMailServer 
+Dir= hMailServer 
 Group=hMailServer 
 NoIcons=0 
 SetupType=full     REM Ensure the full setup is selected

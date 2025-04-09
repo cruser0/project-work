@@ -674,7 +674,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!CustomerName.ValueFirst(Fields!CustomerName.Value, "SaleCustomer")</Value>
+                        <Value>=First(Fields!CustomerName.Value, "SaleCustomer")</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -704,7 +704,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!Country.Value</Value>
+                        <Value>=First(Fields!Country.Value, "SaleCustomer")</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>

@@ -14,7 +14,7 @@ set SCRIPT_DIR=%~dp0
 REM Create configuration file for silent installation
 echo Creating configuration file...
 echo [Setup] > %CONFIG_FILE%
-echo Dir=hMailServer >> %CONFIG_FILE%
+echo Dir= hMailServer >> %CONFIG_FILE%
 echo Group=hMailServer >> %CONFIG_FILE%
 echo NoIcons=0 >> %CONFIG_FILE%
 echo SetupType=full >> %CONFIG_FILE%    REM Ensure the full setup is selected
