@@ -78,36 +78,16 @@ namespace API.Models.Services
             return await _userService.GetNewerRefreshToken(refTk);
         }
 
-
-        public async Task EditCustomerUser(int id, CustomerUserDTOEdit updateUser)
-        {
-            CustomerUser user = await GetCustomerUserByID(id);
-            user.Name = !string.IsNullOrEmpty(updateUser.Name) ? updateUser.Name : user.Name;
-            user.LastName = !string.IsNullOrEmpty(updateUser.LastName) ? updateUser.LastName : user.LastName;
-            user.Email = !string.IsNullOrEmpty(updateUser.Email) ? updateUser.Email : user.Email;
-            if (!string.IsNullOrEmpty(updateUser.Password))
-            {
-                _userService.CreatePasswordHash(updateUser.Password, out byte[] hash, out byte[] salt);
-                user.PasswordHash = hash;
-                user.PasswordSalt = salt;
-            }
-            _context.CustomerUsers.Update(user);
-            await _context.SaveChangesAsync();
-
-        }
-
         public async Task DeleteCustomerUser(int id)
         {
-            var rolesList = await GetAllRolesByUserID(id);
-            if (!_context.Users.Any(x => x.UserID == id))
+            if (!await _context.CustomerUsers.AnyAsync(x => x.CustomerUserID == id))
                 throw new NotFoundException("User not Found");
-            _context.UserRoles.RemoveRange(rolesList);
-            await _context.SaveChangesAsync();
-            var user = await _context.Users.Where(x => x.UserID == id).FirstOrDefaultAsync();
+            var user = await _context.CustomerUsers.Where(x => x.CustomerUserID == id).FirstOrDefaultAsync();
             if (user == null)
                 throw new NotFoundException("User not found!");
-            _context.Users.Remove(user);
+            _context.CustomerUsers.Remove(user);
             await _context.SaveChangesAsync();
+            HMailInitializer.RemoveCustomersEmail(user);
         }
 
         public async Task<string> MassDeleteCustomerUser(List<int> userId)
@@ -115,16 +95,7 @@ namespace API.Models.Services
             int count = 0;
             foreach (int id in userId)
             {
-                var rolesList = await GetAllRolesByUserID(id);
-                if (!await _context.Users.AnyAsync(x => x.UserID == id))
-                    continue; ;
-                _context.UserRoles.RemoveRange(rolesList);
-                await _context.SaveChangesAsync();
-                var user = await _context.Users.Where(x => x.UserID == id).FirstOrDefaultAsync();
-                if (user == null)
-                    throw new NotFoundException("User not found!");
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
+                await DeleteCustomerUser(id);
                 count++;
             }
             return $"{count} Users were deleted out of {userId.Count}";
@@ -171,47 +142,47 @@ namespace API.Models.Services
                 throw new NotFoundException("User not Found");
             return new CustomerUserRoleDTO(customerUser);
         }
-        public async Task<ICollection<CustomerUserRoleDTO>> GetAllCustomerUsers(CustomerCustomerUserFilter filter)
-        {
-            return await ApplyFilter(filter);
-        }
 
         public async Task<int> CountCustomerUsers(CustomerUserFilter filter)
         {
             return (await ApplyFilter(filter)).Count;
         }
 
-        private async Task<ICollection<UserRoleDTO>> ApplyFilter(CustomerUserFilter filter)
+        private async Task<ICollection<CustomerUserRoleDTO>> ApplyFilter(CustomerUserFilter filter)
         {
             int itemsPage = 10;
-            var query = _context.Users
-                .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role).AsQueryable();
+            var query = _context.CustomerUsers.AsQueryable();
 
 
-            if (!string.IsNullOrEmpty(filter.UserName))
-                query = query.Where(s => s.Name.StartsWith(filter.UserName));
-            if (!string.IsNullOrEmpty(filter.UserLastName))
-                query = query.Where(s => s.LastName.StartsWith(filter.UserLastName));
-            if (!string.IsNullOrEmpty(filter.UserEmail))
-                query = query.Where(s => s.Email.StartsWith(filter.UserEmail));
-            if (filter.UserRoles.Count > 0)
+            if (!string.IsNullOrEmpty(filter.CustomerUserName))
+                query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName)); 
+            if (!string.IsNullOrEmpty(filter.CustomerUserLastName))
+                query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName));
+            if (!string.IsNullOrEmpty(filter.CustomerUserEmail))
+                query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName));
+
+            query = query
+                .Include(u => u.Role).Include(x => x.Customer).ThenInclude(x => x.Country);
+
+            if (!string.IsNullOrEmpty(filter.CustomerName))
+                query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName));
+            if (!string.IsNullOrEmpty(filter.CustomerCountry))
+                query = query.Where(s => s.Customer.Country.CountryName.StartsWith(filter.CustomerCountry));
+
+            if (!string.IsNullOrEmpty(filter.CustomerUserRole))
+                query = query.Where(s => s.Role.RoleName.Equals(filter.CustomerUserRole));
+
+            if (filter.CustomerUserPage != null)
             {
-                foreach (var role in filter.UserRoles)
-                    query = query.Where(x => x.UserRoles.Any(x => x.Role.RoleName.Contains(role)));
-            }
-            if (filter.UserPage != null)
-            {
-                query = query.Skip(((int)filter.UserPage - 1) * itemsPage).Take(itemsPage);
+                query = query.Skip(((int)filter.CustomerUserPage - 1) * itemsPage).Take(itemsPage);
             }
 
-            List<User> userList = await query.ToListAsync();
-            List<UserRoleDTO> returnList = new List<UserRoleDTO>();
+            List<CustomerUser> userList = await query.ToListAsync();
+            List<CustomerUserRoleDTO> returnList = new List<CustomerUserRoleDTO>();
             List<string> roleList;
-            foreach (User user in userList)
+            foreach (CustomerUser user in userList)
             {
-                roleList = user.UserRoles.Select(x => x.Role.RoleName).ToList();
-                returnList.Add(new UserRoleDTO(user, roleList));
+                returnList.Add(new CustomerUserRoleDTO(user));
             }
             return returnList;
         }
@@ -243,19 +214,30 @@ namespace API.Models.Services
             _userService.CreatePasswordHash(user.Password, out byte[] hash, out byte[] salt);
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
-                
+            HMailInitializer.AddCustomersEmail(new List<CustomerUserDTOCreate> { user });
             return returnUser;
 
         }
 
-        public Task EditCustomerUser(int id, UserDTOEdit updateUser)
+        public async Task EditCustomerUser(int id, UserDTOEdit updateUser)
         {
-            throw new NotImplementedException();
+            CustomerUser user = await GetCustomerUserByID(id);
+            user.Name = !string.IsNullOrEmpty(updateUser.Name) ? updateUser.Name : user.Name;
+            user.LastName = !string.IsNullOrEmpty(updateUser.LastName) ? updateUser.LastName : user.LastName;
+            user.Email = !string.IsNullOrEmpty(updateUser.Email) ? updateUser.Email : user.Email;
+            if (!string.IsNullOrEmpty(updateUser.Password))
+            {
+                _userService.CreatePasswordHash(updateUser.Password, out byte[] hash, out byte[] salt);
+                user.PasswordHash = hash;
+                user.PasswordSalt = salt;
+            }
+            _context.CustomerUsers.Update(user);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<ICollection<CustomerUserRoleDTO>> GetAllCustomerUsers(CustomerUserFilter filter)
+        public async Task<ICollection<CustomerUserRoleDTO>> GetAllCustomerUsers(CustomerUserFilter filter)
         {
-            throw new NotImplementedException();
+            return await ApplyFilter(filter);
         }
 
     }
