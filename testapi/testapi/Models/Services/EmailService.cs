@@ -32,7 +32,7 @@ namespace API.Models.Services
             {
                 From = new MailAddress(user),
                 Subject = email.Subject,
-                Body = email.Body,
+                Body = $"{email.Body}<br><br><a href=\"{email.Link}\">Visualizza dettagli</a>",
                 IsBodyHtml = true
             })
             {

@@ -20,6 +20,7 @@ namespace WinformDotNetFramework
         };
         SaleCustomerDTO saleCustomerDTO;
         CustomerInvoiceDTOGet invoice;
+        string link;
 
         public PdfInvoiceForm(int saleId, CustomerInvoiceDTOGet customerInvoice)
         {
@@ -59,8 +60,8 @@ namespace WinformDotNetFramework
                 Value = costs
             };
 
-            ReportParameter param = new ReportParameter("UrlPay",
-                "http://localhost:5069/paypage.html?name=" + saleCustomerDTO.CustomerName + "&country=" + saleCustomerDTO.Country);
+            link = "http://localhost:5069/paypage.html?bol=" + saleCustomerDTO.BoLnumber + "&bk=" + saleCustomerDTO.BookingNumber;
+            ReportParameter param = new ReportParameter("UrlPay", link);
 
             report.SetParameters(new ReportParameter[] { param });
             report.DataSources.Add(CustomerInvoice);
@@ -89,7 +90,8 @@ namespace WinformDotNetFramework
                     FileName = fileName,
                     PdfContent = base64Pdf,
                     To = "user@localhost.com",
-                    Subject = "EmailTest"
+                    Subject = "EmailTest",
+                    Link = link
                 };
 
                 try

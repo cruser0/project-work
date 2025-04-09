@@ -7,5 +7,6 @@
         public string Body { get; set; }
         public string FileName { get; set; }
         public string PdfContent { get; set; }
+        public string Link { get; set; }
     }
 }
