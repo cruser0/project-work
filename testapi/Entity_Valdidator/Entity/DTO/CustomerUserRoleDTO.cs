@@ -34,7 +34,11 @@ namespace Entity_Validator.Entity.DTO
             [RequiredIf("IsPost", true)]
             [MaxLength(100, ErrorMessage = "Must be at most {1} characters.")]
             public string Role { get; set; }
-            public CustomerUserDTOEdit(CustomerUser user)
+        public CustomerUserDTOEdit()
+        {
+
+        }
+        public CustomerUserDTOEdit(CustomerUser user)
             {
                 CustomerUserID = user.CustomerUserID;
                 CustomerID = user.CustomerID;
@@ -48,7 +52,12 @@ namespace Entity_Validator.Entity.DTO
 
         public class CustomerUserDTOCreate : CustomerUserDTOEdit
         {
-            public CustomerUserDTOCreate(CustomerUser user):base(user)
+            public CustomerUserDTOCreate()
+            {
+            IsPost = true;
+
+            }
+        public CustomerUserDTOCreate(CustomerUser user):base(user)
             {
                 IsPost=true;
             }
@@ -84,6 +93,7 @@ namespace Entity_Validator.Entity.DTO
             public CustomerUserRoleDTO(CustomerUser user)
             {
                 CustomerUserID = user.CustomerUserID;
+                CustomerID = user.CustomerID;
                 Email = user.Email;
                 Name = user.Name;
                 LastName = user.LastName;

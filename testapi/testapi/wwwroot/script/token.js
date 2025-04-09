@@ -4,8 +4,14 @@ setCookie();
 
 
 function setCookie(){
+    
     const accessToken = getCookie('accessToken');
     const refreshToken = getCookie('refreshToken');
+    if(refreshToken==undefined){
+        window.location.replace("http://localhost:5069/login.html");
+    }
+    
+
     sessionStorage.setItem("accessToken",accessToken);
     sessionStorage.setItem("refreshToken",refreshToken);
 
@@ -13,6 +19,7 @@ function setCookie(){
     const exp = decodedPayload.exp;
     const role = decodedPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
     const username = decodedPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+    console.log(decodedPayload);
     sessionStorage.setItem("exp",exp);
     sessionStorage.setItem("role",role);
     sessionStorage.setItem("username",username);

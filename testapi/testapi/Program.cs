@@ -2,6 +2,7 @@ using API;
 using API.Models;
 using API.Models.Middleware;
 using API.Models.Services;
+using Entity_Validator.Entity.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<Progetto_FormativoContext>(options =>
 
 builder.Services.AddTransient<GlobalExceptionHandler>();
 builder.Services.AddScoped<ICustomerService, CustomerServices>();
+builder.Services.AddScoped<ICustomerUser, CustomerUserService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
 builder.Services.AddScoped<IStatusService, StatusService>();

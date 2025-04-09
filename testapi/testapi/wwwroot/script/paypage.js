@@ -1,15 +1,16 @@
 ﻿
 
 document.addEventListener("DOMContentLoaded", () => {
+    if(isTokenExpired()){
+        window.location.replace("http://localhost:5069/login.html");
+    }    
     const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get("name");
-    const country = urlParams.get("country");
-    if (!name || !country) {
-        return;
+    if(urlParams.get("inv")!=undefined){
+        
     }
     const salesContainer = document.getElementById("salesContainer");
     const invoicesContainer = document.getElementById("invoicesContainer");
-    const saleUrl = `http://localhost:5069/api/sale?saleCustomerName=${encodeURIComponent(name)}&saleCustomerCountry=${encodeURIComponent(country)}`;
+    const saleUrl = `http://localhost:5069/api/sale`;
     console.log("token scaduto: "+isTokenExpired());
     if(isTokenExpired()){
         RefreshToken();
@@ -33,7 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p><strong>Booking:</strong> ${sale.bookingNumber}</p>
                     <p><strong>Date:</strong> ${new Date(sale.saleDate).toLocaleDateString()}</p>
                 `;
-                card.addEventListener("click", () => loadInvoices(sale));
+                card.addEventListener("click", () =>{
+                    const urlPostClickParam = new URLSearchParams(window.location.search);
+                    urlPostClickParam.set('bol', sale.boLnumber);
+                    urlPostClickParam.set('bk', sale.bookingNumber);
+                    window.location.search = urlPostClickParam;
+                    loadInvoices(urlPostClickParam)
+                });
+                    
                 salesContainer.appendChild(card);
             });
         })
@@ -41,10 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error fetching sales:", error);
         });
 
-        function loadInvoices(sale) {
-            const invoiceUrl = `http://localhost:5069/api/customer-invoice/with-total-paid?customerInvoiceSaleBk=${encodeURIComponent(sale.bookingNumber)}&customerInvoiceSaleBoL=${encodeURIComponent(sale.boLnumber)}`;
+        function loadInvoices(urlPostClickParam) {
+            const bol=urlPostClickParam.get("bol");
+            const bk=urlPostClickParam.get("bk");
+            const invoiceUrl = `http://localhost:5069/api/customer-invoice/with-total-paid?customerInvoiceSaleBk=${encodeURIComponent(bk)}&customerInvoiceSaleBoL=${encodeURIComponent(bol)}`;
             const headerName = document.getElementById("SaleInv");
-            headerName.textContent = `Invoices : ${sale.bookingNumber} - ${sale.boLnumber}`;
+            headerName.textContent = `Invoices : ${bk} - ${bol}`;
             if(isTokenExpired()){
                 RefreshToken();
             }

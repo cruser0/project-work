@@ -46,7 +46,7 @@ namespace API.Controllers
 
 
                 CustomerUserRoleDTO userDTO = new CustomerUserRoleDTO(user);
-                string accessToken = _authenticationService.CreateToken(userDTO);
+                string accessToken =await _authenticationService.CreateToken(userDTO);
                 var refreshToken = await _authenticationService.GenerateRefreshToken(user.CustomerUserID);
 
                 SetAccessTokenCookie(accessToken);
@@ -72,7 +72,7 @@ namespace API.Controllers
                     return Unauthorized("Outdated Refresh Token");
 
                 CustomerUserRoleDTO userDTO = await _authenticationService.GetCustomerUserRoleDTOByID((int)dbRefToken.CustomerUserID!);
-                string newAccessToken = _authenticationService.CreateToken(userDTO);
+                string newAccessToken =await  _authenticationService.CreateToken(userDTO);
 
                 SetAccessTokenCookie(newAccessToken);
                 SetRefreshTokenCookie(refreshToken.Token, (DateTime)refreshToken.Expires!);

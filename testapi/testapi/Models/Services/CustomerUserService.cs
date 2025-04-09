@@ -15,7 +15,7 @@ namespace API.Models.Services
     public interface ICustomerUser
     {
         bool VeryfyPasswordHash(string password, byte[] hash, byte[] salt);
-        string CreateToken(CustomerUserRoleDTO customerUser);
+        Task<string> CreateToken(CustomerUserRoleDTO customerUser);
         Task<RefreshToken> GetRefreshTokenByrefTokenString(string refToken);
         Task<RefreshToken> GenerateRefreshToken(int userID,bool isCustomer=true);
         Task<RefreshToken> GetNewerRefreshToken(RefreshTokenDTO refTk);
@@ -45,11 +45,16 @@ namespace API.Models.Services
             _configuration=c;
             _context=ctx;
         }
-        public string CreateToken(CustomerUserRoleDTO customerUser)
+        public async Task<string> CreateToken(CustomerUserRoleDTO customerUser)
         {
+            Customer? customer=await _context.Customers.Where(x => x.CustomerID == customerUser.CustomerID).Include(x=>x.Country).FirstOrDefaultAsync();
+            if (customer == null)
+                throw new NotFoundException("Customer not Found");
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Role, customerUser.Role));
             claims.Add(new Claim(ClaimTypes.NameIdentifier, customerUser.Email));
+            claims.Add(new Claim(ClaimTypes.Name, customer.CustomerName));
+            claims.Add(new Claim(ClaimTypes.Country, customer.Country.CountryName));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]));
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
@@ -215,6 +220,8 @@ namespace API.Models.Services
             _userService.CreatePasswordHash(user.Password, out byte[] hash, out byte[] salt);
             returnUser.PasswordSalt = salt;
             returnUser.PasswordHash = hash;
+            _context.CustomerUsers.Add(returnUser);
+            await _context.SaveChangesAsync();
             HMailInitializer.AddCustomersEmail(new List<CustomerUserDTOCreate> { user });
             return returnUser;
 

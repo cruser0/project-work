@@ -13,7 +13,6 @@ namespace Entity_Validator.Entity.DTO
         [RequiredIf("IsPost", true)]
         public int? SaleID { get; set; }
 
-        [RequiredIf("IsPost", true)]
         public int? AmountPaidID { get; set; }
 
         [RequiredIf("IsPost", true)]
