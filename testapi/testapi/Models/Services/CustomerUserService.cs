@@ -14,6 +14,7 @@ namespace API.Models.Services
 {
     public interface ICustomerUser
     {
+        bool VeryfyPasswordHash(string password, byte[] hash, byte[] salt);
         string CreateToken(CustomerUserRoleDTO customerUser);
         Task<RefreshToken> GetRefreshTokenByrefTokenString(string refToken);
         Task<RefreshToken> GenerateRefreshToken(int userID,bool isCustomer=true);
@@ -23,7 +24,7 @@ namespace API.Models.Services
         Task EditCustomerUser(int id, CustomerUserDTOEdit updateUser);
         Task DeleteCustomerUser(int id);
         Task<string> MassDeleteCustomerUser(List<int> userId);
-        Task<CustomerUser> GetUserByEmail(string email);
+        Task<CustomerUser> GetCustomerUserByEmail(string email);
         Task<CustomerUser> GetCustomerUserByID(int id);
         Task<CustomerUserRoleDTO> GetCustomerUserRoleDTOByID(int id);
         Task<ICollection<CustomerUserRoleDTO>> GetAllCustomerUsers(CustomerUserFilter filter);
@@ -102,7 +103,7 @@ namespace API.Models.Services
         }
 
 
-        public async Task<CustomerUser> GetUserByEmail(string email)
+        public async Task<CustomerUser> GetCustomerUserByEmail(string email)
         {
             var user = await _context.CustomerUsers
                 .Where(u => u.Email.Equals(email))
@@ -238,6 +239,15 @@ namespace API.Models.Services
         public async Task<ICollection<CustomerUserRoleDTO>> GetAllCustomerUsers(CustomerUserFilter filter)
         {
             return await ApplyFilter(filter);
+        }
+        public bool VeryfyPasswordHash(string password, byte[] hash, byte[] salt)
+        {
+            using (var hmac = new HMACSHA512(salt))
+            {
+
+                var compuuteHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return compuuteHash.SequenceEqual(hash);
+            }
         }
 
     }
