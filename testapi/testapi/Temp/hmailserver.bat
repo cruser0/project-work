@@ -40,3 +40,4 @@ echo Installation and configuration complete!
 echo Admin password: %ADMIN_PASSWORD%
 echo Please change these passwords immediately in a production environment.
 echo ==================================================
+pause > nul

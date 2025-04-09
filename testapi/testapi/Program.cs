@@ -100,6 +100,12 @@ builder.Services.AddSwaggerGen(c =>
 //    });
 //});
 
+//Console.WriteLine(BatInitializer.CheckInf());
+
+//if (!BatInitializer.CheckInf())
+//{
+//    BatInitializer.ExecuteBat();
+//}
 
 if (builder.Configuration.GetValue<bool>("HMailServer:Initialize"))
 {
