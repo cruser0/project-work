@@ -21,7 +21,7 @@ namespace API
             try
             {
                 var app = new Application();
-                app.Authenticate(_adminUsername, _adminPassword);
+                app.Authenticate("Administrator", "");
 
                 for (int i = 0; i < app.Domains.Count; i++)
                 {
