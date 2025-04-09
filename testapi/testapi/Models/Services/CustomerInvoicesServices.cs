@@ -360,7 +360,7 @@ namespace API.Models.Services
                     if (!await _context.Sales.Where(x => x.SaleID == ciDB.SaleID).AnyAsync())
                         throw new NotFoundException("Old SaleId not found");
                     Status statusnew = await _statusService.GetStatusByName(customerInvoice.Status);
-                    CustomerInvoice customerInvoiceMapped = CustomerInvoiceMapper.Map(customerInvoice, statusnew, ciDB.Sale, ciDB.CustomerInvoiceAmountPaid);
+                    CustomerInvoice customerInvoiceMapped = CustomerInvoiceMapper.Map(customerInvoice, statusnew, ciDB.Sale/*, ciDB.CustomerInvoiceAmountPaid*/);
                     ciDB.InvoiceAmount = customerInvoiceMapped.InvoiceAmount ?? ciDB.InvoiceAmount;
                     ciDB.InvoiceDate = customerInvoiceMapped.InvoiceDate ?? ciDB.InvoiceDate;
                     ciDB.StatusID = customerInvoiceMapped.StatusID ?? ciDB.StatusID;

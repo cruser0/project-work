@@ -21,7 +21,7 @@ namespace API.Models.Mapper
         }
 
 
-        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status? status, Sale? sale, CustomerInvoiceAmountPaid? amountPaid)
+        public static CustomerInvoice Map(CustomerInvoiceDTO customerInvoice, Status? status, Sale? sale)
         {
             return new CustomerInvoice()
             {
@@ -31,8 +31,7 @@ namespace API.Models.Mapper
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 Status = status,
                 StatusID = status?.StatusID,
-                Sale = sale,
-                CustomerInvoiceAmountPaid = amountPaid
+                Sale = sale
             };
         }
 

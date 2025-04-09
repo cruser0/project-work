@@ -58,8 +58,7 @@ namespace API.Models.Services
             var data = await _context.CustomerInvoiceAmountPaids
                 .Where(x => x.CustomerInvoiceAmountPaidID == id)
                 .FirstOrDefaultAsync();
-            if (data == null)
-                return new CustomerInvoiceAmountPaid() { CustomerInvoiceAmountPaidID = id, CustomerInvoiceID = id };
+
             return data;
         }
 

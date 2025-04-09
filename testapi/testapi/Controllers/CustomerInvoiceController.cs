@@ -95,8 +95,8 @@ namespace API.Controllers
 
             var data = await _customerInvoiceService.CreateCustomerInvoice(CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                     await _statusService.GetStatusByName(customerInvoice.Status),
-                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!),
-                                                                                                    await _customerInvoiceAmountPaidService.GetOnlyByID((int)customerInvoice.AmountPaidID!)));
+                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)
+                                                                                                    /*await _customerInvoiceAmountPaidService.GetOnlyByID((int)customerInvoice.AmountPaidID!)*/));
             if (data == null)
                 throw new NotFoundException("Customer Invoices not found!");
             return Ok(data);
@@ -116,8 +116,8 @@ namespace API.Controllers
 
             var data = await _customerInvoiceService.UpdateCustomerInvoice(id, CustomerInvoiceMapper.Map(customerInvoice,
                                                                                                    await _statusService.GetStatusByName(customerInvoice.Status),
-                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!),
-                                                                                                    await _customerInvoiceAmountPaidService.GetOnlyByID((int)customerInvoice.AmountPaidID!)));
+                                                                                                    await _saleService.GetOnlySaleById((int)customerInvoice.SaleID!)
+                                                                                                    /*await _customerInvoiceAmountPaidService.GetOnlyByID((int)customerInvoice.AmountPaidID!)*/));
             if (data == null)
                 if (data == null)
                     throw new NotFoundException("Customer Invoices not found!");
