@@ -186,6 +186,7 @@ namespace WinformDotNetFramework.Forms
             this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(688, 439);
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
