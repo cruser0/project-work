@@ -512,7 +512,9 @@ namespace WinformDotNetFramework.Forms
 
             if (latestForm != null)
             {
-                if (!latestForm.Name.Contains("Details"))
+                var typename = latestForm.GetType().Name;
+                var basename = latestForm.GetType().BaseType.Name;
+                if (basename.Contains("GridForm") || typename.Contains("GroupForm"))
                 {
                     string response;
 

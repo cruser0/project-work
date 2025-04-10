@@ -16,7 +16,7 @@ namespace API.Models.Mapper
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status!.StatusName,
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
-                AmountPaidID = customerInvoice.CustomerInvoiceAmountPaid.CustomerInvoiceAmountPaidID
+                AmountPaidID = customerInvoice.CustomerInvoiceAmountPaid?.CustomerInvoiceAmountPaidID
             };
         }
 
@@ -47,7 +47,7 @@ namespace API.Models.Mapper
                 CustomerInvoiceCode = customerInvoice.CustomerInvoiceCode,
                 InvoiceDate = customerInvoice.InvoiceDate,
                 Status = customerInvoice.Status!.StatusName,
-                AmountPaidID = customerInvoice.CustomerInvoiceAmountPaid.CustomerInvoiceAmountPaidID
+                AmountPaidID = customerInvoice.CustomerInvoiceAmountPaid?.CustomerInvoiceAmountPaidID
             };
         }
 
