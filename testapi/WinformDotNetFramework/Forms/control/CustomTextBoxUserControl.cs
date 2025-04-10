@@ -21,11 +21,15 @@ namespace WinformDotNetFramework.Forms.control
             InitializeComponent();
         }
 
-        public void SetPropName(string name)
+        public void SetPropName(string name, string label = "")
         {
             _name = name;
             PropTxt.PropName = _name;
-            PropLbl.Text = _name;
+
+            if (string.IsNullOrEmpty(label))
+                PropLbl.Text = _name;
+            else
+                PropLbl.Text = label;
         }
 
         public void WriteText(string text)

@@ -3,6 +3,8 @@ using Entity_Validator.Entity.Filters;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinformDotNetFramework.Services;
 
@@ -13,6 +15,7 @@ namespace WinformDotNetFramework
         CustomerInvoiceCostService _customerInvoiceCostService = new CustomerInvoiceCostService();
         SaleService _saleService = new SaleService();
         EmailService _emailService = new EmailService();
+        CustomerUserService _customerUserService = new CustomerUserService();
         LocalReport report = new LocalReport()
         {
             ReportEmbeddedResource = "WinformDotNetFramework.Reports.ReportPaidInvoice.rdlc",
@@ -28,6 +31,9 @@ namespace WinformDotNetFramework
             report.Refresh();
             InitializeComponent();
             Init(saleId);
+            label2.Text = "admin@localhost.com";
+            ToCCMB.Cmbx.SetTiltes("To");
+            customTextBoxUserControl1.SetPropName("Subject");
         }
 
         private async void Init(int saleId)
@@ -89,8 +95,8 @@ namespace WinformDotNetFramework
                     Body = BodyTxt.Text,
                     FileName = fileName,
                     PdfContent = base64Pdf,
-                    To = "user@localhost.com",
-                    Subject = "EmailTest",
+                    To = ToCCMB.Cmbx.PropTxt.Text,
+                    Subject = customTextBoxUserControl1.PropTxt.Text,
                     Link = link
                 };
 
@@ -114,6 +120,20 @@ namespace WinformDotNetFramework
             {
                 Cursor = Cursors.Default;
             }
+        }
+
+        public async Task SetList()
+        {
+
+            var listFiltered = await _customerUserService.GetAll(new CustomerUserFilter()
+            {
+                CustomerUserEmail = ToCCMB.Cmbx.PropTxt.Text,
+                CustomerName = saleCustomerDTO.CustomerName,
+                CustomerCountry = saleCustomerDTO.Country
+            });
+
+            var listItems = listFiltered.Select(x => x.Email).ToList();
+            ToCCMB.listItemsDropCmbx = listItems;
         }
     }
 }

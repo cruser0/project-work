@@ -488,6 +488,12 @@
     <Compile Include="Forms\SaleReportForm.Designer.cs">
       <DependentUpon>SaleReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectionForm\RegisterUserCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectionForm\RegisterUserCustomerForm.Designer.cs">
+      <DependentUpon>RegisterUserCustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectionForm\SelectSupplierInvoicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -546,6 +552,7 @@
     <Compile Include="Services\BaseCallService.cs" />
     <Compile Include="Services\CostRegistryService.cs" />
     <Compile Include="Services\CustomerInvoiceAmountPaidService.cs" />
+    <Compile Include="Services\CustomerUserService.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\UtilityService.cs" />
     <Compile Include="Services\CustomerInvoiceCostService.cs" />
@@ -736,6 +743,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridForms\ReportGridForm.resx">
       <DependentUpon>ReportGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectionForm\RegisterUserCustomerForm.resx">
+      <DependentUpon>RegisterUserCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectionForm\SelectSupplierInvoicesForm.resx">
       <DependentUpon>SelectSupplierInvoicesForm.cs</DependentUpon>
