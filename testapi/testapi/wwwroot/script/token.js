@@ -3,10 +3,16 @@ const refreshTokenURI="http://localhost:5069/api/refresh-token-web";
 function setCookie(){
     const accessToken = getCookie('accessToken');
     const refreshToken = getCookie('refreshToken');
+    console.log("this is refresh "+refreshToken)
+
     
     if(!refreshToken){
         window.location.replace("http://localhost:5069/login.html");
         return;
+    }
+    if(!accessToken){
+        RefreshToken();
+
     }
 
     sessionStorage.setItem("accessToken", accessToken);
@@ -85,6 +91,7 @@ function RefreshToken(){
     })
     .then(response => {
         if (!response.ok) {
+
             throw new Error("Refresh failed");
         }
         return response.json();

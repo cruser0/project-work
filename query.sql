@@ -8,7 +8,7 @@ PRINT 'Query started at: ' + CONVERT(VARCHAR, @StartTime, 120);
 -- =============================================
 -- CONFIGURATION VARIABLES
 -- =============================================
-DECLARE @SupplierAmount int = 10;                      -- Number of suppliers to generate
+DECLARE @SupplierAmount int = 1;                      -- Number of suppliers to generate
 DECLARE @CustomerAmount int = 10;                      -- Number of customers to generate
 DECLARE @MaxSalePerCustomer int = 10;                   -- Maximum sales per customer
 DECLARE @MaxSupplierInvoicePerSale int = 10;            -- Maximum supplier invoices per sale
@@ -30,10 +30,14 @@ DELETE FROM CustomerInvoices;
 DELETE FROM SupplierInvoices;
 DELETE FROM Sales;
 DELETE FROM Suppliers;
+DELETE FROM RefreshTokens;
+DELETE FROM CustomerUsers;
 DELETE FROM Customers;
 
 -- Reset identity columns to start fresh
+DBCC CHECKIDENT ('CustomerUsers', RESEED, 0);
 DBCC CHECKIDENT ('Customers', RESEED, 0);
+DBCC CHECKIDENT ('RefreshTokens', RESEED, 0);
 DBCC CHECKIDENT ('Suppliers', RESEED, 0);
 DBCC CHECKIDENT ('Sales', RESEED, 0);
 DBCC CHECKIDENT ('CustomerInvoices', RESEED, 0);

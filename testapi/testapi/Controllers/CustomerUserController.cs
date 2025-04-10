@@ -54,7 +54,6 @@ namespace API.Controllers
 
                 return Ok();
             }
-            [Authorize(Roles = "Admin,CustomerUserAdmin")]
             [HttpPost("refresh-token-web")]
             public async Task<ActionResult> RefreshTokenWeb()
             {
