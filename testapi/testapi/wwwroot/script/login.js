@@ -1,3 +1,4 @@
+
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault(); 
   
@@ -21,7 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
       });
   
       if (response.ok) {
-        window.location.href = "/paypage.html";
+        window.location.href = "/paypage";
       } else {
         const errorText = await response.text();
         alert("Login failed: " + errorText);

@@ -1,18 +1,23 @@
-const refreshTokenURI="http://localhost:5069/api/refresh-token-web";
+const refreshTokenURI = "http://localhost:5069/api/refresh-token-web";
 
-function setCookie(){
-    const accessToken = getCookie('accessToken');
-    const refreshToken = getCookie('refreshToken');
-    console.log("this is refresh "+refreshToken)
+async function setCookie() {
+    let accessToken = getCookie('accessToken');
+    let refreshToken = getCookie('refreshToken');
+    console.log("this is refresh " + refreshToken);
 
-    
-    if(!refreshToken){
-        window.location.replace("http://localhost:5069/login.html");
+    if (!refreshToken) {
+        window.location.replace("http://localhost:5069/login");
         return;
     }
-    if(!accessToken){
-        RefreshToken();
 
+    if (!accessToken) {        
+
+        const tokens = await RefreshToken();
+        if (!tokens) {
+            return;
+        }
+        accessToken = getCookie("accessToken")
+        refreshToken = getCookie('refreshToken');
     }
 
     sessionStorage.setItem("accessToken", accessToken);
@@ -21,15 +26,16 @@ function setCookie(){
     try {
         const decodedPayload = decodeJwt(accessToken);
         if (!decodedPayload) {
+
             throw new Error("Invalid token");
         }
-        
+
         const exp = decodedPayload.exp;
         const role = decodedPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         const username = decodedPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
         const customerName = decodedPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
         const customerCountry = decodedPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/country"];
-        
+
         sessionStorage.setItem("exp", exp);
         sessionStorage.setItem("role", role);
         sessionStorage.setItem("username", username);
@@ -37,7 +43,7 @@ function setCookie(){
         sessionStorage.setItem("country", customerCountry);
     } catch (error) {
         console.error("Error with token:", error);
-        window.location.replace("http://localhost:5069/login.html");
+        window.location.replace("http://localhost:5069/login");
     }
 }
 
@@ -53,17 +59,18 @@ function getCookie(name) {
 }
 
 function decodeJwt(token) {
+
     if (!token) {
         console.error("Invalid token.");
-        return null; 
+        return null;
     }
-    
+
     try {
         const parts = token.split('.');
         if (parts.length !== 3) {
             throw new Error("Invalid token format");
         }
-        
+
         const base64Url = parts[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const jsonPayload = atob(base64);
@@ -84,23 +91,28 @@ function isTokenExpired() {
     return parseInt(exp) < currentTime;
 }
 
-function RefreshToken(){
-    fetch(refreshTokenURI, {
-        method: 'POST',
-        credentials: 'include'
-    })
-    .then(response => {
-        if (!response.ok) {
+async function RefreshToken() {
+    try {
+        const response = await fetch(refreshTokenURI, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            
+        });
 
-            throw new Error("Refresh failed");
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Refresh failed: ${response.status} - ${errorText}`);
         }
-        return response.json();
-    })
-    .then(data => {
-        setCookie();
-    })
-    .catch(error => {
-        console.error("Error refreshing token:", error);
-        window.location.replace("http://localhost:5069/login.html");
-    });
+
+        const data = response.body;
+        return data;
+    } catch (error) {
+
+        console.error("Refresh error:", error);
+        window.location.replace("http://localhost:5069/login");
+        return null;
+    }
 }

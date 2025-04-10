@@ -95,7 +95,7 @@ builder.Services.AddSwaggerGen(c =>
 //{
 //    options.AddPolicy("AllowFrontend", policy =>
 //    {
-//        policy.WithOrigins("http://localhost:5500")
+//        policy.WithOrigins("http://localhost:5069")
 //              .AllowCredentials()
 //              .AllowAnyHeader()
 //              .AllowAnyMethod();
@@ -116,6 +116,20 @@ if (builder.Configuration.GetValue<bool>("HMailServer:Initialize"))
 }
 
 var app = builder.Build();
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path.Value;
+    if (!Path.HasExtension(path))
+    {
+        var filePath = $"wwwroot{path}.html";
+        if (File.Exists(filePath))
+        {
+            context.Request.Path = $"{path}.html";
+        }
+    }
+
+    await next();
+});
 app.UseDefaultFiles();
 app.UseStaticFiles();
 //app.UseCors("AllowFrontend");

@@ -76,7 +76,7 @@ namespace API.Controllers
                 SetAccessTokenCookie(newAccessToken);
                 SetRefreshTokenCookie(refreshToken.Token, (DateTime)refreshToken.Expires!);
 
-                return Ok();
+                return Ok("Cookies updated");
             }
             private void SetAccessTokenCookie(string token)
             {
