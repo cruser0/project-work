@@ -44,12 +44,14 @@ namespace API.Models.Services
         {
             var query = _context.CustomerInvoices
                 .Include(x => x.Status)
-                .Include(x => x.Sale)
+                .Include(x => x.Sale).ThenInclude(x => x.Customer).ThenInclude(x => x.Country)
                 .Include(x => x.CustomerInvoiceAmountPaid)
                 .AsQueryable();
 
             query = query.Where(x => x.Sale.BoLnumber == filter.CustomerInvoiceSaleBoL)
-                         .Where(x => x.Sale.BookingNumber == filter.CustomerInvoiceSaleBk);
+                         .Where(x => x.Sale.BookingNumber == filter.CustomerInvoiceSaleBk)
+                         .Where(x => x.Sale.Customer.Country.CountryName == filter.CustomerCountry)
+                         .Where(x => x.Sale.Customer.CustomerName == filter.CustomerName);
 
             var result = await query.Select(x => new CustomerInvoiceTotalAmountPaidDTO
             {
@@ -126,6 +128,16 @@ namespace API.Models.Services
             if (!string.IsNullOrEmpty(filter.CustomerInvoiceStatus))
             {
                 query = query.Where(s => s.Status.StatusName == filter.CustomerInvoiceStatus);
+            }
+            if (!string.IsNullOrEmpty(filter.CustomerName))
+            {
+               query= query.Include(x => x.Sale).ThenInclude(x => x.Customer);
+                query = query.Where(s => s.Sale.Customer.CustomerName == filter.CustomerName);
+            }
+            if (!string.IsNullOrEmpty(filter.CustomerCountry))
+            {
+                query = query.Include(x => x.Sale).ThenInclude(x => x.Customer).ThenInclude(x => x.Country);
+                query = query.Where(s => s.Sale.Customer.Country.CountryName == filter.CustomerCountry);
             }
             if (filter.CustomerInvoicePage != null)
             {

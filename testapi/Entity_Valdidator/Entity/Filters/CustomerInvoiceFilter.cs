@@ -14,5 +14,7 @@ namespace Entity_Validator.Entity.Filters
         public DateTime? CustomerInvoiceInvoiceDateTo { get; set; }
         public string CustomerInvoiceStatus { get; set; }
         public int? CustomerInvoicePage { get; set; }
+        public string CustomerCountry { get; set; }
+        public string CustomerName { get; set; }
     }
 }

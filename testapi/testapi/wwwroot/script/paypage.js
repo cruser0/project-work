@@ -74,7 +74,7 @@ async function loadInvoices(params) {
 
     if (!bol || !bk) return;
 
-    const invoiceUrl = `http://localhost:5069/api/customer-invoice/with-total-paid?customerInvoiceSaleBk=${encodeURIComponent(bk)}&customerInvoiceSaleBoL=${encodeURIComponent(bol)}`;
+    const invoiceUrl = `http://localhost:5069/api/customer-invoice/with-total-paid?customerInvoiceSaleBk=${encodeURIComponent(bk)}&customerInvoiceSaleBoL=${encodeURIComponent(bol)}&CustomerName=${encodeURIComponent(sessionStorage.getItem("country"))}&CustomerCountry=${encodeURIComponent(sessionStorage.getItem("name"))}`;
     const headerName = document.getElementById("SaleInv");
     headerName.textContent = `Invoices : ${bk} - ${bol}`;
 
