@@ -45,6 +45,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.RegisterEmailBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +93,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.RegisterEmailBtn);
             this.panel1.Controls.Add(this.NameCustomerCtb);
             this.panel1.Controls.Add(this.SaveQuitButton);
             this.panel1.Controls.Add(this.comboBox1);
@@ -219,6 +221,16 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             this.panel5.Size = new System.Drawing.Size(750, 17);
             this.panel5.TabIndex = 28;
             // 
+            // RegisterEmailBtn
+            // 
+            this.RegisterEmailBtn.Location = new System.Drawing.Point(103, 99);
+            this.RegisterEmailBtn.Name = "RegisterEmailBtn";
+            this.RegisterEmailBtn.Size = new System.Drawing.Size(108, 61);
+            this.RegisterEmailBtn.TabIndex = 33;
+            this.RegisterEmailBtn.Text = "RegisterEmail";
+            this.RegisterEmailBtn.UseVisualStyleBackColor = true;
+            this.RegisterEmailBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CreateDetailsCustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,5 +266,6 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         private Label label1;
         private Button SaveQuitButton;
         private control.CustomTextBoxUserControl NameCustomerCtb;
+        private Button RegisterEmailBtn;
     }
 }

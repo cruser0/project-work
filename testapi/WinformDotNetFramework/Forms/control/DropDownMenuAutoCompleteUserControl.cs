@@ -59,6 +59,9 @@ namespace WinformDotNetFramework.Forms.control
                 if (ParentForm is CreateDetailsSaleForm sdf)
                     await sdf.SetList();
 
+                if (ParentForm is PdfInvoiceForm pif)
+                    await pif.SetList();
+
                 if (listItemsDropCmbx.Count > 0)
                 {
                     Cmbx.PropTxt.BeginUpdate();

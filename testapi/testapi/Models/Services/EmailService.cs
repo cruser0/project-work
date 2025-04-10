@@ -27,12 +27,20 @@ namespace API.Models.Services
             string user = _appSettings["HMailServer:SmtpUser"];
             string password = _appSettings["HMailServer:SmtpPass"];
 
+            string formattedBody = email.Body
+                .Replace("\r\n\r\n", "<br><br>")
+                .Replace("\n\n", "<br><br>")
+                .Replace("\r\n", "<br>")
+                .Replace("\n", "<br>");
+
+            string htmlContent = $"{formattedBody}<br><br><a href=\"{email.Link}\">Visualizza dettagli</a>";
+
             using (var smtpClient = new SmtpClient(host, port))
             using (var mailMessage = new MailMessage
             {
                 From = new MailAddress(user),
                 Subject = email.Subject,
-                Body = $"{email.Body}<br><br><a href=\"{email.Link}\">Visualizza dettagli</a>",
+                Body = htmlContent,
                 IsBodyHtml = true
             })
             {

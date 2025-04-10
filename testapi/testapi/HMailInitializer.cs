@@ -61,6 +61,7 @@ namespace API
                 SetPort(app, eSessionType.eSTIMAP, 10000);
 
                 //app.Settings.AutoBanMinutes = 0;
+                app.Settings.MirrorEMailAddress = "server@localhost.com";
 
                 app.Reinitialize();
 

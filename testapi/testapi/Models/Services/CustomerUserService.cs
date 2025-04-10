@@ -2,7 +2,6 @@
 using Entity_Validator.Entity.DTO;
 using Entity_Validator.Entity.Entities;
 using Entity_Validator.Entity.Filters;
-using Entity_Validator.Entity.Procedures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,7 +16,7 @@ namespace API.Models.Services
         bool VeryfyPasswordHash(string password, byte[] hash, byte[] salt);
         Task<string> CreateToken(CustomerUserRoleDTO customerUser);
         Task<RefreshToken> GetRefreshTokenByrefTokenString(string refToken);
-        Task<RefreshToken> GenerateRefreshToken(int userID,bool isCustomer=true);
+        Task<RefreshToken> GenerateRefreshToken(int userID, bool isCustomer = true);
         Task<RefreshToken> GetNewerRefreshToken(RefreshTokenDTO refTk);
         Task<List<CustomerUser>> GetCustomerUserByCustomerID(int id);
 
@@ -39,15 +38,15 @@ namespace API.Models.Services
         private readonly Progetto_FormativoContext _context;
 
 
-        public CustomerUserService(IUserService us,IConfiguration c,Progetto_FormativoContext ctx)
+        public CustomerUserService(IUserService us, IConfiguration c, Progetto_FormativoContext ctx)
         {
-            _userService=us;
-            _configuration=c;
-            _context=ctx;
+            _userService = us;
+            _configuration = c;
+            _context = ctx;
         }
         public async Task<string> CreateToken(CustomerUserRoleDTO customerUser)
         {
-            Customer? customer=await _context.Customers.Where(x => x.CustomerID == customerUser.CustomerID).Include(x=>x.Country).FirstOrDefaultAsync();
+            Customer? customer = await _context.Customers.Where(x => x.CustomerID == customerUser.CustomerID).Include(x => x.Country).FirstOrDefaultAsync();
             if (customer == null)
                 throw new NotFoundException("Customer not Found");
             List<Claim> claims = new List<Claim>();
@@ -74,7 +73,7 @@ namespace API.Models.Services
             return await _userService.GetRefreshTokenByrefTokenString(refToken);
         }
 
-        public async Task<RefreshToken> GenerateRefreshToken(int id, bool isCustomer=true)
+        public async Task<RefreshToken> GenerateRefreshToken(int id, bool isCustomer = true)
         {
             return await _userService.GenerateRefreshToken(id, isCustomer);
         }
@@ -132,7 +131,7 @@ namespace API.Models.Services
         {
             var user = await _context.CustomerUsers
                 .Where(u => u.CustomerID == id)
-                .Include(u=>u.Role)
+                .Include(u => u.Role)
                 .ToListAsync();
             if (user == null)
                 throw new NotFoundException("Users not Found");
@@ -161,17 +160,20 @@ namespace API.Models.Services
 
 
             if (!string.IsNullOrEmpty(filter.CustomerUserName))
-                query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName)); 
+                query = query.Where(s => s.Name.StartsWith(filter.CustomerUserName));
+
             if (!string.IsNullOrEmpty(filter.CustomerUserLastName))
-                query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName));
+                query = query.Where(s => s.LastName.StartsWith(filter.CustomerUserLastName));
+
             if (!string.IsNullOrEmpty(filter.CustomerUserEmail))
-                query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName));
+                query = query.Where(s => s.Email.StartsWith(filter.CustomerUserEmail));
 
             query = query
                 .Include(u => u.Role).Include(x => x.Customer).ThenInclude(x => x.Country);
 
             if (!string.IsNullOrEmpty(filter.CustomerName))
                 query = query.Where(s => s.Customer.CustomerName.StartsWith(filter.CustomerName));
+
             if (!string.IsNullOrEmpty(filter.CustomerCountry))
                 query = query.Where(s => s.Customer.Country.CountryName.StartsWith(filter.CustomerCountry));
 
@@ -185,7 +187,6 @@ namespace API.Models.Services
 
             List<CustomerUser> userList = await query.ToListAsync();
             List<CustomerUserRoleDTO> returnList = new List<CustomerUserRoleDTO>();
-            List<string> roleList;
             foreach (CustomerUser user in userList)
             {
                 returnList.Add(new CustomerUserRoleDTO(user));

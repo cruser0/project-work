@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using WinformDotNetFramework.Forms.SelectionForm;
 using WinformDotNetFramework.Services;
 
 namespace WinformDotNetFramework.Forms.DetailsForms
@@ -21,6 +22,7 @@ namespace WinformDotNetFramework.Forms.DetailsForms
         public CreateDetailsCustomerForm()
         {
             Init();
+            RegisterEmailBtn.Visible = false;
             chart1.Visible = false;
             EditCustomerCbx.Visible = false;
             comboBox1.Visible = false;
@@ -221,6 +223,13 @@ namespace WinformDotNetFramework.Forms.DetailsForms
             {
                 await CreateClick(true);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RegisterUserCustomerForm form = new RegisterUserCustomerForm((int)customer.CustomerId, customer.CustomerName, customer.Country);
+            form.MdiParent = MdiParent;
+            form.Show();
         }
     }
 }
